@@ -48,9 +48,9 @@
 										<td class="sorting_1">{{ $query->comment }}</td>
 										<td class="sorting_1">{{ $query->getStatusOptions($query->state_id) }}</td>
 										{{-- dd($query->user->name) --}}
-										<td class="sorting_1">{{ isset($query->user->name) ? $query->user->name : "User deleted from DB" }}</td>
+										<td class="sorting_1">{{ isset($query->user->name) ? $query->user->name : "-" }}</td> {{-- se non compare è perchè l'utente con specifico id (cfr. 'user_id') non è più presente in db nella tab. users non è neanche softdeleted. E' stato proprio eliminato il record ! --}}
 										{{-- dd($query->consultant()) --}}
-										<td class="sorting_1">{{ isset($query->consultant->name) ? $query->consultant->name : "Consultant deleted from DB" }}</td>
+										<td class="sorting_1">{{ isset($query->consultant->name) ? $query->consultant->name : "-" }}</td>
 										<td class="sorting_1">
 											@if($query->state_id == \App\GlobalToolQuery::STATE_PENDING)
 												<a href="{{ url('admin/query/'.$query->id.'/edit') }}">Assign Consultant</a>

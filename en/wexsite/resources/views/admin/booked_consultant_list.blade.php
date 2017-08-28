@@ -18,11 +18,11 @@
 				@foreach ($booked_consultants as $booked_consultant)
 					<?php //echo '<pre>';print_r($booked_consultant->availablity);exit;?>
 					<tr role="row" class="odd">
-					<td class="sorting_1">{{ $booked_consultant->availablity->consultant->name }} {{ $booked_consultant->availablity->consultant->surname }}</td>
-					<td class="sorting_1">{{ $booked_consultant->user->name }} {{ $booked_consultant->user->surname }}</td>
-					<td class="sorting_1">{{ $booked_consultant->availablity->title }}</td>
-					<td class="sorting_1">{{ date('M d, Y',$booked_consultant->availablity->available_date ) }}</td>
-					<td class="sorting_1">{{ $booked_consultant->availablity->available_start_time }} - {{ $booked_consultant->availablity->available_end_time }}</td>
+					<td class="sorting_1">{{ isset($booked_consultant->availablity->consultant->name) ? : "-" }} {{ isset($booked_consultant->availablity->consultant->surname) ? : "-" }}</td>
+					<td class="sorting_1">{{ isset($booked_consultant->user->name) ? : "-" }} {{ isset($booked_consultant->user->surname) ? : "-" }}</td>
+					<td class="sorting_1">{{ isset($booked_consultant->availablity->title) ? : "-" }}</td>
+					<td class="sorting_1">{{ isset($booked_consultant->availablity->available_date) ? date('M d, Y',$booked_consultant->availablity->available_date ) : "-"}}</td>
+					<td class="sorting_1">{{ isset($booked_consultant->availablity->available_start_time) ? : "-" }} - {{ isset($booked_consultant->availablity->available_end_time) ? : "-" }}</td>
 					<td>
 					@if($booked_consultant->status == 0)
 						<span>Canceled</span>

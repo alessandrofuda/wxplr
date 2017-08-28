@@ -25,7 +25,9 @@ class GlobalToolController extends Controller
 
         $data['page_title'] = 'All Queries';
         $queries = GlobalToolQuery::all();
+        // dd($queries);
         $data['queries'] = $queries;
+
         return view('admin.queries',$data);
     }
 

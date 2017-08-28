@@ -99,7 +99,8 @@ class UserProfileController extends CustomBaseController
             $rules['surname'] = 'required|max:255';
             $rules['password'] = 'confirmed|min:6';
         }
-        //'email' => 'required|email|max:255|unique:users,email,'.$user_id,$rules['profile_picture'] = 'image';
+        //'email' => 'required|email|max:255|unique:users,email,'.$user_id,  
+        $rules['profile_picture'] = 'image'; // o.. 'image|mimes:jpg,png'  // decommentato, in origine era commentato.. verificare corretto funzionamento
         $rules['gender'] = 'required';
         $rules['age_range'] = 'required';
         $rules['country_origin'] = 'required';
@@ -117,6 +118,7 @@ class UserProfileController extends CustomBaseController
             $rules['zip_code'] = 'required';
             $rules['address'] = 'required';
         }
+
 		$validator = Validator::make($request->all(), $rules);
 		//echo '<pre>';print_r($validator->fails());exit;
 		if($validator->fails()) {
@@ -201,6 +203,8 @@ class UserProfileController extends CustomBaseController
 
 		return redirect()->route($redirect_url)->with('status', $status_message);
     }
+
+
     public function updateLogin(Request $request)
     {
         $user_id = Auth::user()->id;
@@ -221,6 +225,8 @@ class UserProfileController extends CustomBaseController
         $status_message = 'Profile Updated!';
         return redirect()->route('user_profile')->with('status', $status_message);
     }
+
+
     public function updatePersonal(Request $request)
     {
         $base_path=base_path();
