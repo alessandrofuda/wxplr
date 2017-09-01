@@ -538,6 +538,7 @@
 			'X-CSRF-TOKEN': "{{ csrf_token() }}"
 		}
 	});
+	
 	$("#have_promo").click(function(){
 		$("#promo_div").show();
 	});

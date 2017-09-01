@@ -72,7 +72,7 @@
             <div class="column one">
 
                 <div class="copyright">
-                    &copy; 2016 Wexplore
+                    &copy; {{ date('Y') }} Wexplore
                 </div>
                 <!--Social info area-->
                 <a id="back_to_top" href="#" class="button button_left button_js"> <span class="button_icon"> <i class="icon-up-open-big"></i> </span> </a>

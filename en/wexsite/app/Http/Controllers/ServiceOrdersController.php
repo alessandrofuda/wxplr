@@ -191,7 +191,7 @@ class ServiceOrdersController extends CustomBaseController {
 
 	public function service_payment_process_braintree(Request $request) {
 
-      	$service_price  =   $request['amount'];
+        $service_price  =   $request['amount'];
 		$service_name	=	$request['service_name'];
 		$service_id		=	$request['service_id'];
 		$payment_method	=	$request['payment_method'];
@@ -215,7 +215,7 @@ class ServiceOrdersController extends CustomBaseController {
 			//	$rules['payment_method_nonce'] = 'required';
 		}
 
-		$validator = Validator::make($request->all(),$rules);
+		$validator = Validator::make($request->all(),$rules);		//  form validation
 
 		if ($validator->fails()) {
 			return redirect()->back()->withInput()->withErrors($validator->errors());
@@ -398,7 +398,7 @@ class ServiceOrdersController extends CustomBaseController {
 
 			}
 
-			if(OrderTransaction::create($transaction_data)) {
+			if(OrderTransaction::create($transaction_data)) {  // !!! inserimento dettagli transazione in DB (TABELLA: transactions !!!!)
 
 			    if(isset($code_obj)) {
 				    if($code_obj->is_single == PreferentialCodes::SINGLE_USAGE) {
@@ -419,9 +419,10 @@ class ServiceOrdersController extends CustomBaseController {
 			    $data['page_title'] = 'Order Invoice';
 			    $data['discount'] = $discount;
 			    $data['vat_price'] = round($service->vatprice() * 22/100) ;
+  
 			    $pdf = \App::make('dompdf.wrapper');
-			    //return view('client.invoice_pdf', $data);
-			    $pdf->loadView('client.invoice_pdf', $data);
+			    // return view('client.invoice_pdf', $data);
+			    $pdf->loadView('client.invoice_pdf', $data);										// genera fattura
 			    $invoice_pdf_path = base_path().'/../uploads/invoice_'.time().'.pdf';
 			    $pdf->save($invoice_pdf_path);
 			    //return $pdf->stream($invoice_pdf_path);
@@ -439,14 +440,14 @@ class ServiceOrdersController extends CustomBaseController {
 				   'vat_price' => round($service->vatprice() * 22/100)
 			    ];
 
-			    \Mail::send('emails.service_activation', $mail_data, function ($m) use ($user_obj, $invoice_pdf_path) {
+			    \Mail::send('emails.service_activation', $mail_data, function ($m) use ($user_obj, $invoice_pdf_path) {  // invio MAIL notifica pagamento
 				   $settings=Setting::find(1);
 				   $site_email = $settings->website_email;
 				   $m->from($site_email, 'Wexplore');
 				   $m->attach($invoice_pdf_path);
 				   $m->to($user_obj->email, $user_obj->name)->subject('Service Activation!');
 			    });
-			    @unlink($invoice_pdf_path);
+			    @unlink($invoice_pdf_path);   // elimina invoice ???
 
 				/*  if($service->name == 'Professional Kit') {
 				   $code = SurveyCode::where('is_assigned',0)->first();

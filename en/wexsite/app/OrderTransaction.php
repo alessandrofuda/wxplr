@@ -37,11 +37,19 @@ class OrderTransaction extends Model
         'created_by',
         'code_id'
     ];
+
+
+
    /**
      * The table associated with the model.
      *
      * @var string
      */
+    protected $table = 'transactions';
+
+
+
+
     public function getItemDetails() {
         $order = $this->order;
 
@@ -90,7 +98,7 @@ class OrderTransaction extends Model
         return $this->belongsTo('App\Package','order_id');
     }
 
-    protected $table = 'transactions';
+    
 
     public function getName() {
         if($this->type_id == 0 ) 

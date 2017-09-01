@@ -74,7 +74,7 @@
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="copyright">
-                <p>© 2016 - adivalue</p>
+                <p>© {{ date('Y') }} - adivalue</p>
             </div>
         </div>
     </div>

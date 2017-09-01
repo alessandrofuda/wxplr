@@ -1,6 +1,6 @@
  <!-- /.content-wrapper -->
   <footer class="main-footer">    
-    <strong>Copyright &copy; 2016-2018 <a href="{{ url('/') }}">Wexplore</a>.</strong> All rights
+    <strong>Copyright &copy; {{ date('Y') }} <a href="{{ url('/') }}">Wexplore</a>.</strong> All rights
     reserved.
   </footer>
 

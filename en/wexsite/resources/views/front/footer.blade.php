@@ -69,7 +69,7 @@
             <div class="column one">
                 
                 <div class="copyright">
-                    &copy; 2016 Wexplore - Web design <a href="http://www.studioilgranello.it" target="_blank">Studio il Granello</a>
+                    &copy; {{ date('Y') }} Wexplore - Web design <a href="http://www.studioilgranello.it" target="_blank">Studio il Granello</a>
                 </div>
                 <!--Social info area-->
                 <a id="back_to_top" href="#" class="button button_left button_js"> <span class="button_icon"> <i class="icon-up-open-big"></i> </span> </a>
