@@ -452,7 +452,7 @@ class ConsultantProfileController extends CustomBaseController
 		$validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
 			'surname' => 'required|max:255',
-          //  'profile_picture' => 'required',
+            'profile_picture' => 'image',  // 'required',
 			'password' => 'confirmed|min:6',
             //'email' => 'required|email|max:255|unique:users,email,'.$user_id,
 			'date_of_birth' => 'required',

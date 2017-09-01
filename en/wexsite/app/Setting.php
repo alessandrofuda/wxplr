@@ -51,7 +51,7 @@ class Setting extends Model
             if($image_file->move($image_public_path, $image_file_name) ) {  // uploads !!
                 if($old_image != '') {
                     $old_image_path = $base_path.$old_image;
-                    @unlink($old_image_path);
+                    @unlink($old_image_path);  // @ --> prevent generating an error if file does not exist
                 }
             }
         }
