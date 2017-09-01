@@ -685,6 +685,7 @@ class AdminController extends Controller
 				'area_expertise' => $user->consultantProfile->area_expertise.','.$request->get('service_id')
 			]);
 		}
+		// array dei "problemi/questioni" non ancora assegnati ad alcun consultant e il cui paese matcha col paese di expertise del consultant
 		$dream_check_labs = DreamCheckLab::whereNull('validate_by')->where('interest_country',$user->consultantProfile->country_expertise)->get();
 
 		$pro_kit_activate = ConsultantServices::where('user_id',$id)->where('state_id',ConsultantServices::STATE_ACTIVE)
