@@ -15,22 +15,30 @@
 								<div class="column_attr ">
 <p><strong>INFORMATIVA RESA AI SENSI DELL'ART. 13 DEL D.LGS 196/2003</strong><br>
   <strong>relativa al sito internet </strong><a href="https://www.wexplore.co"><strong>www.wexplore.co</strong></a><strong> </strong><br><br>
-La società ADiValue – Gielle S.a.s, proprietaria del sito internet www.wexplore.co- e dei servizi a questo collegati, nella sua qualità di Titolare del trattamento dei suoi dati personali, ai sensi dell  &rsquo;Art. 13 del D.lgs 196/2003 (Codice della Privacy da qui in avanti), con la presente La informa che i dati forniti in sede di registrazione e in sede del successivo utilizzo dei servizi acquistati, saranno trattati in maniera lecita, corretta e trasparente come di seguito specificato.</p>
+La società Wexplore Srl, proprietaria del sito internet www.wexplore.co- e dei servizi a questo collegati, nella sua qualità di Titolare del trattamento dei suoi dati personali, ai sensi dell  &rsquo;Art. 13 del D.lgs 196/2003 (Codice della Privacy da qui in avanti), con la presente La informa che i dati forniti in sede di registrazione e in sede del successivo utilizzo dei servizi acquistati, saranno trattati in maniera lecita, corretta e trasparente come di seguito specificato.</p>
 <p><strong>1. Finalità del trattamento</strong><br>
   I suoi dati personali (categoria che comprende a titolo esemplificativo e non esaustivo, nome, cognome, sesso, data di nascita, indirizzo di residenza, l'indirizzo e-mail, il numero telefonico, percorso di studi, esperienza lavorativa, titoli accademici e tutte le altre informazioni indicate all&rsquo;interno del proprio Curriculum Vitae) forniti in sede di Registrazione sul Sito saranno trattati per le seguenti finalità:</p>
 <p><strong>1.1. Gestione del rapporto contrattuale, adempimenti contabili e amministrazione.</strong><br>
   Tutte le informazioni fornite sono raccolte e trattate dal Titolare e da società debitamente nominate responsabili del trattamento per l&rsquo;assolvimento e la gestione di tutti gli obblighi contrattuali, compresi gli adempimenti contabili e connessi all&rsquo;amministrazione della Società, relativi all&rsquo;erogazione dei servizi offerti, come precisato all&rsquo;articolo 5 delle Condizioni generali di contratto, ove sono specificati le modalità di utilizzo dei servizi da parte degli utenti, nonché i contenuti dei Servizi a Pagamento acquistabili dagli Utenti registrati sul Sito.<br />
-  I dati forniti inoltre, ai fini della corretta erogazione dei servizi da Lei acquistati, saranno comunicati a società partner commerciali di ADiValue, quali società di <em>relocation</em>, studi legali, o scuole di lingua al fine di erogare i servizi previsti dal contratto (nello specifico per consentire a tali categorie di soggetti di interagire con l&rsquo;utente per simulazioni di interviste e simulazione di colloqui lavorativi). <br>
+  I dati forniti inoltre, ai fini della corretta erogazione dei servizi da Lei acquistati, saranno comunicati a società partner commerciali di Wexplore, quali società di <em>relocation</em>, studi legali, o scuole di lingua al fine di erogare i servizi previsti dal contratto (nello specifico per consentire a tali categorie di soggetti di interagire con l&rsquo;utente per simulazioni di interviste e simulazione di colloqui lavorativi). <br>
 Il titolare si impegna a fare uso delle informazioni ricevute, nel rispetto del quadro normativo vigente e, in particolar modo, nel rispetto delle disposizioni poste a tutela della riservatezze dei dati personali.  <strong> </strong></p>
 <p><strong>1.2. Attività di marketing.</strong><br>
-  Solo nel caso in cui venga fornito il Suo consenso espresso, libero e facoltativo, i dati personali conferiti potranno essere trattati:</p>
+  I dati personali conferiti potranno essere trattati:</p>
+
+
+
+
 <ul>
-  <li>per finalità di marketing, invio di materiale pubblicitario e vendita tramite strumenti automatizzati (quali ad esempio fax, sms, posta elettronica), invio di comunicazioni commerciali, anche interattive, nonché́ strumenti tradizionali quali posta e telefono e qualsiasi altra tecnica di comunicazione a distanza, in relazione a prodotti o servizi offerti dalla nostra Società̀ nonché́ per consentire alla Società̀ di condurre ricerche di mercato; </li>
+  <li>per finalità di comunicazione e aggiornamento rispetto agli sviluppi e alle iniziative della società, invio di comunicazioni istituzionali, anche interattive (DEM), nonché́ strumenti tradizionali quali posta e telefono e qualsiasi altra tecnica di comunicazione a distanza, in relazione a prodotti o servizi offerti dalla nostra Società̀ nonché́ per consentire alla Società̀ di condurre ricerche di mercato;</li>
   <li>per consentire alla Società̀ di effettuare rilevazioni statistiche, al fine di migliorare i propri prodotti e servizi.</li>
 </ul>
 
+<p>Solo nel caso in cui venga fornito il Suo consenso espresso, libero e facoltativo per finalità di marketing, i dati personali conferiti potranno essere trattati per finalità di marketing, nella fattispecie per l’invio di materiale pubblicitario e vendita tramite strumenti automatizzati (quali ad esempio fax, sms, posta elettronica), invio di comunicazioni commerciali, anche interattive, nonché́ strumenti tradizionali quali posta e telefono e qualsiasi altra tecnica di comunicazione a distanza, in relazione a prodotti o servizi offerti dalla nostra Società̀.</p>
+
+<p>In ogni momento avrà comunque la possibilità di disiscriversi dalla newsletter, o di segnalarci la Sua indisponibilità a essere contattato con la modalità summenzionate.</p>
+
 <p><strong>1.3. Comunicazione dei dati in forma anonima per fini statistici.</strong><br>
-  Solo nel caso in cui venga fornito il Suo consenso espresso, libero e facoltativo, all&rsquo;anonimizzazione dei dati conferiti, i suddetti potranno essere oggetto di comunicazione, esclusivamente in forma aggregata, anche ad associazioni che operano nel campo dell&rsquo;occupazione giovanile all&rsquo;estero e a quotidiani.<br />
+  I Suoi dati potranno essere oggetto di comunicazione, esclusivamente in forma aggregata, anche ad associazioni che operano nel campo dell&rsquo;occupazione giovanile all&rsquo;estero e a quotidiani.<br />
   I dati divulgati in forma aggregata non saranno in grado di identificare in alcun modo l&rsquo;utente che li ha conferiti (a titolo esemplificativo, può essere calcolata, e successivamente divulgata, la percentuale di soggetti, appartenenti ad una data area geografica, che sceglie di emigrare) e con la finalità esclusiva di studio statistico, totalmente anonimo, del fenomeno della migrazione dei talenti in stati esteri (highly skilled migrants).<br />
   Tali dati in forma aggregata potranno essere divulgati ad associazioni che operano nel campo dell&rsquo;occupazione e a quotidiani. </p>
 <p><strong>2. Modalità di trattamento dei dati conferiti.</strong><br>
@@ -41,7 +49,7 @@ Il titolare si impegna a fare uso delle informazioni ricevute, nel rispetto del 
   Il mancato conferimento del consenso al trattamento per la finalità di cui al punto 1.1. implica l&rsquo;impossibilità di usufruire del servizio offerto dal titolare.<strong></strong><br />
   Il mancato conferimento del consenso al trattamento di cui al punto 1.2. non inficerà il rapporto contrattuale ma avrà come conseguenza l'impossibilità di venire a conoscenza di iniziative promozionali della Società.<br />
   Il mancato conferimento del consenso al trattamento di cui al punto 1.3. non inficerà il rapporto contrattuale, ma avrà come conseguenza l'impossibilità di utilizzare i dati da Lei forniti per fini statistici relativi al fenomeno della migrazione dei professionisti. </p>
-<p><strong>4. Soggetti ai quali i dati personali possono essere comunicati e l'ambito di diffusione dei dati medesimi.</strong><<br>
+<p><strong>4. Soggetti ai quali i dati personali possono essere comunicati e l'ambito di diffusione dei dati medesimi.</strong><br>
   I dati forniti (quali, a titolo esemplificativo e non esaustivo, nome, cognome, email e nazionalità) sono comunicati a società partner, come la Itim International Oy, società con sede in Finlandia, la quale verrà nominata responsabile del trattamento, ai fini della corretta erogazione dei servizi acquistati dall&rsquo;Utente. <br />
   Si rinvia a quanto stabilito dal punto 6 della presente informativa per quanto riguarda le modalità con le quali l&rsquo;interessato può ottenere una lista aggiornata dei responsabili/incaricati nominati per il trattamento.</p>
 <p><strong>5. Diritti dell'interessato.</strong><br>

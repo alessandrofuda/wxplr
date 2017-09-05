@@ -409,7 +409,12 @@ Route::any('admin/dream/{dream_id}/pdf', 'AdminController@dream_pdf');
 	Route::get('/global_toolbox','GlobalToolController@index');
     Route::post('/global/query','GlobalToolController@query');
 
-	/* Please make sure to place this route at the end of route file, Otherwise some pages may not work */
+
+
+    /*  IMPORTANT */
+	/* !!! Please make sure to place this route at the end of route file, Otherwise some pages may not work !!! */
+	/* this machine_name param include this pages: about-us, contact-us, terms-service, privacy-policy, cookies-policy, code-ethics, servicesb, global-orientation-test, professional-kit, global-toolbox, skills-development, aiesec, faq, ... */
+
 	Route::get('/{machine_name}', array('as' => 'getContent', 'uses' => 'PagesController@getContent'));
 	Route::get('autocomplete',array('as'=>'autocomplete','uses'=>'SkillDevelopmentController@all'));
 	Route::get('searchajax',array('as'=>'searchajax','uses'=>'SkillDevelopmentController@auto_complete'));
