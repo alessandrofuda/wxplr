@@ -414,8 +414,8 @@ class ConsultantProfileController extends CustomBaseController
         $cc_code=Country::all();
         $data['countries_code'] = $cc_code;
         $model = new ConsultantProfile();
-        $data['areas'] = ConsultantProfile::getExpertiesOptions();
-        
+        $data['areas'] = ConsultantProfile::getExpertiesOptions(); // return list
+        // dd($data);
 		return view('consultant.consultant_profile',$data);
     }
     /**

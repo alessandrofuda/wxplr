@@ -13,7 +13,6 @@ class ConsultantServices extends Model
     const GT_CULTURE_SUPPORT = 3;
     const SERVICE_GT_FREELANCE_SUPPORT = 4;
     const SERVICE_GT_PROFESSIONAL = 5;
-
     const SERVICE_GLOBAL_TOOL_BOX = 6;
     const SERVICE_LIVE_WEBINAR = 7;
 
@@ -52,15 +51,20 @@ class ConsultantServices extends Model
     }
 
     public static  function getServiceName($id = null) {
+        // dd($id);
         $list = [
-            self::SERVICE_GLOBAL_TOOL_BOX => 'Global Tool Box',
-            self::SERVICE_PROFESSIONAL_KIT => 'Professional',
-            self::SERVICE_CONTRACT_EVALUATION => 'Professional',
-            self::SERVICE_GT_FREELANCE_SUPPORT => 'Professional',
-            self::SERVICE_GT_PROFESSIONAL => 'Professional',
-            self::SERVICE_LIVE_WEBINAR => 'Professional',
-            self::SERVICE_ROLE_PLAY_INTERVIEW => 'Professional',
+            self::SERVICE_GLOBAL_TOOL_BOX => 'Global Tool Box',     // 6 => 'Global Tool Box'
+            self::SERVICE_PROFESSIONAL_KIT => 'Professional',       // 0 => 'Professional'
+            self::SERVICE_CONTRACT_EVALUATION => 'Professional',    // 2 => 'Professional'
+            self::SERVICE_GT_FREELANCE_SUPPORT => 'Professional',   // 4 => '...'
+            self::SERVICE_GT_PROFESSIONAL => 'Professional',        // 5 => '...'
+            self::SERVICE_LIVE_WEBINAR => 'Professional',           // 7 => '...'
+            self::SERVICE_ROLE_PLAY_INTERVIEW => 'Professional',    // 1 => '...'  // --> Manca la key 3 !!! 
+
+            // aggiunta la key n.3 che mancava ...
+            self::GT_CULTURE_SUPPORT => '???',                      // 3 => '...'
         ];
+
 
         if($id === null) {
             return $list;
@@ -71,5 +75,6 @@ class ConsultantServices extends Model
         }
 
         return $id;
+        
     }
 }

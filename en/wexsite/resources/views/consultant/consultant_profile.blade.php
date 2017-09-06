@@ -3,7 +3,12 @@
 	<h1>Dashboard<small>Profile</small></h1>
 @endsection
 @section('content')
-{{--*/ $consultant=Auth::user(); /*--}}
+
+{{--  $consultant=Auth::user();  --}}
+<?php 
+	$consultant = Auth::user(); 
+?>
+
 <div class="col-md-12 profile_page">
 <h3 class="box-title">{{ $page_title }}</h3>
 <div class="Profile_details col-md-9 col-sm-10 col-xs-12 columns-center">
@@ -188,6 +193,7 @@
 					<li><span>Personal Identification Number:</span> <span class="Fill_detais">{{ $consultant->consultantProfile->pin_number }}</span></li>
 
 					<li><span>Company:</span> <span class="Fill_detais">{{ $consultant->consultantProfile->company }}</span></li>
+
 
 					<li><span>Area Expertise:</span> <span class="Fill_detais">{{ $consultant->consultantProfile->getExpertiesOptions($consultant->consultantProfile->area_expertise) }}</span></li>
 

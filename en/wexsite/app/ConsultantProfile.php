@@ -49,6 +49,7 @@ class ConsultantProfile extends Model
 	
 	public static function getExpertiesOptions($id = null)
 	{
+		// dd($id);
 		$list = [
 			self::AREA_CAREER_SESSION => 'Career Session',
 			self::AREA_ROLE_PLAY_INTERVIEW => 'Role Play Interview',
@@ -57,6 +58,7 @@ class ConsultantProfile extends Model
 			self::AREA_FREELANCE_SUPPORT => 'Freelance Support',
 			self::AREA_PROFESSIONAL_TROUBLESHOOTING => 'Professional Troubleshooting',
 		];
+
 		if ($id === null)
 			return $list;
 
