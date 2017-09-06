@@ -37,7 +37,6 @@ class PagesController extends CustomBaseController {
 	const MAILCHIMP_LIST_GROUP_AIESEC = 'd8b559b138';
 
 	public function homepage() {
-		dd( date('d-m-Y H:i:s') );
 		$services = Service::get();
 		$services_arr = [];
 		$purchase = array(
