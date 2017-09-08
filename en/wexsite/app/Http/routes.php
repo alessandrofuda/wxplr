@@ -161,6 +161,7 @@ Route::get('/token',function () {
 			Route::get('user/culture_match/submit',['as'=>'culture_match_submit_get','uses' => 'ProfessionalKitController@culture_match_index']);
 			Route::post('user/culture_match/submit',['as'=>'culture_match_submit','uses' => 'ProfessionalKitController@culture_match_submit']);
 			Route::get('culture/match/survey/{country}',['as'=>'culture_match_survey','uses' => 'ProfessionalKitController@culture_match_iframe']);
+			
 			Route::get('user/dream_check_lab', ['as'=>'dream.check.lab','uses'=>'ProfessionalKitController@dream_check_lab']);
 			Route::post('user/dream_check_lab/store', ['as'=>'dream.check.lab.store','uses'=>'ProfessionalKitController@dream_check_lab_store']);
 			Route::post('user/dream_check_lab/submit', ['as'=>'dream.check.lab.submit','uses'=>'ProfessionalKitController@dream_check_lab_submit']);

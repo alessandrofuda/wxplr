@@ -618,16 +618,19 @@ class ProfessionalKitController extends CustomBaseController {
 		$consultant = '';
 		$user = Auth::user();
 		$dreamcheck_lab = DreamCheckLab::where('user_id',$user->id)->first(['validate_by'])->toArray();
-		$consultant = User::find($dreamcheck_lab['validate_by']);
+		$consultant = User::find($dreamcheck_lab['validate_by']);		// consultant che ha fatto la validazione della richiesta dell'utente
 		$order = Order::where('user_id',$user->id)->where('item_name','Professional Kit')->first();
 
 		$booking = ConsultantBooking::where('user_id', \Auth::user()->id)
-									->where('type_id', ConsultantBooking::TYPE_INTERVIEW)
-									->where('status','!=',ConsultantBooking::STATE_CANCELLED)->first();
+									->where('type_id', ConsultantBooking::TYPE_INTERVIEW)   // constant = 0
+									->where('status','!=',ConsultantBooking::STATE_CANCELLED)  // constant = 2
+									->first();
+		// dd($booking);
 		$consultant_avail = [];
 
 
 		if($booking == null) {
+
 			if ($order != null) {
 				if ($order->step_id < 3) {
 					$order->update([

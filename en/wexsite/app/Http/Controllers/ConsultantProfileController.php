@@ -72,8 +72,9 @@ class ConsultantProfileController extends CustomBaseController
     }
 
     public function post_availability_form(Request $request) {
+        
         $user_id = Auth::user()->id;
-       // $request_arr['title'] = 'required';
+       
 		$request_arr['available_date'] = 'required';
         $request_arr['available_start_time'] = 'required';
         $request_arr['available_end_time'] = 'required';
@@ -89,16 +90,15 @@ class ConsultantProfileController extends CustomBaseController
 
         $title = '';
         $available_date = trim($request['available_date']);
-        $available_start_time = trim($request['available_start_time']);
+        $available_start_time = trim($request['available_start_time']); 
         $available_end_time = trim($request['available_end_time']);
 
         $available_date_time =  date('Y-m-d',strtotime($available_date)).' '.date('H:i:s',strtotime($available_start_time));
 
         $available_date_utc = Setting::dateUtc($available_date_time);
 
-        $available_start_utc = Setting::dateUtc($available_date_time, true);
-
-
+        $available_start_utc = Setting::dateUtc($available_date_time, true);  
+        
         $available_end_date_time =  date('Y-m-d',strtotime($available_date)).' '.$available_end_time;
         $available_end_utc = Setting::dateUtc($available_end_date_time, true);
 
@@ -117,28 +117,35 @@ class ConsultantProfileController extends CustomBaseController
                                'status'=>$status);
 
         $availablity = ConsultantAvailablity::where('available_date', strtotime($available_date_utc))
-            ->where('consultant_id', $user_id)
-            ->where(function($q1) use ($available_start_utc, $available_end_utc) {
-                $q1
-                    ->whereBetween('available_start_time', [$available_start_utc, $available_end_utc])
-                    ->orWhereBetween('available_end_time', [$available_start_utc, $available_end_utc]);
-            })
-            ->first();
+                                            ->where('consultant_id', $user_id)
+                                            ->where(function($q1) use ($available_start_utc, $available_end_utc) {
+                                                    $q1
+                                                    ->whereBetween('available_start_time', [$available_start_utc, $available_end_utc])
+                                                    ->orWhereBetween('available_end_time', [$available_start_utc, $available_end_utc]);
+                                                    })
+                                            ->first();
 
         if($availablity != null) {
             return  redirect()->back()->withInput()->with('error', 'These timings are clashing with other availablity timings. Please choose other timings.');
         }
 
-        $ca = ConsultantAvailablity::Create($consultant_avail);
+        $ca = ConsultantAvailablity::Create($consultant_avail);  // !! orari salvati in db in UTC
 
         return redirect('consultant/availability/list')->with('status', 'Form has been saved!');
     }
+
+
+
+
+
 
     public function availability_list(){
 		$user_id = Auth::user()->id;
         $consultant_avails = ConsultantAvailablity::where('consultant_id',$user_id)->get();
         $data['page_title'] = 'Consultant Availablity Listing';
         $data['consultant_avails'] = $consultant_avails;
+
+        // dd($data['consultant_avails']); // OK!
 
         return view('consultant.consultant_availability_list',$data);
     }

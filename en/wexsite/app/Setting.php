@@ -156,9 +156,8 @@ class Setting extends Model
             }
        // }
 
-        $date = new \DateTime($date, new \DateTimeZone('UTC'));
-
-        $date->setTimezone(new \DateTimeZone($timezone));
+        $date = new \DateTime($date, new \DateTimeZone('UTC')); 
+        $date->setTimezone(new \DateTimeZone($timezone));  
 
         if($time == false)
             return $date->format($format);
@@ -170,17 +169,23 @@ class Setting extends Model
         $timezone = 'Europe/Rome';
 
         if(\Auth::check()) {
+
+            // dd(\Session::all()); verificare perchè in session viene fuori Europe/Berlin (vien dal form di iscrizione user (hidden filed))
+
             if(\Session::get('user_timezone') != '') {
                 $timezone = \Session::get('user_timezone');
             }else{
                 $timezone = self::getTimeZone();
                 \Session::put('user_timezone', $timezone);
             }
+
         }
 
-        $date = new \DateTime($date, new \DateTimeZone($timezone));
+        $date = new \DateTime($date, new \DateTimeZone($timezone)); 
+        $date->setTimezone(new \DateTimeZone('UTC')); 
 
-        $date->setTimezone(new \DateTimeZone('UTC'));
+
+
         if($time == false)
             return $date->format($format);
 

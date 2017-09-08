@@ -343,6 +343,21 @@ class GlobalToolController extends CustomBaseController
       //  return redirect('user/role_play_interview')->with('success', 'Successfully Cancelled');
     }
 
+
+
+
+
+
+
+// Citrix API HTTP Status Codes --> per implementare pulsante richiama
+// https://goto-developer.logmeininc.com/citrix-api-http-status-codes
+
+
+
+
+
+
+
     public function start_meeting($id) {
         $data['page_title'] = 'Session';
         $appointment = ConsultantBooking::find($id);
