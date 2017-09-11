@@ -212,7 +212,9 @@ class ConsultantBooking extends Model
                 'Authorization: OAuth oauth_token=' .$token
             ];
             $url = "https://api.citrixonline.com/G2M/rest/meetings/" . $gotomeeting->meetingid.'/start';
-            $out = self::curl_request('GET', $headers, $url);
+            $out = self::curl_request('GET', $headers, $url);   // vedi ultimo metodo (fondo pagina)
+
+            // dd($out);  // assoc array : hostURL => skjhdkhdhvh.....
 
             return $out;
         }
@@ -377,8 +379,17 @@ class ConsultantBooking extends Model
         }
 
         $output = curl_exec($ch);
-        $out = json_decode($output, true);
+        $out = json_decode($output, true);  // true--> convert from object to associative array
+
+
+        // dd(curl_getinfo( $ch ));
+
+
         curl_close($ch);
+
+
+        // dd($out);
+
         return $out;
     }
 

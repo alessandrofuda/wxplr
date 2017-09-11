@@ -367,10 +367,12 @@ class GlobalToolController extends CustomBaseController
         }*/
 
         $data['appointment'] = $appointment;
-        $response = $appointment->start_meeting();
+        // dd('... go to start meeting to citrix server ... stop!');
+        $response = $appointment->start_meeting(); 
+        // dd($response); 
 
         if(isset($response['hostURL'])) {
-          return  redirect()->away($response['hostURL']);
+          return  redirect()->away($response['hostURL']);   // remote call !
         }
 
         $data['hostUrl'] = $response['hostURL'];

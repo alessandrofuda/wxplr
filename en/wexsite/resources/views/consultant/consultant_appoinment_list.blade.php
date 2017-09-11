@@ -13,12 +13,12 @@
 	<table id="global_test" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
 		<thead>
 			<tr role="row">
-			<th>User Name</th>
-			<th>Session Type</th>
-			<th>Booking Date/Time</th>
-			<th>Status</th>
-			<?php /*<th>Feedback</th>*/?>
-			<th>Operation</th>
+				<th>User Name</th>
+				<th>Session Type</th>
+				<th>Booking Date/Time</th>
+				<th>Status</th>
+				<?php /*<th>Feedback</th>*/?>
+				<th>Operation</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -27,13 +27,15 @@
 				@foreach ($appointments as $appointment)
 
 					<tr role="row" class="odd">
-					<td class="sorting_1"><a href="{{ url('booking/profile/'.$appointment->query_id.'/'.$appointment->type_id.'/detail') }}">{{ $appointment->user->name }} {{ $appointment->user->surname }}</a></td>
-					<td class="sorting_1">{{ $appointment->getBookingType() }}</td>
+						<td class="sorting_1"><a href="{{ url('booking/profile/'.$appointment->query_id.'/'.$appointment->type_id.'/detail') }}">{{ $appointment->user->name }} {{ $appointment->user->surname }}</a></td>
+						<td class="sorting_1">{{ $appointment->getBookingType() }}</td>
 						<td class="sorting_1">{{ $appointment->availablity->getDate() }} -
-							{{ $appointment->availablity->getDate(\App\ConsultantAvailablity::START_TIME)  }} to {{ $appointment->availablity->getDate(\App\ConsultantAvailablity::END_TIME)  }}</td>
-					  <td>
+							{{ $appointment->availablity->getDate(\App\ConsultantAvailablity::START_TIME)  }} to {{ $appointment->availablity->getDate(\App\ConsultantAvailablity::END_TIME)  }}
+						</td>
+					  	<td>
 						  {!! $appointment->getMeetingStatus() !!}
-					  </td>
+						  <!--a id="restart" class="btn btn-warning" href="https://www.gotomeeting.com/join/XXXXXX">Re-connect to Meeting (beta)</a-->
+					  	</td>
 						<?php /*	<td>
 					@if($appointment->status == 2)
 						@if($appointment->feedback_comments != '')
@@ -61,6 +63,26 @@
 			@endif
 		</tbody>
 	</table>
+
+
+
+		<script>
+			jQuery(document).ready(function($){
+				//$('#restart').hide();
+  
+  				$('#start_{{ $appointment->id }}').click(function() {
+  					// $('#start_{{-- $appointment->id --}}').hide();
+    				// $('#restart').show();
+    				$(this).removeClass('btn-success').addClass('btn-warning');
+    				$(this).text('Reconnect to Meeting');
+
+  				});
+  			});
+		</script>
+
+
+
+
 		<script>
 			$("[id^=upload_file]").click(function() {
 				var id = $(this).attr('id').split('upload_file')[1];
