@@ -11,3 +11,9 @@ MyProject.komodoproject
 git4rv
 .idea
 env.php
+/en/wexsite/vendor
+/it/wexsite/vendor
+/en/wexsite/storage
+/it/wexsite/storage
+/en/wexsite/.env
+/it/wexsite/.env
