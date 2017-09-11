@@ -76,7 +76,6 @@
 	    				// $('#restart').show();
 	    				$(this).removeClass('btn-success').addClass('btn-warning');
 	    				$(this).text('Reconnect to Meeting');
-
 	  				});
 	  			});
 			</script>

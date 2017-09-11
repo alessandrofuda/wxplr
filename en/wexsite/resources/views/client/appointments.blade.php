@@ -27,34 +27,48 @@
 				</tr>
 				</thead>
 				<tbody>
-				@forelse($appointments as $appointment)
-					@if(isset($appointment->availablity->consultant->name ))
-					<tr>
-						<td class="sorting_1">{{ $appointment->availablity->consultant->name }}</td>
-						<td class="sorting_1">{{ $appointment->availablity->getDate() }} -
-							{{ $appointment->availablity->getDate(\App\ConsultantAvailablity::START_TIME)  }} to {{ $appointment->availablity->getDate(\App\ConsultantAvailablity::END_TIME)  }}</td>
-						<td class="sorting_1">{{ $appointment->getTypeOptions($appointment->type_id, $appointment->query_id) }}</td>
-						<td class="sorting_1">{!!  $appointment->getMeetingStatus() !!}</td>
-						<td class="sorting_1">
+					@forelse($appointments as $appointment)
+						@if(isset($appointment->availablity->consultant->name ))
+						<tr>
+							<td class="sorting_1">{{ $appointment->availablity->consultant->name }}</td>
+							<td class="sorting_1">{{ $appointment->availablity->getDate() }} -
+								{{ $appointment->availablity->getDate(\App\ConsultantAvailablity::START_TIME)  }} to {{ $appointment->availablity->getDate(\App\ConsultantAvailablity::END_TIME)  }}</td>
+							<td class="sorting_1">{{ $appointment->getTypeOptions($appointment->type_id, $appointment->query_id) }}</td>
+							<td class="sorting_1">{!!  $appointment->getMeetingStatus() !!}</td>
+							<td class="sorting_1">
 
-								@if($appointment->status == \App\ConsultantBooking::STATE_PENDING && $appointment->checkDate())
-									<a href='{{ url("user/booking/".$appointment->id."/cancel") }}' class="btn btn-warning">Cancel Appointment </a>
-								@else
-									Not Allowed
-								@endif
-						</td>
-					</tr>
-					@endif
-				@empty
-					<tr>
-						<td colspan="5" align="center">
-							No Appointment set yet!!</a>
-						</td>
-					</tr>
-				@endforelse
+									@if($appointment->status == \App\ConsultantBooking::STATE_PENDING && $appointment->checkDate())
+										<a href='{{ url("user/booking/".$appointment->id."/cancel") }}' class="btn btn-warning">Cancel Appointment </a>
+									@else
+										Not Allowed
+									@endif
+							</td>
+						</tr>
+						@endif
+					@empty
+						<tr>
+							<td colspan="5" align="center">
+								No Appointment set yet!!</a>
+							</td>
+						</tr>
+					@endforelse
 				</tbody>
 			</table>
-
 		</div>
+
+        @if (count($appointments) > 0)
+            @foreach ($appointments as $appointment)
+		        <script>
+					jQuery(document).ready(function($){
+	  
+	  					$('#join_{{ $appointment->id }}').click(function() {
+	    					$(this).removeClass('btn-success').addClass('btn-warning');
+	    					$(this).text('Reconnect to Meeting');
+	  					});
+	  				});
+		        </script>
+		    @endforeach
+		@endif
+
 	</div>
 @endsection
