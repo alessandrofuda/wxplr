@@ -65,21 +65,23 @@
 	</table>
 
 
+    @if (count($appointments) > 0)
+        @foreach ($appointments as $appointment)
+			<script>
+				jQuery(document).ready(function($){
+					//$('#restart').hide();
+	  
+	  				$('#start_{{ $appointment->id }}').click(function() {
+	  					// $('#start_{{-- $appointment->id --}}').hide();
+	    				// $('#restart').show();
+	    				$(this).removeClass('btn-success').addClass('btn-warning');
+	    				$(this).text('Reconnect to Meeting');
 
-		<script>
-			jQuery(document).ready(function($){
-				//$('#restart').hide();
-  
-  				$('#start_{{ $appointment->id }}').click(function() {
-  					// $('#start_{{-- $appointment->id --}}').hide();
-    				// $('#restart').show();
-    				$(this).removeClass('btn-success').addClass('btn-warning');
-    				$(this).text('Reconnect to Meeting');
-
-  				});
-  			});
-		</script>
-
+	  				});
+	  			});
+			</script>
+	    @endforeach
+    @endif
 
 
 
