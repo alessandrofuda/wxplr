@@ -16,6 +16,8 @@ use App\DreamCheckLab;
 use App\DreamCheckLabFeedback;
 use Mail;
 use App\Setting;
+use App\UserConsultantDiscussion;
+
 
 class ConsultantProfileController extends CustomBaseController
 {
@@ -59,6 +61,26 @@ class ConsultantProfileController extends CustomBaseController
     public function availability_form(){
         $data['page_title'] = 'Consultant Availablity Form';
         $data['page_type']='view';
+
+        // box discussion between consultant and client/clients(!)  I clienti possono essere più di uno per ogni consultant ??
+        $consultant = Auth::user();
+
+        $client_id = DreamCheckLab::where('validate', 1)
+                                ->where('validate_by',$consultant->id)
+                                ->first(['user_id'])
+                                ->user_id;
+
+        $client = User::find($client_id);
+        $data['client'] = $client;
+
+        $discuss_id = $client->id.$consultant->id;
+        $data['discuss_id'] = $discuss_id;
+        
+        $discussions = UserConsultantDiscussion::whereIn('user_id', [$client->id, $consultant->id])
+                                               ->where('discuss_id', $discuss_id)
+                                               ->get();
+
+        $data['discussions'] = $discussions;
 
         return view('consultant.consultant_availability_form',$data);
     }

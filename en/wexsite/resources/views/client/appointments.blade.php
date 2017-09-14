@@ -60,7 +60,6 @@
             @foreach ($appointments as $appointment)
 		        <script>
 					jQuery(document).ready(function($){
-	  
 	  					$('#join_{{ $appointment->id }}').click(function() {
 	    					$(this).removeClass('btn-success').addClass('btn-warning');
 	    					$(this).text('Reconnect to Meeting');

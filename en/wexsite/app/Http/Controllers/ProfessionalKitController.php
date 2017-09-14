@@ -11,7 +11,8 @@ use Illuminate\Http\Request;
 use App\Country;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
-use Mail;use App\Setting;
+use Mail;
+use App\Setting;
 use App\CultureMatchSurvey;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -30,6 +31,9 @@ use App\DreamCheckLab;
 use App\SteadyAimShoot;
 use App\CountryPdf;
 use Validator;
+use App\UserConsultantDiscussion;
+
+
 
 class ProfessionalKitController extends CustomBaseController {
 
@@ -641,7 +645,7 @@ class ProfessionalKitController extends CustomBaseController {
 
 			if (!empty($consultant)) {
 				$consultant_id = $consultant->id;
-				$booked_data = ConsultantBooking::where('status', '!=', ConsultantBooking::STATE_CANCELLED)->get();
+				$booked_data = ConsultantBooking::where('status', '!=', ConsultantBooking::STATE_CANCELLED)->get();  // STATE_CANCELLED = 2
 
 				$today_date = date('Y-m-d', strtotime('today'));
 				$today = Setting::dateUtc($today_date);
@@ -669,12 +673,25 @@ class ProfessionalKitController extends CustomBaseController {
 		//$data['dreamcheck_lab'] = $dreamcheck_lab;
 		// get booking
 
-
 		$data['consultant'] = $consultant;
 		$data['consultant_avail'] = $consultant_avail;
 		$data['page_title']='Career Orientation Session';
+
+
+		// discussion
+		$discuss_id = $user->id.$consultant->id; 
+		$data['discuss_id'] = $discuss_id;
+		
+		$discussions = UserConsultantDiscussion::whereIn('user_id', [$user->id, $consultant->id])
+											   ->where('discuss_id', $discuss_id)
+											   ->get();
+		
+		$data['discussions'] = $discussions;
+
 		return view('client.role_play_interview',$data);
+
 	}
+
 
 	public function consultant_list(){
 		$data['page_title']='Matching Consultant Listing';
@@ -911,4 +928,111 @@ class ProfessionalKitController extends CustomBaseController {
 		$data['page_title'] = "Live video chat";
 		return view('front.role_play_video',$data);
 	}
+
+
+
+	public function post_user_discussion(Request $request)
+	{
+
+		// input validation
+		$rules['user_id'] = 'required|integer';
+		$rules['discuss_id'] = 'required|integer';
+		$rules['message'] = 'required|string';
+		
+		$validator = Validator::make($request->all(),$rules);
+
+		if ($validator->fails()) {
+			return redirect()->back()->withInput()->withErrors($validator->errors());
+		}
+
+
+		//client
+		$user = Auth::user();
+
+		// consultant
+		$consultant_id = DreamCheckLab::where('user_id',$user->id)->first(['validate_by'])->toArray();
+		$consultant_id = $consultant_id['validate_by'];
+		$consultant = User::find($consultant_id);
+
+		// insert in db
+		$discuss_id =  $user->id.$consultant->id; //$request['discuss_id'];
+		$message = $request['message'];
+		$new_message = UserConsultantDiscussion::create(['user_id'=> $user->id, 'discuss_id'=> $discuss_id, 'message'=> $message]);
+
+
+		// send mail to Consultant
+		$msg['from'] = $user->name;
+		$msg['to'] = $consultant->name;
+		$msg['message'] = $message;
+
+		Mail::send('emails.post_user_discussion', ['msg' => $msg], function ($m) use ($consultant) {
+			$settings=Setting::find(1);
+			$site_email = $settings->website_email;
+			$to = $consultant->email;
+			$name =  $consultant->name.' '. $consultant->surname;
+			$m->from($site_email, 'Wexplore');
+			$m->to($to, $name)->subject('New message from Wexplore\'s user!');
+		});
+
+		
+
+		// redirect to same page with('message', '...')
+		return redirect()->back()->with('status','Message sent to Consultant. Please wait for a feedback');
+	}
+
+
+	public function post_consultant_discussion(Request $request)
+	{
+
+		// input validation
+		$rules['user_id'] = 'required|integer';
+		$rules['discuss_id'] = 'required|integer';
+		$rules['message'] = 'required|string';
+		
+		$validator = Validator::make($request->all(),$rules);
+
+		if ($validator->fails()) {
+			return redirect()->back()->withInput()->withErrors($validator->errors());
+		}
+
+
+		//consultant
+		$consultant = Auth::user();
+
+		// client
+		$client_id = DreamCheckLab::where('validate_by',$consultant->id)->first(['user_id'])->user_id; 
+		$client = User::find($client_id);
+
+		// insert in db
+		$discuss_id =  $client->id.$consultant->id; //$request['discuss_id'];
+		$message = $request['message'];
+		$new_message = UserConsultantDiscussion::create(['user_id'=> $consultant->id, 'discuss_id'=> $discuss_id, 'message'=> $message]);
+
+
+		// send mail to Consultant
+		$msg['from'] = $consultant->name;
+		$msg['to'] = $client->name;
+		$msg['message'] = $message;
+
+		Mail::send('emails.post_consultant_discussion', ['msg' => $msg], function ($m) use ($client) {
+			$settings=Setting::find(1);
+			$site_email = $settings->website_email;
+			$to = $client->email;
+			$name =  $client->name.' '. $client->surname;
+			$m->from($site_email, 'Wexplore');
+			$m->to($to, $name)->subject('New message from Wexplore\'s Consultant!');
+		});
+
+		
+
+		// redirect to same page with('message', '...')
+		return redirect()->back()->with('status','Message sent to Client. Please wait for a feedback and then proceed to booking meeting date 
+filling the \'Consultant Availability Form\' below.');
+
+	}
+
+
+
 }
+
+

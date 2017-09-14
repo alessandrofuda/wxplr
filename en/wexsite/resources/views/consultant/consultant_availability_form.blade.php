@@ -6,10 +6,76 @@
 	<li class="active">Dashboard</li>
 	</ol>-->
 @endsection
-@section('content')
+
 @section('content')
 <link rel="stylesheet" href="{{ asset('admin/plugins/timepicker/bootstrap-timepicker.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/plugins/datepicker/datepicker3.css') }}">
+
+<div id="discussion" class="col-md-12 profile_page">
+	<h3 class="box-title">Users Availability Box</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div id="discussion-{{$discuss_id}}" class="col-md-10 col-sm-12 discussion" style="margin: 40px auto;">
+		<div class="row ass-user">Assigned user: {{ $client->name .' '. $client->surname }}</div>
+		<section class="comment-list">
+			@foreach( $discussions as $discussion )
+			<div class="row">
+				<!--div class="col-md-2 col-sm-2 hidden-xs">
+					<figure class="thumbnail">
+						<img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
+						<figcaption class="text-center">username</figcaption>
+						</figure>
+				</div-->
+				<div class="col-md-10 col-sm-10 {{ $discussion->user_id !== Auth::user()->id ? '' : 'col-md-offset-1 col-sm-offset-0' }}">
+					<div class="panel panel-default" style="max-height: none; opacity: 1; margin: 1em auto; border-radius: 5px; {{ $discussion->user_id === Auth::user()->id ? '' : 'background-color: #BFBFBF' }}">
+						<div class="panel-header">
+							<i class="fa fa-user"></i> <strong>{{ $discussion->user->name }}  {{ $discussion->user->surname }}</strong>&nbsp;&nbsp;&nbsp;<span class="text-muted"><i class="fa fa-clock-o"></i> {{ App\Setting::getDateTime($discussion->created_at, false, 'd-m-Y H:i') }}</span> {{-- data/ora col giusto fuso orario/timezone --}}
+						</div>
+						<div class="panel-body" style="margin: 0 auto;">
+							<i>{{ $discussion->message }}</i>
+						</div>
+					</div>
+				</div>
+			</div>
+			@endforeach
+		</section>
+
+		<p><br></p>
+
+		<form id="discussion-form-{{$discuss_id}}" class="discussion-form" method="post" action="{{ url('consultant/discussion') }}">
+			{{ csrf_field() }}
+		    <div class="row text-center"><b>Send a message to {{ $client->name .' '. $client->surname }} and confirm date and time according to your availability for video call.</b></div>
+			<textarea class="form-control" rows="5" name="message"></textarea>
+			<input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+			<input type="hidden" name="discuss_id" value="{{ $discuss_id }}">
+			<button type="submit" class="btn btn-primary" style="margin-top: 15px;">Send to Consultant</button>
+		</form>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
 
 <div class="col-md-12 profile_page">
 <h3 class="box-title">{{ $page_title }}</h3>

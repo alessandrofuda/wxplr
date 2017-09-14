@@ -115,6 +115,10 @@ Route::get('/token',function () {
 			Route::get('user/consultant/dream_check_lab/submission/feedback/{dreamcheck_id}',['as'=>'dreamcheck.lab.submission.feedback','uses' => 'ConsultantProfileController@dreamcheck_lab_submission_feedback']);
 			Route::post('user/consultant/dream_check_lab/submission/feedback/store',['as' => 'dreamcheck.lab.submission.feedback.store','uses' =>  'ConsultantProfileController@dreamcheck_lab_submission_feedback_store']);
 
+			// Client Consultant Discussion - lato consultant 
+			Route::post('consultant/discussion', 'ProfessionalKitController@post_consultant_discussion');
+
+			// meeting
 			Route::get('consultant/meeting/{booking_id}',array('as'=>'consultant_start_meeting', 'uses' => 'GlobalToolController@start_meeting'));
 
 
@@ -181,6 +185,9 @@ Route::get('/token',function () {
 			Route::get('user/consultant/{consultant_id}/availabilities','ProfessionalKitController@availability_calender');
 			Route::post('user/consultant/book','ProfessionalKitController@consultant_book');
 			Route::post('user/consultant/booking/cancel','ProfessionalKitController@consultant_cancel_booking');
+
+			// Client Consultant Discussion - lato client
+			Route::post('user/discussion', 'ProfessionalKitController@post_user_discussion');
 
 			//My documents
 			Route::get('user/mydocuments',['as' =>'user.mydocuments', 'uses' => 'UserProfileController@mydocuments']);
