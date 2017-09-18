@@ -70,32 +70,37 @@
 
 							
 							<div id="discussion-{{$discuss_id}}" class="discussion" style="/*border:1px solid red;*/ margin: 40px auto;">
-								<section class="comment-list">
-									@foreach( $discussions as $discussion )
-									<div class="row">
-										<!--div class="col-md-2 col-sm-2 hidden-xs">
-											<figure class="thumbnail">
-                								<img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
-                								<figcaption class="text-center">username</figcaption>
-              								</figure>
-										</div-->
-
-											<div class="col-md-10 col-sm-10 {{ $discussion->user_id === Auth::user()->id ? '' : 'col-md-offset-1 col-sm-offset-0' }}">
-												<div class="panel panel-default" style="max-height: none; opacity: 1; margin: 1em auto; border-radius: 5px; {{ $discussion->user_id === Auth::user()->id ? '' : 'background-color: #BFBFBF' }}">
-													<div class="panel-header">
-														<i class="fa fa-user"></i> <strong>{{ $discussion->user->name }}  {{ $discussion->user->surname }}</strong>&nbsp;&nbsp;&nbsp;<span class="text-muted"><i class="fa fa-clock-o"></i> {{ App\Setting::getDateTime($discussion->created_at, false, 'd-m-Y H:i') }}</span> {{-- data/ora col giusto fuso orario/timezone --}}
-													</div>
-													<div class="panel-body" style="margin: 0 auto;">
-														<i>{{ $discussion->message }}</i>
+								@if (count($discussions) > 0)								
+									<style>
+										.cont { border: 1px solid #E1E1E1; border-radius: 5px; padding: 15px 0; margin-bottom: 50px; }
+										.disc-tit { display: inline-block; padding: 0px 15px; color: #FFF; background-color: #cfcfcf; margin-left: 10px; border-radius: 5px 5px 0px 0px; }
+										.ass-cons { padding: 10px 20px; }
+									</style>
+									<div class="disc-tit">{{ count($discussions) === 1 ? '1 message' : count($discussions).' messages' }}</div>
+									<section class="comment-list cont">
+									<div class="ass-cons">Assigned consultant: <strong>{{ $consultant->name.' '.$consultant->surname }}</strong></div>
+										@foreach( $discussions as $discussion )
+											<?php 
+												$discussion->user_id === Auth::user()->id ? $bg = 'rgba(221,221,221,0.5)' : $bg = '#BFBFBF';
+											?>
+											<style>	
+												.msj-{{ $discussion->id }}::before {  width: 0; height: 0; content: ""; top: 0; left: -38px; position: relative; border-style: solid; border-width: 0 20px 20px 0; border-color: transparent {{ $bg }} transparent transparent; float: left; }
+											</style>
+											<div class="row">
+												<div class="col-md-10 col-sm-10 {{ $discussion->user_id === Auth::user()->id ? '' : 'col-md-offset-1 col-sm-offset-0' }}">
+													<div class="panel panel-default msj-{{ $discussion->id }}" style="max-height: none; opacity: 1; margin: 1em auto; border-radius: 0 15px; overflow: visible; border: none; {{ $discussion->user_id === Auth::user()->id ? '' : 'background-color: #BFBFBF' }}">
+														<div class="panel-header">
+															<i class="fa fa-user"></i> <strong>{{ $discussion->user->name }}  {{ $discussion->user->surname }}</strong>&nbsp;&nbsp;&nbsp;<span class="text-muted"><i class="fa fa-clock-o"></i> {{ App\Setting::getDateTime($discussion->created_at, false, 'd-m-Y H:i') }}</span> {{-- data/ora col giusto fuso orario/timezone --}}
+														</div>
+														<div class="panel-body" style="margin: 0 auto;">
+															<i>{!! nl2br($discussion->message) !!}</i>
+														</div>
 													</div>
 												</div>
 											</div>
-
-									</div>
-									@endforeach
-								</section>
-
-								<p><br></p>
+										@endforeach
+									</section>
+								@endif
 
 								<form id="discussion-form-{{$discuss_id}}" class="discussion-form" method="post" action="{{ url('user/discussion') }}">
 									{{ csrf_field() }}

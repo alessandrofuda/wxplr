@@ -11,8 +11,8 @@
           <img src="{{ asset('/frontend/images/user_icon.png') }}" class="img-circle" alt="User Image">
           @endif
         </div>
-        <div class="pull-left info">
-          <p>Welcome {{ Auth::user()->name }}</p>
+        <div class="pull-left info" style="max-width: 75%">
+          <p style="color: #b8c7ce; word-wrap: break-word;">Welcome {{ Auth::user()->name }}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
