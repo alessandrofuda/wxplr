@@ -151,7 +151,7 @@ class ProfessionalKitController extends CustomBaseController {
 		// create achievement three forms validation rule by foreach
 		//dd($request->file('upload_cv')->getMimeType()); die;
 		$request_state = $request->get('state_id');
-        session(['request_state' => $request_state]);
+		session(['request_state' => $request_state]);
 		if($request_state == 1) {
 			$rules['upload_cv'] = 'required|mimes:doc,docx,odt';
 			$rules['state_id'] = 'required';
@@ -181,7 +181,7 @@ class ProfessionalKitController extends CustomBaseController {
 		if ($validator->fails()) {
 			return redirect()->back()->withInput()->withErrors($validator->errors());
 		}
-        \Session::forget('request_state');
+		\Session::forget('request_state');
 		if($request_state == 2) {
 			foreach ($request_achievements as $ach_key => $achievement) {
 				$dream_check_lab_data['achievement_role_organization' . $ach_key] = $achievement['role_organization'];
@@ -190,19 +190,18 @@ class ProfessionalKitController extends CustomBaseController {
 				$dream_check_lab_data['achievement_result' . $ach_key] = $achievement['result'];
 				$dream_check_lab_data['achievement_skills' . $ach_key] = $achievement['skills'];
 			}
-		}
-		elseif($request_state == 3) {
-				$dream_check_lab_data['your_objective'] = $request->get('your_objective');
-				$dream_check_lab_data['motivation'] = $request->get('motivation');
-				$dream_check_lab_data['role_position'] = $request->get('role_position');
-				$dream_check_lab_data['industry'] = $request->get('industry');
-				$dream_check_lab_data['company_characteristics'] = $request->get('company_characteristics');
-				$dream_check_lab_data['skills_support_objective'] = $request->get('skills_support_objective');
-				$dream_check_lab_data['weakness_area'] = $request->get('weakness_area');
-				$dream_check_lab_data['achievable_objective'] = $request->get('achievable_objective');
-				$dream_check_lab_data['fill_gap'] = $request->get('fill_gap');
-		}else{
-				$dream_check_lab_data['promotion_usp'] = $request->get('promotion_usp');
+		} elseif($request_state == 3) {
+			$dream_check_lab_data['your_objective'] = $request->get('your_objective');
+			$dream_check_lab_data['motivation'] = $request->get('motivation');
+			$dream_check_lab_data['role_position'] = $request->get('role_position');
+			$dream_check_lab_data['industry'] = $request->get('industry');
+			$dream_check_lab_data['company_characteristics'] = $request->get('company_characteristics');
+			$dream_check_lab_data['skills_support_objective'] = $request->get('skills_support_objective');
+			$dream_check_lab_data['weakness_area'] = $request->get('weakness_area');
+			$dream_check_lab_data['achievable_objective'] = $request->get('achievable_objective');
+			$dream_check_lab_data['fill_gap'] = $request->get('fill_gap');
+		} else {
+			$dream_check_lab_data['promotion_usp'] = $request->get('promotion_usp');
 		}
 
 		if($request_state == 1) {
@@ -235,9 +234,9 @@ class ProfessionalKitController extends CustomBaseController {
 
 		if($dreamcheck_lab_obj != null) {
 			$state = $dreamcheck_lab_obj->state_id;
-            if(strstr($state,$request->get('state_id'))) {
-                $state = str_replace($request->get('state_id'),'',$state);
-            }
+			if(strstr($state,$request->get('state_id'))) {
+				$state = str_replace($request->get('state_id'),'',$state);
+			}
 			$newstate = $state.$request['state_id'];
 			$dream_check_lab_data['state_id'] = $newstate;
 			$dreamcheck_lab_obj->update($dream_check_lab_data);
@@ -247,12 +246,12 @@ class ProfessionalKitController extends CustomBaseController {
 
 
 		$data['dream_check_lab_id'] = $dreamcheck_lab_obj->id;
-        $dream_check_lab_status = 0;
-        $dream_check_lab =[];
-        $user = \Auth::user();
-        $dream_check_lab = DreamCheckLab::where('user_id',$user->id)->get();
-        $step = 0;
-        $active = 1;
+		$dream_check_lab_status = 0;
+		$dream_check_lab =[];
+		$user = \Auth::user();
+		$dream_check_lab = DreamCheckLab::where('user_id',$user->id)->get();
+		$step = 0;
+		$active = 1;
       /*  $order = Order::where('user_id',$user->id)->where('item_name','Professional Kit')->first();
 
         if($order != null) {
@@ -264,14 +263,15 @@ class ProfessionalKitController extends CustomBaseController {
         }*/
 
         if($dream_check_lab->count() > 0){
-            $step = $dream_check_lab->first()->state_id;
-            $active = substr($step, -1);
-            if($step == DreamCheckLab::STATE_COMPLETED)  {
-                $dream_check_lab_status = 1;
-            }
-            $dream_check_lab = $dream_check_lab->first()->toArray();
-            $data_view['dream_check_lab'] = $dream_check_lab;
+        	$step = $dream_check_lab->first()->state_id;
+        	$active = substr($step, -1);
+        	if($step == DreamCheckLab::STATE_COMPLETED)  {
+        		$dream_check_lab_status = 1;
+        	}
+        	$dream_check_lab = $dream_check_lab->first()->toArray();
+        	$data_view['dream_check_lab'] = $dream_check_lab;
         }
+
         $country=Country::all()->toArray();
         $data_view['country'] = $country;
         $data_view['dream_check_lab_status'] = $dream_check_lab_status;
@@ -279,9 +279,9 @@ class ProfessionalKitController extends CustomBaseController {
         $data_view['step'] = $step;
         $data_view['active'] = $active;
         $view = view('client.dream_check_lab',$data_view);
-		$data['html'] = $view->render();
-		return $data;
-	}
+        $data['html'] = $view->render();
+        return $data;
+    }
 
 	public function dream_check_lab_submit(Request $request) {
 		$rules['interest_country'] = 'required';

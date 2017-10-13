@@ -43,17 +43,32 @@
                               <h3>1. Product – Who are You</h3>
                               <p>Your profile is the main product you are “selling” on the market: it is therefore important to present it in the best possible way. </p>
                               <p>Please upload here your CV. Your consultant will review it and share with you his/her comments within 48 h.</p>
-                              <div class="form-group">
+                              <div class="form-group cv-up">
                                   <label for="upload_cv">Upload your CV</label>
                                   <input required type="file" name="upload_cv">
                               </div>
 
                            @if($dream_check_lab['cv_file'] != null)
+
+                           <?php
+                             $array = explode('/', $dream_check_lab['cv_file']);
+                             $name = end($array);
+                           ?>
+                           
+                                <p style="color:green;">CV correctly uploaded: {{ $name ? : '' }}.</p>
+                                <script>
+                                  jQuery('.cv-up').hide();
+                                </script>
                               <div class="download-pdf">
-                                <p style="color:green;">CV correctly uploaded.</p>
                                 <a href="{{ url($dream_check_lab['cv_file']) }}" class="btn btn-primary"><span class = "glyphicon glyphicon-download"></span> Download CV</a>
+                                <button class="btn btn-primary cv-change"><span class = "glyphicon glyphicon-upload"></span> Change CV</button>
+                                <script>
+                                  jQuery('.cv-change').on('click', function(){
+                                    jQuery('.cv-up').toggle();
+                                  });
+                                </script>
                               </div>
-                           @else
+                           {{-- @else --}}
 
                            @endif
 
