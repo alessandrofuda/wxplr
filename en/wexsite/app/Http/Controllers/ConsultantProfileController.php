@@ -65,10 +65,10 @@ class ConsultantProfileController extends CustomBaseController
         // box discussion between consultant and client/clients(!)  I clienti possono essere più di uno per ogni consultant ??
         $consultant = Auth::user();
 
-        $client_id = DreamCheckLab::where('validate', 1)
-                                ->where('validate_by',$consultant->id)
-                                ->first(['user_id'])
-                                ->user_id;
+
+        $client_id = DreamCheckLab::where('validate_by',$consultant->id)  // ::where('validate', 1)
+                                    ->first(['user_id'])
+                                    ->user_id;
 
         $client = User::find($client_id);
         $data['client'] = $client;
