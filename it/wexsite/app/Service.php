@@ -41,7 +41,8 @@ class Service extends Model
         $from = trim($from);
 
         if($to != $from && $am > 0) {
-            $url = "https://www.google.com/finance/converter?a=$am&from=$from&to=$to";
+            // $url = "https://www.google.com/finance/converter?a=$am&from=$from&to=$to";
+            $url = "https://finance.google.com/finance/converter?a=$am&from=$from&to=$to";
             $data = file_get_contents($url);
             preg_match("/<span class=bld>(.*)<\/span>/", $data, $converted);
             $converted = preg_replace("/[^0-9.]/", "", $converted[1]);
