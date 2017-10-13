@@ -8,177 +8,73 @@
             </div>
         </div>
         <div class="row">
-            @if($dream_check_lab_status == 1)
-                {{--<div class="col-md-12 alert alert-danger">
-                    You have submited the form. You can submit the form only once. Check your submission below.
-                </div>--}}
+            @if($dream_check_lab_status == 1)   {{-- cioè: if state_id = 5 (in db) --}}
                 <div class="col-md-12 alert alert-info">
                 Thank you for your confirmation! You are now being matched to your consultant. He or she will review the forms you have submitted within the next 3 working days.
                 Please go to <a href="{{ url('user/mydocuments') }}" >My Documents</a> section to download Dream check lab forms.
                 </div>
-
-               {{-- <div class="col-md-12">
-                    <h3>1. Product – Who are You</h3>
-                    <div class="col-md-12">
-
-                        <a href="{{ url($dream_check_lab['cv_file']) }}" class="btn btn-primary"><span class = "glyphicon glyphicon-download"></span> Download CV</a>
-                    </div>
-                    <h3>2. Price – What you did</h3>
-                    <h4>Achievement 1:</h4>
-                    <div class="col-md-12">
-                        <label>Role & Organization</label>
-                        <p>{{ $dream_check_lab['achievement_role_organization1'] }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Problem (issue to be solved – goal to be achieved – context)</label>
-                        <p>{{ $dream_check_lab['achievement_problem1'] }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Action (what you did, how, which resources you used)</label>
-                        <p>{{ $dream_check_lab['achievement_action1'] }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Result (tangible and quantifiable outcomes)</label>
-                        <p>{{ $dream_check_lab['achievement_result1'] }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Which skills you have demonstrated through this achievement?</label>
-                        <p>{{ $dream_check_lab['achievement_skills1'] }}</p>
-                    </div>
-                    <h4>Achievement 2:</h4>
-                    <div class="col-md-12">
-                        <label>Role & Organization</label>
-                        <p>{{ $dream_check_lab['achievement_role_organization2'] }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Problem (issue to be solved – goal to be achieved – context)</label>
-                        <p>{{ $dream_check_lab['achievement_problem2'] }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Action (what you did, how, which resources you used)</label>
-                        <p>{{ $dream_check_lab['achievement_action2'] }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Result (tangible and quantifiable outcomes)</label>
-                        <p>{{ $dream_check_lab['achievement_result2'] }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Which skills you have demonstrated through this achievement?</label>
-                        <p>{{ $dream_check_lab['achievement_skills2'] }}</p>
-                    </div>
-                    <h4>Achievement 3:</h4>
-                    <div class="col-md-12">
-                        <label>Role & Organization</label>
-                        <input type="hidden" name="state_id" value="1">abel>
-                        <p>{{ $dream_check_lab['achievement_role_organization3'] }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Problem (issue to be solved – goal to be achieved – context)</label>
-                        <p>{{ $dream_check_lab['achievement_problem3'] }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Action (what you did, how, which resources you used)</label>
-                        <p>{{ $dream_check_lab['achievement_action3'] }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Result (tangible and quantifiable outcomes)</label>
-                        <p>{{ $dream_check_lab['achievement_result3'] }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Which skills you have demonstrated through this achievement?</label>
-                        <p>{{ $dream_check_lab['achievement_skills3'] }}</p>
-                    </div>
-                    <h3>3. Place – What you can do</h3>
-                    <div class="col-md-12">
-                        <label>Your Objective</label>
-                        <p>{{ $dream_check_lab['your_objective'] }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Your Motivation (why you want to move out of your own country)</label>
-                        <p>{{ $dream_check_lab['motivation'] }}</p>
-                    </div><input type="hidden" name="state_id" value="1">
-                    <div class="col-md-12">
-                        <label>Role/position</label>
-                        <p>{{ $dream_check_lab['role_position'] }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Industry/area of business</label>
-                        <p>{{ $dream_check_lab['industry'] }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Company characteristics (size, geographical presence, markets, family owned or listed…)</label>
-                        <p>{{ $dream_check_lab['company_characteristics'] }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Skills that support this objective</label>
-                        <p>{{ $dream_check_lab['skills_support_objective'] }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Areas of weakness that hinder this objective</label>
-                        <p>{{ isset($dream_check_lab['weakness_area']) ? $dream_check_lab['weakness_area'] : "" }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Is the objective achievable? Why or why not?</label>
-                        <p>{{ $dream_check_lab['achievable_objective'] }}</p>
-                    </div>
-                    <div class="col-md-12"><input type="hidden" name="state_id" value="1">
-                        <label>What can you do to fill the gap?</label>
-                        <p>{{ $dream_check_lab['fill_gap'] }}</p>
-                    </div>
-                    <h3>4. Promotion – Your USP</h3>
-                    <div class="col-md-12">
-                        <label>why should we choose you?</label>
-                        <p>{{ $dream_check_lab['promotion_usp'] }}</p>
-                    </div>
-                    <div class="col-md-12">
-                        <label>Interested Country</label>
-                        <p>{{ $dream_check_lab['interest_country'] }}</p>
-                    </div>
-                </div>--}}
             @else
                 <div class="col-md-12">
                 <div class="dream_check_lab">
-                   <p>We can almost see you there, behind your screen…growing impatient and wanting to get some action.</p>
-                   <p>Now the time has come. With Wexplore’s support, you will develop your own career success action plan.</p>
-                   <p>Ready? Let’s start: </p>
-                   <ul class="nav nav-tabs">
-                       <li id="product-li" class="{{$active == 1 ? "active" : ""}}"><a data-toggle="tab" href="#product-tab">Product</a></li>
-                       <li id="price-li" class="{{$active == 2 ? "active" : ""}}"><a data-toggle="tab" href="{{$step > 0 ? "#price-tab" : ""}}">Price</a></li>
-                       <li id="place-li" class="{{$active == 3 ? "active" : ""}}"><a data-toggle="tab" href="{{$step > 1 ? "#place-tab" : ""}}">Place</a></li>
-                       <li id="promotion-li" class="{{$active == 4 ? "active" : ""}}"><a data-toggle="tab" href="{{$step > 2 ? "#promotion-tab" : ""}}">Promotion</a></li>
-                   </ul>
+                    <p>We can almost see you there, behind your screen…growing impatient and wanting to get some action.</p>
+                    <p>Now the time has come. With Wexplore’s support, you will develop your own career success action plan.</p>
+                    <p>Ready? Let’s start: </p>
+                    <ul class="nav nav-tabs">
+                        <li id="product-li" class="{{$active == 1 ? "active" : ""}}"><a data-toggle="tab" href="#product-tab">Product</a></li>
+                        <li id="price-li" class="{{$active == 2 ? "active" : ""}}"><a data-toggle="tab" href="{{$step > 0 ? "#price-tab" : ""}}">Price</a></li>
+                        <li id="place-li" class="{{$active == 3 ? "active" : ""}}"><a data-toggle="tab" href="{{$step > 1 ? "#place-tab" : ""}}">Place</a></li>
+                        <li id="promotion-li" class="{{$active == 4 ? "active" : ""}}"><a data-toggle="tab" href="{{$step > 2 ? "#promotion-tab" : ""}}">Promotion</a></li>
+                    </ul>
 
                    <div class="tab-content">
                        <div id="product-tab" class="tab-pane fade {{$active == 1 ? "in active" : ""}}">
-                           @if(strstr($step,"5"))
-                           <h3>1. Product – Who are You</h3>
-                           <div class="col-md-12">
-                               <a href="{{ url($dream_check_lab['cv_file']) }}" class="btn btn-primary"><span class = "glyphicon glyphicon-download"></span> Download CV</a>
-                           </div>
+                       {{-- dd($step) --}}
+                          @if(strstr($step,"5"))  {{-- strstr restituisce un valore o 'false'. 5 significa: 5 steps completati --}} 
+                              {{-- in db, 'state_id': primo step --> 1, secondo step: 12, terzo step: 123, quarto step: 1234, quinto step: 5 (!) --}}
+                              <h3>1. Product – Who are You</h3>
+                              <div class="col-md-12">
+                                <a href="{{ url($dream_check_lab['cv_file']) }}" class="btn btn-primary"><span class = "glyphicon glyphicon-download"></span> Download CV</a>
+                              </div>
+
+                          @else
+
+                          <form id="form_1" method="post" action="{{ url('user/dream_check_lab/store') }}" enctype="multipart/form-data">
+                              {{ csrf_field() }}
+                              <h3>1. Product – Who are You</h3>
+                              <p>Your profile is the main product you are “selling” on the market: it is therefore important to present it in the best possible way. </p>
+                              <p>Please upload here your CV. Your consultant will review it and share with you his/her comments within 48 h.</p>
+                              <div class="form-group">
+                                  <label for="upload_cv">Upload your CV</label>
+                                  <input required type="file" name="upload_cv">
+                              </div>
+
+                           @if($dream_check_lab['cv_file'] != null)
+                              <div class="download-pdf">
+                                <p style="color:green;">CV correctly uploaded.</p>
+                                <a href="{{ url($dream_check_lab['cv_file']) }}" class="btn btn-primary"><span class = "glyphicon glyphicon-download"></span> Download CV</a>
+                              </div>
                            @else
-                           <form id="form_1" method="post" action="{{ url('user/dream_check_lab/store') }}" enctype="multipart/form-data">
-                               {{ csrf_field() }}
-                               <h3>1. Product – Who are You</h3>
-                               <p>Your profile is the main product you are “selling” on the market: it is therefore important to present it in the best possible way. </p>
-                               <p>Please upload here your CV. Your consultant will review it and share with you his/her comments within 48 h.</p>
-                               <div class="form-group">
-                                   <label for="upload_cv">Upload your CV</label>
-                                   <input required type="file" name="upload_cv">
-                               </div>
-                               @if($dream_check_lab['cv_file'] != null)
-                                   <div class="download-pdf">
-                                       <a href="{{ url($dream_check_lab['cv_file']) }}" class="btn btn-primary"><span class = "glyphicon glyphicon-download"></span> Download CV</a>
-                                   </div>
-                               @endif
-                               <input type="hidden" name="state_id" value="1">
-                               <p>NOTE: Please make sure your CV should already be in the local language, or at least in English: in this way your consultant will be able to recommend how to best adapt it to the local market. </p>
-                               <p>Also, please make sure your CV is in an editable form (either .doc or .docx), to make the review process easier. </p>
-                               <!--<p>Please confirm you want to submit the DreamCheck Lab forms: in other words, have you thought of all your best and most rewarding achievements? Did you nail down your USP? If you feel confident that you have presented yourself in the best possible way, please click submit.</p>-->
-                               <div class="form-group">
-                                   <input name="submit" type="submit" id="submit_1" value="Save Changes">
-                               </div>
-                           </form>
+
                            @endif
+
+                           <input type="hidden" name="state_id" value="1">
+                           <p>NOTE: Please make sure your CV should already be in the local language, or at least in English: in this way your consultant will be able to recommend how to best adapt it to the local market. </p>
+                           <p>Also, please make sure your CV is in an editable form (either .doc or .docx), to make the review process easier. </p>
+                           <!--<p>Please confirm you want to submit the DreamCheck Lab forms: in other words, have you thought of all your best and most rewarding achievements? Did you nail down your USP? If you feel confident that you have presented yourself in the best possible way, please click submit.</p>-->
+                           @if ($dream_check_lab['cv_file'] == null)
+                            <div class="form-group">
+                              <input name="submit" type="submit" id="submit_1" value="Save uploaded CV">
+                            </div>
+                           @else
+                            <div class="form-group">
+                              <input name="submit" type="submit" id="submit_1" value="Change uploaded CV">
+                            </div>
+                           @endif
+                           
+                         </form>
+
+                          @endif
+
                                <input name="submit_1" type="submit" class="btn btn-success submit-button"  id="next_1" value="Next">
                                <input name="submit_1" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading..">
                        </div>
@@ -429,7 +325,7 @@
 
                                <div class="form-group">
                                    <label for="interest_country">Please confirm your country of interest below</label>
-                                   <select required name="interest_country">
+                                   <select required name="interest_country" style="padding:8px;">
                                        <option value ="">-- Choose Country --</option>
 													<option @if(old('interest_country') == 'Australia') selected="selected" @endif value="Australia">Australia</option>
 													<option @if(old('interest_country') == 'France') selected="selected" @endif value="France">France</option>
@@ -437,6 +333,7 @@
 													<option @if(old('interest_country') == 'Italy') selected="selected" @endif value="Italy">Italy</option>
 													<option @if(old('interest_country') == 'Netherlands') selected="selected" @endif value="Netherlands">Netherlands</option>
 													<option @if(old('interest_country') == 'Spain') selected="selected" @endif value="Spain">Spain</option>
+                          <option @if(old('interest_country') == 'Sweden') selected="selected" @endif value="Sweden">Sweden</option>
 													<option @if(old('interest_country') == 'Switzerland') selected="selected" @endif value="Switzerland">Switzerland</option>
 													<option @if(old('interest_country') == 'United Kingdom') selected="selected" @endif value="United Kingdom">United Kingdom</option>
 

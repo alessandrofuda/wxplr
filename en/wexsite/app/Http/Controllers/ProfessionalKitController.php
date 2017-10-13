@@ -125,7 +125,7 @@ class ProfessionalKitController extends CustomBaseController {
                 $active = session('request_state');
             }
 
-			if($step == DreamCheckLab::STATE_COMPLETED)  {
+			if($step == DreamCheckLab::STATE_COMPLETED)  {  // if $step == 5 ...
 				$dream_check_lab_status = 1;
 			}
 
@@ -140,7 +140,7 @@ class ProfessionalKitController extends CustomBaseController {
 		$data['country'] = $country;
 		$data['dream_check_lab_status'] = $dream_check_lab_status;
 		$data['page_title']='Dream Check Lab';
-		$data['step'] = $step;
+		$data['step'] = $step;  		// $step : 'state_id' nella tabella dream_check_lab, sono i 5 form/tabs del dream_check_lab. Default=0
 		$data['active'] = $active;
 
 		return view('client.dream_check_lab',$data);
@@ -285,7 +285,6 @@ class ProfessionalKitController extends CustomBaseController {
 
 	public function dream_check_lab_submit(Request $request) {
 		$rules['interest_country'] = 'required';
-		//$rules['form_id'] = 'required';
 		$validator = Validator::make($request->all(),$rules);
         $data = ['status' => 'NOK'];
         session(['request_state' => '4']);
@@ -296,6 +295,7 @@ class ProfessionalKitController extends CustomBaseController {
         if($request->get('form_id') != null) {
             $dreamcheck_lab_obj = DreamCheckLab::where('id', $request->get('form_id'))->first();
             $interested_country = $request->get('interest_country');
+// dd($interested_country); // ok
             $user = Auth::user();
             if ($dreamcheck_lab_obj != null) {
                 if (strstr($dreamcheck_lab_obj->state_id, "1")
