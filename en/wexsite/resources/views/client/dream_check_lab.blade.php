@@ -35,7 +35,6 @@
                               <div class="col-md-12">
                                 <a href="{{ url($dream_check_lab['cv_file']) }}" class="btn btn-primary"><span class = "glyphicon glyphicon-download"></span> Download CV</a>
                               </div>
-
                           @else
 
                           <form id="form_1" method="post" action="{{ url('user/dream_check_lab/store') }}" enctype="multipart/form-data">
@@ -48,45 +47,45 @@
                                   <input required type="file" name="upload_cv">
                               </div>
 
-                           @if($dream_check_lab['cv_file'] != null)
+                              @if($dream_check_lab['cv_file'] != null)
+                                   <?php
+                                     $array = explode('/', $dream_check_lab['cv_file']);
+                                     $name = end($array);
+                                   ?>
+                                    <p style="color:green;">CV uploaded: {{ $name ? : '' }}.</p>
+                                    <script>
+                                      jQuery('.cv-up').hide();
+                                    </script>
+                                  <div class="download-pdf">
+                                    <a href="{{ url($dream_check_lab['cv_file']) }}" class="btn btn-primary"><span class = "glyphicon glyphicon-download"></span> Download CV</a>
+                                    <button class="btn btn-primary cv-change"><span class = "glyphicon glyphicon-upload"></span> Change CV</button>
+                                    <script>
+                                      jQuery('.cv-change').on('click', function(){
+                                        jQuery('.cv-up').toggle();
+                                        jQuery('.ch-upl-cv').toggle();
+                                      });
+                                    </script>
+                                  </div>
+                              {{-- @else --}}
+                              @endif
 
-                           <?php
-                             $array = explode('/', $dream_check_lab['cv_file']);
-                             $name = end($array);
-                           ?>
-                           
-                                <p style="color:green;">CV correctly uploaded: {{ $name ? : '' }}.</p>
-                                <script>
-                                  jQuery('.cv-up').hide();
-                                </script>
-                              <div class="download-pdf">
-                                <a href="{{ url($dream_check_lab['cv_file']) }}" class="btn btn-primary"><span class = "glyphicon glyphicon-download"></span> Download CV</a>
-                                <button class="btn btn-primary cv-change"><span class = "glyphicon glyphicon-upload"></span> Change CV</button>
-                                <script>
-                                  jQuery('.cv-change').on('click', function(){
-                                    jQuery('.cv-up').toggle();
-                                  });
-                                </script>
-                              </div>
-                           {{-- @else --}}
+                              <input type="hidden" name="state_id" value="1">
+                              <p>NOTE: Please make sure your CV should already be in the local language, or at least in English: in this way your consultant will be able to recommend how to best adapt it to the local market. </p>
+                              <p>Also, please make sure your CV is in an editable form (either .doc or .docx), to make the review process easier. </p>
 
-                           @endif
-
-                           <input type="hidden" name="state_id" value="1">
-                           <p>NOTE: Please make sure your CV should already be in the local language, or at least in English: in this way your consultant will be able to recommend how to best adapt it to the local market. </p>
-                           <p>Also, please make sure your CV is in an editable form (either .doc or .docx), to make the review process easier. </p>
-                           <!--<p>Please confirm you want to submit the DreamCheck Lab forms: in other words, have you thought of all your best and most rewarding achievements? Did you nail down your USP? If you feel confident that you have presented yourself in the best possible way, please click submit.</p>-->
-                           @if ($dream_check_lab['cv_file'] == null)
-                            <div class="form-group">
-                              <input name="submit" type="submit" id="submit_1" value="Save uploaded CV">
-                            </div>
-                           @else
-                            <div class="form-group">
-                              <input name="submit" type="submit" id="submit_1" value="Change uploaded CV">
-                            </div>
-                           @endif
-                           
-                         </form>
+                              @if ($dream_check_lab['cv_file'] != null)
+                                  <div class="form-group ch-upl-cv">
+                                    <input name="submit" type="submit" id="submit_1" value="Change uploaded CV">
+                                  </div>
+                                  <script>
+                                    jQuery('.ch-upl-cv').hide();
+                                  </script>    
+                              @else
+                                  <div class="form-group">
+                                    <input name="submit" type="submit" id="submit_1" value="Upload CV">
+                                  </div>
+                              @endif 
+                          </form>
 
                           @endif
 
@@ -401,131 +400,148 @@
         });
         jQuery(document).ready(function () {
 
-        jQuery("#submit_1").click(function(e) {
-            if (!jQuery("#form_1")[0].checkValidity()) {
-                // If the form is invalid, submit it. The form won't actually submit;
-                // this will just cause the browser to display the native HTML5 error messages.
-                jQuery("#form_1").submit();
-            }else { var has_selected_file = jQuery('input[type=file]').filter(function(){
-                return jQuery.trim(this.value) != ''
-            }).length  > 0 ;
+          jQuery("#submit_1").click(function(e) {
+              if (!jQuery("#form_1")[0].checkValidity()) {
+                  // If the form is invalid, submit it. The form won't actually submit;
+                  // this will just cause the browser to display the native HTML5 error messages.
+                  jQuery("#form_1").submit();
+              }else { var has_selected_file = jQuery('input[type=file]').filter(function(){
+                  return jQuery.trim(this.value) != ''
+              }).length  > 0 ;
 
-            if (has_selected_file) {
-                /* do something here */
-            }
-                e.preventDefault();
-                submitForm("#form_1");
-            }
-        });
+              if (has_selected_file) {
+                  /* do something here */
+              }
+                  e.preventDefault();
+                  submitForm("#form_1");
+              }
+          });
 
-        jQuery("#submit_2").click(function(e) {
-            if (!jQuery("#form_2")[0].checkValidity()) {
-                // If the form is invalid, submit it. The form won't actually submit;
-                // this will just cause the browser to display the native HTML5 error messages.
-                jQuery("#form_2").submit();
-            } else {
-                e.preventDefault();
-                submitForm("#form_2");
-            }
-        });
-        jQuery("#submit_3").click(function(e) {
-            if (!jQuery("#form_3")[0].checkValidity()) {
-                // If the form is invalid, submit it. The form won't actually submit;
-                // this will just cause the browser to display the native HTML5 error messages.
-                jQuery("#form_3").submit();
-            } else {
-                e.preventDefault();
-                submitForm("#form_3");
-            }
-        });
-        jQuery("#submit_4").click(function(e) {
-            if (!jQuery("#form_4")[0].checkValidity()) {
-                // If the form is invalid, submit it. The form won't actually submit;
-                // this will just cause the browser to display the native HTML5 error messages.
-                jQuery("#form_4").submit();
-            }else {
-                e.preventDefault();
-                submitForm("#form_4");
-            }
-        });
-        jQuery("#back_1").click(function() {
-            jQuery("#product-li").find("a").attr("href","#product-tab").trigger('click');
-            scrollTo(document.body, 0, 100);
-        });
-        jQuery("#back_2").click(function() {
-            jQuery("#price-li").find("a").attr("href","#price-tab").trigger('click');
-            scrollTo(document.body, 0, 100);
-        });
-        jQuery("#back_3").click(function() {
-            jQuery("#place-li").find("a").attr("href","#place-tab").trigger('click');
-            scrollTo(document.body, 0, 100);
-        });
-        jQuery("#back_4").click(function() {
-            jQuery("#promotion-li").find("a").attr("href","#promotion-tab").trigger('click');
-            jQuery("#promo_form").show();
-            jQuery("#outro").hide();
-            scrollTo(document.body, 0, 100);
-        });
-        jQuery("#next_3").click(function() {
-            jQuery("#place-li").find("a").attr("href","#place-tab").trigger('click');
-            scrollTo(document.body, 0, 100);
-        });
-        jQuery("#next_1").click(function() {
-            jQuery("#price-li").find("a").attr("href","#price-tab").trigger('click');
-            scrollTo(document.body, 0, 100);
-        });
-        jQuery("#next_2").click(function() {
-            jQuery("#place-li").find("a").attr("href","#place-tab").trigger('click');
-            scrollTo(document.body, 0, 100);
-        });
-        jQuery("#next_3").click(function() {
-            jQuery("#promotion-li").find("a").attr("href","#promotion-tab").trigger('click');
-            scrollTo(document.body, 0, 100);
-        });
-        jQuery("#next_4").click(function() {
-            jQuery("#promo_form").hide();
-            jQuery("#outro").show();
-        });
-        jQuery("#submit_final").click(function(e) {
-            e.preventDefault();
-            var values = jQuery("#final_form").serialize();
-            console.log(values);
-            jQuery.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': jQuery('input[name="_token"]').attr('value')
-                },
-                url: jQuery("#final_form").attr('action'),
-                type: 'POST',
-                data: values,
-                success: function (data) {
-                    if(typeof data.status == 'undefined') {
-                        jQuery('body').html(data);
-                    }else if(data.status == 'NOK') {
-                        var state = "{{ $dream_check_lab['state_id'] }}";
-                        var missing  = '';
-                        if(state.indexOf('1') <= -1 ) {
-                            missing += "Step 1, ";
-                        }
-                        if(state.indexOf('2') <= -1 ) {
-                            missing += "Step 2, ";
-                        }
-                        if(state.indexOf('3') <= -1 ) {
-                            missing += "Step 3, ";
-                        }
-                        if(state.indexOf('4') <= -1 ) {
-                            missing += "Step 4, ";
-                        }
-                        missing =  missing.slice(0, -2);
-                        jQuery("#modal_message").html("<i class='fa fa-info'></i>Complete Your form first. "+missing+ "to be completed yet");
-                        jQuery("#success_modal").modal('show');
-                       // alert('Complete Your form first. '+missing+' to be completed yet');
-                    }else{
-                        location.replace(data.url);
-                    }
-                    scrollTo(document.body, 0, 100);
-                }
-            });
-        });
+          jQuery("#submit_2").click(function(e) {
+              if (!jQuery("#form_2")[0].checkValidity()) {
+                  // If the form is invalid, submit it. The form won't actually submit;
+                  // this will just cause the browser to display the native HTML5 error messages.
+                  jQuery("#form_2").submit();
+              } else {
+                  e.preventDefault();
+                  submitForm("#form_2");
+              }
+          });
+
+          jQuery("#submit_3").click(function(e) {
+              if (!jQuery("#form_3")[0].checkValidity()) {
+                  // If the form is invalid, submit it. The form won't actually submit;
+                  // this will just cause the browser to display the native HTML5 error messages.
+                  jQuery("#form_3").submit();
+              } else {
+                  e.preventDefault();
+                  submitForm("#form_3");
+              }
+          });
+
+          jQuery("#submit_4").click(function(e) {
+              if (!jQuery("#form_4")[0].checkValidity()) {
+                  // If the form is invalid, submit it. The form won't actually submit;
+                  // this will just cause the browser to display the native HTML5 error messages.
+                  jQuery("#form_4").submit();
+              }else {
+                  e.preventDefault();
+                  submitForm("#form_4");
+              }
+          });
+
+
+
+          jQuery("#back_1").click(function() {
+              jQuery("#product-li").find("a").attr("href","#product-tab").trigger('click');
+              scrollTo(document.body, 0, 100);
+          });
+          jQuery("#back_2").click(function() {
+              jQuery("#price-li").find("a").attr("href","#price-tab").trigger('click');
+              scrollTo(document.body, 0, 100);
+          });
+          jQuery("#back_3").click(function() {
+              jQuery("#place-li").find("a").attr("href","#place-tab").trigger('click');
+              scrollTo(document.body, 0, 100);
+          });
+          jQuery("#back_4").click(function() {
+              jQuery("#promotion-li").find("a").attr("href","#promotion-tab").trigger('click');
+              jQuery("#promo_form").show();
+              jQuery("#outro").hide();
+              scrollTo(document.body, 0, 100);
+          });
+
+
+
+          jQuery("#next_3").click(function() {
+              jQuery("#place-li").find("a").attr("href","#place-tab").trigger('click');
+              scrollTo(document.body, 0, 100);
+          });
+          jQuery("#next_1").click(function() {
+              jQuery("#price-li").find("a").attr("href","#price-tab").trigger('click');
+              scrollTo(document.body, 0, 100);
+          });
+          jQuery("#next_2").click(function() {
+              jQuery("#place-li").find("a").attr("href","#place-tab").trigger('click');
+              scrollTo(document.body, 0, 100);
+          });
+          jQuery("#next_3").click(function() {
+              jQuery("#promotion-li").find("a").attr("href","#promotion-tab").trigger('click');
+              scrollTo(document.body, 0, 100);
+          });
+          jQuery("#next_4").click(function() {
+              jQuery("#promo_form").hide();
+              jQuery("#outro").show();
+          });
+
+
+
+          jQuery("#submit_final").click(function(e) {
+              e.preventDefault();
+              var values = jQuery("#final_form").serialize(); // create url encoded string
+              console.log('Valori passati: ' + values);
+
+              jQuery.ajax({
+                  headers: {
+                      'X-CSRF-TOKEN': jQuery('input[name="_token"]').attr('value')
+                  },
+                  url: jQuery("#final_form").attr('action'),  // http://wexplore.dev/en/user/dream_check_lab/submit"
+                  type: 'POST',
+                  data: values,  // token + interest_country + form_id + state_id (5 se completo)
+                  success: function (data) {
+
+                      console.log(data); // ... ...
+
+                      if(typeof data.status == 'undefined') {
+                          jQuery('body').html(data);
+                      }else if(data.status == 'NOK') {
+                          var state = "{{ $dream_check_lab['state_id'] }}";
+                          var missing  = '';
+                          if(state.indexOf('1') <= -1 ) {
+                              missing += "Step 1, ";
+                          }
+                          if(state.indexOf('2') <= -1 ) {
+                              missing += "Step 2, ";
+                          }
+                          if(state.indexOf('3') <= -1 ) {
+                              missing += "Step 3, ";
+                          }
+                          if(state.indexOf('4') <= -1 ) {
+                              missing += "Step 4, ";
+                          }
+                          missing =  missing.slice(0, -2);
+                          jQuery("#modal_message").html("<i class='fa fa-info'></i>Complete Your form first. "+missing+ "to be completed yet");
+                          jQuery("#success_modal").modal('show');
+                         // alert('Complete Your form first. '+missing+' to be completed yet');
+                      }else{
+                          location.replace(data.url);
+                      }
+                      scrollTo(document.body, 0, 100);
+                  }
+              });
+          });
+
+
         function submitForm(form) {
             if (!jQuery(form)[0].checkValidity()) {
                 // If the form is invalid, submit it. The form won't actually submit;

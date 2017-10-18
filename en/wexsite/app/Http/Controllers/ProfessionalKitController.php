@@ -33,6 +33,7 @@ use App\CountryPdf;
 use Validator;
 use App\UserConsultantDiscussion;
 
+use Log;
 
 
 class ProfessionalKitController extends CustomBaseController {
@@ -119,7 +120,7 @@ class ProfessionalKitController extends CustomBaseController {
 
 		if($dream_check_lab->count() > 0){
 			$step = $dream_check_lab->first()->state_id;
-            $active = substr($step, -1);
+            $active = substr($step, -1);  // prende ultimo carattere della stringa. Es.: 1234 --> prende 4
 
             if(session('request_state') != null) {
                 $active = session('request_state');
@@ -146,7 +147,7 @@ class ProfessionalKitController extends CustomBaseController {
 		return view('client.dream_check_lab',$data);
 	}
 
-	public function dream_check_lab_store(Request $request){
+	public function dream_check_lab_store(Request $request){  // compilazione singoli tab
 		//echo '<pre>'; print_r($request->all()); die;
 		// create achievement three forms validation rule by foreach
 		//dd($request->file('upload_cv')->getMimeType()); die;
@@ -280,35 +281,50 @@ class ProfessionalKitController extends CustomBaseController {
         $data_view['active'] = $active;
         $view = view('client.dream_check_lab',$data_view);
         $data['html'] = $view->render();
-        return $data;
+
+        return $data;  // DOVE ????
     }
 
 	public function dream_check_lab_submit(Request $request) {
+		// Log::info('Start submit. Time: ' . date('H:i:s'));
 		$rules['interest_country'] = 'required';
 		$validator = Validator::make($request->all(),$rules);
         $data = ['status' => 'NOK'];
         session(['request_state' => '4']);
+
 		if ($validator->fails()) {
 			return redirect()->back()->withInput()->withErrors($validator->errors());
 		}
+
         \Session::forget('request_state');
+
         if($request->get('form_id') != null) {
-            $dreamcheck_lab_obj = DreamCheckLab::where('id', $request->get('form_id'))->first();
+            $dreamcheck_lab_obj = DreamCheckLab::where('id', $request->get('form_id'))->first();  // recupera id da request (--> ajax)
             $interested_country = $request->get('interest_country');
-// dd($interested_country); // ok
+			// dd($interested_country); // ok
+			// Log::info('Paese selezionato: ' . $interested_country . '. Time: ' . date('H:i:s'));
             $user = Auth::user();
-            if ($dreamcheck_lab_obj != null) {
-                if (strstr($dreamcheck_lab_obj->state_id, "1")
+
+            if ($dreamcheck_lab_obj != null) {  // if record db esiste
+                if (strstr($dreamcheck_lab_obj->state_id, "1")  // se tutti e 4 i tab sono stati compilati
                     && strstr($dreamcheck_lab_obj->state_id, "2")
                     && strstr($dreamcheck_lab_obj->state_id, "3")
                     && strstr($dreamcheck_lab_obj->state_id, "4")
                 ) {
-                    $dreamcheck_lab_obj->update(['state_id' => DreamCheckLab::STATE_COMPLETED,
-					'interest_country' => $interested_country]);
+                    $dreamcheck_lab_obj->update(['state_id' => DreamCheckLab::STATE_COMPLETED,  // 5
+												 'interest_country' => $interested_country]);
+					// Log::info('Aggiornamento db.state_id: '. DreamCheckLab::STATE_COMPLETED . '. Time: ' . date('H:i:s'));
+					// Log::info('Aggiornamento db.interest_country: '. $interested_country . '. Time: ' . date('H:i:s'));
 
+					// match consultant
                     $consultant_profiles = ConsultantProfile::where('country_expertise', $interested_country)
-                        ->orderBy('email_count')->get();
+                        									->orderBy('email_count')
+                        									->get();
+                    // Log::info('Consultant trovato: '. $consultant_profiles . '. Time: '. date('H:i:s'));
+
                     $data['dream_check_lab_id'] = $dreamcheck_lab_obj->id;
+
+                    // update tabella Order (!!)
 					$order = \App\Order::where('user_id',$dreamcheck_lab_obj->user_id)->where('item_name','Professional Kit')->first();
 					$order->update([
 						'step_id' => 3
@@ -318,15 +334,18 @@ class ProfessionalKitController extends CustomBaseController {
 
                     if (count($consultant_profiles) > 0) {
 						foreach ($consultant_profiles as $consultant_profile) {
-							$service = ConsultantServices::where('user_id', $consultant_profile->user_id)
-								->where('service_id', ConsultantServices::SERVICE_PROFESSIONAL_KIT)
-								->where('state_id', ConsultantServices::STATE_ACTIVE)->first();
+							// se il consultant non viene attivato lato Admin qui si interrompe il flusso !!!!!!!!!!
+							$service = ConsultantServices::where('user_id', $consultant_profile->user_id)  
+														 ->where('service_id', ConsultantServices::SERVICE_PROFESSIONAL_KIT) 
+														 ->where('state_id', ConsultantServices::STATE_ACTIVE)  
+														 ->first();
 
 							if ($service != null) {
 								$ok = true;
 								$user_obj = $consultant_profile->user;
 								$to_email = $user_obj->email;
 								$consultant_profile->increment('email_count');
+
 								Mail::send('emails.dream_check_consultant_notification', ['data' => $data],
 									function ($m) use ($to_email) {
 										$settings = Setting::find(1);
@@ -334,7 +353,9 @@ class ProfessionalKitController extends CustomBaseController {
 										$m->from($site_email, 'Wexplore');
 										$m->to($to_email, 'Wexplore')->subject('Dream Check Lab Submission!');
 									});
+
 								$dreamcheck_lab_obj->update(['validate_by' => $consultant_profile->user_id]);
+								// Log::info('Aggiornamento db.validate_by: '. $consultant_profile->user_id . '. Time: '. date('H:i:s'));
 								break;
 							}
 						}
@@ -377,8 +398,13 @@ class ProfessionalKitController extends CustomBaseController {
                 }
             }
         }
+        // Log::info('Fine controller. $data status: '. $data['status'] . '. Time: ' . date('H:i:s'));
 		return $data;
 	}
+
+
+
+
 
 	public function download_form($id) {
 		$dream_check_lab = DreamCheckLab::where('id',$id)->first();
