@@ -63,15 +63,13 @@
 
 		<form id="discussion-form-{{$discuss_id}}" class="discussion-form" method="post" action="{{ url('consultant/discussion') }}">
 			{{ csrf_field() }}
-		    <div class="row text-center">
-		    	<b>
-		    		Send a message to {{ $client->name .' '. $client->surname }} and confirm date and time according to your availability for video call.
-		    	</b>
+		    <div class="msg-title">
+		    	<b>When can you do conference call?</b><br>Propose a date/time to <b>{{ $client->name .' '. $client->surname }}</b> before booking it,  according to your availability.
 		    </div>
 			<textarea class="form-control" rows="5" name="message"></textarea>
 			<input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
 			<input type="hidden" name="discuss_id" value="{{ $discuss_id }}">
-			<button type="submit" class="btn btn-primary" style="margin-top: 15px;">Send to Consultant</button>
+			<button type="submit" class="btn btn-primary" style="margin-top: 15px;">Send to Client</button>
 		</form>
 	</div>
 

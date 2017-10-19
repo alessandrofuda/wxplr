@@ -636,7 +636,7 @@ class ConsultantProfileController extends CustomBaseController
         }
 
         //echo  '<pre>'; print_r($dream_check_lab); echo '</pre>'; die;
-        $data['page_title']='Dream Check Lab Submission <br/>'.$dream_check_lab_obj->createUser->name;
+        $data['page_title']='Dream Check Lab Submission from<br/>'.$dream_check_lab_obj->createUser->name;
         $data['dream_check_lab'] = $dream_check_lab;
 
         return view('consultant.dream_check_lab_submission',$data);

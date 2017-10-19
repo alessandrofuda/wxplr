@@ -20,7 +20,7 @@
                             {!! link_to_route('user.dashboard', '<< Back to dashboard', array(), array('class' => 'btn btn-primary pull-right')) !!}
                         </div>
                         <h2 class="box-title">{{ $page_title }}</h2>
-                        <div class="col-md-12">29
+                        <div class="col-md-12">
                             <h3>1. Product – Who are You</h3>
                             <div class="col-md-12">
                                 <a href="{{ url($dream_check_lab_feedback['cv_file']) }}" class="btn btn-primary"><span class = "glyphicon glyphicon-download"></span> Download CV</a>
