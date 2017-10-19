@@ -363,8 +363,38 @@
                                <!--<p>Please confirm you want to submit the DreamCheck Lab forms: in other words, have you thought of all your best and most rewarding achievements? Did you nail down your USP? If you feel confident that you have presented yourself in the best possible way, please click submit.</p>-->
                                <p>Note: After Submitting, you will not be able to edit the forms anymore.</p>
                                <div class="form-group Submit_final_form">
-                                   <input name="submit_final" id="submit_final" type="submit" value="Submit Form" class="submit-button">
-                                   <input name="loading_final" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading..">
+                                  <input name="submit_final" id="submit_final" type="submit" value="Submit Form" class="submit-button">
+                                   
+
+
+
+                                  <div id="wait-modal" class="modal fade loading-button" style="display: none; opacity: 1!important; z-index: 999999!important;" role="dialog" title="Wait please..."> 
+                                  <!--disabled-->
+                                    <div class="modal-dialog" style="top:45px;">
+                                      <!-- Modal content-->
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <!--button type="button" class="close" data-dismiss="modal">&times;</button-->
+                                          <h4 class="modal-title text-center">..Please wait a moment..</h4>
+                                        </div>
+                                        <div class="modal-body text-center">
+                                          <p>We are processing your inputs. It takes a few seconds to process your request.<br>Please wait for our success notification...<span id="countdown"></span></p>
+                                          <p>
+                                            <img src="/en/frontend/images/loading.gif" />
+                                          </p>  
+                                        </div>
+                                        <!--div class="modal-footer">
+                                          <button type="button" class="btn btn-default" data-dismiss="modal" disabled>Close</button>
+                                        </div-->
+                                      </div>
+
+                                    </div>                                     
+                                  </div><!--#wait-modal-->
+
+
+
+
+
                                </div>
                                </form>
                                    <input name="back_4" type="submit" class="btn btn-warning" id="back_4" value="Back">
@@ -501,6 +531,29 @@
               var values = jQuery("#final_form").serialize(); // create url encoded string
               console.log('Valori passati: ' + values);
 
+              jQuery('#submit_final').hide();
+              jQuery('.loading-button').css('display', 'block');
+              jQuery('#back_4').prop('disabled', true);
+
+              // start 30 sec. countdown
+              var timeLeft = 30;
+              var elem = jQuery('#countdown');
+              var timerId = setInterval(countdown, 1000);
+
+              function countdown() {
+                if (timeLeft == 0) {
+                  clearTimeout(timerId);
+                  // timeLeft = 30;
+                  // elem.html(timeLeft + ' seconds remaining..');
+                  timeLeft--;
+                } else {
+                  elem.html(' <b>'+timeLeft + ' seconds remaining..</b>');
+                  timeLeft--;
+                }
+              }
+                                          
+
+              // submit form
               jQuery.ajax({
                   headers: {
                       'X-CSRF-TOKEN': jQuery('input[name="_token"]').attr('value')
@@ -509,8 +562,8 @@
                   type: 'POST',
                   data: values,  // token + interest_country + form_id + state_id (5 se completo)
                   success: function (data) {
-
-                      console.log(data); // ... ...
+                      console.log('Success - return assoc. array ($data)');
+                      console.log('Status: '+data.status); // 'OK' ? ...
 
                       if(typeof data.status == 'undefined') {
                           jQuery('body').html(data);
@@ -530,11 +583,12 @@
                               missing += "Step 4, ";
                           }
                           missing =  missing.slice(0, -2);
-                          jQuery("#modal_message").html("<i class='fa fa-info'></i>Complete Your form first. "+missing+ "to be completed yet");
+                          jQuery("#modal_message").html("<i class='fa fa-info'></i>Complete Your form first. Step " +missing+ " to be completed yet.");
                           jQuery("#success_modal").modal('show');
                          // alert('Complete Your form first. '+missing+' to be completed yet');
                       }else{
-                          location.replace(data.url);
+                          // console.log('redirect ...');
+                          location.replace(data.url);  // redirect a pagina iniziale !!
                       }
                       scrollTo(document.body, 0, 100);
                   }

@@ -376,30 +376,39 @@ class ProfessionalKitController extends CustomBaseController {
                             $m->to($site_email, 'Wexplore')->subject('Dream Check Lab submission but no matching consultant Found!');
                         });
                     }
-
+                    // Log::info('Inizio PDF generation.');
 					$base_path = base_path();
 					$base_path = str_replace("/wexsite", "", $base_path);
+					// Log::info('Creata base_path');
 					$pdf_path = '/uploads/dream_form_'.time().'.pdf';
+					// Log::info('Creata pdf_path on time() based');
 
 					$viewdata['dream_check_lab'] = $dreamcheck_lab_obj;
 					$viewdata['page_title'] = 'Dream Check Lab Form';
+					// Log::info('1- start pdf generation');
 					$pdf = \App::make('dompdf.wrapper');
+					// Log::info('2- make dompdf - classe istanziata');
 					$pdf->loadView('client.dream_check_lab_pdf', $viewdata);
-					$pdf->save($base_path.$pdf_path);
+					// Log::info('3- loadView - pdf creato');
 
+
+					$pdf->save($base_path.$pdf_path);  // richiede circa 25 secondi !!!!!!!!! // uri: ../en/uploads/dream_form_1234569.pdf
+					
+
+					// Log::info('4- pdf salvato in folder');
 					$dreamcheck_lab_obj->update([
 						'form_pdf' => $pdf_path
 					]);
-
+					// Log::info('5- aggiornamento db.form_pdf');
 
                     $data['status'] = 'OK';
-                    $data['url'] = route('dream.check.lab');
+                    $data['url'] = route('dream.check.lab');  // --> ProfessionalKitController@dream_check_lab
                   //  session(['status' => 'Thank you for your confirmation! You are now being matched to your consultant. He or she will review the forms you have submitted within the next 3 working days.']);
                 }
             }
         }
         // Log::info('Fine controller. $data status: '. $data['status'] . '. Time: ' . date('H:i:s'));
-		return $data;
+		return $data;  // array associativo da 3 item: dream_check_lab_id (ID), status (OK), url (../user/dream_check_lab)
 	}
 
 
