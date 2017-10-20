@@ -535,15 +535,15 @@
               jQuery('.loading-button').css('display', 'block');
               jQuery('#back_4').prop('disabled', true);
 
-              // start 30 sec. countdown
-              var timeLeft = 30;
+              // start 60 sec. countdown
+              var timeLeft = 60;
               var elem = jQuery('#countdown');
               var timerId = setInterval(countdown, 1000);
 
               function countdown() {
                 if (timeLeft == 0) {
                   clearTimeout(timerId);
-                  // timeLeft = 30;
+                  // timeLeft = 60;
                   // elem.html(timeLeft + ' seconds remaining..');
                   timeLeft--;
                 } else {
