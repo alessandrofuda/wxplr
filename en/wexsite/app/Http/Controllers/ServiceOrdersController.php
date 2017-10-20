@@ -203,8 +203,9 @@ class ServiceOrdersController extends CustomBaseController {
 			$rules['password'] = 'required|confirmed|min:6';
 		}
 
-		$rules['pan'] = 'required';
-		//$rules['company'] = 'required';
+		$rules['pan'] = 'required|max:40'; 	
+		$rules['vat'] = 'max:40';		
+		$rules['company'] = 'max:255';		// 'required'
 		$rules['address'] = 'required';
 		$rules['country'] = 'required';
 		$rules['city'] = 'required';
@@ -215,7 +216,11 @@ class ServiceOrdersController extends CustomBaseController {
 			//	$rules['payment_method_nonce'] = 'required';
 		}
 
-		$validator = Validator::make($request->all(),$rules);		//  form validation
+		$messages = [
+			'pan.required' => 'Tax Code field is required.',  // only one custom message
+		];
+
+		$validator = Validator::make($request->all(),$rules, $messages);		//  form validation
 
 		if ($validator->fails()) {
 			return redirect()->back()->withInput()->withErrors($validator->errors());

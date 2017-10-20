@@ -148,7 +148,7 @@
 									</div>
 									@if($user == null)
 										<div class="form-group has-feedback ">
-											<label for="pan">Password : </label>
+											<label for="password">Password : </label>
 											<input type="password" class="form-control" required placeholder="Password" name="password">
 										</div>
 										<div class="form-group has-feedback">
@@ -206,7 +206,7 @@
 									</div>
 
 						<div class="form-group has-feedback ">
-							<label for="pan"> City  : </label>
+							<label for="city"> City : </label>
 							@if($userProfile  != null)
 								<input type="text" name="city" placeholder="City" required class="form-control" value="{{ old('city',$userProfile->city) }}">
 							@else
