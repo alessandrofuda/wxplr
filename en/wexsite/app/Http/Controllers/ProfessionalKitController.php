@@ -32,6 +32,7 @@ use App\SteadyAimShoot;
 use App\CountryPdf;
 use Validator;
 use App\UserConsultantDiscussion;
+use App\MarketAnalysisPdf;
 
 use Log;
 
@@ -150,7 +151,6 @@ class ProfessionalKitController extends CustomBaseController {
 	public function dream_check_lab_store(Request $request){  // compilazione singoli tab
 		//echo '<pre>'; print_r($request->all()); die;
 		// create achievement three forms validation rule by foreach
-		//dd($request->file('upload_cv')->getMimeType()); die;
 		$request_state = $request->get('state_id');
 		session(['request_state' => $request_state]);
 		if($request_state == 1) {
@@ -301,7 +301,6 @@ class ProfessionalKitController extends CustomBaseController {
         if($request->get('form_id') != null) {
             $dreamcheck_lab_obj = DreamCheckLab::where('id', $request->get('form_id'))->first();  // recupera id da request (--> ajax)
             $interested_country = $request->get('interest_country');
-			// dd($interested_country); // ok
 			// Log::info('Paese selezionato: ' . $interested_country . '. Time: ' . date('H:i:s'));
             $user = Auth::user();
 
@@ -533,6 +532,17 @@ class ProfessionalKitController extends CustomBaseController {
 		$occupation = strtolower(str_replace(' ','_',$occupation));
 		$industry = $user_profile->industry;
 		$industry = strtolower(str_replace(' ','_',$industry));
+
+		
+		// fix 23/10/2017
+		// estrae market analisys labour market situation pdfs
+		$ma_obj = MarketAnalysisPdf::where('market_analysis_id', 2)->first(['market_analysis_pdf', 'market_analysis_pdf_label']); // labour market situation.pdf
+		if(!empty($ma_obj)){
+			$related_pdfs[] = ['pdf_path'=>$ma_obj->market_analysis_pdf,'pdf_name'=>$ma_obj->market_analysis_pdf_label,'type'=>'ma'];
+		}
+		    
+		
+
 		// Get age pdfs
 		$age_obj = AgePdf::where('age_range',$age_range)->first(['age_pdf','age_pdf_name']);
 		if(!empty($age_obj)){
@@ -559,7 +569,7 @@ class ProfessionalKitController extends CustomBaseController {
 		if(!empty($industry_obj)){
 			$related_pdfs[]=['pdf_path'=>$industry_obj->industry_pdf,'pdf_name'=>$industry_obj->industry_pdf_name,'type'=>'industry'];
 		}
-
+		
 		return $related_pdfs;
 	}
 
@@ -617,18 +627,43 @@ class ProfessionalKitController extends CustomBaseController {
 		readfile($archive_file_name);
 		unlink($archive_file_name);
 	}
+
+
+
+
+
+
+
+
+
+
 	public function labourDownload(){
 		$related_pdfs = $this->returnLabourFiles();
 		/* zip download file for labour pdfs */
 		$labour_pdfs = array();
 		foreach($related_pdfs as $i=>$rp){
 			$file_names=explode('/',$rp['pdf_path']);
-			$labour_pdfs[]=['local' => $_SERVER['DOCUMENT_ROOT'].'/wexplore/'. $rp['pdf_path'],'file_name'=>last($file_names)];
+			$labour_pdfs[]=['local' => $_SERVER['DOCUMENT_ROOT'].'/en'. $rp['pdf_path'],'file_name'=>last($file_names)];
 		}
 		$archive_file_name = 'labour_files.zip';
 		/* end */
 		$this->zipFilesAndDownload($labour_pdfs,$archive_file_name);
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	public function qualityWorkDownload(){
 		$market_analysis_data = $this->returnMarketAnalysisData();
 
@@ -637,28 +672,31 @@ class ProfessionalKitController extends CustomBaseController {
 		$quality_works = array();
 		foreach($quality_work_pdfs as $i=>$rp){
 			$file_names=explode('/',$rp['pdf_path']);
-			$quality_works[]=['local' => $_SERVER['DOCUMENT_ROOT'].'/wexplore/'. $rp['pdf_path'],'file_name'=>last($file_names)];
+			$quality_works[]=['local' => $_SERVER['DOCUMENT_ROOT'].'/en'. $rp['pdf_path'],'file_name'=>last($file_names)];
 		}
 		//print_r($quality_works);exit;
 		$archive_file_name = 'quality_works_files.zip';
 		/* end */
 		$this->zipFilesAndDownload($quality_works,$archive_file_name);
 	}
+
 	public function qualityLifeDownload(){
 		$market_analysis_data = $this->returnMarketAnalysisData();
-
 		$quality_life_pdfs = $market_analysis_data['quality_of_life']['pdfs'];
+
 		/* zip download file for Quality life pdfs */
 		$quality_life = array();
+
 		foreach($quality_life_pdfs as $i=>$rp){
 			$file_names=explode('/',$rp['pdf_path']);
-			$quality_life[]=['local' => $_SERVER['DOCUMENT_ROOT'].'/wexplore/'. $rp['pdf_path'],'file_name'=>last($file_names)];
+			$quality_life[]=['local' => $_SERVER['DOCUMENT_ROOT'].'/en'. $rp['pdf_path'],'file_name'=>last($file_names)];
 		}
-		//print_r($quality_works);exit;
+		//print_r($quality_life);exit;
 		$archive_file_name = 'quality_life_files.zip';
 		/* end */
 		$this->zipFilesAndDownload($quality_life,$archive_file_name);
 	}
+
 	public function role_play_interview() {
 		$consultant_avail = '';
 		$consultant = '';
@@ -671,7 +709,7 @@ class ProfessionalKitController extends CustomBaseController {
 									->where('type_id', ConsultantBooking::TYPE_INTERVIEW)   // constant = 0
 									->where('status','!=',ConsultantBooking::STATE_CANCELLED)  // constant = 2
 									->first();
-		// dd($booking);
+		
 		$consultant_avail = [];
 
 

@@ -171,13 +171,15 @@ Route::get('/token',function () {
 			Route::post('user/dream_check_lab/submit', ['as'=>'dream.check.lab.submit','uses'=>'ProfessionalKitController@dream_check_lab_submit']);
 			Route::get('user/dream_check_lab/feedback/{dreamcheck_id}',['as'=>'dreamcheck.lab.submission.fb','uses' => 'ProfessionalKitController@dream_check_lab_submission_feedback']);
 
-			//Skill Development
+			// Skill Development
 			Route::get('user/myvideos','UserSubscriptionController@my');
 			Route::get('/user/events','SkillDevelopmentController@my_events');
 
+			// Market analysis: download zip buttons
 			Route::get('market_analysis/zip/download', array('as'=>'labourZipDownload', 'uses'=>'ProfessionalKitController@labourDownload'));
 			Route::get('market_analysis/work/zip/download', array('as'=>'qualityWorkZipDownload', 'uses'=>'ProfessionalKitController@qualityWorkDownload'));
 			Route::get('market_analysis/life/zip/download', array('as'=>'qualityLifeZipDownload', 'uses'=>'ProfessionalKitController@qualityLifeDownload'));
+			
 			// Role play interview
 			Route::get('user/role_play_interview',['as' => 'role.play.interview', 'uses'=> 'ProfessionalKitController@role_play_interview']);
 			Route::get('user/consultant/booked/list','ProfessionalKitController@consultant_booked_list');

@@ -20,14 +20,14 @@
 						<div id="pdf-carousel">
 							<div class="span12">
 								<div id="owl_labour_market" class="owl-carousel">
-									@if(isset($market_analysis_data['labour_market_situation']['pdfs'][0]['pdf_path']))
-										<div class="item">
-											<a target="_blank" href="{{ asset($market_analysis_data['labour_market_situation']['pdfs'][0]['pdf_path']) }}">
-												<img alt="market_analysis_pdf_file-icon" src="{{ asset('admin/custom/images/file-icon.png') }}">
-												<h1>{{ $market_analysis_data['labour_market_situation']['pdfs'][0]['pdf_name'] }}</h1>
+									{{-- @if(isset($market_analysis_data['labour_market_situation']['pdfs'][0]['pdf_path'])) --}}
+										<!--div class="item">
+											<a target="_blank" href="{{-- asset($market_analysis_data['labour_market_situation']['pdfs'][0]['pdf_path']) --}}">
+												<img alt="market_analysis_pdf_file-icon" src="{{-- asset('admin/custom/images/file-icon.png') --}}">
+												<h1>{{-- $market_analysis_data['labour_market_situation']['pdfs'][0]['pdf_name'] --}}</h1>
 											</a>
-										</div>
-									@endif
+										</div-->
+									{{-- @endif --}}
 									@if(count($related_pdfs)>0)
 										@foreach($related_pdfs as $related_pdf)
 											<div class="item">
