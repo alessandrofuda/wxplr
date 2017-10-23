@@ -160,13 +160,13 @@
 									<div class="form-group has-feedback ">
 										<label for="pan"> Tax Code : </label>
 										@if($userProfile  != null)
-											<input type="text" class="form-control" placeholder="Personal Identification Number" name="pan" value="{{ $userProfile->pan }}">
+											<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="{{ $userProfile->pan }}">
 										@else
 											<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="{{ old('pan') }}">
 										@endif
 									</div>
 									<div class="form-group has-feedback ">
-										<label for="vat">VAT : </label>
+										<label for="vat">VAT (If Applicable): </label>
 										@if($userProfile  != null)
 											<input type="text" class="form-control" placeholder="VAT" name="vat" value="{{ $userProfile->vat }}">
 										@else
@@ -174,7 +174,7 @@
 										@endif
 									</div>
 									<div class="form-group has-feedback ">
-										<label for="company">Company (If Applicable)</label>
+										<label for="company">Company (If Applicable):</label>
 										@if($userProfile  != null)
 											<input type="text" class="form-control"  placeholder="Company" name="company" value="{{ $userProfile->company }}">
 										@else
@@ -182,7 +182,7 @@
 										@endif
 									</div>
 									<div class="form-group has-feedback ">
-										<label for="address">Address</label>
+										<label for="address">Address:</label>
 										@if($userProfile  != null)
 											<textarea required rows="4" cols="50" class="form-control" name="address" placeholder="Address" value="{{ $userProfile->address }}">{{ $userProfile->address }}</textarea>
 										@else
@@ -190,7 +190,7 @@
 										@endif
 									</div>
 									<div class="form-group has-feedback email">
-										<label for="country">Country</label>
+										<label for="country">Country:</label>
 										@if (count($country_list) > 0)
 											<select name="country" id="country" required class="form-control">
 												<option value="">Select Country</option>
@@ -205,7 +205,7 @@
 										@endif
 									</div>
 
-						<div class="form-group has-feedback ">
+						<div class="form-group has-feedback">
 							<label for="city"> City : </label>
 							@if($userProfile  != null)
 								<input type="text" name="city" placeholder="City" required class="form-control" value="{{ old('city',$userProfile->city) }}">
