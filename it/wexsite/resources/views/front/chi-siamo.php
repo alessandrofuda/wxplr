@@ -99,7 +99,7 @@
                                             </div>
 								<div class="column_attr">
 									<p style="text-align:center;">
-										<span class="big">Siamo l’unico <strong>servizio internazionale di carrier</strong> disponibile a livello mondiale e focalizzato nel supportare le persone, non le aziende.</span>
+										<span class="big">Siamo l’unico <strong>servizio internazionale di carriera</strong> disponibile a livello mondiale e focalizzato nel supportare le persone, non le aziende.</span>
 									</p>
 								</div>
 							</div>
