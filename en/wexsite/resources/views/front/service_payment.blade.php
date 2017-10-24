@@ -159,15 +159,15 @@
 
 									<div class="form-group has-feedback ">
 										<label for="pan"> Tax Code : </label>
-										@if($userProfile->pan  != null)
+										@if($userProfile  != null && $userProfile->pan  != null) 
 											<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="{{ $userProfile->pan }}">
-										@else
+										@else 
 											<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="{{ old('pan') }}">
-										@endif
+										@endif 
 									</div>
 									<div class="form-group has-feedback ">
 										<label for="vat">VAT (If Applicable): </label>
-										@if($userProfile->vat  != null)
+										@if($userProfile != null && $userProfile->vat  != null)
 											<input type="text" class="form-control" placeholder="VAT" name="vat" value="{{ $userProfile->vat }}">
 										@else
 											<input type="text" class="form-control" placeholder="VAT" name="vat" value="{{ old('vat') }}">
@@ -175,7 +175,7 @@
 									</div>
 									<div class="form-group has-feedback ">
 										<label for="company">Company (If Applicable):</label>
-										@if($userProfile->company  != null)
+										@if($userProfile != null && $userProfile->company  != null)
 											<input type="text" class="form-control"  placeholder="Company" name="company" value="{{ $userProfile->company }}">
 										@else
 											<input type="text" class="form-control"  placeholder="Company" name="company" value="{{ old('company') }}">
@@ -183,7 +183,7 @@
 									</div>
 									<div class="form-group has-feedback ">
 										<label for="address">Address:</label>
-										@if($userProfile->address  != null)
+										@if($userProfile != null && $userProfile->address  != null)
 											<textarea required rows="4" cols="50" class="form-control" name="address" placeholder="Address" value="{{ $userProfile->address }}">{{ $userProfile->address }}</textarea>
 										@else
 										<textarea required rows="4" cols="50" class="form-control" name="address" placeholder="Address" value="{{ old('address') }}">{{ old('address') }}</textarea>
@@ -195,7 +195,7 @@
 											<select name="country" id="country" required class="form-control">
 												<option value="">Select Country</option>
 												@foreach ($country_list as $country)
-													@if($userProfile->country  != null)
+													@if($userProfile != null && $userProfile->country  != null)
 														<option @if($userProfile->country == $country['country_name']) selected="selected" @endif value = "{{  $country['country_name'] }}">{{  $country['country_name'] }}</option>
 													@else
 														<option @if(old('country') == $country['country_name']) selected="selected" @endif value = "{{  $country['country_name'] }}">{{  $country['country_name'] }}</option>
@@ -207,7 +207,7 @@
 
 						<div class="form-group has-feedback">
 							<label for="city"> City : </label>
-							@if($userProfile->city  != null)
+							@if($userProfile != null && $userProfile->city  != null)
 								<input type="text" name="city" placeholder="City" required class="form-control" value="{{ $userProfile->city }}"> {{-- old('city',$userProfile->city) --}}
 							@else
 								<input type="text" name="city" placeholder="City" required="" class="form-control" value="{{ old('city') }}">
@@ -216,7 +216,7 @@
 
 		                <div class="form-group has-feedback ">
 		                    <label for="zip_code">ZIP Code</label>
-		                    @if($userProfile->zip_code  != null)
+		                    @if($userProfile != null && $userProfile->zip_code  != null)
 		                        <input type="text" class="form-control" required placeholder="ZIP Code" name="zip_code" value="{{ $userProfile->zip_code }}">
 		                    @else
 		                        <input type="text" class="form-control" required placeholder="ZIP Code" name="zip_code" value="{{ old('zip_code') }}">
