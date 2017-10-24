@@ -121,7 +121,7 @@
 								  	<input type="hidden" name="code_id" id="code_id" value="{{ isset($code) ? $code : "" }}">
 									<div class="form-group has-feedback" style="margin-top: 20px">
 										<div class="col-md-6 col-sm-6 col-xs-12" style="padding-left:0;">
-											<label for="name">Name : </label>
+											<label for="name">Name</label>
 											@if($user != null)
 												<input type="text" class="form-control" required placeholder="Name" name="name" value="{{ $user->name }}">
 											@else
@@ -129,7 +129,7 @@
 											@endif
 										</div>
 										<div class="col-md-6 col-sm-6 col-xs-12" style="padding-right:0;">
-											<label for="surname">Surname : </label>
+											<label for="surname">Surname</label>
 											@if($user != null)
 												<input type="text" class="form-control" required placeholder="Surname" name="surname" value="{{ $user->surname }}">
 											@else
@@ -139,7 +139,7 @@
 									</div>
 
 									<div class="form-group has-feedback email">
-										<label for="email">Email : </label>
+										<label for="email">Email</label>
 										@if($user == null)
 											<input type="email" class="form-control" required  placeholder="Email" name="email" value="{{ old('email') }}">
 										@else
@@ -148,7 +148,7 @@
 									</div>
 									@if($user == null)
 										<div class="form-group has-feedback ">
-											<label for="password">Password : </label>
+											<label for="password">Password</label>
 											<input type="password" class="form-control" required placeholder="Password" name="password">
 										</div>
 										<div class="form-group has-feedback">
@@ -158,23 +158,15 @@
 									@endif
 
 									<div class="form-group has-feedback ">
-										<label for="pan"> Tax Code : </label>
+										<label for="pan"> Tax Code</label>
 										@if($userProfile  != null && $userProfile->pan  != null) 
-											<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="{{ $userProfile->pan }}">
+											<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="{{ $userProfile->pan }}" title="fiscal code">
 										@else 
-											<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="{{ old('pan') }}">
+											<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="{{ old('pan') }}" title="fiscal code">
 										@endif 
 									</div>
 									<div class="form-group has-feedback ">
-										<label for="vat">VAT (If Applicable): </label>
-										@if($userProfile != null && $userProfile->vat  != null)
-											<input type="text" class="form-control" placeholder="VAT" name="vat" value="{{ $userProfile->vat }}">
-										@else
-											<input type="text" class="form-control" placeholder="VAT" name="vat" value="{{ old('vat') }}">
-										@endif
-									</div>
-									<div class="form-group has-feedback ">
-										<label for="company">Company (If Applicable):</label>
+										<label for="company">Company <span style="font-size: 70%;">(If Applicable)</span></label>
 										@if($userProfile != null && $userProfile->company  != null)
 											<input type="text" class="form-control"  placeholder="Company" name="company" value="{{ $userProfile->company }}">
 										@else
@@ -182,7 +174,16 @@
 										@endif
 									</div>
 									<div class="form-group has-feedback ">
-										<label for="address">Address:</label>
+										<label for="vat">VAT <span style="font-size: 70%;">(Required if 'Company' is compiled)</span></label>
+										@if($userProfile != null && $userProfile->vat  != null)
+											<input type="text" class="form-control" placeholder="VAT number" name="vat" value="{{ $userProfile->vat }}">
+										@else
+											<input type="text" class="form-control" placeholder="VAT number" name="vat" value="{{ old('vat') }}">
+										@endif
+									</div>
+									
+									<div class="form-group has-feedback ">
+										<label for="address">Invoice Address</label>
 										@if($userProfile != null && $userProfile->address  != null)
 											<textarea required rows="4" cols="50" class="form-control" name="address" placeholder="Address" value="{{ $userProfile->address }}">{{ $userProfile->address }}</textarea>
 										@else
@@ -190,9 +191,9 @@
 										@endif
 									</div>
 									<div class="form-group has-feedback email">
-										<label for="country">Country:</label>
+										<label for="country">Country</label>
 										@if (count($country_list) > 0)
-											<select name="country" id="country" required class="form-control">
+											<select name="country" id="country" required class="form-control" style="clear: both;">
 												<option value="">Select Country</option>
 												@foreach ($country_list as $country)
 													@if($userProfile != null && $userProfile->country  != null)
@@ -206,7 +207,7 @@
 									</div>
 
 						<div class="form-group has-feedback">
-							<label for="city"> City : </label>
+							<label for="city" style="display: block; padding-top: 20px;"> City</label>
 							@if($userProfile != null && $userProfile->city  != null)
 								<input type="text" name="city" placeholder="City" required class="form-control" value="{{ $userProfile->city }}"> {{-- old('city',$userProfile->city) --}}
 							@else

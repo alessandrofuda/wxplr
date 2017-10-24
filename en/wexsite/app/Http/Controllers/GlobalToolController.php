@@ -384,6 +384,7 @@ class GlobalToolController extends CustomBaseController
     public function upload_recording(Request $request, $id)
     {
         $file = $request->file('upload_file');
+        // init var
         $result = [ 'status' => 'NOK'];
 
         $recording_file = Setting::saveUploadedImage($request->file('upload_file'));
