@@ -80,9 +80,12 @@
 @if ($last_question && !empty($outcome_data))
 <div class="bottom_content">
 	<div class="col-md-8">
-		<p>How can you use this
-information to your best advantage? How can you get more insights on
-your target countries? Find out with the <a href="{{ url('services') }}">Professional Kit!</a></p>
+		<p>How can you use this information to your best advantage? How can you get more insights on your target countries? Find out with the <span style="color: #2087C8;">Professional Kit!</span></p>
+
+		<a href="{{ url('professional-kit') }}" class="btn btn-success btn-lg btn-block" style="margin:25px auto;">
+			Proceed to <b>Professional Kit</b> <span class="glyphicon glyphicon-triangle-right" style="font-size: 17px; 
+			margin-left: 30px; position: relative; display: inline-block;"></span>
+		</a>
 	</div>
 	<div class="col-md-2 pull-right">
 		<a href="{{ url('user/dashboard') }}" class="btn btn-primary back-dashboard"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to dashboard</a>
