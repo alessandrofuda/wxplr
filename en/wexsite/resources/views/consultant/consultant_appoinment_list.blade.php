@@ -85,6 +85,7 @@
 
 
 		<script>
+		jQuery(document).ready(function($){
 			$("[id^=upload_file]").click(function() {
 				var id = $(this).attr('id').split('upload_file')[1];
 				console.log('id'+id);
@@ -129,14 +130,16 @@
 					});
 				}
 			});
-		</script>
 
-		<script>
+
+			// ???
 			$('#loading-image').bind('ajaxStart', function(){
 				$(this).show();
 			}).bind('ajaxStop', function(){
 				$(this).hide();
 			});
+			
+		});
 		</script>
 	</div>
 @endsection
