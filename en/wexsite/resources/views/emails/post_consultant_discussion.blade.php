@@ -12,7 +12,7 @@
 	<br/>
 	<br/>
 	<p>
-		Please <a href="###">reply to message</a> or <a href="###">confirm now</a> for the agreed date. ( L I N K !)
+		Please <a href="{{ url('user/role_play_interview') }}">Click here and reply to message</a>.
 	</p>
 	--  Wexplore team<br/>
 </div>

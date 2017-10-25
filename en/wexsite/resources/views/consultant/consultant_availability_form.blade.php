@@ -14,18 +14,6 @@
 <div id="discussion" class="col-md-12 profile_page">
 	<h3 class="box-title">Users Availability Box</h3>
 
-
-
-
-
-
-
-
-
-
-
-
-
 	<div id="discussion-{{$discuss_id}}" class="col-md-10 col-sm-12 discussion" style="margin: 40px auto;">
 		@if (count($discussions) > 0)
 			<style>
@@ -73,21 +61,9 @@
 		</form>
 	</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
 </div>
 
-<div class="col-md-12 profile_page">
+<div id="availability-form" class="col-md-12 profile_page">
 <h3 class="box-title">{{ $page_title }}</h3>
 <div class="col-lg-3 col-xs-12">
 	@if($page_type == 'edit')
