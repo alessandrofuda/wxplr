@@ -44,6 +44,10 @@
                               <p>Please upload here your CV. Your consultant will review it and share with you his/her comments within 48 h.</p>
                               <div class="form-group cv-up">
                                   <label for="upload_cv">Upload your CV</label>
+                                  <p></p>
+                                  <p>NOTE: Please make sure your CV should already be in the local language, or at least in English: in this way your consultant will be able to recommend how to best adapt it to the local market. </p>
+                                  <p>Also, please make sure your CV is in an editable form (either <b>.doc</b> or <b>.docx</b>), to make the review process easier. </p>
+                                  <p></p>
                                   <input required type="file" name="upload_cv">
                               </div>
 
@@ -56,13 +60,16 @@
                                     <script>
                                       jQuery('.cv-up').hide();
                                     </script>
-                                  <div class="download-pdf">
+                                  <div class="download-pdf" style="margin-bottom: 20px;">
                                     <a href="{{ url($dream_check_lab['cv_file']) }}" class="btn btn-primary"><span class = "glyphicon glyphicon-download"></span> Download CV</a>
                                     <button class="btn btn-primary cv-change"><span class = "glyphicon glyphicon-upload"></span> Change CV</button>
                                     <script>
-                                      jQuery('.cv-change').on('click', function(){
-                                        jQuery('.cv-up').toggle();
-                                        jQuery('.ch-upl-cv').toggle();
+                                      jQuery(document).ready(function () {
+                                        $('.cv-change').on('click', function(){
+                                          $('.cv-up').toggle();
+                                          $('.ch-upl-cv').toggle();
+                                          $('.download-pdf').hide();
+                                        });
                                       });
                                     </script>
                                   </div>
@@ -70,11 +77,9 @@
                               @endif
 
                               <input type="hidden" name="state_id" value="1">
-                              <p>NOTE: Please make sure your CV should already be in the local language, or at least in English: in this way your consultant will be able to recommend how to best adapt it to the local market. </p>
-                              <p>Also, please make sure your CV is in an editable form (either .doc or .docx), to make the review process easier. </p>
 
                               @if ($dream_check_lab['cv_file'] != null)
-                                  <div class="form-group ch-upl-cv">
+                                  <div class="form-group ch-upl-cv" style="margin-top:20px;">
                                     <input name="submit" type="submit" id="submit_1" value="Change uploaded CV">
                                   </div>
                                   <script>
@@ -85,11 +90,12 @@
                                     <input name="submit" type="submit" id="submit_1" value="Upload CV">
                                   </div>
                               @endif 
+                              
                           </form>
 
                           @endif
 
-                               <input name="submit_1" type="submit" class="btn btn-success submit-button"  id="next_1" value="Next">
+                               <input name="submit_1" type="submit" class="btn btn-success submit-button"  id="next_1" value="Next" {{ $dream_check_lab['cv_file'] != null ? '' : 'disabled' }}>
                                <input name="submit_1" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading..">
                        </div>
                        <div id="price-tab" class="tab-pane fade {{$active == 2 ? "in active" : ""}}">
@@ -199,8 +205,11 @@
                                </div>
                            </form>
                            @endif
+                           <?php // se tutti i campi sono salvati in db --> attiva pulsante "next" altrimenti disattiva
+
+                           ?>
                                <input name="back_1" type="submit" id="back_1" class="btn btn-warning" value="Back">
-                               <input name="submit_2" type="submit" id="next_2" class="btn btn-success submit-button" value="Next">
+                               <input name="submit_2" type="submit" id="next_2" class="btn btn-success submit-button" value="Next" title="Save Changes before proceed" disabled>
                                <input name="loading_2" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading..">
                        </div>
                        <div id="place-tab" class="tab-pane fade {{$active == 3 ? "in active" : ""}}">
@@ -299,7 +308,7 @@
 
                            @endif
                                <input name="back_2" type="submit" class="btn btn-warning" id="back_2" value="Back">
-                               <input name="submit_3" id="next_3" class="btn btn-success submit-button" type="submit" value="Next">
+                               <input name="submit_3" id="next_3" class="btn btn-success submit-button" type="submit" value="Next" title="Save Changes before proceed" disabled>
                                <input name="loading_3" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading..">
                        </div>
                        <div id="promotion-tab" class="tab-pane fade {{$active == 4  ? "in active" : ""}}">
@@ -314,32 +323,32 @@
                                <p>{{ $dream_check_lab['interest_country'] }}</p>
                            </div>
                            @else
-                               <div id="promo_form">
-                           <form id="form_4" method="post" action="{{ url('user/dream_check_lab/store') }}" enctype="multipart/form-data">
-                               {{ csrf_field() }}
-                               <h3>4. Promotion – Your USP</h3>
-                               <p>One more step to go: use this space below to put down your Unique Selling Point. In other words, what makes you special? What would be your answer to the question “why should we choose you”?</p>
-                               <div class="form-group">
-                                   <textarea required name="promotion_usp">{{ old('promotion_usp') != null ? old('promotion_usp') : isset($dream_check_lab['promotion_usp']) ? $dream_check_lab['promotion_usp'] : "" }}</textarea>
-                               </div>
-                               <input type="hidden" name="state_id" value="4">
-                               <p>NOTE: Did you know that different countries look at different things? Anglosaxon countries are all about achievements, German countries favour expertise, Latin countries appreciate soft skills (problem solving, leadership, creativity…), and Scandinavian countries would look for people skills (teamwork, initiative, motivating others…). Try to put yourself in the other’s shoes and adapt your USP to these cultural-based expectations. </p>
-                              </form>
-                               <div class="form-group">
-                               <input name="submit_4" id="submit_4" type="submit" value="Save Changes">
-                                   </div>
-                                   <input name="back_3" type="submit" class="btn btn-warning" id="back_3" value="Back">
-                                   <input name="submit_4" id="next_4" class="btn btn-success" type="submit" value="Next">
-                                   </div>
-                               <div id="outro" style="display: none;">
-                               <form id="final_form" method="post" action="{{ url('user/dream_check_lab/submit') }}" enctype="multipart/form-data">
+                              <div id="promo_form">
+                                <form id="form_4" method="post" action="{{ url('user/dream_check_lab/store') }}" enctype="multipart/form-data">
                                   {{ csrf_field() }}
-                                   <h3>Congratulations!</h3>
-                               <p>Now is the time to meet your consultant: a career expert from our network, based in the same country that you are interested in. He or she will be your coach, and ensure you are prepared to score plenty of goals in your job search process. </p>
+                                  <h3>4. Promotion – Your USP</h3>
+                                  <p>One more step to go: use this space below to put down your Unique Selling Point. In other words, what makes you special? What would be your answer to the question “why should we choose you”?</p>
+                                  <div class="form-group">
+                                    <textarea required name="promotion_usp">{{ old('promotion_usp') != null ? old('promotion_usp') : isset($dream_check_lab['promotion_usp']) ? $dream_check_lab['promotion_usp'] : "" }}</textarea>
+                                  </div>
+                                  <input type="hidden" name="state_id" value="4">
+                                  <p>NOTE: Did you know that different countries look at different things? Anglosaxon countries are all about achievements, German countries favour expertise, Latin countries appreciate soft skills (problem solving, leadership, creativity…), and Scandinavian countries would look for people skills (teamwork, initiative, motivating others…). Try to put yourself in the other’s shoes and adapt your USP to these cultural-based expectations. </p>
+                                </form>
+                                <div class="form-group">
+                                  <input name="submit_4" id="submit_4" type="submit" value="Save Changes">
+                                </div>
+                                <input name="back_3" type="submit" class="btn btn-warning" id="back_3" value="Back">
+                                <input name="submit_4" id="next_4" class="btn btn-success" type="submit" value="Next" disabled title="Save Changes before proceed">
+                              </div>
+                              <div id="outro" style="display: none;">
+                                <form id="final_form" method="post" action="{{ url('user/dream_check_lab/submit') }}" enctype="multipart/form-data">
+                                  {{ csrf_field() }}
+                                  <h3>Congratulations!</h3>
+                                  <p>Now is the time to meet your consultant: a career expert from our network, based in the same country that you are interested in. He or she will be your coach, and ensure you are prepared to score plenty of goals in your job search process. </p>
 
-                               <div class="form-group">
-                                   <label for="interest_country">Please confirm your country of interest below</label>
-                                   <select required name="interest_country" style="padding:8px;">
+                                  <div class="form-group">
+                                    <label for="interest_country">Please confirm your country of interest below</label>
+                                    <select required name="interest_country" style="padding:8px;">
                                        <option value ="">-- Choose Country --</option>
 													<option @if(old('interest_country') == 'Australia') selected="selected" @endif value="Australia">Australia</option>
 													<option @if(old('interest_country') == 'France') selected="selected" @endif value="France">France</option>
@@ -357,9 +366,9 @@
                                        @endforeach
 													*/ ?>
                                    </select>
-                               </div>
-                               <input type="hidden" name="form_id" value="{{ isset($dream_check_lab['id']) ? $dream_check_lab['id'] : "" }}" id="form_id">
-                                   <input type="hidden" name="state_id" value="5">
+                              </div>
+                              <input type="hidden" name="form_id" value="{{ isset($dream_check_lab['id']) ? $dream_check_lab['id'] : "" }}" id="form_id">
+                              <input type="hidden" name="state_id" value="5">
                                <!--<p>Please confirm you want to submit the DreamCheck Lab forms: in other words, have you thought of all your best and most rewarding achievements? Did you nail down your USP? If you feel confident that you have presented yourself in the best possible way, please click submit.</p>-->
                                <p>Note: After Submitting, you will not be able to edit the forms anymore.</p>
                                <div class="form-group Submit_final_form">
@@ -447,14 +456,16 @@
               }
           });
 
-          jQuery("#submit_2").click(function(e) {
+          jQuery("#submit_2").click(function(e) { 
               if (!jQuery("#form_2")[0].checkValidity()) {
                   // If the form is invalid, submit it. The form won't actually submit;
                   // this will just cause the browser to display the native HTML5 error messages.
-                  jQuery("#form_2").submit();
+                  jQuery("#form_2").submit();  // stop!
               } else {
                   e.preventDefault();
-                  submitForm("#form_2");
+                  submitForm("#form_2"); // go! to custom func 
+                  // abilita "Next" button che di default è disabilitato 
+                  $('#next_2').prop('disabled', false).prop('title','Go Next Step');
               }
           });
 
@@ -466,6 +477,8 @@
               } else {
                   e.preventDefault();
                   submitForm("#form_3");
+                  // abilita "Next" button che di default è disabilitato
+                  $('#next_3').prop('disabled', false).prop('title','Go Next Step');
               }
           });
 
@@ -477,6 +490,8 @@
               }else {
                   e.preventDefault();
                   submitForm("#form_4");
+                  // abilita "Next" button che di default è disabilitato
+                  $('#next_4').prop('disabled', false).prop('title','Go Next Step');
               }
           });
 
@@ -511,10 +526,14 @@
               jQuery("#price-li").find("a").attr("href","#price-tab").trigger('click');
               scrollTo(document.body, 0, 100);
           });
-          jQuery("#next_2").click(function() {
+
+
+          jQuery("#next_2").click(function() {  
               jQuery("#place-li").find("a").attr("href","#place-tab").trigger('click');
               scrollTo(document.body, 0, 100);
           });
+
+
           jQuery("#next_3").click(function() {
               jQuery("#promotion-li").find("a").attr("href","#promotion-tab").trigger('click');
               scrollTo(document.body, 0, 100);
