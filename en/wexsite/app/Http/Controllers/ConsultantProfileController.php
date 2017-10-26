@@ -179,6 +179,21 @@ class ConsultantProfileController extends CustomBaseController
         $data['edit_availability'] = $edit_availability;
       //  echo '<pre>';print_r($edit_availability);exit;
 
+        // box discussion between consultant and client/clients(!)  I clienti possono essere più di uno per ogni consultant ??
+        $consultant = Auth::user();
+        $client_id = DreamCheckLab::where('validate_by',$consultant->id)  // ::where('validate', 1)
+                                    ->first(['user_id'])
+                                    ->user_id;
+        $client = User::find($client_id);
+        $data['client'] = $client;
+        $discuss_id = $client->id.$consultant->id;
+        $data['discuss_id'] = $discuss_id;
+        $discussions = UserConsultantDiscussion::whereIn('user_id', [$client->id, $consultant->id])
+                                               ->where('discuss_id', $discuss_id)
+                                               ->get();
+        $data['discussions'] = $discussions;
+        
+
         return view('consultant.consultant_availability_form',$data);
     }
 
