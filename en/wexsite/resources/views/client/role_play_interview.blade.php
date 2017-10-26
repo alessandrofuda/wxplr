@@ -185,7 +185,7 @@
 			}
 
 			// evidenzia il button su cui cliccare per confermare call - verificare come si comporta quando non c'è booking
-			jQuery('.fc-time').append('<span style="display:block; background-color:green; padding:8px 0;">Click here to confirm</span>');
+			jQuery('.fc-time').append('<span style="display:block; background-color:green; padding:8px 0;">Click here to confirm<br/>your appointment</span>');
 
 		});
 	</script>
