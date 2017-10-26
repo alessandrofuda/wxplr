@@ -11,7 +11,7 @@
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
 					<h4 class="modal-title">Are you sure you want to schedule your appointment for this date and time ?</h4>
 				</div>
-				<form role="form" class="book_appoinment_form" method="post" action="{{ url('user/consultant/book') }}">
+				<form class="book_appoinment_form" method="post" action="{{ url('user/consultant/book') }}">
 					<div class="modal-body">
 						{{ csrf_field() }}
 						<input type="hidden" name="availablity_id" value="">
@@ -71,14 +71,14 @@
 							
 							<div id="discussion-{{$discuss_id}}" class="discussion" style="/*border:1px solid red;*/ margin: 40px auto;">
 								@if (count($discussions) > 0)								
-									<style>
+									<!--style>
 										.cont { border: 1px solid #E1E1E1; border-radius: 5px; padding: 15px 0; margin-bottom: 50px; }
 										.disc-tit { display: inline-block; padding: 0px 15px; color: #FFF; background-color: #cfcfcf; margin-left: 10px; border-radius: 5px 5px 0px 0px; }
 										.ass-cons { padding: 10px 20px; }
-									</style>
-									<div class="disc-tit">{{ count($discussions) === 1 ? '1 message' : count($discussions).' messages' }}</div>
-									<section class="comment-list cont">
-									<div class="ass-cons">Assigned consultant: <strong>{{ $consultant->name.' '.$consultant->surname }}</strong></div>
+									</style-->
+									<div class="disc-tit" style="display: inline-block; padding: 0px 15px; color: #FFF; background-color: #cfcfcf; margin-left: 10px; border-radius: 5px 5px 0px 0px;">{{ count($discussions) === 1 ? '1 message' : count($discussions).' messages' }}</div>
+									<section class="comment-list cont" style="border: 1px solid #E1E1E1; border-radius: 5px; padding: 15px 0; margin-bottom: 50px;">
+									<div class="ass-cons" style="padding: 10px 20px;">Assigned consultant: <strong>{{ $consultant->name.' '.$consultant->surname }}</strong></div>
 										@foreach( $discussions as $discussion )
 											<?php 
 												$discussion->user_id === Auth::user()->id ? $bg = 'rgba(221,221,221,0.5)' : $bg = '#BFBFBF';

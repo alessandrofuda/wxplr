@@ -212,7 +212,7 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
                                             </ul>
                                         </li>
                                         <li class="menu-item-1583">
-                                            <a target="_blank" href="http://themeforest.net/user/BeantownThemes/portfolio?ref=BeantownThemes">Buy it now !</a>
+                                            <a target="_blank" href="https://themeforest.net/user/BeantownThemes/portfolio?ref=BeantownThemes">Buy it now !</a>
                                         </li>
                                     </ul>
                                 </nav>
