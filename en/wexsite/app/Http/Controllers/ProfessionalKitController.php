@@ -316,9 +316,11 @@ class ProfessionalKitController extends CustomBaseController {
 					// Log::info('Aggiornamento db.interest_country: '. $interested_country . '. Time: ' . date('H:i:s'));
 
 					// match consultant
+					// IMPORTANTE ! Se ci sono più consulenti sullo stesso paese viene preso quello con MENO mail ricevute !!!!
                     $consultant_profiles = ConsultantProfile::where('country_expertise', $interested_country)
-                        									->orderBy('email_count')
+                        									->orderBy('email_count', 'asc')  //importante ! 
                         									->get();
+                    
                     // Log::info('Consultant trovato: '. $consultant_profiles . '. Time: '. date('H:i:s'));
 
                     $data['dream_check_lab_id'] = $dreamcheck_lab_obj->id;
