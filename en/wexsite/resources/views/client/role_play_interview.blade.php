@@ -117,6 +117,7 @@
 
 							<div class="row text-center" style="margin-top: 15px;"><strong>Please confirm agreed date and time for the call in the calendar below here.</strong></div>
 							<div id="calendar"></div>
+
 						@endif
 
 					</div>
@@ -132,7 +133,7 @@
 		</div>
 	</div>
 	<link rel="stylesheet" href="{{ asset('admin/plugins/fullcalendar/fullcalendar.css') }}" />
-	<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js'></script>
+	<script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js'></script>
 	<script src='{{ asset("admin/plugins/daterangepicker/moment.min.js") }}'></script>
 	<script src='{{ asset("admin/plugins/fullcalendar/fullcalendar.js") }}'></script>
 	<script type='text/javascript'>
@@ -182,6 +183,10 @@
 				jQuery("#consultantBooking input[name='availablity_id']").val(eventId);
 				jQuery("#consultantBooking").modal('show');
 			}
+
+			// evidenzia il button su cui cliccare per confermare call - verificare come si comporta quando non c'è booking
+			jQuery('.fc-time').append('<span style="display:block; background-color:green; padding:8px 0;">Click here to confirm</span>');
+
 		});
 	</script>
 @endsection
