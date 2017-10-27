@@ -310,12 +310,8 @@ class PagesController extends CustomBaseController {
 
 			if ($order->step_id == 4) {
 				$dreamcheck_lab = DreamCheckLab::where('user_id', Auth::user()->id)->first();
-				// dd($dreamcheck_lab);
-				//if ($dreamcheck_lab->validate_by == null) {
-				//	$validate_by = 'No consultant match found'; // no! must be an integer!
-				//} else {
-					$validate_by = $dreamcheck_lab->validate_by;
-				//}
+				$validate_by = $dreamcheck_lab->validate_by;  // se crea errore (nei test!) --> in DB: "Orders" tab.--> step_id = 3 o meno
+				
 				$consultant = User::find($validate_by);
 				$consultant_name = '';
 				if (!empty($consultant) && is_object($consultant)) {

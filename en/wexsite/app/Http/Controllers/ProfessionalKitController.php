@@ -320,10 +320,10 @@ class ProfessionalKitController extends CustomBaseController {
                     $consultant_profiles = ConsultantProfile::where('country_expertise', $interested_country)
                         									->orderBy('email_count', 'asc')  //importante ! 
                         									->get();
-                    
+                    // dd($consultant_profiles); // ok ordinato in ordine crescente per email_count
                     // Log::info('Consultant trovato: '. $consultant_profiles . '. Time: '. date('H:i:s'));
 
-                    $data['dream_check_lab_id'] = $dreamcheck_lab_obj->id;
+                    $data['dream_check_lab_id'] = $dreamcheck_lab_obj->id; // 19
 
                     // update tabella Order (!!)
 					$order = \App\Order::where('user_id',$dreamcheck_lab_obj->user_id)->where('item_name','Professional Kit')->first();
@@ -337,13 +337,17 @@ class ProfessionalKitController extends CustomBaseController {
 						foreach ($consultant_profiles as $consultant_profile) {
 							// se il consultant non viene attivato lato Admin qui si interrompe il flusso !!!!!!!!!!
 							$service = ConsultantServices::where('user_id', $consultant_profile->user_id)  
-														 ->where('service_id', ConsultantServices::SERVICE_PROFESSIONAL_KIT) 
-														 ->where('state_id', ConsultantServices::STATE_ACTIVE)  
+														 ->where('service_id', ConsultantServices::SERVICE_PROFESSIONAL_KIT)  // 0
+														 ->where('state_id', ConsultantServices::STATE_ACTIVE)  // 1
 														 ->first();
+							// dd($service); // ok != null
 
 							if ($service != null) {
 								$ok = true;
-								$user_obj = $consultant_profile->user;
+								$user_obj = $consultant_profile->user;  // foreign key !! --> "users" tab !!
+								// dd($user_obj); // ok!
+								// dump('Test user_obj: '.$user_obj);
+								
 								$to_email = $user_obj->email;
 								$consultant_profile->increment('email_count');
 
@@ -361,6 +365,7 @@ class ProfessionalKitController extends CustomBaseController {
 							}
 						}
                     }
+                    // dd('stop');
 
 					if($ok == false) {
                         /* Email to admin */
@@ -705,6 +710,7 @@ class ProfessionalKitController extends CustomBaseController {
 		$user = Auth::user();
 		$dreamcheck_lab = DreamCheckLab::where('user_id',$user->id)->first(['validate_by'])->toArray();
 		$consultant = User::find($dreamcheck_lab['validate_by']);		// consultant che ha fatto la validazione della richiesta dell'utente
+		
 		$order = Order::where('user_id',$user->id)->where('item_name','Professional Kit')->first();
 
 		$booking = ConsultantBooking::where('user_id', \Auth::user()->id)
