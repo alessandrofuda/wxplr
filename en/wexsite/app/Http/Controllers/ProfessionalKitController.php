@@ -772,6 +772,7 @@ class ProfessionalKitController extends CustomBaseController {
 		
 		$discussions = UserConsultantDiscussion::whereIn('user_id', [$user->id, $consultant->id])
 											   ->where('discuss_id', $discuss_id)
+											   ->orderBy('created_at', 'asc')
 											   ->get();
 		
 		$data['discussions'] = $discussions;
