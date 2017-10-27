@@ -78,6 +78,7 @@ class ConsultantProfileController extends CustomBaseController
         
         $discussions = UserConsultantDiscussion::whereIn('user_id', [$client->id, $consultant->id])
                                                ->where('discuss_id', $discuss_id)
+                                               ->orderBy('created_at', 'asc')
                                                ->get();
 
         $data['discussions'] = $discussions;
