@@ -686,8 +686,8 @@ class PagesController extends CustomBaseController {
 	}
 
 	private function updateMailchimp($name, $surname, $address, $email, $group) {
-      $apiKey = "2dd00772292ebc76a57c113541c8df0c-us13";
-      $listId = "53a7376607";
+      $apiKey = env('MC_API_KEY', 'NO_APIKEY');
+      $listId = env('MC_LIST_ID', 'NO_LISTID');
       $emailHash = md5(strtolower($email));
 
       $endpoint = "https://us13.api.mailchimp.com/3.0/lists/" . $listId . "/members/". $emailHash;

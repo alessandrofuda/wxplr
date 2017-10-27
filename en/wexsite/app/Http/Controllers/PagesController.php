@@ -620,7 +620,7 @@ class PagesController extends CustomBaseController {
 		$website_email = '';
 		$data['contact_form_data'] = $request;
 
-		$mytime = Carbon\Carbon::now();
+		$mytime = Carbon\Carbon::now('Europe/Rome'); // added Europe/Rome timezone
 		$current_date = $mytime->toDateTimeString();
 		$data['current_date'] = $current_date;
 		$data['service_name'] = $service->name;
@@ -684,8 +684,8 @@ class PagesController extends CustomBaseController {
 	}
 
 	private function updateMailchimp($name, $surname, $address, $email, $group) {
-      $apiKey = "2dd00772292ebc76a57c113541c8df0c-us13";
-      $listId = "53a7376607";
+      $apiKey = env('MC_API_KEY', 'NO_APIKEY'); 
+      $listId = env('MC_LIST_ID', 'NO_LISTID'); 
       $emailHash = md5(strtolower($email));
 
       $endpoint = "https://us13.api.mailchimp.com/3.0/lists/" . $listId . "/members/". $emailHash;
@@ -693,9 +693,9 @@ class PagesController extends CustomBaseController {
 	       "email_address" => $email,
 	       "status" => "subscribed",
 	       "merge_fields" => array(
-	           "FNAME" => $name,
-	           "LNAME" => $surname,
-				  "ADDRESS" => $address
+	           	"FNAME" => $name,
+	           	"LNAME" => $surname,
+				"ADDRESS" => $address
 	       ),
 	       'interests' => array(
 	           $group => true
