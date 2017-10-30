@@ -1075,6 +1075,7 @@ class ProfessionalKitController extends CustomBaseController {
 
 		// input validation
 		$rules['user_id'] = 'required|integer';
+		$rules['consultant_id'] = 'required|integer';
 		$rules['discuss_id'] = 'required|integer';
 		$rules['message'] = 'required|string';
 		
@@ -1085,11 +1086,18 @@ class ProfessionalKitController extends CustomBaseController {
 		}
 
 
+		// !!!!!!!!! SISTEMARE !!!!!!!!!!!!!
+
 		//consultant
 		$consultant = Auth::user();
+		// dd($consultant->id);
 
 		// client
-		$client_id = DreamCheckLab::where('validate_by',$consultant->id)->first(['user_id'])->user_id; 
+		$client_id = DreamCheckLab::where('validate_by',$consultant->id)
+									->orderBy('updated_at', 'desc')
+									->first()
+									->user_id;
+
 		$client = User::find($client_id);
 
 		// insert in db

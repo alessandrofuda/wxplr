@@ -102,6 +102,7 @@
 									</section>
 								@endif
 
+								{{-- @if ($consultant_avail == null) --}}
 								<form id="discussion-form-{{$discuss_id}}" class="discussion-form" method="post" action="{{ url('user/discussion') }}">
 									{{ csrf_field() }}
 								    <div class="">
@@ -113,6 +114,8 @@
 									<input type="hidden" name="discuss_id" value="{{ $discuss_id }}">
 									<button type="submit" class="btn btn-primary" style="margin-top: 15px;">Send to Consultant</button>
 								</form>
+								{{-- @endif --}}
+
 							</div>
 
 							<div class="row text-center" style="margin-top: 15px;"><strong>Please confirm agreed date and time for the call in the calendar below here.</strong></div>
