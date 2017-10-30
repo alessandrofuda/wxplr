@@ -66,9 +66,12 @@ class ConsultantProfileController extends CustomBaseController
         $consultant = Auth::user();
 
 
-        $client_id = DreamCheckLab::where('validate_by',$consultant->id)  // ::where('validate', 1)
-                                    ->first(['user_id'])
+        $client_id = DreamCheckLab::where('validate_by',$consultant->id)
+                                    ->where('validate', 1) 
+                                    ->orderBy('updated_at', 'desc')
+                                    ->first()
                                     ->user_id;
+
 
         $client = User::find($client_id);
         $data['client'] = $client;
@@ -132,12 +135,12 @@ class ConsultantProfileController extends CustomBaseController
         }
         
         $consultant_avail = array('consultant_id'=>$user_id,
-                               'title'=>$title,
-                               'available_date'=>strtotime($available_date_utc),
-                               'available_start_time'=>$available_start_utc,
-                               'available_end_time'=>$available_end_utc,
-                               'type_id' => $request->get('type_id'),
-                               'status'=>$status);
+                                'title'=>$title,
+                                'available_date'=>strtotime($available_date_utc),
+                                'available_start_time'=>$available_start_utc,
+                                'available_end_time'=>$available_end_utc,
+                                'type_id' => $request->get('type_id'),
+                                'status'=>$status);
 
         $availablity = ConsultantAvailablity::where('available_date', strtotime($available_date_utc))
                                             ->where('consultant_id', $user_id)
@@ -154,12 +157,47 @@ class ConsultantProfileController extends CustomBaseController
 
         $ca = ConsultantAvailablity::Create($consultant_avail);  // !! orari salvati in db in UTC
 
+
+
+
+
+
+
+
+        // invio mail a client
+        if($ca){
+            $consultant_id = $ca->consultant_id;
+            $client_id = DreamCheckLab::where('validate_by', $consultant_id)
+                                        ->where('validate', 1)
+                                        ->orderBy('updated_at', 'desc')
+                                        ->first()
+                                        ->user_id;
+            $client = User::find($client_id);
+            $client_name = $client->name.' '.$client->surname;
+
+            $consultant = User::find($consultant_id);
+            $consultant_name = $consultant->name.' '.$consultant->surname;
+
+            $type = $ca::getAvailabilityType($ca->type_id);
+
+
+
+            Mail::send('emails.consultant_availability_notification', ['client_name' => $client_name, 'consultant_name' => $consultant_name, 'ca' => $ca, 'type' => $type], function ($m) use ($client, $client_name) { 
+                    $settings = Setting::find(1);
+                    $site_email = $settings->website_email;
+                    $m->from($site_email, 'Wexplore');
+                    $m->to($client->email, $client_name)->subject('Confirm your date availability!');
+                });
+        }
+
+
+
+
+
+
+
         return redirect('consultant/availability/list')->with('status', 'Form has been saved!');
     }
-
-
-
-
 
 
     public function availability_list(){

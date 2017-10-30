@@ -24,7 +24,7 @@
 			<div class="disc-tit">{{ count($discussions) === 1 ? '1 message' : count($discussions).' messages' }}</div>
 			<section class="comment-list cont">
 				<div class="ass-user">
-					Assigned user: <strong>{{ $client->name .' '. $client->surname }}</strong>.
+					Last assigned user: <strong>{{ $client->name .' '. $client->surname }}</strong>.
 				</div>
 				@foreach( $discussions as $discussion )
 					<?php 
@@ -55,7 +55,8 @@
 		    	<b>When can you do conference call?</b><br>Propose a date/time to <b>{{ $client->name .' '. $client->surname }}</b> before booking it,  according to your availability.
 		    </div>
 			<textarea class="form-control" rows="5" name="message"></textarea>
-			<input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+			<input type="hidden" name="user_id" value="{{ $client->id }}">
+			<input type="hidden" name="consultant_id" value="{{ Auth::user()->id }}">
 			<input type="hidden" name="discuss_id" value="{{ $discuss_id }}">
 			<button type="submit" class="btn btn-primary" style="margin-top: 15px;">Send to Client</button>
 		</form>

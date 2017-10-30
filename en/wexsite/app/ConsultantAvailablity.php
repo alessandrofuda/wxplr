@@ -67,4 +67,20 @@ class ConsultantAvailablity extends Model
 
 		return Setting::getDateTime($date_time, false);
 	}
+
+	public static function getAvailabilityType($key = null){
+
+		$availability_type = [
+			0 =>'Career Session',
+			1 =>'Role Play Interview',
+			2 =>'Contract Evaluation',
+			3 =>'Cultural Support',
+			4 =>'Freelance Support',
+			5 =>'Professional Troubleshooting',			
+		];
+		
+		return $availability_type[$key];
+
+	}
+
 }
