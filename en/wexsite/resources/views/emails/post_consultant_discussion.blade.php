@@ -7,7 +7,7 @@
 	</p>
 	<br/>
 
-	<p class="" style="font-style: italic;"><blockquote>{{ $msg['message'] }}</blockquote></p>
+	<p><blockquote><i>{{ $msg['message'] }}</i></blockquote></p>
 
 	<br/>
 	<br/>
