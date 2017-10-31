@@ -41,4 +41,12 @@
 		</tbody>
 	</table>
 	</div>
+	<script>
+		jQuery(document).ready(function($){
+			$('[id^=start_]').click(function() {
+				$(this).removeClass('btn-success').addClass('btn-warning');
+				$(this).text('Reconnect to Meeting');
+			});
+		});
+	</script>
 @endsection
