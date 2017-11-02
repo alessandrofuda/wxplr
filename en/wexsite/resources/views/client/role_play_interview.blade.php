@@ -68,55 +68,53 @@
 							<div class="alert alert-success">	{!! $already_booked !!} </div>						    
 						@else
 
+							@if (isset($already_booked_first_app))
+								<div class="alert alert-info"> {!! $already_booked_first_app !!} </div>
+							@endif
 							
-							<div id="discussion-{{$discuss_id}}" class="discussion" style="/*border:1px solid red;*/ margin: 40px auto;">
-								@if (count($discussions) > 0)								
-									<!--style>
-										.cont { border: 1px solid #E1E1E1; border-radius: 5px; padding: 15px 0; margin-bottom: 50px; }
-										.disc-tit { display: inline-block; padding: 0px 15px; color: #FFF; background-color: #cfcfcf; margin-left: 10px; border-radius: 5px 5px 0px 0px; }
-										.ass-cons { padding: 10px 20px; }
-									</style-->
-									<div class="disc-tit" style="display: inline-block; padding: 0px 15px; color: #FFF; background-color: #cfcfcf; margin-left: 10px; border-radius: 5px 5px 0px 0px;">{{ count($discussions) === 1 ? '1 message' : count($discussions).' messages' }}</div>
-									<section class="comment-list cont" style="border: 1px solid #E1E1E1; border-radius: 5px; padding: 15px 0; margin-bottom: 50px;">
-									<div class="ass-cons" style="padding: 10px 20px;">Assigned consultant: <strong>{{ $consultant->name.' '.$consultant->surname }}</strong></div>
-										@foreach( $discussions as $discussion )
-											<?php 
-												$discussion->user_id === Auth::user()->id ? $bg = 'rgba(221,221,221,0.5)' : $bg = '#BFBFBF';
-											?>
-											<style>	
-												.msj-{{ $discussion->id }}::before {  width: 0; height: 0; content: ""; top: 0; left: -38px; position: relative; border-style: solid; border-width: 0 20px 20px 0; border-color: transparent {{ $bg }} transparent transparent; float: left; }
-											</style>
-											<div class="row">
-												<div class="col-md-10 col-sm-10 {{ $discussion->user_id === Auth::user()->id ? '' : 'col-md-offset-1 col-sm-offset-0' }}">
-													<div class="panel panel-default msj-{{ $discussion->id }}" style="max-height: none; opacity: 1; margin: 1em auto; border-radius: 0 15px; overflow: visible; border: none; {{ $discussion->user_id === Auth::user()->id ? '' : 'background-color: #BFBFBF' }}">
-														<div class="panel-header">
-															<i class="fa fa-user"></i> <strong>{{ $discussion->user->name }}  {{ $discussion->user->surname }}</strong>&nbsp;&nbsp;&nbsp;<span class="text-muted"><i class="fa fa-clock-o"></i> {{ App\Setting::getDateTime($discussion->created_at, false, 'd-m-Y H:i') }}</span> {{-- data/ora col giusto fuso orario/timezone --}}
-														</div>
-														<div class="panel-body" style="margin: 0 auto;">
-															<i>{!! nl2br($discussion->message) !!}</i>
+							@if ($discuss_id != null)
+								<div id="discussion-{{ $discuss_id }}" class="discussion" style="margin: 40px auto;">
+
+									@if (count($discussions) > 0)	
+										<div class="disc-tit" style="display: inline-block; padding: 0px 15px; color: #FFF; background-color: #cfcfcf; margin-left: 10px; border-radius: 5px 5px 0px 0px;">{{ count($discussions) === 1 ? '1 message' : count($discussions).' messages' }}</div>
+										<section class="comment-list cont" style="border: 1px solid #E1E1E1; border-radius: 5px; padding: 15px 0; margin-bottom: 50px;">
+										<div class="ass-cons" style="padding: 10px 20px;">Assigned consultant: <strong>{{ $consultant->name.' '.$consultant->surname }}</strong></div>
+											@foreach( $discussions as $discussion )
+												<?php 
+													$discussion->user_id === Auth::user()->id ? $bg = 'rgba(221,221,221,0.5)' : $bg = '#BFBFBF';
+												?>
+												<style>	
+													.msj-{{ $discussion->id }}::before {  width: 0; height: 0; content: ""; top: 0; left: -38px; position: relative; border-style: solid; border-width: 0 20px 20px 0; border-color: transparent {{ $bg }} transparent transparent; float: left; }
+												</style>
+												<div class="row">
+													<div class="col-md-10 col-sm-10 {{ $discussion->user_id === Auth::user()->id ? '' : 'col-md-offset-1 col-sm-offset-0' }}">
+														<div class="panel panel-default msj-{{ $discussion->id }}" style="max-height: none; opacity: 1; margin: 1em auto; border-radius: 0 15px; overflow: visible; border: none; {{ $discussion->user_id === Auth::user()->id ? '' : 'background-color: #BFBFBF' }}">
+															<div class="panel-header">
+																<i class="fa fa-user"></i> <strong>{{ $discussion->user->name }}  {{ $discussion->user->surname }}</strong>&nbsp;&nbsp;&nbsp;<span class="text-muted"><i class="fa fa-clock-o"></i> {{ App\Setting::getDateTime($discussion->created_at, false, 'd-m-Y H:i') }}</span> {{-- data/ora col giusto fuso orario/timezone --}}
+															</div>
+															<div class="panel-body" style="margin: 0 auto;">
+																<i>{!! nl2br($discussion->message) !!}</i>
+															</div>
 														</div>
 													</div>
 												</div>
-											</div>
-										@endforeach
-									</section>
-								@endif
+											@endforeach
+										</section>
+									@endif
 
-								{{-- @if ($consultant_avail == null) --}}
-								<form id="discussion-form-{{$discuss_id}}" class="discussion-form" method="post" action="{{ url('user/discussion') }}">
-									{{ csrf_field() }}
-								    <div class="">
-								    	<b>When can you do conference call?</b><br>
-								    	Propose a date/time to <strong>{{ $consultant->name .' '.$consultant->surname }}</strong> according to your availability.
-								    </div>
-									<textarea class="form-control" rows="5" name="message"></textarea>
-									<input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-									<input type="hidden" name="discuss_id" value="{{ $discuss_id }}">
-									<button type="submit" class="btn btn-primary" style="margin-top: 15px;">Send to Consultant</button>
-								</form>
-								{{-- @endif --}}
-
-							</div>
+									<form id="discussion-form-{{$discuss_id}}" class="discussion-form" method="post" action="{{ url('user/discussion') }}">
+										{{ csrf_field() }}
+									    <div class="">
+									    	<b>When can you do conference call?</b><br>
+									    	Propose a date/time to <strong>{{ $consultant->name .' '.$consultant->surname }}</strong> according to your availability.
+									    </div>
+										<textarea class="form-control" rows="5" name="message"></textarea>
+										<input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+										<input type="hidden" name="discuss_id" value="{{ $discuss_id }}">
+										<button type="submit" class="btn btn-primary" style="margin-top: 15px;">Send to Consultant</button>
+									</form>
+								</div>
+							@endif
 
 							<div class="row text-center" style="margin-top: 15px;"><strong>Please confirm agreed date and time for the call in the calendar below here.</strong></div>
 							<div id="calendar"></div>

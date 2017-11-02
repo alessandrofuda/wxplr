@@ -716,14 +716,18 @@ class ProfessionalKitController extends CustomBaseController {
 		$booking = ConsultantBooking::where('user_id', \Auth::user()->id)
 									->where('type_id', ConsultantBooking::TYPE_INTERVIEW)   // constant = 0
 									->where('status','!=',ConsultantBooking::STATE_CANCELLED) // constant = 2 [0=pending 1=completed 2=cancelled]
-									->first();  // 
-
-		dd($booking); // verificare: hasmany/hasOne nei vari relation models .. ogni utente/consulente può avere diverse call (diversi bookings)
+									->orderBy('created_at', 'desc')
+									->get();
+									// ->first(); 
+		
+		$nr_booking = count($booking);
+		// dd($booking->first()); // verificare: hasmany/hasOne nei vari relation models .. ogni utente/consulente può avere diverse call (diversi bookings)
 		
 		$consultant_avail = [];
 
 
-		if($booking == null) {
+		// if($booking == null) { 
+		if($nr_booking < 2) { 
 
 			if ($order != null) {
 				if ($order->step_id < 3) {
@@ -733,9 +737,15 @@ class ProfessionalKitController extends CustomBaseController {
 				}
 			}
 
+			if ($nr_booking == 1) {
+				$data['already_booked_first_app'] = 'You have already booked your first appointment with the consultant. Now <b>you can book your second appointment</b>.<br/>Please propose your date to Consultant or confirm it in the Calendar below.';
+			}
+
 			if (!empty($consultant)) {
 				$consultant_id = $consultant->id;
-				$booked_data = ConsultantBooking::where('status', '!=', ConsultantBooking::STATE_CANCELLED)->get();  // STATE_CANCELLED = 2
+				$booked_data = ConsultantBooking::where('status', '!=', ConsultantBooking::STATE_CANCELLED)  // constant = 2
+												// !!!! ->orderBy('','');
+												->get();  // STATE_CANCELLED = 2
 
 				$today_date = date('Y-m-d', strtotime('today'));
 				$today = Setting::dateUtc($today_date);
@@ -743,18 +753,19 @@ class ProfessionalKitController extends CustomBaseController {
 					$booked_ids = [];
 
 					foreach ($booked_data as $bdata) {
-						$booked_ids[] = $bdata->availablity_id;
+						$booked_ids[] = $bdata->availablity_id;  // array() di id della tab. 'availablities'
 					}
 					//print_r(strtotime($today));exit;
 					$consultant_avail = ConsultantAvailablity::where('consultant_id', $consultant_id)
 						->where('available_date', '>', strtotime($today))
-						->where('type_id', ConsultantAvailablity::AREA_CAREER_SESSION)
-						->whereNotIn('id', $booked_ids)
+						->where('type_id', ConsultantAvailablity::AREA_CAREER_SESSION) // 0
+						->whereNotIn('id', $booked_ids) // esclude le availabilities GIA' prenotate ("booked")
 						->get();
 				} else {
 					$consultant_avail = ConsultantAvailablity::where('consultant_id', $consultant_id)
 						->where('available_date', '>', strtotime($today))
-						->where('type_id', ConsultantAvailablity::AREA_CAREER_SESSION)->get();
+						->where('type_id', ConsultantAvailablity::AREA_CAREER_SESSION)
+						->get();
 				}
 			}
 		}else{
@@ -765,7 +776,7 @@ class ProfessionalKitController extends CustomBaseController {
 		// get booking
 
 		$data['consultant'] = $consultant;
-		$data['consultant_avail'] = $consultant_avail;
+		$data['consultant_avail'] = $consultant_avail;  // array vuoto o non vuoto
 		$data['page_title']='Career Orientation Session';
 
 
@@ -1087,9 +1098,6 @@ class ProfessionalKitController extends CustomBaseController {
 		if ($validator->fails()) {
 			return redirect()->back()->withInput()->withErrors($validator->errors());
 		}
-
-
-		// !!!!!!!!! SISTEMARE !!!!!!!!!!!!!
 
 		//consultant
 		$consultant = Auth::user();
