@@ -156,8 +156,8 @@ class ConsultantBooking extends Model
        /* if(!$this->checkDate())
             return 'Expired';*/
 
-      //  if($this->status == self::STATE_PENDING ) {
-            $meetingid = isset($this->gotomeeting->meetingid) ? $this->gotomeeting->meetingid : 0;
+      //  if($this->status == self::STATE_PENDING ) {  // 0 --> 'booked' [0:pending, 1:completed ,2:cancelled]
+            $meetingid = isset($this->gotomeeting->meetingid) ? $this->gotomeeting->meetingid : 0; // gotomeeting --> hasOne relation: each consultantbooking hasOne gotomeeting
 
             $headers = [
                 'Accept: application/json',
@@ -166,12 +166,14 @@ class ConsultantBooking extends Model
             $url = "https://api.citrixonline.com/G2M/rest/meetings/" . $meetingid;
             $out = self::curl_request('GET', $headers, $url);
             $link = GoToMeeting::getButtonUrl($this->id);
+            // dd($this->id);
 
-            $status = isset($out[0]['status']) ? $out[0]['status'] : self::getStatusOptions($this->status);
+            $status = isset($out[0]['status']) ? $out[0]['status'] : self::getStatusOptions($this->status);  // "INACTIVE" or 'booked' or 'completed' or 'cancelled' or .. green 'Start meeting' button..
+            
 
             if($status != "ACTIVE") {
                 if ($link != '') {
-                    return $link;
+                    return $link;  // green button
                 }
             }
 
@@ -331,7 +333,6 @@ class ConsultantBooking extends Model
            if ($now < $end_date && $now >= $start_date) {
                return true;
            }
-
         }
 
         return false;

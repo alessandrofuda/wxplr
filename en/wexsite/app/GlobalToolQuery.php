@@ -77,7 +77,8 @@ class GlobalToolQuery extends Model
 
         $consultantBooking = ConsultantBooking::where('consultant_bookings.query_id', $this->id)
             ->where('consultant_bookings.status', '!=', ConsultantBooking::STATE_CANCELLED)
-            ->where('consultant_bookings.type_id', ConsultantBooking::TYPE_QUERY)->first();
+            ->where('consultant_bookings.type_id', ConsultantBooking::TYPE_QUERY)
+            ->first();
 
         if($consultantBooking != null) {
             if($consultantBooking->availablity != null)
