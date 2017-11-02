@@ -715,8 +715,10 @@ class ProfessionalKitController extends CustomBaseController {
 
 		$booking = ConsultantBooking::where('user_id', \Auth::user()->id)
 									->where('type_id', ConsultantBooking::TYPE_INTERVIEW)   // constant = 0
-									->where('status','!=',ConsultantBooking::STATE_CANCELLED)  // constant = 2
-									->first();
+									->where('status','!=',ConsultantBooking::STATE_CANCELLED) // constant = 2 [0=pending 1=completed 2=cancelled]
+									->first();  // 
+
+		dd($booking); // verificare: hasmany/hasOne nei vari relation models .. ogni utente/consulente può avere diverse call (diversi bookings)
 		
 		$consultant_avail = [];
 
@@ -756,7 +758,8 @@ class ProfessionalKitController extends CustomBaseController {
 				}
 			}
 		}else{
-			$data['already_booked'] = 'You have already booked your appointment with the consultant.';
+			// $data['already_booked'] = 'You have already booked your appointment with the consultant.';
+			$data['already_booked'] = 'You have already booked your 2 appointments with the consultant.';
 		}
 		//$data['dreamcheck_lab'] = $dreamcheck_lab;
 		// get booking
