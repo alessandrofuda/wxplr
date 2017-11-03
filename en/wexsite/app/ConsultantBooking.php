@@ -289,9 +289,13 @@ class ConsultantBooking extends Model
     }
 
     public function getBookingDate() {
-        $date = date('Y-m-d', strtotime($this->availablity->getDate(\App\ConsultantAvailablity::START_TIME)));
+        $date = date('Y-m-d', strtotime($this->availablity->getDate(\App\ConsultantAvailablity::DATE)));  // getDate(0);
+        // dump('Data: '.date('Y-m-d', strtotime($this->availablity->getDate(0))));
+        // dump('Inizio: '.$this->availablity->getDate(1));
+        // dump('Fine: '.$this->availablity->getDate(2));
         $start_time = date('H:i:s', strtotime($this->availablity->getDate(\App\ConsultantAvailablity::START_TIME)));
         $end_time = date('H:i:s', strtotime($this->availablity->getDate(\App\ConsultantAvailablity::END_TIME)));
+        
         return 'On '.$date.' starts at '.$start_time.' ends at '. $end_time;
     }
 

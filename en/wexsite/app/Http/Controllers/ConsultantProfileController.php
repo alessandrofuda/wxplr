@@ -369,6 +369,7 @@ class ConsultantProfileController extends CustomBaseController
         $global_tool_forms = GlobalToolQuery::where('consultant_id', Auth::user()->id)->get();
 
         $data['forms'] = [];
+
         foreach ($dream_check_lab_forms as $dream_check_lab_form) {
             $feedback = DreamCheckLabFeedback::where('dream_check_lab_id', $dream_check_lab_form->id)->first();
 
@@ -378,7 +379,7 @@ class ConsultantProfileController extends CustomBaseController
                 'service_type' => 'Role Play Interview',
                 'form' =>$feedback != null ? link_to_route('dreamcheck.lab.submission.feedback','Feedback Completed', ['dreamcheck_id' => $dream_check_lab_form->id]) : link_to_route('dreamcheck.lab.submission.feedback','Give Form Feedback', ['dreamcheck_id' => $dream_check_lab_form->id]),
                 'attached_file' => $dream_check_lab_form->cv_file != null ? link_to_asset($dream_check_lab_form->cv_file) : "Not Uploaded",
-                'booking_date' =>  $dream_check_lab_form->getBookingDate(),
+                'booking_date' =>  $dream_check_lab_form->getBookingDate(),  // error?
                 'booking_status' => $dream_check_lab_form->getBookingstatus(),
                 'submitted_on' => $dream_check_lab_form->created_at
             ];

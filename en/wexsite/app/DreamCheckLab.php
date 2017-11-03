@@ -94,8 +94,9 @@ class DreamCheckLab extends Model
 
     public function getBookingDate() {
         $consultantBooking = ConsultantBooking::where('consultant_bookings.user_id', $this->user_id)
-                ->where('query_id', $this->id)
-            ->where('type_id', ConsultantBooking::TYPE_INTERVIEW)->first();
+                                            ->where('query_id', $this->id)
+                                            ->where('type_id', ConsultantBooking::TYPE_INTERVIEW)
+                                            ->first();
 
         if($consultantBooking != null) {
             if($consultantBooking->availablity != null)

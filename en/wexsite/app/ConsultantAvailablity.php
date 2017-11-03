@@ -53,18 +53,18 @@ class ConsultantAvailablity extends Model
 		$date = date('Y-m-d',$this->available_date);
 		$date_time = date('Y-m-d h:i a',strtotime($date.' '.$this->available_start_time));
 
-		if($type == self::START_TIME) {
+		if($type == self::START_TIME) {  // == 1
 
 			$date_time = Setting::getDateTime($date_time);  
 			return date('H:i:s',strtotime($date_time));
 
-		}elseif ($type == self::END_TIME) {
+		}elseif ($type == self::END_TIME) {  // == 2
 
 			$date_time = date('Y-m-d h:i a',strtotime($date.' '.$this->available_end_time));
 			$date_time = Setting::getDateTime($date_time);
 			return date('H:i:s', strtotime($date_time));
 		}
-
+		
 		return Setting::getDateTime($date_time, false);
 	}
 

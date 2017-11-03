@@ -25,7 +25,7 @@
 		<tbody>
 			@forelse ($forms as $form)
 				<tr role="row" class="odd">
-				<td class="sorting_1">{!! $form['user_name']!!}</td>
+					<td class="sorting_1">{!! $form['user_name']!!}</td>
 					<td class="sorting_1">{!! $form['service_type']!!}</td>
 					<td class="sorting_1">{!! $form['form']!!}</td>
 					<td class="sorting_1">{!! $form['attached_file']!!}</td>
