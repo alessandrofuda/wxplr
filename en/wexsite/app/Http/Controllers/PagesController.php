@@ -25,6 +25,7 @@ use Validator;
 use Carbon;
 use App\DreamCheckLab;
 use App\User;
+use App\ConsultantBooking;
 
 use Illuminate\Support\Facades\Log;
 
@@ -314,6 +315,7 @@ class PagesController extends CustomBaseController {
 				
 				$consultant = User::find($validate_by);
 				$consultant_name = '';
+
 				if (!empty($consultant) && is_object($consultant)) {
 					$consultant_name = $consultant->name;
 
@@ -322,10 +324,25 @@ class PagesController extends CustomBaseController {
 					}
 				}
 
+				$user_id = Auth::user()->id;
+				$bookings = ConsultantBooking::where('user_id', $user_id)
+											->where('status','!=',0)
+											->where('type_id', ConsultantBooking::TYPE_INTERVIEW)  // 0 --> career orientation session
+											->get();
+				
+				if ($bookings == null || count($bookings) == 0) {
+					$number = 'first';
+				}elseif(count($bookings) == 1) {
+					$number = 'second';
+				} else {
+					$number = '{-error-}';
+				}
+
 				$dash_noti[] = ['heading' => 'Career Orientation Session',
-					'noti_msg' => 'Your Dream Check Lab form has been validated by ' . $consultant_name . '. To check consultant feedback ' . link_to_route("user.mydocuments", "Click here", [], array("class" => "")) . '. Please proceed to book your session with your consultant. <a href="' . url('user/role_play_interview') . '">\'CAREER ORIENTATION SESSION\'</a>.',
+					'noti_msg' => 'Your Dream Check Lab form has been validated by <b>' . $consultant_name . '</b>. To check consultant feedback ' . link_to_route("user.mydocuments", "Click here", [], array("class" => "")) . '.<br/>Please proceed to book your <b>'.$number.'</b> session with your consultant.<br/><a style="margin-top:15px;" class="btn btn-lg btn-success" href="' . url('user/role_play_interview') . '">CAREER ORIENTATION SESSION <span class="glyphicon glyphicon-chevron-right"></span></a>',
 					'noti_url' => ''];
 			}
+
 
 			if ($order->step_id == 5) {
 				$dash_noti[] = ['heading' => 'Steady Aim Shoot',

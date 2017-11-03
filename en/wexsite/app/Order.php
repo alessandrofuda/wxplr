@@ -98,7 +98,7 @@ class Order extends Model
             $step = 'Pending';
             if ($this->step_id > 4) {
                 $class = 'active';
-                $step = '<span class=""><i class="fa fa-check"></i> Done</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . link_to_route('market_analysis', 'View', [], ['class' => 'btn btn-info']);
+                $step = '<span class=""><i class="fa fa-check"></i> Done</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . link_to_route('user.mydocuments', 'View', [], ['class' => 'btn btn-info']);
             }
         }
 
