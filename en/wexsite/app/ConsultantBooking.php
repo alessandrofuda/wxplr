@@ -60,7 +60,7 @@ class ConsultantBooking extends Model
         return $id;
     }
 
-    public static function getStatusOptions($id = null) {
+    public static function getStatusOptions($id = null) {   // booked | completed | cancelled
         $list = [
             self::STATE_PENDING => 'Booked',
             self::STATE_COMPLETED => 'Completed',
@@ -71,7 +71,7 @@ class ConsultantBooking extends Model
             return $list;
 
         if(is_numeric($id))
-            return $list[$id];
+            return $list[$id];  // <-- !!
 
         return $id;
     }
@@ -150,7 +150,7 @@ class ConsultantBooking extends Model
         return true;
     }
     
-    public function getMeetingStatus() {
+    public function getMeetingStatus() {  //  'booked' || 'completed' || 'cancelled'
         $token = self::getAccessToken();
 
        /* if(!$this->checkDate())

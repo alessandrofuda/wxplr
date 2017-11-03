@@ -360,7 +360,7 @@ class GlobalToolController extends CustomBaseController
 
     public function start_meeting($id) {
         $data['page_title'] = 'Session';
-        $appointment = ConsultantBooking::find($id);
+        $appointment = ConsultantBooking::find($id); 
 
         /*if(!$appointment->checkDate()) {
             return redirect('consultant/dashboard')->with('error', 'Meeting is expired.');
@@ -372,7 +372,30 @@ class GlobalToolController extends CustomBaseController
         // dd($response); 
 
         if(isset($response['hostURL'])) {
-          return  redirect()->away($response['hostURL']);   // remote call !
+            // dd($response['hostURL']);
+
+            // Aggiornamento tab ORDERS --> step_id = 5 !!
+            
+
+            /*
+            $user_id = $appointment->user_id;
+            $call_number = ConsultantBooking::where('user_id', $user_id)
+                                            ->where('type_id', 0)   // sistemare meglio, USARE TYPE_ID CONST..
+                                            ->where('state_id', 0)  // sistemare meglio, USARE STATE_ID CONST..
+                                            ->get();
+
+            $call_number = count($call_number);
+            dd($call_number);
+            // importante: SOLO se è la SECONDA CALL ...
+            if($call_number > 1) {
+                Order::where('user_id', $user_id)
+                    ->where('item_id', 2)
+                    ->update(['step_id' => 5]);
+            }
+            */
+
+
+            return  redirect()->away($response['hostURL']);   // !! GO AWAY TO REMOTE CALL TO GOTOMEETING SERVERS !!
         }
 
         $data['hostUrl'] = $response['hostURL'];
