@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!--meta charset='utf-8'-->
     <title>Wexplore Invoice</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 </head>
@@ -10,7 +12,10 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
     <thead>
     <tr style="text-align: left;">
-        <th width="50%"><img width="350px" src="{{ asset('/frontend/immagini/logo-wexplore.png') }}" /></th>
+        <th width="50%">
+            <!--img src="{{-- asset('/frontend/immagini/logo-wexplore.png') --}}" /--> {{-- https error --}}
+            <img src="frontend/immagini/logo-wexplore.png" width="350" />
+        </th>
         <th width="50%">
             <ul style="list-style: none; padding: 0;font-family: 'Open Sans', sans-serif;font-size: 10pt; font-weight: normal; color: #58585a;">
                 <li style="font-size: 15pt;"><strong style="font-weight: bold;">Wexplore</strong></li>

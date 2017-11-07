@@ -33,6 +33,10 @@ use Braintree_TestHelper;
 
 use Illuminate\Support\Facades\Log;
 
+// fix https:// img to pdf invoices
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
 class ServiceOrdersController extends CustomBaseController {
 
 	public function availCode(Request $request) {
@@ -66,6 +70,7 @@ class ServiceOrdersController extends CustomBaseController {
 			$amount = 0;
 			if ($code != null) {
 				$code_arr = $object->checkCode($code);
+				// dd($code_arr);
 				if (!isset($code_arr['id']) || !isset($code_arr['amount'])) {
 					$code_arr['code_error'] = 'Invalid Code';
 					return $code_arr;
@@ -273,7 +278,8 @@ class ServiceOrdersController extends CustomBaseController {
 		$used_count = 0;
 		$discount = 0;
 
-		if($code != null) {
+
+		if($code != null) {   // SE ... CODICE SCONTO ..
 			$code_arr = $service->checkCode($code);
 
 			if (!isset($code_arr['id']) || !isset($code_arr['amount'])) {
@@ -293,7 +299,7 @@ class ServiceOrdersController extends CustomBaseController {
 			$amount = Service::usdprice($service->currency_code, 'USD', $original_amount);
 			$amount = $original_amount;
 		}
-
+// dd($amount); // 0.0
 		$amount = round($amount, 2);
 
 
@@ -309,7 +315,7 @@ class ServiceOrdersController extends CustomBaseController {
 
 		Log::info("RESULT: " . print_r($result, true));
 
-		if($result->success == '1' || $amount <= 0) {
+		if($result->success == '1' || $amount <= 0) {  // ???
 
 			if ($user_obj != null) {  // $user_obj --> utente loggato (o che effettua la transazione)
 				$user_obj->update($user_data);
@@ -413,6 +419,7 @@ class ServiceOrdersController extends CustomBaseController {
 				    }
 			    }
 
+			    // gen pdf invoice
 			    $service_name = $service->name;
 			    $data['order_obj'] = $order_obj;
 			    $settings = Setting::find('1');
@@ -426,11 +433,20 @@ class ServiceOrdersController extends CustomBaseController {
 			    $data['vat_price'] = round($service->vatprice() * 22/100) ;
   
 			    $pdf = \App::make('dompdf.wrapper');
-			    // return view('client.invoice_pdf', $data);
-			    $pdf->loadView('client.invoice_pdf', $data);										// genera fattura
+// return view('client.invoice_pdf', $data);   // CODIFICA CARATTERI: OK, LOGO: OK.
+
+// fix ssl https://
+
+
+
+
+			    $pdf->loadView('client.invoice_pdf', $data);									// genera fattura. controllare se viene salvata?
+return $pdf->stream();  // PROBLEMA LOGO
 			    $invoice_pdf_path = base_path().'/../uploads/invoice_'.time().'.pdf';
 			    $pdf->save($invoice_pdf_path);
-			    //return $pdf->stream($invoice_pdf_path);
+
+
+				// mail notification
 			    $mail_data = [
 				   'order_id' => $order_obj->id,
 				   'product_name' => $service_name,
@@ -467,7 +483,7 @@ class ServiceOrdersController extends CustomBaseController {
 		    }
 
 			return redirect('thank-you/' . $service_id);
-		}
+		} // ????
 		
 		return redirect()->back()->withInput()->with('error', 'Please fill correctly all the payment informations.');
 	}
