@@ -351,6 +351,7 @@
                                     <select required name="interest_country" style="padding:8px;">
                                        <option value ="">-- Choose Country --</option>
 													<option @if(old('interest_country') == 'Australia') selected="selected" @endif value="Australia">Australia</option>
+                          <option @if(old('interest_country') == 'Belgium') selected="selected" @endif value="Belgium">Belgium</option>
 													<option @if(old('interest_country') == 'France') selected="selected" @endif value="France">France</option>
 													<option @if(old('interest_country') == 'Germany') selected="selected" @endif value="Germany">Germany</option>
 													<option @if(old('interest_country') == 'Italy') selected="selected" @endif value="Italy">Italy</option>

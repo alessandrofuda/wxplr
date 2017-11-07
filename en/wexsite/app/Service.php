@@ -64,6 +64,7 @@ class Service extends Model
             $ok = false;
             $used_count = '';
             $user_package_id = 0;
+            // dd($code_prev_obj);
             if($code_prev_obj == null) {
 
                 $code_prev_obj = PreferentialCodes::where('preferential_code', $code)
@@ -123,6 +124,7 @@ class Service extends Model
                                 $code_arr['user_package'] = $user_package_id;
                                 $code_arr['used_count'] = $used_count;
                             }
+                            
                             return $code_arr;
                         }
                     }
