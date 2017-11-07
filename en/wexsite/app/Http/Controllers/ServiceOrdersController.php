@@ -433,15 +433,9 @@ class ServiceOrdersController extends CustomBaseController {
 			    $data['vat_price'] = round($service->vatprice() * 22/100) ;
   
 			    $pdf = \App::make('dompdf.wrapper');
-// return view('client.invoice_pdf', $data);   // CODIFICA CARATTERI: OK, LOGO: OK.
-
-// fix ssl https://
-
-
-
-
-			    $pdf->loadView('client.invoice_pdf', $data);									// genera fattura. controllare se viene salvata?
-return $pdf->stream();  // PROBLEMA LOGO
+				// return view('client.invoice_pdf', $data);   
+			    $pdf->loadView('client.invoice_pdf', $data);									// genera fattura
+				// return $pdf->stream();    // fix ssl https://
 			    $invoice_pdf_path = base_path().'/../uploads/invoice_'.time().'.pdf';
 			    $pdf->save($invoice_pdf_path);
 
