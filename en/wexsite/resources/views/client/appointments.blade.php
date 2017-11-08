@@ -61,8 +61,14 @@
 		        <script>
 					jQuery(document).ready(function($){
 	  					$('#join_{{ $appointment->id }}').click(function() {
+
+	  						// 1 - change btn style
 	    					$(this).removeClass('btn-success').addClass('btn-warning');
 	    					$(this).text('Reconnect to Meeting');
+
+	    					// 2 - important! Update Orders.step_id tab
+	    					
+	    					
 	  					});
 	  				});
 		        </script>
