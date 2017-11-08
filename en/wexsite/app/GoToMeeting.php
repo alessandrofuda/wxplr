@@ -46,10 +46,11 @@ class GoToMeeting extends Model
 
              if ($meeting->booking->checkDate(false)) {  // true/false
 
-                if (\Auth::user()->role->role_id == 2) {
+                if (\Auth::user()->role->role_id == 2) { // if Consultant --> 'Start Meeting' 
                     return link_to_route('consultant_start_meeting', 'Start Meeting', ['booking_id' => $id], ['id' => 'start_'.$id, 'target' => '_blank', 'class' => 'btn btn-success']);  // output: <a href="http://wexplore.dev/en/consultant/meeting/42" target="_blank" class="btn btn-success">Start Meeting</a>
                 }
 
+                // else --> 'Join Meeting'
                 return link_to($meeting->joinURL, \Auth::user()->role->role_id == 2 ? 'Start' : 'Join'.' Meeting', ['id' => 'join_'.$id, 'target' => '_blank', 'class' => 'btn btn-success']);
 
              }

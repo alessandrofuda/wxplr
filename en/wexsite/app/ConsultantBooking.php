@@ -70,6 +70,7 @@ class ConsultantBooking extends Model
         if($id === null)
             return $list;
 
+
         if(is_numeric($id))
             return $list[$id];  // <-- !!
 
@@ -169,7 +170,6 @@ class ConsultantBooking extends Model
             // dd($this->id);
 
             $status = isset($out[0]['status']) ? $out[0]['status'] : self::getStatusOptions($this->status);  // "INACTIVE" or 'booked' or 'completed' or 'cancelled' or .. green 'Start meeting' button..
-            
 
             if($status != "ACTIVE") {
                 if ($link != '') {
