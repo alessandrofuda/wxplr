@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Session;
 
+
 class GlobalToolController extends CustomBaseController
 {
     /**
@@ -374,31 +375,6 @@ class GlobalToolController extends CustomBaseController
         if(isset($response['hostURL'])) {
             // dd($response['hostURL']);
 
-            // Aggiornamento tab ORDERS --> step_id = 5 !!
-            
-
-            /*
-            $user_id = $appointment->user_id;
-            $call_numbers = ConsultantBooking::where('user_id', $user_id)
-                                            ->where('type_id', 0)   // sistemare meglio, USARE TYPE_ID CONST..
-                                            ->where('state_id', 0)  // sistemare meglio, USARE STATE_ID CONST..
-                                            ->get();
-
-            
-            dd($call_numbers);
-            // importante: SOLO se è la SECONDA CALL ...
-            if(count($call_numbers) > 1) {
-                Order::where('user_id', $user_id)
-                    ->where('item_id', 2)
-                    ->update(['step_id' => 5]);
-            }
-            */
-
-            // SOLUZIONE MIGLIORE: AGGANCIARE L'UPDATE (STEP_ID = 5) NON al click su Start Meeting, ma al click su JOIN MEETING (via Ajax - jquery..)
-            // lato user e NON lato consultant..
-
-
-
             return  redirect()->away($response['hostURL']);   // !! GO AWAY TO REMOTE CALL TO GOTOMEETING SERVERS !!
         }
 
@@ -431,8 +407,26 @@ class GlobalToolController extends CustomBaseController
         return $result;
     }
 
-    public function update_StepId_OrdersTab(){
-        //
+    public function updateOrdersTab(Request $request){
+
+            $user_id = ConsultantBooking::find($request->app_id)->user_id; 
+            $call_numbers = ConsultantBooking::where('user_id', $user_id)
+                                            ->where('type_id', ConsultantBooking::TYPE_INTERVIEW)  
+                                            ->where('state_id', '!=', ConsultantBooking::STATE_CANCELLED)
+                                            ->get();
+
+            // importante: update db SOLO se è la SECONDA CALL ...
+            if(count($call_numbers) > 1) {
+
+                $step5 = Order::where('user_id', $user_id)
+                              ->where('item_id', 2)
+                              ->update(['step_id' => 5]);
+
+                return 'Ok: ' . $step5 . ' record updated in db (Orders.step_id=5). '.count($call_numbers). 'call prenotate.';
+
+            }
+            
+            return 'Calls Number: '. count($call_numbers);  // return to success() Ajax function ..
     }
 
 

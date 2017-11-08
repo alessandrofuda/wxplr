@@ -206,6 +206,7 @@ Route::get('/token',function () {
 			//Appointments
 			Route::get('/user/myappointments', 'GlobalToolController@appointments');
 			Route::get('/user/booking/{booking_id}/cancel', 'GlobalToolController@cancel_appointment');
+			Route::post('/user/order/step_update', 'GlobalToolController@updateOrdersTab');
 
 			Route::get('/user/{form_id}/download', 'ProfessionalKitController@download_form');
 
@@ -248,7 +249,7 @@ Route::get('/token',function () {
 			Route::delete('admin/user/{user_id}/delete', 'AdminController@user_delete');
 
 			Route::any('admin/consultants', 'AdminController@consultants');
-Route::any('admin/dream/{dream_id}/pdf', 'AdminController@dream_pdf');
+			Route::any('admin/dream/{dream_id}/pdf', 'AdminController@dream_pdf');
 
 			Route::get('admin/consultant/{consultant_id}/profile/view', 'AdminController@consultant_show');
 			Route::post('admin/consultant/{consultant_id}/profile/update', 'AdminController@update');

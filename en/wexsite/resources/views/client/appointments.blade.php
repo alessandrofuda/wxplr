@@ -34,7 +34,7 @@
 							<td class="sorting_1">{{ $appointment->availablity->getDate() }} -
 								{{ $appointment->availablity->getDate(\App\ConsultantAvailablity::START_TIME)  }} to {{ $appointment->availablity->getDate(\App\ConsultantAvailablity::END_TIME)  }}</td>
 							<td class="sorting_1">{{ $appointment->getTypeOptions($appointment->type_id, $appointment->query_id) }}</td>
-							<td class="sorting_1">{!!  $appointment->getMeetingStatus() !!}</td>
+							<td class="sorting_1">{!! $appointment->getMeetingStatus() !!}</td>
 							<td class="sorting_1">
 
 									@if($appointment->status == \App\ConsultantBooking::STATE_PENDING && $appointment->checkDate())
@@ -66,9 +66,33 @@
 	    					$(this).removeClass('btn-success').addClass('btn-warning');
 	    					$(this).text('Reconnect to Meeting');
 
-	    					// 2 - important! Update Orders.step_id tab
-	    					
-	    					
+	    					// 2 - important! Update Orders.step_id tab	
+	    					$.ajax({
+
+	    						//headers: {
+                        		//	'X-CSRF-TOKEN':
+                    			//},
+
+                    			type:'POST',
+							    url:'{{ url('user/order/step_update') }}',  
+							    data:{
+							        app_id:{{ $appointment->id }},
+							    },     
+							    async: false, // ??    
+							    cache: false,							    
+							    success: function(result) {  
+							    	console.log('ok');
+							        console.log(result); // from controller							         
+							    },
+							    error: function(exception) {
+							    	alert('Exception:'+exception);
+							    },
+							    // contentType: false,
+                    			// processData: false,
+                    			// complete:function() {
+                        			 //
+                    			// }
+							});
 	  					});
 	  				});
 		        </script>
