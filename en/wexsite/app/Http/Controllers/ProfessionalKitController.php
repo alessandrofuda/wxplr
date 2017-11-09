@@ -738,7 +738,7 @@ class ProfessionalKitController extends CustomBaseController {
 			}
 
 			if ($nr_booking == 1) {
-				$data['already_booked_first_app'] = 'You have already booked your first appointment with the consultant. Now <b>you can book your second appointment</b>.<br/>Please propose your date to Consultant or confirm it in the Calendar below.';
+				$data['already_booked_first_app'] = 'You have already booked your first appointment with the consultant. Now <b>you can book your second appointment</b>.<br/>Please propose your date to Consultant or confirm it in the Calendar below.<i class="glyphicon glyphicon-triangle-bottom text-center" style="font-size:50px; display:block;"></i>';
 			}
 
 			if (!empty($consultant)) {

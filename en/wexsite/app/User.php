@@ -395,7 +395,7 @@ class User extends Model implements AuthenticatableContract,
                     $file = base64_encode($feedback->feedback_form);
 
                     $docs[] = [
-                        'title' => 'Dream check Lab Feedback Form',
+                        'title' => 'Dream check Lab Form - <b>Feedback</b>',
                         'url' => url('/get-download/'. $file),
                         'consultant_name' => $consultant_name,
                         'date' => $date,
@@ -403,7 +403,7 @@ class User extends Model implements AuthenticatableContract,
                     if ($feedback->cv_file != null) {
                         $file = base64_encode($feedback->cv_file);
                         $docs[] = [
-                            'title' => 'Dream check Lab CV Feedback',
+                            'title' => 'Dream check Lab CV - <b>Feedback</b>',
                             'url' => url('/get-download/'. $file),
                             'consultant_name' => $consultant_name,
                             'date' => $date,
@@ -466,7 +466,7 @@ class User extends Model implements AuthenticatableContract,
                     if (\Auth::user()->id == $this->id || \Auth::user()->isAdmin() || $consultant->id == \Auth::user()->id) {
                         $file = base64_encode($booking->recording);
                         $docs[] = [
-                            'title' => 'Professioal Kit - Role Play Interview',
+                            'title' => 'Professional Kit - Recording Conference Call',
                             'url' => url('/get-download/'. $file),
                             'consultant_name' => $consultant_name,
                             'date' => $booking->created_at,

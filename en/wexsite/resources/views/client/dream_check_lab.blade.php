@@ -420,9 +420,9 @@
     <div id="success_modal" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <div class="modal-content" style="border-radius: 10px;">
+                <div class="modal-header" style="border-bottom: none;">
+                    <button type="button" class="close" style="font-size: 200%;" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title text-center" id="modal_message"><i class="fa fa-check"></i> Successfully Saved</h4>
                 </div>
             </div>

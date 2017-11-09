@@ -30,7 +30,7 @@
                         @if (count($documents) > 0)
                             @foreach($documents as $document)
                                 <tr role="row" class="odd">
-                                    <td class="sorting_1">{{ $document['title'] }}</td>
+                                    <td class="sorting_1">{!! $document['title'] !!}</td>
                                     <td class="sorting_1">{{ $document['consultant_name'] }}</td>
                                     <td class="sorting_1">{{ $document['date'] }}</td>
                                     <td class="sorting_1"><a href="{{ $document['url'] }}"><i class="fa fa-cloud-download"></i> Download</a></td>
