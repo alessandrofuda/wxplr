@@ -105,12 +105,12 @@
 </footer>
 </div>
 
-<!-- Popup contact form
-<div id="popup_contact">
+<!-- Popup contact form-->
+<!--div id="popup_contact">
     <a class="button button_js" href="#"><i class="icon-mail-line"></i></a>
     <div class="popup_contact_wrapper">
 
-        <div id="contactWrapper_popup">
+        <div id="contactWrapper_popup"-->
             <!-- Contact form area-->
             <!-- <form id="contactform_popup">
                 <h4>Send us a message</h4>
