@@ -104,6 +104,7 @@ class PagesController extends CustomBaseController {
 
 	//	$route_urlname=Route::getCurrentRoute()->getPath();
 		$page = Page::where('machine_name', $machine_name)->first();
+		$tag = '';
 
 		if($machine_name == 'chi-siamo') {
 			$tag = MetaTags::where('page_type',MetaTags::PAGE_TYPE_CHI_SIAMO)->first();
