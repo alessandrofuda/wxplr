@@ -328,21 +328,21 @@ class User extends Model implements AuthenticatableContract,
                 if ($dreamchecklab->cv_file != '') {
                     $file = base64_encode($dreamchecklab->cv_file);
                     $docs[] = [
-                        'title' => 'Dream check Lab CV ',
-                        'consultant_name' => $consultant_name,
-                        'date' => $date,
+                    'title' => 'Dream check Lab CV ',
+                    'consultant_name' => $consultant_name,
+                    'date' => $date,
 
-                        'url' => url('/get-download/'. $file),
+                    'url' => url('/get-download/'. $file),
                     ];
                 }
 
                 if ($dreamchecklab->form_pdf != '') {
                     $file = base64_encode($dreamchecklab->form_pdf);
                     $docs[] = [
-                        'title' => 'Dream check Lab Form',
-                        'consultant_name' => $consultant_name,
-                        'date' => $date,
-                        'url' => url('/get-download/'. $file),
+                    'title' => 'Dream check Lab Form',
+                    'consultant_name' => $consultant_name,
+                    'date' => $date,
+                    'url' => url('/get-download/'. $file),
                     ];
                 } else {
                     $base_path = base_path();
@@ -357,14 +357,14 @@ class User extends Model implements AuthenticatableContract,
 
                     $dreamchecklab->update([
                         'form_pdf' => $pdf_path
-                    ]);
+                        ]);
                     $file = base64_encode($dreamchecklab->form_pdf);
 
                     $docs[] = [
-                        'title' => 'Dream check Lab Form ',
-                        'consultant_name' => $consultant_name,
-                        'date' => $date,
-                        'url' => url('/get-download/'. $file),
+                    'title' => 'Dream check Lab Form ',
+                    'consultant_name' => $consultant_name,
+                    'date' => $date,
+                    'url' => url('/get-download/'. $file),
                     ];
 
                 }
@@ -390,23 +390,23 @@ class User extends Model implements AuthenticatableContract,
 
                         $feedback->update([
                             'feedback_form' => $pdf_path
-                        ]);
+                            ]);
                     }
                     $file = base64_encode($feedback->feedback_form);
 
                     $docs[] = [
-                        'title' => 'Dream check Lab Form - <b>Feedback</b>',
-                        'url' => url('/get-download/'. $file),
-                        'consultant_name' => $consultant_name,
-                        'date' => $date,
+                    'title' => 'Dream check Lab Form - <b>Feedback</b>',
+                    'url' => url('/get-download/'. $file),
+                    'consultant_name' => $consultant_name,
+                    'date' => $date,
                     ];
                     if ($feedback->cv_file != null) {
                         $file = base64_encode($feedback->cv_file);
                         $docs[] = [
-                            'title' => 'Dream check Lab CV - <b>Feedback</b>',
-                            'url' => url('/get-download/'. $file),
-                            'consultant_name' => $consultant_name,
-                            'date' => $date,
+                        'title' => 'Dream check Lab CV - <b>Feedback</b>',
+                        'url' => url('/get-download/'. $file),
+                        'consultant_name' => $consultant_name,
+                        'date' => $date,
                         ];
                     }
                 }
@@ -414,20 +414,23 @@ class User extends Model implements AuthenticatableContract,
         }
 
         $culturematch = CultureMatchSurvey::where('user_id', $this->id)
-            ->where('is_pdf_sent', CultureMatchSurvey::PDF_SENT)->first();
+                                          ->where('is_pdf_sent', CultureMatchSurvey::PDF_SENT)
+                                          ->first();
 
         if($culturematch != null && (\Auth::user()->id == $this->id || \Auth::user()->isAdmin())) {
             $file = base64_encode($culturematch->pdf_path);
             $docs[] = [
-                'title' => 'Culture Match Report',
-                'url' => url('/get-download/'. $file),
-                'consultant_name' => 'Admin',
-                'date'=>$culturematch->sent_date,
+            'title' => 'Culture Match Report',
+            'url' => url('/get-download/'. $file),
+            'consultant_name' => 'Admin',
+            'date'=>$culturematch->sent_date,
             ];
         }
 
         $global_tool_query = GlobalToolQuery::where('user_id', $this->id)
-            ->whereNotNull('feedback_form')->where('feedback_form', '!=', '')->get();
+                                            ->whereNotNull('feedback_form')
+                                            ->where('feedback_form', '!=', '')
+                                            ->get();
 
         if(count($global_tool_query) > 0 ) {
             foreach ($global_tool_query as $query) {
@@ -441,18 +444,20 @@ class User extends Model implements AuthenticatableContract,
                 if(\Auth::user()->id == $this->id || \Auth::user()->isAdmin() || $consultant->id == \Auth::user()->id) {
                     $file = base64_encode($query->feedback_form);
                     $docs[] = [
-                        'title' => 'Global Tool Query Feedback Form',
-                        'url' => url('/get-download/'. $file),
-                        'url' => url('/get-download/'. $file),
-                        'consultant_name' => $consultant_name,
-                        'date' => $query->created_at,
+                    'title' => 'Global Tool Query Feedback Form',
+                    'url' => url('/get-download/'. $file),
+                    'url' => url('/get-download/'. $file),
+                    'consultant_name' => $consultant_name,
+                    'date' => $query->created_at,
                     ];
                 }
             }
         }
 
         $bookings = ConsultantBooking::where('user_id', $this->id)
-            ->whereNotNull('recording')->where('recording', '!=', '')->get();
+                                    ->whereNotNull('recording')
+                                    ->where('recording', '!=', '')
+                                    ->get();
 
         if(count($bookings) > 0 ) {
             foreach ($bookings as $booking) {
@@ -466,23 +471,30 @@ class User extends Model implements AuthenticatableContract,
                     if (\Auth::user()->id == $this->id || \Auth::user()->isAdmin() || $consultant->id == \Auth::user()->id) {
                         $file = base64_encode($booking->recording);
                         $docs[] = [
-                            'title' => 'Professional Kit - Recording Conference Call',
-                            'url' => url('/get-download/'. $file),
-                            'consultant_name' => $consultant_name,
-                            'date' => $booking->created_at,
+                        'title' => 'Professional Kit - Recording Conference Call',
+                        'url' => url('/get-download/'. $file),
+                        'consultant_name' => $consultant_name,
+                        'date' => $booking->created_at,
                         ];
                     }
                 }
             }
         }
+
         $date = array();
         foreach ($docs as $key => $row)
         {
             $date[$key] = $row['date'];
         }
         array_multisort($date, SORT_DESC, $docs);
+        
         return $docs;
     }
+
+
+
+
+
     
     public static function exportToExcel($filename, $data) {
         $excel = \App::make('excel');
