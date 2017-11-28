@@ -67,7 +67,7 @@ class ConsultantProfileController extends CustomBaseController
 
 
         $client_id = DreamCheckLab::where('validate_by',$consultant->id)
-                                    ->where('validate', 1) 
+                                    // ->where('validate', 1) // se viene aperto prima della validazione --> genera errore !
                                     ->orderBy('updated_at', 'desc')
                                     ->first()
                                     ->user_id;

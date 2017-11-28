@@ -102,7 +102,7 @@ class ConsultantBooking extends Model
             "timezonekey" => "GMT",
             "meetingtype" => "immediate"
         ]);
-        $url = "https://api.citrixonline.com/G2M/rest/meetings";
+        $url = "https://api.getgo.com/G2M/rest/meetings";
         $out = self::curl_request("POST", $headers, $url, $postData);
         if (isset($out[0])) {
 
@@ -145,7 +145,7 @@ class ConsultantBooking extends Model
         }
 	
 	if($this->gotomeeting != null) {
-		$url = "https://api.citrixonline.com/G2M/rest/meetings/".$this->gotomeeting->meetingid;
+		$url = "https://api.getgo.com/G2M/rest/meetings/".$this->gotomeeting->meetingid;
 		$out = self::curl_request("PUT", $headers, $url, $postData);
 	}
         return true;
@@ -164,7 +164,7 @@ class ConsultantBooking extends Model
                 'Accept: application/json',
                 'Authorization: OAuth oauth_token=' . $token
             ];
-            $url = "https://api.citrixonline.com/G2M/rest/meetings/" . $meetingid;
+            $url = "https://api.getgo.com/G2M/rest/meetings/" . $meetingid;
             $out = self::curl_request('GET', $headers, $url);
             $link = GoToMeeting::getButtonUrl($this->id);
             // dd($this->id);
@@ -192,7 +192,7 @@ class ConsultantBooking extends Model
                 'Accept: application/json',
                 'Authorization: OAuth oauth_token=' .$token
             ];
-            $url = "https://api.citrixonline.com/G2M/rest/meetings/" . $gotomeeting->meetingid;
+            $url = "https://api.getgo.com/G2M/rest/meetings/" . $gotomeeting->meetingid;
             $out = self::curl_request('DELETE', $headers, $url);
 
             if ($gotomeeting->delete()) {
@@ -213,7 +213,7 @@ class ConsultantBooking extends Model
                 'Accept: application/json',
                 'Authorization: OAuth oauth_token=' .$token
             ];
-            $url = "https://api.citrixonline.com/G2M/rest/meetings/" . $gotomeeting->meetingid.'/start';
+            $url = "https://api.getgo.com/G2M/rest/meetings/" . $gotomeeting->meetingid.'/start';
             $out = self::curl_request('GET', $headers, $url);   // vedi ultimo metodo (fondo pagina)
 
             // dd($out);  // assoc array : hostURL => skjhdkhdhvh.....
@@ -236,7 +236,7 @@ class ConsultantBooking extends Model
         $client_id = env('GOTOMEETING_CONSUMER_KEY');
 
         $postData = "grant_type=password&user_id=".$email."&password=".$password."&client_id=".$client_id;
-        $url = "https://api.citrixonline.com/oauth/access_token";
+        $url = "https://api.getgo.com/oauth/access_token";
         $out = self::curl_request('POST', $headers, $url, $postData);
         if($token == true) {
 
@@ -267,7 +267,7 @@ class ConsultantBooking extends Model
         $client_id = env('GOTOWEBINAR_CONSUMER_KEY');
 
         $postData = "grant_type=password&user_id=".$email."&password=".$password."&client_id=".$client_id;
-        $url = "https://api.citrixonline.com/oauth/access_token";
+        $url = "https://api.getgo.com/oauth/access_token";
 
         $out = self::curl_request('POST', $headers, $url, $postData);
 

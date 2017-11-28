@@ -45,7 +45,7 @@ class EventBooking extends Model
             'Authorization: OAuth oauth_token='.$token
         ];
 
-        $url = "https://api.citrixonline.com/G2W/rest/organizers/".$key."/webinars/".$webinar."/registrants";
+        $url = "https://api.getgo.com/G2W/rest/organizers/".$key."/webinars/".$webinar."/registrants";
 
         $postData = json_encode([
             "firstName" => $user->name,
@@ -100,7 +100,7 @@ class EventBooking extends Model
             'Authorization: OAuth oauth_token='.$token
         ];
 
-        $url = "https://api.citrixonline.com/G2W/rest/organizers/".$key."/webinars/".$webinar."/registrants/".$this->registrantKey;
+        $url = "https://api.getgo.com/G2W/rest/organizers/".$key."/webinars/".$webinar."/registrants/".$this->registrantKey;
 
         $out = ConsultantBooking::curl_request('DELETE', $headers, $url);
 

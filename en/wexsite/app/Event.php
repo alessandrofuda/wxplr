@@ -142,7 +142,7 @@ class Event extends Model
             'isPasswordProtected' => false
         ]);
 
-        $url = "https://api.citrixonline.com/G2W/rest/organizers/".$key."/webinars/".$this->webinar_key;
+        $url = "https://api.getgo.com/G2W/rest/organizers/".$key."/webinars/".$this->webinar_key;
 
         $out = ConsultantBooking::curl_request('PUT', $headers, $url, $postData);
 
@@ -188,7 +188,7 @@ class Event extends Model
         'isPasswordProtected' => false
         ]);
 
-        $url = "https://api.citrixonline.com/G2W/rest/organizers/".$key."/webinars";
+        $url = "https://api.getgo.com/G2W/rest/organizers/".$key."/webinars";
 
         $out = ConsultantBooking::curl_request('POST', $headers, $url, $postData);
         Setting::dump($out);
@@ -223,7 +223,7 @@ class Event extends Model
                 'email' => $user->email,
             ]]);
 
-            $url = "https://api.citrixonline.com/G2W/rest/organizers/" . $key . "/webinars/" . $this->webinar_key . "/coorganizers";
+            $url = "https://api.getgo.com/G2W/rest/organizers/" . $key . "/webinars/" . $this->webinar_key . "/coorganizers";
 
             $out = ConsultantBooking::curl_request('POST', $headers, $url, $postData);
 
@@ -249,7 +249,7 @@ class Event extends Model
             'Authorization: OAuth oauth_token='.$token
         ];
 
-        $url = "https://api.citrixonline.com/G2W/rest/organizers/'.$key.'/webinars/".$this->webinar_key;
+        $url = "https://api.getgo.com/G2W/rest/organizers/'.$key.'/webinars/".$this->webinar_key;
 
         $out = ConsultantBooking::curl_request('DELETE', $headers, $url);
         return false;
