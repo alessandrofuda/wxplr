@@ -738,7 +738,7 @@ class ProfessionalKitController extends CustomBaseController {
 			}
 
 			if ($nr_booking == 1) {
-				$data['already_booked_first_app'] = 'You have already booked your first appointment with the consultant. Now <b>you can book your second appointment</b>.<br/>Please propose your date to Consultant or confirm it in the Calendar below.<i class="glyphicon glyphicon-triangle-bottom text-center" style="font-size:50px; display:block;"></i>';
+				$data['already_booked_first_app'] = 'You have already booked your first appointment with the consultant. Now <b>you can book your second appointment</b> or you can visit your "<b><a href="/en/user/steady_aim_shoot">Steady Aim Shoot</a></b>" section to view your Documents.<br/>Please propose your date to Consultant or confirm it in the Calendar below.<i class="glyphicon glyphicon-triangle-bottom text-center" style="font-size:50px; display:block;"></i>';
 			}
 
 			if (!empty($consultant)) {
@@ -1059,6 +1059,8 @@ class ProfessionalKitController extends CustomBaseController {
 
 		// insert in db
 		$discuss_id =  $user->id.$consultant->id; //$request['discuss_id'];
+		//var_dump($discuss_id); //  !!!! string !!!!
+		//dd($discuss_id); // ok !!
 		$message = $request['message'];
 		$new_message = UserConsultantDiscussion::create(['user_id'=> $user->id, 'discuss_id'=> $discuss_id, 'message'=> $message]);
 
