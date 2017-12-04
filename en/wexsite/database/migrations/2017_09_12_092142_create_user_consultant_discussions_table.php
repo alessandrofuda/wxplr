@@ -16,7 +16,7 @@ class CreateUserConsultantDiscussionsTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('consultant_id')->unsigned();
-            $table->integer('discuss_id');
+            $table->string('discuss_id');
             $table->text('message');
             $table->timestamps();
 
