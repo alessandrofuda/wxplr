@@ -846,18 +846,18 @@ class SkillDevelopmentController extends CustomBaseController
         return view('front.video_view',$data);
     }
 
-    public function show($id)
+    public function show($id)   // !! SISTEMARE: METODO RAGGIUNGIBILE SIA DA ADMIN SIA DA USER NON LOGGATO. 
     {
         $video = SkillDevelopmentVideos::find($id);
-        $subscription = UserSubscription::where('user_id',Auth::user()->id)->where('video_id',$id)->first();
+        // $subscription = UserSubscription::where('user_id',Auth::user()->id)->where('video_id',$id)->first();
         $data['page_title'] = 'Video- ' . $video->video_title;
         $data['video'] = $video;
 
-        if($subscription != null) {
+        /*if($subscription != null) {
             if ($subscription->end_date >= date('Y-m-d')) {
                 $data['purchased'] = 1;
             }
-        }
+        }*/
         
         return view('front.video_view', $data);
     }

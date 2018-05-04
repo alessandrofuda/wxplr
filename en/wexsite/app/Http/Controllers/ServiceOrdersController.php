@@ -155,7 +155,7 @@ class ServiceOrdersController extends CustomBaseController {
 
 			if ($service->price == 0) {
 				if ($service->name == 'Skill Development') {
-					return redirect('/skill_development/browse');
+					return redirect('/skill_development/browse');   // IMP redireziona alla pag browse !!
 				}
 			}
 

@@ -215,8 +215,8 @@ Route::get('/token',function () {
 
 			//My Packages
 			Route::get('user/packages','PackageController@my');
+		});  // end Auth userClient
 
-		});
 		Route::get('user/role_play_video','ProfessionalKitController@role_play_video');
 
 		// Check if user is admin using custom 'Admin' middelware
@@ -400,8 +400,10 @@ Route::get('/token',function () {
 			Route::delete('admin/partner/{page_id}/delete', 'PartnerController@destroy');
 
 
-		});
-	});
+		});  // end Admin
+	}); // end Auth middleware
+
+
 	Route::get('skill_development/browse','SkillDevelopmentController@browse');
 	Route::get('skill_development/videos','SkillDevelopmentController@index');
 	Route::get('video/{video_id}/purchase','SkillDevelopmentController@purchase');

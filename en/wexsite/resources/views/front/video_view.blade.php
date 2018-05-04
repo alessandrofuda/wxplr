@@ -1,4 +1,4 @@
-@extends(Auth::user() ?'front.dashboard_layout' : 'front.layout');
+@extends(Auth::user() ?'front.dashboard_layout' : 'front.new_layout');
 @section('content')
 <div class="container">
 	<div class="row">

@@ -156,8 +156,8 @@ class PagesController extends CustomBaseController {
 		}
 		
 		$data['machine_name'] = $machine_name;
-
 		$data['meta_tag'] = $tag;
+
 		if(!isset($page->page_title)) {
 			$data['page_title']='Page 404 not found';
 			$data['desc']='';
@@ -165,9 +165,10 @@ class PagesController extends CustomBaseController {
 			$data['page_title']=$page->page_title;
 			$data['desc']=$page->description;
 		}
-
-		return view('front.pages',$data);
+		
+		return view('front.pages', $data);
 	}
+
 	public function thankYouPage($service_id){
 		$data['page_title'] = 'Thank You';
 		$data['service_id'] = $service_id;

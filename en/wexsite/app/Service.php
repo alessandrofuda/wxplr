@@ -31,8 +31,9 @@ class Service extends Model
         $p =  round($p);
         return $p;
     }
-    public static function usdprice($from,$to,$am) {
-       $converted = $am;
+
+    public static function usdprice($from,$to,$am) {  // $am=793.00    $from=null(--> EUR)   $to=USD
+        $converted = $am;
         if($from == null)
             $from = 'EUR';
         if($to == null)
@@ -41,18 +42,25 @@ class Service extends Model
         $from = trim($from);
 
         if($to != $from && $am > 0) {
-            // $url = "https://www.google.com/finance/converter?a=$am&from=$from&to=$to";
-            $url = "https://finance.google.com/finance/converter?a=$am&from=$from&to=$to";
+
+            // $url = "https://www.google.com/finance/converter?a=$am&from=$from&to=$to";   // https://www.google.com/finance/converter?a=793.00&from=EUR&to=USD
+            // $url = "https://finance.google.com/finance/converter?a=$am&from=$from&to=$to";  // https://finance.google.com/finance/converter?a=793.00&from=EUR&to=USD
+            // $url = "https://www.xe.com/it/currencyconverter/convert/?Amount=$am&From=$from&To=$to";
             // dd($url);
-            $data = file_get_contents($url);
+            // $data = file_get_contents($url);
             // dd($data);
-            preg_match("/<span class=bld>(.*)<\/span>/", $data, $converted);
+            // preg_match("/<span class=\'uccResultAmount\'>(.*)<\/span>/", $data, $converted);
             // dd($converted);
-            $converted = preg_replace("/[^0-9.]/", "", $converted[1]);
+            // $converted = preg_replace("/[^0-9.]/", "", $converted[1]);
+            
+            $converted = 000.00000;  // to be adjust with other API
+            
+            // dd($converted);
             
         }
         return round($converted, 3);
     }
+
     public function checkCode($code) {
         $code_arr = [];
         if($code != null) {

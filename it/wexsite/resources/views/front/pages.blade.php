@@ -5,7 +5,7 @@
 </div>
 <div id="Content">
 	@if ($machine_name == 'chi-siamo')
-		 @include('front.chi-siamo')
+		@include('front.chi-siamo')
 	@endif
 
 	@if ($machine_name == 'contatti')
