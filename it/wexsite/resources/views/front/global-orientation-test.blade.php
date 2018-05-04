@@ -54,7 +54,11 @@
                                 <!-- One Third (1/3) Column -->
                                 <div class="column one-third column_quick_fact" style="background:rgba(0, 0, 0, 0.7);margin-top:40px; padding:20px;">
                                     <div class="aligncenter" style="margin-top: 10px;">
-                                        <a href="/en/register">
+                                        @if(!\Auth::check())
+                                            <a href="/en/register"> 
+                                        @else
+                                            <a href="/en/user/dashboard">
+                                        @endif
                                             <img class="scale-with-grid" style="margin:-4px 0px 15px 0; float:left;width:330px;" src="/it/frontend/immagini/free-button.png" alt="" />
                                         </a></div>
                                         <br/><br/><br/>
@@ -118,7 +122,11 @@
                             </div>
                         </div>
                         <div class="text-center">
-                            <a href="/en/register">
+                            @if(!\Auth::check())
+                                <a href="/en/register"> 
+                            @else
+                                <a href="/en/user/dashboard">
+                            @endif
                                 <img class="scale-with-grid" src="/it/frontend/immagini/free-button.png" alt="" />
                             </a>
                         </div>
