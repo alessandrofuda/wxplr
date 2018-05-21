@@ -41,7 +41,8 @@
 
 
 
-			<form action="https://geert-hofstede.com/cultural-survey-redirect.html{{--{{ url('user/culture_match/submit') }}--}}" method="post">
+			<!--form action="https://geert-hofstede.com/cultural-survey-redirect.html{{--{{ url('user/culture_match/submit') }}--}}" method="post"-->
+			<form action="https://hofstede-insights.com/integration/cultural-survey-redirect.php" method="post">
 				{{ csrf_field() }}
 				<input type="hidden" name="firstName" value="{{ Auth::user()->name }}" />
 				<input type="hidden" name="lastName" value="{{ Auth::user()->surname }}" />
