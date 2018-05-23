@@ -12,14 +12,14 @@
 	*/
 
 /* To load artisan commands without console CLI*/
-Route::get('/pulisci-cache', function () {
-    $exitCode = Artisan::call('cache:clear' //, [  optional options
+//Route::get('/pulisci-cache', function () {
+//    $exitCode = Artisan::call('cache:clear' //, [  optional options
         //'user' => 1, '--queue' => 'default'
     //]
-	);
+//	);
 
     //
-});
+//});
 
 
 Route::get('/token',function () {
