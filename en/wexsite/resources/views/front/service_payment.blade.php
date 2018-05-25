@@ -158,7 +158,7 @@
 									@endif
 
 									<div class="form-group has-feedback ">
-										<label for="pan"> Tax Code</label>
+										<label for="pan"> Tax Code / Fiscal Code</label>
 										@if($userProfile  != null && $userProfile->pan  != null) 
 											<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="{{ $userProfile->pan }}" title="fiscal code">
 										@else 
@@ -454,7 +454,6 @@
 		                    </script>
 					        <hr/>
 				        @endif
-
 		                <div class="ligle_terms servic_Payment_method">
 		                    <span class="paymentOption_div">
 		                        <input   type="checkbox" required name="tos">
@@ -528,10 +527,8 @@
 		</div>
     @endif
 </div>
-
 <script src="{{ asset('frontend/js/jquery-2.1.4.min.js') }}"></script>
 <script src="{{ asset('frontend/js/jquery.ui.js') }}"></script>
-
 <script>
 
 	$.ajaxSetup({

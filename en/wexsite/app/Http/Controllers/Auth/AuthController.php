@@ -220,13 +220,8 @@ class AuthController extends CustomBaseController
 
         // admin notification
         Mail::send('emails.registeration_admin_notif', ['user' => $user], function($m) use ($user) {
-        	$settings = Setting::find(1);
-			$site_email = $settings->website_email;			
+			$site_email = Setting::find(1)->website_email;			
 			$admin_emails = User::getNotificationList();
-
-
-			dd($admin_emails);
-
 
             $m->from($site_email, 'Wexplore');
             $m->to($admin_emails)->subject('New account at Wexplore has been activated');

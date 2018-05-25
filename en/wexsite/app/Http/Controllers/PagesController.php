@@ -581,6 +581,18 @@ class PagesController extends CustomBaseController {
 							);
 				$user_id=Auth::User()->id;
 				$global_test=GlobalTestResult::create(['user_id'=>$user_id,'outcome_id'=>$outcome->id]);
+
+				// admin notification
+				$user = User::findOrFail($user_id);
+		        Mail::send('emails.global_orient_test_admin_notif', ['user' => $user], function($m) use ($user) {
+					$site_email = Setting::find(1)->website_email;			
+					$admin_emails = User::getNotificationList();
+
+		            $m->from($site_email, 'Wexplore');
+		            $m->to($admin_emails)->subject('New user completed Global Orientation Test');
+		        });
+
+
 			}
 			$last_question=true;
 		}
