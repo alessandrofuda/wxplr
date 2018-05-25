@@ -10,6 +10,12 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class AuthControllerTest extends TestCase
 {
+
+
+	use DatabaseTransactions;   // avoid INSERT NEW records in DB (ex: register form insert new 'email' into 'unique' DB field)
+
+
+
     /**
      * A basic test example.
      *
@@ -27,12 +33,33 @@ class AuthControllerTest extends TestCase
     {
     	$this->visit('auth/login')
     		 ->click('Register a new membership')
-    		 ->seePageIs('register');
+    		 ->seePageIs('/register');
+    }
+
+    public function testRegisterForm()
+    {
+    	$this->visit('register')
+    		 ->type('test', 'name')
+    		 ->type('test', 'surname')
+    		 ->type('test@test1.test', 'email')
+    		 ->type('testing', 'password')
+    		 ->type('testing', 'password_confirmation')
+    		 ->check('tos')
+    		 ->check('tos')
+    		 ->check('allow_personal_data')
+    		 ->press('Register')    // !! CASE SENSITIVE !! 
+    		 ->seePageIs('/user/dashboard')
+    		 ->see('dashboard')
+    		 ->assertResponseStatus('200');
     }
 
     public function testLoginForm() {
-    	//$this->visit('auth/login')
-    		 //->type('XXXXXXXXXXX@gmail.com', 'email')
-			 //->type('', '')
+    	$this->visit('auth/login')
+    		 ->type('test@test.test', 'email')
+			 ->type('testing', 'password')
+			 ->press('Sign In')
+			 ->seePageIs('/user/dashboard')
+			 ->see('dashboard')
+			 ->assertResponseStatus('200');
     }
 }

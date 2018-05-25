@@ -216,6 +216,30 @@ class AuthController extends CustomBaseController
 
             $m->to($user->email, $user->name)->subject('You are registered successfuly!');
         });
+
+
+        // admin notification
+        Mail::send('emails.registeration_admin_notif', ['user' => $user], function($m) use ($user) {
+        	$settings = Setting::find(1);
+			$site_email = $settings->website_email;			
+			$admin_emails = User::getNotificationList();
+
+
+			dd($admin_emails);
+
+
+            $m->from($site_email, 'Wexplore');
+            $m->to($admin_emails)->subject('New account at Wexplore has been activated');
+        });
+
+
+
+
+
+
+
+
+
 		/*$service_name = 'Global Orientation Test';
 
 

@@ -557,4 +557,32 @@ class User extends Model implements AuthenticatableContract,
         $orders = $orders->get();
         return $orders;
     }
+
+
+    /**
+    * param 
+    * return array $email_receivers_array
+    */
+    public static function getNotificationList() {
+
+        $admins = User::where('is_admin', 1)->get(['email'])->toArray();
+            foreach($admins as $admin_email) {
+                $notification_list[] = $admin_email['email'];
+            }
+
+
+            // add any $others receivers that is NOT Admin --> defined in .env config file
+            $additional_emails = env('NOTIFICATION_LIST_ADDITIONAL_EMAIL');
+
+            if($additional_emails !== null) {
+                $others = explode(',', trim($additional_emails, ','));
+                foreach ($others as $other) {
+                    array_push($notification_list, trim($other));  
+                }
+            }
+
+            return $notification_list;
+    }
+
+
 }
