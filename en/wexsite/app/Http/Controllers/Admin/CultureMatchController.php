@@ -1,14 +1,20 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
+use Auth;
+use Mail;
+use App\User;
 use App\Order;
-use App\Setting;
 use Validator;
-use Illuminate\Http\Request;
-use App\User;use Auth;
-use App\SurveyCode;use App\CultureMatchSurvey;
+use App\Setting;
+use App\SurveyCode;
 use App\Http\Requests;
+use App\CultureMatchSurvey;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+
 
 class CultureMatchController extends Controller
 {
@@ -197,7 +203,7 @@ class CultureMatchController extends Controller
         return redirect('admin/cuture_match/survey_code')->with('status', 'Survey Code has been deleted!');
     }
     public function survey_return_callback(){
-		$uid = Auth::user()->id;
+		$uid = Auth::user()->id; 
 		CultureMatchSurvey::where('user_id',$uid)->update(['status'=>0]);
 
         $order = Order::where('user_id',$uid)->where('item_name','Professional Kit')->first();
@@ -209,6 +215,26 @@ class CultureMatchController extends Controller
                 ]);
             }
         }
+
+
+
+
+        // admin e-mail notification
+        $user = User::findOrFail($uid);
+        Mail::send('emails.culture_match_admin_notif', ['user' => $user], function($m) use ($user) {
+            $site_email = Setting::find(1)->website_email;
+            $admin_emails = User::getNotificationList();
+
+            $m->from($site_email, 'Wexplore');
+            $m->to($admin_emails)->subject('A user completed Culture Match Survey');
+        });
+
+
+
+
+
+
+
 
 		/*if(isset($_POST)){
 			echo '<pre>-----post';print_r($_POST);
