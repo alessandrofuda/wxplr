@@ -216,9 +216,6 @@ class CultureMatchController extends Controller
             }
         }
 
-
-
-
         // admin e-mail notification
         $user = User::findOrFail($uid);
         Mail::send('emails.culture_match_admin_notif', ['user' => $user], function($m) use ($user) {
@@ -228,13 +225,6 @@ class CultureMatchController extends Controller
             $m->from($site_email, 'Wexplore');
             $m->to($admin_emails)->subject('A user completed Culture Match Survey');
         });
-
-
-
-
-
-
-
 
 		/*if(isset($_POST)){
 			echo '<pre>-----post';print_r($_POST);

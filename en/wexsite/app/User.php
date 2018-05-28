@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Setting;
 use Hamcrest\Core\Set;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
@@ -563,13 +564,16 @@ class User extends Model implements AuthenticatableContract,
     * param 
     * return array $email_receivers_array
     */
-    public static function getNotificationList() {
+    public static function getNotificationList() {  // include: admins emails + site e-mail + others (from .ENV file)
 
         $admins = User::where('is_admin', 1)->get(['email'])->toArray();
             foreach($admins as $admin_email) {
                 $notification_list[] = $admin_email['email'];
             }
 
+            // add 
+            $site_email = Setting::find(1)->website_email;
+            array_push($notification_list, $site_email);
 
             // add any $others receivers that is NOT Admin --> defined in .env config file , comma separated list
             $additional_emails = env('NOTIFICATION_LIST_ADDITIONAL_EMAIL');

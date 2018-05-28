@@ -795,12 +795,24 @@ class ConsultantProfileController extends CustomBaseController
                 }
             }
 
+            // client notification
             Mail::send('emails.dream_check_client_notification', ['data'=>$data], function ($m) use ($to_email) {
                 $settings=Setting::find(1);
                 $site_email = $settings->website_email;
                 $m->from($site_email, 'Wexplore');
                 $m->to($to_email, 'Wexplore')->subject('Dream Check Lab Submission!');
             });
+            
+            // send e-mail to admins notification list
+            $users['client'] = User::findOrFail($dream_check_lab->user_id);
+            $users['consultant'] = User::findOrFail($user->id);
+            Mail::send('emails.consultant_feedback_admins_notif', ['user' => $users], function($m) use ($user) {
+                $site_email = Setting::find(1)->website_email;
+                $admin_emails = User::getNotificationList();
+                $m->from($site_email, 'Wexplore');
+                $m->to($admin_emails)->subject('A Consultant submitted a feedback to Client');
+            });
+            
 
             $base_path = base_path();
             $base_path = str_replace("/wexsite", "", $base_path);
@@ -815,7 +827,9 @@ class ConsultantProfileController extends CustomBaseController
                 'feedback_form' => $pdf_path
             ]);
 
-            /* email end */
+            
+
+
         }
 
         return redirect()->route('consultant.dashboard')->with('status', 'Your feedback has been submitted successfully and related client is notified for the same.');

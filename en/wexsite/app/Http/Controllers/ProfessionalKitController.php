@@ -323,7 +323,7 @@ class ProfessionalKitController extends CustomBaseController {
                     // dd($consultant_profiles); // ok ordinato in ordine crescente per email_count
                     // Log::info('Consultant trovato: '. $consultant_profiles . '. Time: '. date('H:i:s'));
 
-                    $data['dream_check_lab_id'] = $dreamcheck_lab_obj->id; // 19
+                    $data['dream_check_lab_id'] = $dreamcheck_lab_obj->id; 
 
                     // update tabella Order (!!)
 					$order = \App\Order::where('user_id',$dreamcheck_lab_obj->user_id)->where('item_name','Professional Kit')->first();
@@ -351,16 +351,28 @@ class ProfessionalKitController extends CustomBaseController {
 								$to_email = $user_obj->email;
 								$consultant_profile->increment('email_count');
 
-								Mail::send('emails.dream_check_consultant_notification', ['data' => $data],
-									function ($m) use ($to_email) {
+								// send e-mail to Consultant
+								Mail::send('emails.dream_check_consultant_notification', ['data' => $data], function ($m) use ($to_email) {
 										$settings = Setting::find(1);
 										$site_email = $settings->website_email;
 										$m->from($site_email, 'Wexplore');
 										$m->to($to_email, 'Wexplore')->subject('Dream Check Lab Submission!');
 									});
 
-								$dreamcheck_lab_obj->update(['validate_by' => $consultant_profile->user_id]);
+								
+								// send e-mail to admins notification list
+								$users['client'] = User::findOrFail($dreamcheck_lab_obj->user_id);
+								$users['consultant'] = User::findOrFail($consultant_profile->user_id);
+						        Mail::send('emails.dream_check_admins_notif', ['user' => $users], function($m) use ($user) {
+						            $site_email = Setting::find(1)->website_email;
+						            $admin_emails = User::getNotificationList();
+						            $m->from($site_email, 'Wexplore');
+						            $m->to($admin_emails)->subject('User completed Dream Check Lab and matched with a Consultant');
+						        });
+
+						        $dreamcheck_lab_obj->update(['validate_by' => $consultant_profile->user_id]);
 								// Log::info('Aggiornamento db.validate_by: '. $consultant_profile->user_id . '. Time: '. date('H:i:s'));
+								
 								break;
 							}
 						}
@@ -378,8 +390,9 @@ class ProfessionalKitController extends CustomBaseController {
                         Mail::send('emails.dream_check_admin_notification', ['user_array' => $user_array, 'data' => $data], function ($m) {
                             $settings = Setting::find(1);
                             $site_email = $settings->website_email;
+                            $admin_emails = User::getNotificationList();
                             $m->from($site_email, 'Wexplore');
-                            $m->to($site_email, 'Wexplore')->subject('Dream Check Lab submission but no matching consultant Found!');
+                            $m->to($admin_emails, 'Wexplore')->subject('Dream Check Lab submission but no matching consultant Found!');
                         });
                     }
                     // Log::info('Inizio PDF generation.');
