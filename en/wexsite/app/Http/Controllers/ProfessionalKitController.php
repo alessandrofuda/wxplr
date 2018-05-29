@@ -286,6 +286,7 @@ class ProfessionalKitController extends CustomBaseController {
     }
 
 	public function dream_check_lab_submit(Request $request) {
+
 		// Log::info('Start submit. Time: ' . date('H:i:s'));
 		$rules['interest_country'] = 'required';
 		$validator = Validator::make($request->all(),$rules);
@@ -316,10 +317,52 @@ class ProfessionalKitController extends CustomBaseController {
 					// Log::info('Aggiornamento db.interest_country: '. $interested_country . '. Time: ' . date('H:i:s'));
 
 					// match consultant
+
+
+                    
+                    
+
+
+
 					// IMPORTANTE ! Se ci sono più consulenti sullo stesso paese viene preso quello con MENO mail ricevute !!!!
                     $consultant_profiles = ConsultantProfile::where('country_expertise', $interested_country)
                         									->orderBy('email_count', 'asc')  //importante ! 
                         									->get();
+
+
+
+
+
+
+
+                    // SE NON esiste --> alert: "thank you for your choice. You are now being matched to your consultant, and you will receive a feedback on your documentation within 4 working days. Click here [link a sezione My Documents] to read your consultant's feedback" + notifica ad Admin
+                    if( count($consultant_profiles) == 0 ){
+
+                    	$alert = "Thank you for your choice. You are now being matched to your consultant, and you will receive a feedback on your documentation within 4 working days. Click <a href='".url('user/mydocuments')."'>here</a> to read your consultant's feedback";
+
+
+                    	Mail::send('emails.no_consult_found_admins_notif', ['user' => $____users], function($m) use ($user) {
+				            $site_email = Setting::find(1)->website_email;
+				            $admin_emails = User::getNotificationList();
+				            $m->from($site_email, 'Wexplore');
+				            $m->to($admin_emails)->subject('User selected a Country for which there isn\'t Consultant.');
+				        });
+
+                    	dd('zero');
+
+                    }
+
+
+                    
+                    
+
+
+
+
+
+
+
+
                     // dd($consultant_profiles); // ok ordinato in ordine crescente per email_count
                     // Log::info('Consultant trovato: '. $consultant_profiles . '. Time: '. date('H:i:s'));
 

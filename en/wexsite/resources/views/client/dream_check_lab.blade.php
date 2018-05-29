@@ -13,6 +13,20 @@
                 Thank you for your confirmation! You are now being matched to your consultant. He or she will review the forms you have submitted within the next 3 working days.
                 Please go to <a href="{{ url('user/mydocuments') }}" >My Documents</a> section to download Dream check lab forms.
                 </div>
+
+
+
+
+            @elseif()
+
+                <div class="col-md-12 alert alert-info">
+                Thank you for your choice. You are now being matched to your consultant, and you will receive a feedback on your documentation within 4 working days. Click <a href="{{ url('user/mydocuments') }}" >here</a> to read your consultant's feedback.
+                </div>
+
+
+
+
+
             @else
                 <div class="col-md-12">
                 <div class="dream_check_lab">
