@@ -9,7 +9,7 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
-					<h4 class="modal-title">Are you sure you want to schedule your appointment for this date and time ?</h4>
+					<h4 class="modal-title">Are you sure you want to schedule your appointment for this date and time?</h4>
 				</div>
 				<form class="book_appoinment_form" method="post" action="{{ url('user/consultant/book') }}">
 					<div class="modal-body">
@@ -152,7 +152,7 @@
 					if (calEvent.url) {
 						window.open(calEvent.url);
 						return false;
-					}else{
+					} else {
 						myFunction(calEvent.id,calEvent.title,view.name);
 					}
 				},
@@ -160,9 +160,9 @@
 				events: [
 						@foreach($consultant_avail as $cas)
 					{
-						<?php $start_date = date('Y-m-d',strtotime($cas->getDate())); ?>
-								<?php $start_time =  trim(date('H:i:s',strtotime($cas->getDate(\App\ConsultantAvailablity::START_TIME)))); ?>
-								<?php $end_time =  trim(date('H:i:s',strtotime($cas->getDate(\App\ConsultantAvailablity::END_TIME)))); ?>
+							<?php $start_date = date('Y-m-d',strtotime($cas->getDate())); ?>
+							<?php $start_time =  trim(date('H:i:s',strtotime($cas->getDate(\App\ConsultantAvailablity::START_TIME)))); ?>
+							<?php $end_time =  trim(date('H:i:s',strtotime($cas->getDate(\App\ConsultantAvailablity::END_TIME)))); ?>
 						id : '{{ $cas->id }}',
 						title: '{{ $cas->title }}',
 						date : '{{ $start_date }}',
@@ -190,4 +190,7 @@
 
 		});
 	</script>
+
+	
+
 @endsection

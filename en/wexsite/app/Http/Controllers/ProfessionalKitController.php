@@ -953,12 +953,13 @@ class ProfessionalKitController extends CustomBaseController {
 			$m->to($to, $name)->subject('New Consultant Booking!');
 		});
 
-		/* Email to super admin */
+		/* Email to super admin and notification list*/
 		Mail::send('emails.admin_consultant_booking', ['consultantbooking'=>$ConsultantBooking], function ($m) use ($ConsultantBooking) {
 			$settings=Setting::find(1);
 			$site_email = $settings->website_email;
+			$admin_emails = User::getNotificationList();
 			$m->from($site_email, 'Wexplore');
-			$m->to($site_email, 'Wexplore')->subject('New Consultant Booking!');
+			$m->to($admin_emails, 'Wexplore')->subject('New Consultant Booking!');
 		});
 
 		$availablity ->update(
