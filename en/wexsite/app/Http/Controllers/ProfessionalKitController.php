@@ -102,6 +102,7 @@ class ProfessionalKitController extends CustomBaseController {
 
 	public function dream_check_lab(){
 		$dream_check_lab_status = 0;
+		$consultant_not_found = 0;
 		$dream_check_lab =[];
 		$user = \Auth::user();
 		$dream_check_lab = DreamCheckLab::where('user_id',$user->id)->get();
@@ -121,6 +122,7 @@ class ProfessionalKitController extends CustomBaseController {
 
 		if($dream_check_lab->count() > 0){
 			$step = $dream_check_lab->first()->state_id;
+			$validated_by = $dream_check_lab->first()->validate_by;
             $active = substr($step, -1);  // prende ultimo carattere della stringa. Es.: 1234 --> prende 4
 
             if(session('request_state') != null) {
@@ -129,6 +131,11 @@ class ProfessionalKitController extends CustomBaseController {
 
 			if($step == DreamCheckLab::STATE_COMPLETED)  {  // if $step == 5 ...
 				$dream_check_lab_status = 1;
+			}
+
+			
+			if($step == DreamCheckLab::STATE_COMPLETED && $validated_by == NULL) {
+				$consultant_not_found = 1;
 			}
 
 			$dream_check_lab = $dream_check_lab->first()->toArray();
@@ -144,6 +151,7 @@ class ProfessionalKitController extends CustomBaseController {
 		$data['page_title']='Dream Check Lab';
 		$data['step'] = $step;  		// $step : 'state_id' nella tabella dream_check_lab, sono i 5 form/tabs del dream_check_lab. Default=0
 		$data['active'] = $active;
+		$data['consultant_not_found'] = $consultant_not_found;
 
 		return view('client.dream_check_lab',$data);
 	}
@@ -248,6 +256,7 @@ class ProfessionalKitController extends CustomBaseController {
 
 		$data['dream_check_lab_id'] = $dreamcheck_lab_obj->id;
 		$dream_check_lab_status = 0;
+		$consultant_not_found = 0;
 		$dream_check_lab =[];
 		$user = \Auth::user();
 		$dream_check_lab = DreamCheckLab::where('user_id',$user->id)->get();
@@ -269,6 +278,9 @@ class ProfessionalKitController extends CustomBaseController {
         	if($step == DreamCheckLab::STATE_COMPLETED)  {
         		$dream_check_lab_status = 1;
         	}
+        	if ($step == DreamCheckLab::STATE_COMPLETED && $validated_by == NULL) {
+        		$consultant_not_found = 1;
+        	}
         	$dream_check_lab = $dream_check_lab->first()->toArray();
         	$data_view['dream_check_lab'] = $dream_check_lab;
         }
@@ -276,13 +288,14 @@ class ProfessionalKitController extends CustomBaseController {
         $country=Country::all()->toArray();
         $data_view['country'] = $country;
         $data_view['dream_check_lab_status'] = $dream_check_lab_status;
+        $data_view['consultant_not_found'] = $consultant_not_found;
         $data_view['page_title']='Dream Check Lab';
         $data_view['step'] = $step;
         $data_view['active'] = $active;
         $view = view('client.dream_check_lab',$data_view);
         $data['html'] = $view->render();
 
-        return $data;  // DOVE ????
+        return $data;  // -->to ajax call from blade template  'dream_check_lab.blade.php' 
     }
 
 	public function dream_check_lab_submit(Request $request) {
@@ -317,51 +330,10 @@ class ProfessionalKitController extends CustomBaseController {
 					// Log::info('Aggiornamento db.interest_country: '. $interested_country . '. Time: ' . date('H:i:s'));
 
 					// match consultant
-
-
-                    
-                    
-
-
-
 					// IMPORTANTE ! Se ci sono più consulenti sullo stesso paese viene preso quello con MENO mail ricevute !!!!
                     $consultant_profiles = ConsultantProfile::where('country_expertise', $interested_country)
                         									->orderBy('email_count', 'asc')  //importante ! 
                         									->get();
-
-
-
-
-
-
-
-                    // SE NON esiste --> alert: "thank you for your choice. You are now being matched to your consultant, and you will receive a feedback on your documentation within 4 working days. Click here [link a sezione My Documents] to read your consultant's feedback" + notifica ad Admin
-                    if( count($consultant_profiles) == 0 ){
-
-                    	$alert = "Thank you for your choice. You are now being matched to your consultant, and you will receive a feedback on your documentation within 4 working days. Click <a href='".url('user/mydocuments')."'>here</a> to read your consultant's feedback";
-
-
-                    	Mail::send('emails.no_consult_found_admins_notif', ['user' => $____users], function($m) use ($user) {
-				            $site_email = Setting::find(1)->website_email;
-				            $admin_emails = User::getNotificationList();
-				            $m->from($site_email, 'Wexplore');
-				            $m->to($admin_emails)->subject('User selected a Country for which there isn\'t Consultant.');
-				        });
-
-                    	dd('zero');
-
-                    }
-
-
-                    
-                    
-
-
-
-
-
-
-
 
                     // dd($consultant_profiles); // ok ordinato in ordine crescente per email_count
                     // Log::info('Consultant trovato: '. $consultant_profiles . '. Time: '. date('H:i:s'));
@@ -419,11 +391,26 @@ class ProfessionalKitController extends CustomBaseController {
 								break;
 							}
 						}
-                    }
-                    // dd('stop');
+                    } else {
 
-					if($ok == false) {
-                        /* Email to admin */
+                    	// SE NON esiste --> msg: "thank you for your choice. You are now being matched to your consultant, and you will receive a feedback on your documentation within 4 working days. Click here [link a sezione My Documents] to read your consultant's feedback" + notifica ad Admin
+                    	$info['client_name'] = $user->name;
+                    	$info['client_surname'] = $user->surname;
+                    	$info['client_email'] = $user->email;
+                    	$info['client_id'] = $user->id;
+                    	$info['selected_country'] = $interested_country;
+                    	Mail::send('emails.no_consult_found_admins_notif', ['info' => $info], function($m) use ($info) {
+				            $site_email = Setting::find(1)->website_email;
+				            $admin_emails = User::getNotificationList();
+				            $m->from($site_email, 'Wexplore');
+				            $m->to($admin_emails)->subject('Dream Check Lab: user selected a Country for which there isn\'t Consultant.');
+				        });
+
+                    }
+                    
+
+					/* if($ok == false) {
+                        // Email to admin 
                         $user_id = $user->id;
                         $user_fname = $user->name;
                         $user_surname = $user->surname;
@@ -437,7 +424,7 @@ class ProfessionalKitController extends CustomBaseController {
                             $m->from($site_email, 'Wexplore');
                             $m->to($admin_emails, 'Wexplore')->subject('Dream Check Lab submission but no matching consultant Found!');
                         });
-                    }
+                    } */
                     // Log::info('Inizio PDF generation.');
 					$base_path = base_path();
 					$base_path = str_replace("/wexsite", "", $base_path);
@@ -473,6 +460,7 @@ class ProfessionalKitController extends CustomBaseController {
                     $data['status'] = 'OK';
                     $data['url'] = route('dream.check.lab');  // --> ProfessionalKitController@dream_check_lab
                   //  session(['status' => 'Thank you for your confirmation! You are now being matched to your consultant. He or she will review the forms you have submitted within the next 3 working days.']);
+
                 }
             }
         }
