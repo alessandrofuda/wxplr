@@ -187,7 +187,6 @@ class AdminController extends Controller
 						->where('user_roles.deleted_at','=', NULL)
 						->get();
 
-		
     	$data['page_title']='Users';
         $data['users'] = $users;
         

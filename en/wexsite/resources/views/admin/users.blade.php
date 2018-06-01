@@ -78,10 +78,14 @@
 											  <td rowspan="2"  class="sorting_1">{{ $user->name }}</td>
 												<td rowspan="2"  class="sorting_1">{{ $user->email }}</td>
 												<td rowspan="2"  class="sorting_1">
-												@foreach ($user->roles as $key=>$role)
-													@if ($key > 0) , @endif
-													{{ $role->role_name }}
-												@endforeach
+													@if($user->is_admin == 1)
+														<b>Admin</b>
+													@else
+														@foreach ($user->roles as $key=>$role)
+															@if ($key > 0) , @endif
+															{{ $role->role_name }}
+														@endforeach
+													@endif
 												</td>
 												<td>
 													Professional Kit
