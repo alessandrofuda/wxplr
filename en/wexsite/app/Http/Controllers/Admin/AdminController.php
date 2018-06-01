@@ -185,7 +185,9 @@ class AdminController extends Controller
 			 			->whereBetween(\DB::raw('DATE(users.created_at)'), [$start_date, $end_date])
 						->where('user_roles.role_id', 1)
 						->where('user_roles.deleted_at','=', NULL)
-						->get();
+						->orderBy('id', 'DESC')
+						->paginate(50);
+						//->get();
 
     	$data['page_title']='Users';
         $data['users'] = $users;

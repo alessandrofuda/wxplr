@@ -144,6 +144,7 @@
 									<tr><th>Name</th><th>E-mail</th><th>Roles</th><th>Operations</th></tr>
 								</tfoot>
 							</table>
+							<div class="text-center">{!! $users->render() !!}</div>
 						</div>
 					</div>
 						<div class="row">
