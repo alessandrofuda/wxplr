@@ -183,10 +183,14 @@ class AdminController extends Controller
 		}
         $users = User::select('users.*')->join('user_roles','user_roles.user_id','=','users.id')
 			 			->whereBetween(\DB::raw('DATE(users.created_at)'), [$start_date, $end_date])
-						->where('user_roles.role_id',1)->get();
+						->where('user_roles.role_id', 1)
+						->where('user_roles.deleted_at','=', NULL)
+						->get();
+
 		
     	$data['page_title']='Users';
-        $data['users']=$users;
+        $data['users'] = $users;
+        
         return view('admin.users',$data);
     }
 
