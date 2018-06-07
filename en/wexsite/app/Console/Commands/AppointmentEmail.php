@@ -43,15 +43,18 @@ class AppointmentEmail extends Command
      */
     public function handle()
     {
-        $bookings = ConsultantBooking::where('is_sent',0)->where('state_id','!=',ConsultantBooking::STATE_CANCELLED)->get();
+        $bookings = ConsultantBooking::where('is_sent', 0)->where('state_id','!=',ConsultantBooking::STATE_CANCELLED)->get();
         Log::info('cron run');
         foreach( $bookings as $booking ) {
 
             $availability = ConsultantAvailablity::where('id', $booking->availablity_id)->first();
 
             if ($availability != null) {
+
+                /* notifica un giorno prima dell'appuntamento */
                 if ($availability->available_date <= strtotime("+1 day") && $availability->available_date >= strtotime("-1 day")) {
                     $booking->update(['is_sent' => 1]);
+                    
                     /* Email to client */
                     $consulant = User::where('id', $availability->consultant_id)->first();
                     Log::info('cron run c'.$consulant->id);
@@ -65,6 +68,7 @@ class AppointmentEmail extends Command
                         $m->from($site_email, 'Wexplore');
                         $m->to($to_email, 'Wexplore')->subject('You have appointment please log in 10-5 min before the booked time]');
                     });
+                    
                     /* Email to Consultant */
                     $consulant_array = ['user_name' => $consulant->name . ' ' . $consulant->surname, 'user_id' => $consulant->id];
                     $to_email = $consulant->email;
@@ -78,6 +82,9 @@ class AppointmentEmail extends Command
             }
         }
 
+
+
+        /* notifica 2 ore prima dell'appuntamento */
         $bookings = ConsultantBooking::where('is_sent',1)->where('state_id','!=',ConsultantBooking::STATE_CANCELLED)->get();
         Log::info('cron run 2 hours');
         foreach( $bookings as $booking ) {

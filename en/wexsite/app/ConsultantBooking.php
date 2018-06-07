@@ -167,7 +167,7 @@ class ConsultantBooking extends Model
             $url = "https://api.getgo.com/G2M/rest/meetings/" . $meetingid;
             $out = self::curl_request('GET', $headers, $url);
             $link = GoToMeeting::getButtonUrl($this->id);
-            // dd($this->id);
+            // dd($this->id); // 52
 
             $status = isset($out[0]['status']) ? $out[0]['status'] : self::getStatusOptions($this->status);  // "INACTIVE" or 'booked' or 'completed' or 'cancelled' or .. green 'Start meeting' button..
 
@@ -317,12 +317,13 @@ class ConsultantBooking extends Model
         return $this->availablity->title;
     }
 
-    public function checkDate($end = true)
+    public function checkDate($end = true)  // false
     {
 
         $start_date = date('Y-m-d', $this->availablity->available_date) . ' ' . $this->availablity->available_start_time;
         $end_date = date('Y-m-d', $this->availablity->available_date) . ' ' . $this->availablity->available_end_time ;
         $now = date('Y-m-d H:i:s');
+
 
         $start_date = strtotime(date('Y-m-d H:i:s',strtotime($start_date ."-15 minutes")));
         $end_date = strtotime($end_date);

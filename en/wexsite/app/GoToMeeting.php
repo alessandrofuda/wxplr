@@ -40,6 +40,7 @@ class GoToMeeting extends Model
     }
 
     public static function getButtonUrl($id, $page = false) {
+        
         $meeting = GoToMeeting::where('booking_id', $id)->first();
 
         if(isset($meeting->booking)) {
