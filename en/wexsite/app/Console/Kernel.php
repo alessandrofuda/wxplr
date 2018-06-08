@@ -26,9 +26,20 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+
+    // [ !!! IMPORTANT: for testing commands FROM CONSOLE --> "php5.6 artisan alert:check culture_match" because installed PHP 5.6 version in Homestead.yaml !!! ]
+
+        
         $schedule->command('inspire')
-                 ->hourly();
+                 ->hourly()
+                 ->withoutOverlapping();
+
         $schedule->command('email:appointment')
-                 ->cron('* * * * *');
+                 ->cron('* * * * *')
+                 ->withoutOverlapping();
+
+        //$schedule->command('alert:check culture_match')
+        //         ->dailyAt('05:00')
+        //         ->withoutOverlapping();
     }
 }

@@ -22,6 +22,11 @@
 //});
 
 
+//Route::get('phpinfo', function(){
+//	return phpinfo();
+//});
+
+
 Route::get('/token',function () {
 	\App\ConsultantBooking::getAccessToken();
 });
