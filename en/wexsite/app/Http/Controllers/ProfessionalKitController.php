@@ -153,6 +153,8 @@ class ProfessionalKitController extends CustomBaseController {
 		$data['active'] = $active;
 		$data['consultant_not_found'] = $consultant_not_found;
 
+		//dd(cookie());
+
 		return view('client.dream_check_lab',$data);
 	}
 
