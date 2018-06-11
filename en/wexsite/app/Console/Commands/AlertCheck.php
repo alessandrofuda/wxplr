@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 
-
+use Illuminate\Support\Facades\Log;
 use Illuminate\Console\Command;
 use Carbon\Carbon;
 use App\Setting;
@@ -51,6 +51,10 @@ class AlertCheck extends Command
     {
 
         $step = $this->argument('step'); // argument of command
+        
+        Log::info('Cron: start AlertCheck for '. $step);
+
+
 
         if($step === 'culture_match') {
 
@@ -82,12 +86,14 @@ class AlertCheck extends Command
         // [ !!! IMPORTANT: for testing commands FROM CONSOLE --> "php5.6 artisan alert:check culture_match" because installed PHP 5.6 version in Homestead.yaml !!! ]
 
         $this->info('AlertCheck started for "'. $phase .'" phase.');
+        Log::info('AlertCheck started for "'. $phase .'" phase.');
         
         // get users that registered 4 days ago        
         $registration_date = Carbon::now()->subDays($daysAgo)->toDateTimeString();
         $registration_date = explode(' ', $registration_date)[0]; 
         $users = User::where('created_at', 'like', '%'.$registration_date.'%')->get(['id'])->toArray();   
         $this->line('Found ' . count($users) . ' users registered '.$daysAgo.' days ago');
+        Log::info('Found ' . count($users) . ' users registered '.$daysAgo.' days ago');
 
         // get users that have NOT terminated the phase
         $incompleteds = [];
@@ -104,7 +110,8 @@ class AlertCheck extends Command
                                 ->toArray();
         }
 
-        $this->line(count($incompleteds).' of this users have NOT terminated "'. $phase . '" phase');        
+        $this->line(count($incompleteds).' of this users have NOT terminated "'. $phase . '" phase');     
+        Log::info(count($incompleteds).' of this users have NOT terminated "'. $phase . '" phase');   
         // dd($incompleted);
 
         if(count($incompleteds) > 0) {
@@ -129,14 +136,17 @@ class AlertCheck extends Command
             });
  
             $this->line('Sent Alert Mail to notification list');
+            Log::info('Sent Alert Mail to notification list');
 
         } else { 
 
             $this->line('No Alert Mail sent to notification list for "'. $phase .'" phase.');
+            Log::info('No Alert Mail sent to notification list for "'. $phase .'" phase.');
 
         }
 
         $this->info('AlertCheck terminated');
+        Log::info('Cron: end AlertCheck for '. $step);
 
         // $this->error('test');
         // $this->line('test');
