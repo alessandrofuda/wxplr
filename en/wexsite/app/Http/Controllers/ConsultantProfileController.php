@@ -66,25 +66,33 @@ class ConsultantProfileController extends CustomBaseController
         $consultant = Auth::user();
 
 
-        $client_id = DreamCheckLab::where('validate_by',$consultant->id)
+
+
+
+        $client_id = DreamCheckLab::where('validate_by', $consultant->id ) 
                                     // ->where('validate', 1) // se viene aperto prima della validazione --> genera errore !
                                     ->orderBy('updated_at', 'desc')
-                                    ->first()
-                                    ->user_id;
+                                    ->first();
 
 
-        $client = User::find($client_id);
-        $data['client'] = $client;
-
-        $discuss_id = $client->id.$consultant->id;
-        $data['discuss_id'] = $discuss_id;
+        if($client_id !== NULL ) {
+                                        
+            $client_id = $client_id->user_id;  
+            $client = User::findOrFail($client_id);
+            $data['client'] = $client;
+            $discuss_id = $client->id.$consultant->id;
+            $data['discuss_id'] = $discuss_id;
+            $discussions = UserConsultantDiscussion::whereIn('user_id', [$client->id, $consultant->id])
+                                                   ->where('discuss_id', $discuss_id)
+                                                   ->orderBy('created_at', 'asc')
+                                                   ->get();
+            $data['discussions'] = $discussions;
         
-        $discussions = UserConsultantDiscussion::whereIn('user_id', [$client->id, $consultant->id])
-                                               ->where('discuss_id', $discuss_id)
-                                               ->orderBy('created_at', 'asc')
-                                               ->get();
+        }
 
-        $data['discussions'] = $discussions;
+
+
+
 
         return view('consultant.consultant_availability_form',$data);
     }
