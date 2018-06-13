@@ -82,9 +82,9 @@
 				<i class="fa fa-calendar"></i>
 			  </div>
 			@if($page_type == 'edit')
-				<input type="text" id="datepicker" name="available_date" value="{{ date('m/d/Y',strtotime($edit_availability->getDate())) }}" class="form-control pull-right" id="datepicker">
+				<input type="text" id="datepicker" name="available_date" value="{{ date('m/d/Y',strtotime($edit_availability->getDate())) }}" class="form-control pull-right"  autocomplete="off">
 			@else
-				<input type="text" id="datepicker" name="available_date"  value="{{ old('available_date') }}"  class="form-control pull-right">
+				<input type="text" id="datepicker" name="available_date"  value="{{ old('available_date') }}"  class="form-control pull-right" autocomplete="off">
 			@endif
 			</div>
 		</div>
@@ -116,9 +116,9 @@
 				<label>Start Time (24hr format):</label>
 				<div class="input-group">
 				@if($page_type == 'edit')
-					<input type="text" name="available_start_time" value="{{ $edit_availability->getDate(\App\ConsultantAvailablity::START_TIME) }}" class="form-control timepicker">
+					<input type="text" name="available_start_time" value="{{ $edit_availability->getDate(\App\ConsultantAvailablity::START_TIME) }}" class="form-control timepicker" autocomplete="off">
 				@else
-					<input type="text" name="available_start_time" class="form-control timepicker">	
+					<input type="text" name="available_start_time" class="form-control timepicker" autocomplete="off">	
 				@endif	
 					<div class="input-group-addon">
 					  <i class="fa fa-clock-o"></i>
@@ -182,6 +182,10 @@
 		<script src="{{ asset('admin/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
 		<script>
 			$(document).ready(function () {
+				//$('#datepicker').on('click', function(e){
+				//	e.preventDefault;
+				//});
+
 				$('#datepicker').datepicker({
 					autoclose: true,
 					dateFormat: "Y-m-d",

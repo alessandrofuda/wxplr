@@ -64,11 +64,6 @@ class ConsultantProfileController extends CustomBaseController
 
         // box discussion between consultant and client/clients(!)  I clienti possono essere più di uno per ogni consultant ??
         $consultant = Auth::user();
-
-
-
-
-
         $client_id = DreamCheckLab::where('validate_by', $consultant->id ) 
                                     // ->where('validate', 1) // se viene aperto prima della validazione --> genera errore !
                                     ->orderBy('updated_at', 'desc')
@@ -90,12 +85,9 @@ class ConsultantProfileController extends CustomBaseController
         
         }
 
-
-
-
-
         return view('consultant.consultant_availability_form',$data);
     }
+    
 
     public function events(){
         $data['page_title'] = 'Assigned Events';
@@ -204,7 +196,7 @@ class ConsultantProfileController extends CustomBaseController
 
 
 
-        return redirect('consultant/availability/list')->with('status', 'Form has been saved!');
+        return redirect('consultant/availability/list')->with('status', 'Form has been saved and Call scheduled!');
     }
 
 
@@ -725,6 +717,15 @@ class ConsultantProfileController extends CustomBaseController
         return view('consultant.dream_check_lab_submission_feedback',$data);
     }
 
+
+
+
+
+
+
+
+    // !! Validate & submit feedback  !!
+
     public function dreamcheck_lab_submission_feedback_store(Request $request){
         //echo '<pre>'; print_r($request->all()); die;
         // create achievement three forms validation rule by foreach
@@ -842,6 +843,9 @@ class ConsultantProfileController extends CustomBaseController
 
         return redirect()->route('consultant.dashboard')->with('status', 'Your feedback has been submitted successfully and related client is notified for the same.');
     }
+
+
+
 
     public function download_feedback($id, $type) {
 

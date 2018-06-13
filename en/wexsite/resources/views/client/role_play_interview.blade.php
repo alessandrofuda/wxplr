@@ -35,11 +35,13 @@
 
 				@if(!empty($consultant) && is_object($consultant))
 					<a class="btn btn-primary pull-right" href="{{ url('user/myappointments') }}"> See all booking </a>
-					<div class="col-md-12 profile_page">
+					<div class="col-md-12 profile_page" style="margin-bottom: 6%;">
 						<h3 class="box-title">Meet your consultant!</h3>
 						<div class="profile_img col-lg-3 col-xs-12">
-							@if(isset($consultant->consultantProfile->profile_picture))
+							@if(isset($consultant->consultantProfile->profile_picture) && !empty($consultant->consultantProfile->profile_picture))
 								<img alt="{{ $consultant->name }}" src="{{ asset($consultant->consultantProfile->profile_picture) }}">
+							@else
+								<img alt="Insert your photo in your profile" src="{{ asset('frontend/images/default_photo.png') }}">
 							@endif
 						</div>
 						<div class="col-lg-8 col-xs-12">
