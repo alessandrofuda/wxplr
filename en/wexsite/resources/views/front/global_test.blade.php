@@ -36,7 +36,7 @@
 				</div>
 
 <div class="Colorfull-window">
-<p><span class="opning_cot"><img alt="open-cot" src="{{ asset('frontend/images/open-cot.png') }}"></span>No journey starts without direction: the European Labour Market Map will provide you with a comparison of the labour market situation across the EU countries. All treasure hunters had a map of some sort to guide them…why shouldn’t you? <span  class="end_cot"><img src="{{ asset('frontend/images/end-cot.png') }}"></span></p>
+<p><!--span class="opning_cot"><img alt="open-cot" src="{{-- asset('frontend/images/open-cot.png') --}}"></span-->No journey starts without direction: the European Labour Market Map will provide you with a comparison of the labour market situation across the EU countries. All treasure hunters had a map of some sort to guide them…why shouldn’t you? <!--span  class="end_cot"><img src="{{-- asset('frontend/images/end-cot.png') --}}"></span--></p>
 
 </div>
 

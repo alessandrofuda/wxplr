@@ -139,7 +139,7 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
                 </div>
             </div>
             <!-- Header -  Logo and Menu area -->
-            <div id="Top_bar">
+            <div id="Top_bar" style="z-index: 999;">
                 <div class="container">
                     <div class="column one">
                         <div class="top_bar_left clearfix">
