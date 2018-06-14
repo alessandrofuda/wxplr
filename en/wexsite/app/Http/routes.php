@@ -23,8 +23,10 @@
 
 
 //Route::get('phpinfo', function(){
+//  return date('Y-m-d H:i:s');
 //	return phpinfo();
 //});
+
 
 
 Route::get('/token',function () {

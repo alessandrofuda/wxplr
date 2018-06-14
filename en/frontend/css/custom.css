@@ -30,8 +30,8 @@ button.order_now:disabled {
 	background-image: url('../images/online-test-banner.jpg');
 	background-repeat: no-repeat;
 	background-position: 0% center;
-	background-size: cover;
-	padding: 30px 20px;
+	/*background-size: cover;*/
+	padding: 30px 15px;
 }
 
 #ask-Question > ul {
