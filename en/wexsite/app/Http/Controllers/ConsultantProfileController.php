@@ -170,24 +170,33 @@ class ConsultantProfileController extends CustomBaseController
             $client_id = DreamCheckLab::where('validate_by', $consultant_id)
                                         ->where('validate', 1)
                                         ->orderBy('updated_at', 'desc')
-                                        ->first()
-                                        ->user_id;
-            $client = User::find($client_id);
-            $client_name = $client->name.' '.$client->surname;
+                                        ->first();
 
-            $consultant = User::find($consultant_id);
-            $consultant_name = $consultant->name.' '.$consultant->surname;
+            if($client_id !== null) {
+                $client_id = $client_id->user_id;
 
-            $type = $ca::getAvailabilityType($ca->type_id);
+                $client = User::find($client_id);
+                $client_name = $client->name.' '.$client->surname;
+
+                $consultant = User::find($consultant_id);
+                $consultant_name = $consultant->name.' '.$consultant->surname;
+
+                $type = $ca::getAvailabilityType($ca->type_id);
 
 
 
-            Mail::send('emails.consultant_availability_notification', ['client_name' => $client_name, 'consultant_name' => $consultant_name, 'ca' => $ca, 'type' => $type], function ($m) use ($client, $client_name) { 
-                    $settings = Setting::find(1);
-                    $site_email = $settings->website_email;
-                    $m->from($site_email, 'Wexplore');
-                    $m->to($client->email, $client_name)->subject('Confirm your date availability!');
-                });
+                Mail::send('emails.consultant_availability_notification', ['client_name' => $client_name, 'consultant_name' => $consultant_name, 'ca' => $ca, 'type' => $type], function ($m) use ($client, $client_name) { 
+                        $settings = Setting::find(1);
+                        $site_email = $settings->website_email;
+                        $m->from($site_email, 'Wexplore');
+                        $m->to($client->email, $client_name)->subject('Confirm your date availability!');
+                    });
+            } else {
+
+                return  redirect()->back()->withInput()->with('error', 'No match found with user. You have not validated Dream Check Lab User yet.');
+
+            }
+            
         }
 
 
