@@ -559,16 +559,38 @@ class PagesController extends CustomBaseController {
 		// 	return redirect('service/payment');
 		// }
 
-		$question=GlobalTest::first();
+		$question=GlobalTest::first();  // first question in survey
 		$question_data=array('id' => $question->id,
 						'question' => $question->question,
 						'parent_choice' => $question->parent_choice,
 						'choice'=>$question->questionChoices,
 						);
 
+		$global_test_compiled_yet = false;
+		$outcome_data=array();
+		$user_id = Auth::user()->id;
+		$compiled = GlobalTestResult::where('user_id', $user_id)->get();
+		
+		if(count($compiled) > 0) {
+			$global_test_compiled_yet = true;
+			$outcome_id = $compiled->first()->outcome_id;
+		//dd($outcome_id);
+			$outcome = GlobalTestOutcomes::where('id', $outcome_id)->first();
+		// dd($outcome);
+			$outcome_data=array('id' => $outcome->id,
+							'outcome_name' => $outcome->outcome_name,
+							'outcome_image' => $outcome->outcome_image,
+							'outcome_file' =>$outcome->outcome_file,
+							'description' => $outcome->description,
+							);			
+		}
+
 		$data['page_title']='';
 		$data['question']=$question_data;
 		$data['last_question']=false;
+		$data['global_test_compiled_yet'] = $global_test_compiled_yet;
+		$data['outcome_data'] = $outcome_data;
+
 		return view('front.global_test',$data);
 	}
 

@@ -24,7 +24,7 @@
 		<!--<h1></h1>-->
 		<div class="global-test-container content box">
 
-			@if ($last_question && !empty($outcome_data))
+			@if ( ($last_question && !empty($outcome_data)) || ($global_test_compiled_yet === true && !empty($outcome_data)) )
 
 				<h2>You are a – {{ $outcome_data['outcome_name'] }}</h2>
 				<div class="col-md-12 outcome-content">
@@ -54,6 +54,9 @@
 
 				</div>
 			@else
+				{{-- @if ($global_test_compiled_yet === true)
+					<div class="alert alert-danger">You have already completed the <b>Global Orientation Test</b><br/>If you want to recompile click <a class="">here</a> otherwise proceed to Professional Kit [cambiare--> portare l'utente direttamente alla sezione "You are a – ...."]</div>
+				@endif --}}
 				<div class="box-header"> {{-- NOT last question --}}
 				  <h2 class="Question_heading"><span class="glyphicon glyphicon-triangle-right"></span>{{ $question['question'] }}</h2>
 				</div>

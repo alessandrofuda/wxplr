@@ -62,55 +62,55 @@
 				<h3 style="padding: 0px 10px;">Your services:</h3>
 			</div>
 			<div class="box-body">
-		@foreach($user_services as $service_id=>$service)
-			<div class="col-md-4">
-				<div class="box-style">
-					<div class="top-stripe bckg-custom-orange"></div>
-						<span class="imgblock"><img src="{{ asset($service["user_dashboard_image"]) }}" alt="Professional Kit"></span>											
-						<div class="tile-title">
-							<h3>{{ $service['name'] }}</h3>
+				@foreach($user_services as $service_id=>$service)
+					<div class="col-md-4">
+						<div class="box-style">
+							<div class="top-stripe bckg-custom-orange"></div>
+								<span class="imgblock"><img src="{{ asset($service["user_dashboard_image"]) }}" alt="Professional Kit"></span>											
+								<div class="tile-title">
+									<h3>{{ $service['name'] }}</h3>
+								</div>
+								<div class="hover_column">
+									{!! substr($service['user_dashboard_desc'], 0, 300) !!}
+								</div>
+								<div class="button-block text-center">
+									<div class="hr-right"></div>
+									@if($service['price'] == 0)
+										<a href="{{ $service['url'] }}"  class="applynow service_btn" >Start</a>
+									@elseif($service['purchased']=='no')
+										<form action="{{  url('service/payment/'.$service_id) }}" method="get">
+											<input type="hidden"name="service_id" value="{{ $service_id }}">
+											{{ csrf_field() }}
+											<button type="submit" class="applynow service_btn" >Start</button>
+										</form>
+									@else
+										@if ($service_id == 1 && $service['price']==0)
+										{{--*/ $btn_url=url('global_orientation_test'); /*--}}
+										{{--*/ $btn_label='Start test'; /*--}}
+										@elseif($service_id == 2 && $service['price']!=0)
+											{{--*/ $btn_url=url('user/professional_kit'); /*--}}
+											{{--*/ $btn_label='Start'; /*--}}
+										@elseif($service_id == 3 && $service['price']!=0)
+											{{--*/ $btn_url=url('skill_development/videos'); /*--}}
+											{{--*/ $btn_label='Start'; /*--}}
+										@elseif($service_id == 4 )
+											{{--*/ $btn_url=url('/user/global/dashboard'); /*--}}
+											{{--*/ $btn_label='Start'; /*--}}
+										@else
+											{{--*/ $btn_url=url('user/dashboard'); /*--}}
+											{{--*/ $btn_label='Start'; /*--}}
+										@endif
+										<a href="{{ $btn_url }}" class="service_btn" type="button">{{ $btn_label }}</a>
+									@endif
+								</div>
 						</div>
-						<div class="hover_column">
-							{!! substr($service['user_dashboard_desc'], 0, 300) !!}
-						</div>
-						<div class="button-block text-center">
-							<div class="hr-right"></div>
-							@if($service['price'] == 0)
-								<a href="{{ $service['url'] }}"  class="applynow service_btn" >Start</a>
-							@elseif($service['purchased']=='no')
-								<form action="{{  url('service/payment/'.$service_id) }}" method="get">
-									<input type="hidden"name="service_id" value="{{ $service_id }}">
-									{{ csrf_field() }}
-									<button type="submit" class="applynow service_btn" >Start</button>
-								</form>
-							@else
-								@if ($service_id == 1 && $service['price']==0)
-								{{--*/ $btn_url=url('global_orientation_test'); /*--}}
-								{{--*/ $btn_label='Start test'; /*--}}
-								@elseif($service_id == 2 && $service['price']!=0)
-									{{--*/ $btn_url=url('user/professional_kit'); /*--}}
-									{{--*/ $btn_label='Start'; /*--}}
-								@elseif($service_id == 3 && $service['price']!=0)
-									{{--*/ $btn_url=url('skill_development/videos'); /*--}}
-									{{--*/ $btn_label='Start'; /*--}}
-								@elseif($service_id == 4 )
-									{{--*/ $btn_url=url('/user/global/dashboard'); /*--}}
-									{{--*/ $btn_label='Start'; /*--}}
-								@else
-									{{--*/ $btn_url=url('user/dashboard'); /*--}}
-									{{--*/ $btn_label='Start'; /*--}}
-								@endif
-								<a href="{{ $btn_url }}" class="service_btn" type="button">{{ $btn_label }}</a>
-							@endif
-						</div>
-				</div>
+					</div>
+				@endforeach
 			</div>
-		@endforeach
-				</div></div>
 		</div>
-	@endif
-<div class="clearfix">
 	</div>
+	@endif
+	<div class="clearfix"></div>
 <!-- @if(count($user_unpaid_services)>0)
 		<div class="col-md-12">
 		<div class="box">
