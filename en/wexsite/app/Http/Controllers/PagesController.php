@@ -215,9 +215,12 @@ class PagesController extends CustomBaseController {
 		$user = Auth::user();
 		// Culture Match
 		$culture_match_survey_obj = CultureMatchSurvey::where('user_id',$user->id);
+
+
 		if($culture_match_survey_obj->count() > 0){
 			$culture_match_survey = $culture_match_survey_obj->first(['status'])->toArray();
 			$noti_msg_url = '#';
+
 			if($culture_match_survey['status'] == 1){
 				// Dream Check Lab
 				$dreamcheck_lab = DreamCheckLab::where('user_id',$user->id)->first(['id','validate','validate_by']);
@@ -239,21 +242,22 @@ class PagesController extends CustomBaseController {
 						else {
 							$noti_msg = 'Your Dream Check Lab form has been validated';
 						}
-					}
-					else {
+					} else {
 						$noti_msg = 'You have submitted the Dream Check Lab form. You are now being matched to your consultant. He or she will review the forms you have submitted within 3 working days.';
 					}
-				}
-				else {
+				} else {
 					$noti_msg = 'You didn\'t submit the Dream Check Lab form yet, '. link_to_route("dream.check.lab", "Click here", array(), array("class" => "")).' to complete the professional kit steps and get expert advice to achieve your career goal.';
 				}
+
 				$dash_noti[] = ['heading'=>'Dream Check Lab','noti_msg' => $noti_msg,'noti_url'=>$noti_msg_url];
-			}
-			else{
+			} else {
+
 				$noti_msg = link_to_route("professional.kit", "Click here", array(), array("class" => "")).' to proceed the first step.';
 				$dash_noti[] = ['heading'=>'First Step','noti_msg' => $noti_msg,'noti_url'=>$noti_msg_url];
 			}
 		}
+
+
 		//$data['dreamcheck_lab'] = $dreamcheck_lab;
 		$data['notifications'] = $dash_noti;
 
@@ -262,36 +266,44 @@ class PagesController extends CustomBaseController {
 	}
 
 	public function client_dashboard() {
+
 		$all_notifications = [];
 		$dash_noti = [];
 
 		//Professional Kit status
 		$order = Order::where('user_id',Auth::user()->id)->where('item_name','Professional Kit')->first();
+
+
 		if($order != null) {
+
+			//dd($order);
 
 			if ($order->step_id == -1) {
 				$dash_noti[] = ['heading' => 'Start Process',
-					'noti_msg' => link_to_route("professional.kit", "Click here", array(), array("class" => "")) . ' to begin the process.',
-					'noti_url' => '',
-				];
+								'noti_msg' => link_to_route("professional.kit", "Click here", array(), array("class" => "")) . ' to begin the process.',
+								'noti_url' => '',
+								];
 			}
 
 			if ($order->step_id == 0) {
 				$dash_noti[] = ['heading' => 'Market Analysis',
-					'noti_msg' => link_to_route("market_analysis", "Click here", array(), array("class" => "")) . ' to proceed the First step.',
-					'noti_url' => ''];
+								'noti_msg' => link_to_route("market_analysis", "Click here", array(), array("class" => "")) . ' to proceed the First step.',
+								'noti_url' => ''
+								];
 			}
 
 			if ($order->step_id == 1) {
 				$dash_noti[] = ['heading' => 'Culture Match',
-					'noti_msg' => link_to_route("culture_match", "Click here", array(), array("class" => "")) . ' to proceed the Second step.',
-					'noti_url' => ''];
+								'noti_msg' => link_to_route("culture_match", "Click here", array(), array("class" => "")) . ' to proceed the Second step.',
+								'noti_url' => ''
+								];
 			}
 
 			if ($order->step_id == 2) {
 				$dash_noti[] = ['heading' => 'Culture Match',
-					'noti_msg' => link_to_route("culture_match", "Click here", array(), array("class" => "")) . '  please complete the Second step to move further.',
-					'noti_url' => ''];
+								'noti_msg' => link_to_route("culture_match", "Click here", array(), array("class" => "")) . ' please complete the Second step to move further.',
+								'noti_url' => ''
+								];
 			}
 
 			if ($order->step_id == 3) {
@@ -304,7 +316,7 @@ class PagesController extends CustomBaseController {
 						$heading = "Wait For Consultant Feedback";
 					}
 
-				$dash_noti[] = ['heading' => $heading,
+					$dash_noti[] = ['heading' => $heading,
 					'noti_msg' => link_to_route("dream.check.lab", "Click here", array(), array("class" => "")) . ' to proceed to the third step.',
 					'noti_url' => $noti_url];
 			}
@@ -313,7 +325,7 @@ class PagesController extends CustomBaseController {
 			if ($order->step_id == 4) {
 				$dreamcheck_lab = DreamCheckLab::where('user_id', Auth::user()->id)->first();
 				$validate_by = $dreamcheck_lab->validate_by;  // se crea errore (nei test!) --> in DB: "Orders" tab.--> step_id = 3 o meno
-				
+
 				$consultant = User::find($validate_by);
 				$consultant_name = '';
 
@@ -327,10 +339,10 @@ class PagesController extends CustomBaseController {
 
 				$user_id = Auth::user()->id;
 				$bookings = ConsultantBooking::where('user_id', $user_id)
-											->where('status','!=',0)
-											->where('type_id', ConsultantBooking::TYPE_INTERVIEW)  // 0 --> career orientation session
-											->get();
-				
+				->where('status','!=',0)
+				->where('type_id', ConsultantBooking::TYPE_INTERVIEW)  // 0 --> career orientation session
+				->get();
+
 				if ($bookings == null || count($bookings) == 0) {
 					$number = 'first';
 				}elseif(count($bookings) == 1) {
@@ -340,19 +352,20 @@ class PagesController extends CustomBaseController {
 				}
 
 				$dash_noti[] = ['heading' => 'Career Orientation Session',
-					'noti_msg' => 'Your Dream Check Lab form has been validated by <b>' . $consultant_name . '</b>. To check consultant feedback ' . link_to_route("user.mydocuments", "Click here", [], array("class" => "")) . '.<br/>Please proceed to book your <b>'.$number.'</b> session Call with your consultant or go to your "<a href="/en/user/steady_aim_shoot" target="_blank"><b>Steady Aim Shoot</b></a>" section to view your Documents.<br/><a style="margin-top:15px;" class="btn btn-lg btn-success" href="' . url('user/role_play_interview') . '">CAREER ORIENTATION SESSION <span class="glyphicon glyphicon-chevron-right"></span></a>',
-					'noti_url' => ''];
+				'noti_msg' => 'Your Dream Check Lab form has been validated by <b>' . $consultant_name . '</b>. To check consultant feedback ' . link_to_route("user.mydocuments", "Click here", [], array("class" => "")) . '.<br/>Please proceed to book your <b>'.$number.'</b> session Call with your consultant or go to your "<a href="/en/user/steady_aim_shoot" target="_blank"><b>Steady Aim Shoot</b></a>" section to view your Documents.<br/><a style="margin-top:15px;" class="btn btn-lg btn-success" href="' . url('user/role_play_interview') . '">CAREER ORIENTATION SESSION <span class="glyphicon glyphicon-chevron-right"></span></a>',
+				'noti_url' => ''];
 			}
 
 
 			if ($order->step_id == 5) {
 				$dash_noti[] = ['heading' => 'Steady Aim Shoot',
-					'noti_msg' => link_to_route("steady_aim_shoot", "Click here", array(), array("class" => "")) . ' to proceed to last step.',
-					'noti_url' => ''];
+								'noti_msg' => link_to_route("steady_aim_shoot", "Click here", array(), array("class" => "")) . ' to proceed to last step.',
+								'noti_url' => ''];
 			}
 
 			//Check Culture match
 			$culture_match = CultureMatchSurvey::where('user_id',\Auth::user()->id)->first();
+
 			if($culture_match != null) {
 				if ($culture_match->is_pdf_sent == 1) {
 					$dash_noti [] = [
@@ -362,6 +375,7 @@ class PagesController extends CustomBaseController {
 					];
 				}
 			}
+
 			$all_notifications[] = [
 				'heading' => 'Professional Kit',
 				'notifications' => $dash_noti
@@ -380,70 +394,85 @@ class PagesController extends CustomBaseController {
 		$user_free_service=Service::where('type','free')->first();
 		$services[]=$user_free_service->id;
 		$user_services=Order::where('user_id',$user_id)->where('item_type','service')->get();
+
 		foreach($user_services as $user_service){
 			$services[]=$user_service->item_id;
 		}
+
 		$services_obj=Service::whereIn('id',$services)->get();
 		$user_services=array();
+
 		if($services_obj->count() > 0){
 			foreach($services_obj as $service){
-                $url = '';
-                if($service->name == 'Skill Development') {
-                    $url = url('skill_development/browse');
-                }elseif($service->name == 'Global Orientation Test') {
-                    $url = url('/global_orientation_test');
-                }elseif($service->name == 'Global Toolbox') {
-                    $url = url('/global_toolbox');
-                }elseif($service->name == 'Professional Kit') {
-                    $url = url('/professional_kit');
-                }
+				$url = '';
+				if($service->name == 'Skill Development') {
+					$url = url('skill_development/browse');
+				}elseif($service->name == 'Global Orientation Test') {
+					$url = url('/global_orientation_test');
+				}elseif($service->name == 'Global Toolbox') {
+					$url = url('/global_toolbox');
+				}elseif($service->name == 'Professional Kit') {
+					$url = url('/professional_kit');
+				}
 				$user_services[$service->id]=array(
-																		'purchased'=>'yes',
-																		'name'=>$service->name,
-																		'image'=>$service->image,
-																		'user_dashboard_image'=>$service->user_dashboard_image,
-																		'price'=>$service->price,
-																		'description'=>$service->description,
-																		'user_dashboard_desc'=>$service->user_dashboard_desc,
-                                                                        'url' => $url,
-																		);
+					'purchased'=>'yes',
+					'name'=>$service->name,
+					'image'=>$service->image,
+					'user_dashboard_image'=>$service->user_dashboard_image,
+					'price'=>$service->price,
+					'description'=>$service->description,
+					'user_dashboard_desc'=>$service->user_dashboard_desc,
+					'url' => $url,
+				);
 			}
 		}
+
 		$unpaid_services_obj=Service::whereNotIn('id',$services)->get();
 		$user_unpaid_services=array();
+
+
 		if($unpaid_services_obj->count() > 0){
+
 			foreach($unpaid_services_obj as $unpaid_service){
-                $url = '';
-                if($unpaid_service->name == 'Skill Development') {
-                    $url = url('skill_development/browse');
-                }elseif($unpaid_service->name == 'Global Orientation Test') {
-                    $url = url('/global_orientation_test');
-                }elseif($unpaid_service->name == 'Global Toolbox') {
-                    $url = url('/global_toolbox');
-                }elseif($unpaid_service->name == 'Professional Kit') {
-                    $url = url('/professional_kit');
-                }
+				$url = '';
+				if($unpaid_service->name == 'Skill Development') {
+					$url = url('skill_development/browse');
+				}elseif($unpaid_service->name == 'Global Orientation Test') {
+					$url = url('/global_orientation_test');
+				}elseif($unpaid_service->name == 'Global Toolbox') {
+					$url = url('/global_toolbox');
+				}elseif($unpaid_service->name == 'Professional Kit') {
+					$url = url('/professional_kit');
+				}
 				$user_unpaid_services[$unpaid_service->id]=array(
-													'purchased'=>'no',
-													'name'=>$unpaid_service->name,
-													'image'=>$unpaid_service->image,
-													'user_dashboard_image'=>$unpaid_service->user_dashboard_image,
-													'price'=>$unpaid_service->price,
-													'description'=>$unpaid_service->description,
-													'user_dashboard_desc'=>$unpaid_service->user_dashboard_desc,
-                                                    'url' => $url
-													);
+					'purchased'=>'no',
+					'name'=>$unpaid_service->name,
+					'image'=>$unpaid_service->image,
+					'user_dashboard_image'=>$unpaid_service->user_dashboard_image,
+					'price'=>$unpaid_service->price,
+					'description'=>$unpaid_service->description,
+					'user_dashboard_desc'=>$unpaid_service->user_dashboard_desc,
+					'url' => $url
+				);
 			}
 		}
+
 		$data['page_title']='Dashboard';
 		$data['user_roles']=$roles;
 		$data['user_services']=$user_services;
 		$data['user_unpaid_services'] = $user_unpaid_services;
-
 		$data['notifications'] = $all_notifications;
 		$data['page_title'] = 'Dashboard';
+
+
+
 		return view('client.client_dashboard',$data);
+
 	}
+
+
+
+
 
 
 	public function services(){

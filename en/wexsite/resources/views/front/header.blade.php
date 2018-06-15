@@ -139,7 +139,7 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
                 </div>
             </div>
             <!-- Header -  Logo and Menu area -->
-            <div id="Top_bar" style="z-index: 999;">
+            <div id="Top_bar" style="z-index: 99999;">
                 <div class="container">
                     <div class="column one">
                         <div class="top_bar_left clearfix">
@@ -163,20 +163,36 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
                                                 @endforeach
                                             @endif
                                             @if(!\Auth::check())
-                                            <li>
-                                                <a href="{{ url('auth/login') }}"><span>Login</span></a>
-                                            </li>
+                                                <li>
+                                                    <a href="{{ url('auth/login') }}"><span>Login</span></a>
+                                                </li>
                                             @else
-                                            <li>
-                                                <a href="{{ url('auth/logout') }}"><span>Logout</span></a>
-                                            </li>
+                                                <li>
+                                                    <a href="{{ url('auth/logout') }}"><span>Logout</span></a>
+                                                </li>
                                                 @if(\Auth::user()->isConsultant())
                                                     <li>
-                                                        <a href="/en/consultant/dashboard"><span><img src="/en/frontend/immagini/user.png" alt="" /></span></a>
+                                                        <a href="/en/consultant/dashboard" style="padding-top: 10px;">
+                                                            <span>
+                                                                @if(!empty(Auth::user()->consultantProfile->profile_picture))
+                                                                    <img class="img-circle" src="{{asset(Auth::user()->consultantProfile->profile_picture) }}" alt="" width="40px" height="40px"/>                                                                    
+                                                                @else
+                                                                    <img class="img-circle" src="/en/frontend/immagini/user.png" alt="" />
+                                                                @endif
+                                                            </span>
+                                                        </a>
                                                     </li>
                                                 @else
                                                     <li>
-                                                        <a href="/en/user/dashboard"><span><img src="/en/frontend/immagini/user.png" alt="" /></span></a>
+                                                        <a href="/en/user/dashboard" style="padding-top: 10px;">
+                                                            <span>
+                                                                @if(!empty(Auth::user()->userProfile->profile_picture))
+                                                                    <img class="img-circle" src="{{ asset(Auth::user()->userProfile->profile_picture) }}" alt="" width="40px" height="40px" />
+                                                                @else
+                                                                    <img class="img-circle" src="/en/frontend/immagini/user.png" alt="" />
+                                                                @endif
+                                                            </span>
+                                                        </a>
                                                     </li>
                                                 @endif
                                             @endif
