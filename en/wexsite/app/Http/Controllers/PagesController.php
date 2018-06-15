@@ -554,17 +554,23 @@ class PagesController extends CustomBaseController {
 		$outcome_data=array();
 		$question_data=array();
 		$last_question=false;
-		$choice_id=$request['choice'];
+		$choice_id=$request['choice'];  // es 19 for LAST input
 		$question_id=$request['question_id'];
-		$question=GlobalTest::where('parent_choice',$choice_id)->first();
-		if(!empty($question)){
-			$question_data=array('id' => $question->id,
+		$question=GlobalTest::where('parent_choice',$choice_id)->first();   // for LAST question : null
+		// dd($question);
+
+		// first questions
+		if(!empty($question)){  // not last question
+			
+			$question_data = array('id' => $question->id,
 						'question' => $question->question,
 						'parent_choice' => $question->parent_choice,
-						'choice'=>$question->questionChoices,
+						'choice' => $question->questionChoices,  // foreign key
 						);
-		} else{
+		} else {  // last question
+			
 			$outcome=GlobalTestOutcomes::where('choice_id',$choice_id)->first();
+
 			if(empty($outcome)){
 				$outcome_data=array('id' => '',
 							'outcome_name' => 'Anonymous',
@@ -582,6 +588,9 @@ class PagesController extends CustomBaseController {
 				$user_id=Auth::User()->id;
 				$global_test=GlobalTestResult::create(['user_id'=>$user_id,'outcome_id'=>$outcome->id]);
 
+
+
+
 				// admin notification
 				$user = User::findOrFail($user_id);
 		        Mail::send('emails.global_orient_test_admin_notif', ['user' => $user], function($m) use ($user) {
@@ -593,15 +602,22 @@ class PagesController extends CustomBaseController {
 		        });
 
 
+
+
 			}
 			$last_question=true;
 		}
+
+
 		$data['page_title']='';
 		$data['question']=$question_data;
 		$data['outcome_data']=$outcome_data;
 		$data['last_question']=$last_question;
+
 		return view('front.global_test',$data);
 	}
+
+
 
 	public function partners() {
 		$partners = Partners::all();
