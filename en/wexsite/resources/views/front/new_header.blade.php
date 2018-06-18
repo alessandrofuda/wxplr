@@ -90,10 +90,10 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
                         <!-- Header - contact info area
                         <ul class="contact_details">
                             <li class="phone">
-                                <i class="icon-clock"></i>{{ isset($settings) ? $settings->timings : "MON - SAT: 9.00 - 18.00" }}
+                                <i class="icon-clock"></i>{{-- isset($settings) ? $settings->timings : "MON - SAT: 9.00 - 18.00" --}}
                             </li>
                             <li class="mail">
-                                <i class="icon-mail-line"></i><a style="color:#ffffff;" href="mailto:{{ isset($settings) ? $settings->website_email  : 'info@wexplore.com'}}"> {{ isset($settings) ? $settings->website_email  : 'info@wexplore.com'}}</a>
+                                <i class="icon-mail-line"></i><a style="color:#ffffff;" href="mailto:{{-- isset($settings) ? $settings->website_email  : 'info@wexplore.com' --}}"> {{-- isset($settings) ? $settings->website_email  : 'info@wexplore.com' --}}</a>
                             </li>
                         </ul>-->
                         <!--Social info area
@@ -148,33 +148,58 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
                             <!-- Main menu-->
                                 <div class="menu_wrapper">
                                     <nav id="menu">
-                                        <ul class="menu" id="menu-main-menu">
+                                        <ul class="menu" id="menu-main-menu" style="margin-bottom: auto;">
                                             @if(isset($navigation))
                                                 @foreach ($navigation as $nav)
                                                     <li  id="menu-item-1354"  class="{{\Route::getCurrentRoute()->getPath() == url($nav->path) ? "current_page_item" : ""}}" ><a href="{{ url($nav->path) }}"><span>{{ $nav->title }}</span></a></li>
                                                 @endforeach
                                             @endif
+
                                             @if(!\Auth::check())
-                                            <li>
-                                                <a href="{{ url('auth/login') }}"><span>Login</span></a>
-                                            </li>
+                                                <li>
+                                                    <a href="{{ url('auth/login') }}"><span>Login</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="/it"><span><img src="/en/frontend/immagini/Flag-ita.jpg" alt="" /></span></a>
+                                                </li>
                                             @else
-                                            <li>
-                                                <a href="{{ url('auth/logout') }}"><span>Logout</span></a>
-                                            </li>
+                                                <li>
+                                                    <a href="{{ url('auth/logout') }}"><span>Logout</span></a>
+                                                </li>
+
+
+
+
                                                 @if(\Auth::user()->isConsultant())
                                                     <li>
-                                                        <a href="/en/consultant/dashboard"><span><img src="/en/frontend/immagini/user.png" alt="" /></span></a>
+                                                        <a href="/en/consultant/dashboard" style="padding-bottom: 10px;">
+                                                            <span>Dashboard 
+                                                                @if (!empty(Auth::user()->consultantProfile->profile_picture))
+                                                                    <img class="img-circle" src="{{asset(Auth::user()->consultantProfile->profile_picture) }}" alt="" width="35px" height="35px"/>
+                                                                @else
+                                                                    <img class="img-circle" src="/en/frontend/immagini/user.png" alt="" />
+                                                                @endif
+                                                            </span>
+                                                        </a>
                                                     </li>
+
+
+
                                                 @else
                                                     <li>
-                                                        <a href="/en/user/dashboard"><span><img src="/en/frontend/immagini/user.png" alt="" /></span></a>
+                                                        <a href="/en/user/dashboard" style="padding-bottom: 10px;">
+                                                            <span>Dashboard 
+                                                                @if (!empty(Auth::user()->userProfile->profile_picture))
+                                                                    <img class="img-circle" src="{{ asset(Auth::user()->userProfile->profile_picture) }}" alt="" width="35px" height="35px" />
+                                                                @else
+                                                                    <img class="img-circle" src="/en/frontend/immagini/user.png" alt="" />
+                                                                @endif
+                                                                
+                                                            </span>
+                                                        </a>
                                                     </li>
                                                 @endif
                                             @endif
-                                            <li>
-                                                <a href="/it"><span><img src="/en/frontend/immagini/Flag-ita.jpg" alt="" /></span></a>
-                                            </li>
 
                                         </ul>
                                     </nav><a href="#" class="responsive-menu-toggle "><i class="icon-menu"></i></a>

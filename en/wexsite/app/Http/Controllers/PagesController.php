@@ -550,7 +550,7 @@ class PagesController extends CustomBaseController {
 		return view('client.services',$data);
 	}
 
-	public function global_online_test(){
+	public function global_online_test(Request $request){
 		// $order = Order::where('item_name','Global Orientation Test')->where('user_id', \Auth::user()->id)->first();
 		//
 		// if($order == null) {
@@ -570,13 +570,15 @@ class PagesController extends CustomBaseController {
 		$outcome_data=array();
 		$user_id = Auth::user()->id;
 		$compiled = GlobalTestResult::where('user_id', $user_id)->get();
+
+
+		$query_string = $request->query('force');
+
 		
-		if(count($compiled) > 0) {
+		if(count($compiled) > 0 && $query_string != 'recompile') {  // .. and NOT force=recompile ..
 			$global_test_compiled_yet = true;
 			$outcome_id = $compiled->first()->outcome_id;
-		//dd($outcome_id);
 			$outcome = GlobalTestOutcomes::where('id', $outcome_id)->first();
-		// dd($outcome);
 			$outcome_data=array('id' => $outcome->id,
 							'outcome_name' => $outcome->outcome_name,
 							'outcome_image' => $outcome->outcome_image,
@@ -664,6 +666,7 @@ class PagesController extends CustomBaseController {
 		$data['question']=$question_data;
 		$data['outcome_data']=$outcome_data;
 		$data['last_question']=$last_question;
+		$data['global_test_compiled_yet']=false;
 
 		return view('front.global_test',$data);
 	}

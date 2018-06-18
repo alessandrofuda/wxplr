@@ -45,6 +45,6 @@
     </section>
     <!-- /.content -->
   </div>
-   </div>
+</div>
   @include('front.footer')
 @yield('footer_resources')

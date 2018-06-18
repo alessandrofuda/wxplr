@@ -28,6 +28,7 @@ h2.Question_heading{float:left;width:100%;color:#2087c8}
 .ask-Question button.next:hover{background-color:#55B241}
 .ask-Question button.next:after{content:'';background:url(../images/next-arrow.png) no-repeat;position:absolute;width:22px;height:15px;top:16px;left:111px;opacity:0;background-size:68%;background-position:center;transition:all .5s}
 .ask-Question button.next:hover:after{content:'';background:url(../images/next-arrow.png) no-repeat;position:absolute;width:22px;height:15px;top:18px;left:150px;opacity:1;background-size:68%;background-position:center;transition:all .5s}
+.back { text-align: right; color:#2087c8; font-size: 110%;}
 .download-cls{font-size:14px}
 a.tooltips{position:relative;display:inline}
 a.tooltips span{position:absolute;width:300px;color:#FFF;background:#000;height:40px;line-height:40px;text-align:center;visibility:hidden;border-radius:6px}

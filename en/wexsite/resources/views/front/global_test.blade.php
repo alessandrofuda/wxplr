@@ -25,7 +25,13 @@
 		<div class="global-test-container content box">
 
 			@if ( ($last_question && !empty($outcome_data)) || ($global_test_compiled_yet === true && !empty($outcome_data)) )
-
+				
+				@if ($global_test_compiled_yet === true && !empty($outcome_data))
+				
+					<div class="alert alert-info">You have already completed the <b>Global Orientation Test</b>. If you want to recompile click <a href="{{ asset('global_orientation_test?force=recompile') }}">here</a> otherwise <a href="#proceed">proceed to Professional Kit</a></div>
+				
+				@endif
+				
 				<h2>You are a – {{ $outcome_data['outcome_name'] }}</h2>
 				<div class="col-md-12 outcome-content">
 
@@ -54,9 +60,6 @@
 
 				</div>
 			@else
-				{{-- @if ($global_test_compiled_yet === true)
-					<div class="alert alert-danger">You have already completed the <b>Global Orientation Test</b><br/>If you want to recompile click <a class="">here</a> otherwise proceed to Professional Kit [cambiare--> portare l'utente direttamente alla sezione "You are a – ...."]</div>
-				@endif --}}
 				<div class="box-header"> {{-- NOT last question --}}
 				  <h2 class="Question_heading"><span class="glyphicon glyphicon-triangle-right"></span>{{ $question['question'] }}</h2>
 				</div>
@@ -78,25 +81,34 @@
 						<input type="hidden" name="question_id" value="{{ $question['id'] }}"/>
 						{{ csrf_field() }}
 						<button type="submit" value="" class="next btn btn-primary"><span>Next</span></button>
+						<div class="back"><i class="fa fa-arrow-left" aria-hidden="true"></i> <a href="">Return Back</a></div>
+						<script>
+							$(document).ready(function(){
+								jQuery('.back a').click(function(){
+									parent.history.back();
+									return false;
+								});
+							});
+						</script>
 					</form>
 				</div>
 			@endif
 		</div>
 </div>
 
-@if ($last_question && !empty($outcome_data))
+@if ( ($last_question && !empty($outcome_data)) || ($global_test_compiled_yet === true && !empty($outcome_data)) )
 <div class="bottom_content">
 	<div class="col-md-8">
 		<p>How can you use this information to your best advantage? How can you get more insights on your target countries? Find out with the <span style="color: #2087C8;">Professional Kit!</span></p>
-
+		<a id="proceed" style="position:relative; top:-50px; visibility: hidden;"></a>
 		<a href="{{ url('professional-kit') }}" class="btn btn-success btn-lg btn-block" style="margin:25px auto;">
 			Proceed to <b>Professional Kit</b> <span class="glyphicon glyphicon-triangle-right" style="font-size: 17px; 
 			margin-left: 30px; position: relative; display: inline-block;"></span>
 		</a>
 	</div>
-	<div class="col-md-2 pull-right">
+	<!--div class="col-md-2 pull-right">
 		<a href="{{ url('user/dashboard') }}" class="btn btn-primary back-dashboard"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to dashboard</a>
-	</div>
+	</div-->
 </div>
 @endif
 

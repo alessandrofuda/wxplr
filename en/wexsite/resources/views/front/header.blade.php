@@ -156,7 +156,7 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
                             <!-- Main menu-->
                                 <div class="menu_wrapper">
                                     <nav id="menu">
-                                        <ul class="menu" id="menu-main-menu">
+                                        <ul class="menu" id="menu-main-menu" style="margin-bottom:auto;">
                                             @if(isset($navigation))
                                                 @foreach ($navigation as $nav)
                                                     <li  id="menu-item-1354"  class="{{\Route::getCurrentRoute()->getPath() == url($nav->path) ? "current_page_item" : ""}}" ><a href="{{ url($nav->path) }}"><span>{{ $nav->title }}</span></a></li>
@@ -172,10 +172,10 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
                                                 </li>
                                                 @if(\Auth::user()->isConsultant())
                                                     <li>
-                                                        <a href="/en/consultant/dashboard" style="padding-top: 10px;">
-                                                            <span>
+                                                        <a href="/en/consultant/dashboard" style="padding-bottom: 10px;">
+                                                            <span>Dashboard 
                                                                 @if(!empty(Auth::user()->consultantProfile->profile_picture))
-                                                                    <img class="img-circle" src="{{asset(Auth::user()->consultantProfile->profile_picture) }}" alt="" width="40px" height="40px"/>                                                                    
+                                                                    <img class="img-circle" src="{{asset(Auth::user()->consultantProfile->profile_picture) }}" alt="" width="35px" height="35px"/>                                                                    
                                                                 @else
                                                                     <img class="img-circle" src="/en/frontend/immagini/user.png" alt="" />
                                                                 @endif
@@ -184,10 +184,10 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
                                                     </li>
                                                 @else
                                                     <li>
-                                                        <a href="/en/user/dashboard" style="padding-top: 10px;">
-                                                            <span>
+                                                        <a href="/en/user/dashboard" style="padding-bottom: 10px;">
+                                                            <span>Dashboard 
                                                                 @if(!empty(Auth::user()->userProfile->profile_picture))
-                                                                    <img class="img-circle" src="{{ asset(Auth::user()->userProfile->profile_picture) }}" alt="" width="40px" height="40px" />
+                                                                    <img class="img-circle" src="{{ asset(Auth::user()->userProfile->profile_picture) }}" alt="" width="35px" height="35px" />
                                                                 @else
                                                                     <img class="img-circle" src="/en/frontend/immagini/user.png" alt="" />
                                                                 @endif
