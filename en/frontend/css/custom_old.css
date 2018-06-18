@@ -42,8 +42,8 @@ a:hover.tooltips span{
 
 .social_icon a.first-cls span{background-color:transparent;font-size:17px;margin-right:4px;width:auto}
 .online-test-banner{position:relative}
-.online-test-banner > p{color:#000;display:block;font-size:16px;text-align:left;max-width: 440px;}
-.online-test-banner h2{font-size:37px;color:#55B241;text-transform:uppercase;text-shadow:1px 1px 0 #fff;font-weight:700;letter-spacing:-.3px}
+.online-test-banner > p{color:#000;display:block;font-size:16px;text-align:left;max-width: 410px;}
+.online-test-banner h2{font-size:35px;color:#55B241;text-transform:uppercase;text-shadow:1px 1px 0 #fff;font-weight:700;letter-spacing:-.3px}
 .navbar-inverse .navbar-nav>li>a:before{content:'';position:absolute;width:0;left:0;height:3px;bottom:0;background:#0b639a;right:0;margin:0 auto;-webkit-transition:all .3s;-moz-transition:all .3s;-o-transition:all .3s}
 .navbar-inverse .navbar-nav>li>a:hover{border:none!important}
 .navbar-inverse .navbar-nav>li>a:hover:before{content:'';position:absolute;width:100%;left:0;height:3px;bottom:0;background:#0b639a}
