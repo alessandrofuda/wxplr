@@ -19,8 +19,10 @@ use App\GlobalTestChoices;
 use App\GlobalTestOutcomes;
 use App\GlobalTestResult;
 use App\Service;
-use App\Order;use Mail;
-use Route;use App\Setting;
+use App\Order;
+use Mail;
+use Route;
+use App\Setting;
 use Validator;
 use Carbon;
 use App\DreamCheckLab;
@@ -137,6 +139,18 @@ class PagesController extends CustomBaseController {
 			$tag = MetaTags::where('page_type',MetaTags::PAGE_TYPE_GLOBAL_ORIENTATION)->first();
 		}
 		if($machine_name == 'professional-kit') {
+
+			// if auth user already payed --> must avoid payment page!
+			if (Auth::user() && !Auth::user()->isConsultant()) {
+				
+				$user_id = Auth::user()->id;
+				$order = Order::where('user_id', $user_id)->where('deleted_at', NULL)->get();
+				
+				if (count($order) > 0) {
+					return redirect()->route('professional.kit.step');
+				}
+			}
+
 			$tag = MetaTags::where('page_type',MetaTags::PAGE_TYPE_PROFESSIONAL_KIT)->first();
 		}
 		if($machine_name == 'global-toolbox') {
