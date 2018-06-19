@@ -74,7 +74,7 @@
                                     </a>
                                     <button class="btn btn-primary cv-change"><span class="glyphicon glyphicon-upload"></span> Change CV</button>
                                     <p>
-                                      <a data-toggle="tab" href="#price-tab" class="btn btn-primary" style="margin-top: 15px;">
+                                      <a id="next_1" class="btn btn-primary" style="margin-top: 15px;">
                                         <span class="glyphicon glyphicon-arrow-right"></span> Next
                                       </a>
                                     </p>
@@ -97,9 +97,6 @@
                                   <div class="form-group ch-upl-cv" style="margin-top:20px;">
                                     <input name="submit" type="submit" id="submit_1" value="Change uploaded CV">
                                   </div>
-
-                                  <!--input name="submit_1" type="submit" class="btn btn-success submit-button"  id="next_1" value="Next" {{-- $dream_check_lab['cv_file'] != null ? '' : 'disabled' --}}-->
-
                                   <script>
                                     jQuery('.ch-upl-cv').hide();
                                   </script>    
@@ -113,8 +110,7 @@
 
                           @endif
 
-                               <!--input name="submit_1" type="submit" class="btn btn-success submit-button"  id="next_1" value="Next" {{-- $dream_check_lab['cv_file'] != null ? '' : 'disabled' --}}-->
-                               <input name="submit_1" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading..">
+                          <input name="submit_1" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading..">
                        </div>
                        <div id="price-tab" class="tab-pane fade {{$active == 2 ? "in active" : ""}}">
                            @if(strstr($step,"5"))
@@ -217,17 +213,15 @@
                                <input type="hidden" name="state_id" value="2">
                                <p>NOTE: feel free to use this form as a template to think for more than 3 achievements. In this way, you will have a vast library of ready-made anecdotes and examples during your interviews.</p>
                                <p>Also, start by writing in your own language if it makes you more comfortable, but make sure your consultant will be able to understand what you write! </p>
-                               <!--<p>Please confirm you want to submit the DreamCheck Lab forms: in other words, have you thought of all your best and most rewarding achievements? Did you nail down your USP? If you feel confident that you have presented yourself in the best possible way, please click Save Changes.</p>-->
                                <div class="form-group">
                                    <input name="submit" type="submit" id="submit_2" value="Save Changes and Proceed">
                                </div>
                            </form>
                            @endif
-                           <?php // se tutti i campi sono salvati in db --> attiva pulsante "next" altrimenti disattiva
+                           <?php /* se tutti i campi sono salvati in db --> attiva pulsante "next" altrimenti disattiva */
 
                            ?>
                                <input name="back_1" type="submit" id="back_1" class="btn btn-warning" value="Back">
-                               <!--input name="submit_2" type="submit" id="next_2" class="btn btn-success submit-button" value="Next" title="Save Changes before proceed" disabled-->
                                <input name="loading_2" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading..">
                        </div>
                        <div id="place-tab" class="tab-pane fade {{$active == 3 ? "in active" : ""}}">
@@ -322,11 +316,9 @@
                                <p>Recruiters and prospect employers will not have clear how they can use those profiles, what those profiles can do for them…so they tend to forget these candidates within 15 min!</p>
                                <p>Remember, be as specific as possible! Select an objective that is S.M.A.R.T. (Peter Drucker ©): Specific, Measurable, Achievable, Realistic, Time Related.</p>
                                <p>Also, remember that “wanting a different experience” or “I cannot find a job in my own country” are not the best indicators of your commitment to relocate. Try to come up with reasons related to the content of the job or the kind of company you are addressing. The only “acceptable” personal reason? Having a partner/spouse/family member in the target country!</p>
-                               <!--<p>Please confirm you want to submit the DreamCheck Lab forms: in other words, have you thought of all your best and most rewarding achievements? Did you nail down your USP? If you feel confident that you have presented yourself in the best possible way, please click submit.</p>-->
 
                            @endif
                                <input name="back_2" type="submit" class="btn btn-warning" id="back_2" value="Back">
-                               <!--input name="submit_3" id="next_3" class="btn btn-success submit-button" type="submit" value="Next" title="Save Changes before proceed" disabled-->
                                <input name="loading_3" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading..">
                        </div>
                        <div id="promotion-tab" class="tab-pane fade {{$active == 4  ? "in active" : ""}}">
@@ -356,7 +348,6 @@
                                   <input name="submit_4" id="submit_4" type="submit" value="Save Changes and Proceed">
                                 </div>
                                 <input name="back_3" type="submit" class="btn btn-warning" id="back_3" value="Back">
-                                <!--input name="submit_4" id="next_4" class="btn btn-success" type="submit" value="Next" disabled title="Save Changes before proceed"-->
                               </div>
                               <div id="outro" style="display: none;">
                                 <form id="final_form" method="post" action="{{ url('user/dream_check_lab/submit') }}" enctype="multipart/form-data">
@@ -388,7 +379,6 @@
                               </div>
                               <input type="hidden" name="form_id" value="{{ isset($dream_check_lab['id']) ? $dream_check_lab['id'] : "" }}" id="form_id">
                               <input type="hidden" name="state_id" value="5">
-                               <!--<p>Please confirm you want to submit the DreamCheck Lab forms: in other words, have you thought of all your best and most rewarding achievements? Did you nail down your USP? If you feel confident that you have presented yourself in the best possible way, please click submit.</p>-->
                                <p>Note: After Submitting, you will not be able to edit the forms anymore.</p>
                                <div class="form-group Submit_final_form">
                                   <input name="submit_final" id="submit_final" type="submit" value="Submit Form" class="submit-button">
@@ -402,7 +392,6 @@
                                       <!-- Modal content-->
                                       <div class="modal-content">
                                         <div class="modal-header">
-                                          <!--button type="button" class="close" data-dismiss="modal">&times;</button-->
                                           <h4 class="modal-title text-center">..Please wait a moment..</h4>
                                         </div>
                                         <div class="modal-body text-center">
@@ -411,9 +400,6 @@
                                             <img src="/en/frontend/images/loading.gif" />
                                           </p>  
                                         </div>
-                                        <!--div class="modal-footer">
-                                          <button type="button" class="btn btn-default" data-dismiss="modal" disabled>Close</button>
-                                        </div-->
                                       </div>
 
                                     </div>                                     
@@ -488,8 +474,6 @@
                   submitForm("#form_2"); // go! to custom func 
                   jQuery("#place-li").find("a").attr("href","#place-tab").trigger('click');
                   scrollTo(document.body, 0, 100);
-                  // abilita "Next" button che di default è disabilitato 
-                  //$('#next_2').prop('disabled', false).prop('title','Go Next Step');
               }
           });
 
@@ -503,8 +487,6 @@
                   submitForm("#form_3");
                   jQuery("#promotion-li").find("a").attr("href","#promotion-tab").trigger('click');
                   scrollTo(document.body, 0, 100);
-                  // abilita "Next" button che di default è disabilitato
-                  // $('#next_3').prop('disabled', false).prop('title','Go Next Step');
               }
           });
 
@@ -518,8 +500,6 @@
                   submitForm("#form_4");
                   jQuery("#promo_form").hide();
                   jQuery("#outro").show();
-                  // abilita "Next" button che di default è disabilitato
-                  //$('#next_4').prop('disabled', false).prop('title','Go Next Step');
               }
           });
 
@@ -546,37 +526,17 @@
 
 
 
-          //jQuery("#next_3").click(function() {
-          //    jQuery("#place-li").find("a").attr("href","#place-tab").trigger('click');
-          //    scrollTo(document.body, 0, 100);
-          //});
-          //jQuery("#next_1").click(function() {
-          //    jQuery("#price-li").find("a").attr("href","#price-tab").trigger('click');
-          //    scrollTo(document.body, 0, 100);
-          //});
-
-
-          //jQuery("#next_2").click(function() {  
-          //    jQuery("#place-li").find("a").attr("href","#place-tab").trigger('click');
-          //    scrollTo(document.body, 0, 100);
-          //});
-
-
-          //jQuery("#next_3").click(function() {
-          //    jQuery("#promotion-li").find("a").attr("href","#promotion-tab").trigger('click');
-          //    scrollTo(document.body, 0, 100);
-          //});
-          //jQuery("#next_4").click(function() {
-          //    jQuery("#promo_form").hide();
-          //    jQuery("#outro").show();
-          //});
+          jQuery("#next_1").click(function() {
+              jQuery("#price-li").find("a").attr("href","#price-tab").trigger('click');
+              scrollTo(document.body, 0, 100);
+          });
 
 
 
           jQuery("#submit_final").click(function(e) {
               e.preventDefault();
               var values = jQuery("#final_form").serialize(); // create url encoded string
-              console.log('Valori passati: ' + values);
+              // console.log('Valori passati: ' + values);
 
               jQuery('#submit_final').hide();
               jQuery('.loading-button').css('display', 'block');
