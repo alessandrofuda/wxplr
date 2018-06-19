@@ -69,8 +69,15 @@
                                       jQuery('.cv-up').hide();
                                     </script>
                                   <div class="download-pdf" style="margin-bottom: 20px;">
-                                    <a href="{{ url($dream_check_lab['cv_file']) }}" class="btn btn-primary"><span class = "glyphicon glyphicon-download"></span> Download CV</a>
-                                    <button class="btn btn-primary cv-change"><span class = "glyphicon glyphicon-upload"></span> Change CV</button>
+                                    <a href="{{ url($dream_check_lab['cv_file']) }}" class="btn btn-primary">
+                                      <span class="glyphicon glyphicon-download"></span> Download CV
+                                    </a>
+                                    <button class="btn btn-primary cv-change"><span class="glyphicon glyphicon-upload"></span> Change CV</button>
+                                    <p>
+                                      <a data-toggle="tab" href="#price-tab" class="btn btn-primary" style="margin-top: 15px;">
+                                        <span class="glyphicon glyphicon-arrow-right"></span> Next
+                                      </a>
+                                    </p>
                                     <script>
                                       jQuery(document).ready(function () {
                                         $('.cv-change').on('click', function(){
@@ -90,12 +97,15 @@
                                   <div class="form-group ch-upl-cv" style="margin-top:20px;">
                                     <input name="submit" type="submit" id="submit_1" value="Change uploaded CV">
                                   </div>
+
+                                  <!--input name="submit_1" type="submit" class="btn btn-success submit-button"  id="next_1" value="Next" {{-- $dream_check_lab['cv_file'] != null ? '' : 'disabled' --}}-->
+
                                   <script>
                                     jQuery('.ch-upl-cv').hide();
                                   </script>    
                               @else
                                   <div class="form-group">
-                                    <input name="submit" type="submit" id="submit_1" value="Upload CV">
+                                    <input name="submit" type="submit" id="submit_1" value="Upload CV and Proceed">
                                   </div>
                               @endif 
                               
@@ -103,7 +113,7 @@
 
                           @endif
 
-                               <input name="submit_1" type="submit" class="btn btn-success submit-button"  id="next_1" value="Next" {{ $dream_check_lab['cv_file'] != null ? '' : 'disabled' }}>
+                               <!--input name="submit_1" type="submit" class="btn btn-success submit-button"  id="next_1" value="Next" {{-- $dream_check_lab['cv_file'] != null ? '' : 'disabled' --}}-->
                                <input name="submit_1" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading..">
                        </div>
                        <div id="price-tab" class="tab-pane fade {{$active == 2 ? "in active" : ""}}">
@@ -209,7 +219,7 @@
                                <p>Also, start by writing in your own language if it makes you more comfortable, but make sure your consultant will be able to understand what you write! </p>
                                <!--<p>Please confirm you want to submit the DreamCheck Lab forms: in other words, have you thought of all your best and most rewarding achievements? Did you nail down your USP? If you feel confident that you have presented yourself in the best possible way, please click Save Changes.</p>-->
                                <div class="form-group">
-                                   <input name="submit" type="submit" id="submit_2" value="Save Changes">
+                                   <input name="submit" type="submit" id="submit_2" value="Save Changes and Proceed">
                                </div>
                            </form>
                            @endif
@@ -217,7 +227,7 @@
 
                            ?>
                                <input name="back_1" type="submit" id="back_1" class="btn btn-warning" value="Back">
-                               <input name="submit_2" type="submit" id="next_2" class="btn btn-success submit-button" value="Next" title="Save Changes before proceed" disabled>
+                               <!--input name="submit_2" type="submit" id="next_2" class="btn btn-success submit-button" value="Next" title="Save Changes before proceed" disabled-->
                                <input name="loading_2" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading..">
                        </div>
                        <div id="place-tab" class="tab-pane fade {{$active == 3 ? "in active" : ""}}">
@@ -453,15 +463,18 @@
                   // If the form is invalid, submit it. The form won't actually submit;
                   // this will just cause the browser to display the native HTML5 error messages.
                   jQuery("#form_1").submit();
-              }else { var has_selected_file = jQuery('input[type=file]').filter(function(){
-                  return jQuery.trim(this.value) != ''
-              }).length  > 0 ;
+              }else { 
+                  //var has_selected_file = jQuery('input[type=file]').filter(function(){
+                  //      return jQuery.trim(this.value) != ''
+                  //    }).length  > 0 ;  // bool
 
-              if (has_selected_file) {
-                  /* do something here */
-              }
+                  //if (has_selected_file) {
+                      /* do something here */
+                  //}
                   e.preventDefault();
                   submitForm("#form_1");
+                  jQuery("#price-li").find("a").attr("href","#price-tab").trigger('click');
+                  scrollTo(document.body, 0, 100);
               }
           });
 
@@ -473,8 +486,10 @@
               } else {
                   e.preventDefault();
                   submitForm("#form_2"); // go! to custom func 
+                  jQuery("#place-li").find("a").attr("href","#place-tab").trigger('click');
+                  scrollTo(document.body, 0, 100);
                   // abilita "Next" button che di default è disabilitato 
-                  $('#next_2').prop('disabled', false).prop('title','Go Next Step');
+                  //$('#next_2').prop('disabled', false).prop('title','Go Next Step');
               }
           });
 
@@ -531,16 +546,16 @@
               jQuery("#place-li").find("a").attr("href","#place-tab").trigger('click');
               scrollTo(document.body, 0, 100);
           });
-          jQuery("#next_1").click(function() {
-              jQuery("#price-li").find("a").attr("href","#price-tab").trigger('click');
-              scrollTo(document.body, 0, 100);
-          });
+          //jQuery("#next_1").click(function() {
+          //    jQuery("#price-li").find("a").attr("href","#price-tab").trigger('click');
+          //    scrollTo(document.body, 0, 100);
+          //});
 
 
-          jQuery("#next_2").click(function() {  
-              jQuery("#place-li").find("a").attr("href","#place-tab").trigger('click');
-              scrollTo(document.body, 0, 100);
-          });
+          //jQuery("#next_2").click(function() {  
+          //    jQuery("#place-li").find("a").attr("href","#place-tab").trigger('click');
+          //    scrollTo(document.body, 0, 100);
+          //});
 
 
           jQuery("#next_3").click(function() {
@@ -665,7 +680,8 @@
                         if(typeof data.html != 'undefined') {
                             jQuery("body").html(data.html);
                             jQuery("#form_id").val(data.dream_check_lab_id);
-                            jQuery("#success_modal").modal('show');
+                            //jQuery("#success_modal").modal('show');
+                            console.log('Tab Form saved successfully');
                         }else{
                             jQuery("body").html(data);
                         }
