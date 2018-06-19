@@ -314,7 +314,7 @@
                                </div>
                                <input type="hidden" name="state_id" value="3">
                               <div class="form-group">
-                                   <input name="submit" type="submit" id="submit_3"  value="Save Changes" class="submit-button">
+                                   <input name="submit" type="submit" id="submit_3"  value="Save Changes and Proceed" class="submit-button">
                                </div>
                            </form>
                                <p>NOTE:</p>
@@ -326,7 +326,7 @@
 
                            @endif
                                <input name="back_2" type="submit" class="btn btn-warning" id="back_2" value="Back">
-                               <input name="submit_3" id="next_3" class="btn btn-success submit-button" type="submit" value="Next" title="Save Changes before proceed" disabled>
+                               <!--input name="submit_3" id="next_3" class="btn btn-success submit-button" type="submit" value="Next" title="Save Changes before proceed" disabled-->
                                <input name="loading_3" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading..">
                        </div>
                        <div id="promotion-tab" class="tab-pane fade {{$active == 4  ? "in active" : ""}}">
@@ -353,10 +353,10 @@
                                   <p>NOTE: Did you know that different countries look at different things? Anglosaxon countries are all about achievements, German countries favour expertise, Latin countries appreciate soft skills (problem solving, leadership, creativity…), and Scandinavian countries would look for people skills (teamwork, initiative, motivating others…). Try to put yourself in the other’s shoes and adapt your USP to these cultural-based expectations. </p>
                                 </form>
                                 <div class="form-group">
-                                  <input name="submit_4" id="submit_4" type="submit" value="Save Changes">
+                                  <input name="submit_4" id="submit_4" type="submit" value="Save Changes and Proceed">
                                 </div>
                                 <input name="back_3" type="submit" class="btn btn-warning" id="back_3" value="Back">
-                                <input name="submit_4" id="next_4" class="btn btn-success" type="submit" value="Next" disabled title="Save Changes before proceed">
+                                <!--input name="submit_4" id="next_4" class="btn btn-success" type="submit" value="Next" disabled title="Save Changes before proceed"-->
                               </div>
                               <div id="outro" style="display: none;">
                                 <form id="final_form" method="post" action="{{ url('user/dream_check_lab/submit') }}" enctype="multipart/form-data">
@@ -501,8 +501,10 @@
               } else {
                   e.preventDefault();
                   submitForm("#form_3");
+                  jQuery("#promotion-li").find("a").attr("href","#promotion-tab").trigger('click');
+                  scrollTo(document.body, 0, 100);
                   // abilita "Next" button che di default è disabilitato
-                  $('#next_3').prop('disabled', false).prop('title','Go Next Step');
+                  // $('#next_3').prop('disabled', false).prop('title','Go Next Step');
               }
           });
 
@@ -514,8 +516,10 @@
               }else {
                   e.preventDefault();
                   submitForm("#form_4");
+                  jQuery("#promo_form").hide();
+                  jQuery("#outro").show();
                   // abilita "Next" button che di default è disabilitato
-                  $('#next_4').prop('disabled', false).prop('title','Go Next Step');
+                  //$('#next_4').prop('disabled', false).prop('title','Go Next Step');
               }
           });
 
@@ -542,10 +546,10 @@
 
 
 
-          jQuery("#next_3").click(function() {
-              jQuery("#place-li").find("a").attr("href","#place-tab").trigger('click');
-              scrollTo(document.body, 0, 100);
-          });
+          //jQuery("#next_3").click(function() {
+          //    jQuery("#place-li").find("a").attr("href","#place-tab").trigger('click');
+          //    scrollTo(document.body, 0, 100);
+          //});
           //jQuery("#next_1").click(function() {
           //    jQuery("#price-li").find("a").attr("href","#price-tab").trigger('click');
           //    scrollTo(document.body, 0, 100);
@@ -558,14 +562,14 @@
           //});
 
 
-          jQuery("#next_3").click(function() {
-              jQuery("#promotion-li").find("a").attr("href","#promotion-tab").trigger('click');
-              scrollTo(document.body, 0, 100);
-          });
-          jQuery("#next_4").click(function() {
-              jQuery("#promo_form").hide();
-              jQuery("#outro").show();
-          });
+          //jQuery("#next_3").click(function() {
+          //    jQuery("#promotion-li").find("a").attr("href","#promotion-tab").trigger('click');
+          //    scrollTo(document.body, 0, 100);
+          //});
+          //jQuery("#next_4").click(function() {
+          //    jQuery("#promo_form").hide();
+          //    jQuery("#outro").show();
+          //});
 
 
 
