@@ -677,6 +677,7 @@
 
         // autosave every X sec
         // identify which tab is loading
+        // verify in '.dream_check_lab .nav.nav-tabs li' where class="active" --> fetch the 'id' val.  in tabs  rigo 360 in html ...
 
         // submitForm()
 
