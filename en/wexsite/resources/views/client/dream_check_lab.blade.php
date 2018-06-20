@@ -110,7 +110,7 @@
 
                           @endif
 
-                          <input name="submit_1" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading..">
+                          <!--input name="submit_1" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading.."-->
                        </div>
                        <div id="price-tab" class="tab-pane fade {{$active == 2 ? "in active" : ""}}">
                            @if(strstr($step,"5"))
@@ -215,6 +215,7 @@
                                <p>Also, start by writing in your own language if it makes you more comfortable, but make sure your consultant will be able to understand what you write! </p>
                                <div class="form-group">
                                    <input name="submit" type="submit" id="submit_2" value="Save Changes and Proceed">
+                                   <img class="loading" src="{{asset('frontend/images/icons/loading_small.gif')}}" style="display: none;" width="30" height="30">
                                </div>
                            </form>
                            @endif
@@ -222,7 +223,7 @@
 
                            ?>
                                <input name="back_1" type="submit" id="back_1" class="btn btn-warning" value="Back">
-                               <input name="loading_2" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading..">
+                               <!--input name="loading_2" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading.."-->
                        </div>
                        <div id="place-tab" class="tab-pane fade {{$active == 3 ? "in active" : ""}}">
                            @if(strstr($step,"5"))
@@ -309,6 +310,7 @@
                                <input type="hidden" name="state_id" value="3">
                               <div class="form-group">
                                    <input name="submit" type="submit" id="submit_3"  value="Save Changes and Proceed" class="submit-button">
+                                   <img class="loading" src="{{asset('frontend/images/icons/loading_small.gif')}}" style="display: none;" width="30" height="30">
                                </div>
                            </form>
                                <p>NOTE:</p>
@@ -319,7 +321,7 @@
 
                            @endif
                                <input name="back_2" type="submit" class="btn btn-warning" id="back_2" value="Back">
-                               <input name="loading_3" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading..">
+                               <!--input name="loading_3" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading.."-->
                        </div>
                        <div id="promotion-tab" class="tab-pane fade {{$active == 4  ? "in active" : ""}}">
                            @if(strstr($step,"5"))
@@ -346,6 +348,7 @@
                                 </form>
                                 <div class="form-group">
                                   <input name="submit_4" id="submit_4" type="submit" value="Save Changes and Proceed">
+                                  <img class="loading" src="{{asset('frontend/images/icons/loading_small.gif')}}" style="display: none;" width="30" height="30">
                                 </div>
                                 <input name="back_3" type="submit" class="btn btn-warning" id="back_3" value="Back">
                               </div>
@@ -437,11 +440,13 @@
 	 <script src="{{ asset('frontend/js/jquery-2.1.4.min.js') }}"></script>
 	 <script src="{{ asset('frontend/js/jquery.ui.js') }}"></script>
     <script>
-        jQuery.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-            }
-        });
+        // jQuery.ajaxSetup({
+        //    headers: {
+        //        'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+        //    }
+        // });
+
+
         jQuery(document).ready(function () {
 
           jQuery("#submit_1").click(function(e) {
@@ -600,7 +605,7 @@
                       scrollTo(document.body, 0, 100);
                   }
               });
-          });
+          }); // #submit_final
 
 
         function submitForm(form) {
@@ -609,13 +614,13 @@
                 // this will just cause the browser to display the native HTML5 error messages.
                 jQuery(form).submit();
             }else {
-                jQuery("#loading_button").show();
-                jQuery("#submit-button").hide();
+                jQuery(form+" img.loading").show();  // riattivare dopo il success ... !!
+                jQuery(form+' :input[type="submit"]').prop('disabled', true);
 
                 var fd = new FormData();
                 var has_selected_file = jQuery('input[type=file]').filter(function(){
                             return jQuery.trim(this.value) != ''
-                        }).length  > 0 ;
+                        }).length  > 0 ;  // bool
 
                 if (has_selected_file) {
                     var file_data = jQuery('input[type="file"]')[0].files; // for multiple files
@@ -623,15 +628,19 @@
                         fd.append("upload_cv", file_data[i]);
                     }
                 }
+
                 var other_data = jQuery(form).serializeArray();
+
                 jQuery.each(other_data, function (key, input) {
                     fd.append(input.name, input.value);
                 });
                 var token = jQuery('input[name="_token"]').attr('value');
                 fd.append("_token", "{{ csrf_token() }}");
+
                 console.log(form);
                 console.log(jQuery(form).attr('action'));
                 console.log(token);
+
                 jQuery.ajax({
                     headers: {
                         'X-CSRF-TOKEN': jQuery('input[name="_token"]').attr('value')
@@ -650,20 +659,49 @@
                             jQuery("body").html(data);
                         }
 
-                        scrollTo(document.body, 0, 100);
+                        // scrollTo(document.body, 0, 100);
                     },
                     cache: false,
                     contentType: false,
                     processData: false,
                     complete:function() {
-                        jQuery(".loading_button").hide();
-                        jQuery(".submit-button").show();
+                        jQuery(form+" img.loading").hide(); 
+                        jQuery(form+' :input[type="submit"]').prop('disabled', false);
                     }
                 });
                 return false;
             }
 
         }
+
+
+        // autosave every X sec
+        // identify which tab is loading
+
+        // submitForm()
+
+        
+
+        window.setInterval(function(){
+
+            console.log('Autosave test: '+ Math.random());
+        
+        }, 3000);
+
+
+
+
+        // second method
+        // (function(){
+            // do some stuff
+            
+        //    setTimeout(function(){
+        //      console.log('test');
+        //    }, 3000);
+        // })();
+
+
+
 
         });
     </script>
