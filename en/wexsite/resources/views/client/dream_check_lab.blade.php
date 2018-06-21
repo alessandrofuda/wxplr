@@ -345,11 +345,11 @@
                                   </div>
                                   <input type="hidden" name="state_id" value="4">
                                   <p>NOTE: Did you know that different countries look at different things? Anglosaxon countries are all about achievements, German countries favour expertise, Latin countries appreciate soft skills (problem solving, leadership, creativity…), and Scandinavian countries would look for people skills (teamwork, initiative, motivating others…). Try to put yourself in the other’s shoes and adapt your USP to these cultural-based expectations. </p>
+                                  <div class="form-group">
+                                    <input name="submit_4" id="submit_4" type="submit" value="Save Changes and Proceed">
+                                    <img class="loading" src="{{asset('frontend/images/icons/loading_small.gif')}}" style="display: none;" width="30" height="30">
+                                  </div>
                                 </form>
-                                <div class="form-group">
-                                  <input name="submit_4" id="submit_4" type="submit" value="Save Changes and Proceed">
-                                  <img class="loading" src="{{asset('frontend/images/icons/loading_small.gif')}}" style="display: none;" width="30" height="30">
-                                </div>
                                 <input name="back_3" type="submit" class="btn btn-warning" id="back_3" value="Back">
                               </div>
                               <div id="outro" style="display: none;">
@@ -424,9 +424,8 @@
             </div>
             @endif
         </div>
-    <div id="success_modal" class="modal fade" role="dialog">
+    <!--div id="success_modal" class="modal fade" role="dialog">
         <div class="modal-dialog">
-            <!-- Modal content-->
             <div class="modal-content" style="border-radius: 10px;">
                 <div class="modal-header" style="border-bottom: none;">
                     <button type="button" class="close" style="font-size: 200%;" data-dismiss="modal">&times;</button>
@@ -434,7 +433,7 @@
                 </div>
             </div>
         </div>
-    </div><!-- end Modal -->
+    </div--><!-- end Modal -->
     </div>
 
 	 <script src="{{ asset('frontend/js/jquery-2.1.4.min.js') }}"></script>
@@ -608,13 +607,16 @@
           }); // #submit_final
 
 
-        function submitForm(form) {
-            if (!jQuery(form)[0].checkValidity()) {
+        function submitForm(form, autosave) {
+            
+            autosave = (typeof autosave === 'undefined') ? false : true;  // optional param and default value
+
+            if (!jQuery(form)[0].checkValidity() && autosave === false) {
                 // If the form is invalid, submit it. The form won't actually submit;
                 // this will just cause the browser to display the native HTML5 error messages.
                 jQuery(form).submit();
-            }else {
-                jQuery(form+" img.loading").show();  // riattivare dopo il success ... !!
+            } else {
+                jQuery(form+" img.loading").show();  // reactivate after success
                 jQuery(form+' :input[type="submit"]').prop('disabled', true);
 
                 var fd = new FormData();
@@ -636,10 +638,10 @@
                 });
                 var token = jQuery('input[name="_token"]').attr('value');
                 fd.append("_token", "{{ csrf_token() }}");
-
-                console.log(form);
-                console.log(jQuery(form).attr('action'));
-                console.log(token);
+                fd.append("autosave", autosave);  // bool
+                // console.log(form);
+                // console.log('ajax url: '+jQuery(form).attr('action'));
+                // console.log(token);
 
                 jQuery.ajax({
                     headers: {
@@ -649,18 +651,22 @@
                     type: 'POST',
                     data: fd,
                     async: false,
-                    success: function (data) {
+                    success: function(data) {
                         if(typeof data.html != 'undefined') {
-                            jQuery("body").html(data.html);
+                            //jQuery("body").html(data.html);
                             jQuery("#form_id").val(data.dream_check_lab_id);
-                            //jQuery("#success_modal").modal('show');
+                              // jQuery("#success_modal").modal('show');
                             console.log('Tab Form saved successfully');
                         }else{
-                            jQuery("body").html(data);
+                            //jQuery("body").html(data);
+                            console.log('Notice: data.html == '+data.html+'. Compilare campo/i vuoto/i.');
                         }
 
                         // scrollTo(document.body, 0, 100);
                     },
+                    // error: function(err, err2) {
+                    //  console.log('errore: '+err+' '+err.responseText);
+                    // },
                     cache: false,
                     contentType: false,
                     processData: false,
@@ -669,41 +675,24 @@
                         jQuery(form+' :input[type="submit"]').prop('disabled', false);
                     }
                 });
+
                 return false;
             }
 
-        }
-
+        } 
 
         // autosave every X sec
-        // identify which tab is loading
-        // verify in '.dream_check_lab .nav.nav-tabs li' where class="active" --> fetch the 'id' val.  in tabs  rigo 360 in html ...
-
-        // submitForm()
-
-        
-
         window.setInterval(function(){
-
-            console.log('Autosave test: '+ Math.random());
-        
-        }, 3000);
-
-
-
-
-        // second method
-        // (function(){
-            // do some stuff
+            // identify which tab is loading & which form to submit
+            var tab_active = jQuery('.dream_check_lab .nav.nav-tabs li.active a').attr('href'); 
+            var form_n = jQuery(tab_active).find('form').attr('id');
+            var autosave = true;
+            console.log('Autosave on "'+tab_active+'"(#'+form_n+'): '+ new Date()); 
             
-        //    setTimeout(function(){
-        //      console.log('test');
-        //    }, 3000);
-        // })();
+            submitForm('#'+form_n, autosave);  // submitForm(#form_2)
+        }, 20000);
 
 
-
-
-        });
+      });
     </script>
 @endsection

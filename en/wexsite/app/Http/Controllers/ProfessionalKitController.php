@@ -159,10 +159,14 @@ class ProfessionalKitController extends CustomBaseController {
 	}
 
 	public function dream_check_lab_store(Request $request){  // compilazione singoli tab
-		//echo '<pre>'; print_r($request->all()); die;
+
+		// echo '<pre>'; print_r($request->all()); die;
 		// create achievement three forms validation rule by foreach
 		$request_state = $request->get('state_id');
 		session(['request_state' => $request_state]);
+ 
+
+		
 		if($request_state == 1) {
 			$rules['upload_cv'] = 'required|mimes:doc,docx,odt';
 			$rules['state_id'] = 'required';
@@ -188,10 +192,15 @@ class ProfessionalKitController extends CustomBaseController {
 			$rules['promotion_usp'] = 'required';
 		}
 
-		$validator = Validator::make($request->all(),$rules);
-		if ($validator->fails()) {
-			return redirect()->back()->withInput()->withErrors($validator->errors());
+		// Validate ONLY IF is NOT autosave !
+		$autosave = $request->get('autosave');
+		if ( $autosave !== true ) {		// $autosave === false || $autosave === null
+			$validator = Validator::make($request->all(),$rules);
+			if ($validator->fails()) {
+				return redirect()->back()->withInput()->withErrors($validator->errors());
+			}
 		}
+
 		\Session::forget('request_state');
 		if($request_state == 2) {
 			foreach ($request_achievements as $ach_key => $achievement) {
@@ -237,6 +246,7 @@ class ProfessionalKitController extends CustomBaseController {
 				$dream_check_lab_data['cv_file'] = $cv_file_path;
 			}
 		}
+		
 		$user = Auth::user();
 		$dream_check_lab_data['user_id'] = $user->id;
 		$dream_check_lab_data['state_id'] = $request['state_id'];
@@ -299,6 +309,8 @@ class ProfessionalKitController extends CustomBaseController {
 
         return $data;  // -->to ajax call from blade template  'dream_check_lab.blade.php' 
     }
+
+
 
 	public function dream_check_lab_submit(Request $request) {
 
