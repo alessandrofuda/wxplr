@@ -685,11 +685,14 @@
         window.setInterval(function(){
             // identify which tab is loading & which form to submit
             var tab_active = jQuery('.dream_check_lab .nav.nav-tabs li.active a').attr('href'); 
-            var form_n = jQuery(tab_active).find('form').attr('id');
-            var autosave = true;
-            console.log('Autosave on "'+tab_active+'"(#'+form_n+'): '+ new Date()); 
             
-            submitForm('#'+form_n, autosave);  // submitForm(#form_2)
+            if(typeof tab_active != 'undefined') {
+                var form_n = jQuery(tab_active).find('form').attr('id');
+                var autosave = true;
+                console.log('Autosave on "'+tab_active+'"(#'+form_n+'): '+ new Date()); 
+                
+                submitForm('#'+form_n, autosave);  // submitForm(#form_2)
+            }
         }, 20000);
 
 
