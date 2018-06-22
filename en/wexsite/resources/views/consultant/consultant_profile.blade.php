@@ -121,6 +121,13 @@
 				</div>
 			</div>
 
+			<div class="form-group has-feedback">
+				<label for="link">Profile Link : </label>
+				<div class="date">
+					<input class="form-control" @if(isset($consultant->consultantProfile->link) && $consultant->consultantProfile->link != '') value="{{ $consultant->consultantProfile->link }}" @endif name="link" type="url" id="link" placeholder="https://....">
+				</div>
+			</div>
+
 			<?php /*	<div class="form-group has-feedback">
 				<label for="vat_number">Vat Number : </label>
 				<div class="date">
@@ -196,6 +203,8 @@
 
 
 					<li><span>Area Expertise:</span> <span class="Fill_detais">{{ $consultant->consultantProfile->getExpertiesOptions($consultant->consultantProfile->area_expertise) }}</span></li>
+
+					<li><span>Profile link:</span> <span class="Fill_detais">{!! isset($consultant->consultantProfile->link) ? '<a href="'.$consultant->consultantProfile->link.'" target="_blank">view</a>' : 'n.a.' !!}</span></li>
 
 					<?php /*
 					<li><span>Vat Number:</span> <span class="Fill_detais">{{ $consultant->consultantProfile->vat_number }}</span></li>

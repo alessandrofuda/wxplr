@@ -556,6 +556,7 @@ class ConsultantProfileController extends CustomBaseController
             'bio' => 'required',
             'languages' => 'required',
             'pin_number' => 'required',
+            'link' => 'url',
 /*
 			'vat_number' => 'required',
 			'address' => 'required',
@@ -596,11 +597,12 @@ class ConsultantProfileController extends CustomBaseController
         $expertise = implode(',',$request->get('area_expertise') );
         $profile_data['area_expertise'] =  $expertise;
 		$profile_data['languages'] = $request['languages'];
-
         $profile_data['pin_number'] =  $request['pin_number'];
         $profile_data['experience'] = $request['experience'];
         $profile_data['bio'] = $request['bio'];
         $profile_data['company'] = $request['company'];
+        $profile_data['link'] = $request['link'];
+
 
         /*$profile_data['bank_iban'] = $request['bank_iban'];
         $profile_data['city'] = $request['city'];
