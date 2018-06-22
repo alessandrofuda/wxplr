@@ -287,6 +287,8 @@ class UserProfileController extends CustomBaseController
         $data['page_title'] = 'My Documents';
         $data['documents'] = $user->getDocuments();
 
+        // dd($data['documents']);
+
         return view('front.my_documents', $data);
 
 

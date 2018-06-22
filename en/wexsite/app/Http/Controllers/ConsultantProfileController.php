@@ -700,7 +700,7 @@ class ConsultantProfileController extends CustomBaseController
         }
 
         //echo  '<pre>'; print_r($dream_check_lab); echo '</pre>'; die;
-        $data['page_title']='Dream Check Lab Submission from<br/>'.$dream_check_lab_obj->createUser->name;
+        $data['page_title']='Dream Check Lab Submission <br/>from: '.$dream_check_lab_obj->createUser->name.'  '.$dream_check_lab_obj->createUser->surname;
         $data['dream_check_lab'] = $dream_check_lab;
 
         return view('consultant.dream_check_lab_submission',$data);
@@ -720,7 +720,7 @@ class ConsultantProfileController extends CustomBaseController
         }
 
         //echo  '<pre>'; print_r($dream_check_lab); echo '</pre>'; die;
-        $data['page_title']='Dream Check Lab Submission Feedback ';
+        $data['page_title']='Dream Check Lab Submission Feedback <br/>to: '.$dream_check_lab_obj->createUser->name.'  '.$dream_check_lab_obj->createUser->surname;
         $data['dream_check_lab_feedback'] = $dream_check_lab_obj;
 
         return view('consultant.dream_check_lab_submission_feedback',$data);
@@ -838,6 +838,8 @@ class ConsultantProfileController extends CustomBaseController
 
             $viewdata['dream_check_lab_feedback'] = $dreamcheck_lab_obj;
             $viewdata['page_title'] = 'Dream Check Lab Feedback';
+            $viewdata['client'] = $client_obj;
+
             $pdf = \App::make('dompdf.wrapper');
             $pdf->loadView('client.dream_check_lab_feedback_pdf', $viewdata);
             $pdf->save($base_path.$pdf_path);

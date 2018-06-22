@@ -480,6 +480,12 @@ a.tooltips {
     right: 350px;
 }
 
+.btn-back { line-height: 1; }
+
+
+
+
+/* RESPONSIVE */
 @media (min-width: 1180px) {
     .popup-right .occupation-help-wrap {
         left: 450px;

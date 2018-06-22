@@ -113,7 +113,7 @@
                           <!--input name="submit_1" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading.."-->
                        </div>
                        <div id="price-tab" class="tab-pane fade {{$active == 2 ? "in active" : ""}}">
-                           @if(strstr($step,"5"))
+                          @if(strstr($step,"5"))
                            <h3>2. Price – What you did</h3>
                            <h4>Achievement 1:</h4>
                            <div class="col-md-12">
@@ -178,7 +178,7 @@
                                <label>Which skills you have demonstrated through this achievement?</label>
                                <p>{{ $dream_check_lab['achievement_skills3'] }}</p>
                            </div>
-                           @else
+                          @else
                            <form id="form_2" method="post" action="{{ url('user/dream_check_lab/store') }}" enctype="multipart/form-data">
                                {{ csrf_field() }}
                                <h3>2. Price – What you did</h3>
@@ -217,12 +217,12 @@
                                    <input name="submit" type="submit" id="submit_2" value="Save Changes and Proceed">
                                    <img class="loading" src="{{asset('frontend/images/icons/loading_small.gif')}}" style="display: none;" width="30" height="30">
                                </div>
-                           </form>
-                           @endif
+                            </form>
+                          @endif
                            <?php /* se tutti i campi sono salvati in db --> attiva pulsante "next" altrimenti disattiva */
 
                            ?>
-                               <input name="back_1" type="submit" id="back_1" class="btn btn-warning" value="Back">
+                               <input name="back_1" type="submit" id="back_1" class="btn btn-warning btn-back" value="Back">
                                <!--input name="loading_2" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading.."-->
                        </div>
                        <div id="place-tab" class="tab-pane fade {{$active == 3 ? "in active" : ""}}">
@@ -320,20 +320,20 @@
                                <p>Also, remember that “wanting a different experience” or “I cannot find a job in my own country” are not the best indicators of your commitment to relocate. Try to come up with reasons related to the content of the job or the kind of company you are addressing. The only “acceptable” personal reason? Having a partner/spouse/family member in the target country!</p>
 
                            @endif
-                               <input name="back_2" type="submit" class="btn btn-warning" id="back_2" value="Back">
+                               <input name="back_2" type="submit" class="btn btn-warning btn-back" id="back_2" value="Back">
                                <!--input name="loading_3" type="submit" class="btn btn-success loading-button" style="display: none;" disabled value="Loading.."-->
                        </div>
                        <div id="promotion-tab" class="tab-pane fade {{$active == 4  ? "in active" : ""}}">
-                           @if(strstr($step,"5"))
-                           <div class="col-md-12">
-                               <label>why should we choose you?</label>
-                               <p>{{ $dream_check_lab['promotion_usp'] }}</p>
-                           </div>
 
-                           <div class="col-md-12">
-                               <label>Interested Country</label>
-                               <p>{{ $dream_check_lab['interest_country'] }}</p>
-                           </div>
+                           @if(strstr($step,"5"))               
+                             <div class="col-md-12">
+                                 <label>why should we choose you?</label>
+                                 <p>{{ $dream_check_lab['promotion_usp'] }}</p>
+                             </div>
+                             <div class="col-md-12">
+                                 <label>Interested Country</label>
+                                 <p>{{ $dream_check_lab['interest_country'] }}</p>
+                             </div>
                            @else
                               <div id="promo_form">
                                 <form id="form_4" method="post" action="{{ url('user/dream_check_lab/store') }}" enctype="multipart/form-data">
@@ -349,8 +349,8 @@
                                     <input name="submit_4" id="submit_4" type="submit" value="Save Changes and Proceed">
                                     <img class="loading" src="{{asset('frontend/images/icons/loading_small.gif')}}" style="display: none;" width="30" height="30">
                                   </div>
+                                  <input name="back_3" type="submit" class="btn btn-warning btn-back" id="back_3" value="Back">
                                 </form>
-                                <input name="back_3" type="submit" class="btn btn-warning" id="back_3" value="Back">
                               </div>
                               <div id="outro" style="display: none;">
                                 <form id="final_form" method="post" action="{{ url('user/dream_check_lab/submit') }}" enctype="multipart/form-data">
@@ -361,60 +361,51 @@
                                   <div class="form-group">
                                     <label for="interest_country">Please confirm your country of interest below</label>
                                     <select required name="interest_country" style="padding:8px;">
-                                       <option value ="">-- Choose Country --</option>
-													<option @if(old('interest_country') == 'Australia') selected="selected" @endif value="Australia">Australia</option>
-                          <option @if(old('interest_country') == 'Belgium') selected="selected" @endif value="Belgium">Belgium</option>
-													<option @if(old('interest_country') == 'France') selected="selected" @endif value="France">France</option>
-													<option @if(old('interest_country') == 'Germany') selected="selected" @endif value="Germany">Germany</option>
-													<option @if(old('interest_country') == 'Italy') selected="selected" @endif value="Italy">Italy</option>
-													<option @if(old('interest_country') == 'Netherlands') selected="selected" @endif value="Netherlands">Netherlands</option>
-													<option @if(old('interest_country') == 'Spain') selected="selected" @endif value="Spain">Spain</option>
-                          <option @if(old('interest_country') == 'Sweden') selected="selected" @endif value="Sweden">Sweden</option>
-													<option @if(old('interest_country') == 'Switzerland') selected="selected" @endif value="Switzerland">Switzerland</option>
-													<option @if(old('interest_country') == 'United Kingdom') selected="selected" @endif value="United Kingdom">United Kingdom</option>
+                                      <option value ="">-- Choose Country --</option>
+            													<option @if(old('interest_country') == 'Australia') selected="selected" @endif value="Australia">Australia</option>
+                                      <option @if(old('interest_country') == 'Belgium') selected="selected" @endif value="Belgium">Belgium</option>
+            													<option @if(old('interest_country') == 'France') selected="selected" @endif value="France">France</option>
+            													<option @if(old('interest_country') == 'Germany') selected="selected" @endif value="Germany">Germany</option>
+            													<option @if(old('interest_country') == 'Italy') selected="selected" @endif value="Italy">Italy</option>
+            													<option @if(old('interest_country') == 'Netherlands') selected="selected" @endif value="Netherlands">Netherlands</option>
+            													<option @if(old('interest_country') == 'Spain') selected="selected" @endif value="Spain">Spain</option>
+                                      <option @if(old('interest_country') == 'Sweden') selected="selected" @endif value="Sweden">Sweden</option>
+            													<option @if(old('interest_country') == 'Switzerland') selected="selected" @endif value="Switzerland">Switzerland</option>
+            													<option @if(old('interest_country') == 'United Kingdom') selected="selected" @endif value="United Kingdom">United Kingdom</option>
 
-													<?php /*
-                                       @foreach($country as $country_res)
-                                           <option @if(old('interest_country') == $country_res['country_name']) selected="selected" @endif value = "{{  $country_res['country_name'] }}">{{  $country_res['country_name'] }}</option>
-                                       @endforeach
-													*/ ?>
+            													<?php /*
+                                                   @foreach($country as $country_res)
+                                                       <option @if(old('interest_country') == $country_res['country_name']) selected="selected" @endif value = "{{  $country_res['country_name'] }}">{{  $country_res['country_name'] }}</option>
+                                                   @endforeach
+            													*/ ?>
                                    </select>
-                              </div>
-                              <input type="hidden" name="form_id" value="{{ isset($dream_check_lab['id']) ? $dream_check_lab['id'] : "" }}" id="form_id">
-                              <input type="hidden" name="state_id" value="5">
-                               <p>Note: After Submitting, you will not be able to edit the forms anymore.</p>
-                               <div class="form-group Submit_final_form">
-                                  <input name="submit_final" id="submit_final" type="submit" value="Submit Form" class="submit-button">
-                                   
-
-
-
-                                  <div id="wait-modal" class="modal fade loading-button" style="display: none; opacity: 1!important; z-index: 999999!important;" role="dialog" title="Wait please..."> 
-                                  <!--disabled-->
-                                    <div class="modal-dialog" style="top:45px;">
-                                      <!-- Modal content-->
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h4 class="modal-title text-center">..Please wait a moment..</h4>
+                                  </div>
+                                  <input type="hidden" name="form_id" value="{{ isset($dream_check_lab['id']) ? $dream_check_lab['id'] : "" }}" id="form_id">
+                                  <input type="hidden" name="state_id" value="5">
+                                  <p>Note: After Submitting, you will not be able to edit the forms anymore.</p>
+                                  <div class="form-group Submit_final_form">
+                                    <input name="submit_final" id="submit_final" type="submit" value="Submit Form" class="submit-button">
+                                    <div id="wait-modal" class="modal fade loading-button" style="display: none; opacity: 1!important; z-index: 999999!important;" role="dialog" title="Wait please..."> 
+                                    <!--disabled-->
+                                      <div class="modal-dialog" style="top:45px;">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h4 class="modal-title text-center">..Please wait a moment..</h4>
+                                          </div>
+                                          <div class="modal-body text-center">
+                                            <p>We are processing your inputs. It takes a few seconds to process your request.<br>Please wait for our success notification...<span id="countdown"></span></p>
+                                            <p>
+                                              <img src="/en/frontend/images/loading.gif" />
+                                            </p>  
+                                          </div>
                                         </div>
-                                        <div class="modal-body text-center">
-                                          <p>We are processing your inputs. It takes a few seconds to process your request.<br>Please wait for our success notification...<span id="countdown"></span></p>
-                                          <p>
-                                            <img src="/en/frontend/images/loading.gif" />
-                                          </p>  
-                                        </div>
-                                      </div>
-
-                                    </div>                                     
-                                  </div><!--#wait-modal-->
-
-
-
-
-
-                               </div>
+                                      </div>                                     
+                                    </div><!--#wait-modal-->
+                                  </div>
+                                <input name="back_4" type="submit" class="btn-back btn btn-warning" id="back_4" value="Back" style="display: block; margin-top: 5%;">   
                                </form>
-                                   <input name="back_4" type="submit" class="btn btn-warning" id="back_4" value="Back">
+                               
                                </div>
                            @endif
                        </div>

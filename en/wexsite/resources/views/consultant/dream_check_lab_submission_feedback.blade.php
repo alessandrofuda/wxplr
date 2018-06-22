@@ -158,7 +158,7 @@
             <div class="col-md-12">
                 {!! link_to_route('dreamcheck.lab.submission', 'Back to the submission', array($dream_check_lab_feedback['id']), array('class' => 'btn btn-primary pull-right')) !!}
             </div>
-            <h2 class="box-title">{{ $page_title }}</h2>
+            <h2 class="box-title">{!! $page_title !!}</h2>
             <div class="col-md-12">
                 <div class="dream_check_lab">
                     <form method="post" action="{{ url('user/consultant/dream_check_lab/submission/feedback/store') }}" enctype="multipart/form-data">

@@ -34,12 +34,12 @@
 				<input type="hidden" name="user_id" value="{{ $user->id }}">
 					@if(Route::current()->getName() != 'professional.kit')
 						<div class="form-group col-md-6 has-feedback">
-							<label for="name">Name : </label>
+							<label for="name">Name </label>
 							<input type="text" class="form-control" required placeholder="Name" name="name" value="{{ $user->name }}">
 							<span class="glyphicon glyphicon-user form-control-feedback"></span>
 						</div>
 						<div class="form-group col-md-6 has-feedback">
-							<label for="surname">Surname : </label>
+							<label for="surname">Surname </label>
 							<input type="text" class="form-control" required placeholder="Surname" name="surname" value="{{ $user->surname }}">
 							<span class="glyphicon glyphicon-user form-control-feedback"></span>
 					  	</div>
@@ -55,13 +55,13 @@
 	                    	@endif
 
 						<div class="col-xs-10">
-							<label for="profile_picture">Profile Picture : </label>
+							<label for="profile_picture">Profile Picture </label>
                         	<input type="file" name="profile_picture">
 						</div>
 				    </div>
 					@if(Route::current()->getName() != 'professional.kit')
 						  <div class="form-group col-md-6 has-feedback">
-								<label for="email">Email : </label>
+								<label for="email">Email </label>
 							<input type="email" class="form-control" disabled required email placeholder="Email" name="email" value="{{ $user->email }}">
 							<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 						  </div>
@@ -81,7 +81,7 @@
                 </div>
 
                 <div class="form-group col-md-6 has-feedback">
-				<label for="age_range">Age : </label>
+				<label for="age_range">Age </label>
 				<div class="date">
 					<select required name="age_range" id="age_range" class="form-control">
 						<option @if(isset($user->userProfile->age_range) && $user->userProfile->age_range == '20-24') selected @endif value="20-24">20-24</option>
@@ -97,7 +97,7 @@
 			 </div>
 
 			<div class="form-group col-md-6 has-feedback">
-				<label for="country_origin">Country of Origin : </label>
+				<label for="country_origin">Country of Origin </label>
 				<select id="country_origin" required name="country_origin" class="form-control">
 				<option value="">-- Country of origin --</option>
 				@if(count($countries_code)>0)
@@ -108,7 +108,7 @@
 				</select>
 			</div>
 			<div class="form-group col-md-6 has-feedback">
-				<label for="country_interest">Country of Interest : </label>
+				<label for="country_interest">Country of Interest </label>
 				<select id="country_origin" required name="country_interest" class="form-control">
 					<option value="">-- Country of interest --</option>
 				@if(count($countries_code)>0)
@@ -119,7 +119,7 @@
 				</select>
 			</div>
 			<div class="form-group col-md-6 has-feedback">
-				<label for="education">Education : </label>
+				<label for="education">Education </label>
 				<div class="date">
 				<select name="education" class="form-control">
 					<option value="">-- Choose Education --</option>
@@ -131,7 +131,7 @@
 				</div>
 			</div>
 			<div class="form-group col-md-6 has-feedback">
-				<label for="industry"> Industry : </label>
+				<label for="industry"> Industry </label>
 				<div class="date industry {{ $industryClass }}">
 					<div class='selectBox'>
 						<input type="hidden" id="selected_option_id" value="{{ isset($user->userProfile->industry) ? $user->userProfile->industry :"" }}" class="price_values" name="industry"/>
@@ -152,7 +152,7 @@
 				</div>
 			</div>
 			<div class="form-group col-md-6 has-feedback">
-				<label for="occupational">Occupation : </label>
+				<label for="occupational">Occupation </label>
 				<div class="date Occupation {{ $occupationClass }}">
 					<div class='selectBox'>
 						<input type="hidden" id="selected_option_id" value="{{ isset($user->userProfile->occupation) ? $user->userProfile->occupation :"" }}" class="price_values" name="occupation"/>
@@ -173,7 +173,7 @@
 				</div>
 			</div>
 			<div class="form-group col-md-6 has-feedback">
-				<label for="occupational">Occupational Status : </label>
+				<label for="occupational">Occupational Status </label>
 				<div class="date Occupation">
 					<select name="occupational_status" class="form-control">
 						<option>---Select Occupation status</option>
@@ -184,7 +184,7 @@
 				</div>
 			</div>
 			<div class="form-group col-md-6 has-feedback">
-				<label for="salary_range">Salary Range : </label>
+				<label for="salary_range">Salary Range </label>
 				<div class="date">
 					<select name="salary_range" required id="salary_range" class="form-control">
 						<option>-- Select Salary Range --</option>
@@ -198,27 +198,27 @@
 			 </div>
 					@if(Route::current()->getName() != 'professional.kit')
 						<div class="form-group col-md-6 has-feedback email">
-							<label for="pan">Personal Identification Number : </label>
+							<label for="pan">Personal Identification Number </label>
 							<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="{{ $user->userProfile->pan }}">
 						</div>
 						<div class="form-group col-md-6 has-feedback email">
-							<label for="vat">VAT : </label>
+							<label for="vat">VAT (If Applicable) </label>
 							<input type="text" class="form-control" required placeholder="VAT" name="vat"
 								   value="{{ $user->userProfile->vat }}">
 							<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 						</div>
 						<div class="form-group col-md-6 has-feedback email">
-							<label for="company">Company (If Applicable)</label>
-							<input type="text" class="form-control" required placeholder="Company" name="company"
+							<label for="company">Company (If Applicable) </label>
+							<input type="text" class="form-control" placeholder="Company" name="company"
 								   value="{{ $user->userProfile->company }}">
 						</div>
 						<div class="form-group col-md-6 has-feedback email">
-							<label for="address">Address</label>
+							<label for="address">Address </label>
 							<textarea required rows="4" cols="50" class="form-control" name="address" placeholder="Address" value="{{$user->userProfile->address }}">{{ $user->userProfile->address  }}</textarea>
 							<span class="glyphicon glyphicon-list-alt form-control-feedback"></span>
 						</div>
 						<div class="form-group col-md-6 has-feedback email">
-							<label for="country">Country</label>
+							<label for="country">Country </label>
 							@if (count($countries_code) > 0)
 								<select name="country" id="country" required class="form-control">
 									<option value="">Select Country</option>
@@ -235,11 +235,11 @@
 								   value="{{ $user->userProfile->city}}">
 						</div>
 						<div class="form-group col-md-6 has-feedback email">
-							<label for="zip_code">ZIP Code</label>
+							<label for="zip_code">ZIP Code </label>
 							<input type="text" class="form-control" required placeholder="ZIP Code" name="zip_code"
 								   value="{{ $user->userProfile->zip_code }}"></div>
 						<div class="form-group col-md-6 has-feedback">
-							<label for="telephone">Telephone</label>
+							<label for="telephone">Telephone </label>
 							<input type="tel" class="form-control"  placeholder="Telephone Number" name="telephone" value="{{ $user->userProfile->telephone }}">
 							<span class="glyphicon glyphicon-phone-alt form-control-feedback"></span>
 						</div>

@@ -28,7 +28,6 @@
 //});
 
 
-
 Route::get('/token',function () {
 	\App\ConsultantBooking::getAccessToken();
 });

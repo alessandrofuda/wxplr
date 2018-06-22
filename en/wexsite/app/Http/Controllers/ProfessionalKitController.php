@@ -448,7 +448,10 @@ class ProfessionalKitController extends CustomBaseController {
 
 					$viewdata['dream_check_lab'] = $dreamcheck_lab_obj;
 					$viewdata['page_title'] = 'Dream Check Lab Form';
+					$viewdata['user'] = $user;
 					// Log::info('1- start pdf generation');
+
+					//dd($viewdata);
 
 
 					set_time_limit(300);  // evita il timeout di $pdf->save(...)
@@ -459,17 +462,14 @@ class ProfessionalKitController extends CustomBaseController {
 					// Log::info('2- make dompdf - classe istanziata');
 					$pdf->loadView('client.dream_check_lab_pdf', $viewdata);
 					// Log::info('3- loadView - pdf creato');
-
-
 					$pdf->save($base_path.$pdf_path);  	// richiede circa 25 secondi su server di sviluppo, di più in produzione !!!!!!!!! 
 														// uri: ../en/uploads/dream_form_1234569.pdf
-
-
 					// Log::info('4- pdf salvato in folder');
 					$dreamcheck_lab_obj->update([
 						'form_pdf' => $pdf_path
 					]);
 					// Log::info('5- aggiornamento db.form_pdf');
+
 
                     $data['status'] = 'OK';
                     $data['url'] = route('dream.check.lab');  // --> ProfessionalKitController@dream_check_lab

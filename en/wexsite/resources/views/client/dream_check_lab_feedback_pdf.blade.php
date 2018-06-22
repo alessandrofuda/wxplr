@@ -18,7 +18,7 @@
             <!-- owl carousel css-->
             <link rel="stylesheet" href="{{ asset('/admin/plugins/datepicker/datepicker3.css') }}">
             <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}" type="text/css">
-            <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.css') }}" type="text/css">
+            <!--link rel="stylesheet" href="{{-- asset('frontend/css/bootstrap.css') --}}" type="text/css"-->
             <link rel="stylesheet" href="{{ asset('frontend/css/font-awesome.min.css') }}" type="text/css">
             <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" type="text/css">
             <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}" type="text/css">
@@ -56,7 +56,12 @@
     </div>
     <h4>1. Product – Who are You</h4>
     <div class="col-md-12">
-        <a href="{{ url($dream_check_lab_feedback['cv_file']) }}" class="btn btn-primary" style="margin-top: 40px; margin-bottom: 20px">Download CV</a>
+        <p><b>{{ isset($client->name) ? $client->name : 'n.a.' }}  {{ isset($client->surname) ? $client->surname : 'n.a.' }}</b></p>
+        <p>Email: {{ isset($client->email) ? $client->email : 'n.a.' }}</p>
+        <p>
+            <a href="{{ url($dream_check_lab_feedback['cv_file']) }}" class="btn btn-primary">Download CV</a>
+        </p>
+        <p> </p>
     </div>
     <div class="clearfix"></div>
     <h4>2. Price – What you did</h4>

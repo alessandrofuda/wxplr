@@ -18,7 +18,7 @@
             <!-- owl carousel css-->
             <link rel="stylesheet" href="{{ asset('/admin/plugins/datepicker/datepicker3.css') }}">
             <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}" type="text/css">
-            <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.css') }}" type="text/css">
+            <!--link rel="stylesheet" href="{{-- asset('frontend/css/bootstrap.css') --}}" type="text/css"-->
             <link rel="stylesheet" href="{{ asset('frontend/css/font-awesome.min.css') }}" type="text/css">
             <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}" type="text/css">
             <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}" type="text/css">
@@ -56,8 +56,14 @@
                 <div class="clearfix"></div>
                 <h3>1. Product – Who are You</h3>
                 <div class="col-md-12">
-                    <a class="btn btn-primary"><span class = "glyphicon glyphicon-download"></span>
-                        CV UPLOADED</a>
+                    <p><b>{{ isset($user->name) ? $user->name : 'n.a.'}} {{ isset($user->surname) ? $user->surname : 'n.a.'}}</b></p>
+                    <p>Mail: {{ isset($user->email) ? $user->email : 'n.a.'}}</p>
+                    <p style="font-size: x-small;">
+                        <!--a class="btn btn-primary"-->
+                            <span class="glyphicon glyphicon-upload"></span> CV uploaded: <em>"{{ isset($dream_check_lab['cv_file']) ? $dream_check_lab['cv_file'] : 'n.a.' }}"</em>
+                        <!--/a-->
+                    </p>
+                    <p>______________</p>
                 </div>
                 <h3>2. Price – What you did</h3>
                 <h4>Achievement 1:</h4>
