@@ -1075,7 +1075,7 @@ class ProfessionalKitController extends CustomBaseController {
 				//echo '<pre>'; print_r( $country_pdf_obj->toArray()); exit;
 				$interest_country_pdf 		= $country_pdf_obj['country_pdf'];
 				$interest_country_pdf_label = $country_pdf_obj['country_pdf_label'];
-				$interest_country_arr = ['interest_country_pdf' => $interest_country_pdf, 'interest_country_pdf_label' => $interest_country_pdf_label];
+				$interest_country_arr = ['interest_country_pdf' => $interest_country_pdf, 'interest_country_pdf_label' => $interest_country_pdf_label ];
 			}
 
 		}
@@ -1084,8 +1084,12 @@ class ProfessionalKitController extends CustomBaseController {
 		$data['interest_country']  		= $interest_country_arr;
 		$data['steady_aim_shoot']      	= $steady_aim_shoot_arr;
 		$data['page_title'] = "STEADY, AIM, SHOOT";
+		$data['country'] = $interest_country_obj['interest_country'];
 		return view('client.steady_aim_shoot',$data);
 	}
+
+
+
 	public function role_play_video() {
 		$data['page_title'] = "Live video chat";
 		return view('front.role_play_video',$data);
