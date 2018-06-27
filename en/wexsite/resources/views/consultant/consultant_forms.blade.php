@@ -34,9 +34,9 @@
 					<td class="sorting_1">{!! $form['submitted_on']!!}</td>
 				</tr>
 			@empty
-			<tr role="row" class="odd">
-			  <td colspan="2">No Forms assigned yet!</td>
-			</tr>
+				<tr role="row" class="odd">
+				  <td colspan="2">No Forms assigned yet!</td>
+				</tr>
 			@endforelse
 		</tbody>
 	</table>

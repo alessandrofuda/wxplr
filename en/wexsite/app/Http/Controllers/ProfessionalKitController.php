@@ -978,7 +978,9 @@ class ProfessionalKitController extends CustomBaseController {
 		$meeting = GoToMeeting::where('booking_id', $ConsultantBooking->id)->first();
 
 		if($meeting == null)
-			$data = $ConsultantBooking->saveMeeting(GoToMeeting::TYPE_MEETING);
+			$data = $ConsultantBooking->saveMeeting(GoToMeeting::TYPE_MEETING);  // GoToMeeting::TYPE_MEETING = 0
+
+
 
 		/* Email to user */
 		Mail::send('emails.consultant_booking', ['user'=>$user,'consultantbooking'=>$ConsultantBooking], function ($m) use ($user) {
@@ -998,7 +1000,7 @@ class ProfessionalKitController extends CustomBaseController {
 			$m->to($to, $name)->subject('New Consultant Booking!');
 		});
 
-		/* Email to super admin and notification list*/
+		/* Email to super admin and notification list */
 		Mail::send('emails.admin_consultant_booking', ['consultantbooking'=>$ConsultantBooking], function ($m) use ($ConsultantBooking) {
 			$settings=Setting::find(1);
 			$site_email = $settings->website_email;
@@ -1006,12 +1008,14 @@ class ProfessionalKitController extends CustomBaseController {
 			$m->from($site_email, 'Wexplore');
 			$m->to($admin_emails, 'Wexplore')->subject('New Consultant Booking!');
 		});
+		/* email end */
+
 
 		$availablity ->update(
 			['is_booked' => ConsultantAvailablity::STATUS_BOOKED]
 		);
 
-		/* email end */
+		
 		return redirect()->back()->with('status','Thank you! Your session is now booked! Please check appointments. Do not forget to log back in your dashboard to connect with your consultant!');
 	}
 

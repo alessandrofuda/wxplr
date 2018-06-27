@@ -3,7 +3,7 @@
 	@include('front.navigation')
 
 	<!-- Modal -->
-	<div id="consultantBooking" class="modal fade" role="dialog">
+	<div id="consultantBooking" class="modal fade" role="dialog" style="z-index: 99999;">
 		<div class="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content">

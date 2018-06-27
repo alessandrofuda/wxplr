@@ -103,7 +103,10 @@ class ConsultantBooking extends Model
             "meetingtype" => "immediate"
         ]);
         $url = "https://api.getgo.com/G2M/rest/meetings";
+        
+        // API call !!
         $out = self::curl_request("POST", $headers, $url, $postData);
+
         if (isset($out[0])) {
 
             if($type == null) {

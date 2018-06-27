@@ -22,7 +22,7 @@ class GoToMeeting extends Model
         $meeting->maxParticipants = $data['maxParticipants'];
         $meeting->uniqueMeetingId = $data['uniqueMeetingId'];
         $meeting->conferenceCallInfo = $data['conferenceCallInfo'];
-        $meeting->booking_id = $id;
+        // $meeting->booking_id = $id;
 
         if($type == null)
             $type = self::TYPE_MEETING;

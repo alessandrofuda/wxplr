@@ -9,9 +9,12 @@ use Auth;
 use Illuminate\Http\Response;
 use Validator;
 use App\ConsultantAvailablity;
-use App\Http\Requests;use App\User;
-use App\Http\Controllers\Controller;use App\ConsultantProfile;
-use App\ConsultantBooking;use App\Country;
+use App\Http\Requests;
+use App\User;
+use App\Http\Controllers\Controller;
+use App\ConsultantProfile;
+use App\ConsultantBooking;
+use App\Country;
 use App\DreamCheckLab;
 use App\DreamCheckLabFeedback;
 use Mail;
@@ -411,11 +414,18 @@ class ConsultantProfileController extends CustomBaseController
 
         usort( $data['forms'], function ($item1, $item2) {
             if ($item1['submitted_on'] == $item2['submitted_on']) return 0;
+
             return $item1['submitted_on'] < $item2['submitted_on'] ? -1 : 1;
         });
 
+
+
         return view('consultant.consultant_forms', $data);
     }
+
+
+
+    
 
     public function global_tool_form_feedback($id) {
         $globalToolBoxQuery = GlobalToolQuery::find($id);
