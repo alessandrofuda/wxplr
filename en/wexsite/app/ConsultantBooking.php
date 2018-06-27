@@ -154,7 +154,7 @@ class ConsultantBooking extends Model
         return true;
     }
     
-    public function getMeetingStatus() {  //  'booked' || 'completed' || 'cancelled'
+    public function getMeetingStatus() {  //  'ACTIVE' || 'INACTIVE' || booked' || 'completed' || 'cancelled'
         $token = self::getAccessToken();
 
        /* if(!$this->checkDate())
@@ -171,20 +171,23 @@ class ConsultantBooking extends Model
             $out = self::curl_request('GET', $headers, $url);
             $link = GoToMeeting::getButtonUrl($this->id);
             // dd($this->id); // 52
+            // dd($out[0]);
 
-            $status = isset($out[0]['status']) ? $out[0]['status'] : self::getStatusOptions($this->status);  // "INACTIVE" or 'booked' or 'completed' or 'cancelled' or .. green 'Start meeting' button..
+            $status = isset($out[0]['status']) ? $out[0]['status'] : self::getStatusOptions($this->status);  
 
             if($status != "ACTIVE") {
                 if ($link != '') {
-                    return $link;  // green button
+                    return $link;  // ---> !! green button !!
                 }
             }
 
-        return $status;
+        return $status;   // 'ACTIVE' or "INACTIVE" or 'booked' or 'completed' or 'cancelled' ...
       // }
 
-        return $this->getStatusOptions($this->status);
+        // return $this->getStatusOptions($this->status);
     }
+
+
 
     public function cancelMeeting() {
         $token = self::getAccessToken();
@@ -320,12 +323,12 @@ class ConsultantBooking extends Model
         return $this->availablity->title;
     }
 
-    public function checkDate($end = true)  // false
+    public function checkDate($end = true)  // true/false
     {
 
         $start_date = date('Y-m-d', $this->availablity->available_date) . ' ' . $this->availablity->available_start_time;
         $end_date = date('Y-m-d', $this->availablity->available_date) . ' ' . $this->availablity->available_end_time ;
-        $now = date('Y-m-d H:i:s');
+        $now = date('Y-m-d H:i:s');  // UTC
 
 
         $start_date = strtotime(date('Y-m-d H:i:s',strtotime($start_date ."-15 minutes")));
@@ -338,7 +341,7 @@ class ConsultantBooking extends Model
             }
 
         }else {
-           if ($now < $end_date && $now >= $start_date) {
+           if ($now < $end_date && $now >= $start_date) {  // check che fa comparire "Start Meeting" button.
                return true;
            }
         }

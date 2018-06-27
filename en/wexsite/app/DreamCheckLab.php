@@ -105,10 +105,15 @@ class DreamCheckLab extends Model
         return 'Not Booked yet';
     }
 
-    public function getBookingStatus() {
+    public function getBookingStatus() {    // get status from API: 'ACTIVE' || 'INACTIVE' 
+                                            // || get status from getStatusOptions: 'booked' || 'completed' || 'cancelled'
+                                            // || get green button if checkdate == true !!!   <----
+                                            // || return 'Not Booked yet' 
+
         $consultantBooking = ConsultantBooking::where('consultant_bookings.user_id', $this->user_id)
             ->where('query_id', $this->id)
-            ->where('type_id', ConsultantBooking::TYPE_INTERVIEW)->first();
+            ->where('type_id', ConsultantBooking::TYPE_INTERVIEW)
+            ->first();
 
         if($consultantBooking != null) {
             if($consultantBooking->availablity != null)

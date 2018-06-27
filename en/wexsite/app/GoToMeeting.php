@@ -39,7 +39,7 @@ class GoToMeeting extends Model
         return $this->belongsTo("App\ConsultantBooking", 'booking_id');
     }
 
-    public static function getButtonUrl($id, $page = false) {
+    public static function getButtonUrl($id, $page = false) {   // return: "start meeting" || "join meeting"  ||  "" (empty string)
         
         $meeting = GoToMeeting::where('booking_id', $id)->first();
 
@@ -48,7 +48,7 @@ class GoToMeeting extends Model
              if ($meeting->booking->checkDate(false)) {  // true/false
 
                 if (\Auth::user()->role->role_id == 2) { // if Consultant --> 'Start Meeting' 
-                    return link_to_route('consultant_start_meeting', 'Start Meeting', ['booking_id' => $id], ['id' => 'start_'.$id, 'target' => '_blank', 'class' => 'btn btn-success']);  // output: <a href="http://wexplore.dev/en/consultant/meeting/42" target="_blank" class="btn btn-success">Start Meeting</a>
+                    return link_to_route('consultant_start_meeting', 'Start Meeting', ['booking_id' => $id], ['id' => 'start_'.$id, 'target' => '_blank', 'class' => 'btn btn-success']);  // output: <a href="http://wexplore.test/en/consultant/meeting/42" target="_blank" class="btn btn-success">Start Meeting</a>
                 }
 
                 // else --> 'Join Meeting'

@@ -20,6 +20,7 @@ use App\DreamCheckLabFeedback;
 use Mail;
 use App\Setting;
 use App\UserConsultantDiscussion;
+use Log;
 
 
 class ConsultantProfileController extends CustomBaseController
@@ -382,8 +383,15 @@ class ConsultantProfileController extends CustomBaseController
 
         $data['forms'] = [];
 
+// dd($dream_check_lab_forms); // array(4)
+// Log::info('start: '.microtime() );
         foreach ($dream_check_lab_forms as $dream_check_lab_form) {
+            
+            // Log::info('step1: '.microtime() );
+            
             $feedback = DreamCheckLabFeedback::where('dream_check_lab_id', $dream_check_lab_form->id)->first();
+            
+            // Log::info('step2: '.microtime() );
 
             $data['forms'][] = [
                 'user_name' => link_to_route('form_user_profile', $dream_check_lab_form->createUser->name,
@@ -392,10 +400,16 @@ class ConsultantProfileController extends CustomBaseController
                 'form' =>$feedback != null ? link_to_route('dreamcheck.lab.submission.feedback','Feedback Completed', ['dreamcheck_id' => $dream_check_lab_form->id]) : link_to_route('dreamcheck.lab.submission.feedback','Give Form Feedback', ['dreamcheck_id' => $dream_check_lab_form->id]),
                 'attached_file' => $dream_check_lab_form->cv_file != null ? link_to_asset($dream_check_lab_form->cv_file) : "Not Uploaded",
                 'booking_date' =>  $dream_check_lab_form->getBookingDate(),  
-                'booking_status' => $dream_check_lab_form->getBookingstatus(),
+                'booking_status' => $dream_check_lab_form->getBookingStatus(),
                 'submitted_on' => $dream_check_lab_form->created_at
             ];
+            // Log::info('_stop: '.microtime());
+            // dd('stop');
         }
+
+
+
+// dd($global_tool_forms);
 
         foreach ($global_tool_forms as $global_tool_form) {
             if(isset($global_tool_form->user->name)) {
@@ -406,7 +420,7 @@ class ConsultantProfileController extends CustomBaseController
                     'form' => $global_tool_form->getBookingstatus() != 'NOK' ? $global_tool_form->feedback != null ? link_to_route('global_tool_form_feedback', 'Feedback Completed', ['global_tool_form' => $global_tool_form->id]) : link_to_route('global_tool_form_feedback', 'Give Feedback', ['global_tool_form' => $global_tool_form->id]) : "Booking Cancelled",
                     'attached_file' => $global_tool_form->attach_file != null ? link_to_asset($global_tool_form->attach_file) : "Not uploaded",
                     'booking_date' => $global_tool_form->getBookingDate(),
-                    'booking_status' => $global_tool_form->getBookingstatus(),
+                    'booking_status' => $global_tool_form->getBookingStatus(),
                     'submitted_on' => $global_tool_form->created_at
                 ];
             }
@@ -425,7 +439,7 @@ class ConsultantProfileController extends CustomBaseController
 
 
 
-    
+
 
     public function global_tool_form_feedback($id) {
         $globalToolBoxQuery = GlobalToolQuery::find($id);
