@@ -29,8 +29,17 @@
 
 
 Route::get('/token',function () {
-	\App\ConsultantBooking::getAccessToken();
+	return \App\ConsultantBooking::getAccessToken();
 });
+
+
+Route::get('zoom_token', function() {
+	return \App\ConsultantBooking::getZoomAccessToken();
+});
+
+
+
+
 
 	Route::get('/', array('as' => 'homepage', 'uses' => 'PagesController@homepage'));
     Route::post('/user/set-timezone', array('as' => 'set-timezone', 'uses' => 'PagesController@setTimezone'));

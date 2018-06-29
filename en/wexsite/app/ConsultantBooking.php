@@ -261,6 +261,38 @@ class ConsultantBooking extends Model
         return '';
     }
 
+
+
+
+
+
+
+    
+
+    public static function getZoomAccessToken()
+    {
+
+        //Zoom API credentials from https://developer.zoom.us/me/
+        $key = env('ZOOM_API_KEY');
+        $secret = env('ZOOM_API_SECRET');
+        $token = array(
+            "iss" => $key,
+            // The benefit of JWT is expiry tokens, we'll set this one to expire in 1 minute
+            "exp" => time() + 60,
+        );
+
+        return JWT::encode($token, $secret);
+    }
+
+
+
+
+
+
+
+
+
+
     public static function getWebinarAccessToken($token = true)
     {
         $headers = [
