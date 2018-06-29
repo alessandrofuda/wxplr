@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Log;
 use PhpParser\Node\Stmt\Echo_;
 
+use JWTAuth;
+use Tymon\JWTAuth\Exceptions\JWTException;
+use JWTFactory;
+
+
+
 class ConsultantBooking extends Model
 {
     use SoftDeletes;
@@ -269,19 +275,33 @@ class ConsultantBooking extends Model
 
     
 
-    public static function getZoomAccessToken()
+    public static function getZoomAccessToken()    // verify to https://jwt.io/ !!!!!!!!!!!!!!!!!
     {
-
         //Zoom API credentials from https://developer.zoom.us/me/
-        $key = env('ZOOM_API_KEY');
-        $secret = env('ZOOM_API_SECRET');
-        $token = array(
-            "iss" => $key,
-            // The benefit of JWT is expiry tokens, we'll set this one to expire in 1 minute
-            "exp" => time() + 60,
-        );
+        $customClaims = [
+                            'iss'   => env('ZOOM_API_KEY'),
+                            'exp'   => time() + 60   // for test: 1496091964000
+                            //'iat'   => null, 
+                            //'nbf'   => null,
+                            //'sub'   => null,
+                            //'jti'   => null
+                        ];
 
-        return JWT::encode($token, $secret);
+        $payload = JWTFactory::make($customClaims); // $factory->make();
+
+        try {
+            // attempt to verify the credentials and create a token for the user
+            if (! $token = JWTAuth::encode($payload) ) {
+                return response()->json(['error' => 'invalid_credentials'], 401);
+            }
+        } catch (JWTException $e) {
+            // something went wrong whilst attempting to encode the token
+            return response()->json(['error' => 'could_not_create_token'], 500);
+        }
+
+        // all good so return the token
+        // dd($token);
+        return $token;
     }
 
 

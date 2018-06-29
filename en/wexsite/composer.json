@@ -16,7 +16,8 @@
         "vinkla/vimeo": "^3.4",
         "maatwebsite/excel": "~2.1.0",
         "spatie/laravel-cookie-consent": "^1.7",
-        "guzzlehttp/guzzle": "~4.0"
+        "guzzlehttp/guzzle": "~4.0",
+        "tymon/jwt-auth": "0.5.*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
