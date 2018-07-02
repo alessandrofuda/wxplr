@@ -89,7 +89,9 @@ class ConsultantBooking extends Model
 
     public function saveMeeting($type = null)
     {
-        $token = self::getAccessToken();
+        // $token = self::getAccessToken();
+        $token = self::getZoomAccessToken();
+
         $start_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_start_time . ':00Z';
         $end_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_end_time . ':00Z';
 
@@ -129,7 +131,9 @@ class ConsultantBooking extends Model
 
     public function updateMeeting()
     {
-        $token = self::getAccessToken();
+        // $token = self::getAccessToken();
+        $token = self::getZoomAccessToken();
+
         $start_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_start_time . ':00Z';
         $end_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_end_time . ':00Z';
 
@@ -161,7 +165,9 @@ class ConsultantBooking extends Model
     }
     
     public function getMeetingStatus() {  //  'ACTIVE' || 'INACTIVE' || booked' || 'completed' || 'cancelled'
-        $token = self::getAccessToken();
+        
+        // $token = self::getAccessToken();
+        $token = self::getZoomAccessToken();
 
        /* if(!$this->checkDate())
             return 'Expired';*/
@@ -196,7 +202,10 @@ class ConsultantBooking extends Model
 
 
     public function cancelMeeting() {
-        $token = self::getAccessToken();
+
+        // $token = self::getAccessToken();
+        $token = self::getZoomAccessToken();
+
         $gotomeeting = $this->gotomeeting;
 
         if($gotomeeting != null) {
@@ -218,7 +227,10 @@ class ConsultantBooking extends Model
 
     public function start_meeting() {
         $gotomeeting = $this->gotomeeting;
-        $token = self::getAccessToken();
+
+        // $token = self::getAccessToken();
+        $token = self::getZoomAccessToken();
+
 
         if($gotomeeting != null && $token != '') {
             $headers = [
@@ -236,7 +248,7 @@ class ConsultantBooking extends Model
         return false;
     }
 
-    public static function getAccessToken($token = true)
+    /* public static function getAccessToken($token = true)
     {
         $headers = [
             'Content-Type: application/x-www-form-urlencoded',
@@ -266,6 +278,7 @@ class ConsultantBooking extends Model
 
         return '';
     }
+    */
 
 
 
@@ -300,7 +313,6 @@ class ConsultantBooking extends Model
         }
 
         // all good so return the token
-        // dd($token);
         return $token;
     }
 
