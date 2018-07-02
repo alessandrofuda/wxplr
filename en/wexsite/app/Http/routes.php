@@ -27,15 +27,28 @@
 //	return phpinfo();
 //});
 
-
+// TEST ROUTES
 Route::get('/token',function () {
 	return \App\ConsultantBooking::getAccessToken();
 });
 
-
 Route::get('zoom_token', function() {
 	return \App\ConsultantBooking::getZoomAccessToken();
 });
+
+Route::get('save_meeting_test', function() {
+	$test = new \App\ConsultantBooking;
+	return $test->saveMeeting();
+});
+
+
+
+
+
+
+
+
+
 
 
 

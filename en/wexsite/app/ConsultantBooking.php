@@ -28,6 +28,22 @@ class ConsultantBooking extends Model
 
     protected $fillable = ['deleted_at','user_id','availablity_id','status','feedback_comments',
         'is_sent','query_id','type_id','state_id', 'recording'];
+
+
+    
+
+    public function __construct(string $API_base_url = NULL) {   // array $attributes = [],
+        
+        // parent::__construct();        
+        // parent::__construct($attributes);
+
+        $API_base_url = 'https://api.zoom.us/v2';
+        $this->API_base_url = $API_base_url;
+        
+
+    }
+
+
     
     public function availablity(){
         return $this->belongsTo('App\ConsultantAvailablity','availablity_id');
@@ -91,16 +107,23 @@ class ConsultantBooking extends Model
     {
         // $token = self::getAccessToken();
         $token = self::getZoomAccessToken();
-
-        $start_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_start_time . ':00Z';
-        $end_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_end_time . ':00Z';
-
-        $headers = [
+        $headers = [  // cambiare con criteri di Zoom !!
             'Content-Type: application/json',
             'Accept: application/json',
             'Authorization: OAuth oauth_token=' . $token
         ];
 
+        // $url = "https://api.getgo.com/G2M/rest/meetings";
+        // $url = "POST https://api.zoom.us/v2/users/{userId}/meetings"
+        $url = $this->API_base_url.'/users/'.env('ZOOM_USER_ID').'/meetings';
+        
+
+        dd($url);
+        
+
+
+        $start_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_start_time . ':00Z';
+        $end_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_end_time . ':00Z';
         $postData = json_encode([
             "subject" => "Consultant Meeting",
             "starttime" => $start_date,  //2016-09-15T08:00:00Z
@@ -110,7 +133,6 @@ class ConsultantBooking extends Model
             "timezonekey" => "GMT",
             "meetingtype" => "immediate"
         ]);
-        $url = "https://api.getgo.com/G2M/rest/meetings";
         
         // API call !!
         $out = self::curl_request("POST", $headers, $url, $postData);
@@ -158,7 +180,8 @@ class ConsultantBooking extends Model
         }
 	
 	if($this->gotomeeting != null) {
-		$url = "https://api.getgo.com/G2M/rest/meetings/".$this->gotomeeting->meetingid;
+		// $url = "https://api.getgo.com/G2M/rest/meetings/".$this->gotomeeting->meetingid;
+        $url = $this->API_base_url.'/................';
 		$out = self::curl_request("PUT", $headers, $url, $postData);
 	}
         return true;
@@ -179,7 +202,8 @@ class ConsultantBooking extends Model
                 'Accept: application/json',
                 'Authorization: OAuth oauth_token=' . $token
             ];
-            $url = "https://api.getgo.com/G2M/rest/meetings/" . $meetingid;
+            // $url = "https://api.getgo.com/G2M/rest/meetings/" . $meetingid;
+            $url = $this->API_base_url.'/.............................';
             $out = self::curl_request('GET', $headers, $url);
             $link = GoToMeeting::getButtonUrl($this->id);
             // dd($this->id); // 52
@@ -213,7 +237,8 @@ class ConsultantBooking extends Model
                 'Accept: application/json',
                 'Authorization: OAuth oauth_token=' .$token
             ];
-            $url = "https://api.getgo.com/G2M/rest/meetings/" . $gotomeeting->meetingid;
+            // $url = "https://api.getgo.com/G2M/rest/meetings/" . $gotomeeting->meetingid;
+            $url = $this->API_base_url.'/.........................................';
             $out = self::curl_request('DELETE', $headers, $url);
 
             if ($gotomeeting->delete()) {
@@ -237,7 +262,8 @@ class ConsultantBooking extends Model
                 'Accept: application/json',
                 'Authorization: OAuth oauth_token=' .$token
             ];
-            $url = "https://api.getgo.com/G2M/rest/meetings/" . $gotomeeting->meetingid.'/start';
+            // $url = "https://api.getgo.com/G2M/rest/meetings/" . $gotomeeting->meetingid.'/start';
+            $url = $this->API_base_url.'/.......................................';
             $out = self::curl_request('GET', $headers, $url);   // vedi ultimo metodo (fondo pagina)
 
             // dd($out);  // assoc array : hostURL => skjhdkhdhvh.....
@@ -337,7 +363,8 @@ class ConsultantBooking extends Model
         $client_id = env('GOTOWEBINAR_CONSUMER_KEY');
 
         $postData = "grant_type=password&user_id=".$email."&password=".$password."&client_id=".$client_id;
-        $url = "https://api.getgo.com/oauth/access_token";
+        // $url = "https://api.getgo.com/oauth/access_token";
+        $url = $this->API_base_url.'/............................................';
 
         $out = self::curl_request('POST', $headers, $url, $postData);
 
