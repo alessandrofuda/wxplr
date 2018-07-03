@@ -26,20 +26,20 @@ class ConsultantBooking extends Model
 
     protected $table = 'consultant_bookings';
 
-    protected $fillable = ['deleted_at','user_id','availablity_id','status','feedback_comments',
-        'is_sent','query_id','type_id','state_id', 'recording'];
+    protected $fillable = ['deleted_at','user_id','availablity_id','status','feedback_comments', 'is_sent', 'query_id', 'type_id', 'state_id', 'recording'];
 
 
-    
-
-    public function __construct(string $API_base_url = NULL) {   // array $attributes = [],
+    public function __construct() { 
         
-        // parent::__construct();        
-        // parent::__construct($attributes);
+        $this->API_base_url = 'https://api.zoom.us/v2'; 
 
-        $API_base_url = 'https://api.zoom.us/v2';
-        $this->API_base_url = $API_base_url;
-        
+        $this->headers = [
+                            'Content-Type: application/json',
+                            'Accept: application/json, application/xml',
+                            'Authorization: Bearer ' . self::getZoomAccessToken()
+                         ];
+
+        $this->zoomUserId = env('ZOOM_USER_ID');
 
     }
 
@@ -89,21 +89,21 @@ class ConsultantBooking extends Model
             self::STATE_CANCELLED => 'Cancelled'
         ];
 
-        if($id === null)
+        if($id === null) {
             return $list;
+        }
 
-
-        if(is_numeric($id))
-            return $list[$id];  // <-- !!
+        if(is_numeric($id)) {
+            return $list[$id]; 
+        }
 
         return $id;
     }
 
+
     //public function gotomeeting() {
     //    return $this->hasOne('App\GoToMeeting', 'booking_id');
     //}
-
-
     public function zoommeeting() {
         return $this->hasOne('App\ZoomMeeting', 'booking_id');
     }
@@ -115,25 +115,14 @@ class ConsultantBooking extends Model
 
     public function saveMeeting($type = null)
     {
-        // $token = self::getAccessToken();
-        $token = self::getZoomAccessToken();
-        $headers = [  // cambiare con criteri di Zoom !!
-            'Content-Type: application/json',
-            'Accept: application/json, application/xml',
-            'Authorization: Bearer ' . $token
-        ];
-
-        // $url = "https://api.getgo.com/G2M/rest/meetings";
-        // $url = "POST https://api.zoom.us/v2/users/{userId}/meetings"
-        $url = $this->API_base_url.'/users/'.env('ZOOM_USER_ID').'/meetings';
+        
+        $url = $this->API_base_url.'/users/'.$this->zoomUserId.'/meetings';
         
         $start_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_start_time . ':00Z'; 
         $end_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_end_time . ':00Z';
             // TESTING
             //$start_date = '2099-01-01T12:30:00Z';
             //$end_date = '2099-01-01T14:45:00Z'; 
-
-        
 
         $postData = json_encode([
             "topic" => "Consultant Meeting",
@@ -147,13 +136,13 @@ class ConsultantBooking extends Model
         ]);
         
         // API call !!
-        $out = self::curl_request("POST", $headers, $url, $postData);
+        $out = self::curl_request("POST", $this->headers, $url, $postData);
         // dump($out);
 
         if (isset($out) && $out !== NULL ) {
 
             if($type == null) {
-                $type = ZoomMeeting::TYPE_MEETING;
+                $type = ZoomMeeting::TYPE_MEETING;  // 0
             }
 
             if (ZoomMeeting::saveData($out, $this->id, $type)){
@@ -167,21 +156,23 @@ class ConsultantBooking extends Model
 
 
 
-    public function updateMeeting()
+    public function updateMeeting()  // SISTEMARE !!
     {
-        // $token = self::getAccessToken();
-        $token = self::getZoomAccessToken();
-
+        
         $start_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_start_time . ':00Z';
         $end_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_end_time . ':00Z';
 
-        $headers = [
-            'Content-Type: application/json',
-            'HeaderName2: HeaderValue2',
-            'Accept: application/json',
-            'Authorization: OAuth oauth_token=' . $token
-        ];
-        $postData = json_encode([
+        //$headers = [
+        //    'Content-Type: application/json',
+        //    'HeaderName2: HeaderValue2',
+        //    'Accept: application/json',
+        //    'Authorization: OAuth oauth_token=' . $token
+        //];
+
+        $headers = $this->headers;
+        $headers['HeaderName2'] = 'HeaderValue2'; // verificare se serve veramente ..
+
+        $postData = json_encode([  // SISTEMARE !!
             "subject" => "Consultant Meeting",
             "starttime" => $start_date,  //2016-09-15T08:00:00Z
             "endtime" => $end_date,  //2016-09-15T08:00:00Z
@@ -195,32 +186,32 @@ class ConsultantBooking extends Model
             $this->saveMeeting();
         }
 	
-	if($this->gotomeeting != null) {
-		// $url = "https://api.getgo.com/G2M/rest/meetings/".$this->gotomeeting->meetingid;
-        $url = $this->API_base_url.'/................';
-		$out = self::curl_request("PUT", $headers, $url, $postData);
-	}
+    	if($this->gotomeeting != null) {
+    		// $url = "https://api.getgo.com/G2M/rest/meetings/".$this->gotomeeting->meetingid;
+            $url = $this->API_base_url.'/................';
+    		$out = self::curl_request("PUT", $headers, $url, $postData);
+    	}
+
         return true;
     }
-    
-    public function getMeetingStatus() {  //  'ACTIVE' || 'INACTIVE' || booked' || 'completed' || 'cancelled'
-        
-        // $token = self::getAccessToken();
-        $token = self::getZoomAccessToken();
 
+
+    
+    public function getMeetingStatus() { // SISTEMARE  //  'ACTIVE' || 'INACTIVE' || booked' || 'completed' || 'cancelled'
+        
        /* if(!$this->checkDate())
             return 'Expired';*/
 
       //  if($this->status == self::STATE_PENDING ) {  // 0 --> 'booked' [0:pending, 1:completed ,2:cancelled]
-            $meetingid = isset($this->gotomeeting->meetingid) ? $this->gotomeeting->meetingid : 0; // gotomeeting --> hasOne relation: each consultantbooking hasOne gotomeeting
+            $meetingid = isset($this->zoommeeting->meetingid) ? $this->zoommeeting->meetingid : 0; // zoommeeting --> hasOne relation: each consultantbooking hasOne zoommeeting
 
-            $headers = [
-                'Accept: application/json',
-                'Authorization: OAuth oauth_token=' . $token
-            ];
+            //$headers = [
+            //    'Accept: application/json',
+            //    'Authorization: OAuth oauth_token=' . $token
+            //];
             // $url = "https://api.getgo.com/G2M/rest/meetings/" . $meetingid;
             $url = $this->API_base_url.'/.............................';
-            $out = self::curl_request('GET', $headers, $url);
+            $out = self::curl_request('GET', $this->headers, $url);
             $link = GoToMeeting::getButtonUrl($this->id);
             // dd($this->id); // 52
             // dd($out[0]);
@@ -241,53 +232,50 @@ class ConsultantBooking extends Model
 
 
 
-    public function cancelMeeting() {
+    public function cancelMeeting() {  // SISTEMARE !!
 
-        // $token = self::getAccessToken();
-        $token = self::getZoomAccessToken();
+        $zoommeeting = $this->zoommeeting;
 
-        $gotomeeting = $this->gotomeeting;
-
-        if($gotomeeting != null) {
-            $headers = [
-                'Accept: application/json',
-                'Authorization: OAuth oauth_token=' .$token
-            ];
+        if($zoommeeting != null) {
+            //$headers = [
+            //    'Accept: application/json',
+            //    'Authorization: OAuth oauth_token=' .$token
+            //];
             // $url = "https://api.getgo.com/G2M/rest/meetings/" . $gotomeeting->meetingid;
             $url = $this->API_base_url.'/.........................................';
-            $out = self::curl_request('DELETE', $headers, $url);
+            $out = self::curl_request('DELETE', $this->headers, $url);
 
             if ($gotomeeting->delete()) {
                 return true;
             }
 
         }
+
         return false;
     }
 
 
     public function start_meeting() {
-        $gotomeeting = $this->gotomeeting;
 
+        $zoommeeting = $this->zoommeeting;
 
-        // $token = self::getAccessToken();
-        $token = self::getZoomAccessToken();
+        if($zoommeeting != null ) {
+            
+            $meetingId = $zoommeeting->meetingid;
+            $url = $this->API_base_url.'/meetings/'. $meetingId;
+            $out = self::curl_request('GET', $this->headers, $url);  
 
+            if( isset($out['start_url']) ) {
+                $start_meeting_url = $out['start_url'];
+                return $start_meeting_url;  // OK !
+            } 
 
-        if($gotomeeting != null && $token != '') {
-            $headers = [
-                'Accept: application/json',
-                'Authorization: OAuth oauth_token=' .$token
-            ];
-            // $url = "https://api.getgo.com/G2M/rest/meetings/" . $gotomeeting->meetingid.'/start';
-            $url = $this->API_base_url.'/.......................................';
-            $out = self::curl_request('GET', $headers, $url);   // vedi ultimo metodo (fondo pagina)
-
-            // dd($out);  // assoc array : hostURL => skjhdkhdhvh.....
-
-            return $out;
+            Log::info('Error from Zoom API Call. ErrCode '.$out['code']. ', errMessage: '.$out['message']);
+            return false;
+            
         }
 
+        Log::info('Error: zoommeeting == null and not found in ConsultantBooking model.');
         return false;
     }
 
@@ -401,6 +389,7 @@ class ConsultantBooking extends Model
 
         return '';
     }
+
 
     public function getBookingDate() {
         $date = date('Y-m-d', strtotime($this->availablity->getDate(\App\ConsultantAvailablity::DATE)));  // getDate(0);

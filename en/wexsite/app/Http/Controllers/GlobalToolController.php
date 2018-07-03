@@ -368,17 +368,16 @@ class GlobalToolController extends CustomBaseController
         }*/
 
         $data['appointment'] = $appointment;
-        // dd('... go to start meeting to citrix server ... stop!');
-        $response = $appointment->start_meeting(); 
-        // dd($response); 
+        $start_meeting_url = $appointment->start_meeting(); 
 
-        if(isset($response['hostURL'])) {
-            // dd($response['hostURL']);
-
-            return  redirect()->away($response['hostURL']);   // !! GO AWAY TO REMOTE CALL TO GOTOMEETING SERVERS !!
+        if(isset($start_meeting_url) && $start_meeting_url != '') {
+            // dd($response['hostURL']); 
+            return  redirect()->away($start_meeting_url);   // !! GO AWAY TO REMOTE CALL TO ZOOM SERVERS !!
         }
 
-        $data['hostUrl'] = $response['hostURL'];
+        Log::info('Error: $start_meeting_url NOT setted or empty!');
+
+        $data['hostUrl'] = $start_meeting_url;  // $response['hostURL'];
         $data['noti_mesg'] = '';
 
         return view('consultant.session',$data);

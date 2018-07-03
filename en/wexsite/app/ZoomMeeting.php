@@ -46,7 +46,7 @@ class ZoomMeeting extends Model
 
 
     public function booking() {
-        return $this->belongsTo('ConsultantBooking', 'booking_id');
+        return $this->belongsTo('App\ConsultantBooking', 'booking_id');
     }
 
 

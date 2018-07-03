@@ -35,10 +35,10 @@
 //	return \App\ConsultantBooking::getZoomAccessToken();
 //});
 
-//Route::get('save_meeting_test', function() {
-//	$test = new \App\ConsultantBooking;
-//	return dd('ok: '.$test->saveMeeting());
-//});
+Route::get('start_meeting_test', function() {
+	$test = new \App\ConsultantBooking;
+	return dd('ok: '.$test->start_meeting());
+});
 
 
 
