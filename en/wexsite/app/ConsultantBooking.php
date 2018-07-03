@@ -99,9 +99,19 @@ class ConsultantBooking extends Model
         return $id;
     }
 
-    public function gotomeeting() {
-        return $this->hasOne('App\GoToMeeting', 'booking_id');
+    //public function gotomeeting() {
+    //    return $this->hasOne('App\GoToMeeting', 'booking_id');
+    //}
+
+
+    public function zoommeeting() {
+        return $this->hasOne('App\ZoomMeeting', 'booking_id');
     }
+
+
+
+
+
 
     public function saveMeeting($type = null)
     {
@@ -109,47 +119,53 @@ class ConsultantBooking extends Model
         $token = self::getZoomAccessToken();
         $headers = [  // cambiare con criteri di Zoom !!
             'Content-Type: application/json',
-            'Accept: application/json',
-            'Authorization: OAuth oauth_token=' . $token
+            'Accept: application/json, application/xml',
+            'Authorization: Bearer ' . $token
         ];
 
         // $url = "https://api.getgo.com/G2M/rest/meetings";
         // $url = "POST https://api.zoom.us/v2/users/{userId}/meetings"
         $url = $this->API_base_url.'/users/'.env('ZOOM_USER_ID').'/meetings';
         
+        $start_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_start_time . ':00Z'; 
+        $end_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_end_time . ':00Z';
+            // TESTING
+            //$start_date = '2099-01-01T12:30:00Z';
+            //$end_date = '2099-01-01T14:45:00Z'; 
 
-        dd($url);
         
 
-
-        $start_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_start_time . ':00Z';
-        $end_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_end_time . ':00Z';
         $postData = json_encode([
-            "subject" => "Consultant Meeting",
-            "starttime" => $start_date,  //2016-09-15T08:00:00Z
-            "endtime" => $end_date,  //2016-09-15T08:00:00Z
-            "passwordrequired" => false,
-            "conferencecallinfo" => "Free",
-            "timezonekey" => "GMT",
-            "meetingtype" => "immediate"
+            "topic" => "Consultant Meeting",
+            "type"  => 1, // 1:instant  2:scheduled  3:recurring ... (in gotomeeting era: 1)
+            "start_time" => $start_date,  // always use GMT time
+            // "duration" => ,
+            // "timezone" => "UTC",
+            // "endtime" => $end_date,  //2016-09-15T08:00:00Z
+            // "passwordrequired" => false,
+            "agenda" => "Free Call"
         ]);
         
         // API call !!
         $out = self::curl_request("POST", $headers, $url, $postData);
+        // dump($out);
 
-        if (isset($out[0])) {
+        if (isset($out) && $out !== NULL ) {
 
             if($type == null) {
-                $type = GoToMeeting::TYPE_MEETING;
+                $type = ZoomMeeting::TYPE_MEETING;
             }
 
-            if (GoToMeeting::saveData($out[0], $this->id, $type))
+            if (ZoomMeeting::saveData($out, $this->id, $type)){
                 return true;
+            }
             
         }
 
         return false;
     }
+
+
 
     public function updateMeeting()
     {
@@ -252,6 +268,7 @@ class ConsultantBooking extends Model
 
     public function start_meeting() {
         $gotomeeting = $this->gotomeeting;
+
 
         // $token = self::getAccessToken();
         $token = self::getZoomAccessToken();

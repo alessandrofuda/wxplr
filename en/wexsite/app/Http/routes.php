@@ -21,25 +21,24 @@
     //
 //});
 
-
+// TEST ROUTES
 //Route::get('phpinfo', function(){
 //  return date('Y-m-d H:i:s');
 //	return phpinfo();
 //});
 
-// TEST ROUTES
-Route::get('/token',function () {
-	return \App\ConsultantBooking::getAccessToken();
-});
+//Route::get('/token',function () {
+//	return \App\ConsultantBooking::getAccessToken();
+//});
 
-Route::get('zoom_token', function() {
-	return \App\ConsultantBooking::getZoomAccessToken();
-});
+//Route::get('zoom_token', function() {
+//	return \App\ConsultantBooking::getZoomAccessToken();
+//});
 
-Route::get('save_meeting_test', function() {
-	$test = new \App\ConsultantBooking;
-	return $test->saveMeeting();
-});
+//Route::get('save_meeting_test', function() {
+//	$test = new \App\ConsultantBooking;
+//	return dd('ok: '.$test->saveMeeting());
+//});
 
 
 

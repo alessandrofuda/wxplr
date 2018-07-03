@@ -14,6 +14,9 @@ class GoToMeeting extends Model
     protected $fillable = ['joinURL','meetingid','maxParticipants','uniqueMeetingId','conferenceCallInfo','booking_id',
         'type_id','created_at'];
 
+
+
+
     public static function saveData($data, $id, $type = null) {
         $meeting = new GoToMeeting();
         $meeting->booking_id = $id;
