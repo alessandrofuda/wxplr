@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class UserConsultantDiscussion extends Model
 {
 
-
+	protected $table = 'user_consultant_discussions';
+	
 	protected $fillable = ['user_id', 'discuss_id', 'message'];
 
 
