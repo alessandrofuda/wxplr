@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 use App\ConsultantBooking;
 
 
@@ -64,11 +65,13 @@ class ZoomMeeting extends Model
                 }
 
                 // else --> 'Join Meeting' | URL preso direttamente da tabella zoom_meetings
-                return link_to($meeting->joinURL, \Auth::user()->role->role_id == 2 ? 'Start' : 'Join'.' Meeting', ['id' => 'join_'.$id, 'target' => '_blank', 'class' => 'btn btn-success']);
+                return link_to($meeting->joinURL, 'Join Meeting', ['id' => 'join_'.$id, 'target' => '_blank', 'class' => 'btn btn-success']);
 
              }
+             Log::info('Error: $meeting->booking->checkDate() return FALSE.');
         }
 
+        Log::info('Error: meeting NOT found ($meeting == NULL)');
         return '';
     }
     
