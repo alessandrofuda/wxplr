@@ -54,7 +54,7 @@ class ZoomMeeting extends Model
 
     public static function getButtonUrl($id, $page = false) {   // return: "start meeting" || "join meeting"  ||  "" (empty string)
         
-        $meeting = ZooomMeeting::where('booking_id', $id)->first();
+        $meeting = ZoomMeeting::where('booking_id', $id)->first();
 
         if(isset($meeting->booking)) {
 

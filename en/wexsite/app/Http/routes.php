@@ -35,9 +35,9 @@
 //	return \App\ConsultantBooking::getZoomAccessToken();
 //});
 
-Route::get('update_meeting_test', function() {
+Route::get('status_meeting_test', function() {
 	$test = new \App\ConsultantBooking;
-	return dd('ok: '.$test->updatemeeting());
+	return dd('ok: '.$test->getMeetingStatus());
 });
 
 

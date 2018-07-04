@@ -84,9 +84,9 @@ class ConsultantBooking extends Model
 
     public static function getStatusOptions($id = null) {   // booked | completed | cancelled
         $list = [
-            self::STATE_PENDING => 'Booked',
-            self::STATE_COMPLETED => 'Completed',
-            self::STATE_CANCELLED => 'Cancelled'
+            self::STATE_PENDING => 'Booked',        // 0
+            self::STATE_COMPLETED => 'Completed',   // 1
+            self::STATE_CANCELLED => 'Cancelled'    // 2
         ];
 
         if($id === null) {
@@ -186,37 +186,19 @@ class ConsultantBooking extends Model
 
 
     
-    public function getMeetingStatus() { // SISTEMARE  //  'ACTIVE' || 'INACTIVE' || booked' || 'completed' || 'cancelled'
+    public function getMeetingStatus() {  
+
+        $meeting_link = ZoomMeeting::getButtonUrl($this->id);
+            
+        if ($meeting_link != '') {
+            return $meeting_link;  // ---> !! "START/JOIN MEETING" button !!
+        } 
+
+        $booking_status_value = $this->status;  // 0,1,2
+        $status = self::getStatusOptions($booking_status_value);
         
-       /* if(!$this->checkDate())
-            return 'Expired';*/
+        return $status;     // 'booked' || 'completed' || 'cancelled'
 
-      //  if($this->status == self::STATE_PENDING ) {  // 0 --> 'booked' [0:pending, 1:completed ,2:cancelled]
-            $meetingid = isset($this->zoommeeting->meetingid) ? $this->zoommeeting->meetingid : 0; // zoommeeting --> hasOne relation: each consultantbooking hasOne zoommeeting
-
-            //$headers = [
-            //    'Accept: application/json',
-            //    'Authorization: OAuth oauth_token=' . $token
-            //];
-            // $url = "https://api.getgo.com/G2M/rest/meetings/" . $meetingid;
-            $url = $this->API_base_url.'/.............................';
-            $out = self::curl_request('GET', $this->headers, $url);
-            $link = GoToMeeting::getButtonUrl($this->id);
-            // dd($this->id); // 52
-            // dd($out[0]);
-
-            $status = isset($out[0]['status']) ? $out[0]['status'] : self::getStatusOptions($this->status);  
-
-            if($status != "ACTIVE") {
-                if ($link != '') {
-                    return $link;  // ---> !! green button !!
-                }
-            }
-
-        return $status;   // 'ACTIVE' or "INACTIVE" or 'booked' or 'completed' or 'cancelled' ...
-      // }
-
-        // return $this->getStatusOptions($this->status);
     }
 
 
