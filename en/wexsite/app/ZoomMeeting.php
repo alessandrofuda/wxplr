@@ -68,10 +68,10 @@ class ZoomMeeting extends Model
                 return link_to($meeting->joinURL, 'Join Meeting', ['id' => 'join_'.$id, 'target' => '_blank', 'class' => 'btn btn-success']);
 
              }
-             Log::info('Error: $meeting->booking->checkDate() return FALSE.');
+             // Log::info('Error: $meeting->booking->checkDate() return FALSE.');  // eliminato pechè nel loop darebbe falsi negativi
         }
 
-        Log::info('Error: meeting NOT found ($meeting == NULL)');
+        // Log::info('Error: meeting NOT found ($meeting == NULL)'); eliminato pechè nel loop darebbe falsi negativi
         return '';
     }
     

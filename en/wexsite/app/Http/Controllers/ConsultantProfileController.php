@@ -383,8 +383,8 @@ class ConsultantProfileController extends CustomBaseController
 
         $data['forms'] = [];
 
-// dd($dream_check_lab_forms); // array(4)
-// Log::info('start: '.microtime() );
+        // dd($dream_check_lab_forms); // array(4)
+        // Log::info('start: '.microtime() );
         foreach ($dream_check_lab_forms as $dream_check_lab_form) {
             
             // Log::info('step1: '.microtime() );
@@ -409,7 +409,7 @@ class ConsultantProfileController extends CustomBaseController
 
 
 
-// dd($global_tool_forms);
+        // dd($global_tool_forms);
 
         foreach ($global_tool_forms as $global_tool_form) {
             if(isset($global_tool_form->user->name)) {

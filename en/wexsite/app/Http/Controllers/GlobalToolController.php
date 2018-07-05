@@ -18,6 +18,7 @@ use App\UserRoles;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -346,19 +347,6 @@ class GlobalToolController extends CustomBaseController
 
 
 
-
-
-
-
-// Citrix API HTTP Status Codes --> per implementare pulsante richiama
-// https://goto-developer.logmeininc.com/citrix-api-http-status-codes
-
-
-
-
-
-
-
     public function start_meeting($id) {
         $data['page_title'] = 'Session';
         $appointment = ConsultantBooking::find($id); 
@@ -378,10 +366,12 @@ class GlobalToolController extends CustomBaseController
         Log::info('Error: $start_meeting_url NOT setted or empty!');
 
         $data['hostUrl'] = $start_meeting_url;  // $response['hostURL'];
-        $data['noti_mesg'] = '';
+        $data['noti_mesg'] = 'This meeting already has been terminated. Schedule a new meeting or edit this one.';
 
         return view('consultant.session',$data);
     }
+
+
 
     public function upload_recording(Request $request, $id)
     {

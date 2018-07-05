@@ -108,20 +108,14 @@ class ConsultantBooking extends Model
     }
 
 
-    //public function gotomeeting() {
-    //    return $this->hasOne('App\GoToMeeting', 'booking_id');
-    //}
     public function zoommeeting() {
         return $this->hasOne('App\ZoomMeeting', 'booking_id');
     }
 
 
-
-
-
-
     public function saveMeeting($type = null) {
         
+        $headers = self::getZoomApiHeaders();
         $url = self::getZoomApiBaseUrl() .'/users/'.self::getZoomApiUserId().'/meetings';
         
         $start_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_start_time . ':00Z'; 
@@ -132,13 +126,14 @@ class ConsultantBooking extends Model
 
         $postData = json_encode([
             "topic" => "Consultant Meeting",
-            "type"  => 1, // 1:instant  2:scheduled  3:recurring ... (in gotomeeting era: 1)
+            "type"  => 2, // 1  // 1:instant  2:scheduled  3:recurring ... (in gotomeeting era: 1)
             "start_time" => $start_date,  // always use GMT time
+            "duration" => 180,
             "agenda" => "Free Call"
         ]);
         
         // API call !!
-        $out = self::curl_request("POST", self::getZoomApiHeaders(), $url, $postData);
+        $out = self::curl_request("POST", $headers, $url, $postData);
         // dump($out);
 
         if (isset($out) && $out !== NULL ) {
@@ -179,8 +174,9 @@ class ConsultantBooking extends Model
                 // $end_date = '2088-01-01T14:45:00Z';
             $postData = json_encode([  // SISTEMARE !!
                 "topic" => "Consultant Meeting",
-                "type" => 1,
+                "type" => 2,  // 1
                 "start_time" => $start_date, // always use GMT time
+                "duration" => 180,
                 "agenda" => "Free Call - updated"
             ]);
             
@@ -249,7 +245,7 @@ class ConsultantBooking extends Model
             } 
 
             Log::info('Error from Zoom API Call. ErrCode '.$out['code']. ', errMessage: '.$out['message']);
-            return false;
+            return false; //'Message from Zoom API Call. Error '.$out['code']. ': '.$out['message']; //false;
             
         }
 
