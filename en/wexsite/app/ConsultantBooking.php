@@ -24,24 +24,11 @@ class ConsultantBooking extends Model
     const STATE_COMPLETED = 1;
     const STATE_CANCELLED = 2;
 
-    protected $table = 'consultant_bookings';
 
+
+    protected $table = 'consultant_bookings';
     protected $fillable = ['deleted_at','user_id','availablity_id','status','feedback_comments', 'is_sent', 'query_id', 'type_id', 'state_id', 'recording'];
 
-
-    public function __construct() { 
-        
-        $this->API_base_url = 'https://api.zoom.us/v2'; 
-
-        $this->headers = [
-                            'Content-Type: application/json',
-                            'Accept: application/json, application/xml',
-                            'Authorization: Bearer ' . self::getZoomAccessToken()
-                         ];
-
-        $this->zoomUserId = env('ZOOM_USER_ID');
-
-    }
 
 
     
@@ -51,6 +38,26 @@ class ConsultantBooking extends Model
 
     public function user(){
         return $this->belongsTo('App\User','user_id');
+    }
+
+    public static function getZoomApiBaseUrl() {
+        $API_base_url = 'https://api.zoom.us/v2';
+        return $API_base_url;
+    }
+
+    public static function getZoomApiHeaders(){
+        $ZoomAccessToken = self::getZoomAccessToken();
+        $headers = [
+                    'Content-Type: application/json',
+                    'Accept: application/json, application/xml',
+                    'Authorization: Bearer ' . $ZoomAccessToken 
+                    ];
+        return $headers;
+    }
+
+    public static function getZoomApiUserId(){
+        $zoomUserId = env('ZOOM_USER_ID');
+        return $zoomUserId;
     }
 
     public static function getTypeOptions($id = null, $qid = null) {
@@ -115,7 +122,7 @@ class ConsultantBooking extends Model
 
     public function saveMeeting($type = null) {
         
-        $url = $this->API_base_url.'/users/'.$this->zoomUserId.'/meetings';
+        $url = self::getZoomApiBaseUrl() .'/users/'.self::getZoomApiUserId().'/meetings';
         
         $start_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_start_time . ':00Z'; 
         // $end_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_end_time . ':00Z';
@@ -131,7 +138,7 @@ class ConsultantBooking extends Model
         ]);
         
         // API call !!
-        $out = self::curl_request("POST", $this->headers, $url, $postData);
+        $out = self::curl_request("POST", self::getZoomApiHeaders(), $url, $postData);
         // dump($out);
 
         if (isset($out) && $out !== NULL ) {
@@ -162,9 +169,9 @@ class ConsultantBooking extends Model
 
         } else {
 
-            $headers = $this->headers;
+            $headers = self::getZoomApiHeaders();
             $meetingId = $this->zoommeeting->meetingid;
-            $url = $this->API_base_url.'/meetings/'.$meetingId;
+            $url = self::getZoomApiBaseUrl().'/meetings/'.$meetingId;
             $start_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_start_time . ':00Z';
             //$end_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_end_time . ':00Z';
                 // TESTING
@@ -213,8 +220,8 @@ class ConsultantBooking extends Model
             //    'Authorization: OAuth oauth_token=' .$token
             //];
             // $url = "https://api.getgo.com/G2M/rest/meetings/" . $gotomeeting->meetingid;
-            $url = $this->API_base_url.'/.........................................';
-            $out = self::curl_request('DELETE', $this->headers, $url);
+            $url = self::getZoomApiBaseUrl().'/.........................................';
+            $out = self::curl_request('DELETE', self::getZoomApiHeaders(), $url);
 
             if ($gotomeeting->delete()) {
                 return true;
@@ -233,8 +240,8 @@ class ConsultantBooking extends Model
         if($zoommeeting != null ) {
             
             $meetingId = $zoommeeting->meetingid;
-            $url = $this->API_base_url.'/meetings/'. $meetingId;
-            $out = self::curl_request('GET', $this->headers, $url);  
+            $url = self::getZoomApiBaseUrl().'/meetings/'. $meetingId;
+            $out = self::curl_request('GET', self::getZoomApiHeaders(), $url);  
 
             if( isset($out['start_url']) ) {
                 $start_meeting_url = $out['start_url'];
@@ -340,7 +347,7 @@ class ConsultantBooking extends Model
 
         $postData = "grant_type=password&user_id=".$email."&password=".$password."&client_id=".$client_id;
         // $url = "https://api.getgo.com/oauth/access_token";
-        $url = $this->API_base_url.'/............................................';
+        $url = self::getZoomApiBaseUrl().'/............................................';
 
         $out = self::curl_request('POST', $headers, $url, $postData);
 
