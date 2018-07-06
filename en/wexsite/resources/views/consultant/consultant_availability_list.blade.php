@@ -32,7 +32,7 @@
 									<div class="modal-content">
 									<div class="modal-header">
 									  <button type="button" class="close" data-dismiss="modal">&times;</button>
-									  <h4 class="modal-title">Are you sure you want to delete it?</h4>
+									  <h4 class="modal-title" style="color: #000000;">Are you sure you want to delete it?</h4>
 									</div>
 									<div class="modal-body">															
 									  <form role="form" class="delete_form operations_form" method="post" action="{{ url('consultant/availability/'.$consultant_avail->id.'/delete') }}">

@@ -35,10 +35,10 @@
 //	return \App\ConsultantBooking::getZoomAccessToken();
 //});
 
-Route::get('status_meeting_test', function() {
-	$test = new \App\ConsultantBooking;
-	return dd('ok: '.$test->getMeetingStatus());
-});
+//Route::get('cancel_meeting_test', function() {
+//	$test = new \App\ConsultantBooking;
+//	return dd('ok: '.$test->cancelMeeting());
+//});
 
 
 

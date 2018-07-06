@@ -206,20 +206,20 @@ class ConsultantBooking extends Model
 
 
 
-    public function cancelMeeting() {  // SISTEMARE !!
+    public function cancelMeeting() {  
 
+        // TEST
+        // $this->zoommeeting = (object) ['meetingid' => 10];
         $zoommeeting = $this->zoommeeting;
-
+        
         if($zoommeeting != null) {
-            //$headers = [
-            //    'Accept: application/json',
-            //    'Authorization: OAuth oauth_token=' .$token
-            //];
-            // $url = "https://api.getgo.com/G2M/rest/meetings/" . $gotomeeting->meetingid;
-            $url = self::getZoomApiBaseUrl().'/.........................................';
-            $out = self::curl_request('DELETE', self::getZoomApiHeaders(), $url);
+            
+            $headers = self::getZoomApiHeaders();
+            $meetingId = $zoommeeting->meetingid;  
+            $url = self::getZoomApiBaseUrl().'/meetings/'.$meetingId;
+            $out = self::curl_request('DELETE', $headers, $url);  // 1- delete from Zoom platform
 
-            if ($gotomeeting->delete()) {
+            if ($zoommeeting->delete()) {  // 2- delete from DB
                 return true;
             }
 
@@ -329,7 +329,7 @@ class ConsultantBooking extends Model
 
 
 
-
+    /*
     public static function getWebinarAccessToken($token = true)
     {
         $headers = [
@@ -362,7 +362,8 @@ class ConsultantBooking extends Model
         }
 
         return '';
-    }
+    } 
+    */
 
 
     public function getBookingDate() {
