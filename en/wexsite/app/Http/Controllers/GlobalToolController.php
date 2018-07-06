@@ -8,7 +8,7 @@ use App\ConsultantProfile;
 use App\ConsultantServices;
 use App\Country;
 use App\GlobalToolQuery;
-use App\GoToMeeting;
+use App\ZoomMeeting;
 use App\Order;
 use App\Service;
 use App\Setting;
@@ -286,11 +286,12 @@ class GlobalToolController extends CustomBaseController
                 $m->to($site_email, 'Wexplore')->subject('New Consultant Booking!');
             });
 
-            // Save gotomeeting
-            $meeting = GoToMeeting::where('booking_id', $ConsultantBooking->id)->first();
+            // Save in zoommeeting db tab
+            $meeting = ZoomMeeting::where('booking_id', $ConsultantBooking->id)->first();
 
-            if($meeting == null)
-                $data = $ConsultantBooking->saveMeeting(GoToMeeting::TYPE_MEETING);
+            if($meeting == null) { 
+                $data = $ConsultantBooking->saveMeeting(ZoomMeeting::TYPE_MEETING);
+            }
 		
             $ConsultantBooking->availablity->update(
                 ['is_booked' => ConsultantAvailablity::STATUS_BOOKED]
