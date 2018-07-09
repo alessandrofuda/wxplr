@@ -40,6 +40,33 @@
 //	return dd('ok: '.$test->cancelMeeting());
 //});
 
+use Illuminate\Support\Facades\Mail;
+use App\Setting;
+
+Route::get('send_email_test', function() {
+	 	
+	$test['current_date'] = '01/01/2005';
+	$test['service_name'] = 'PK';
+	$test['contact_form_data']['name'] = 'ale';
+	$test['contact_form_data']['surname']= 'F';
+	$test['contact_form_data']['address']= 'via mialnosdhf ';
+	$test['contact_form_data']['email']= 'sdjhgfsd@sdfhfds.com';
+	$test['contact_form_data']['message']= 'messages sdhfdshj kjshdfkj kjhfkjh ';
+
+	return view('emails.user_booked_consultant', $test );
+
+	$tests = ['Test1..', 'Test2..'];
+
+	/*Mail::send('emails.a_test', ['tests' => $tests], function ($m) use ($tests) {
+                $settings = Setting::find(1);
+                $site_email = $settings->website_email;
+                $m->from($site_email, 'Wexplore');
+                $m->to('alessandro.fuda@gmail.com', 'Ale_test')->subject('Testing...');
+            }); */
+
+
+});
+
 
 
 

@@ -1,62 +1,66 @@
-<!-- resources/views/auth/password.blade.php -->
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Wexplore | Log in</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="{{ asset('/admin/bootstrap/css/bootstrap.min.css') }}">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('/admin/dist/css/AdminLTE.min.css') }}">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="{{ asset('/admin/plugins/iCheck/square/blue.css') }}">
-<link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}" type="text/css">
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-</head>
-<body class="hold-transition login-page">
-<div class="login-box">
-  <div class="login-logo">
-    <a href="{{ URL::to('/auth/login') }}"><b>Wexplore</b></a>
-  </div>
-  <!-- /.login-logo -->
-  <div class="login-box-body">    
-    
-	<!-- resources/views/emails/password.blade.php -->
-	<div class="row">    
-		<p> Click here to reset your password: {{ url('password/reset/'.$token) }}</p>
-	</div>
+@extends('emails.templates.layout1')
 
-  </div>
-  <!-- /.login-box-body -->
-</div>
-<!-- /.login-box -->
 
-<!-- jQuery 2.2.0 -->
-<script src="{{ asset('/admin/plugins/jQuery/jQuery-2.2.0.min.js') }}"></script>
-<!-- Bootstrap 3.3.6 -->
-<script src=" {{ asset('/admin/bootstrap/js/bootstrap.min.js') }}"></script>
-<!-- iCheck -->
-<script src="{{ asset('/admin/plugins/iCheck/icheck.min.js') }}"></script>
-<script>
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' // optional
+
+@section('content')
+
+
+  <div class="login-box">
+    <div class="login-box-body">    
+    	<div class="row">    
+    		<p> Click here to reset your password: 
+
+          {{-- url('password/reset/'.$token) --}}
+
+          <!--button-->
+          <table class="m--row" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+            <tr>
+              <th class="m--col" align="center" valign="middle" width="100%" style="border-collapse:collapse;padding:0;font-size:1px;line-height:1px;font-weight:normal;width:100%;">
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
+                  <tr>
+                    <td align="center" valign="middle" style="border-collapse:collapse;font-size:1px;line-height:1px;padding:10px;">
+                      <table border="0" cellspacing="0" cellpadding="0" class="m--button" style="border-collapse:separate;">
+                        <tr>
+                          <td align="center" style="-moz-border-radius:20px;-webkit-border-radius:20px;border-radius:20px;font-size:14px;padding:12px 15px;" bgcolor="#8fcb49">
+                            <a href="{{ url('password/reset/'.$token) }}" target="_blank" style="font-size:12px;line-height:12px;padding:6px 9px;font-weight:bold;font-family:Arial;color:#ffffff;text-decoration: none;-moz-border-radius:20px;-webkit-border-radius:20px;border-radius:20px;display:block;">
+                              <span style="color: #ffffff;"><!--[if mso]>&nbsp;<![endif]-->
+
+                                Reset Password!
+
+                              <!--[if mso]>&nbsp;<![endif]-->
+                              </span>
+                            </a>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </th>
+            </tr>
+          </table>
+        </p>
+    	</div>
+      <!--div class="login-logo">
+        <a href="{{-- URL::to('/auth/login') --}}"><b>Login</b></a>
+      </div-->
+    </div>
+  </div>
+
+
+
+  <!--script src="{{-- asset('/admin/plugins/jQuery/jQuery-2.2.0.min.js') --}}"></script>
+  <script src=" {{-- asset('/admin/bootstrap/js/bootstrap.min.js') --}}"></script>
+  <script src="{{-- asset('/admin/plugins/iCheck/icheck.min.js') --}}"></script>
+  <script>
+    $(function () {
+      $('input').iCheck({
+        checkboxClass: 'icheckbox_square-blue',
+        radioClass: 'iradio_square-blue',
+        increaseArea: '20%' // optional
+      });
     });
-  });
-</script>
-</body>
-</html>
+  </script-->
+
+
+@endsection

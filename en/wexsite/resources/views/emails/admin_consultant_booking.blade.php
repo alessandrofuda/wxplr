@@ -1,7 +1,7 @@
 <div class="consultant_class">
 Hello Admin,<br/>
 <br/>
-New consultant booking request has been made, Details are : <br/>
+New consultant booking request has been made. Details are : <br/>
 <br/>
 <table>
 	<tr>

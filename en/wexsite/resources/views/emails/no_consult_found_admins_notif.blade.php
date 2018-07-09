@@ -1,21 +1,26 @@
-<div class="no_consult_found_for_matching">
-	Hello,<br/>
-	<br/>
-	A user selected a Country for which there isn\'t Consultant in database.<br/>
+@extends('emails.templates.layout1')
 
-	<br/>
-	<br/>
-	User:<br/>
-	Name: {{ $info['client_name'] }}<br/>
-	Surname: {{ $info['client_surname'] }}<br/>
-	E-mail: {{ $info['client_email'] }}<br/>
-	(id: {{ $info['client_id'] }})
-	<br/>
-	<br/>
-	Selected country: {{ $info['selected_country'] }}<br/>
-	<br/>
-	<br/>
-	<a href="{{ url('login') }}">Wexplore</a>
-	<br/>
-	-- wexplore Admin notification
-</div>
+
+
+@section('content')
+
+	<div class="body">
+		[-- wexplore Admin notification --]<br/><br/>
+		Hello,<br/>
+		<br/>
+		a user selected a Country for which there isn't Consultant in database.<br/>
+		<br/>
+		Name: {{ $info['client_name'] }}<br/>
+		Surname: {{ $info['client_surname'] }}<br/>
+		E-mail: {{ $info['client_email'] }}<br/>
+		(User id: {{ $info['client_id'] }})
+		<br/>
+		<br/>
+		Selected country: <b>{{ $info['selected_country'] }}</b><br/>
+		<br/>
+		<br/>
+		<a href="{{ url('login') }}">Wexplore</a>
+		<br/>
+	</div>
+
+@endsection

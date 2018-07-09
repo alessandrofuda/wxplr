@@ -1,9 +1,14 @@
-<div class="consultant_class">
-Hello {{ $user->name }},<br/>
-<br/>
-PFA for your culture match pdf <br/>
-<br/>
+@extends('emails.templates.layout1')
 
-	<br/>
---  Wexplore team<br/>
-</div>
+
+
+@section('content')
+
+	<div class="consultant_class">
+		Hello {{ $user->name }},<br/>
+		<br/>
+		PFA for your culture match pdf <br/>
+		<br/>
+	</div>
+
+@endsection

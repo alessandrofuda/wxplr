@@ -1,4 +1,11 @@
-<div class="dream_check_lab">
+@extends('emails.templates.layout1')
+
+
+@section('content')
+
+
+<div class="body">
+	[-- wexplore Admin notification --]<br/><br/>
 	Hello,<br/>
 	<br/>
 	a user submitted the Dream Check Lab form and matched with a Consultant<br/>
@@ -18,6 +25,6 @@
 	<br/>
 	<br/>
 	<a href="{{ url('login') }}">Wexplore</a>
-	<br/>
-	-- wexplore Admin notification
 </div>
+
+@endsection
