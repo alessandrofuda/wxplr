@@ -23,7 +23,7 @@ class CreateUserConsultantDiscussionsTable extends Migration
             // foreign keys
             $table->foreign('user_id')->references('id')
                                       ->on('users')
-                                      // ->onDelete('cascade')
+                                      ->onDelete('cascade')
                                       ;
         });
     }
