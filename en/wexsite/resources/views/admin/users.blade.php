@@ -98,7 +98,7 @@
 												</td>
 											  <td rowspan="2" >
 											  	<a href="{{ url('admin/user/'.$user->id.'/view') }}"><span class="fa fa-eye"></span></a>
-												  <a href="{{ url('admin/user/'.$user->id.'/edit') }}"><span class="glyphicon glyphicon-pencil"></span></a>
+												<a href="{{ url('admin/user/'.$user->id.'/edit') }}"><span class="glyphicon glyphicon-pencil"></span></a>
 												<button type="button" class="btn btn-info btn-lg delete_modal_btn" data-toggle="modal" data-target="#deleteModal_{{ $user->id }}"><span class="glyphicon glyphicon-trash"></span></button>
 													<!-- Modal -->
 													<div id="deleteModal_{{ $user->id }}" class="modal fade" role="dialog">
@@ -120,7 +120,6 @@
 														  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 														</div>
 													  </div>
-												  
 													</div>
 												  </div><!-- end Modal -->
 											  </td>

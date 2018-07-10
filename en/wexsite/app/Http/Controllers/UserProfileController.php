@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use Validator;
 use App\Country;
+use App\UserRoles;
 use App\UserProfile;
 use App\User;
 
@@ -266,16 +267,30 @@ class UserProfileController extends CustomBaseController
         return redirect()->route('user_profile')->with('status', 'Successfully updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+
+
+    public function deletePersonal() {  // Request $request
+        
+        $user_id = Auth::user()->id;
+        $user = User::findOrFail($user_id);
+        $user->delete();
+        
+        $user_role = UserRoles::where('user_id',$user_id);  
+        if(isset($user_role) && !empty($user_role)){
+            $user_role->delete();
+        }
+
+        $user_profile = UserProfile::where('user_id',$user_id);
+        if(isset($user_profile) && !empty($user_profile)){
+            $user_profile->delete();
+        }
+
+        return redirect('/')->with('status', 'User deleted!');
+
     }
+
+
+
 
     public function mydocuments($id = null) {
 

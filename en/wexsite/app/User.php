@@ -38,7 +38,6 @@ class User extends Model implements AuthenticatableContract,
     protected $dates = ['deleted_at'];
 
 
-    
     protected $alias = 'user_alias';
 
     /**

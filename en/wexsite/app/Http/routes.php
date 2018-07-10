@@ -203,6 +203,7 @@ Route::get('send_email_test', function() {
 			Route::post('user/profile/update', 'UserProfileController@update');
 			Route::post('user/profile/update_login', 'UserProfileController@updateLogin');
 			Route::post('user/profile/update_personal', 'UserProfileController@updatePersonal');
+			Route::post('user/profile/delete', 'UserProfileController@deletePersonal');
 
 			// Professional Kit
 			Route::get('user/professional_kit', ['as'=>'professional.kit.step','uses'=>'ProfessionalKitController@overview']);

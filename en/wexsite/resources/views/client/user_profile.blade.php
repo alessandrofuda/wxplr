@@ -188,6 +188,61 @@
 		</div>
 	</div>
 </div>
+
+
+
+
+<div class="clearfix" style="clear: both;"></div>
+<!--div class="col-md-9 profile_page columns-center">
+	<h3 class="box-title">Account</h3>
+</div-->
+<div class="Profile_details col-md-9 col-sm-10 col-xs-12 columns-center">
+	<div class="Profile_details_main">
+		<h3 class="Profile_Data_heading">&nbsp;Account&nbsp;</h3>
+		<div class="Profile-Data" id="view_profile_data">
+			<!--a href="" class="edit_profile"><span class="glyphicon glyphicon-pencil"></span></a-->
+			<ul>
+				<li style="border-bottom: none; line-height: 45px;">
+					<span>Account status: </span>
+					<span class="Fill_detais" style="float: none;">Active from {{ $user->created_at }}</span>
+					<button style="float: right; font-size: 110%;" type="button" class="btn btn-info btn-lg delete_modal_btn" data-toggle="modal" data-target="#deleteModal_{{ $user->id }}">
+						<span class="glyphicon glyphicon-trash" style="margin-right: 10px;"></span>Delete Account
+					</button>
+					<!-- Modal -->
+					<div id="deleteModal_{{ $user->id }}" class="modal fade" role="dialog" style="z-index: 99999;">
+					  <div class="modal-dialog">
+						<!-- Modal content-->
+						<div class="modal-content">
+						  <div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Are you sure you want to delete your account?</h4>
+						  </div>
+						  <div class="modal-body">
+							<form role="form" class="delete_form operations_form" method="post" action="{{ url('user/profile/delete') }}">
+								{{ csrf_field() }}
+								<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-trash" style="margin-right: 10px;"></span> Yes, delete my Account</button>
+							</form>
+						</div>
+						<div class="modal-footer">
+						  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					  </div>
+					</div>
+				  </div><!-- end Modal -->
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
 <script>
 	$("#edit_login").click(function () {
 		$("#view_login_data").hide();
