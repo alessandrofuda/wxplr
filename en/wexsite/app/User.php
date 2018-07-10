@@ -31,6 +31,43 @@ class User extends Model implements AuthenticatableContract,
     const SERVICE_GT_FREELANCE_SUPPORT = 6;
     const SERVICE_GT_PROFESSIONAL = 7;
 
+
+
+    /* aggiunto 10/07/2018 */
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+
+
+    
+    protected $alias = 'user_alias';
+
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'users';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['deleted_at','name', 'surname','email', 'password', 'is_profile_complete','tos','is_active', 'timezone'];
+
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = ['password', 'remember_token'];
+
+
+
+
+
+
+
     public function checkService($id) {
         $cons_serv = ConsultantServices::where('user_id', $this->id)->where('service_id', $id)->first();
 
@@ -73,6 +110,8 @@ class User extends Model implements AuthenticatableContract,
 
         return 0;
     }
+
+
     public function getAssignedUsers($type) {
 
         if($type == self::SERVICE_PROFESSIONAL_KIT) {
@@ -142,29 +181,6 @@ class User extends Model implements AuthenticatableContract,
         return $country;
     }
 
-    //use SoftDeletes;
-    protected $alias = 'user_alias';
-
-    /**
-     * The database table used by the model.
-     *
-     * @var string
-     */
-    protected $table = 'users';
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = ['deleted_at','name', 'surname','email', 'password', 'is_profile_complete','tos','is_active', 'timezone'];
-
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = ['password', 'remember_token'];
     /**
      * Get the user roles for the user.
      */
@@ -172,6 +188,7 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany('App\UserRoles');
     }
+
     /**
      * The roles that belong to the user.
      */
@@ -179,10 +196,12 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->belongsToMany('App\Role','user_roles');
     }
+
     public function role()
     {
         return $this->hasOne('App\UserRoles','user_id');
     }
+
     /**
      * Get the user roles for the user.
      */
@@ -190,6 +209,7 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasOne('App\UserProfile','user_id');
     }
+
     /**
      * Get the user roles for the user.
      */
@@ -197,6 +217,7 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasOne('App\ConsultantProfile','user_id');
     }
+
     /**
      * Get the consultants with same country of interest and country expertise.
      */
@@ -204,6 +225,7 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasOne('App\ConsultantProfile','user_id');
     }
+
     public static function getOccupationsList() {
         $list =
             [

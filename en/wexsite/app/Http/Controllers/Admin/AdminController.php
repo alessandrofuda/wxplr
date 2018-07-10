@@ -307,6 +307,8 @@ class AdminController extends Controller
 		$data['assigned_roles']=$assigned_roles;
         return view('admin.user_add',$data);
     }
+
+    
     /**
      * delte roles.
      *
@@ -314,20 +316,28 @@ class AdminController extends Controller
      */
     public function user_delete($user_id)
     {
-		$user = User::find($user_id);
+		$user = User::findOrFail($user_id);
         $user->delete();
-		$user_role = UserRoles::where('user_id',$user_id);
-        $user_role->delete();
+		
+		$user_role = UserRoles::where('user_id',$user_id);	
+		if(isset($user_role) && !empty($user_role)){
+        	$user_role->delete();
+    	}
+
 		$user_profile = UserProfile::where('user_id',$user_id);
 		if(isset($user_profile) && !empty($user_profile)){
 			$user_profile->delete();
 		}
+
 		$consultant_profile = ConsultantProfile::where('user_id',$user_id);
 		if(isset($consultant_profile) && !empty($consultant_profile)){
 			$consultant_profile->delete();
 		}
+
         return redirect('admin/users')->with('status', 'User deleted!');
     }
+
+
 	/**
      * Create a new controller instance for pages.
      *
