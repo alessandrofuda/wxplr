@@ -116,9 +116,9 @@
 																									<table cellspacing="0" cellpadding="0" border="0">
 																										<tr>
 																											<td valign="top" align="center" style="border-collapse:collapse;font-size:0px;line-height:0px;">
-																												<!--a style="display:inline-block;font-size:0px;" href="https://t7f30ef83.emailsys2a.net/c/83/1465929/0/0/0/260190/00426223cd.html?testmail=yes" target="_blank" title=""-->
+																												<a style="display:inline-block;font-size:0px;" href="{{ url('/') }}" target="_blank" title="Go to Wexplore Site">
 																													<img width="540" border="0" style="outline-style:none;text-decoration:none;border:none;font-size:12px;line-height:16px;margin:0;" src="https://c.emailsys1a.net/mailingassets/824709be2349f301df65dbefc87532459d5b35de.png" alt="" />
-																												<!--/a-->
+																												</a>
 																											</td>
 																										</tr>
 																									</table>
@@ -240,9 +240,9 @@
 																									<table cellspacing="0" cellpadding="0" border="0">
 																										<tr>
 																											<td valign="top" align="center" style="border-collapse:collapse;font-size:0px;line-height:0px;">
-																												<!--a style="display:inline-block;font-size:0px;" href="https://t7f30ef83.emailsys2a.net/c/83/1465929/0/0/0/260190/00426223cd.html?testmail=yes" target="_blank" title=""-->
+																												<a style="display:inline-block;font-size:0px;" href="{{ url('/') }}" target="_blank" title="Go to Wexplore Site">
 																													<img width="25" border="0" style="max-width:25px;outline-style:none;text-decoration:none;border:none;font-size:12px;line-height:16px;margin:0;" src="https://c.emailsys1a.net/mailingassets/64f68c40ee4996891dcf9d243fedb08d5919276b.png" alt="" />
-																												<!--/a-->
+																												</a>
 																											</td>
 																										</tr>
 																									</table>
@@ -286,7 +286,7 @@
 															<table cellspacing="0" cellpadding="0" border="0" width="100%" style="width:100%;">
 																<tr>
 																	<td align="center" style="border-collapse:collapse;color:#999999;font-family:Arial;font-size:10px;line-height:13px;background:#f0f0f0;">
-																		<span style="color:#000000"><a style="text-decoration: none; color: #999999;" href="https://www.wexplore.co/en/login">Login </a>| <a style="text-decoration: none; color: #999999;" href="https://www.wexplore.co/en/terms-service">Terms of service</a><br />
+																		<span style="color:#000000"><a style="text-decoration: none; color: #999999;" href="{{ url('login') }}" target="_blank">Login </a>| <a style="text-decoration: none; color: #999999;" href="{{ url('terms-service') }}" target="_blank">Terms of service</a><br />
 																			<br />
 																			This mail was sent by Wexplore Srl, Via Sangallo, 33 20133 Milan, Italy<br />
 																			Tax code and&nbsp;registration at Registro delle Imprese di Milano n. 2120181, VAT n. 09896070969.<br />
