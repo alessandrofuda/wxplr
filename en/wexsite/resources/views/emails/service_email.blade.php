@@ -7,7 +7,7 @@
 
 	<div class="registered_user">
 		[-- wexplore Admin notification --]<br/><br/>
-		Hello Admin,
+		Hello Admins,
 		<br/>
 		<p>Someone submitted the Service Contact Us form:</p>
 		<p>Date : {{ $current_date }}</p>

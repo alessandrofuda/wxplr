@@ -6,7 +6,7 @@
 
 	<div class="registered_user">
 		[-- wexplore Admin notification --]<br/><br/>
-		Hello,<br/>
+		Hello Admins,<br/>
 		<br/>
 		a new account at Wexplore has been activated.<br/>
 		<br/>

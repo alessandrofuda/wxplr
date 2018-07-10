@@ -6,7 +6,7 @@
 
 	<div class="body">
 		[-- wexplore Admin notification --]<br/><br/>
-		Hello,<br/>
+		Hello Admins,<br/>
 		<br/>
 		a user selected a Country for which there isn't Consultant in database.<br/>
 		<br/>

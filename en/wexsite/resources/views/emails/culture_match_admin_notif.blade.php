@@ -6,7 +6,7 @@
 
 	<div class="culture_match_suvey">
 		[-- wexplore Admin notification --]<br/><br/>
-		Hello,<br/>
+		Hello Admins,<br/>
 		<br/>
 		a user has completed the Culture Match Survey phase<br/>
 		<br/>

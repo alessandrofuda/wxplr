@@ -6,7 +6,7 @@
 
 <div class="body">
 	[-- wexplore Admin notification --]<br/><br/>
-	Hello,<br/>
+	Hello Admins,<br/>
 	<br/>
 	a user submitted the Dream Check Lab form and matched with a Consultant<br/>
 

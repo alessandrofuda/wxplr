@@ -369,23 +369,19 @@ class ProfessionalKitController extends CustomBaseController {
 														 ->where('service_id', ConsultantServices::SERVICE_PROFESSIONAL_KIT)  // 0
 														 ->where('state_id', ConsultantServices::STATE_ACTIVE)  // 1
 														 ->first();
-							// dd($service); // ok != null
 
 							if ($service != null) {
 								$ok = true;
-								$user_obj = $consultant_profile->user;  // foreign key !! --> "users" tab !!
-								// dd($user_obj); // ok!
-								// dump('Test user_obj: '.$user_obj);
-								
-								$to_email = $user_obj->email;
+								$consultant_obj = $consultant_profile->user();  // foreign key !! --> "users" tab !!
 								$consultant_profile->increment('email_count');
 
 								// send e-mail to Consultant
-								Mail::send('emails.dream_check_consultant_notification', ['data' => $data], function ($m) use ($to_email) {
+								$data['consultant_name'] = $consultant_obj->name;
+								Mail::send('emails.dream_check_consultant_notification', ['data' => $data], function ($m) use ($consultant_obj) {
 										$settings = Setting::find(1);
 										$site_email = $settings->website_email;
 										$m->from($site_email, 'Wexplore');
-										$m->to($to_email, 'Wexplore')->subject('Dream Check Lab Submission!');
+										$m->to($consultant_obj->email, $consultant_obj->surname)->subject('Dream Check Lab Submission!');
 									});
 
 								
@@ -898,8 +894,9 @@ class ProfessionalKitController extends CustomBaseController {
 		Mail::send('emails.admin_consultant_booking_cancel', ['consultantbooking'=>$ConsultantBooking], function ($m) use ($ConsultantBooking) {
 			$settings=Setting::find(1);
 			$site_email = $settings->website_email;
+			$admin_emails = User::getNotificationList();
 			$m->from($site_email, 'Wexplore');
-			$m->to($site_email, 'Wexplore')->subject('Consultant Booking Cancelled!');
+			$m->to($admin_emails, 'Wexplore')->subject('Consultant Booking Cancelled!');
 		});
 		/* email end */
 		return redirect('user/consultant/booked/list')->with('status', 'Booking has been canceled!');

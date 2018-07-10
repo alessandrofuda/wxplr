@@ -822,15 +822,11 @@ class ConsultantProfileController extends CustomBaseController
         $dreamcheck_lab_obj = DreamCheckLabFeedback::create($dream_check_lab_data);
 
         if(isset($dreamcheck_lab_obj->id) && !empty($dreamcheck_lab_obj) && $dreamcheck_lab_obj->id > 0) {
+
             $dream_check_lab = DreamCheckLab::find($dream_check_id);
+            
             $dream_check_lab->update(['validate'=>1,'validate_by' => $user->id,'validate_date' => date('Y-m-d H:i:s')]);
-            $client_obj = User::find($dream_check_lab->user_id);
-            $to_email[] = $client_obj->email;
-            $data['dream_check_lab_id'] = $dream_check_lab->id;
-            /* Email to all matching consultant */
-
             $order = Order::where('user_id',$dream_check_lab->user_id)->where('item_name','Professional Kit')->first();
-
             if($order != null) {
                 if($order->step_id < 4) {
                     $order->update([
@@ -839,12 +835,16 @@ class ConsultantProfileController extends CustomBaseController
                 }
             }
 
+
             // client notification
-            Mail::send('emails.dream_check_client_notification', ['data'=>$data], function ($m) use ($to_email) {
+            $client_obj = User::find($dream_check_lab->user_id); 
+            $data['client_name'] = $client_obj->name;
+            $data['dream_check_lab_id'] = $dream_check_lab->id;            
+            Mail::send('emails.dream_check_client_notification', ['data'=>$data], function ($m) use ($client_obj) {
                 $settings=Setting::find(1);
                 $site_email = $settings->website_email;
                 $m->from($site_email, 'Wexplore');
-                $m->to($to_email, 'Wexplore')->subject('Dream Check Lab Submission!');
+                $m->to($client_obj->email, $client_obj->name)->subject('Dream Check Lab Submission!');  // ..TO Client
             });
             
             // send e-mail to admins notification list
@@ -873,10 +873,9 @@ class ConsultantProfileController extends CustomBaseController
                 'feedback_form' => $pdf_path
             ]);
 
-            
-
-
         }
+
+
 
         return redirect()->route('consultant.dashboard')->with('status', 'Your feedback has been submitted successfully and related client is notified for the same.');
     }

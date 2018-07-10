@@ -5,7 +5,7 @@
 
 
 	<div class="consultant_class">
-	    Hello,<br/>
+	    Hello {{ $data['client_name'] }},<br/>
 	    <br/>
 	    Your matching Consultant has validated your Dream Check Lab form submission and given his feedback.
 

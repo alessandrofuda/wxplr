@@ -6,7 +6,7 @@
 
 	<div class="body">
 		[-- wexplore Admin notification --]<br/><br/>
-		Hello,<br/>
+		Hello Admins,<br/>
 		<br/>
 		a new user has completed the <b>Global Orientation Test</b><br/>
 		<br/>

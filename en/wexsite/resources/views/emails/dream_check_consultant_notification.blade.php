@@ -5,7 +5,7 @@
 
 
 	<div class="body">
-	    Hello,<br/>
+	    Hello {{ $data['consultant_name'] }},<br/>
 	    <br/>
 	    a client has submitted a Dream Check Lab form with his/her CV. <br/>
 
