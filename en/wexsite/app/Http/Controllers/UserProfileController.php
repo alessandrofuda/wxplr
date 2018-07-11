@@ -269,7 +269,7 @@ class UserProfileController extends CustomBaseController
 
 
 
-    public function deletePersonal() {  // Request $request
+    public function deletePersonal() { 
         
         $user_id = Auth::user()->id;
         $user = User::findOrFail($user_id);
@@ -286,6 +286,15 @@ class UserProfileController extends CustomBaseController
         }
 
         return redirect('/')->with('status', 'User deleted!');
+
+    }
+
+    public function deletePersonalFromEmailLink() {
+
+        dd('ok');
+        
+        // auto-login
+        // return redirect my profile page on the delete anchor ...
 
     }
 

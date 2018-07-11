@@ -290,7 +290,7 @@
 																			<br />
 																			This mail was sent by Wexplore Srl, Via Sangallo, 33 20133 Milan, Italy<br />
 																			Tax code and&nbsp;registration at Registro delle Imprese di Milano n. 2120181, VAT n. 09896070969.<br />
-																		You have received this mail as you set on updates by mail regarding your products, however you can switch off it at any time by modifying preferences in your reserved area.</span>
+																		You have received this mail as you set on updates by mail regarding your products, however you can switch off it at any time by <a href="{{ UrlSigner::sign(route('delete-account'), 7) }}" target="_blank">deleting account</a> in your reserved area.</span>
 																	</td>
 																</tr>
 															</table>

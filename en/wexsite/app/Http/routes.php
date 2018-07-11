@@ -40,12 +40,15 @@
 //	return dd('ok: '.$test->cancelMeeting());
 //});
 
-/*
-use Illuminate\Support\Facades\Mail;
-use App\Setting;
+
+//use Illuminate\Support\Facades\Mail;
+//use App\Setting;
 Route::get('send_email_test', function() {
-	$test = [''];
-	return view('emails.admin_consultant_booking_cancel', $test );
+	
+	$test['data']['client_name'] = 'testing';
+	$test['data']['dream_check_lab_id'] = 9999;
+
+	return view('emails.dream_check_client_notification', $test );
 
 	//$tests = ['Test1..', 'Test2..'];
 	//Mail::send('emails.a_test', ['tests' => $tests], function ($m) use ($tests) {
@@ -55,7 +58,7 @@ Route::get('send_email_test', function() {
     //            $m->to('alessandro.fuda@gmail.com', 'Ale_test')->subject('Testing...');
     //        }); 
 });
-*/
+
 
 
 
@@ -477,11 +480,14 @@ Route::get('send_email_test', function() {
 	/* !!! Please make sure to place this route at the end of route file, Otherwise some pages may not work !!! */
 	/* this machine_name param include this pages: about-us, contact-us, terms-service, privacy-policy, cookies-policy, code-ethics, servicesb, global-orientation-test, professional-kit, global-toolbox, skills-development, aiesec, faq, ... */
 
-	Route::get('/{machine_name}', array('as' => 'getContent', 'uses' => 'PagesController@getContent'));
-	Route::get('autocomplete',array('as'=>'autocomplete','uses'=>'SkillDevelopmentController@all'));
-	Route::get('searchajax',array('as'=>'searchajax','uses'=>'SkillDevelopmentController@auto_complete'));
-	Route::post('availcode','ServiceOrdersController@availCode');
+	Route::get('/{machine_name}', array('as'=>'getContent', 'uses'=>'PagesController@getContent'));
+	Route::get('autocomplete', array('as'=>'autocomplete', 'uses'=>'SkillDevelopmentController@all'));
+	Route::get('searchajax', array('as'=>'searchajax', 'uses'=>'SkillDevelopmentController@auto_complete'));
+	Route::post('availcode', array('as'=>'availcode', 'uses'=>'ServiceOrdersController@availCode'));
 
 
 
-Route::get('get-download/{file_name}', 'PagesController@getDownload');
+	Route::get('get-download/{file_name}', 'PagesController@getDownload');
+
+	// unsubscribe link in Clients side email text (spatie/laravel-url-signer 1.0.0 package)
+	Route::get('delete-account', array('middleware'=>'signedurl', 'as'=>'delete-account', 'uses'=>'UserProfileController@deletePersonalFromEmailLink'));
