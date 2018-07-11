@@ -149,7 +149,8 @@ return [
 		Vinkla\Vimeo\VimeoServiceProvider::class,
 		Maatwebsite\Excel\ExcelServiceProvider::class,
 		Spatie\CookieConsent\CookieConsentServiceProvider::class,
-        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        Spatie\UrlSigner\Laravel\UrlSignerServiceProvider::class
     ],
 
     /*
@@ -203,7 +204,8 @@ return [
 		'Vimeo' 	 => Vinkla\Vimeo\Facades\Vimeo::class,
 		'Excel'      => Maatwebsite\Excel\Facades\Excel::class,
         'JWTAuth'    => Tymon\JWTAuth\Facades\JWTAuth::class,
-        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'UrlSigner'  => Spatie\UrlSigner\Laravel\UrlSignerFacade::class
 	],
 
 ];
