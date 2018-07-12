@@ -44,3 +44,12 @@
 	</table>
 
 @endsection
+
+
+@if(isset($client_id))
+	@section('unsubscribe')
+
+		<a href="{{ UrlSigner::sign(route('delete-account', ['user_id' => $client_id ]), 7) }}" target="_blank">deleting account</a>
+
+	@endsection
+@endif

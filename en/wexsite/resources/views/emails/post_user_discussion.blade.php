@@ -8,7 +8,7 @@
 		<p>
 			Hello {{ $msg['to'] }},<br/>
 			<br/>
-			You have new message from {{ $msg['from'] }}:<br/>
+			You have new message from {{ $msg['from'] }} user:<br/>
 		</p>
 		<br/>
 
@@ -94,3 +94,4 @@
 	</div>
 
 @endsection
+

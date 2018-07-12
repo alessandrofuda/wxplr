@@ -3,14 +3,10 @@
 
 @section('content')
 
-
 	<div class="consultant_class">
 	    Hello {{ $data['client_name'] }},<br/>
 	    <br/>
 	    Your matching Consultant has validated your Dream Check Lab form submission and given his feedback.
-
-	    {{-- link_to_route('dreamcheck.lab.submission.fb', 'Click here', $data['dream_check_lab_id']) --}} 
-
 	    <!--button-->
 		<table class="m--row" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
 			<tr>
@@ -36,11 +32,7 @@
 					</table>
 				</th>
 			</tr>
-		</table>
-
-
-
-	    
+		</table>	    
 	    <br>
 	    to check the submission feedback.<br/>
 	    
@@ -50,3 +42,13 @@
 	</div>
 
 @endsection
+
+
+
+@if(isset($data['client_id']))
+	@section('unsubscribe')
+
+		<a href="{{ UrlSigner::sign(route('delete-account', ['user_id' => $data['client_id'] ]), 7) }}" target="_blank">deleting account</a>
+
+	@endsection
+@endif
