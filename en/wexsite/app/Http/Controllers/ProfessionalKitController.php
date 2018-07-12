@@ -372,7 +372,7 @@ class ProfessionalKitController extends CustomBaseController {
 
 							if ($service != null) {
 								$ok = true;
-								$consultant_obj = $consultant_profile->user();  // foreign key !! --> "users" tab !!
+								$consultant_obj = $consultant_profile->user;  // foreign key !! --> "users" tab !!
 								$consultant_profile->increment('email_count');
 
 								// send e-mail to Consultant
