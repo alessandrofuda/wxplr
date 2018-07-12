@@ -18,6 +18,7 @@ use App\Country;
 use App\UserRoles;
 use App\UserProfile;
 use App\User;
+use App\GlobalTestResult;
 use Mail;
 
 
@@ -286,6 +287,12 @@ class UserProfileController extends CustomBaseController
         if(isset($user_profile) && !empty($user_profile)){
             $user_profile->delete();
         }
+
+        $user_global_test_result = GlobalTestResult::where('user_id',$user_id);
+        if(isset($user_global_test_result) && !empty($user_global_test_result)) {
+            $user_global_test_result->delete();
+        }
+
 
         // mail admin notification
         Mail::send('emails.alerts.user_auto_deleted', ['user' => $user], function($m) {

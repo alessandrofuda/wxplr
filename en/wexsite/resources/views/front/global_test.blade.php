@@ -24,9 +24,9 @@
 		<!--<h1></h1>-->
 		<div class="global-test-container content box">
 
-			@if ( ($last_question && !empty($outcome_data)) || ($global_test_compiled_yet === true && !empty($outcome_data)) )
+			@if( ($last_question && !empty($outcome_data)) || ($global_test_compiled_yet === true && !empty($outcome_data)) )
 				
-				@if ($global_test_compiled_yet === true && !empty($outcome_data))
+				@if($global_test_compiled_yet === true && !empty($outcome_data))
 				
 					<div class="alert alert-info">You have already completed the <b>Global Orientation Test</b>. If you want to recompile click <a href="{{ asset('global_orientation_test?force=recompile') }}">here</a> otherwise <a href="#proceed">proceed to Professional Kit</a></div>
 				

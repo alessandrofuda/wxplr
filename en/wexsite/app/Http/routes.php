@@ -44,6 +44,7 @@
 // TESTING
 //use Illuminate\Support\Facades\Mail;
 //use App\Setting;
+/*
 Route::get('send_email_test', function() {
 	
 	$test['data']['client_id'] = 1026;
@@ -60,6 +61,7 @@ Route::get('send_email_test', function() {
     //            $m->to('alessandro.fuda@gmail.com', 'Ale_test')->subject('Testing...');
     //        }); 
 });
+*/
 
 
 

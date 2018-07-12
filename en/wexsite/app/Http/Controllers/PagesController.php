@@ -584,6 +584,7 @@ class PagesController extends CustomBaseController {
 		$outcome_data=array();
 		$user_id = Auth::user()->id;
 		$compiled = GlobalTestResult::where('user_id', $user_id)->get();
+		//dd($compiled);
 
 
 		$query_string = $request->query('force');
@@ -609,6 +610,9 @@ class PagesController extends CustomBaseController {
 
 		return view('front.global_test',$data);
 	}
+
+
+
 
 	public function global_online_test_next(Request $request){
 		$validator = Validator::make($request->all(), [

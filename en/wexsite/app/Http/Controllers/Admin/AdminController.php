@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Excel;
 use Validator;
 use Hash;
+use App\GlobalTestResult;
 
 class AdminController extends Controller
 {
@@ -328,6 +329,12 @@ class AdminController extends Controller
 		if(isset($user_profile) && !empty($user_profile)){
 			$user_profile->delete();
 		}
+
+
+		$user_global_test_result = GlobalTestResult::where('user_id',$user_id);
+        if(isset($user_global_test_result) && !empty($user_global_test_result)) {
+            $user_global_test_result->delete();
+        }
 
 		$consultant_profile = ConsultantProfile::where('user_id',$user_id);
 		if(isset($consultant_profile) && !empty($consultant_profile)){
