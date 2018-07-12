@@ -41,11 +41,12 @@
 //});
 
 
+// TESTING
 //use Illuminate\Support\Facades\Mail;
 //use App\Setting;
 Route::get('send_email_test', function() {
 	
-	$test['data']['client_id'] = 35;
+	$test['data']['client_id'] = 1026;
 	$test['data']['client_name'] = 'testing';
 	$test['data']['dream_check_lab_id'] = 9999;
 
@@ -59,7 +60,6 @@ Route::get('send_email_test', function() {
     //            $m->to('alessandro.fuda@gmail.com', 'Ale_test')->subject('Testing...');
     //        }); 
 });
-
 
 
 
@@ -489,6 +489,7 @@ Route::get('send_email_test', function() {
 
 
 	Route::get('get-download/{file_name}', 'PagesController@getDownload');
+
 
 	// unsubscribe link in Clients side email text (spatie/laravel-url-signer 1.0.0 package)
 	Route::get('user/{user_id}/delete-account', array('middleware'=>'signedurl', 'as'=>'delete-account', 'uses'=>'UserProfileController@deletePersonalFromEmailLink'));

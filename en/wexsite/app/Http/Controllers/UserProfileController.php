@@ -18,6 +18,8 @@ use App\Country;
 use App\UserRoles;
 use App\UserProfile;
 use App\User;
+use Mail;
+
 
 class UserProfileController extends CustomBaseController
 {
@@ -285,16 +287,33 @@ class UserProfileController extends CustomBaseController
             $user_profile->delete();
         }
 
+        // mail admin notification
+        Mail::send('emails.alerts.user_auto_deleted', ['user' => $user], function($m) {
+            $site_email = Setting::find(1)->website_email;
+            $admin_emails = User::getNotificationList();
+            $m->from($site_email, 'Wexplore');
+            $m->to($admin_emails)->subject('A user has auto-deleted his account from Wexplore.');
+        });
+
+
         return redirect('/')->with('status', 'User deleted!');
 
     }
 
+
+
+
     public function deletePersonalFromEmailLink($user_id) {
 
-        dd($user_id);
-        // https://murze.be/url-signing-in-laravel
-        // auto-login
-        // return redirect my profile page on the delete anchor ...
+        $client_profile_page = route('user_profile');
+        $user_roles_obj = UserRoles::where('user_id', $user_id)->first();
+        
+        if( $user_roles_obj !== null && $user_roles_obj->role_id == 1) {  // only if he has Client role
+            // auto-login
+            Auth::loginUsingId($user_id);
+        }
+
+        return redirect($client_profile_page.'#account');
 
     }
 

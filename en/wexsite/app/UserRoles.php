@@ -7,7 +7,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserRoles extends Model
 {
+
     use SoftDeletes;
+
 	/**
      * The attributes that are mass assignable.
      *
@@ -16,6 +18,7 @@ class UserRoles extends Model
     protected $fillable = [
         'deleted_at', 'user_id','role_id'
     ];
+
    /**
      * The table associated with the model.
      *
@@ -23,5 +26,6 @@ class UserRoles extends Model
      */
     protected $table = 'user_roles';
 
+    protected $dates = ['deleted_at'];
 
 }

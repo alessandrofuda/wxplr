@@ -193,10 +193,7 @@
 
 
 <div class="clearfix" style="clear: both;"></div>
-<!--div class="col-md-9 profile_page columns-center">
-	<h3 class="box-title">Account</h3>
-</div-->
-<div class="Profile_details col-md-9 col-sm-10 col-xs-12 columns-center">
+<div id="account" class="Profile_details col-md-9 col-sm-10 col-xs-12 columns-center">
 	<div class="Profile_details_main">
 		<h3 class="Profile_Data_heading">&nbsp;Account&nbsp;</h3>
 		<div class="Profile-Data" id="view_profile_data">
