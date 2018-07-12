@@ -289,10 +289,10 @@ class UserProfileController extends CustomBaseController
 
     }
 
-    public function deletePersonalFromEmailLink() {
+    public function deletePersonalFromEmailLink($user_id) {
 
-        dd('ok');
-        
+        dd($user_id);
+        // https://murze.be/url-signing-in-laravel
         // auto-login
         // return redirect my profile page on the delete anchor ...
 

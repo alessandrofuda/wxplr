@@ -1098,6 +1098,9 @@ class ProfessionalKitController extends CustomBaseController {
 
 
 
+
+
+
 	public function post_user_discussion(Request $request)
 	{
 
@@ -1114,40 +1117,57 @@ class ProfessionalKitController extends CustomBaseController {
 
 
 		//client
-		$user = Auth::user();
+		$client = Auth::user();
 
 		// consultant
-		$consultant_id = DreamCheckLab::where('user_id',$user->id)->first(['validate_by'])->toArray();
-		$consultant_id = $consultant_id['validate_by'];
-		$consultant = User::find($consultant_id);
-
-		// insert in db
-		$discuss_id =  $user->id.$consultant->id; //$request['discuss_id'];
-		//var_dump($discuss_id); //  !!!! string !!!!
-		//dd($discuss_id); // ok !!
-		$message = $request['message'];
-		$new_message = UserConsultantDiscussion::create(['user_id'=> $user->id, 'discuss_id'=> $discuss_id, 'message'=> $message]);
+		//$consultant_id = DreamCheckLab::where('user_id',$client->id)->first(['validate_by'])->toArray();
+		$dream_check_lab_obj = DreamCheckLab::where('user_id',$client->id)
+									   ->orderBy('updated_at', 'desc')
+									   ->first();
 
 
-		// send mail to Consultant
-		$msg['from'] = $user->name;
-		$msg['to'] = $consultant->name;
-		$msg['message'] = $message;
 
-		Mail::send('emails.post_user_discussion', ['msg' => $msg], function ($m) use ($consultant) {
-			$settings=Setting::find(1);
-			$site_email = $settings->website_email;
-			$to = $consultant->email;
-			$name =  $consultant->name.' '. $consultant->surname;
-			$m->from($site_email, 'Wexplore');
-			$m->to($to, $name)->subject('New message from Wexplore\'s user!');
-		});
+		if($dream_check_lab_obj !== null) {
+
+			$consultant_id = $dream_check_lab_obj->validate_by;
+			$consultant = User::find($consultant_id);
+
+			// insert in db
+			$discuss_id =  $client->id.$consultant->id; 
+			$message = isset($request['message']) ? $request['message'] : 'Any message..';
+			$new_message = UserConsultantDiscussion::create(['user_id'=> $client->id, 'discuss_id'=> $discuss_id, 'message'=> $message]);
+
+			// send mail to Consultant
+			$msg['from'] = $client->name;
+			$msg['to'] = $consultant->name;
+			$msg['message'] = $message;
+
+			Mail::send('emails.post_user_discussion', ['msg' => $msg], function ($m) use ($consultant) {
+				$settings=Setting::find(1);
+				$site_email = $settings->website_email;
+				$to = $consultant->email;
+				$name =  $consultant->name.' '. $consultant->surname;
+				$m->from($site_email, 'Wexplore');
+				$m->to($to, $name)->subject('New message from Wexplore\'s user!');
+			});
+
+			
+			return redirect()->back()->with('status','Message sent to Consultant. Please wait for a his/her feedback');
+
+		}
+
+
+		return redirect()->back()->with('status','Error: Dream Check Lab has not yet been submitted by any User.');
 
 		
-
-		// redirect to same page with('message', '...')
-		return redirect()->back()->with('status','Message sent to Consultant. Please wait for a feedback');
 	}
+
+
+
+
+
+
+
 
 
 	public function post_consultant_discussion(Request $request)
@@ -1170,38 +1190,45 @@ class ProfessionalKitController extends CustomBaseController {
 		// dd($consultant->id);
 
 		// client
-		$client_id = DreamCheckLab::where('validate_by',$consultant->id)
+		$dream_check_lab_obj = DreamCheckLab::where('validate_by',$consultant->id)
 									->orderBy('updated_at', 'desc')
-									->first()
-									->user_id;
-
-		$client = User::find($client_id);
-
-		// insert in db
-		$discuss_id =  $client->id.$consultant->id; //$request['discuss_id'];
-		$message = $request['message'];
-		$new_message = UserConsultantDiscussion::create(['user_id'=> $consultant->id, 'discuss_id'=> $discuss_id, 'message'=> $message]);
-
-
-		// send mail to Consultant
-		$msg['from'] = $consultant->name;
-		$msg['to'] = $client->name;
-		$msg['message'] = $message;
-
-		Mail::send('emails.post_consultant_discussion', ['msg' => $msg], function ($m) use ($client) {
-			$settings=Setting::find(1);
-			$site_email = $settings->website_email;
-			$to = $client->email;
-			$name =  $client->name.' '. $client->surname;
-			$m->from($site_email, 'Wexplore');
-			$m->to($to, $name)->subject('New message from Wexplore\'s Consultant!');
-		});
-
+									->first();
 		
+		if( $dream_check_lab_obj !== null) {
 
-		// redirect to same page with('message', '...')
-		return redirect()->back()->with('status','Message sent to Client. Please wait for a feedback and then proceed to booking meeting date 
-filling the \'Consultant Availability Form\' below.');
+			$client_id = $dream_check_lab_obj->user_id;
+			$client = User::find($client_id);
+
+			// insert in db
+			$discuss_id =  $client->id.$consultant->id; //$request['discuss_id'];
+			$message = $request['message'];
+			$new_message = UserConsultantDiscussion::create(['user_id'=> $consultant->id, 'discuss_id'=> $discuss_id, 'message'=> $message]);
+
+			// send mail to Consultant
+			$msg['from'] = $consultant->name;
+			$msg['to'] = $client->name;
+			$msg['message'] = $message;
+			$msg['client_id'] = $client->id;
+
+			Mail::send('emails.post_consultant_discussion', ['msg' => $msg], function ($m) use ($client) {
+				$settings=Setting::find(1);
+				$site_email = $settings->website_email;
+				$to = $client->email;
+				$name =  $client->name.' '. $client->surname;
+				$m->from($site_email, 'Wexplore');
+				$m->to($to, $name)->subject('New message from Wexplore\'s Consultant!');
+			});
+
+
+			// redirect to same page with('message', '...')
+			return redirect()->back()->with('status','Message sent to Client. Please wait for a feedback and then proceed to booking meeting date 
+	filling the \'Consultant Availability Form\' below.');
+
+		}
+
+
+		return redirect()->back()->with('status','Error: Dream Check Lab has not yet been validated by any Consultant.');		
+									
 
 	}
 

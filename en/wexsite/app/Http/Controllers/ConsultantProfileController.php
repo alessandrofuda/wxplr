@@ -163,24 +163,20 @@ class ConsultantProfileController extends CustomBaseController
 
 
 
-
-
-
-
-
         // invio mail a client
         if($ca){
             $consultant_id = $ca->consultant_id;
-            $client_id = DreamCheckLab::where('validate_by', $consultant_id)
+            $dream_check_lab_obj = DreamCheckLab::where('validate_by', $consultant_id)
                                         ->where('validate', 1)
                                         ->orderBy('updated_at', 'desc')
                                         ->first();
 
-            if($client_id !== null) {
-                $client_id = $client_id->user_id;
+            if($dream_check_lab_obj !== null) {
+                $client_id = $dream_check_lab_obj->user_id;
 
                 $client = User::find($client_id);
                 $client_name = $client->name.' '.$client->surname;
+                $client_email = $client->email;
 
                 $consultant = User::find($consultant_id);
                 $consultant_name = $consultant->name.' '.$consultant->surname;
@@ -189,11 +185,11 @@ class ConsultantProfileController extends CustomBaseController
 
 
 
-                Mail::send('emails.consultant_availability_notification', ['client_name' => $client_name, 'consultant_name' => $consultant_name, 'ca' => $ca, 'type' => $type], function ($m) use ($client, $client_name) { 
+                Mail::send('emails.consultant_availability_notification', ['client_id' => $client_id, 'client_name' => $client_name, 'consultant_name' => $consultant_name, 'ca' => $ca, 'type' => $type], function ($m) use ($client_email, $client_name) { 
                         $settings = Setting::find(1);
                         $site_email = $settings->website_email;
                         $m->from($site_email, 'Wexplore');
-                        $m->to($client->email, $client_name)->subject('Confirm your date availability!');
+                        $m->to($client_email, $client_name)->subject('Confirm your date availability!');
                     });
             } else {
 
@@ -202,10 +198,6 @@ class ConsultantProfileController extends CustomBaseController
             }
             
         }
-
-
-
-
 
 
 
@@ -838,6 +830,7 @@ class ConsultantProfileController extends CustomBaseController
 
             // client notification
             $client_obj = User::find($dream_check_lab->user_id); 
+            $data['client_id'] = $client_obj->id;
             $data['client_name'] = $client_obj->name;
             $data['dream_check_lab_id'] = $dream_check_lab->id;            
             Mail::send('emails.dream_check_client_notification', ['data'=>$data], function ($m) use ($client_obj) {
