@@ -57,7 +57,7 @@ class AuthController extends CustomBaseController
         return Validator::make($data, [
             'name' => 'required|max:255',
 			'surname' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'email' => 'required|email|max:255|unique:users,email,NULL,id,deleted_at,NULL',
             'password' => 'required|confirmed|min:6',
         ]);
     }
@@ -73,7 +73,7 @@ class AuthController extends CustomBaseController
 		$validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
 			'surname' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
+            'email' => 'required|email|max:255|unique:users,email,NULL,id,deleted_at,NULL',
             'password' => 'required|confirmed|min:6',
 			'date_of_birth' => 'required',
 			'qualification' => 'required',
@@ -319,7 +319,7 @@ class AuthController extends CustomBaseController
 	public function postclientregister(Request $request) {
 		$rules['name'] = 'required|max:255';
 		$rules['surname'] ='required|max:255';
-		$rules['email'] = 'required|email|max:255|unique:users';
+		$rules['email'] = 'required|email|max:255|unique:users,email,NULL,id,deleted_at,NULL';
 		$rules['password'] = 'required|confirmed|min:6';
 		$rules['pan'] = 'required';
 		$rules['address'] = 'required';
