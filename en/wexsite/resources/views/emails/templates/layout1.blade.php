@@ -86,9 +86,9 @@
 	<![endif]-->
 </head>
 <body yahoo="fix" style="Margin:0;padding:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;background:#e6e6e6;">
-	<div class="preheader" style="display:none;display:none!important; mso-hide:all!important;visibility:hidden!important;mso-line-height-rule:exactly;line-height:0!important;font-size:0!important;opacity:0;color:transparent;height:0;width:0;max-height:0;max-width:0;overflow:hidden;">
-	John, here some updates for you
-	</div>
+	<!--div class="preheader" style="display:none;display:none!important; mso-hide:all!important;visibility:hidden!important;mso-line-height-rule:exactly;line-height:0!important;font-size:0!important;opacity:0;color:transparent;height:0;width:0;max-height:0;max-width:0;overflow:hidden;">
+	[name] here some updates for you from Wexplore
+	</div-->
 	<table id="m--background-table" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#e6e6e6;width:100%;">
 		<tr>
 			<td valign="top" align="center" bgcolor="#e6e6e6" style="border-collapse:collapse;">
