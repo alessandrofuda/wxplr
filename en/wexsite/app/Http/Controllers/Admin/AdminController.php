@@ -654,13 +654,25 @@ class AdminController extends Controller
 			$data['end_date'] = $end_date;
 		}
 
-		$users = User::from( 'users as user_alias' )
+		
+		/*$users = User::from( 'users as user_alias' )  
 			->join( 'user_roles as role', \DB::raw( 'role.user_id' ), '=', \DB::raw( 'user_alias.id' ) )
 			->join( 'consultant_profile as consultant', \DB::raw( 'consultant.user_id' ), '=', \DB::raw( 'user_alias.id' ) )
 			->select( \DB::raw( 'user_alias.*' ) )
 			->where('role.role_id',2)
 			->whereNull('user_alias.deleted_at')
 			->whereBetween(\DB::raw('DATE(user_alias.created_at)'), [$start_date, $end_date])
+			->orderBy('consultant.company')
+			->get();*/
+
+
+		$users = User::from( 'users' ) // as user_alias 
+			->join( 'user_roles as role', \DB::raw( 'role.user_id' ), '=', \DB::raw( 'users.id' ) )
+			->join( 'consultant_profile as consultant', \DB::raw( 'consultant.user_id' ), '=', \DB::raw( 'users.id' ) )
+			->select( \DB::raw( 'users.*' ) )
+			->where('role.role_id',2)
+			->whereNull('users.deleted_at')
+			->whereBetween(\DB::raw('DATE(users.created_at)'), [$start_date, $end_date])
 			->orderBy('consultant.company')
 			->get();
 
