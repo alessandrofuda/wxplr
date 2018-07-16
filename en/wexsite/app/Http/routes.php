@@ -40,8 +40,6 @@
 //	return dd('ok: '.$test->cancelMeeting());
 //});
 
-
-// TESTING
 //use Illuminate\Support\Facades\Mail;
 //use App\Setting;
 /*
@@ -62,8 +60,6 @@ Route::get('send_email_test', function() {
     //        }); 
 });
 */
-
-
 
 
 
