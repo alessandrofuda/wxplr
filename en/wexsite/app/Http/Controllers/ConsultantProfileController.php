@@ -701,6 +701,7 @@ class ConsultantProfileController extends CustomBaseController
     public function dreamcheck_lab_submission($dreamcheck_id){
         $dream_check_lab =[];
         $dream_check_lab_obj = DreamCheckLab::find($dreamcheck_id);
+        $data['page_title']='Dream Check Lab Submission <br/>';
 
         if(!empty($dream_check_lab_obj)){
             $dream_check_lab = $dream_check_lab_obj->toArray();
@@ -710,7 +711,6 @@ class ConsultantProfileController extends CustomBaseController
             }
         }
 
-        $data['page_title']='Dream Check Lab Submission <br/>';
         $data['dream_check_lab'] = $dream_check_lab;
 
         return view('consultant.dream_check_lab_submission',$data);
