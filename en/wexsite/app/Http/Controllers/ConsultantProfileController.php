@@ -30,8 +30,7 @@ class ConsultantProfileController extends CustomBaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         $noti_mesg = '';
         $user = Auth::user();
         $consultant_profile = $user->consultantProfile();
@@ -44,13 +43,23 @@ class ConsultantProfileController extends CustomBaseController
         }
 
         $dreamcheck_lab = DreamCheckLab::where('validate', 0)
-                                        ->where('validate_by',$user->id)->get()->toArray();
+                                        ->where('validate_by',$user->id)
+                                        ->get()
+                                        ->toArray();
         if(!empty($dreamcheck_lab)){
 
             foreach($dreamcheck_lab as $dream_check) {
-                $noti_mesg = "An user has submitted the Dream Check Form in your expertise country. ".link_to_route('dreamcheck.lab.submission', 'Click here', array($dream_check['id']), array('class' => '')) ." to check submission and give feedback.";
-            }
 
+                $client_id = $dream_check['user_id'];
+                $client = User::find($client_id);
+
+                if(isset($client)){
+                    $client_name = $client->name;
+                    $client_surname = $client->surname;
+
+                    $noti_mesg .= "<p><b>$client_name $client_surname</b> has submitted the Dream Check Form in your expertise country. ".link_to_route('dreamcheck.lab.submission', 'Click here', array($dream_check['id']), array('class' => '')) ." to check submission and give feedback.</p>";    
+                }                
+            }
         }else {
             $noti_mesg = 'No matching Dream Check Lab submission found!!';
         }
@@ -61,6 +70,7 @@ class ConsultantProfileController extends CustomBaseController
 
         return view('consultant.consultant_dashboard',$data);
     }
+    
 
     public function availability_form(){
         $data['page_title'] = 'Consultant Availablity Form';
