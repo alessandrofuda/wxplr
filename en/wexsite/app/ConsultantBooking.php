@@ -121,9 +121,7 @@ class ConsultantBooking extends Model
         $start_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_start_time . ':00Z'; 
         // $end_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_end_time . ':00Z';
             // TESTING
-            //$start_date = '2099-01-01T12:30:00Z';
-            //$end_date = '2099-01-01T14:45:00Z'; 
-
+            //$start_date = '2018-07-18T12:30:00Z';
         $postData = json_encode([
             "topic" => "Consultant Meeting",
             "type"  => 2, // 1  // 1:instant  2:scheduled  3:recurring ... (in gotomeeting era: 1)
@@ -134,14 +132,11 @@ class ConsultantBooking extends Model
         
         // API call !!
         $out = self::curl_request("POST", $headers, $url, $postData);
-        // dump($out);
 
         if (isset($out) && $out !== NULL ) {
-
             if($type == null) {
                 $type = ZoomMeeting::TYPE_MEETING;  // 0
             }
-
             if (ZoomMeeting::saveData($out, $this->id, $type)){
                 return true;
             }
@@ -183,7 +178,7 @@ class ConsultantBooking extends Model
             $out = self::curl_request("PATCH", $headers, $url, $postData);
 
         }
-	
+    
         return true;
     }
 
@@ -293,16 +288,16 @@ class ConsultantBooking extends Model
 
     
 
-    public static function getZoomAccessToken()    // verify to https://jwt.io/ !!!!!!!!!!!!!!!!!
+    public static function getZoomAccessToken()    // verify to https://jwt.io
     {
         //Zoom API credentials from https://developer.zoom.us/me/
         $customClaims = [
                             'iss'   => env('ZOOM_API_KEY'),
-                            'exp'   => time() + 60   // for test: 1496091964000
-                            //'iat'   => null, 
-                            //'nbf'   => null,
-                            //'sub'   => null,
-                            //'jti'   => null
+                            'exp'   => time() + 3600,   // seconds!
+                            'nbf'   => time() - 50, // PER COMPENSARE LO SFASAMENTO ORARIO SERVER in PRODUZIONE DI CIRCA 30 SECONDI !! 
+                            // 'iat'   => null,
+                            // 'sub'   => null,
+                            // 'jti'   => null
                         ];
 
         $payload = JWTFactory::make($customClaims); // $factory->make();
@@ -367,10 +362,7 @@ class ConsultantBooking extends Model
 
 
     public function getBookingDate() {
-        $date = date('Y-m-d', strtotime($this->availablity->getDate(\App\ConsultantAvailablity::DATE)));  // getDate(0);
-        // dump('Data: '.date('Y-m-d', strtotime($this->availablity->getDate(0))));
-        // dump('Inizio: '.$this->availablity->getDate(1));
-        // dump('Fine: '.$this->availablity->getDate(2));
+        $date = date('Y-m-d', strtotime($this->availablity->getDate(\App\ConsultantAvailablity::DATE)));  
         $start_time = date('H:i:s', strtotime($this->availablity->getDate(\App\ConsultantAvailablity::START_TIME)));
         $end_time = date('H:i:s', strtotime($this->availablity->getDate(\App\ConsultantAvailablity::END_TIME)));
         
@@ -471,14 +463,7 @@ class ConsultantBooking extends Model
         $output = curl_exec($ch);
         $out = json_decode($output, true);  // true--> convert from object to associative array
 
-
-        // dd(curl_getinfo( $ch ));
-
-
         curl_close($ch);
-
-
-        // dd($out);
 
         return $out;
     }

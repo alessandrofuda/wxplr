@@ -27,6 +27,11 @@ class CreateZoomMeetingsTable extends Migration
             // $table->integer('maxParticipants')->nullable();     
             // $table->string('conferenceCallInfo')->nullable();
             $table->timestamps();
+
+            //$table->foreign('booking_id')
+            //      ->references('id')
+            //      ->on('consultant_bookings')
+            //      ->onDelete('cascade');
         });
     }
 
