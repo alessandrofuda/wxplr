@@ -370,38 +370,27 @@ class ConsultantProfileController extends CustomBaseController
 
         $data['page_title'] = 'Assigned User Listing';
         $dream_check_lab_forms = DreamCheckLab::where('validate_by', Auth::user()->id)->get();
-
         $global_tool_forms = GlobalToolQuery::where('consultant_id', Auth::user()->id)->get();
-
         $data['forms'] = [];
 
-        // dd($dream_check_lab_forms); // array(4)
-        // Log::info('start: '.microtime() );
         foreach ($dream_check_lab_forms as $dream_check_lab_form) {
             
-            // Log::info('step1: '.microtime() );
-            
             $feedback = DreamCheckLabFeedback::where('dream_check_lab_id', $dream_check_lab_form->id)->first();
+
+            if(isset($dream_check_lab_form->createUser)){
+                $data['forms'][] = [
+                    'user_name' => link_to_route('form_user_profile', $dream_check_lab_form->createUser->name,
+                        ['service_id' => $dream_check_lab_form->id, 'service_type' => ConsultantBooking::TYPE_INTERVIEW]),
+                    'service_type' => 'Role Play Interview',
+                    'form' =>$feedback != null ? link_to_route('dreamcheck.lab.submission.feedback','Feedback Completed', ['dreamcheck_id' => $dream_check_lab_form->id]) : link_to_route('dreamcheck.lab.submission.feedback','Give Form Feedback', ['dreamcheck_id' => $dream_check_lab_form->id]),
+                    'attached_file' => $dream_check_lab_form->cv_file != null ? link_to_asset($dream_check_lab_form->cv_file) : "Not Uploaded",
+                    'booking_date' =>  $dream_check_lab_form->getBookingDate(),  
+                    'booking_status' => $dream_check_lab_form->getBookingStatus(),
+                    'submitted_on' => $dream_check_lab_form->created_at
+                ];
+            }
             
-            // Log::info('step2: '.microtime() );
-
-            $data['forms'][] = [
-                'user_name' => link_to_route('form_user_profile', $dream_check_lab_form->createUser->name,
-                    ['service_id' => $dream_check_lab_form->id, 'service_type' => ConsultantBooking::TYPE_INTERVIEW]),
-                'service_type' => 'Role Play Interview',
-                'form' =>$feedback != null ? link_to_route('dreamcheck.lab.submission.feedback','Feedback Completed', ['dreamcheck_id' => $dream_check_lab_form->id]) : link_to_route('dreamcheck.lab.submission.feedback','Give Form Feedback', ['dreamcheck_id' => $dream_check_lab_form->id]),
-                'attached_file' => $dream_check_lab_form->cv_file != null ? link_to_asset($dream_check_lab_form->cv_file) : "Not Uploaded",
-                'booking_date' =>  $dream_check_lab_form->getBookingDate(),  
-                'booking_status' => $dream_check_lab_form->getBookingStatus(),
-                'submitted_on' => $dream_check_lab_form->created_at
-            ];
-            // Log::info('_stop: '.microtime());
-            // dd('stop');
         }
-
-
-
-        // dd($global_tool_forms);
 
         foreach ($global_tool_forms as $global_tool_form) {
             if(isset($global_tool_form->user->name)) {
