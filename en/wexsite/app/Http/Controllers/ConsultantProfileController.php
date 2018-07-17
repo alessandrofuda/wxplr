@@ -724,22 +724,20 @@ class ConsultantProfileController extends CustomBaseController
         $dream_check_lab = [];
         $dream_check_lab_obj = DreamCheckLab::where('id',$dreamcheck_id)
                                 ->where('validate_by',$consultant_id)->first();
+        $data['page_title']='Dream Check Lab Submission Feedback <br/>';
 
         if(!empty($dream_check_lab_obj)){
             $dream_check_lab = $dream_check_lab_obj;
+
+            if(isset($dream_check_lab_obj->createUser->name) && isset($dream_check_lab_obj->createUser->surname)) {
+                $data['page_title'] .= 'to: '. $dream_check_lab_obj->createUser->name.'  '.$dream_check_lab_obj->createUser->surname;
+            }
         }
 
-        //echo  '<pre>'; print_r($dream_check_lab); echo '</pre>'; die;
-        $data['page_title']='Dream Check Lab Submission Feedback <br/>to: '.$dream_check_lab_obj->createUser->name.'  '.$dream_check_lab_obj->createUser->surname;
         $data['dream_check_lab_feedback'] = $dream_check_lab_obj;
 
         return view('consultant.dream_check_lab_submission_feedback',$data);
     }
-
-
-
-
-
 
 
 
