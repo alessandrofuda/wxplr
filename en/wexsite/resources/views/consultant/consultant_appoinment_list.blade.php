@@ -25,36 +25,37 @@
 			@if (count($appointments) > 0)
 
 				@foreach ($appointments as $appointment)
-
-					<tr role="row" class="odd">
-						<td class="sorting_1"><a href="{{ url('booking/profile/'.$appointment->query_id.'/'.$appointment->type_id.'/detail') }}">{{ $appointment->user->name }} {{ $appointment->user->surname }}</a></td>
-						<td class="sorting_1">{{ $appointment->getBookingType() }}</td>
-						<td class="sorting_1">{{ $appointment->availablity->getDate() }} -
-							{{ $appointment->availablity->getDate(\App\ConsultantAvailablity::START_TIME)  }} to {{ $appointment->availablity->getDate(\App\ConsultantAvailablity::END_TIME)  }}
-						</td>
-					  	<td>
-						  {!! $appointment->getMeetingStatus() !!}
-						  <!--a id="restart" class="btn btn-warning" href="https://www.gotomeeting.com/join/XXXXXX">Re-connect to Meeting (beta)</a-->
-					  	</td>
-						<?php /*	<td>
-					@if($appointment->status == 2)
-						@if($appointment->feedback_comments != '')
-							{{ $appointment->feedback_comments }}
-						@else
-							<a href="#">Add Feedback</a>
-						@endif
-					@else
-						<p>No feedback!</p>
-					@endif
-					</td>*/?>
-						<td>
-							@if($appointment->status == \App\ConsultantBooking::STATE_PENDING && $appointment->checkDate())
-								<a href='{{ url("consultant/booking/".$appointment->id."/cancel") }}' class="btn btn-warning">Cancel Appointment </a>
+					@if(isset($appointment->user))
+						<tr role="row" class="odd">
+							<td class="sorting_1"><a href="{{ url('booking/profile/'.$appointment->query_id.'/'.$appointment->type_id.'/detail') }}">{{ $appointment->user->name }} {{ $appointment->user->surname }}</a></td>
+							<td class="sorting_1">{{ $appointment->getBookingType() }}</td>
+							<td class="sorting_1">{{ $appointment->availablity->getDate() }} -
+								{{ $appointment->availablity->getDate(\App\ConsultantAvailablity::START_TIME)  }} to {{ $appointment->availablity->getDate(\App\ConsultantAvailablity::END_TIME)  }}
+							</td>
+						  	<td>
+							  {!! $appointment->getMeetingStatus() !!}
+							  <!--a id="restart" class="btn btn-warning" href="https://www.gotomeeting.com/join/XXXXXX">Re-connect to Meeting (beta)</a-->
+						  	</td>
+							<?php /*	<td>
+						@if($appointment->status == 2)
+							@if($appointment->feedback_comments != '')
+								{{ $appointment->feedback_comments }}
 							@else
-								{!! $appointment->getUploadForm() !!}
+								<a href="#">Add Feedback</a>
 							@endif
-						</td>
-					</tr>
+						@else
+							<p>No feedback!</p>
+						@endif
+						</td>*/?>
+							<td>
+								@if($appointment->status == \App\ConsultantBooking::STATE_PENDING && $appointment->checkDate())
+									<a href='{{ url("consultant/booking/".$appointment->id."/cancel") }}' class="btn btn-warning">Cancel Appointment </a>
+								@else
+									{!! $appointment->getUploadForm() !!}
+								@endif
+							</td>
+						</tr>
+					@endif
 				@endforeach
 			@else
 				<tr role="row" class="odd">
