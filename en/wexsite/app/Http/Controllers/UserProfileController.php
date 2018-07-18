@@ -293,6 +293,11 @@ class UserProfileController extends CustomBaseController
             $user_global_test_result->delete();
         }
 
+        //$user_dream_check_lab = DreamCheckLab::where('user_id',$user_id);
+        //if(isset($user_dream_check_lab) && !empty($user_dream_check_lab)) {
+        //    $user_dream_check_lab->delete();
+        //}
+        
 
         // mail admin notification
         Mail::send('emails.alerts.user_auto_deleted', ['user' => $user], function($m) {

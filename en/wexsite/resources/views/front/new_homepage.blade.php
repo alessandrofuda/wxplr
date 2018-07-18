@@ -174,7 +174,7 @@ career service</strong></span> </p>
                                     <!-- Counter area-->
                                     <div class="quick_fact animate-math">
                                         <!-- Animated area -->
-                                        <a style="margin: 0" class="button button_white button_large button_js" href="/en/register"><span class="button_label">TRY IT NOW!</span></a>
+                                        <a id="try-it" style="margin: 0" class="button button_white button_large button_js" href="{{url('register')}}"><span class="button_label">TRY IT NOW!</span></a>
                                         <p style="color: #fff; font-size: 18px; line-height: 22px;">FREE</p>
                                     </div>
                                 </div>

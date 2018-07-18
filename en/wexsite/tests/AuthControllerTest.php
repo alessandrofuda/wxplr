@@ -15,29 +15,20 @@ class AuthControllerTest extends TestCase
 	use DatabaseTransactions;   // avoid INSERT NEW records in DB (ex: register form insert new 'email' into 'unique' DB field)
 
 
-
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testLoginPage()
-    {
+    public function testLoginPage() {
         //$this->assertTrue(true);
         $this->visit('auth/login')
         	 ->see('login')  
         	 ->assertResponseOk();
     }
 
-    public function testLoginPageRegisterLink()
-    {
+    public function testLoginPageRegisterLink() {
     	$this->visit('auth/login')
     		 ->click('Register a new membership')
     		 ->seePageIs('/register');
     }
 
-    public function testRegisterForm()
-    {
+    public function testRegisterForm() {
     	$this->visit('register')
     		 ->type('test', 'name')
     		 ->type('test', 'surname')
@@ -62,4 +53,6 @@ class AuthControllerTest extends TestCase
 			 ->see('dashboard')
 			 ->assertResponseStatus('200');
     }
+
+
 }

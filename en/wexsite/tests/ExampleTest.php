@@ -11,9 +11,19 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
-    public function testBasicExample()
-    {
+    public function testBasicExample() {
         $this->visit('/')
-             ->see('Home');
+             ->see('home')  // in Html
+             ->dontSee('exception');
+
+    }
+
+    public function testClickTryItNow() {
+
+        $this->visit('/')
+             //->click('TRY IT NOW!') // body 
+             ->click('try-it')  // id
+             ->seePageIs('register');
+
     }
 }

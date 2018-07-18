@@ -9,6 +9,7 @@ class DreamCheckLab extends Model
 {
     const STATE_COMPLETED = 5;
     use SoftDeletes;
+    protected $dates = ['deleted_at'];
     /**
      * The attributes that are mass assignable.
      *
