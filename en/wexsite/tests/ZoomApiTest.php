@@ -38,20 +38,28 @@ class ZoomApiTest extends TestCase
     }
 
 
+
     public function testUpdateMeeting() {
 
     	// 
     }
 
 
+
     public function testCancelMeeting() {
 
-    	$headers = ConsultantBooking::getZoomApiHeaders();
+
+    	// TO BE COMPLETE ...
+
+    	/*$headers = ConsultantBooking::getZoomApiHeaders();
         $meetingId = $this->testSaveMeeting();
+        //dump($meetingId);
         $url = ConsultantBooking::getZoomApiBaseUrl().'/meetings/'.$meetingId;
-        
+        dump($headers);
+        dump($url);
         $out = ConsultantBooking::curl_request('DELETE', $headers, $url);  // 1- delete from Zoom platform
         dd($out);
+        */
     	
     }
 }
