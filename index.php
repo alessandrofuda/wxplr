@@ -8,7 +8,7 @@
 
 
 	//dev server (nginx)
-	// header('Location: http://wexplore.test/it'); // only for dev version
+	// header('Location: http://wexplore.dev/it'); // only for dev version
 	
 	
 	header('Location: ' . $host . '/it');
