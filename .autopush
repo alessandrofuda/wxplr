@@ -1,0 +1,12 @@
+## Bash cmd Alias: 1 cmd for 3: GIT add,commit,push -- 19/07/2018 ##
+#
+#
+# Usage: autopush "..commit-message.."
+#
+#
+# 'git push' command works with SSH Keys pair on Github
+# to activate this alias (after update) run: 'source .autopush' 
+#
+## ---------------------------------------------------------------- ##
+# alias autopush='git add -A && git commit -m "$*" && git push origin master'
+alias autopush='sh ./autopush.sh'
