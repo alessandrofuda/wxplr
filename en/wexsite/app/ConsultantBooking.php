@@ -115,7 +115,7 @@ class ConsultantBooking extends Model
 
     public function saveMeeting($type = null) {
         
-        $headers = self::getZoomApiHeaders();
+        $headers = self::getZoomApiHeaders();   
         $url = self::getZoomApiBaseUrl() .'/users/'.self::getZoomApiUserId().'/meetings';
         
         $start_date = date('Y-m-d', $this->availablity->available_date) . 'T' . $this->availablity->available_start_time . ':00Z'; 
