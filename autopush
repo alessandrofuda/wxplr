@@ -8,5 +8,4 @@
 # to activate this alias (after update) run: 'source .autopush' 
 #
 ## ---------------------------------------------------------------- ##
-# alias autopush='git add -A && git commit -m "$*" && git push origin master'
-alias autopush='sh ./autopush.sh'
+alias autopush='sh .autopush.sh'
