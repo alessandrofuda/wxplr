@@ -87,17 +87,21 @@ class ConsultantProfileController extends CustomBaseController
         if($client_id !== NULL ) {
                                         
             $client_id = $client_id->user_id;  
-            $client = User::findOrFail($client_id);
-            $data['client'] = $client;
-            $discuss_id = $client->id.$consultant->id;
-            $data['discuss_id'] = $discuss_id;
-            $discussions = UserConsultantDiscussion::whereIn('user_id', [$client->id, $consultant->id])
-                                                   ->where('discuss_id', $discuss_id)
-                                                   ->orderBy('created_at', 'asc')
-                                                   ->get();
-            $data['discussions'] = $discussions;
-        
+            $client = User::find($client_id);
+            
+            if($client !== null) {
+                
+                $data['client'] = $client;
+                $discuss_id = $client->id.$consultant->id;
+                $data['discuss_id'] = $discuss_id;
+                $discussions = UserConsultantDiscussion::whereIn('user_id', [$client->id, $consultant->id])
+                                                       ->where('discuss_id', $discuss_id)
+                                                       ->orderBy('created_at', 'asc')
+                                                       ->get();
+                $data['discussions'] = $discussions;    
+            }            
         }
+
 
         return view('consultant.consultant_availability_form',$data);
     }
