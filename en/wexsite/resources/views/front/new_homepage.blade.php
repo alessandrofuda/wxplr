@@ -223,7 +223,7 @@ career service</strong></span> </p>
                                                 </div>
                                             </div>
                                         </a>
-                                        <div style="margin-top: 20px;"class="aligncenter"><a class="button button_large button_theme button_js" href="/en/global-orientation-test"><span class="button_label">VIEW MORE</span></a></div>
+                                        <div style="margin-top: 20px;" class="aligncenter"><a class="button button_large button_theme button_js" href="/en/global-orientation-test"><span class="button_label">VIEW MORE</span></a></div>
                                     </div>
                                 </div>
                                 <!-- One Fourth (1/4) Column -->
@@ -240,7 +240,7 @@ career service</strong></span> </p>
                                                 </div>
                                             </div>
                                         </a>
-                                        <div style="margin-top: 20px;"class="aligncenter"><a class="button button_large button_theme button_js" href="/en/professional-kit"><span class="button_label">VIEW MORE</span></a></div>
+                                        <div style="margin-top: 20px;" class="aligncenter"><a class="button button_large button_theme button_js" href="/en/professional-kit"><span class="button_label">VIEW MORE</span></a></div>
                                     </div>
                                 </div>
                                 <!-- One Fourth (1/4) Column -->
@@ -257,7 +257,7 @@ career service</strong></span> </p>
                                                 </div>
                                             </div>
                                         </a>
-                                        <div style="margin-top: 20px;"class="aligncenter">
+                                        <div style="margin-top: 20px;" class="aligncenter">
 														 <a class="button button_large button_theme button_js" href="/en/skills-development">
 															 <span class="button_label">VIEW MORE</span>
 														 </a>
@@ -279,7 +279,7 @@ career service</strong></span> </p>
                                                 </div>
                                             </div>
                                         </a>
-                                        <div style="margin-top: 20px;"class="aligncenter">
+                                        <div style="margin-top: 20px;" class="aligncenter">
 														 <a class="button button_large button_theme button_js" href="/en/global-toolbox">
 															<span class="button_label">VIEW MORE</span>
 														 </a>

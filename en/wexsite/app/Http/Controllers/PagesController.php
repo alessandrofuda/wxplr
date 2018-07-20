@@ -87,6 +87,7 @@ class PagesController extends CustomBaseController {
 		$data['sliders'] = $sliders;
 		$meta_tag = MetaTags::where('page_type', MetaTags::PAGE_TYPE_HOME)->first();
 		$data['meta_tag'] = $meta_tag;
+		
 		return view('front.new_homepage',$data);
 	}
 

@@ -8,37 +8,17 @@
 <!--<![endif]-->
 
 <head>
+    <!--Google Analytics-->
+    <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-<!-- Google Analytics -->
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-86105348-1', 'auto');
-  ga('set', 'anonymizeIp', true);
-  ga('send', 'pageview');
-
-</script>
-
-<!-- Facebook Pixel Code -->
-<!--script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '395106547540931'); // Insert your pixel ID here.
-    fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
-/></noscript-->
-<!-- DO NOT MODIFY -->
-<!-- End Facebook Pixel Code -->
-
-    <!-- Basic Page Needs -->
+          ga('create', 'UA-86105348-1', 'auto');
+          ga('set', 'anonymizeIp', true);
+          ga('send', 'pageview');
+    </script>
     <meta charset="utf-8">
     <meta name="author" content="">
     <title>{{ isset($tag->id) ? $tag->title : "Wexplore" }}</title>
@@ -46,11 +26,13 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
     <meta name="meta_description" content="{{ isset($tag->id) ? $tag->meta_description : "" }} ">
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
     @if(isset($meta_tags))
         @foreach($meta_tags as $meta_tag)
             <meta name="{{ $meta_tag->name }}" content="{{ $meta_tag->content }}">
-    @endforeach
-@endif
+        @endforeach
+    @endif
+
     <!-- Favicons -->
     <link rel="shortcut icon" href="{{ asset('frontend/immagini/favicon.ico') }}">
 
@@ -81,9 +63,6 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
 </head>
 
 <body class="home page template-slider menu-line-below layout-full-width header-classic sticky-header sticky-white subheader-title-left no-content-padding">
-
-
-
 <!-- Main Theme Wrapper -->
 <div id="Wrapper">
     <!-- Header Wrapper -->
@@ -98,10 +77,10 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
                         <!-- Header - contact info area
                         <ul class="contact_details">
                             <li class="phone">
-                                <i class="icon-clock"></i>{{ isset($settings) ? $settings->timings : "MON - SAT: 9.00 - 18.00" }}
+                                <i class="icon-clock"></i>{{-- isset($settings) ? $settings->timings : "MON - SAT: 9.00 - 18.00" --}}
                             </li>
                             <li class="mail">
-                                <i class="icon-mail-line"></i><a style="color:#ffffff;" href="mailto:{{ isset($settings) ? $settings->website_email  : 'info@wexplore.com'}}"> {{ isset($settings) ? $settings->website_email  : 'info@wexplore.com'}}</a>
+                                <i class="icon-mail-line"></i><a style="color:#ffffff;" href="mailto:{{-- isset($settings) ? $settings->website_email  : 'info@wexplore.com'}}"> {{ isset($settings) ? $settings->website_email  : 'info@wexplore.com'--}}</a>
                             </li>
                         </ul>-->
                         <!--Social info area
@@ -134,7 +113,6 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
                                 <a href="https://dribbble.com" title="Dribbble"><i class="icon-dribbble"></i></a>
                             </li>
                         </ul>-->
-
                     </div>
                 </div>
             </div>
@@ -250,3 +228,4 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
                 </div>
             </div>
             <!-- Revolution slider area-->
+        </header>
