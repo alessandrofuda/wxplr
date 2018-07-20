@@ -50,7 +50,7 @@
 								@if(isset($consultant->consultantProfile))
 									<li><b>Qualification:</b> {{ $consultant->consultantProfile->qualification }}</li>
 									<li><b>Languages:</b> {{ $consultant->consultantProfile->languages }}</li>
-									<li><b>Short Bio:</b> {{ $consultant->consultantProfile->bio }}</li>
+									<li style="width: 100%;"><b>Short Bio:</b> {{ $consultant->consultantProfile->bio }}</li>
 									<li><b>Profile link:</b> {!! isset($consultant->consultantProfile->link) ? '<a href="'.$consultant->consultantProfile->link.'"  target="_blank">view</a> <span style="font-size:x-small">(external link)</span>' : 'n.a.' !!}
 								@endif
 							</ul>

@@ -193,7 +193,7 @@
 
 					<li><span>Country of Interest:</span> <span class="Fill_detais">{{ $consultant->consultantProfile->country_expertise }}</span></li>
 
-					<li><span>Short Bio:</span> <span class="Fill_detais">{{ $consultant->consultantProfile->bio }}</span></li>
+					<li><span>Short Bio:</span> <span class="Fill_detais" style="width: 100%;">{{ $consultant->consultantProfile->bio }}</span></li>
 
 					<li><span>Languages:</span> <span class="Fill_detais">{{ $consultant->consultantProfile->languages }}</span></li>
 
@@ -204,7 +204,7 @@
 
 					<li><span>Area Expertise:</span> <span class="Fill_detais">{{ $consultant->consultantProfile->getExpertiesOptions($consultant->consultantProfile->area_expertise) }}</span></li>
 
-					<li><span>Profile link:</span> <span class="Fill_detais">{!! isset($consultant->consultantProfile->link) ? '<a href="'.$consultant->consultantProfile->link.'" target="_blank">view</a>' : 'n.a.' !!}</span></li>
+					<li><span>Profile link:</span> <span class="Fill_detais">{!! isset($consultant->consultantProfile->link) ? '<a href="'.$consultant->consultantProfile->link.'" target="_blank">view</a> <span style="font-size:xx-small;font-weight:lighter;"> (external link)</span>' : 'n.a.' !!}</span></li>
 
 					<?php /*
 					<li><span>Vat Number:</span> <span class="Fill_detais">{{ $consultant->consultantProfile->vat_number }}</span></li>
