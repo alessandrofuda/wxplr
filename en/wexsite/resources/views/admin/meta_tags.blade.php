@@ -50,11 +50,11 @@
 												<td class="sorting_1">{{ $tag->meta_description }}</td>
 												<td class="sorting_1">{{ $tag->getPageTypeoptions($tag->page_type) }}</td>
 												<td>
-													<a href="{{ url('admin/meta-tags/'.$tag->id.'/edit') }}">
+													<a href="{{ url('admin/meta-tags/'.$tag->id.'/edit') }}" style="padding: 5px;" title="edit">
 														<span class="glyphicon glyphicon-pencil"></span></a>
-													<a href="{{ url('admin/meta-tags/'.$tag->id.'/show') }}">
-														<span class="glyphicon glyphicon-search"></span></a>
-													<button type="button" class="btn btn-info btn-lg delete_modal_btn" data-toggle="modal" data-target="#deleteModal_{{ $tag->id }}"><span class="glyphicon glyphicon-trash"></span></button>
+													<a href="{{ url('admin/meta-tags/'.$tag->id.'/show') }}" style="padding: 5px;" title="show">
+														<span class="glyphicon glyphicon-eye-open"></span></a>
+													<button type="button" class="btn btn-info btn-lg delete_modal_btn" data-toggle="modal" data-target="#deleteModal_{{ $tag->id }}" title="delete"><span class="glyphicon glyphicon-trash"></span></button>
 													<!-- Modal -->
 													<div id="deleteModal_{{ $tag->id }}" class="modal fade" role="dialog">
 														<div class="modal-dialog">

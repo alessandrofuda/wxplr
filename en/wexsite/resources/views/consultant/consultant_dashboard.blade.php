@@ -24,7 +24,7 @@
 						<table class="table table-condensed">
 							<tr>
 								<td>1.</td>
-								<td><strong>Dream Check Lab Form submisison</strong></td>
+								<td><strong>Dream Check Lab Form submission</strong></td>
 								<td>
 									{!! $noti_mesg  !!}
 								</td>

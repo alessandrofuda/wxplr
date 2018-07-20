@@ -23,7 +23,7 @@
 						</td>
 						<td class="sorting_1">{{ ($consultant_avail->status == 1) ? 'Active' : 'Not Active' }}</td>
 						<td>
-							<a href="{{ url('consultant/availability/'.$consultant_avail->id.'/edit') }}"><span class="glyphicon glyphicon-pencil"></span></a>
+							<a href="{{ url('consultant/availability/'.$consultant_avail->id.'/edit#availability-form') }}"><span class="glyphicon glyphicon-pencil"></span></a>
 								<a type="button" style="cursor:pointer;" class="delete_modal_btn" data-toggle="modal" data-target="#deleteModal_{{ $consultant_avail->id }}"><span class="glyphicon glyphicon-trash"></span></a>
 								<!-- Modal -->
 								<div id="deleteModal_{{ $consultant_avail->id }}" class="modal fade" role="dialog">
