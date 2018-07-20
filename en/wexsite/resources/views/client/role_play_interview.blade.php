@@ -118,9 +118,15 @@
 									</form>
 								</div>
 							@endif
+							
 
-							<div class="row text-center" style="margin-top: 15px;"><strong>Please confirm agreed date and time for the call in the calendar below here.</strong></div>
-							<div id="calendar"></div>
+							@if (count($consultant_avail) > 0))							
+								<div class="row text-center" style="margin-top: 15px;">
+									<strong>Please confirm agreed date and time for the call in the calendar below here.</strong>
+								</div>
+								<div id="calendar"></div>
+							@endif
+
 
 						@endif
 
