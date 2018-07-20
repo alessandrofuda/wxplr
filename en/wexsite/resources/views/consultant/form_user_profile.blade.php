@@ -14,10 +14,10 @@
 <div class="Profile_details col-md-9 col-sm-10 col-xs-12 columns-center">
 	<div class="Profile_details_main">
 		<h3 class="Profile_Data_heading">Profile Data</h3>
-		@if(isset($user->userProfile->profile_picture))
-			<img alt="{{ $user->name }}"  src="{{ asset($user->userProfile->profile_picture) }}" width="150" height="150" style="float:left">
+		@if(isset($user->userProfile->profile_picture) && !empty($user->userProfile->profile_picture))
+			<img alt="{{ $user->name }}"  src="{{ asset($user->userProfile->profile_picture) }}" width="150" height="150" style="float:left;">
 		@else
-			<img alt="{{ $user->name }}" src="https://organicthemes.com/demo/profile/files/2012/12/profile_img.png" width="150" height="150" style="float:left">
+			<img alt="{{ $user->name }}" src="{{ asset('/uploads/profile_image.jpg') }}" width="150" height="150" style="float:left; border:1px solid #c7cde0;">
 		@endif
 		@if(isset($user->userProfile->id))
 
@@ -79,7 +79,9 @@
 				<div class="Profile-Data" id="view_personal_data">
 					<ul>
 						@foreach($user->getDocuments() as $doc)
-							<li><span>{{ $doc['title'] }} : </span> <span class="Fill_detais"><a href="{{ $doc['url'] }}" ><span class = "glyphicon glyphicon-download"></span> Download</a></span></li>
+							<li>
+								<span>{!! $doc['title'] !!} : </span> <span class="Fill_detais"><a href="{{ $doc['url'] }}" ><span class = "glyphicon glyphicon-download"></span> Download</a></span>
+							</li>
 
 						@endforeach
 
