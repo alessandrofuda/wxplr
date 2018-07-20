@@ -8,7 +8,9 @@
         </div>
         <div class="row">
             <div class="container">
-                <?php $step=0;
+                <?php 
+
+                $step=0;
                 $user_id = Auth::user()->id;
                 $order = \App\Order::where('user_id',$user_id)->where('item_name','Professional Kit')->first();
                 $step = 0;

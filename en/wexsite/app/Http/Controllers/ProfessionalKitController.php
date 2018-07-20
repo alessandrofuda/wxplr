@@ -57,7 +57,9 @@ class ProfessionalKitController extends CustomBaseController {
 		//return view('front.professional_kit',$data);
 	}
 
+
 	public function overview() {
+
 		$order = Order::where('user_id',\Auth::user()->id)->where('item_name','Professional Kit')->first();
 
 		if($order != null) {
@@ -67,17 +69,24 @@ class ProfessionalKitController extends CustomBaseController {
 			}
 
 		}
+
 		$data['page_title'] = 'Professional Kit';
+		
 		return view('client.professional_kit_step', $data);
+	
 	}
+
+
 	public function culture_match_iframe($country) {
 		return view('front.culture_match_form',compact('country'));
 	}
+
 
 	public function culture_match_submit(Request $request) {
 		$country = $request->get('country');
 		return view('front.culture_match_iframe',compact('country'));
 	}
+
 
 	public function culture_match_index() {
 		$cc_code=Country::all();
@@ -1030,12 +1039,12 @@ class ProfessionalKitController extends CustomBaseController {
 	}
 
 	/* create steady aim shoot page */
-	public function steady_aim_shoot(){
+	public function steady_aim_shoot() {
+
 		$steady_aim_shoot_arr  = [];
 		$steady_aim_shoot_obj  = SteadyAimShoot::find(1);
-		if(is_object($steady_aim_shoot_obj) && !empty($steady_aim_shoot_obj))
-		{
-			//echo '<pre>'; print_r( $steady_aim_shoot_obj->toArray()); exit;
+
+		if(is_object($steady_aim_shoot_obj) && !empty($steady_aim_shoot_obj)) {
 			$id       					= $steady_aim_shoot_obj['id'];
 			$top_description       		= $steady_aim_shoot_obj['top_description'];
 			$bottom_description    		= $steady_aim_shoot_obj['bottom_description'];
@@ -1051,29 +1060,29 @@ class ProfessionalKitController extends CustomBaseController {
 											'steady_aim_shoot_pdf_label'=> $steady_aim_shoot_pdf_label
 											];
 		}
+
 		$user_id = Auth::user()->id;
 		$order = Order::where('user_id',$user_id)->where('item_name','Professional Kit')->first();
 
 		if($order != null) {
-			if($order->step_id < 5) {
+			if($order->step_id < 6) {  // 5
 				$order->update([
-					'step_id' => 5
+					'step_id' => 6  // 5
 				]);
 			}
 		}
+
 		$interest_country_pdf = '';
 		$interest_country_arr = [];
 		$interest_country_obj = DreamCheckLab::where('user_id',$user_id)->first(['interest_country']);
 
-		if(is_object($interest_country_obj) && !empty($interest_country_obj))
-		{
+		if(is_object($interest_country_obj) && !empty($interest_country_obj)) {
 			$interest_country = $interest_country_obj['interest_country'];
 
 			$country_pdf_obj = CountryPdf::where('country_name',$interest_country)->first();
 
 			if(is_object($country_pdf_obj) && !empty($country_pdf_obj))
 			{
-				//echo '<pre>'; print_r( $country_pdf_obj->toArray()); exit;
 				$interest_country_pdf 		= $country_pdf_obj['country_pdf'];
 				$interest_country_pdf_label = $country_pdf_obj['country_pdf_label'];
 				$interest_country_arr = ['interest_country_pdf' => $interest_country_pdf, 'interest_country_pdf_label' => $interest_country_pdf_label ];
@@ -1081,12 +1090,13 @@ class ProfessionalKitController extends CustomBaseController {
 
 		}
 
-		//echo '<pre>'; print_r( $interest_country_arr); exit;
 		$data['interest_country']  		= $interest_country_arr;
 		$data['steady_aim_shoot']      	= $steady_aim_shoot_arr;
 		$data['page_title'] = "STEADY, AIM, SHOOT";
 		$data['country'] = $interest_country_obj['interest_country'];
+
 		return view('client.steady_aim_shoot',$data);
+
 	}
 
 
