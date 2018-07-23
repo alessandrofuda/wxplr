@@ -166,6 +166,7 @@ class ProfessionalKitController extends CustomBaseController {
 
 		return view('client.dream_check_lab',$data);
 	}
+	
 
 	public function dream_check_lab_store(Request $request){  // compilazione singoli tab
 

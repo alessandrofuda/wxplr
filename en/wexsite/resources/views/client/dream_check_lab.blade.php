@@ -56,7 +56,7 @@
                                   <p>NOTE: Please make sure your CV should already be in the local language, or at least in English: in this way your consultant will be able to recommend how to best adapt it to the local market. </p>
                                   <p>Also, please make sure your CV is in an editable form (either <b>.doc</b> or <b>.docx</b>), to make the review process easier. </p>
                                   <p></p>
-                                  <input required type="file" name="upload_cv">
+                                  <input id="file" required type="file" name="upload_cv" accept=".doc,.docx">
                               </div>
 
                               @if($dream_check_lab['cv_file'] != null)
@@ -88,7 +88,7 @@
                                       });
                                     </script>
                                   </div>
-                              {{-- @else --}}
+                              {{-- @_else --}}
                               @endif
 
                               <input type="hidden" name="state_id" value="1">
@@ -440,6 +440,19 @@
         jQuery(document).ready(function () {
 
           jQuery("#submit_1").click(function(e) {
+              e.preventDefault();
+
+              // only .doc || .docx !
+              var fileName = jQuery('#form_1 input[type=file]').val();
+              var ext = fileName.split('.').pop().toLowerCase();
+              
+              if(jQuery.inArray(ext, ['doc','docx']) == -1) {
+                  alert('Please upload only .doc or .docx format files.');
+                  return false;
+              }
+
+
+
               if (!jQuery("#form_1")[0].checkValidity()) {
                   // If the form is invalid, submit it. The form won't actually submit;
                   // this will just cause the browser to display the native HTML5 error messages.
@@ -452,7 +465,8 @@
                   //if (has_selected_file) {
                       /* do something here */
                   //}
-                  e.preventDefault();
+                  
+                  //e.preventDefault();
                   submitForm("#form_1");
                   jQuery("#price-li").find("a").attr("href","#price-tab").trigger('click');
                   scrollTo(document.body, 0, 100);
@@ -678,7 +692,7 @@
             var tab_active = jQuery('.dream_check_lab .nav.nav-tabs li.active a').attr('href'); 
             var final_form = jQuery("#outro").css('display') != 'none'; // bool! 
             
-            if(typeof tab_active != 'undefined' && final_form == false) {
+            if(typeof tab_active != 'undefined' && final_form == false && tab_active != '#product-tab') {
                 var form_n = jQuery(tab_active).find('form').attr('id');
                 var autosave = true;
                 console.log('Autosave on "'+tab_active+'"(#'+form_n+'): '+ new Date()); 
