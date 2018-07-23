@@ -294,7 +294,7 @@ class ConsultantBooking extends Model
         $customClaims = [
                             'iss'   => env('ZOOM_API_KEY'),
                             'exp'   => time() + 3600,   // seconds!
-                            'nbf'   => time() - 50, // PER COMPENSARE LO SFASAMENTO ORARIO SERVER in PRODUZIONE DI CIRCA 30 SECONDI !! 
+                            'nbf'   => time() - 250, // PER COMPENSARE LO SFASAMENTO ORARIO SERVER in PRODUZIONE DI CIRCA 30 SECONDI (aumenta!)!! 
                             // 'iat'   => null,
                             // 'sub'   => null,
                             // 'jti'   => null
