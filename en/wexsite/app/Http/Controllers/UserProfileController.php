@@ -34,7 +34,11 @@ class UserProfileController extends CustomBaseController
         $data['page_title']='Profile';
         $cc_code=Country::all();
         $data['countries_code'] = $cc_code;
-		return view('client.user_profile',$data);
+        $data['user'] = Auth::user();
+        $data['active_from_date'] = explode(' ', $data['user']->created_at)[0];
+        $data['active_from_time'] = explode(' ', $data['user']->created_at)[1];
+
+		return view('client.user_profile', $data);
     }
 
     /**
