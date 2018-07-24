@@ -191,9 +191,6 @@
 		</div>
 	</div>
 
-
-
-
 	<div class="clearfix" style="clear: both;"></div>
 	<div id="account" class="Profile_details col-md-9 col-sm-10 col-xs-12 columns-center">
 		<div class="Profile_details_main">

@@ -17,7 +17,7 @@
 		@if(isset($consultant->consultantProfile->profile_picture) && $consultant->consultantProfile->profile_picture != null)
 			<img alt="{{ $consultant->name }}"  src="{{ asset($consultant->consultantProfile->profile_picture) }}" width="150" height="150" style="float:left">
 		@else
-			<img alt="{{ $consultant->name }}"  src="https://organicthemes.com/demo/profile/files/2012/12/profile_img.png" width="150" height="150" style="float:left">
+			<img alt="{{ $consultant->name }}"  src="{{ asset('uploads/profile_image.jpg') }}" width="150" height="150" style="float:left;border:1px solid #C6CDE0;">
 		@endif
 		<div class="form columns-center" style="display: none;" id="edit_profile_data">
 			<a  class=edit_profile" id="view_profile"><i class="fa fa-times" aria-hidden="true"></i></a>
