@@ -97,7 +97,7 @@ ul.sidebar-menu li a:hover{padding-left:21px;color:#fff;background:#373e42}
 .form-group.has-feedback.membership:after{content:'';height:1px;position:absolute;top:0;width:100%;background-color:rgba(26,26,26,0.18);left:0}
 .form-group.has-feedback.membership a{display:block;padding-top:5px;float:left}
 .container.register .Register .row form .checkbox label{padding-left:26px}
-.user-dash-wrapper .content{overflow:hidden}
+.user-dash-wrapper .content{overflow:hidden; min-height: 380px;}
 .global-test-container .col-md-6+a{clear:both;float:left}
 .global-test-container{overflow:hidden}
 .online-test-banner h1{color:#367fa9}
@@ -138,7 +138,7 @@ a.back-dashboard{float:right}
 .content ul.nav.navbar-nav li.active a{color:#ecf0f5;background:#55b241;border-radius:0;position:relative;z-index:9999;margin-left:-5px}
 .content ul.nav.navbar-nav li.active:first-child a{margin-left:0}
 .content ul.nav.navbar-nav li a:after{content:'';width:0;height:0;border-top:20px solid transparent;border-left:20px solid #ededed;border-bottom:20px solid transparent;z-index:999;position:absolute;right:-20px;top:0}
-.content ul.nav.navbar-nav li.step_done a:after{content:'';width:0;height:0;border-top:20px solid transparent;border-left:20px solid #dcf5ce;border-bottom:20px solid transparent;z-index:99999;position:absolute;right:-15px;top:0}
+.content ul.nav.navbar-nav li.step_done a:after{content:'';width:0;height:0;border-top:20px solid transparent;border-left:20px solid #dcf5ce;border-bottom:20px solid transparent;z-index:99998;position:absolute;right:-15px;top:0}
 .content ul.nav.navbar-nav li.step_done:first-child a:before{display:none}
 .content ul.nav.navbar-nav li.step_done a:before{display:block;content:'';display:block;position:absolute;left:0;width:1px;height:100%;top:0;background:#c5dab9;z-index:999999}
 .content ul.nav.navbar-nav li.step_pending a:after{content:'';height:28px;z-index:999;position:absolute;right:-6px;top:-4px;border:none;width:1px;background:#fff;-webkit-transform:rotate(-45deg);-moz-transform:rotate(-45deg);-o-transform:rotate(-45deg)}
