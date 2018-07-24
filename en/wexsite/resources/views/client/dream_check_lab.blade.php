@@ -56,7 +56,7 @@
                                   <p>NOTE: Please make sure your CV should already be in the local language, or at least in English: in this way your consultant will be able to recommend how to best adapt it to the local market. </p>
                                   <p>Also, please make sure your CV is in an editable form (either <b>.doc</b> or <b>.docx</b>), to make the review process easier. </p>
                                   <p></p>
-                                  <input id="file" required type="file" name="upload_cv" accept=".doc,.docx">
+                                  <input id="file" required type="file" name="upload_cv" accept=".doc,.docx,.odt">
                               </div>
 
                               @if($dream_check_lab['cv_file'] != null)
@@ -442,16 +442,14 @@
           jQuery("#submit_1").click(function(e) {
               e.preventDefault();
 
-              // only .doc || .docx !
+              // only .doc || .docx || .odt !
               var fileName = jQuery('#form_1 input[type=file]').val();
               var ext = fileName.split('.').pop().toLowerCase();
-              
-              if(jQuery.inArray(ext, ['doc','docx']) == -1) {
-                  alert('Please upload only .doc or .docx format files.');
+
+              if(jQuery.inArray(ext, ['doc','docx','odt']) == -1) {
+                  alert('Please upload only .doc, .docx or .odt format files.');
                   return false;
               }
-
-
 
               if (!jQuery("#form_1")[0].checkValidity()) {
                   // If the form is invalid, submit it. The form won't actually submit;
@@ -631,7 +629,7 @@
 
                 if (has_selected_file) {
                     var file_data = jQuery('input[type="file"]')[0].files; // for multiple files
-                    for(var i = 0;i<file_data.length;i++){
+                    for(var i = 0; i<file_data.length; i++){
                         fd.append("upload_cv", file_data[i]);
                     }
                 }
@@ -644,9 +642,6 @@
                 var token = jQuery('input[name="_token"]').attr('value');
                 fd.append("_token", "{{ csrf_token() }}");
                 fd.append("autosave", autosave);  // bool
-                // console.log(form);
-                // console.log('ajax url: '+jQuery(form).attr('action'));
-                // console.log(token);
 
                 jQuery.ajax({
                     headers: {
