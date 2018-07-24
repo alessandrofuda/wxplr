@@ -29,12 +29,12 @@
 									<table border="0" cellspacing="0" cellpadding="0" class="m--button" style="border-collapse:separate;">
 										<tr>
 											<td align="center" style="-moz-border-radius:20px;-webkit-border-radius:20px;border-radius:20px;font-size:14px;padding:12px 15px;" bgcolor="#8fcb49">
-												<a href="#" target="_blank" style="font-size:12px;line-height:12px;padding:6px 9px;font-weight:bold;font-family:Arial;color:#ffffff;text-decoration: none;-moz-border-radius:20px;-webkit-border-radius:20px;border-radius:20px;display:block;">
-													<span style="color: #ffffff;"><!--[if mso]>&nbsp;<![endif]-->
+												<a href="{{ url('user/role_play_interview') }}" target="_blank" style="font-size:12px;line-height:12px;padding:6px 9px;font-weight:bold;font-family:Arial;color:#ffffff;text-decoration: none;-moz-border-radius:20px;-webkit-border-radius:20px;border-radius:20px;display:block;">
+													<span style="color: #ffffff;">
 
-														Click here to reply to the message
+														Click here to View all messages and Reply
 
-													<!--[if mso]>&nbsp;<![endif]--></span>
+													</span>
 												</a>
 											</td>
 										</tr>
