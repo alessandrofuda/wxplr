@@ -628,10 +628,13 @@
                         }).length  > 0 ;  // bool
 
                 if (has_selected_file) {
+                    
                     var file_data = jQuery('input[type="file"]')[0].files; // for multiple files
+
                     for(var i = 0; i<file_data.length; i++){
                         fd.append("upload_cv", file_data[i]);
                     }
+                    console.log(fd.get('upload_cv'));
                 }
 
                 var other_data = jQuery(form).serializeArray();
@@ -652,6 +655,7 @@
                     data: fd,
                     async: false,
                     success: function(data) {
+                      console.log(data);
                         if(typeof data.html != 'undefined') {
                             //jQuery("body").html(data.html);
                             jQuery("#form_id").val(data.dream_check_lab_id);
@@ -664,9 +668,9 @@
 
                         // scrollTo(document.body, 0, 100);
                     },
-                    // error: function(err, err2) {
-                    //  console.log('errore: '+err+' '+err.responseText);
-                    // },
+                     error: function(err, err2) {
+                      console.log('errore: '+err+' '+err.responseText);
+                     },
                     cache: false,
                     contentType: false,
                     processData: false,

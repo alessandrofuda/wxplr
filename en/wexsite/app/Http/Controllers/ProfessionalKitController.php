@@ -164,7 +164,7 @@ class ProfessionalKitController extends CustomBaseController {
 
 		//dd(cookie());
 
-		return view('client.dream_check_lab',$data);
+		return view('client.dream_check_lab', $data);
 	}
 	
 
@@ -174,11 +174,26 @@ class ProfessionalKitController extends CustomBaseController {
 		// create achievement three forms validation rule by foreach
 		$request_state = $request->get('state_id');
 		session(['request_state' => $request_state]);
- 
+
+
+
+
+
+
+
+
+//TEST 
+// return $request->file('upload_cv')->getMimeType();
+
+
+
+
+
+
 
 		
 		if($request_state == 1) {
-			$rules['upload_cv'] = 'required|mimes:doc,docx,odt';
+			$rules['upload_cv'] = 'required'; //|mimes:doc,docx,odt';  // mimes: --> problemi con files openoffice
 			$rules['state_id'] = 'required';
 		}elseif($request_state == 2) {
 			$request_achievements = $request->get('achievement');
@@ -205,8 +220,10 @@ class ProfessionalKitController extends CustomBaseController {
 		// Validate ONLY IF is NOT autosave !
 		$autosave = $request->get('autosave');
 		if ( $autosave !== true ) {		// $autosave === false || $autosave === null
-			$validator = Validator::make($request->all(),$rules);
+			$validator = Validator::make($request->all(), $rules);
+
 			if ($validator->fails()) {
+
 				return redirect()->back()->withInput()->withErrors($validator->errors());
 			}
 		}
@@ -236,6 +253,7 @@ class ProfessionalKitController extends CustomBaseController {
 
 		if($request_state == 1) {
 			$cv_file = $request->file('upload_cv');
+			// return dd($cv_file);
 
 			$base_path = base_path();
 			$base_path = str_replace("/wexsite", "", $base_path);
