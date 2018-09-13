@@ -285,7 +285,7 @@
 														<td align="center" valign="middle" style="border-collapse:collapse;font-size:1px;line-height:1px;padding:10px;">
 															<table cellspacing="0" cellpadding="0" border="0" width="100%" style="width:100%;">
 																<tr>
-																	<td align="center" style="border-collapse:collapse;color:#999999;font-family:Arial;font-size:10px;line-height:13px;background:#f0f0f0;">
+																	<td align="center" style="border-collapse:collapse;color:#999999;font-family:Arial;font-size:10px;line-height:13px;background:#f0f0f0; padding:10px 0;">
 																		<span style="color:#000000"><a style="text-decoration: none; color: #999999;" href="{{ url('login') }}" target="_blank">Login </a>| <a style="text-decoration: none; color: #999999;" href="{{ url('terms-service') }}" target="_blank">Terms of service</a><br />
 																			<br />
 																			This mail was sent by Wexplore Srl, Via Sangallo, 33 20133 Milan, Italy<br />

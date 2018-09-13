@@ -26,7 +26,24 @@
 //  return date('Y-m-d H:i:s');
 //	return phpinfo();
 //});
+/* Route::get('demo-email', function() {
+	//$user->name = 'alessandro';
+	//$user->email = 'test@test.com';
+	$user = App\User::find(1042);
 
+	return view('emails.service_activation')->with('order_id', 999)
+											->with('product_name', 'product_test')
+											->with('quantity', 2)
+											->with('price', 456)
+											->with('subtotal', 654)
+											->with('discount', 100)
+											->with('promo_code', null)
+											->with('total', 951)
+											->with('payment_method', 'credit card')
+											->with('vat_price', 851)
+											->with('user', $user)
+											;
+}); */
 //Route::get('/token',function () {
 //	return \App\ConsultantBooking::getAccessToken();
 //});

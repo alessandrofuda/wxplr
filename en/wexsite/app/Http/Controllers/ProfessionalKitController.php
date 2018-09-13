@@ -176,20 +176,8 @@ class ProfessionalKitController extends CustomBaseController {
 		session(['request_state' => $request_state]);
 
 
-
-
-
-
-
-
 //TEST 
 // return $request->file('upload_cv')->getMimeType();
-
-
-
-
-
-
 
 		
 		if($request_state == 1) {
