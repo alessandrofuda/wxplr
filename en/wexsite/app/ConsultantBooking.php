@@ -133,10 +133,17 @@ class ConsultantBooking extends Model
         // API call !!
         $out = self::curl_request("POST", $headers, $url, $postData);
 
+        if(is_array($out) && !array_key_exists('uuid', $out)){
+            //dump('Error: \'uuid\' meeting not created from Zoom API call. Response from Zoom API: ');
+            //dd($out);
+            return $out;
+        }
+        
         if (isset($out) && $out !== NULL ) {
             if($type == null) {
                 $type = ZoomMeeting::TYPE_MEETING;  // 0
             }
+
             if (ZoomMeeting::saveData($out, $this->id, $type)){
                 return true;
             }

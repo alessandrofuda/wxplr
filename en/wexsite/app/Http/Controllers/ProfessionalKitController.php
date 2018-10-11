@@ -985,15 +985,22 @@ class ProfessionalKitController extends CustomBaseController {
 			'state_id' => ConsultantBooking::STATE_PENDING]);
 		}
 
-
-
 		//Save meeting on gotomeeting server
 		$meeting = GoToMeeting::where('booking_id', $ConsultantBooking->id)->first();
 
-		if($meeting == null)
+		if($meeting == null) { // if null --> OK : no duplicateds!
 			$data = $ConsultantBooking->saveMeeting(GoToMeeting::TYPE_MEETING);  // GoToMeeting::TYPE_MEETING = 0
 
-
+			if($data !== true && $data !== false) {
+				$errors = $data;
+				//dd($errors);
+				$message = '';
+				foreach ($errors as $error_key => $error_value) {
+					$message .= ' '.$error_key.': '.$error_value.', ';
+				}
+			  	return redirect()->back()->with('error','An error occurred through API call from Zoom: '. $message);
+			}
+		}
 
 		/* Email to user */
 		Mail::send('emails.consultant_booking', ['user'=>$user,'consultantbooking'=>$ConsultantBooking], function ($m) use ($user) {
@@ -1020,15 +1027,14 @@ class ProfessionalKitController extends CustomBaseController {
 			$admin_emails = User::getNotificationList();
 			$m->from($site_email, 'Wexplore');
 			$m->to($admin_emails, 'Wexplore')->subject('New Consultant Booking!');
-		});
-		/* email end */
-
+		});  /* email end */
 
 		$availablity ->update(
 			['is_booked' => ConsultantAvailablity::STATUS_BOOKED]
 		);
-
 		
+
+
 		return redirect()->back()->with('status','Thank you! Your session is now booked! Please check appointments. Do not forget to log back in your dashboard to connect with your consultant!');
 	}
 

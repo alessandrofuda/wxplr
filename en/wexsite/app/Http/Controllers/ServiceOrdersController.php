@@ -299,7 +299,7 @@ class ServiceOrdersController extends CustomBaseController {
 			$amount = Service::usdprice($service->currency_code, 'USD', $original_amount);
 			$amount = $original_amount;
 		}
-// dd($amount); // 0.0
+		
 		$amount = round($amount, 2);
 
 
