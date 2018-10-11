@@ -998,7 +998,7 @@ class ProfessionalKitController extends CustomBaseController {
 				foreach ($errors as $error_key => $error_value) {
 					$message .= ' '.$error_key.': '.$error_value.', ';
 				}
-			  	return redirect()->back()->with('error','An error occurred through API call from Zoom: '. $message);
+			  	return redirect()->back()->with('error','! An Error occurred through API call from Zoom. Details are: '. $message);
 			}
 		}
 
