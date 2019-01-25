@@ -30,9 +30,8 @@ class LandingPageController extends Controller
 
     public function post(Request $request) {
 
-
         $to_email = env('MAIL_TO');  // 'info@wexplore.co';
-
+        $to_email_ccn = env('MAIL_TO_CCN', '');
         //validation form
         $validator = Validator::make($request->all(), [
             'firstname' => 'required|max:255',
@@ -56,11 +55,11 @@ class LandingPageController extends Controller
             'email' => $request->input('email'),
             'bodyMessage' => $request->input('message')
         ];
-        Mail::send('emails.landing-page', $lead_data, function ($m) use ($to_email, $lead_data) {
+        Mail::send('emails.landing-page', $lead_data, function ($m) use ($to_email, $to_email_ccn, $lead_data) {
             $settings = Setting::find(1);
             $site_email = $settings->website_email;
             $m->from($site_email, 'Wexplore');
-            $m->to($to_email, 'Wexplore')->subject('Landing Page, nuova richiesta da: '. $lead_data['firstname']. ' '. $lead_data['lastname']);
+            $m->to($to_email, 'Wexplore')->bcc($to_email_ccn)->subject('Landing Page, nuova richiesta da: '. $lead_data['firstname']. ' '. $lead_data['lastname']);
         });
 
         return redirect()->back()->with('success', 'Siamo contenti di averti incuriosito!<br/> Ti ricontatteremo entro 24 ore per rispondere alla tua richiesta.<br/> Se nel frattempo vuoi qualche notizia in più, seguici su <a class="social-btn" href="https://www.facebook.com/wexploreco">Facebook</a> o <a class="social-btn" href="https://it.linkedin.com/company/wexplore.co/">LinkedIn</a>. A presto!');
