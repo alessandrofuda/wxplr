@@ -11,16 +11,17 @@
 	|
 	*/
 
+/* ITALIANO */
 
-
-
+/* landing page */
+Route::get('staging/landing-page', array('as' => 'landing-page', 'uses' => 'LandingPageController@index'));
 
 
 
 
 // diagnosys
 Route::get('phpinfo', function() {
-	echo phpinfo();
+	//echo phpinfo();
 });
 
 

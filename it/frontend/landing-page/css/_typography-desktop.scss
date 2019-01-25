@@ -1,0 +1,124 @@
+@import 'vars';
+@import 'mixin';
+
+h1 {
+  font-family: $font-main;
+  font-weight: $font-weight-1;
+  font-size: $h1-size-desktop;
+  line-height: $h1-lineheight-desktop;
+  margin-bottom: $h1-marginbottom-desktop;
+  word-wrap:break-word;
+}
+
+
+h2 {
+  font-family: $font-main;
+  font-weight: $font-weight-1;
+  font-size: $h2-size-desktop;
+  line-height: $h2-lineheight-desktop;
+  margin-bottom: $h2-marginbottom-desktop;
+  word-wrap:break-word;
+}
+
+h3 {
+  font-family: $font-main;
+  font-weight: $font-weight-1;
+  font-size: $h3-size-desktop;
+  line-height: $h3-lineheight-desktop;
+  margin-bottom: $h3-marginbottom-desktop;
+  word-wrap:break-word;
+}
+
+h4 {
+  font-family:  $font-main;
+  font-weight: $font-weight-1;
+  font-size: $h4-size-desktop;
+  line-height: $h4-lineheight-desktop;
+  margin-bottom: $h4-marginbottom-desktop;
+  word-wrap:break-word;
+}
+
+.hamburger-typoo {
+  font-family:  $font-main;
+  font-weight: $font-weight-1;
+  font-size: $h4-size-desktop;
+  line-height: $h4-lineheight-desktop;
+  word-wrap:break-word;
+}
+
+.hamburger-footer-typoo {
+  font-family: $font-main;
+  font-weight: $font-weight-1;
+  font-size: $paragraph-size-desktop;
+  line-height: $paragraph-lineheight-desktop;
+}
+
+h5 {
+  font-family: $font-sub;
+  font-weight: $font-weight-1;
+  font-size: $h5-size-desktop;
+  line-height: $h5-lineheight-desktop;
+  margin-bottom: $h5-marginbottom-desktop;
+  word-wrap:break-word;
+}
+
+h6 {
+  font-family: $font-main;
+  font-weight: $font-weight-1;
+  font-size: $h6-size-desktop;
+  line-height: $h6-lineheight-desktop;
+  margin-bottom: $h6-marginbottom-desktop;
+  word-wrap:break-word;
+}
+
+p {
+  font-family: $font-main;
+  font-weight: $font-weight-1;
+  font-size: $paragraph-size-desktop;
+  line-height: $paragraph-lineheight-desktop;
+  margin: 0 0 $paragraph-marginbottom-desktop 0;
+  word-wrap:break-word;
+  padding: 0;
+}
+
+.text-shadow {
+  padding-bottom: 13px;
+  text-shadow:
+    -2px -2px white,
+    -2px 2px white,
+    2px -2px white,
+    2px 2px white;
+}
+
+.underline {
+  background-size: 2px 2em;
+  box-shadow:
+  inset 0 -10px white,
+  inset 0 -12px #00a04c;
+  display: inline;
+}
+
+.btn {
+  display: inline-block;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#00829a+0,00a04c+100 */
+	background: rgb(0,130,154); /* Old browsers */
+	background: -moz-linear-gradient(left, rgba(0,130,154,1) 0%, rgba(0,160,76,1) 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(left, rgba(0,130,154,1) 0%,rgba(0,160,76,1) 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to right, rgba(0,130,154,1) 0%,rgba(0,160,76,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00829a', endColorstr='#00a04c',GradientType=1 ); /* IE6-9 */
+  .inner {
+    position: relative;
+    margin: 3px;
+    padding: 30px 20px;
+    background-color: $color-8;
+    color: $color-1;
+    font-family:  $font-main;
+    font-weight: $font-weight-1;
+    font-size: $h4-size-desktop;
+    @include define-basic-transition(all, 0.6s);
+    &:hover {
+      background-color: transparent;
+      color: $color-8;
+    }
+  }
+}
