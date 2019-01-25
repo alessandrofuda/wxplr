@@ -80,12 +80,27 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
     </div>
   </header>
 
-
   <div class="box-fullscreen test-gradient lazy coverize lazy" data-src="{{url('frontend/landing-page/images/wexplore-cover.jpg')}}"></div>
 
-
-
   <div class="box-fullscreen-fair hide-overflow">
+
+    @if (count($errors) > 0)
+        <div class="alert alert-danger" style="border: 1px solid #c84f4f; background-color: #c84f4f; color: #FFF; padding: 30px; border-radius: 5px; margin: 30px; text-align: center;">
+            <b>Error</b><br/><br/>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
+    @if ($successMessage = session('success'))
+      <div class="alert alert-success" style="display:block; border:1px solid green; padding:2%; margin:2%; margin-top:2%; background-color:#06ad06b3; border-radius:10px; color:#FFFFFF; font-size:20px; text-align:center; margin-top:100px; z-index:99999; position: relative; line-height: 1.4;">
+        <span>{!!$successMessage !!}</span>
+      </div>
+    @endif
+
     <div class="baloon-1 madscroll-slow" data-scroll-speed="3">
       <div class="no-the-100">
         <img data-src="{{url('frontend/landing-page/images/baloon-1.png')}}" alt="Wexplore" class="lazy" />
@@ -292,26 +307,27 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
 
       <h2 class="allupper">Hai BISOGNO DI INFORMAZIONI?<br/>Contattaci</h2>
       <div class="form-hold">
-        <form>
+        <form action="{{ route('landing-page-post')}}" method="POST">
+          {{ csrf_field() }}
           <div class="flex-hold flex-hold-3">
 
             <div class="flex-hold-child">
-              <input type="text" name="nome" placeholder="Nome" />
+              <input type="text" name="firstname" placeholder="Nome" value="{{old('firstname')}}" required />
             </div>
 
             <div class="flex-hold-child">
-              <input type="text" name="cognome" placeholder="Cognome" />
+              <input type="text" name="lastname" placeholder="Cognome" value="{{old('lastname')}}"required />
             </div>
 
             <div class="flex-hold-child">
-              <input type="email" name="email" placeholder="Email" />
+              <input type="email" name="email" placeholder="Email" value="{{old('email')}}" required/>
             </div>
 
           </div>
-          <textarea name="messaggio" placeholder="Scrivi il tuo messaggio"></textarea>
+          <textarea name="message" placeholder="Scrivi il tuo messaggio" required>{{old('message')}}</textarea>
           <div class="alignleft">
             Informativa Privacy*<br />
-            <input type="checkbox" name="privacy" />
+            <input type="checkbox" name="privacy" required />
             Dichiaro di aver preso visione dell'Informativa sulla privacy
           </div>
 
