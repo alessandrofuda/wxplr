@@ -17,8 +17,7 @@
             </div>
 
 
-            <div class="one-fourth column">
-                <!-- Text Area -->
+            <!--div class="one-fourth column">
                 <aside id="text-8" class="widget widget_text">
                     <h4>Wexplore</h4>
                     <div class="textwidget">
@@ -38,7 +37,6 @@
             </div>
             
             <div class="one-fourth column">
-                <!-- Text Area -->
                 <aside id="text-8" class="widget widget_text">
                     <h4><br></h4>
                     <div class="textwidget">
@@ -58,7 +56,7 @@
                         </ul>
                     </div>
                 </aside>
-            </div>
+            </div-->
         </div>
     </div>
     <!-- Footer copyright-->
@@ -66,7 +64,7 @@
         <div class="footer_copy" style="border-top:none !important;">
             <div class="column one">  
                 <div class="copyright">
-                    &copy; {{ date('Y') }} Wexplore - Web design <a href="http://www.studioilgranello.it" target="_blank">Studio il Granello</a>
+                    &copy; {{ date('Y') }} Wexplore
                 </div>
                 <!--Social info area-->
                 <a id="back_to_top" href="#" class="button button_left button_js"> <span class="button_icon"> <i class="icon-up-open-big"></i> </span> </a>

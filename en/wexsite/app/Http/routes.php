@@ -84,7 +84,14 @@ Route::get('time', function() {
 
 
 
-	Route::get('/', array('as' => 'homepage', 'uses' => 'PagesController@homepage'));
+	// Route::get('/', array('as' => 'homepage', 'uses' => 'PagesController@homepage'));
+	
+	// REDIRECT PROVVISORIO !!!!!
+	Route::get('/', function () {
+	    return redirect('https://www.wexplore.co');
+	});
+
+
     Route::post('/user/set-timezone', array('as' => 'set-timezone', 'uses' => 'PagesController@setTimezone'));
 
 	//Blogs Routes

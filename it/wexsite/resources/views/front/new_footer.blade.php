@@ -16,8 +16,7 @@
             </div>
 
 
-            <div class="one-fourth column">
-                <!-- Text Area -->
+            <!--div class="one-fourth column">
                 <aside id="text-8" class="widget widget_text">
                     <h4>Wexplore</h4>
                     <div class="textwidget">
@@ -40,7 +39,6 @@
             </div>
 
             <div class="one-fourth column">
-                <!-- Text Area -->
                 <aside id="text-8" class="widget widget_text">
                     <h4><br></h4>
                     <div class="textwidget">
@@ -60,7 +58,7 @@
                         </ul>
                     </div>
                 </aside>
-            </div>
+            </div-->
 
 
         </div>

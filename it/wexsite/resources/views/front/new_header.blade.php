@@ -168,7 +168,7 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
                                             <li>
                                                 <a href="/it"><span>Home</span></a>
                                             </li>
-                                            <li>
+                                            <!--li>
                                                 <a href="/it/servizi"><span>Servizi</span></a>
                                             </li>
                                             <li>
@@ -176,7 +176,7 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
                                             </li>
                                             <li>
                                                 <a href="/it/contatti"><span>Contatti</span></a>
-                                            </li>
+                                            </li-->
 
                                             @if(!\Auth::check())
                                             <li>

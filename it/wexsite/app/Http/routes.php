@@ -22,12 +22,13 @@
 		\App\ConsultantBooking::getAccessToken();
 	});
 
-	Route::get('/', array('as' => 'homepage', 'uses' => 'PagesController@homepage'));
+	// Route::get('/', array('as' => 'homepage', 'uses' => 'PagesController@homepage'));
 
 
 
 	/* landing page */
-	Route::get('staging/landing-page', array('as' => 'landing-page', 'uses' => 'LandingPageController@index'));
+	// Route::get('staging/landing-page', array('as' => 'landing-page', 'uses' => 'LandingPageController@index'));
+	Route::get('/', array('as' => 'landing-page', 'uses' => 'LandingPageController@index'));
 	Route::post('staging/landing-page-post', array('as' => 'landing-page-post', 'uses' => 'LandingPageController@post'));
 
 
