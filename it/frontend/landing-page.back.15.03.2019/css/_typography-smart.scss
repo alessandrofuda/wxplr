@@ -3,80 +3,87 @@
 
 h1 {
   font-family: $font-main;
-  font-weight: $font-weight-1;
-  font-size: $h1-size-desktop;
-  line-height: $h1-lineheight-desktop;
-  margin-bottom: $h1-marginbottom-desktop;
+  font-weight: $font-weight-2;
+  font-size: $h1-size-smartphone;
+  line-height: $h1-lineheight-smartphone;
+  margin-bottom: $h1-marginbottom-smartphone;
   word-wrap:break-word;
 }
 
 
 h2 {
   font-family: $font-main;
-  font-weight: $font-weight-1;
-  font-size: $h2-size-desktop;
-  line-height: $h2-lineheight-desktop;
-  margin-bottom: $h2-marginbottom-desktop;
+  font-weight: $font-weight-2;
+  font-size: $h2-size-smartphone;
+  line-height: $h2-lineheight-smartphone;
+  margin-bottom: $h2-marginbottom-smartphone;
   word-wrap:break-word;
+}
+
+.mix-h2 {
+  font-family: $font-main;
+  font-weight: $font-weight-2;
+  font-size: $h2-size-smartphone;
+  line-height: $h2-lineheight-smartphone;
 }
 
 h3 {
   font-family: $font-main;
-  font-weight: $font-weight-1;
-  font-size: $h3-size-desktop;
-  line-height: $h3-lineheight-desktop;
-  margin-bottom: $h3-marginbottom-desktop;
+  font-weight: $font-weight-2;
+  font-size: $h3-size-smartphone;
+  line-height: $h3-lineheight-smartphone;
+  margin-bottom: $h3-marginbottom-smartphone;
   word-wrap:break-word;
+}
+
+.step-txt {
+  h3 {
+    font-size: 30px;
+    line-height: 34px;
+    margin-bottom: 12px;
+  }
 }
 
 h4 {
   font-family:  $font-main;
   font-weight: $font-weight-1;
-  font-size: $h4-size-desktop;
-  line-height: $h4-lineheight-desktop;
-  margin-bottom: $h4-marginbottom-desktop;
+  font-size: $h4-size-smartphone;
+  line-height: $h4-lineheight-smartphone;
+  margin-bottom: $h4-marginbottom-smartphone;
   word-wrap:break-word;
 }
 
-.hamburger-typoo {
+.mix-h4 {
   font-family:  $font-main;
   font-weight: $font-weight-1;
-  font-size: $h4-size-desktop;
-  line-height: $h4-lineheight-desktop;
-  word-wrap:break-word;
-}
-
-.hamburger-footer-typoo {
-  font-family: $font-main;
-  font-weight: $font-weight-1;
-  font-size: $paragraph-size-desktop;
-  line-height: $paragraph-lineheight-desktop;
+  font-size: $h4-size-smartphone;
+  line-height: $h4-lineheight-smartphone;
 }
 
 h5 {
-  font-family: $font-sub;
-  font-weight: $font-weight-1;
-  font-size: $h5-size-desktop;
-  line-height: $h5-lineheight-desktop;
-  margin-bottom: $h5-marginbottom-desktop;
+  font-family: $font-main;
+  font-weight: $font-weight-2;
+  font-size: $h5-size-smartphone;
+  line-height: $h5-lineheight-smartphone;
+  margin-bottom: $h5-marginbottom-smartphone;
   word-wrap:break-word;
 }
 
 h6 {
   font-family: $font-main;
   font-weight: $font-weight-1;
-  font-size: $h6-size-desktop;
-  line-height: $h6-lineheight-desktop;
-  margin-bottom: $h6-marginbottom-desktop;
+  font-size: $h6-size-smartphone;
+  line-height: $h6-lineheight-smartphone;
+  margin-bottom: $h6-marginbottom-smartphone;
   word-wrap:break-word;
 }
 
 p {
   font-family: $font-main;
   font-weight: $font-weight-1;
-  font-size: $paragraph-size-desktop;
-  line-height: $paragraph-lineheight-desktop;
-  margin: 0 0 $paragraph-marginbottom-desktop 0;
+  font-size: $paragraph-size-smartphone;
+  line-height: $paragraph-lineheight-smartphone;
+  margin: 0 0 $paragraph-marginbottom-smartphone 0;
   word-wrap:break-word;
   padding: 0;
 }
@@ -114,22 +121,7 @@ p {
     color: $color-1;
     font-family:  $font-main;
     font-weight: $font-weight-1;
-    font-size: $h4-size-desktop;
-    @include define-basic-transition(all, 0.6s);
-    &:hover {
-      background-color: transparent;
-      color: $color-8;
-    }
-  }
-  .inner-white {
-    position: relative;
-    margin: 3px;
-    padding: 30px 20px;
-    background-color: $color-6;
-    color: $color-1;
-    font-family:  $font-main;
-    font-weight: $font-weight-1;
-    font-size: $h4-size-desktop;
+    font-size: $h4-size-smartphone;
     @include define-basic-transition(all, 0.6s);
     &:hover {
       background-color: transparent;

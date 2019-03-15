@@ -116,12 +116,27 @@ p {
   .inner {
     position: relative;
     margin: 3px;
-    padding: 30px 20px;
+    padding: 20px 20px;
     background-color: $color-8;
     color: $color-1;
     font-family:  $font-main;
     font-weight: $font-weight-1;
     font-size: $h4-size-smartphone;
+    @include define-basic-transition(all, 0.6s);
+    &:hover {
+      background-color: transparent;
+      color: $color-8;
+    }
+  }
+  .inner-white {
+    position: relative;
+    margin: 3px;
+    padding: 20px 20px;
+    background-color: $color-6;
+    color: $color-1;
+    font-family:  $font-main;
+    font-weight: $font-weight-1;
+    font-size: $h4-size-desktop;
     @include define-basic-transition(all, 0.6s);
     &:hover {
       background-color: transparent;

@@ -93,6 +93,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#003452', end
 	margin: 0 auto;
 }
 
+.wrapper-padded-more-shrink {
+  position:relative;
+  width: 100%;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
 .block-spacing {
   position: relative;
   z-index: 12;
@@ -122,6 +129,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#003452', end
 
 .fullscreen-cta {
 	position: relative;
+  z-index: 8;
 	width: 100%;
 	height: 100vh;
   @include flex-wrap;
@@ -192,9 +200,9 @@ border-radius: 216px;
 .baloon-7 {
   position: absolute;
   left: -100px;
-  bottom: -376px;
+  bottom: -276px;
   z-index: 4;
-  width: 376px;
+  width: 276px;
   img {
     transform: rotate(45deg);
   }

@@ -13,20 +13,20 @@
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:description" content="Wexplore è la prima piattaforma tecnologica di servizi di carriera, consulenza HR e formazione, sia per gli individui che per le aziende, per lo sviluppo di percorsi professionali internazionali." />
 <meta name="twitter:title" content="Wexplore | Giving you the freedom to choose your future" />
-<link rel="apple-touch-icon" sizes="57x57" href="{{url('frontend/landing-page/images/favicons/apple-icon-57x57.png')}}">
-<link rel="apple-touch-icon" sizes="60x60" href="{{url('frontend/landing-page/images/favicons/apple-icon-60x60.png')}}">
-<link rel="apple-touch-icon" sizes="72x72" href="{{url('frontend/landing-page/images/favicons/apple-icon-72x72.png')}}">
-<link rel="apple-touch-icon" sizes="76x76" href="{{url('frontend/landing-page/images/favicons/apple-icon-76x76.png')}}">
-<link rel="apple-touch-icon" sizes="114x114" href="{{url('frontend/landing-page/images/favicons/apple-icon-114x114.png')}}">
-<link rel="apple-touch-icon" sizes="120x120" href="{{url('frontend/landing-page/images/favicons/apple-icon-120x120.png')}}">
-<link rel="apple-touch-icon" sizes="144x144" href="{{url('frontend/landing-page/images/favicons/apple-icon-144x144.png')}}">
-<link rel="apple-touch-icon" sizes="152x152" href="{{url('frontend/landing-page/images/favicons/apple-icon-152x152.png')}}">
-<link rel="apple-touch-icon" sizes="180x180" href="{{url('frontend/landing-page/images/favicons/apple-icon-180x180.png')}}">
-<link rel="icon" type="image/png" sizes="192x192"  href="i{{url('frontend/landing-page/mages/favicons/android-icon-192x192.png')}}">
-<link rel="icon" type="image/png" sizes="32x32" href="{{url('frontend/landing-page/images/favicons/favicon-32x32.png')}}">
-<link rel="icon" type="image/png" sizes="96x96" href="{{url('frontend/landing-page/images/favicons/favicon-96x96.png')}}">
-<link rel="icon" type="image/png" sizes="16x16" href="{{url('frontend/landing-page/images/favicons/favicon-16x16.png')}}">
-<link rel="manifest" href="{{url('frontend/landing-page/images/favicons/manifest.json')}}">
+<link rel="apple-touch-icon" sizes="57x57" href="images/favicons/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="images/favicons/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="images/favicons/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="images/favicons/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="images/favicons/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="images/favicons/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="images/favicons/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="images/favicons/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="images/favicons/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="images/favicons/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png">
+<link rel="manifest" href="images/favicons/manifest.json">
 <!-- Chrome, Firefox OS and Opera -->
 <meta name="theme-color" content="#00a04c">
 <!-- Windows Phone -->
@@ -34,9 +34,9 @@
 <!-- iOS Safari -->
 <meta name="apple-mobile-web-app-status-bar-style" content="#00a04c">
 <meta name="msapplication-TileColor" content="#ffffff">
-<meta name="msapplication-TileImage" content="{{url('frontend/landing-page/images/favicons/ms-icon-144x144.png')}}">
+<meta name="msapplication-TileImage" content="images/favicons/ms-icon-144x144.png">
 
-<link rel='stylesheet' href="{{url('frontend/landing-page/style.min.css')}}" type='text/css' media='all' />
+<link rel='stylesheet' href='style.min.css' type='text/css' media='all' />
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:600|Varela+Round" rel="stylesheet">
 <script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js?ver=3.2.1'></script>
 <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/vanilla-lazyload/10.19.0/lazyload.min.js'></script>
@@ -70,7 +70,7 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
       <div class="wrapper-padded">
         <div id="header-structure">
           <div class="logo">
-            <img src="{{url('frontend/landing-page/images/wexplore-logo.svg')}}" alt="Wexplore" />
+            <img src="images/wexplore-logo.svg" alt="Wexplore" />
           </div>
           <div class="hamburger hamburger-typoo">
             <span id="goToSectionOne">Contattaci</span>
@@ -81,35 +81,14 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
   </header>
 
 
-  <div class="box-fullscreen test-gradient lazy coverize lazy" data-src="{{url('frontend/landing-page/images/wexplore-cover.jpg')}}"></div>
+  <div class="box-fullscreen test-gradient lazy coverize lazy" data-src="images/wexplore-cover.jpg"></div>
 
 
 
   <div class="box-fullscreen-fair hide-overflow">
-
-
-
-    @if (count($errors) > 0)
-      <div class="alert alert-danger" style="border: 1px solid #c84f4f; background-color: #c84f4f; color: #FFF; padding: 30px; border-radius: 5px; margin: 30px; text-align: center;">
-          <b>Error</b><br/><br/>
-          <ul>
-              @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-              @endforeach
-          </ul>
-      </div>
-    @endif
-    @if ($successMessage = session('success'))
-      <div class="alert alert-success" style="display:block; border:1px solid green; padding:2%; margin:2%; margin-top:2%; background-color:#06ad06b3; border-radius:10px; color:#FFFFFF; font-size:20px; text-align:center; margin-top:100px; z-index:99999; position: relative; line-height: 1.4;">
-        <span>{!!$successMessage !!}</span>
-      </div>
-    @endif
-
-
-
     <div class="baloon-1 madscroll-slow" data-scroll-speed="3">
       <div class="no-the-100">
-        <img data-src="{{url('frontend/landing-page/images/baloon-1.png')}}" alt="Wexplore" class="lazy" />
+        <img data-src="images/baloon-1.png" alt="Wexplore" class="lazy" />
       </div>
     </div>
 
@@ -118,7 +97,7 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
 
     <div class="baloon-3 madscroll-fast" data-scroll-speed="3">
       <div class="no-the-100">
-        <img data-src="{{url('frontend/landing-page/images/baloon-3.png')}}" alt="Wexplore" class="lazy" />
+        <img data-src="images/baloon-3.png" alt="Wexplore" class="lazy" />
       </div>
     </div>
     <div class="fullscreen-cta fullscreen-cta-center">
@@ -150,7 +129,7 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
     <div class="block-spacing aligncenter">
       <div class="image-icon">
         <div class="no-the-100">
-          <img data-src="{{url('frontend/landing-page/images/wexplore-screen.svg')}}" alt="Wexplore" class="lazy" />
+          <img data-src="images/wexplore-screen.svg" alt="Wexplore" class="lazy" />
         </div>
       </div>
 
@@ -167,7 +146,7 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
 
       <div class="image-icon">
         <div class="no-the-100">
-          <img data-src="{{url('frontend/landing-page/images/wexplore-world.svg')}}" alt="Wexplore" class="lazy" />
+          <img data-src="images/wexplore-world.svg" alt="Wexplore" class="lazy" />
         </div>
       </div>
 
@@ -181,7 +160,7 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
 <div class="wrapper bg-6 hide-overflow">
   <div class="baloon-4 madscroll-slow" data-scroll-speed="3">
     <div class="no-the-100">
-      <img data-src="{{url('frontend/landing-page/images/baloon-1.png')}}" alt="Wexplore" class="lazy" />
+      <img data-src="images/baloon-1.png" alt="Wexplore" class="lazy" />
     </div>
   </div>
 
@@ -189,7 +168,7 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
 
   <div class="baloon-7 madscroll-slow" data-scroll-speed="6">
     <div class="no-the-100">
-      <img src="{{url('frontend/landing-page/images/baloon-1.png')}}" alt="Wexplore" class="" />
+      <img src="images/baloon-1.png" alt="Wexplore" class="" />
     </div>
   </div>
 
@@ -279,7 +258,7 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
 
       <div class="image-icon">
         <div class="no-the-100">
-          <img data-src="{{url('frontend/landing-page/images/wexplore-announcment.svg')}}" alt="Wexplore" class="lazy" />
+          <img data-src="images/wexplore-announcment.svg" alt="Wexplore" class="lazy" />
         </div>
       </div>
 
@@ -290,7 +269,7 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
 
       <div class="btn">
         <div class="inner allupper">
-          <a href="{{url('frontend/landing-page/wexplore-job-application.pdf')}}" class="absl" target="_blank"></a>Scarica la nostra job application
+          <a href="wexplore-job-application.pdf" class="absl" target="_blank"></a>Scarica la nostra job application
         </div>
       </div>
 
@@ -305,7 +284,7 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
 <div class="wrapper bg-6 hide-overflow">
   <div class="baloon-9 madscroll-slow" data-scroll-speed="8">
     <div class="no-the-100">
-      <img src="{{url('frontend/landing-page/images/baloon-1.png')}}" alt="Wexplore" />
+      <img src="images/baloon-1.png" alt="Wexplore" />
     </div>
   </div>
 
@@ -314,27 +293,26 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
 
       <h2 class="allupper">Hai BISOGNO DI INFORMAZIONI?<br/>Contattaci</h2>
       <div class="form-hold">
-        <form action="{{ route('landing-page-post')}}" method="POST">
-          {{ csrf_field() }}
+        <form>
           <div class="flex-hold flex-hold-3">
 
             <div class="flex-hold-child">
-              <input type="text" name="firstname" placeholder="Nome" value="{{old('firstname')}}" required/>
+              <input type="text" name="nome" placeholder="Nome" />
             </div>
 
             <div class="flex-hold-child">
-              <input type="text" name="lastname" placeholder="Cognome" value="{{old('lastname')}}"required/>
+              <input type="text" name="cognome" placeholder="Cognome" />
             </div>
 
             <div class="flex-hold-child">
-              <input type="email" name="email" placeholder="Email" value="{{old('email')}}" required/>
+              <input type="email" name="email" placeholder="Email" />
             </div>
 
           </div>
-          <textarea name="message" placeholder="Scrivi il tuo messaggio" required>{{old('message')}}</textarea>
+          <textarea name="messaggio" placeholder="Scrivi il tuo messaggio"></textarea>
           <div class="alignleft">
             Informativa Privacy*<br />
-            <input type="checkbox" name="privacy" required/>
+            <input type="checkbox" name="privacy" />
             Dichiaro di aver preso visione dell'Informativa sulla privacy
           </div>
 
@@ -356,10 +334,10 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
     <div class="wrapper-padded">
       <div id="footer-structure">
         <div class="logo">
-          <img src="{{url('frontend/landing-page/images/wexplore-logo-color.svg')}}" alt="Wexplore" />
+          <img src="images/wexplore-logo-color.svg" alt="Wexplore" />
         </div>
         <div class="hamburger hamburger-footer-typoo">
-          <a href="{{url('informativa-privacy')}}">Privacy Policy</a> | <a href="{{url('cookie-policy')}}">Cookie Policy</a>
+          <a href="https://www.wexplore.co/it/informativa-privacy">Privacy Policy</a> | <a href="https://www.wexplore.co/it/cookie-policy">Cookie Policy</a>
         </div>
       </div>
     </div>
@@ -376,5 +354,5 @@ src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
     });
   }());
 </script>
-<script type='text/javascript' src="{{url('frontend/landing-page/js/theme-general.min.js')}}" defer='defer'></script>
+<script type='text/javascript' src='js/theme-general.min.js' defer='defer'></script>
 </html>
