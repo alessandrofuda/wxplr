@@ -28,7 +28,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="{{ URL::to('/auth/login') }}"><img class="scale-with-grid" src="/en/frontend/immagini/logo-wexplore.png" alt="" /></a>
+    <a href="{{ URL::to('/auth/login') }}"><img class="scale-with-grid" src="/frontend/immagini/logo-wexplore.png" alt="" /></a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">

@@ -11,7 +11,8 @@ use App\VideoTags;
 use App\SkillDevelopmentVideos;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use Vinkla\Vimeo\Facades\Vimeo;
+// use Vinkla\Vimeo\Facades\Vimeo;
+use Vimeo\Laravel\Facades\Vimeo;
 
 
 class SkillDevelopmentController extends Controller

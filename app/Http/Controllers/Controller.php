@@ -16,7 +16,7 @@ abstract class Controller extends BaseController
     public function __construct() {
 
         $settings=Setting::find(1);
-        $route = \Route::getCurrentRoute()->getPath();
+        $route = \Route::getCurrentRoute()->uri();
 
         $path = \Request::fullUrl();
 

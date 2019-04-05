@@ -7,7 +7,7 @@
                                    <!-- One full width row-->
 							<div class="column one column_fancy_heading">
 								<div style="margin-top:40px;" class="fancy_heading fancy_heading_icon">
-									<h2 style="background: url(/en/frontend/immagini/linea-titolo-verde.png) no-repeat bottom center; padding-bottom: 25px;color:#54b141;">AT WHICH STAGE OF YOUR JOURNEY DID YOU GET TO?</h2>
+									<h2 style="background: url(/frontend/immagini/linea-titolo-verde.png) no-repeat bottom center; padding-bottom: 25px;color:#54b141;">AT WHICH STAGE OF YOUR JOURNEY DID YOU GET TO?</h2>
 								</div>
 							</div>
                                     <!-- One  Column -->
@@ -15,9 +15,9 @@
                                         <div class="promo_box no_border">
                                             <div class="promo_box_wrapper promo_box_left">
                                                 <div class="photo_wrapper hover_box">
-                                                <div class="hover_box_wrapper"><img class="visible_photo scale-with-grid" src="/en/frontend/immagini/maybe1.jpg" alt="" /><img class="hidden_photo scale-with-grid" src="/en/frontend/immagini/maybe2.jpg" alt="" /> </div></div>
+                                                <div class="hover_box_wrapper"><img class="visible_photo scale-with-grid" src="/frontend/immagini/maybe1.jpg" alt="" /><img class="hidden_photo scale-with-grid" src="/frontend/immagini/maybe2.jpg" alt="" /> </div></div>
                                                 <div class="desc_wrapper" style="text-align: center; background-color:#ffffff; padding:30px 30px 0 30px; border: 1px solid #d4eaf5;">
-                                                    <div class="image"><img src="/en/frontend/immagini/maybe.png" class="scale-with-grid" alt="Step 1">									</div>
+                                                    <div class="image"><img src="/frontend/immagini/maybe.png" class="scale-with-grid" alt="Step 1">									</div>
                                                    <h4 style="color:#54b141;">Maybe…</h4>
                                                     <div class="desc">
                                                         <span class="big">You are toying with the idea of going abroad, but still do not see it like a concrete possibility?
@@ -30,9 +30,9 @@
                                         <div class="promo_box no_border">
                                             <div class="promo_box_wrapper promo_box_right">
                                                 <div class="photo_wrapper hover_box">
-                                                <div class="hover_box_wrapper"><img class="visible_photo scale-with-grid" src="/en/frontend/immagini/why-not1.jpg" alt="" /><img class="hidden_photo scale-with-grid" src="/en/frontend/immagini/why-not2.jpg" alt="" /> </div></div>
+                                                <div class="hover_box_wrapper"><img class="visible_photo scale-with-grid" src="/frontend/immagini/why-not1.jpg" alt="" /><img class="hidden_photo scale-with-grid" src="/frontend/immagini/why-not2.jpg" alt="" /> </div></div>
                                               <div class="desc_wrapper" style="text-align: center; background-color:#ffffff; padding:30px 30px 0 30px; border: 1px solid #d4eaf5;">
-                                                    <div class="image"><img src="/en/frontend/immagini/why-not.png" class="scale-with-grid" alt="Step 2">						
+                                                    <div class="image"><img src="/frontend/immagini/why-not.png" class="scale-with-grid" alt="Step 2">						
                                                     </div>
                                                    <h4 style="color:#54b141;">Why not? But where do I start from?</h4>
                                                 <div class="desc">
@@ -47,9 +47,9 @@
                                         <div class="promo_box no_border">
                                             <div class="promo_box_wrapper promo_box_left">
                                                 <div class="photo_wrapper hover_box">
-                                                <div class="hover_box_wrapper"><img class="visible_photo scale-with-grid" src="/en/frontend/immagini/real1.jpg" alt="" /><img class="hidden_photo scale-with-grid" src="/en/frontend/immagini/real2.jpg" alt="" /> </div></div>
+                                                <div class="hover_box_wrapper"><img class="visible_photo scale-with-grid" src="/frontend/immagini/real1.jpg" alt="" /><img class="hidden_photo scale-with-grid" src="/frontend/immagini/real2.jpg" alt="" /> </div></div>
                                                 <div class="desc_wrapper" style="text-align: center; background-color:#ffffff; padding:30px 30px 0 30px; border: 1px solid #d4eaf5;">
-                                                    <div class="image"><img src="/en/frontend/immagini/skills-development.png" class="scale-with-grid" alt="Step 3">								</div>
+                                                    <div class="image"><img src="/frontend/immagini/skills-development.png" class="scale-with-grid" alt="Step 3">								</div>
 													<h4 style="color:#54b141;">It’s happening for real: I am leaving! Now what?</h4>
                                                     <div class="desc">
                                                         <span class="big">As the personal and professional journey in a new Country becomes more concrete, we experience also increasing complexities and doubts to be solved: how will I settle in? What documents do I need? What happens to my social security at home? How much is the rent?
@@ -62,9 +62,9 @@
                                         <div class="promo_box no_border">
                                             <div class="promo_box_wrapper promo_box_right">
                                                 <div class="photo_wrapper hover_box">
-                                                <div class="hover_box_wrapper"><img class="visible_photo scale-with-grid" src="/en/frontend/immagini/prepare1.jpg" alt="" /><img class="hidden_photo scale-with-grid" src="/en/frontend/immagini/prepare2.jpg" alt="" /> </div></div>
+                                                <div class="hover_box_wrapper"><img class="visible_photo scale-with-grid" src="/frontend/immagini/prepare1.jpg" alt="" /><img class="hidden_photo scale-with-grid" src="/frontend/immagini/prepare2.jpg" alt="" /> </div></div>
                                                 <div class="desc_wrapper" style="text-align: center; background-color:#ffffff; padding:30px 30px 0 30px; border: 1px solid #d4eaf5;">
-                                                    <div class="image"><img src="/en/frontend/immagini/prepare.png" class="scale-with-grid" alt="Step 4">						
+                                                    <div class="image"><img src="/frontend/immagini/prepare.png" class="scale-with-grid" alt="Step 4">						
                                                     </div>
                                                    <h4 style="color:#54b141;">How can I prepare in the best possible way?</h4>
                                                     <div class="desc">
@@ -85,7 +85,7 @@
                                 <!-- One full width row-->
                                 <div class="column one column_column">
                                     <div class="column_attr align_center">
-                                        <h2 style="color:#1f87c7; background: url(/en/frontend/immagini/linea-titolo-blu.png) no-repeat bottom center; padding-bottom: 25px;">OUR SERVICES</h2>TIRED OF SPENDING HOURS APPLYING TO JOB OFFERS WITHOUT ANY RESULT?<br>
+                                        <h2 style="color:#1f87c7; background: url(/frontend/immagini/linea-titolo-blu.png) no-repeat bottom center; padding-bottom: 25px;">OUR SERVICES</h2>TIRED OF SPENDING HOURS APPLYING TO JOB OFFERS WITHOUT ANY RESULT?<br>
                                         HERE’S YOUR CHANCE TO HAVE ALL THOSE RECRUITERS LINING UP TO INTERVIEW YOU!<br>
                                         PICK THE SERVICE THAT MOST FITS YOUR NEEDS AND START DEFINING YOUR NEXT CAREER MOVE!
                                     </div>
@@ -106,7 +106,7 @@
                                 <div class="column one-fourth column_icon_box">
                                     <div style="background:#fff; padding:10px; box-shadow: 0 0 5px #ccc;" class="icon_box icon_position_top no_border">
                                         <a class="" href="/en/services#orientation">
-                                            <div style="margin:-10px;" class="image_wrapper"><img src="/en/frontend/immagini/service1.jpg" alt="" class="scale-with-grid" />
+                                            <div style="margin:-10px;" class="image_wrapper"><img src="/frontend/immagini/service1.jpg" alt="" class="scale-with-grid" />
                                             </div>
                                             <div class="desc_wrapper" style="min-height: 180px;">
                                                 <div class="desc">
@@ -126,7 +126,7 @@
                                 <div class="column one-fourth column_icon_box">
                                     <div style="background:#fff; padding:10px; box-shadow: 0 0 5px #ccc;" class="icon_box icon_position_top no_border">
                                         <a class="" href="/en/services#kit">
-                                            <div  style="margin:-10px;" class="image_wrapper"><img src="/en/frontend/immagini/service2.jpg" alt="" class="scale-with-grid" />
+                                            <div  style="margin:-10px;" class="image_wrapper"><img src="/frontend/immagini/service2.jpg" alt="" class="scale-with-grid" />
                                             </div>
                                             <div class="desc_wrapper">
                                                 <div  style="min-height: 180px;" class="desc">
@@ -143,7 +143,7 @@
                                 <div class="column one-fourth column_icon_box">
                                     <div style="background:#fff; padding:10px; box-shadow: 0 0 5px #ccc;" class="icon_box icon_position_top no_border">
                                         <a class="" href="/en/services#skill">
-                                            <div  style="margin:-10px;" class="image_wrapper"><img src="/en/frontend/immagini/service3.jpg" alt="" class="scale-with-grid" />
+                                            <div  style="margin:-10px;" class="image_wrapper"><img src="/frontend/immagini/service3.jpg" alt="" class="scale-with-grid" />
                                             </div>
                                             <div class="desc_wrapper">
                                                 <div  style="min-height: 180px;" class="desc">
@@ -161,7 +161,7 @@
                                 <div class="column one-fourth column_icon_box">
                                     <div style="background:#fff; padding:10px; box-shadow: 0 0 5px #ccc;" class="icon_box icon_position_top no_border">
                                         <a class="" href="/en/services#toolbox">
-                                            <div  style="margin:-10px;" class="image_wrapper"><img src="/en/frontend/immagini/service4.jpg" alt="" class="scale-with-grid" />
+                                            <div  style="margin:-10px;" class="image_wrapper"><img src="/frontend/immagini/service4.jpg" alt="" class="scale-with-grid" />
                                             </div>
                                             <div class="desc_wrapper">
                                                 <div  style="min-height: 180px;" class="desc">

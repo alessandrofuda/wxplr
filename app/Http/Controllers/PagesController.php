@@ -111,7 +111,7 @@ class PagesController extends CustomBaseController {
 	}
 
 	public function getContent($machine_name){
-	//	$route_urlname=Route::getCurrentRoute()->getPath();
+	//	$route_urlname=Route::getCurrentRoute()->uri();
 		$page = Page::where('machine_name', $machine_name)->first();
 		$tag = '';
 
@@ -186,7 +186,7 @@ class PagesController extends CustomBaseController {
 		return view('front.thankyou',$data);
 	}
 	public function contactform(){
-		$route_urlname=Route::getCurrentRoute()->getPath();
+		$route_urlname=Route::getCurrentRoute()->uri();
 		$contact_page = Page::where('machine_name', $route_urlname)->first();
 		$data['page_title']=$contact_page->page_title;
 		$data['desc']=$contact_page->description;

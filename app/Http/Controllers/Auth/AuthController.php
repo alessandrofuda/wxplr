@@ -30,7 +30,7 @@ class AuthController extends CustomBaseController
     |
     */
 
-    use AuthenticatesAndRegistersUsers, ThrottlesLogins;
+    use ThrottlesLogins;  // AuthenticatesAndRegistersUsers,  --> non essendoci piU non c'è più il vecchio postlogin() --> da riscrivere
 
 
 	//protected $redirectPath = '/user/dashboard';

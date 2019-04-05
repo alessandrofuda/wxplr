@@ -77,7 +77,9 @@ Route::get('send_email_test', function() {
     //        }); 
 });
 */
-
+Route::get('/', function() {
+	return redirect('login');
+});
 Route::get('time', function() {
     return date('Y-m-d H:i:s');  // getdate();
 });

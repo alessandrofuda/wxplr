@@ -121,7 +121,7 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
     <tbody style="font-family: 'Open Sans', sans-serif;font-size: 10pt; font-weight: normal; color: #58585a;">
    {{-- <tr>
-        <td style="text-align: center; border-bottom: solid 2px #9c9e9f;"><img src="/en/frontend/immagini/logo-wexplore.png"></td>
+        <td style="text-align: center; border-bottom: solid 2px #9c9e9f;"><img src="/frontend/immagini/logo-wexplore.png"></td>
     </tr>--}}
     <tr>
         <td style="text-align: center; padding: 10px;">

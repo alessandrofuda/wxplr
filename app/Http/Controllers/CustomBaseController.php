@@ -27,7 +27,8 @@ class CustomBaseController extends Controller
         $navigation = Navigation::all();
         view()->share('navigation', $navigation);
         $settings=Setting::find(1);
-        $route = \Route::getCurrentRoute()->getPath();
+        // $route = \Route::getCurrentRoute()->uri();
+        $route = \Route::getCurrentRoute()->uri();
         $type = MetaTags::PAGE_TYPE_HOME;
         if($route == 'services') {
             $type = MetaTags::PAGE_TYPE_SERVICE;

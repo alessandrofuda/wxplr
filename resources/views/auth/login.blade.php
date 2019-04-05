@@ -4,7 +4,7 @@
   </div>
   <div class="user_login_form">
     <div class="fancy_heading fancy_heading_icon">
-									<h2 style="color:#54b141; background: url(/en/frontend/immagini/linea-titolo-verde.png) no-repeat bottom center; padding-bottom: 25px;">LOGIN</h2>
+									<h2 style="color:#54b141; background: url(/frontend/immagini/linea-titolo-verde.png) no-repeat bottom center; padding-bottom: 25px;">LOGIN</h2>
 								</div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-none">
 

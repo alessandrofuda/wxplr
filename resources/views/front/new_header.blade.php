@@ -70,7 +70,7 @@
     <link rel='stylesheet' id='style-static' href='{{ asset('frontend/css/style.css') }}'>
     <link rel='stylesheet' id='custom-css' href='{{ asset('frontend/css/custom.css') }}'>
 
-    <link rel="stylesheet" href="{{  \Route::getCurrentRoute()->getPath() != "/" ? asset('frontend/css/bootstrap.min.css') : ""}}" type="text/css">
+    <link rel="stylesheet" href="{{  \Route::getCurrentRoute()->uri() != "/" ? asset('frontend/css/bootstrap.min.css') : ""}}" type="text/css">
     <link rel="stylesheet" href="{{ asset('frontend/css/main.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('frontend/css/custom_old.css') }}" type="text/css">
     <!-- Revolution Slider -->
@@ -155,7 +155,7 @@
                                     <ul class="menu" id="menu-main-menu" style="margin-bottom: auto;">
                                         <!--@if(isset($navigation))
                                             @foreach ($navigation as $nav)
-                                                <li  id="menu-item-1354"  class="{{--\Route::getCurrentRoute()->getPath() == url($nav->path) ? "current_page_item" : ""--}}" ><a href="{{-- url($nav->path) --}}"><span>{{-- $nav->title --}}</span></a></li>
+                                                <li  id="menu-item-1354"  class="{{--\Route::getCurrentRoute()->uri() == url($nav->path) ? "current_page_item" : ""--}}" ><a href="{{-- url($nav->path) --}}"><span>{{-- $nav->title --}}</span></a></li>
                                             @endforeach-->
                                         @endif
                                             <li>
@@ -166,7 +166,7 @@
                                                 <a href="{{ url('auth/login') }}"><span>Login</span></a>
                                             </li>
                                             <li>
-                                                <a href="/it"><span><img src="/en/frontend/immagini/Flag-ita.jpg" alt="" /></span></a>
+                                                <a href="/it"><span><img src="/frontend/immagini/Flag-ita.jpg" alt="" /></span></a>
                                             </li>
                                         @else
                                             <li>
@@ -183,7 +183,7 @@
                                                             @if (!empty(Auth::user()->consultantProfile->profile_picture))
                                                                 <img class="img-circle" src="{{asset(Auth::user()->consultantProfile->profile_picture) }}" alt="" width="35px" height="35px"/>
                                                             @else
-                                                                <img class="img-circle" src="/en/frontend/immagini/user.png" alt="" />
+                                                                <img class="img-circle" src="/frontend/immagini/user.png" alt="" />
                                                             @endif
                                                         </span>
                                                     </a>
@@ -198,7 +198,7 @@
                                                             @if (!empty(Auth::user()->userProfile->profile_picture))
                                                                 <img class="img-circle" src="{{ asset(Auth::user()->userProfile->profile_picture) }}" alt="" width="35px" height="35px" />
                                                             @else
-                                                                <img class="img-circle" src="/en/frontend/immagini/user.png" alt="" />
+                                                                <img class="img-circle" src="/frontend/immagini/user.png" alt="" />
                                                             @endif
                                                             
                                                         </span>

@@ -20,7 +20,7 @@ class CustomRedirectIfAuth
      * @param  Guard  $auth
      * @return void
      */
-    public function __construct(Guard $auth)
+    public function __construct(Guard $auth) 
     {
         $this->auth = $auth;
     }
@@ -41,6 +41,6 @@ class CustomRedirectIfAuth
             return redirect('/');
         }
 
-        return $next($request);
+        return $next($request);  //
     }
 }

@@ -39,7 +39,7 @@
                                 <!-- One Third (1/3) Column -->
                                 <div class="column one-third column_quick_fact" style="background:rgba(0, 0, 0, 0.7);margin-top:40px; padding:20px;">
                                     <div class="image aligncenter">
-                                        <img src="/en/frontend/immagini/maybe.png" class="scale-with-grid" alt="Step 2">
+                                        <img src="/frontend/immagini/maybe.png" class="scale-with-grid" alt="Step 2">
                                     </div>
                                     <p class="hrmargin_0 text-center text-white default-font text-bold size-xbig text-left">GLOBAL ORIENTATION TEST</p>
                                     <p class="hrmargin_0" style="color:#ffffff; text-align:left; font-family: 'Varela Round', sans-serif; font-size:16px; line-height:20px; font-weight:600;">A unique free tool to find your ideal company and country match.</p>
@@ -59,7 +59,7 @@
                                         @else
                                             <a href="/en/user/dashboard">
                                         @endif
-                                            <img class="scale-with-grid" style="margin:-4px 0px 15px 0; float:left;width:330px;" src="/en/frontend/immagini/free-button.png" alt="" />
+                                            <img class="scale-with-grid" style="margin:-4px 0px 15px 0; float:left;width:330px;" src="/frontend/immagini/free-button.png" alt="" />
                                         </a></div>
                                         <br/><br/><br/>
                                         <p class="hrmargin_0" style="color:#ffffff; text-align:left; font-family: 'Varela Round', sans-serif; font-size:16px; line-height:25px; font-weight:600;">CONTACT US for a first FREE orientation session with one of our consultants</p>
@@ -117,7 +117,7 @@
                             @else
                                 <a href="/en/user/dashboard">
                             @endif
-                                <img class="scale-with-grid" src="/en/frontend/immagini/free-button.png" alt="" />
+                                <img class="scale-with-grid" src="/frontend/immagini/free-button.png" alt="" />
                             </a>
                         </div>
 					</div>

@@ -35,12 +35,12 @@
                                 <!-- One Third (1/3) Column -->
                                 <div style="margin-bottom: -6px; padding-bottom: 0px;" class="column one-third column_quick_fact">
                                     <p class="hrmargin_0">
-                                        <img id="logoaiesec" src="/en/frontend/immagini/aiesec.png" />
+                                        <img id="logoaiesec" src="/frontend/immagini/aiesec.png" />
                                     </p>
                                 </div>
                                 <!-- One Third (1/3) Column -->
                                 <div class="column one-third column_quick_fact" style="background:rgba(0, 0, 0, 0.7);margin-top:40px; padding:20px;">
-                                    <div class="image aligncenter"><img src="/en/frontend/immagini/why-not.png" class="scale-with-grid" alt="Step 2">
+                                    <div class="image aligncenter"><img src="/frontend/immagini/why-not.png" class="scale-with-grid" alt="Step 2">
                                                     </div>
                                     <p class="hrmargin_0 text-white default-font text-bold size-xbig text-left">PROFESSIONAL KIT</p>
                                     <p class="hrmargin_0" style="color:#ffffff; text-align:left; font-family: 'Varela Round', sans-serif; font-size:16px; line-height:20px; font-weight:600;">Il pacchetto completo per guidarti passo passo in ogni fase del tuo percorso di carriera.</p>
@@ -58,7 +58,7 @@
                                 <!-- One Third (1/3) Column -->
                                 <div class="column one-third column_quick_fact" style="background:rgba(0, 0, 0, 0.7);margin-top:40px; padding:20px;">
                                     <div class="aligncenter">
-                                    <img class="scale-with-grid" style="margin:-4px 0px 15px 0; width:330px;" src="/en/frontend/immagini/prezzo-lancio-it.png" alt="" />
+                                    <img class="scale-with-grid" style="margin:-4px 0px 15px 0; width:330px;" src="/frontend/immagini/prezzo-lancio-it.png" alt="" />
                                    <a class="button button_large aligncenter button_theme button_js" style="margin-bottom: 0" href="/en/service/payment/2"><span class="button_label">ORDINA ADESSO*</span></a></div>
                                     <p class="default-font text-white size-xsmall text-center">*Non scordarti di utilizzare il tuo codice sconto riservato</p>
                                     <p class="hrmargin_0 default-font text-white text-bold size-big text-center">Registrati per ottenere subito il tuo codice sconto riservato</p>
@@ -165,14 +165,14 @@
 					</div>
 				</div>
 
-				<div class="section flv_sections_6" style=" background: url('/en/frontend/immagini/sfondo-azzurro.jpg') no-repeat bottom center;padding-top:20px;margin-top:30px;" id="orientation-test">
+				<div class="section flv_sections_6" style=" background: url('/frontend/immagini/sfondo-azzurro.jpg') no-repeat bottom center;padding-top:20px;margin-top:30px;" id="orientation-test">
 					<div class="section_wrapper  mcb-section-inner">
 						<div class="items_group clearfix">
 							<!-- Page Title-->
 							<!-- One full width row-->
 							<div id="orientation" class="column one column_fancy_heading">
 								<div class="fancy_heading fancy_heading_icon">
-									<h2 style="color:#1f87c7; background: url('/en/frontend/immagini/linea-titolo-blu.png') no-repeat bottom center; padding-bottom: 25px;font-family: 'Varela Round', sans-serif;">PERCH&Eacute; PROFESSIONAL KIT?</h2>
+									<h2 style="color:#1f87c7; background: url('/frontend/immagini/linea-titolo-blu.png') no-repeat bottom center; padding-bottom: 25px;font-family: 'Varela Round', sans-serif;">PERCH&Eacute; PROFESSIONAL KIT?</h2>
 								</div>
 								<div class="column_attr">
 									<p style="text-align:center;font-size:22px;line-height:26px;">
@@ -204,55 +204,55 @@
                                             <ul class="clients clients_slider_ul">
                                                 <li>
                                                     <div class="client_wrapper">
-                                                        <a target="_blank" href="#" title="Italia"><img width="145" height="75" src="/en/frontend/immagini/italia.png" class="scale-with-grid wp-post-image" alt="client_1" />
+                                                        <a target="_blank" href="#" title="Italia"><img width="145" height="75" src="/frontend/immagini/italia.png" class="scale-with-grid wp-post-image" alt="client_1" />
                                                         </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="client_wrapper">
-                                                        <a target="_blank" href="#" title="Germania"><img width="145" height="75" src="/en/frontend/immagini/germania.png" class="scale-with-grid wp-post-image" alt="client_2" />
+                                                        <a target="_blank" href="#" title="Germania"><img width="145" height="75" src="/frontend/immagini/germania.png" class="scale-with-grid wp-post-image" alt="client_2" />
                                                         </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="client_wrapper">
-                                                        <a target="_blank" href="#" title="Francia"><img width="145" height="75" src="/en/frontend/immagini/francia.png" class="scale-with-grid wp-post-image" alt="client_3" />
+                                                        <a target="_blank" href="#" title="Francia"><img width="145" height="75" src="/frontend/immagini/francia.png" class="scale-with-grid wp-post-image" alt="client_3" />
                                                         </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="client_wrapper">
-                                                        <a target="_blank" href="#" title="UK"><img width="145" height="75" src="/en/frontend/immagini/uk.png" class="scale-with-grid wp-post-image" alt="client_4" />
+                                                        <a target="_blank" href="#" title="UK"><img width="145" height="75" src="/frontend/immagini/uk.png" class="scale-with-grid wp-post-image" alt="client_4" />
                                                         </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="client_wrapper">
-                                                        <a target="_blank" href="#" title="Irlanda"><img width="145" height="75" src="/en/frontend/immagini/irlanda.png" class="scale-with-grid wp-post-image" alt="client_5" />
+                                                        <a target="_blank" href="#" title="Irlanda"><img width="145" height="75" src="/frontend/immagini/irlanda.png" class="scale-with-grid wp-post-image" alt="client_5" />
                                                         </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="client_wrapper">
-                                                        <a target="_blank" href="#" title="Olanda"><img width="145" height="75" src="/en/frontend/immagini/olanda.png" class="scale-with-grid wp-post-image" alt="client_6" />
+                                                        <a target="_blank" href="#" title="Olanda"><img width="145" height="75" src="/frontend/immagini/olanda.png" class="scale-with-grid wp-post-image" alt="client_6" />
                                                         </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="client_wrapper">
-                                                        <a target="_blank" href="#" title="Spagna"><img width="145" height="75" src="/en/frontend/immagini/spagna.png" class="scale-with-grid wp-post-image" alt="client_6" />
+                                                        <a target="_blank" href="#" title="Spagna"><img width="145" height="75" src="/frontend/immagini/spagna.png" class="scale-with-grid wp-post-image" alt="client_6" />
                                                         </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="client_wrapper">
-                                                        <a target="_blank" href="#" title="Svizzera"><img width="145" height="75" src="/en/frontend/immagini/svizzera.png" class="scale-with-grid wp-post-image" alt="client_6" />
+                                                        <a target="_blank" href="#" title="Svizzera"><img width="145" height="75" src="/frontend/immagini/svizzera.png" class="scale-with-grid wp-post-image" alt="client_6" />
                                                         </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="client_wrapper">
-                                                        <a target="_blank" href="#" title="Australia"><img width="145" height="75" src="/en/frontend/immagini/australia.png" class="scale-with-grid wp-post-image" alt="client_6" />
+                                                        <a target="_blank" href="#" title="Australia"><img width="145" height="75" src="/frontend/immagini/australia.png" class="scale-with-grid wp-post-image" alt="client_6" />
                                                         </a>
                                                     </div>
                                                 </li>

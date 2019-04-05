@@ -40,7 +40,7 @@
 							</div>
 							<!-- One Third (1/3) Column -->
 							<div class="column one-third column_quick_fact" style="background:rgba(0, 0, 0, 0.7);margin-top:40px; padding:20px;">
-								<div class="image aligncenter"><img src="/en/frontend/immagini/prepare.png" class="scale-with-grid" alt="Step 2">
+								<div class="image aligncenter"><img src="/frontend/immagini/prepare.png" class="scale-with-grid" alt="Step 2">
 												</div>
 								<p class="hrmargin_0 text-white default-font text-bold size-xbig text-center">SKILLS<br/>DEVELOPMENT</p>
 								<p class="hrmargin_0" style="margin-top: 5px; margin-bottom: 5px; color:#ffffff; text-align:left; font-family: 'Varela Round', sans-serif; font-size:16px; line-height:20px; font-weight:600;">The secret recipe to professional success:</p>
@@ -57,7 +57,7 @@
 							<!-- One Third (1/3) Column -->
 							<div class="column one-third column_quick_fact" style="background:rgba(0, 0, 0, 0.7);margin-top:40px; padding:20px;">
 								<div class="aligncenter">
-								<img class="scale-with-grid" style="margin:-4px 0px 15px 0; width:230px;" src="/en/frontend/immagini/get-updated.png" alt="" />
+								<img class="scale-with-grid" style="margin:-4px 0px 15px 0; width:230px;" src="/frontend/immagini/get-updated.png" alt="" />
 								</div>
 								<p class="hrmargin_0 default-font text-white text-bold size-big text-center">We will inform you when the service will be online</p>
 								<form method="post" action="{{ url('services') }}" style="margin-top: 6px;">
@@ -130,14 +130,14 @@
 				</div>
 
 
-				<div class="section flv_sections_6" style=" background: url('/en/frontend/immagini/sfondo-azzurro.jpg') no-repeat bottom center;padding-top:20px;margin-top:30px;" id="orientation-test">
+				<div class="section flv_sections_6" style=" background: url('/frontend/immagini/sfondo-azzurro.jpg') no-repeat bottom center;padding-top:20px;margin-top:30px;" id="orientation-test">
 					<div class="section_wrapper  mcb-section-inner">
 						<div class="items_group clearfix">
 							<!-- Page Title-->
 							<!-- One full width row-->
 							<div id="orientation" class="column one column_fancy_heading">
 								<div class="fancy_heading fancy_heading_icon">
-									<h2 style="color:#1f87c7; background: url('/en/frontend/immagini/linea-titolo-blu.png') no-repeat bottom center; padding-bottom: 25px;font-family: 'Varela Round', sans-serif;">WHY SKILLS DEVELOPMENT?</h2>
+									<h2 style="color:#1f87c7; background: url('/frontend/immagini/linea-titolo-blu.png') no-repeat bottom center; padding-bottom: 25px;font-family: 'Varela Round', sans-serif;">WHY SKILLS DEVELOPMENT?</h2>
 								</div>
 								<div class="column_attr">
 									<p style="text-align:center;font-size:22px;line-height:26px;">
@@ -169,55 +169,55 @@
 									<ul class="clients clients_slider_ul">
 										<li>
 											<div class="client_wrapper">
-												<a title="Italia"><img width="145" height="75" src="/en/frontend/immagini/italia.png" class="scale-with-grid wp-post-image" alt="client_1" />
+												<a title="Italia"><img width="145" height="75" src="/frontend/immagini/italia.png" class="scale-with-grid wp-post-image" alt="client_1" />
 												</a>
 											</div>
 										</li>
 										<li>
 											<div class="client_wrapper">
-												<a title="Germania"><img width="145" height="75" src="/en/frontend/immagini/germania.png" class="scale-with-grid wp-post-image" alt="client_2" />
+												<a title="Germania"><img width="145" height="75" src="/frontend/immagini/germania.png" class="scale-with-grid wp-post-image" alt="client_2" />
 												</a>
 											</div>
 										</li>
 										<li>
 											<div class="client_wrapper">
-												<a title="Francia"><img width="145" height="75" src="/en/frontend/immagini/francia.png" class="scale-with-grid wp-post-image" alt="client_3" />
+												<a title="Francia"><img width="145" height="75" src="/frontend/immagini/francia.png" class="scale-with-grid wp-post-image" alt="client_3" />
 												</a>
 											</div>
 										</li>
 										<li>
 											<div class="client_wrapper">
-												<a title="UK"><img width="145" height="75" src="/en/frontend/immagini/uk.png" class="scale-with-grid wp-post-image" alt="client_4" />
+												<a title="UK"><img width="145" height="75" src="/frontend/immagini/uk.png" class="scale-with-grid wp-post-image" alt="client_4" />
 												</a>
 											</div>
 										</li>
 										<li>
 											<div class="client_wrapper">
-												<a title="Irlanda"><img width="145" height="75" src="/en/frontend/immagini/irlanda.png" class="scale-with-grid wp-post-image" alt="client_5" />
+												<a title="Irlanda"><img width="145" height="75" src="/frontend/immagini/irlanda.png" class="scale-with-grid wp-post-image" alt="client_5" />
 												</a>
 											</div>
 										</li>
 										<li>
 											<div class="client_wrapper">
-												<a title="Olanda"><img width="145" height="75" src="/en/frontend/immagini/olanda.png" class="scale-with-grid wp-post-image" alt="client_6" />
+												<a title="Olanda"><img width="145" height="75" src="/frontend/immagini/olanda.png" class="scale-with-grid wp-post-image" alt="client_6" />
 												</a>
 											</div>
 										</li>
 										<li>
 											<div class="client_wrapper">
-												<a title="Spagna"><img width="145" height="75" src="/en/frontend/immagini/spagna.png" class="scale-with-grid wp-post-image" alt="client_6" />
+												<a title="Spagna"><img width="145" height="75" src="/frontend/immagini/spagna.png" class="scale-with-grid wp-post-image" alt="client_6" />
 												</a>
 											</div>
 										</li>
 										<li>
 											<div class="client_wrapper">
-												<a title="Svizzera"><img width="145" height="75" src="/en/frontend/immagini/svizzera.png" class="scale-with-grid wp-post-image" alt="client_6" />
+												<a title="Svizzera"><img width="145" height="75" src="/frontend/immagini/svizzera.png" class="scale-with-grid wp-post-image" alt="client_6" />
 												</a>
 											</div>
 										</li>
 										<li>
 											<div class="client_wrapper">
-												<a title="Australia"><img width="145" height="75" src="/en/frontend/immagini/australia.png" class="scale-with-grid wp-post-image" alt="client_6" />
+												<a title="Australia"><img width="145" height="75" src="/frontend/immagini/australia.png" class="scale-with-grid wp-post-image" alt="client_6" />
 												</a>
 											</div>
 										</li>

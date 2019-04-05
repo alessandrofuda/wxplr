@@ -39,7 +39,7 @@
 								<div class="fancy_heading fancy_heading_icon">
 									<h2 style="color:#1f87c7; text-transform:uppercase; background: url('{{ asset('frontend/immagini/linea-titolo-blu.png') }}') no-repeat bottom center; padding-bottom: 25px;">{{ $page_title }}</h2><p style="text-transform:uppercase;">{{ $desc }}</p>
 								</div>
-                                <div class="image_wrapper"><img class="scale-with-grid" src="/en/frontend/immagini/contatti.jpg"alt="" />
+                                <div class="image_wrapper"><img class="scale-with-grid" src="/frontend/immagini/contatti.jpg"alt="" />
 									</div>
 							</div>
                             <div class="column one column_fancy_heading">

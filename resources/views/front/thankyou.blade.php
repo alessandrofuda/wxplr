@@ -26,7 +26,7 @@
 	<div class="row">
 		<div class="column one column_fancy_heading">
 			<div style="margin-top:40px;" class="fancy_heading fancy_heading_icon">
-				<h2 style="background: url(/en/frontend/immagini/linea-titolo-verde.png)   no-repeat bottom center; padding-bottom: 25px;color:#54b141;">{{ $page_title }}</h2>
+				<h2 style="background: url(/frontend/immagini/linea-titolo-verde.png)   no-repeat bottom center; padding-bottom: 25px;color:#54b141;">{{ $page_title }}</h2>
 			</div>
 		</div>
 		<div class="page_desc text-center">

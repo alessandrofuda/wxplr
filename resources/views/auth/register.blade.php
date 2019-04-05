@@ -5,7 +5,7 @@
 </div>
 <div class="column one column_fancy_heading">
 								<div class="fancy_heading fancy_heading_icon">
-									<h2 style="color:#54b141; background: url(/en/frontend/immagini/linea-titolo-verde.png) no-repeat bottom center; padding-bottom: 25px;">REGISTRATION</h2><p style="text-align:center;">Register now to enter in the world of Wexplore.<br>For you our free Global Orientation Test: find out your best destination!</p>
+									<h2 style="color:#54b141; background: url(/frontend/immagini/linea-titolo-verde.png) no-repeat bottom center; padding-bottom: 25px;">REGISTRATION</h2><p style="text-align:center;">Register now to enter in the world of Wexplore.<br>For you our free Global Orientation Test: find out your best destination!</p>
 								</div>
 							</div>
 

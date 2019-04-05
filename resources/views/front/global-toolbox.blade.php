@@ -40,14 +40,14 @@
 							</div>
 							<!-- One Third (1/3) Column -->
 							<div class="column one-third column_quick_fact" style="background:rgba(0, 0, 0, 0.7);margin-top:40px; padding:20px;">
-								<div class="image aligncenter" style="margin-top: 20px"><img src="/en/frontend/immagini/skills-development.png" class="scale-with-grid" alt="Step 2">
+								<div class="image aligncenter" style="margin-top: 20px"><img src="/frontend/immagini/skills-development.png" class="scale-with-grid" alt="Step 2">
 												</div>
 								<p class="hrmargin_0 text-white default-font text-bold size-xbig text-center">GLOBAL TOOLBOX</p>
 								<p class="hrmargin_0" style="margin-top: 25px; margin-bottom: 25px; color:#ffffff; text-align:center; font-family: 'Varela Round', sans-serif; font-size:16px; line-height:20px; font-weight:600;">
 									Your reliable partner to sort through all the pratical and cumbersome details of your next career move. A one-stop solution to improve your life in your new home
 								</p>
 								<div class="aligncenter">
-									<img class="scale-with-grid" style="margin:-4px 0px 15px 0; width:280px;" src="/en/frontend/immagini/coming-soon.png" alt="" />
+									<img class="scale-with-grid" style="margin:-4px 0px 15px 0; width:280px;" src="/frontend/immagini/coming-soon.png" alt="" />
 								</div>
 							</div>
 
@@ -111,19 +111,19 @@
 						</div>
 						<div class="items_group clearfix">
 							<div class="column one-fourth">
-                                <img src="/en/frontend/immagini/improving.jpg" class="img-responsive margin-auto" />
+                                <img src="/frontend/immagini/improving.jpg" class="img-responsive margin-auto" />
 								<p class="default-font size-big text-primary" style="margin-top:5px">Improving your confidence with the local language</p>
                             </div>
                             <div class="column one-fourth">
-								<img src="/en/frontend/immagini/managing.jpg" class="img-responsive margin-auto" />
+								<img src="/frontend/immagini/managing.jpg" class="img-responsive margin-auto" />
                                 <p class="default-font size-big text-primary" style="margin-top:5px">Managing the transition and settling in a new country and a new job</p>
                             </div>
 							<div class="column one-fourth">
-								<img src="/en/frontend/immagini/arrange.jpg" class="img-responsive margin-auto" />
+								<img src="/frontend/immagini/arrange.jpg" class="img-responsive margin-auto" />
                                 <p class="default-font size-big text-primary" style="margin-top:5px">Arrange your tax and social security situation</p>
                             </div>
 							<div class="column one-fourth">
-								<img src="/en/frontend/immagini/finding.jpg" class="img-responsive margin-auto" />
+								<img src="/frontend/immagini/finding.jpg" class="img-responsive margin-auto" />
                                	<p class="default-font size-big text-primary" style="margin-top:5px">Finding a new home away from home</p>
                             </div>
 						</div>
@@ -153,14 +153,14 @@
 					</div>
 				</div>
 
-				<div class="section flv_sections_6" style=" background: url('/en/frontend/immagini/sfondo-azzurro.jpg') no-repeat bottom center;padding-top:20px;margin-top:30px;" id="orientation-test">
+				<div class="section flv_sections_6" style=" background: url('/frontend/immagini/sfondo-azzurro.jpg') no-repeat bottom center;padding-top:20px;margin-top:30px;" id="orientation-test">
 					<div class="section_wrapper  mcb-section-inner">
 						<div class="items_group clearfix">
 							<!-- Page Title-->
 							<!-- One full width row-->
 							<div id="orientation" class="column one column_fancy_heading">
 								<div class="fancy_heading fancy_heading_icon">
-									<h2 style="color:#1f87c7; background: url('/en/frontend/immagini/linea-titolo-blu.png') no-repeat bottom center; padding-bottom: 25px;font-family: 'Varela Round', sans-serif;">WHY GLOBAL TOOLBOX?</h2>
+									<h2 style="color:#1f87c7; background: url('/frontend/immagini/linea-titolo-blu.png') no-repeat bottom center; padding-bottom: 25px;font-family: 'Varela Round', sans-serif;">WHY GLOBAL TOOLBOX?</h2>
 								</div>
 								<div class="column_attr">
 									<p style="text-align:center;font-size:22px;line-height:26px;">
@@ -193,55 +193,55 @@
                                             <ul class="clients clients_slider_ul">
                                                 <li>
                                                     <div class="client_wrapper">
-                                                        <a title="Italia"><img width="145" height="75" src="/en/frontend/immagini/italia.png" class="scale-with-grid wp-post-image" alt="client_1" />
+                                                        <a title="Italia"><img width="145" height="75" src="/frontend/immagini/italia.png" class="scale-with-grid wp-post-image" alt="client_1" />
                                                         </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="client_wrapper">
-                                                        <a title="Germania"><img width="145" height="75" src="/en/frontend/immagini/germania.png" class="scale-with-grid wp-post-image" alt="client_2" />
+                                                        <a title="Germania"><img width="145" height="75" src="/frontend/immagini/germania.png" class="scale-with-grid wp-post-image" alt="client_2" />
                                                         </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="client_wrapper">
-                                                        <a title="Francia"><img width="145" height="75" src="/en/frontend/immagini/francia.png" class="scale-with-grid wp-post-image" alt="client_3" />
+                                                        <a title="Francia"><img width="145" height="75" src="/frontend/immagini/francia.png" class="scale-with-grid wp-post-image" alt="client_3" />
                                                         </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="client_wrapper">
-                                                        <a title="UK"><img width="145" height="75" src="/en/frontend/immagini/uk.png" class="scale-with-grid wp-post-image" alt="client_4" />
+                                                        <a title="UK"><img width="145" height="75" src="/frontend/immagini/uk.png" class="scale-with-grid wp-post-image" alt="client_4" />
                                                         </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="client_wrapper">
-                                                        <a title="Irlanda"><img width="145" height="75" src="/en/frontend/immagini/irlanda.png" class="scale-with-grid wp-post-image" alt="client_5" />
+                                                        <a title="Irlanda"><img width="145" height="75" src="/frontend/immagini/irlanda.png" class="scale-with-grid wp-post-image" alt="client_5" />
                                                         </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="client_wrapper">
-                                                        <a title="Olanda"><img width="145" height="75" src="/en/frontend/immagini/olanda.png" class="scale-with-grid wp-post-image" alt="client_6" />
+                                                        <a title="Olanda"><img width="145" height="75" src="/frontend/immagini/olanda.png" class="scale-with-grid wp-post-image" alt="client_6" />
                                                         </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="client_wrapper">
-                                                        <a title="Spagna"><img width="145" height="75" src="/en/frontend/immagini/spagna.png" class="scale-with-grid wp-post-image" alt="client_6" />
+                                                        <a title="Spagna"><img width="145" height="75" src="/frontend/immagini/spagna.png" class="scale-with-grid wp-post-image" alt="client_6" />
                                                         </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="client_wrapper">
-                                                        <a title="Svizzera"><img width="145" height="75" src="/en/frontend/immagini/svizzera.png" class="scale-with-grid wp-post-image" alt="client_6" />
+                                                        <a title="Svizzera"><img width="145" height="75" src="/frontend/immagini/svizzera.png" class="scale-with-grid wp-post-image" alt="client_6" />
                                                         </a>
                                                     </div>
                                                 </li>
                                                 <li>
                                                     <div class="client_wrapper">
-                                                        <a title="Australia"><img width="145" height="75" src="/en/frontend/immagini/australia.png" class="scale-with-grid wp-post-image" alt="client_6" />
+                                                        <a title="Australia"><img width="145" height="75" src="/frontend/immagini/australia.png" class="scale-with-grid wp-post-image" alt="client_6" />
                                                         </a>
                                                     </div>
                                                 </li>

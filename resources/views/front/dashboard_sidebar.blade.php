@@ -22,7 +22,7 @@
       <ul class="sidebar-menu">
 
         <!--<li class="active treeview">-->
-        <li class="{{\Route::getCurrentRoute()->getPath() == "user/dashboard" ? "active open" : ""}}">
+        <li class="{{\Route::getCurrentRoute()->uri() == "user/dashboard" ? "active open" : ""}}">
           <a href="{{ url('user/dashboard') }}">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span> <!--<i class="fa fa-angle-left pull-right"></i>-->
           </a>
@@ -31,26 +31,26 @@
             <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
           </ul-->
         </li>
-         <li class="{{\Route::getCurrentRoute()->getPath() == "user/profile" ? "active open" : ""}}">
+         <li class="{{\Route::getCurrentRoute()->uri() == "user/profile" ? "active open" : ""}}">
             <a href="{{ url('user/profile') }}">
               <i class="fa fa-user" aria-hidden="true"></i>
               <span>My Profile</span>
             </a>
         </li>
 
-        <li class="{{\Route::getCurrentRoute()->getPath() == "user/orders" ? "active open" : ""}}">
+        <li class="{{\Route::getCurrentRoute()->uri() == "user/orders" ? "active open" : ""}}">
             <a href="{{ url('user/orders') }}">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 <span>My Orders</span>
             </a>
         </li>
-        <!--li class="treeview  {{-- \Route::getCurrentRoute()->getPath() == "user/orders" ? "active open" : ""--}} " >
+        <!--li class="treeview  {{-- \Route::getCurrentRoute()->uri() == "user/orders" ? "active open" : ""--}} " >
             <a href="#">
                 <i class="glyphicon glyphicon-user"></i>
                 <span>My Orders</span>
                 <i class="fa fa-angle-left pull-right"></i>
             </a>
-            <ul class="treeview-menu  {{-- \Route::getCurrentRoute()->getPath() == "user/orders" ? "active" : "" --}}">
+            <ul class="treeview-menu  {{-- \Route::getCurrentRoute()->uri() == "user/orders" ? "active" : "" --}}">
                 <li><a href="{{-- url('user/orders') --}}">
                         <i class="fa fa-truck" aria-hidden="true"></i>
                         <span>All Orders</span>
@@ -64,33 +64,33 @@
             </ul>
         </li-->
 
-        <li class="{{\Route::getCurrentRoute()->getPath() == "user/mydocuments" ? "active" : ""}} ">
+        <li class="{{\Route::getCurrentRoute()->uri() == "user/mydocuments" ? "active" : ""}} ">
             <a href="{{ url('user/mydocuments') }}">
                 <i class="fa fa-clock-o" aria-hidden="true"></i>
                 <span>My Documents </span>
             </a>
         </li>
 
-        <li class="{{\Route::getCurrentRoute()->getPath() == "user/myappointments" ? "active" : ""}}">
+        <li class="{{\Route::getCurrentRoute()->uri() == "user/myappointments" ? "active" : ""}}">
             <a href="{{ url('user/myappointments') }}">
                 <i class="fa fa-clock-o" aria-hidden="true"></i>
                 <span>My Appointments </span>
             </a>
         </li>
 
-        <!--li class="{{-- \Route::getCurrentRoute()->getPath() == "user/myvideos" ? "active" : ""--}}">
+        <!--li class="{{-- \Route::getCurrentRoute()->uri() == "user/myvideos" ? "active" : ""--}}">
   			<a href="{{-- url('user/myvideos') --}}">
                 <i class="fa fa-video-camera" aria-hidden="true"></i>
                 <span>My Videos </span>
             </a>
         </li-->
-        <!--li class="{{-- \Route::getCurrentRoute()->getPath() == "user/events" ? "active" : ""--}}">
+        <!--li class="{{-- \Route::getCurrentRoute()->uri() == "user/events" ? "active" : ""--}}">
             <a href="{{-- url('user/events') --}}">
                 <i class="fa fa-calendar" aria-hidden="true"></i>
                 <span>My Events </span>
             </a>
         </li-->
-        <!--li class="{{-- \Route::getCurrentRoute()->getPath() == "user/global/dashboard" ? "active" : ""--}}">
+        <!--li class="{{-- \Route::getCurrentRoute()->uri() == "user/global/dashboard" ? "active" : ""--}}">
             <a href="{{-- url('user/global/dashboard') --}}">
                <i class="fa fa-question" aria-hidden="true"></i>
                 <span>My Global Tool Queries </span>
