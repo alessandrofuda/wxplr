@@ -209,6 +209,10 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasOne('App\UserProfile','user_id');
     }
 
+    public function userAddresses() {
+        return $this->hasMany('App\UserAddress', 'user_id');
+    }
+
     /**
      * Get the user roles for the user.
      */

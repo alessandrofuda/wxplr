@@ -11,6 +11,7 @@
 	|
 	*/
 
+
 /* To load artisan commands without console CLI*/
 //Route::get('/pulisci-cache', function () {
 //    $exitCode = Artisan::call('cache:clear' //, [  optional options
@@ -20,6 +21,15 @@
 
     //
 //});
+
+
+
+// users API (provvisoria)
+Route::get('api/users/list/{token}', array('as'=>'usersLists','uses'=>'Api\UserController@lists'));
+
+
+
+
 
 // TEST ROUTES
 //Route::get('phpinfo', function(){

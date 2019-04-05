@@ -22,4 +22,10 @@ class UserAddress extends Model
      * @var string
      */
     protected $table = 'user_addresses';
+
+      public function user() {
+        return $this->belongsTo('App\User','user_id');
+    }
+
+    
 }
