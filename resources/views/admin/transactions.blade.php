@@ -60,7 +60,7 @@
 												<td class="sorting_1">{!! $transaction->order_status != \App\OrderTransaction::STATE_REFUND ? link_to_route('refund_transaction','Refund',['transaction_id' => $transaction->id]) : "Refunded" !!}</td>
 
 												<td class="sorting_1">
-													<a href="/en/order/{{ $transaction->order_id }}/download/invoice"><i class="fa fa-file-pdf-o" style="font-size:25px;"></i></a>
+													<a href="/order/{{ $transaction->order_id }}/download/invoice"><i class="fa fa-file-pdf-o" style="font-size:25px;"></i></a>
 												</td>
 											</tr>
 										@endforeach

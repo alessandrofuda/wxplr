@@ -21,7 +21,7 @@
                                         <i class="fa fa-chevron-down fa-2x"></i>
                                     </div>
                                     <div class="faq-risposta-container">
-                                        <p>Just <a href="/en/contact-us">contact us</a>, we will go through your questions and objectives together in a free session with one of our consultants, to make sure you are not taking any false steps in the direction of your next big step. </p>
+                                        <p>Just <a href="/contact-us">contact us</a>, we will go through your questions and objectives together in a free session with one of our consultants, to make sure you are not taking any false steps in the direction of your next big step. </p>
                                     </div>
                                 </div>
 
@@ -70,7 +70,7 @@
 									</div>
 									<div class="faq-risposta-container">
 										<p>Each Professional Kit will focus on one Country in particular. Specifically, you have included a session with one consultant from the Country you will select. This is derived from a tested methodology, by which it is more effective to focus your energies and efforts on one very clear target at the time.
-Should you be interested in approaching more than one Country at the time, please <a href="/en/contact-us">contact us</a>, and we will customize our offer to suit our need...because we want your success as much as you do!</p>
+Should you be interested in approaching more than one Country at the time, please <a href="/contact-us">contact us</a>, and we will customize our offer to suit our need...because we want your success as much as you do!</p>
 									</div>
 								</div>
 
@@ -82,7 +82,7 @@ Should you be interested in approaching more than one Country at the time, pleas
 										<i class="fa fa-chevron-down fa-2x"></i>
 									</div>
 									<div class="faq-risposta-container">
-										<p>Of course we can! What you see on Wexplore is only the tip of the iceberg. Even as you read, we are currently working on processing and elaborating data on America, Latin America, Asia, and Oceania. However, our global network means we can activate right away a consultant in any of those countries. <a href="/en/contact-us">Leave us your contact details</a>, we will discuss together how to make it work.</p>
+										<p>Of course we can! What you see on Wexplore is only the tip of the iceberg. Even as you read, we are currently working on processing and elaborating data on America, Latin America, Asia, and Oceania. However, our global network means we can activate right away a consultant in any of those countries. <a href="/contact-us">Leave us your contact details</a>, we will discuss together how to make it work.</p>
 									</div>
 								</div>
 
@@ -94,7 +94,7 @@ Should you be interested in approaching more than one Country at the time, pleas
 										<i class="fa fa-chevron-down fa-2x"></i>
 									</div>
 									<div class="faq-risposta-container">
-										<p>You don’t need to look any further! We are activating partners also for these issues, to make sure you have all the necessary documentation, you find your house away from home, you don’t end up paying double taxation. <a href="/en/contact-us">Leave us your contact details</a>, we will connect you to some reliable and expert advice.</p>
+										<p>You don’t need to look any further! We are activating partners also for these issues, to make sure you have all the necessary documentation, you find your house away from home, you don’t end up paying double taxation. <a href="/contact-us">Leave us your contact details</a>, we will connect you to some reliable and expert advice.</p>
 									</div>
 								</div>
 
@@ -106,7 +106,7 @@ Should you be interested in approaching more than one Country at the time, pleas
 										<i class="fa fa-chevron-down fa-2x"></i>
 									</div>
 									<div class="faq-risposta-container">
-										<p>Of course we do! What you see on Wexplore is only the tip of the iceberg. Even as you read, we are currently working on selecting the best partners to enhance your confidence and fluency in the language you plan to use for the next years. <a href="/en/contact-us">Leave us your contact details</a>, we will discuss together how to make it work.</p>
+										<p>Of course we do! What you see on Wexplore is only the tip of the iceberg. Even as you read, we are currently working on selecting the best partners to enhance your confidence and fluency in the language you plan to use for the next years. <a href="/contact-us">Leave us your contact details</a>, we will discuss together how to make it work.</p>
 									</div>
 								</div>
 

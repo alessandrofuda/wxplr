@@ -55,9 +55,9 @@
                                 <div class="column one-third column_quick_fact" style="background:rgba(0, 0, 0, 0.7);margin-top:40px; padding:20px;">
                                     <div class="aligncenter" style="margin-top: 10px;">
                                         @if(!\Auth::check())
-                                            <a href="/en/register"> 
+                                            <a href="/register"> 
                                         @else
-                                            <a href="/en/user/dashboard">
+                                            <a href="/user/dashboard">
                                         @endif
                                             <img class="scale-with-grid" style="margin:-4px 0px 15px 0; float:left;width:330px;" src="/frontend/immagini/free-button.png" alt="" />
                                         </a></div>
@@ -82,7 +82,7 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="radio" name="policy" required>
-                                            <span style="color: white;">I authorize the treatment of my personal data pursuant to the Italian Legislative Decree on privacy 196/2003. <a href="/en/privacy-policy" target="_blank">Read the privacy policy</a></span>
+                                            <span style="color: white;">I authorize the treatment of my personal data pursuant to the Italian Legislative Decree on privacy 196/2003. <a href="/privacy-policy" target="_blank">Read the privacy policy</a></span>
                                         </div>
                                         <!-- SUBMIT -->
                                         <p style="text-align:center;" class="no-margins"><input type="submit" name="invia" value="SEND"></p>
@@ -113,9 +113,9 @@
                         </div>
                         <div class="text-center">
                             @if(!\Auth::check())
-                                <a href="/en/register"> 
+                                <a href="/register"> 
                             @else
-                                <a href="/en/user/dashboard">
+                                <a href="/user/dashboard">
                             @endif
                                 <img class="scale-with-grid" src="/frontend/immagini/free-button.png" alt="" />
                             </a>

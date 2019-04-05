@@ -59,7 +59,7 @@
                                 <div class="column one-third column_quick_fact" style="background:rgba(0, 0, 0, 0.7);margin-top:40px; padding:20px;">
                                     <div class="aligncenter">
                                     <img class="scale-with-grid" style="margin:-4px 0px 15px 0; width:330px;" src="/frontend/immagini/prezzo-lancio-it.png" alt="" />
-                                   <a class="button button_large aligncenter button_theme button_js" style="margin-bottom: 0" href="/en/service/payment/2"><span class="button_label">ORDINA ADESSO*</span></a></div>
+                                   <a class="button button_large aligncenter button_theme button_js" style="margin-bottom: 0" href="/service/payment/2"><span class="button_label">ORDINA ADESSO*</span></a></div>
                                     <p class="default-font text-white size-xsmall text-center">*Non scordarti di utilizzare il tuo codice sconto riservato</p>
                                     <p class="hrmargin_0 default-font text-white text-bold size-big text-center">Registrati per ottenere subito il tuo codice sconto riservato</p>
                                     <form method="post" action="{{ url('aiesec') }}" style="margin-top: 6px;">
@@ -81,7 +81,7 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="radio" name="policy" required>
-                                            <span style="color: white;">Autorizzo al trattamento dei miei dati personali ai sensi del Decreto Legislativo 196/2003. <a class="text-white" href="/en/privacy-policy" target="_blank">Leggi la privacy policy</a></span>
+                                            <span style="color: white;">Autorizzo al trattamento dei miei dati personali ai sensi del Decreto Legislativo 196/2003. <a class="text-white" href="/privacy-policy" target="_blank">Leggi la privacy policy</a></span>
                                         </div>
 
                                         <!-- SUBMIT -->

@@ -66,7 +66,7 @@
                           <label>Privacy Policy*</label>
 							<div>
 							<input type="radio" name="policy" required>
-							<span>I authorize the treatment of my personal data pursuant to the Italian Legislative Decree on privacy 196/2003. <a href="/en/privacy-policy" target="_blank">Read the privacy policy</a></span>
+							<span>I authorize the treatment of my personal data pursuant to the Italian Legislative Decree on privacy 196/2003. <a href="/privacy-policy" target="_blank">Read the privacy policy</a></span>
 						  </div>
                         </div>
                         {{ csrf_field() }}

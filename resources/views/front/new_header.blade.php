@@ -178,7 +178,7 @@
 
                                             @if(\Auth::user()->isConsultant())
                                                 <li>
-                                                    <a href="/en/consultant/dashboard" style="padding-bottom: 10px;">
+                                                    <a href="/consultant/dashboard" style="padding-bottom: 10px;">
                                                         <span>Dashboard 
                                                             @if (!empty(Auth::user()->consultantProfile->profile_picture))
                                                                 <img class="img-circle" src="{{asset(Auth::user()->consultantProfile->profile_picture) }}" alt="" width="35px" height="35px"/>
@@ -193,7 +193,7 @@
 
                                             @else
                                                 <li>
-                                                    <a href="/en/user/dashboard" style="padding-bottom: 10px;">
+                                                    <a href="/user/dashboard" style="padding-bottom: 10px;">
                                                         <span>Dashboard 
                                                             @if (!empty(Auth::user()->userProfile->profile_picture))
                                                                 <img class="img-circle" src="{{ asset(Auth::user()->userProfile->profile_picture) }}" alt="" width="35px" height="35px" />

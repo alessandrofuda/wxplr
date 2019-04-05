@@ -116,7 +116,7 @@ Route::get('time', function() {
 
 	// Authentication routes...
 	Route::get('auth/login', array('as'=>'authLogin','uses'=>'Auth\AuthController@getLogin'));
-	Route::post('auth/login', array('as'=>'authLoginPost','uses'=>'Auth\AuthController@postLogin'));
+	Route::post('auth/login', array('as'=>'authLoginPost','uses'=>'Auth\AuthController@postLogin'));  // authenticated
 	Route::get('auth/logout', array('as'=>'authLogout','uses'=>'Auth\AuthController@getLogout'));
 	// Registration routes...
 	Route::get('register', array('as' => 'register', 'uses' => 'Auth\AuthController@getRegister'));

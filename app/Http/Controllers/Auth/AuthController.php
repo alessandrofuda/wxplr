@@ -7,7 +7,7 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+// use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Form;use Mail;
 use Illuminate\Http\Request;use App\Setting;
 use App\UserRoles;use Carbon;use App\UserProfile;
@@ -30,7 +30,7 @@ class AuthController extends CustomBaseController
     |
     */
 
-    use ThrottlesLogins;  // AuthenticatesAndRegistersUsers,  --> non essendoci piU non c'è più il vecchio postlogin() --> da riscrivere
+    use ThrottlesLogins;  // AuthenticatesAndRegistersUsers
 
 
 	//protected $redirectPath = '/user/dashboard';
@@ -109,7 +109,8 @@ class AuthController extends CustomBaseController
 		$languages = $request['languages'];
 		$experience = $request['experience'];
 
-	/*	$vat_number = $request['vat_number'];
+		/*	
+		$vat_number = $request['vat_number'];
 		$address = $request['address'];
 		$bank_details = $request['bank_details'];
 		$oigp_company = $request['oigp_company'];*/
@@ -131,7 +132,8 @@ class AuthController extends CustomBaseController
 		$consult_profile_data['industry_expertise'] = $industry_expertise;
 		$consult_profile_data['country_expertise'] = $country_expertise;
 		$consult_profile_data['languages'] = $languages;
-	/*	$consult_profile_data['vat_number'] = $vat_number;
+		/*	
+		$consult_profile_data['vat_number'] = $vat_number;
 		$consult_profile_data['address'] = $address;
 		$consult_profile_data['bank_details'] = $bank_details;
 		$consult_profile_data['oigp_company'] = $oigp_company;
@@ -253,8 +255,7 @@ class AuthController extends CustomBaseController
      *
      * @param  array  $request, $user
      */
-	protected function authenticated($request, $user)
-    {
+	protected function authenticated($request, $user) {
 		/*if (Session::has('user_type')) {
 			$user_type = Session::get('user_type');
 		}else{
@@ -266,10 +267,12 @@ class AuthController extends CustomBaseController
 			Session::forget('login_redirect');
 			return redirect()->away($redirect_url);
 		}
+
 		$roles_arr = array();
 		foreach($request->user()->userRoles as $roles){
             $roles_arr[] = $roles->role_id;
         }
+        
         if($user->is_admin == 1) {
             return redirect()->intended('/admin/dashboard');
         }elseif(in_array(1,$roles_arr)){
@@ -278,8 +281,35 @@ class AuthController extends CustomBaseController
 			return redirect()->intended('/consultant/dashboard');
 		}
     }
-	public function postRegister(Request $request)
-    {
+
+    public function postLogin(Request $request) {
+		
+		$this->validate($request, [
+			'email' => 'required|email', 'password' => 'required',
+		]);
+		$credentials = $request->only('email', 'password');
+		
+		if (Auth::attempt($credentials, $request->has('remember'))) {
+
+			return $this->authenticated($request, Auth::user()); //redirect()->intended($this->redirectPath());
+		}
+
+		return redirect($this->loginPath()) 
+					->withInput($request->only('email', 'remember'))
+					->withErrors([
+						'email' => $this->getFailedLoginMessage(),
+					]);
+	}
+
+	public function loginPath() {
+		return property_exists($this, 'loginPath') ? $this->loginPath : '/login';
+	}
+
+	protected function getFailedLoginMessage() {
+		return 'These credentials do not match our records.';
+	}
+
+	public function postRegister(Request $request) {
         $validator = $this->validator($request->all());
         if ($validator->fails()) {
             $this->throwValidationException(
@@ -307,7 +337,7 @@ class AuthController extends CustomBaseController
 	}
 
 	/* create client register form */
-	public function getClientRegister(){
+	public function getClientRegister() {
 		$country_list = Country::all();
 		if(empty($country_list)){
 			$country_list = [];
@@ -396,4 +426,15 @@ class AuthController extends CustomBaseController
 		}
 		return redirect()->back()->with('status', 'Something went wrong.. PLease try agian..')->withInput();
 	}
+
+
+	public function getLogout(){
+		Auth::logout();
+		return redirect(property_exists($this, 'redirectAfterLogout') ? $this->redirectAfterLogout : '/');
+	}
+
+	public function getRegister() {
+		return view('auth.register');
+	}
+
 }

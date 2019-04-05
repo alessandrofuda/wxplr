@@ -117,7 +117,7 @@
 																										<tr>
 																											<td valign="top" align="center" style="border-collapse:collapse;font-size:0px;line-height:0px;">
 																												<a style="display:inline-block;font-size:0px;" href="{{ url('/') }}" target="_blank" title="Go to Wexplore Site">
-																													<img width="540" border="0" style="outline-style:none;text-decoration:none;border:none;font-size:12px;line-height:16px;margin:0;" src="https://wexplore.co/en/frontend/images/emails/header_mail.png" alt="" />
+																													<img width="540" border="0" style="outline-style:none;text-decoration:none;border:none;font-size:12px;line-height:16px;margin:0;" src="https://wexplore.co/frontend/images/emails/header_mail.png" alt="" />
 																												</a>
 																											</td>
 																										</tr>
@@ -241,7 +241,7 @@
 																										<tr>
 																											<td valign="top" align="center" style="border-collapse:collapse;font-size:0px;line-height:0px;">
 																												<a style="display:inline-block;font-size:0px;" href="{{ url('/') }}" target="_blank" title="Go to Wexplore Site">
-																													<img width="25" border="0" style="max-width:25px;outline-style:none;text-decoration:none;border:none;font-size:12px;line-height:16px;margin:0;" src="https://wexplore.co/en/frontend/images/emails/logo_wexplore_email.png" alt="" />
+																													<img width="25" border="0" style="max-width:25px;outline-style:none;text-decoration:none;border:none;font-size:12px;line-height:16px;margin:0;" src="https://wexplore.co/frontend/images/emails/logo_wexplore_email.png" alt="" />
 																												</a>
 																											</td>
 																										</tr>

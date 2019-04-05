@@ -565,7 +565,7 @@
 
                         <td valign="top" class="mcnTextContent" style="padding-top: 0;padding-right: 18px;padding-bottom: 9px;padding-left: 18px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;color: #202020;font-family: Helvetica;font-size: 16px;line-height: 150%;text-align: center;">
                         <p style="text-align: center;font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;font-size: 14px;line-height: 150%;margin: 10px 0;padding: 0;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #202020;">Il tuo codice sconto riservato è <strong>FREETALENT2017</strong></p>
-                        <a href="https://www.wexplore.co/en/service/payment/2" title="" target="_blank" style="mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
+                        <a href="{{url('service/payment/2')}}" title="" target="_blank" style="mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                         <img align="center" alt="" src="https://www.wexplore.co/frontend/immagini/aiesec_mail/codice.png" width="270" style="max-width: 270px;padding-bottom: 0;display: inline !important;vertical-align: bottom;border: 0;height: auto;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;" class="mcnImage">
                                     </a>
                                     <br>

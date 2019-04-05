@@ -166,7 +166,7 @@ career service</strong></span> </p>
                                 <div class="column one-second column_quick_fact">
                                     <p class="hrmargin_0" style="color:#fff; font-size:18px; line-height:22px;">Every journey starts with you! And if you know who you are and where your playground is, then really the horizon is your only limit!<br>In which environment you will find the best conditions to thrive and develop?<br><br>
 
-                                        <strong>Try out our exclusive <a href="/en/global-orientation-test"><span style="color:#54b141;">Free Global Orientation Test</span></a>, and find your ideal company and your country match.</strong>
+                                        <strong>Try out our exclusive <a href="/global-orientation-test"><span style="color:#54b141;">Free Global Orientation Test</span></a>, and find your ideal company and your country match.</strong>
                                     </p>
                                 </div>
                                 <!-- One Fourth (1/4) Column -->
@@ -209,7 +209,7 @@ career service</strong></span> </p>
                                 <!-- One Fourth (1/4) Column -->
                                 <div class="column one-fourth column_icon_box">
                                     <div style="background:#fff; padding:10px; box-shadow: 0 0 5px #ccc;" class="icon_box icon_position_top no_border">
-                                        <a class="" href="/en/global-orientation-test">
+                                        <a class="" href="/global-orientation-test">
                                             <div style="margin:-10px;" class="image_wrapper"><img src="{{ asset('frontend/immagini/service1.jpg') }}" alt="" class="scale-with-grid" />
                                             </div>
                                             <div class="desc_wrapper" style="min-height: 180px;">
@@ -223,13 +223,13 @@ career service</strong></span> </p>
                                                 </div>
                                             </div>
                                         </a>
-                                        <div style="margin-top: 20px;" class="aligncenter"><a class="button button_large button_theme button_js" href="/en/global-orientation-test"><span class="button_label">VIEW MORE</span></a></div>
+                                        <div style="margin-top: 20px;" class="aligncenter"><a class="button button_large button_theme button_js" href="/global-orientation-test"><span class="button_label">VIEW MORE</span></a></div>
                                     </div>
                                 </div>
                                 <!-- One Fourth (1/4) Column -->
                                 <div class="column one-fourth column_icon_box">
                                     <div style="background:#fff; padding:10px; box-shadow: 0 0 5px #ccc;" class="icon_box icon_position_top no_border">
-                                        <a class="" href="/en/professional-kit">
+                                        <a class="" href="/professional-kit">
                                             <div  style="margin:-10px;" class="image_wrapper"><img src="{{ asset('frontend/immagini/service2.jpg') }}" alt="" class="scale-with-grid" />
                                             </div>
                                             <div class="desc_wrapper">
@@ -240,13 +240,13 @@ career service</strong></span> </p>
                                                 </div>
                                             </div>
                                         </a>
-                                        <div style="margin-top: 20px;" class="aligncenter"><a class="button button_large button_theme button_js" href="/en/professional-kit"><span class="button_label">VIEW MORE</span></a></div>
+                                        <div style="margin-top: 20px;" class="aligncenter"><a class="button button_large button_theme button_js" href="/professional-kit"><span class="button_label">VIEW MORE</span></a></div>
                                     </div>
                                 </div>
                                 <!-- One Fourth (1/4) Column -->
                                 <div class="column one-fourth column_icon_box">
                                     <div style="background:#fff; padding:10px; box-shadow: 0 0 5px #ccc;" class="icon_box icon_position_top no_border">
-                                        <a class="" href="/en/skills-development">
+                                        <a class="" href="/skills-development">
                                             <div  style="margin:-10px;" class="image_wrapper"><img src="{{ asset('frontend/immagini/service3.jpg') }}" alt="" class="scale-with-grid" />
                                             </div>
                                             <div class="desc_wrapper">
@@ -258,7 +258,7 @@ career service</strong></span> </p>
                                             </div>
                                         </a>
                                         <div style="margin-top: 20px;" class="aligncenter">
-														 <a class="button button_large button_theme button_js" href="/en/skills-development">
+														 <a class="button button_large button_theme button_js" href="/skills-development">
 															 <span class="button_label">VIEW MORE</span>
 														 </a>
 													 </div>
@@ -268,7 +268,7 @@ career service</strong></span> </p>
 
                                 <div class="column one-fourth column_icon_box">
                                     <div style="background:#fff; padding:10px; box-shadow: 0 0 5px #ccc;" class="icon_box icon_position_top no_border">
-                                        <a class="" href="/en/global-toolbox">
+                                        <a class="" href="/global-toolbox">
                                             <div  style="margin:-10px;" class="image_wrapper"><img src="{{ asset('frontend/immagini/service4.jpg') }}" alt="" class="scale-with-grid" />
                                             </div>
                                             <div class="desc_wrapper">
@@ -280,7 +280,7 @@ career service</strong></span> </p>
                                             </div>
                                         </a>
                                         <div style="margin-top: 20px;" class="aligncenter">
-														 <a class="button button_large button_theme button_js" href="/en/global-toolbox">
+														 <a class="button button_large button_theme button_js" href="/global-toolbox">
 															<span class="button_label">VIEW MORE</span>
 														 </a>
 													 </div>

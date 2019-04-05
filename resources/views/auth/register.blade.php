@@ -57,7 +57,7 @@
                 </div>
                <span class="paymentOption_div">
                         <input   type="checkbox" required name="tos">
-                            <b>I have read and accepted the General <a href="/en/terms-service" target="_blank">Terms and Conditions</a> and have read the <a href="/en/privacy-policy" target="_blank">Privacy Policy</a></b>
+                            <b>I have read and accepted the General <a href="/terms-service" target="_blank">Terms and Conditions</a> and have read the <a href="/privacy-policy" target="_blank">Privacy Policy</a></b>
                     </span>
                     <span class="paymentOption_div">
                             <input  type="checkbox" required name="tos">

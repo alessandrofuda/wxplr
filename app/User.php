@@ -180,17 +180,11 @@ class User extends Model implements AuthenticatableContract,
         return $country;
     }
 
-    /**
-     * Get the user roles for the user.
-     */
     public function userRoles()
     {
         return $this->hasMany('App\UserRoles');
     }
 
-    /**
-     * The roles that belong to the user.
-     */
     public function roles()
     {
         return $this->belongsToMany('App\Role','user_roles');
@@ -201,9 +195,6 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasOne('App\UserRoles','user_id');
     }
 
-    /**
-     * Get the user roles for the user.
-     */
     public function userProfile()
     {
         return $this->hasOne('App\UserProfile','user_id');
@@ -213,9 +204,6 @@ class User extends Model implements AuthenticatableContract,
         return $this->hasMany('App\UserAddress', 'user_id');
     }
 
-    /**
-     * Get the user roles for the user.
-     */
     public function consultantProfile()
     {
         return $this->hasOne('App\ConsultantProfile','user_id');

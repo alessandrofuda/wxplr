@@ -26,7 +26,7 @@
                                                    <h4 style="color:#54b141;">Maybe…</h4>
                                                     <div class="desc">
                                                         <span class="big">You are toying with the idea of going abroad, but still do not see it like a concrete possibility?
-										Start from our <a href="/en/global-orientation-test">Global Orientation Test</a> to get a first picture.</span> </div></div>
+										Start from our <a href="/global-orientation-test">Global Orientation Test</a> to get a first picture.</span> </div></div>
                                             </div>
                                         </div>
                                     </div>
@@ -42,7 +42,7 @@
                                                    <h4 style="color:#54b141;">Why not? But where do I start from?</h4>
                                                 <div class="desc">
                                                         <span class="big">If this idea becomes pressing, but you still don’t feel ready to book a one-way ticket, and especially do not know where to begin.
-										<a href="/en/professional-kit">Professional Kit</a> is the first step towards a more conscious and effective journey while still in your home country, with the support of a dedicated consultant.</span> </div>
+										<a href="/professional-kit">Professional Kit</a> is the first step towards a more conscious and effective journey while still in your home country, with the support of a dedicated consultant.</span> </div>
                                               </div>
                                             </div>
                                         </div>
@@ -58,7 +58,7 @@
 													<h4 style="color:#54b141;">It’s happening for real: I am leaving! Now what?</h4>
                                                     <div class="desc">
                                                         <span class="big">As the personal and professional journey in a new Country becomes more concrete, we experience also increasing complexities and doubts to be solved: how will I settle in? What documents do I need? What happens to my social security at home? How much is the rent?
-										Check out our <a href="/en/global-toolbox">Global Toolbox</a> and don’t worry: we will sort out everything with you! </span> </div> </div>
+										Check out our <a href="/global-toolbox">Global Toolbox</a> and don’t worry: we will sort out everything with you! </span> </div> </div>
                                             </div>
                                         </div>
                                     </div>
@@ -74,7 +74,7 @@
                                                    <h4 style="color:#54b141;">How can I prepare in the best possible way?</h4>
                                                     <div class="desc">
                                                         <span class="big">The best part of the experience you are going through is that it’s nothing like you have ever seen. The worst part of the experience you are going through is that it’s nothing like you have ever seen!
-										In the <a href="/en/skills-development">Skills Development</a> section you will find the most effective advises to progress in your journey, thanks to the support of both our qualified network of experts and of people who share their first-hand experiences.</span> </div></div>
+										In the <a href="/skills-development">Skills Development</a> section you will find the most effective advises to progress in your journey, thanks to the support of both our qualified network of experts and of people who share their first-hand experiences.</span> </div></div>
                                             </div>
                                         </div>
                                     </div>
@@ -110,7 +110,7 @@
                                 <!-- One Fourth (1/4) Column -->
                                 <div class="column one-fourth column_icon_box">
                                     <div style="background:#fff; padding:10px; box-shadow: 0 0 5px #ccc;" class="icon_box icon_position_top no_border">
-                                        <a class="" href="/en/global-orientation-test">
+                                        <a class="" href="/global-orientation-test">
                                             <div style="margin:-10px;" class="image_wrapper"><img src="/frontend/immagini/service1.jpg" alt="" class="scale-with-grid" />
                                             </div>
                                             <div class="desc_wrapper" style="min-height: 180px;">
@@ -124,13 +124,13 @@
                                                 </div>
                                             </div>
                                         </a>
-                                        <div style="margin-top: 20px;"class="aligncenter"><a class="button button_large button_theme button_js" href="/en/global-orientation-test"><span class="button_label">VIEW MORE</span></a></div>
+                                        <div style="margin-top: 20px;"class="aligncenter"><a class="button button_large button_theme button_js" href="/global-orientation-test"><span class="button_label">VIEW MORE</span></a></div>
                                     </div>
                                 </div>
                                 <!-- One Fourth (1/4) Column -->
                                 <div class="column one-fourth column_icon_box">
                                     <div style="background:#fff; padding:10px; box-shadow: 0 0 5px #ccc;" class="icon_box icon_position_top no_border">
-                                        <a class="" href="/en/professional-kit">
+                                        <a class="" href="/professional-kit">
                                             <div  style="margin:-10px;" class="image_wrapper"><img src="/frontend/immagini/service2.jpg" alt="" class="scale-with-grid" />
                                             </div>
                                             <div class="desc_wrapper">
@@ -141,13 +141,13 @@
                                                 </div>
                                             </div>
                                         </a>
-                                        <div style="margin-top: 20px;"class="aligncenter"><a class="button button_large button_theme button_js" href="/en/professional-kit"><span class="button_label">VIEW MORE</span></a></div>
+                                        <div style="margin-top: 20px;"class="aligncenter"><a class="button button_large button_theme button_js" href="/professional-kit"><span class="button_label">VIEW MORE</span></a></div>
                                     </div>
                                 </div>
                                 <!-- One Fourth (1/4) Column -->
                                 <div class="column one-fourth column_icon_box">
                                     <div style="background:#fff; padding:10px; box-shadow: 0 0 5px #ccc;" class="icon_box icon_position_top no_border">
-                                        <a class="" href="/en/skills-development">
+                                        <a class="" href="/skills-development">
                                             <div  style="margin:-10px;" class="image_wrapper"><img src="/frontend/immagini/service3.jpg" alt="" class="scale-with-grid" />
                                             </div>
                                             <div class="desc_wrapper">
@@ -159,7 +159,7 @@
                                             </div>
                                         </a>
                                         <div style="margin-top: 20px;"class="aligncenter">
-														 <a class="button button_large button_theme button_js" href="/en/skills-development">
+														 <a class="button button_large button_theme button_js" href="/skills-development">
 															 <span class="button_label">VIEW MORE</span>
 														 </a>
 													 </div>
@@ -169,7 +169,7 @@
 
                                 <div class="column one-fourth column_icon_box">
                                     <div style="background:#fff; padding:10px; box-shadow: 0 0 5px #ccc;" class="icon_box icon_position_top no_border">
-                                        <a class="" href="/en/global-toolbox">
+                                        <a class="" href="/global-toolbox">
                                             <div  style="margin:-10px;" class="image_wrapper"><img src="/frontend/immagini/service4.jpg" alt="" class="scale-with-grid" />
                                             </div>
                                             <div class="desc_wrapper">
@@ -181,7 +181,7 @@
                                             </div>
                                         </a>
                                         <div style="margin-top: 20px;"class="aligncenter">
-														 <a class="button button_large button_theme button_js" href="/en/global-toolbox">
+														 <a class="button button_large button_theme button_js" href="/global-toolbox">
 															 <span class="button_label">VIEW MORE</span>
 														 </a>
 													 </div>

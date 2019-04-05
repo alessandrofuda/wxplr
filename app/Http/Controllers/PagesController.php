@@ -291,8 +291,6 @@ class PagesController extends CustomBaseController {
 
 		if($order != null) {
 
-			//dd($order);
-
 			if ($order->step_id == -1) {
 				$dash_noti[] = ['heading' => 'Start Process',
 								'noti_msg' => link_to_route("professional.kit", "Click here", array(), array("class" => "")) . ' to begin the process.',
@@ -367,7 +365,7 @@ class PagesController extends CustomBaseController {
 				}
 
 				$dash_noti[] = ['heading' => 'Career Orientation Session',
-				'noti_msg' => 'Your Dream Check Lab form has been validated by <b>' . $consultant_name . '</b>. To check consultant feedback ' . link_to_route("user.mydocuments", "Click here", [], array("class" => "")) . '.<br/>Please proceed to book your <b>'.$number.'</b> session Call with your consultant or go to your "<a href="/en/user/steady_aim_shoot" target="_blank"><b>Steady Aim Shoot</b></a>" section to view your Documents.<br/><a style="margin-top:15px;" class="btn btn-lg btn-success" href="' . url('user/role_play_interview') . '">CAREER ORIENTATION SESSION <span class="glyphicon glyphicon-chevron-right"></span></a>',
+				'noti_msg' => 'Your Dream Check Lab form has been validated by <b>' . $consultant_name . '</b>. To check consultant feedback ' . link_to_route("user.mydocuments", "Click here", [], array("class" => "")) . '.<br/>Please proceed to book your <b>'.$number.'</b> session Call with your consultant or go to your "<a href="/user/steady_aim_shoot" target="_blank"><b>Steady Aim Shoot</b></a>" section to view your Documents.<br/><a style="margin-top:15px;" class="btn btn-lg btn-success" href="' . url('user/role_play_interview') . '">CAREER ORIENTATION SESSION <span class="glyphicon glyphicon-chevron-right"></span></a>',
 				'noti_url' => ''];
 			}
 
@@ -585,7 +583,6 @@ class PagesController extends CustomBaseController {
 		$outcome_data=array();
 		$user_id = Auth::user()->id;
 		$compiled = GlobalTestResult::where('user_id', $user_id)->get();
-		//dd($compiled);
 
 
 		$query_string = $request->query('force');
@@ -629,7 +626,6 @@ class PagesController extends CustomBaseController {
 		$choice_id=$request['choice'];  // es 19 for LAST input
 		$question_id=$request['question_id'];
 		$question=GlobalTest::where('parent_choice',$choice_id)->first();   // for LAST question : null
-		// dd($question);
 
 		// first questions
 		if(!empty($question)){  // not last question

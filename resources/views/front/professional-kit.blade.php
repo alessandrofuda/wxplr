@@ -58,7 +58,7 @@
                                 <div class="column one-third column_quick_fact" style="background:rgba(0, 0, 0, 0.7);margin-top:40px; padding:20px;">
                                     <div class="aligncenter">
                                     <img class="scale-with-grid" style="margin:-4px 0px 15px 0; width:330px;" src="/frontend/immagini/prezzo-lancio-en.png" alt="" />
-                                   <a class="button button_large aligncenter button_theme button_js" style="margin-bottom: 0" href="/en/service/payment/2"><span class="button_label">BUY NOW</span></a></div>
+                                   <a class="button button_large aligncenter button_theme button_js" style="margin-bottom: 0" href="/service/payment/2"><span class="button_label">BUY NOW</span></a></div>
                                     <p class="hrmargin_0 default-font text-white text-bold size-xbig text-center">Is Professional Kit the right tool for me?</p>
                                     <p class="text-white default-font size-small text-bold">Contact us for a first FREE orientation session with one of our consultants.</p>
                                     <form method="post" action="{{ url('services') }}" style="margin-top: 6px;">
@@ -80,7 +80,7 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="radio" name="policy" required>
-                                            <span style="color: white;">I authorize the treatment of my personal data pursuant to the Italian Legislative Decree on privacy 196/2003. <a class="text-white" href="/en/privacy-policy" target="_blank">Read the privacy policy</a></span>
+                                            <span style="color: white;">I authorize the treatment of my personal data pursuant to the Italian Legislative Decree on privacy 196/2003. <a class="text-white" href="/privacy-policy" target="_blank">Read the privacy policy</a></span>
                                         </div>
 
                                         <!-- SUBMIT -->

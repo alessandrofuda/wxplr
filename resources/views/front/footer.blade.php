@@ -23,13 +23,13 @@
                     <div class="textwidget">
                         <ul class="list_mixed">
                             <li class="list_check">
-                                <a style="color:#ffffff;" href="/en/services">Services</a>
+                                <a style="color:#ffffff;" href="services">Services</a>
                             </li>
                             <li class="list_check">
-                                <a style="color:#ffffff;" href="/en/about-us">About</a>
+                                <a style="color:#ffffff;" href="about-us">About</a>
                             </li>
                             <li class="list_check">
-                                <a style="color:#ffffff;" href="/en/contact-us">Contacts</a>
+                                <a style="color:#ffffff;" href="contact-us">Contacts</a>
                             </li>
                         </ul>
                     </div>
@@ -42,16 +42,16 @@
                     <div class="textwidget">
                         <ul class="list_mixed">
                             <li class="list_check">
-                                 <a style="color:#ffffff;" href="/en/terms-service">Terms Of Service</a>
+                                 <a style="color:#ffffff;" href="terms-service">Terms Of Service</a>
                             </li>
                             <li class="list_check">
-                                <a style="color:#ffffff;" href="/en/privacy-policy">Privacy Policy</a>
+                                <a style="color:#ffffff;" href="privacy-policy">Privacy Policy</a>
                             </li>
                             <li class="list_check">
-                                <a style="color:#ffffff;" href="/en/cookies-policy">Cookie Policy</a>
+                                <a style="color:#ffffff;" href="cookies-policy">Cookie Policy</a>
                             </li>
                             <li class="list_check">
-                                <a style="color:#ffffff;" href="/en/code-ethics">Code of Ethics</a>
+                                <a style="color:#ffffff;" href="code-ethics">Code of Ethics</a>
                             </li>
                         </ul>
                     </div>
@@ -95,201 +95,4 @@
         </div>
     </div>
 </footer>
-</div>
 
-<!-- Popup contact form 
-<div id="popup_contact">
-    <a class="button button_js" href="#"><i class="icon-mail-line"></i></a>
-    <div class="popup_contact_wrapper">
-
-        <div id="contactWrapper_popup">-->
-            <!-- Contact form area-->
-            <!-- <form id="contactform_popup">
-                <h4>Send us a message</h4>
-                <p>
-                        <span>
-								<input type="text" name="name_popup" id="name_popup" size="40" aria-required="true" aria-invalid="false" placeholder="Your name" />
-							</span><span>
-								<input type="email" name="email_popup" id="email_popup" size="40" aria-required="true" aria-invalid="false" placeholder="Your email" />
-							</span><span>
-								<input type="text" name="subject_popup" id="subject_popup" size="40" aria-required="true" aria-invalid="false" placeholder="Subject" />
-							</span><span> 								<textarea name="body_popup" cols="40" id="body_popup" rows="2" aria-required="true" aria-invalid="false" placeholder="Message"></textarea></span>
-
-                    <input type="button" value="Send Message" id="submit_popup" onClick="return check_values_popup();">
-                </p>
-            </form>
-            <div id="confirmation_popup"></div>
-        </div>
-
-        <span class="arrow"></span>
-    </div>
-</div> -->
-
-<!-- JS -->
-<script type="text/javascript" src="{{ asset('frontend/js/mfn.menu.js') }}"></script>
-<script type="text/javascript" src="{{ asset('frontend/js/jquery.plugins.js') }}"></script>
-<script type="text/javascript" src="{{ asset('frontend/js/jquery.jplayer.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('frontend/js/animations/animations.js') }}"></script>
-<script type="text/javascript" src="{{ asset('frontend/js/email.js') }}"></script>
-<script type="text/javascript" src="{{ asset('frontend/js/scripts.js') }}"></script>
-
-<script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/jquery.themepunch.tools.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js') }}"></script>
-
-<script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/extensions/revolution.extension.video.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/extensions/revolution.extension.actions.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/extensions/revolution.extension.kenburn.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/extensions/revolution.extension.navigation.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/extensions/revolution.extension.migration.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/extensions/revolution.extension.parallax.min.js') }}"></script>
-
-<script type="text/javascript">
-    var tpj = jQuery;
-    tpj.noConflict();
-    var revapi34;
-    tpj(document).ready(function() {
-        if (tpj("#rev_slider_34_2").revolution == undefined) {
-            revslider_showDoubleJqueryError("#rev_slider_34_2");
-        } else {
-            revapi34 = tpj("#rev_slider_34_2").show().revolution({
-                sliderType: "standard",
-
-                sliderLayout: "auto",
-                dottedOverlay: "none",
-                delay: 7000,
-                navigation: {
-                    keyboardNavigation: "off",
-                    keyboard_direction: "horizontal",
-                    mouseScrollNavigation: "off",
-                    onHoverStop: "on",
-                    touch: {
-                        touchenabled: "on",
-                        swipe_threshold: 0.7,
-                        swipe_min_touches: 1,
-                        swipe_direction: "horizontal",
-                        drag_block_vertical: false
-                    },
-                    arrows: {
-                        style: "uranus",
-                        enable: true,
-                        hide_onmobile: false,
-                        hide_onleave: false,
-                        tmp: '',
-                        left: {
-                            h_align: "right",
-                            v_align: "bottom",
-                            h_offset: 90,
-                            v_offset: 40
-                        },
-                        right: {
-                            h_align: "right",
-                            v_align: "bottom",
-                            h_offset: 40,
-                            v_offset: 40
-                        }
-                    },
-                    thumbnails: {
-                        style: "hesperiden",
-                        enable: true,
-                        width: 200,
-                        height: 80,
-                        min_width: 100,
-                        wrapper_padding: 5,
-                        wrapper_color: "transparent",
-                        wrapper_opacity: "1",
-                        tmp: '<span class="tp-thumb-image"></span><span class="tp-thumb-title">Slide</span>',
-                        visibleAmount: 3,
-                        hide_onmobile: true,
-                        hide_under: 0,
-                        hide_onleave: false,
-                        direction: "horizontal",
-                        span: false,
-                        position: "inner",
-                        space: 5,
-                        h_align: "left",
-                        v_align: "bottom",
-                        h_offset: 40,
-                        v_offset: 40
-                    }
-                },
-                gridwidth: 1180,
-                gridheight: 550,
-                lazyType: "none",
-                shadow: 0,
-                spinner: "spinner3",
-                stopLoop: "off",
-                stopAfterLoops: -1,
-                stopAtSlide: -1,
-                shuffle: "off",
-                autoHeight: "off",
-                disableProgressBar: "on",
-                hideThumbsOnMobile: "on",
-                hideSliderAtLimit: 0,
-                hideCaptionAtLimit: 0,
-                hideAllCaptionAtLilmit: 0,
-                startWithSlide: 0,
-                debugMode: false,
-                fallbacks: {
-                    simplifyAll: "on",
-                    nextSlideOnWindowFocus: "off",
-                    disableFocusListener: "off",
-                }
-            });
-        }
-    });
-</script>
-
-<script>
-    jQuery(window).load(function() {
-        var retina = window.devicePixelRatio > 1 ? true : false;
-        if (retina) {
-            var retinaEl = jQuery("#logo img");
-            var retinaLogoW = retinaEl.width();
-            var retinaLogoH = retinaEl.height();
-            retinaEl.attr("src", "{{ asset('frontend/immagini/logo-wexplore-retina.png') }}").width(retinaLogoW).height(retinaLogoH)
-        }
-    });
-</script>
-<input type="hidden" id="user_timezone" value="{{ session('timezone') }}">
-<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js">
-</script>
-<script type="text/javascript">
-    jQuery.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': "{{ csrf_token() }}"
-        }
-    });
-    jQuery(document).ready(function(){
-        var tz = jstz.determine(); // Determines the time zone of the browser client
-        var timezone = tz.name(); //'Asia/Kolhata' for Indian Time.
-        var val = jQuery("#user_timezone").val();
-        var _token = "{{ csrf_token() }}";
-        if(val == "") {
-            jQuery.ajax({
-                url:"{{ url('user/set-timezone') }}",
-                type:"POST",
-
-                data:{'timezone':timezone, '_token': _token},
-                success:function() {
-                    jQuery("#user_timezone").val(timezone);
-                }
-            })
-
-        }
-
-    });
-</script>
-
-
-<!--footer close-->
-<!-- owl carousel js-->
-
-<!-- owl carousel js-->
-<script id="dsq-count-scr" src="//wexplore-com.disqus.com/count.js" async></script>
-<script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
-@yield('js')
-</body>
-
-</html>

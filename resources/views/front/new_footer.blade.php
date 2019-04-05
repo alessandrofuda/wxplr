@@ -22,16 +22,16 @@
                     <div class="textwidget">
                         <ul class="list_mixed">
                             <li class="list_check">
-                                <a style="color:#ffffff;" href="/en/services">Services</a>
+                                <a style="color:#ffffff;" href="/services">Services</a>
                             </li>
                             <li class="list_check">
-                                <a style="color:#ffffff;" href="/en/about-us">About</a>
+                                <a style="color:#ffffff;" href="/about-us">About</a>
                             </li>
                             <li class="list_check">
-                                <a style="color:#ffffff;" href="/en/contact-us">Contacts</a>
+                                <a style="color:#ffffff;" href="/contact-us">Contacts</a>
                             </li>
 							<li class="list_check">
-                                <a style="color:#ffffff;" href="/en/faq">FAQ</a>
+                                <a style="color:#ffffff;" href="/faq">FAQ</a>
                             </li>
                         </ul>
                     </div>
@@ -44,16 +44,16 @@
                     <div class="textwidget">
                         <ul class="list_mixed">
                             <li class="list_check">
-                                 <a style="color:#ffffff;" href="/en/terms-service">Terms Of Service</a>
+                                 <a style="color:#ffffff;" href="/terms-service">Terms Of Service</a>
                             </li>
                             <li class="list_check">
-                                <a style="color:#ffffff;" href="/en/privacy-policy">Privacy Policy</a>
+                                <a style="color:#ffffff;" href="/privacy-policy">Privacy Policy</a>
                             </li>
                             <li class="list_check">
-                                <a style="color:#ffffff;" href="/en/cookies-policy">Cookie Policy</a>
+                                <a style="color:#ffffff;" href="/cookies-policy">Cookie Policy</a>
                             </li>
                             <li class="list_check">
-                                <a style="color:#ffffff;" href="/en/code-ethics">Code of Ethics</a>
+                                <a style="color:#ffffff;" href="/code-ethics">Code of Ethics</a>
                             </li>
                         </ul>
                     </div>

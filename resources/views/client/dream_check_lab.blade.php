@@ -396,7 +396,7 @@
                                           <div class="modal-body text-center">
                                             <p>We are processing your inputs. It takes a few seconds to process your request.<br>Please wait for our success notification...<span id="countdown"></span></p>
                                             <p>
-                                              <img src="/en/frontend/images/loading.gif" />
+                                              <img src="/frontend/images/loading.gif" />
                                             </p>  
                                           </div>
                                         </div>
@@ -572,7 +572,7 @@
                   headers: {
                       'X-CSRF-TOKEN': jQuery('input[name="_token"]').attr('value')
                   },
-                  url: jQuery("#final_form").attr('action'),  // http://wexplore.dev/en/user/dream_check_lab/submit"
+                  url: jQuery("#final_form").attr('action'),  // http://wexplore.dev/user/dream_check_lab/submit"
                   type: 'POST',
                   data: values,  // token + interest_country + form_id + state_id (5 se completo)
                   success: function (data) {
