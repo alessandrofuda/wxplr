@@ -28,8 +28,21 @@ class PasswordController extends CustomBaseController
      *
      * @return void
      */
-    public function __construct()
-    {   parent::__construct();
+    public function __construct() {   
+        parent::__construct();
         $this->middleware('guest');
+    }
+
+
+
+    public function getEmail(){
+        return view('auth.reset');
+    }
+
+    public function postReset(Request $request){
+        
+        dd($request);
+
+        return 'ok';
     }
 }

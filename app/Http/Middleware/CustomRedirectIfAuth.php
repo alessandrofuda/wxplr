@@ -34,13 +34,24 @@ class CustomRedirectIfAuth
      */
     public function handle($request, Closure $next)
     {
-        if ($this->auth->check()) { 
+        if ($this->auth->check()) {
+
+            $roles_arr = [];
+            foreach($request->user()->userRoles as $roles){
+                $roles_arr[] = $roles->role_id;
+            }
+
         	if($request->user()->is_admin == 1){
         		return redirect('/admin/dashboard');
-        	}
-            return redirect('/');
+        	} elseif (in_array(1,$roles_arr)) {
+                return redirect('/user/dashboard');
+            } elseif (in_array(2,$roles_arr)) {
+                return redirect('/consultant/dashboard');
+            } else {
+                return die('no role for current user (CustomRedirectIfAuth.php');
+            } 
         }
 
-        return $next($request);  //
+        return $next($request); 
     }
 }

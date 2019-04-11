@@ -334,6 +334,7 @@ class AuthController extends CustomBaseController
      * @return view
      */
 	public function login(){
+		
 		return view('front.login');
 	}
 
