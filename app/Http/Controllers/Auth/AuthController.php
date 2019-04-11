@@ -285,7 +285,8 @@ class AuthController extends CustomBaseController
     public function postLogin(Request $request) {
 		
 		$this->validate($request, [
-			'email' => 'required|email', 'password' => 'required',
+			'email' => 'required|email', 
+			'password' => 'required',
 		]);
 		$credentials = $request->only('email', 'password');
 		
@@ -306,7 +307,7 @@ class AuthController extends CustomBaseController
 	}
 
 	protected function getFailedLoginMessage() {
-		return 'These credentials do not match our records.';
+		return 'Login incorrect, please retry.';
 	}
 
 	public function postRegister(Request $request) {

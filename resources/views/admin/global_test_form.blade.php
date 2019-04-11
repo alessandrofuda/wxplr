@@ -44,9 +44,9 @@
                             <label>Parent Choice</label>
                             <select name="parent_choice" class="form-control">
                                 <option  value="_none" @if (!isset($question) || empty($question->parent_choice)) selected @endif>-- None --</option>
-                                {{--*/ $ques='' /*--}}
-								{{--*/ $i=1 /*--}}
-								{{--*/ $choices_count = count($choices) /*--}}
+                                {{ $ques='' }}
+								{{ $i=1 }}
+								{{ $choices_count = count($choices) }}
 								@if (isset($choices) && count($choices) > 0)
                                     @foreach ($choices as $choice)
 										@if(empty($ques))
@@ -59,7 +59,7 @@
 										@if($choices_count==$i){
 											</optgroup>
 										@endif
-										{{--*/ $ques=$choice->globalTest->id /*--}}
+										{{ $ques=$choice->globalTest->id }}
 									@endforeach
                                 @endif
                             </select>

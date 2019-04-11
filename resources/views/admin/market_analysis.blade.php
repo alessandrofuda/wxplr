@@ -1,7 +1,7 @@
 @extends('admin.layout')
 @section('content')
     
-{{--*/ $user=Auth::user(); /*--}}
+{{ $user=Auth::user() }}
 <div class='row'>
     <div class="col-md-12">
         @if (session('status'))

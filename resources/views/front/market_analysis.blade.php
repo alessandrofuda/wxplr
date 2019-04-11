@@ -55,7 +55,7 @@
 						<div id="pdf-carousel">
 							<div class="span12">
 							  <div id="owl_quality_of_work" class="owl-carousel">
-								{{--*/ $quality_work_pdfs = $market_analysis_data['quality_of_work']['pdfs'] /*--}}
+								{{ $quality_work_pdfs = $market_analysis_data['quality_of_work']['pdfs'] }}
 								@if(count($quality_work_pdfs)>0)
 									@foreach($quality_work_pdfs as $quality_work_pdf)
 										<div class="item">
@@ -84,7 +84,7 @@
 						<div id="pdf-carousel">
 							<div class="span12">
 							  <div id="owl_quality_of_life" class="owl-carousel">
-								{{--*/ $quality_life_pdfs = $market_analysis_data['quality_of_life']['pdfs'] /*--}}
+								{{ $quality_life_pdfs = $market_analysis_data['quality_of_life']['pdfs'] }}
 								@if(count($quality_life_pdfs)>0)
 									@foreach($quality_life_pdfs as $quality_life_pdf)
 										<div class="item">

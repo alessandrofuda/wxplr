@@ -13,11 +13,11 @@
 						<form accept-charset="UTF-8" method="post" action=" {{ url('user/profile/update') }}" class="checkout-form"  enctype="multipart/form-data">
 							{{ csrf_field() }}
 							@if(Route::current()->getName() == 'professional.kit')
-								{{--*/ $redirect_url = 'user/market_analysis' /*--}}
-								{{--*/ $submit_label = 'Save & Proceed to Market Analysis' /*--}}
+								{{ $redirect_url = 'user/market_analysis' }}
+								{{ $submit_label = 'Save & Proceed to Market Analysis' }}
 							@else
-								{{--*/ $redirect_url = 'user/profile' /*--}}
-								{{--*/ $submit_label = 'Save Profile' /*--}}
+								{{ $redirect_url = 'user/profile' }}
+								{{ $submit_label = 'Save Profile' }}
 							@endif
 
 							<input type="hidden" name="redirect_url" value="{{ $redirect_url }}">

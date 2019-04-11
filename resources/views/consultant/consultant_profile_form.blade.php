@@ -1,6 +1,6 @@
 @extends('consultant.consultant_dashboard_layout')
 @section('content')  
-{{--*/ $consultant=Auth::user(); /*--}}
+{{ $consultant=Auth::user() }}
 <div class="container user_profile_form">
 	<div class="row">
 		<div class="heading">

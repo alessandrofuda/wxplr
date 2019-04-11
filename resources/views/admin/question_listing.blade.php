@@ -32,7 +32,7 @@
 					  <th>Correct Answer</th>
 					  <th>Actions</th>
 					</tr>				
-					{{--*/ @$i = 1 /*--}}
+					{{ @$i = 1 }}
 					@foreach($questions as $question)
 					<tr>
 					  <td>{{ $i }}</td>
@@ -63,7 +63,7 @@
 							</div>
 						  </div><!-- end Modal -->
 					</tr>
-					{{--*/ @$i++ /*--}}
+					{{ @$i++ }}
 				@endforeach
 				@else
 				<tr><td>No Question Found! You can create question <a href="{{ url('admin/online_test/create') }}">here</a></td></tr>

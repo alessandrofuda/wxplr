@@ -1,14 +1,14 @@
 @extends('front.dashboard_layout')
 @section('content')
-{{--*/ $user=Auth::user(); /*--}}
+{{ $user=Auth::user() }}
 @if(Route::current()->getName() == 'professional.kit')
-	{{--*/ $containerClass = 'prof_kit_profile' /*--}}
-	{{--*/ $industryClass = 'popup-right' /*--}}
-	{{--*/ $occupationClass = 'popup-left' /*--}}
+	{{ $containerClass = 'prof_kit_profile' }}
+	{{ $industryClass = 'popup-right' }}
+	{{ $occupationClass = 'popup-left' }}
 @else
-	{{--*/ $containerClass = '' /*--}}
-	{{--*/ $industryClass = 'popup-left' /*--}}
-	{{--*/ $occupationClass = 'popup-right' /*--}}
+	{{ $containerClass = '' }}
+	{{ $industryClass = 'popup-left' }}
+	{{ $occupationClass = 'popup-right' }}
 @endif
 <div class="container user_profile_form {{ $containerClass }}">
 	<div class="row">
@@ -24,11 +24,11 @@
             	<form accept-charset="UTF-8" method="post" action=" {{ url('user/profile/update') }}" class="checkout-form"  enctype="multipart/form-data">
                 	{{ csrf_field() }}
 					@if(Route::current()->getName() == 'professional.kit')
-						{{--*/ $redirect_url = 'market_analysis' /*--}}
-						{{--*/ $submit_label = 'Save & Proceed to Market Analysis' /*--}}
+						{{ $redirect_url = 'market_analysis' }}
+						{{ $submit_label = 'Save & Proceed to Market Analysis' }}
 					@else
-						{{--*/ $redirect_url = 'user_profile' /*--}}
-						{{--*/ $submit_label = 'Save Profile' /*--}}
+						{{ $redirect_url = 'user_profile' }}
+						{{ $submit_label = 'Save Profile' }}
 					@endif
 					<input type="hidden" name="redirect_url" value="{{ $redirect_url }}">
 				<input type="hidden" name="user_id" value="{{ $user->id }}">

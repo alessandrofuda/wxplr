@@ -1,6 +1,6 @@
 @extends('front.layout')
 @section('content')
-{{--*/ $user=Auth::user() /*--}}
+{{ $user=Auth::user() }}
 <div class="container">
 	<div class="row">
 		<div class="heading">

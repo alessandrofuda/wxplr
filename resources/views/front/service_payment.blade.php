@@ -283,10 +283,9 @@
 						    <li id="total_price_new" style="display: {{ isset($discount_amount) ? '' : 'none' }};"><span>Discounted Amount</span><span id="total_price_value_new">{{ isset($amount) ? '€'.$amount : '0.00' }}</span></li>
 					    </ul>
 			        </div>
-
 			        <div class="right_service_details">
 				        <div class="section_heading">Payment Method</div><br/>
-						{{--*/ $price = $amount; /*--}}
+						{{ $price = $amount }}
 		                @if(isset($service))
 		                    @if(is_object($service) && !empty($service))
 		                        @if($service->price > 0 )@endif

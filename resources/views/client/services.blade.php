@@ -34,20 +34,20 @@
 								</form>
 							@else
 								@if ($service_id == 1 && $service['price']==0)
-								{{--*/ $btn_url=url('global_orientation_test'); /*--}}
-								{{--*/ $btn_label='Start test'; /*--}}
+								{{ $btn_url=url('global_orientation_test') }}
+								{{ $btn_label='Start test' }}
 								@elseif($service_id == 2 && $service['price']!=0)
-									{{--*/ $btn_url=url('user/professional_kit'); /*--}}
-									{{--*/ $btn_label='Continue'; /*--}}
+									{{ $btn_url=url('user/professional_kit') }}
+									{{ $btn_label='Continue' }}
 								@elseif($service_id == 3 && $service['price']!=0)
-									{{--*/ $btn_url=url('skill_development/videos'); /*--}}
-									{{--*/ $btn_label='Continue'; /*--}}
+									{{ $btn_url=url('skill_development/videos') }}
+									{{ $btn_label='Continue' }}
 								@elseif($service_id == 4 )
-									{{--*/ $btn_url=url('/global_toolbox'); /*--}}
-									{{--*/ $btn_label='Continue'; /*--}}
+									{{ $btn_url=url('/global_toolbox') }}
+									{{ $btn_label='Continue' }}
 								@else
-									{{--*/ $btn_url=url('user/dashboard'); /*--}}
-									{{--*/ $btn_label='Continue'; /*--}}
+									{{ $btn_url=url('user/dashboard') }}
+									{{ $btn_label='Continue' }}
 								@endif
 								<a href="{{ $btn_url }}" class="service_btn" type="button">{{ $btn_label }}</a>
 							@endif
