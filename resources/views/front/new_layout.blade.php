@@ -240,6 +240,7 @@
 			</div>
 			@yield('slider')
 			@yield('content')
+			
 
 			<!-- Footer-->
 			<footer id="Footer" class="clearfix">

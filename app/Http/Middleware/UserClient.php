@@ -15,7 +15,7 @@ class UserClient
      */
     public function handle($request, Closure $next)
     {
-        $roles_arr = array();
+        $roles_arr = [];
         if (Auth::check()) {
             foreach($request->user()->userRoles as $roles){
                 $roles_arr[] = $roles->role_id;
@@ -25,6 +25,6 @@ class UserClient
         	}
             return redirect('/');
         }
-        return $next($request);
+        //return $next($request);
     }
 }

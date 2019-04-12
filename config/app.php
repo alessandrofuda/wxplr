@@ -151,7 +151,8 @@ return [
 		Maatwebsite\Excel\ExcelServiceProvider::class,
 		Spatie\CookieConsent\CookieConsentServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-        Spatie\UrlSigner\Laravel\UrlSignerServiceProvider::class
+        Spatie\UrlSigner\Laravel\UrlSignerServiceProvider::class,
+        Illuminate\Notifications\NotificationServiceProvider::class,
     ],
 
     /*
@@ -207,7 +208,8 @@ return [
 		'Excel'      => Maatwebsite\Excel\Facades\Excel::class,
         'JWTAuth'    => Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
-        'UrlSigner'  => Spatie\UrlSigner\Laravel\UrlSignerFacade::class
+        'UrlSigner'  => Spatie\UrlSigner\Laravel\UrlSignerFacade::class,
+        'Notification' => Illuminate\Support\Facades\Notification::class
 	],
 
 ];

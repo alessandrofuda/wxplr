@@ -1,10 +1,10 @@
 @extends('front.dashboard_layout')
 @section('top_section')
 	<h1>Dashboard<small>Services</small></h1>
-	<!--<ol class="breadcrumb">
+	<!--ol class="breadcrumb">
 	<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
 	<li class="active">Dashboard</li>
-	</ol>-->
+	</ol-->
 @endsection
 @section('content')
 	<div class="container">

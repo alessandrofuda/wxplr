@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\CustomBaseController;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
-class PasswordController extends CustomBaseController
+class ResetPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -20,23 +19,21 @@ class PasswordController extends CustomBaseController
     */
 
     use ResetsPasswords;
-    
-    protected $redirectTo = '/user/dashboard';
 
     /**
-     * Create a new password controller instance.
+     * Where to redirect users after resetting their password.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/';
+
+    /**
+     * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct() {   
-        parent::__construct();
+    public function __construct()
+    {
         $this->middleware('guest');
-    }
-
-    public function postReset(Request $request){
-        
-        dd($request);
-
-        return 'ok';
     }
 }

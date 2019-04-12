@@ -87,9 +87,17 @@ Route::get('send_email_test', function() {
     //        }); 
 });
 */
+Auth::routes();
+
+
 Route::get('/', function() {
 	return redirect('login');
 });
+
+Route::get('home', function(){
+	return redirect('login');
+})->name('home');
+
 Route::get('time', function() {
     return date('Y-m-d H:i:s');  // getdate();
 });
@@ -164,12 +172,12 @@ Route::get('time', function() {
 	Route::get('thank-you/{service_id}', 'PagesController@thankYouPage');
 
 	// Password reset link request routes...
-	Route::get('password/email', 'Auth\PasswordController@getEmail');
-	Route::post('password/email', 'Auth\PasswordController@postEmail');
+	Route::get('password/email', 'Auth\ForgotPasswordController@showLinkRequestForm'); // 'Auth\PasswordController@getEmail');
+	Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');  // 'Auth\PasswordController@postEmail');
 
 	// Password reset routes...
-	Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
-	Route::post('password/reset', 'Auth\PasswordController@postReset');
+	Route::get('password/reset/{token}', array( 'as'=>'password.reset', 'uses'=>'Auth\ResetPasswordController@showResetForm'));
+	Route::post('password/reset', array('as'=>'auth.passwords.reset', 'uses'=>'Auth\ResetPasswordController@reset'));
 
 	Route::group( ['middleware' => ['auth'] ], function(){
 		Route::get('user/download/{file}',['as' => 'download_file', 'uses' => 'ConsultantProfileController@download_file']);
@@ -223,15 +231,20 @@ Route::get('time', function() {
 		});
 		Route::group(['middleware' => 'userClient'], function(){
 			Route::get('consultant/{booking_id}/{type_id}/calendar', 'ProfessionalKitController@availability_calender');
-
 			Route::get('user/meeting/{booking_id}',array('as'=>'user_start_meeting', 'uses' => 'ProfessionalKitController@start_meeting'));
-
 			Route::any('service/profile', array('as' => 'service_profile', 'uses' => 'ServiceOrdersController@service_profile'));
 			Route::post('service/profile/save', 'ServiceOrdersController@service_profile_save');
 			//Route::get('user/services', 'PagesController@services');
 			Route::get('user/dashboard', ['as' => 'user.dashboard','uses' => 'PagesController@client_dashboard']);
 			Route::get('global_orientation_test', 'PagesController@global_online_test');
 			Route::post('global_orientation_test', 'PagesController@global_online_test_next');
+
+
+			Route::get('user/got-pro', array('as'=>'got_pro', 'uses'=>'GotProController@index'));
+			Route::get('user/career-ready', array('as'=>'career_ready', 'uses'=>'CareerReadyController@index'));
+			Route::get('user/wow', array('as'=>'wow', 'uses'=>'WowController@index'));
+
+
 			Route::get('get_address/{addr_id}', 'ServiceOrdersController@get_address');
 			Route::get('user/orders', 'ServiceOrdersController@user_orders');
 			Route::get('order/{order_id}/invoice', 'ServiceOrdersController@order_invoice');

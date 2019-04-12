@@ -200,7 +200,7 @@
 				<ul>
 					<li style="border-bottom: none; line-height: 45px;">
 						<span>Account status: </span>
-						<span class="Fill_detais" style="float: none;">Active from {!! $active_from_date .'&nbsp;&nbsp;&nbsp; H '. $active_from_time !!}</span>
+						<span class="Fill_detais" style="float: none;">Active since {!! $active_from_date .'&nbsp;&nbsp;&nbsp; ('.$active_from_time.')' !!}</span>
 						<button style="float: right; font-size: 110%;" type="button" class="btn btn-info btn-lg delete_modal_btn" data-toggle="modal" data-target="#deleteModal_{{ $user->id }}">
 							<span class="glyphicon glyphicon-trash" style="margin-right: 10px;"></span>Delete Account
 						</button>

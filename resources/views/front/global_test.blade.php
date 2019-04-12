@@ -28,7 +28,7 @@
 				
 				@if($global_test_compiled_yet === true && !empty($outcome_data))
 				
-					<div class="alert alert-info">You have already completed the <b>Global Orientation Test</b>. If you want to recompile click <a href="{{ asset('global_orientation_test?force=recompile') }}">here</a> otherwise <a href="#proceed">proceed to Professional Kit</a></div>
+					<div class="alert alert-info">You have already completed the <b>Global Orientation Test</b>. If you want to recompile <a href="{{ asset('global_orientation_test?force=recompile') }}">click here</a> otherwise proceed to <a class="btn btn-success" href="{{route('got_pro')}}" style="text-decoration: none;"> Global Orientation Test PRO</a></div>
 				
 				@endif
 				
@@ -99,10 +99,10 @@
 @if ( ($last_question && !empty($outcome_data)) || ($global_test_compiled_yet === true && !empty($outcome_data)) )
 <div class="bottom_content">
 	<div class="col-md-8">
-		<p>How can you use this information to your best advantage? How can you get more insights on your target countries? Find out with the <span style="color: #2087C8;">Professional Kit!</span></p>
+		<p>How can you use this information to your best advantage? How can you get more insights on your target countries? Find out with the Global Orientation Test PRO!</p>
 		<a id="proceed" style="position:relative; top:-50px; visibility: hidden;"></a>
-		<a href="{{ url('professional-kit') }}" class="btn btn-success btn-lg btn-block" style="margin:25px auto;">
-			Proceed to <b>Professional Kit</b> <span class="glyphicon glyphicon-triangle-right" style="font-size: 17px; 
+		<a href="{{ route('got_pro') }}" class="btn btn-success btn-lg btn-block" style="margin:25px auto;">
+			Proceed to <b>Global Orientation Test PRO</b> <span class="glyphicon glyphicon-triangle-right" style="font-size: 17px; 
 			margin-left: 30px; position: relative; display: inline-block;"></span>
 		</a>
 	</div>
