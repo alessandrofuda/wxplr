@@ -63,13 +63,10 @@ class ProfessionalKitController extends CustomBaseController {
 		$order = Order::where('user_id',\Auth::user()->id)->where('item_name','Professional Kit')->first();
 
 		if($order != null) {
-
 			if($order->step_id < 0) {
 				return redirect("user/professional_kit/profile");
 			}
-
 		}
-
 		$data['page_title'] = 'Professional Kit';
 		
 		return view('client.professional_kit_step', $data);

@@ -64,7 +64,7 @@
 					</div>
 					<div class="box-body">
 						@foreach($user_services as $service_id=>$service)
-							<div class="col-md-4">
+							<div class="col-md-6">
 								<div class="box-style">
 									<div class="top-stripe bckg-custom-orange"></div>
 									<span class="imgblock"><img src="{{ asset($service["user_dashboard_image"]) }}" alt="Professional Kit"></span>											

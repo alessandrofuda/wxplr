@@ -2,7 +2,7 @@
 <footer id="Footer" class="clearfix">
 
     <div class="widgets_wrapper">
-        <div class="container">
+        <div class="container" style="clear: none;">
             <div class="one-second column">
                 <!-- Text Area -->
                 <aside id="text-7" class="widget widget_text">

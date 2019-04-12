@@ -415,6 +415,11 @@ class PagesController extends CustomBaseController {
 		$services_obj=Service::whereIn('id',$services)->get();
 		$user_services=array();
 
+
+		// modifica 12/04/2019 
+		$services_obj = Service::whereIn('id', [1,5,6,7])->get();
+
+
 		if($services_obj->count() > 0){
 			foreach($services_obj as $service){
 				$url = '';
@@ -439,6 +444,8 @@ class PagesController extends CustomBaseController {
 				);
 			}
 		}
+
+		//dd($user_services);
 
 		$unpaid_services_obj=Service::whereNotIn('id',$services)->get();
 		$user_unpaid_services=array();

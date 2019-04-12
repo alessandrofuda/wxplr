@@ -235,53 +235,76 @@
 					    <ul class="service_order">
 		                    @if(isset($service))
 		                    <li><span>Service</span>
-		                        <span>{{ $service != null ? $service->name : "" }}</span></li>
+		                        <span class="service-name">{!! $service != null ? $service->name : "" !!}</span>
+		                    </li>
 		                    <li><span>Price</span>
-		                        <span>{{ $service != null ? '€'.round($service->vatprice()) : ""}}</span></li>
+		                        <span>{{ $service != null ? '€'.round($service->vatprice()) : ""}}</span>
+		                    </li>
 		                    <li><span>Vat</span>
-		                        <span>{{  $service != null ? '€'.round($service->vatprice(true) * 22/100) : "" }}</span></li>
+		                        <span>{{  $service != null ? '€'.round($service->vatprice(true) * 22/100) : "" }}</span>
+		                    </li>
 		                    <li><span>Total Price</span>
-		                        <span id="total_price">{{ $service != null ? '€'.$service->price : "" }} </span></li>
+		                        <span id="total_price">{{ $service != null ? '€'.$service->price : "" }} </span>
+		                    </li>
 		                    @elseif(isset($video))
-		                        <li><span>Video Name</span>
-		                            <span>{{ $video->video_title }}</span></li>
+		                        <li><span class="service-name">Video Name</span>
+		                            <span >{!! $video->video_title !!}</span>
+		                        </li>
 		                        <li><span>Price</span>
-		                            <span>{{ '€'.$video->vatprice() }}</span></li>
+		                            <span>{{ '€'.$video->vatprice() }}</span>
+		                        </li>
 		                        <li><span>Vat</span>
-		                            <span>{{ '€'.round($video->vatprice() * 22/100)  }}</span></li>
+		                            <span>{{ '€'.round($video->vatprice() * 22/100)  }}</span>
+		                        </li>
 		                        <li><span>Total Price</span>
-		                            <span id="total_price">{{  '€'.$video->price  }} </span></li>
+		                            <span id="total_price">{{  '€'.$video->price  }} </span>
+		                        </li>
 		                    @elseif(isset($event))
-		                        <li><span>Event Name</span>
-		                            <span>{{ $event->name }}</span></li>
+		                        <li><span class="service-name">Event Name</span>
+		                            <span>{!! $event->name !!}</span>
+		                        </li>
 		                        <li><span>Price</span>
-		                            <span>{{ '€'.$event->vatprice() }}</span></li>
+		                            <span>{{ '€'.$event->vatprice() }}</span>
+		                        </li>
 		                        <li><span>Vat</span>
-		                            <span>{{ '€'.round($event->vatprice() * 22/100)  }}</span></li>
+		                            <span>{{ '€'.round($event->vatprice() * 22/100)  }}</span>
+		                        </li>
 		                        <li><span>Total Price</span>
-		                            <span id="total_price">{{  '€'.$event->price  }} </span></li>
+		                            <span id="total_price">{{  '€'.$event->price  }} </span>
+		                        </li>
 		                    @elseif(isset($package))
-		                        <li><span>Package Name</span>
-		                            <span>{{ $package->title }}</span></li>
+		                        <li><span class="service-name">Package Name</span>
+		                            <span>{!! $package->title !!}</span>
+		                        </li>
 		                        <li><span>Price</span>
-		                            <span>{{ '€'.$package->vatprice() }}</span></li>
+		                            <span>{{ '€'.$package->vatprice() }}</span>
+		                        </li>
 		                        <li><span>Vat</span>
-		                            <span>{{ '€'.round($package->vatprice() * 22/100)  }}</span></li>
+		                            <span>{{ '€'.round($package->vatprice() * 22/100)  }}</span>
+		                        </li>
 		                        <li><span>Total Price</span>
-		                            <span id="total_price">{{  '€'.$package->price  }} </span></li>
+		                            <span id="total_price">{{  '€'.$package->price  }} </span>
+		                        </li>
 		                    @else
 		                        <li><span>Service</span>
-		                        <span id="selected_service_name"></span></li>
-		                    <li><span>Price</span>
-		                        <span id="selected_service_amount"></span></li>
-		                    <li><span>Vat</span>
-		                        <span id="selected_service_vat"></span></li>
-		                    <li><span>Total Price</span>
-		                        <span id="total_price"></span></li>
+		                        <span id="selected_service_name"></span>
+			                    </li>
+			                    <li><span>Price</span>
+			                        <span id="selected_service_amount"></span>
+			                    </li>
+			                    <li><span>Vat</span>
+			                        <span id="selected_service_vat"></span>
+			                    </li>
+			                    <li><span>Total Price</span>
+			                        <span id="total_price"></span>
+			                    </li>
 		                    @endif
 		                    <li id="discount_avail" style="display: {{ isset($discount_amount) ? '' : 'none' }};"><span>Discount</span><span id="discount_value">{{ isset($discount_amount) ? '€'.$discount_amount : '0.00' }}</span></li>
 						    <li id="total_price_new" style="display: {{ isset($discount_amount) ? '' : 'none' }};"><span>Discounted Amount</span><span id="total_price_value_new">{{ isset($amount) ? '€'.$amount : '0.00' }}</span></li>
 					    </ul>
+					    <style>
+					    	.service_order .service-name { padding: 0 15px; background-color: #5cb85c; color: #fff; }
+					    </style>
 			        </div>
 			        <div class="right_service_details">
 				        <div class="section_heading">Payment Method</div><br/>
