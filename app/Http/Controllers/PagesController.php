@@ -416,13 +416,23 @@ class PagesController extends CustomBaseController {
 		$user_services=array();
 
 
+
+
 		// modifica 12/04/2019 
-		$services_obj = Service::whereIn('id', [1,5,6,7])->get();
+		$services_obj = Service::whereIn('id', [1,5,6,7])->get();  // 1,5,6,7 sono gli id dei nuovi servizi !!
+		$services_purchased_by_user = Order::where('user_id',$user_id)->pluck('item_name'); 
+		$services_purchased_by_user_arr = [];
+		foreach ($services_purchased_by_user as $k => $service_name) {
+			$services_purchased_by_user_arr[] = $service_name;
+		}
+
 
 
 		if($services_obj->count() > 0){
 			foreach($services_obj as $service){
 				$url = '';
+				$label = 'start';
+
 				if($service->name == 'Skill Development') {
 					$url = url('skill_development/browse');
 				}elseif($service->name == 'Global Orientation Test') {
@@ -431,7 +441,16 @@ class PagesController extends CustomBaseController {
 					$url = url('/global_toolbox');
 				}elseif($service->name == 'Professional Kit') {
 					$url = url('/professional_kit');
+				}elseif ($service->name == 'Global Orientation Test PRO') {
+					$url = url('/user/got-pro');
+				}elseif ($service->name == 'Career Ready') {
+					$url = url('/user/career-ready');
+				}elseif ($service->name == 'WOW') {
+					$url = url('/user/wow');
 				}
+
+				$label = in_array($service->name, $services_purchased_by_user_arr) ? 'start' : 'buy';
+				
 				$user_services[$service->id]=array(
 					'purchased'=>'yes',
 					'name'=>$service->name,
@@ -441,11 +460,11 @@ class PagesController extends CustomBaseController {
 					'description'=>$service->description,
 					'user_dashboard_desc'=>$service->user_dashboard_desc,
 					'url' => $url,
+					'label' => $label,
 				);
 			}
 		}
 
-		//dd($user_services);
 
 		$unpaid_services_obj=Service::whereNotIn('id',$services)->get();
 		$user_unpaid_services=array();

@@ -85,23 +85,7 @@
 												<button type="submit" class="applynow service_btn" >Start</button>
 											</form>
 										@else
-											@if ($service_id == 1 && $service['price']==0)
-											{{ $btn_url=url('global_orientation_test') }}
-											{{ $btn_label='Start test' }}
-											@elseif($service_id == 2 && $service['price']!=0)
-												{{ $btn_url=url('user/professional_kit') }}
-												{{ $btn_label='Start' }}
-											@elseif($service_id == 3 && $service['price']!=0)
-												{{ $btn_url=url('skill_development/videos') }}
-												{{ $btn_label='Start' }}
-											@elseif($service_id == 4 )
-												{{ $btn_url=url('/user/global/dashboard') }}
-												{{ $btn_label='Start' }}
-											@else
-												{{ $btn_url=url('user/dashboard') }}
-												{{ $btn_label='Start' }}
-											@endif
-											<a href="{{ $btn_url }}" class="service_btn" type="button">{{ $btn_label }}</a>
+											<a href="{{ $service['url'] }}" class="service_btn" type="button">{{ $service['label'] }}</a>
 										@endif
 									</div>
 								</div>
