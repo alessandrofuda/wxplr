@@ -1,15 +1,20 @@
 @extends('front.dashboard_layout')
 @section('content')
-{{ $user=Auth::user() }}
+
 @if(Route::current()->getName() == 'professional.kit')
-	{{ $containerClass = 'prof_kit_profile' }}
-	{{ $industryClass = 'popup-right' }}
-	{{ $occupationClass = 'popup-left' }}
+	@php
+		$containerClass = 'prof_kit_profile';
+		$industryClass = 'popup-right';
+		$occupationClass = 'popup-left';
+	@endphp
 @else
-	{{ $containerClass = '' }}
-	{{ $industryClass = 'popup-left' }}
-	{{ $occupationClass = 'popup-right' }}
+	@php
+		$containerClass = '';
+		$industryClass = 'popup-left'; 
+		$occupationClass = 'popup-right';
+	@endphp 
 @endif
+
 <div class="container user_profile_form {{ $containerClass }}">
 	<div class="row">
 		<div class="heading">
@@ -24,14 +29,18 @@
             	<form accept-charset="UTF-8" method="post" action=" {{ url('user/profile/update') }}" class="checkout-form"  enctype="multipart/form-data">
                 	{{ csrf_field() }}
 					@if(Route::current()->getName() == 'professional.kit')
-						{{ $redirect_url = 'market_analysis' }}
-						{{ $submit_label = 'Save & Proceed to Market Analysis' }}
+						@php
+							$redirect_url = 'market_analysis';
+							$submit_label = 'Save & Proceed to Market Analysis';
+						@endphp
 					@else
-						{{ $redirect_url = 'user_profile' }}
-						{{ $submit_label = 'Save Profile' }}
+						@php
+							$redirect_url = 'user_profile';
+							$submit_label = 'Save Profile';
+						@endphp
 					@endif
 					<input type="hidden" name="redirect_url" value="{{ $redirect_url }}">
-				<input type="hidden" name="user_id" value="{{ $user->id }}">
+					<input type="hidden" name="user_id" value="{{ $user->id }}">
 					@if(Route::current()->getName() != 'professional.kit')
 						<div class="form-group col-md-6 has-feedback">
 							<label for="name">Name </label>
@@ -46,13 +55,13 @@
 					@endif
                     <div class="form-group col-md-6 has-feedback profile_picture">
 
-                    		@if(isset($user->userProfile->profile_picture))
-								@if($user->userProfile->profile_picture != null)
-								<div class="col-xs-2">
-	                        <img alt="{{ $user->name }}" src="{{ asset($user->userProfile->profile_picture) }}">
-								</div>
-									@endif
-	                    	@endif
+                		@if(isset($user->userProfile->profile_picture))
+							@if($user->userProfile->profile_picture != null)
+							<div class="col-xs-2">
+                        		<img alt="{{ $user->name }}" src="{{ asset($user->userProfile->profile_picture) }}">
+							</div>
+							@endif
+                    	@endif
 
 						<div class="col-xs-10">
 							<label for="profile_picture">Profile Picture </label>
@@ -60,19 +69,19 @@
 						</div>
 				    </div>
 					@if(Route::current()->getName() != 'professional.kit')
-						  <div class="form-group col-md-6 has-feedback">
-								<label for="email">Email </label>
+						<div class="form-group col-md-6 has-feedback">
+							<label for="email">Email </label>
 							<input type="email" class="form-control" disabled required email placeholder="Email" name="email" value="{{ $user->email }}">
 							<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-						  </div>
-						<div class="form-group col-md-6">
+						</div>
+						<!--div class="form-group col-md-6">
 							<label>Password</label>
 							<input type="password" name="password" class="form-control" placeholder="Enter password..." value="">
-						  </div>
-						  <div class="form-group col-md-6">
+						</div>
+						<div class="form-group col-md-6">
 							<label>Confirm Password</label>
 							<input type="password" class="form-control" placeholder="Confirm password" name="password_confirmation">
-						  </div>
+						</div-->
 					@endif
 				<div class="form-group col-md-6 Gender">
                     <label>Gender</label>

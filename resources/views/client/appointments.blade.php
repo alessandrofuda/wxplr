@@ -23,7 +23,6 @@
 					<th>Type</th>
 					<th>Status</th>
 					<th>Operation</th>
-					<th></th>
 				</tr>
 				</thead>
 				<tbody>

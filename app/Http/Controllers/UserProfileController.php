@@ -29,8 +29,8 @@ class UserProfileController extends CustomBaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
+        
         $data['page_title']='Profile';
         $cc_code=Country::all();
         $data['countries_code'] = $cc_code;
@@ -85,6 +85,7 @@ class UserProfileController extends CustomBaseController
 		$data['countries_code'] = $cc_code;
         $data['page_title']='Profile edit';
         $data['occupations'] = User::getOccupationsList();
+        $data['user'] = Auth::user();
 		return view('client.user_profile_form',$data);
     }
 
@@ -96,8 +97,7 @@ class UserProfileController extends CustomBaseController
      * @return \Illuminate\Http\Response
      */
 
-    public function update(Request $request)
-    {
+    public function update(Request $request) {
         $base_path=base_path();
         $base_path=str_replace("/wexsite", "", $base_path);
         $user_id = Auth::user()->id;
@@ -105,10 +105,10 @@ class UserProfileController extends CustomBaseController
         if($redirect_url != 'market_analysis') {
             $rules['name'] = 'required|max:255';
             $rules['surname'] = 'required|max:255';
-            $rules['password'] = 'confirmed|min:6';
+            // $rules['password'] = 'confirmed|min:6';
         }
         //'email' => 'required|email|max:255|unique:users,email,'.$user_id,  
-        $rules['profile_picture'] = 'image'; // o.. 'image|mimes:jpg,png'  // decommentato, in origine era commentato.. verificare corretto funzionamento
+        $rules['profile_picture'] = 'image'; 
         $rules['gender'] = 'required';
         $rules['age_range'] = 'required';
         $rules['country_origin'] = 'required';
@@ -130,7 +130,7 @@ class UserProfileController extends CustomBaseController
 		$validator = Validator::make($request->all(), $rules);
 		//echo '<pre>';print_r($validator->fails());exit;
 		if($validator->fails()) {
-        	return redirect()->back()->withErrors($validator->errors());
+        	return back()->withErrors($validator->errors());
         }
         $profile_picture_path='';
 
@@ -138,9 +138,9 @@ class UserProfileController extends CustomBaseController
         if($redirect_url != 'market_analysis') {
             $users['name'] = $request['name'];
             $users['surname'] = $request['surname'];
-            if (!empty($request['password'])) {
-                $users['password'] = bcrypt($request['password']);
-            }
+            // if (!empty($request['password'])) {
+            //     $users['password'] = bcrypt($request['password']);
+            // }
         }
 
         $profile_data['user_id'] = $user_id;

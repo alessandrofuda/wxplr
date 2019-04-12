@@ -38,7 +38,7 @@
                                 @endforeach
                             @else
                                 <tr role="row" class="odd">
-                                  <td colspan="2">No role created yet!</td>
+                                  <td colspan="4">No Order created yet!</td>
                                 </tr>
                             @endif
                         </tbody>

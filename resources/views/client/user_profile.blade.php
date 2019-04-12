@@ -231,6 +231,9 @@
 		</div>
 	</div>
 
+
+	<script src="{{ asset('frontend/js/jquery-2.1.4.min.js') }}"></script>
+	<script src="{{ asset('frontend/js/jquery.ui.js') }}"></script>
 	<script>
 		$("#edit_login").click(function () {
 			$("#view_login_data").hide();

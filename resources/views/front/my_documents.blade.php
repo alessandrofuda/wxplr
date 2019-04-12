@@ -38,7 +38,7 @@
                             @endforeach
                         @else
                             <tr role="row" class="odd">
-                                <td colspan="2">No Documents found!</td>
+                                <td colspan="4">No Documents found!</td>
                             </tr>
                         @endif
                         </tbody>

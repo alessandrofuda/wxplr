@@ -184,8 +184,8 @@ class AuthController extends CustomBaseController
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
-    {
+    protected function create(array $data) {
+
 		$users['name'] = $data['name'];
 		$users['surname'] = $data['surname'];
 		$users['email'] = $data['email'];
@@ -208,34 +208,24 @@ class AuthController extends CustomBaseController
 		UserProfile::create($profile_data);
 		$user = User::findOrFail($user_obj->id);
 
-		$role_arr = array('user_id'=>$user->id,'role_id'=>1);
+		$role_arr = array('user_id'=>$user->id,'role_id'=>1);  // User role !!
 		$ur = UserRoles::create($role_arr);
 
+        // user notification
         Mail::send('emails.registeration', ['user' => $user,'password'=>$data['password']], function ($m) use ($user) {
 			$settings=Setting::find(1);
 			$site_email = $settings->website_email;
             $m->from($site_email, 'Wexplore');
-
             $m->to($user->email, $user->name)->subject('You are registered successfuly!');
         });
-
 
         // admin notification
         Mail::send('emails.registeration_admin_notif', ['user' => $user], function($m) use ($user) {
 			$site_email = Setting::find(1)->website_email;			
 			$admin_emails = User::getNotificationList();
-
             $m->from($site_email, 'Wexplore');
             $m->to($admin_emails)->subject('New account at Wexplore has been activated');
         });
-
-
-
-
-
-
-
-
 
 		/*$service_name = 'Global Orientation Test';
 
@@ -313,9 +303,7 @@ class AuthController extends CustomBaseController
 	public function postRegister(Request $request) {
         $validator = $this->validator($request->all());
         if ($validator->fails()) {
-            $this->throwValidationException(
-                $request, $validator
-            );
+        	return back()->withInput()->withErrors($validator->errors());
         }
         Auth::login($this->create($request->all()));
 		// if session set redirect to parent url from where user comes on registeration form

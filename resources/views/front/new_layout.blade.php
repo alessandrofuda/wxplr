@@ -146,18 +146,13 @@
 			                                                <a href="{{url('/')}}"><span>Home</span></a>
 			                                            </li>
 			                                        @if(!\Auth::check())
-			                                            <li>
-			                                                <a href="{{ url('auth/login') }}"><span>Login</span></a>
-			                                            </li>
-			                                            <li>
-			                                                <a href="/it"><span><img src="/frontend/immagini/Flag-ita.jpg" alt="" /></span></a>
-			                                            </li>
+			                                            <!--li>
+			                                                <a href="{{-- url('login') --}}"><span>Login</span></a>
+			                                            </li-->
 			                                        @else
 			                                            <li>
 			                                                <a href="{{ url('auth/logout') }}"><span>Logout</span></a>
 			                                            </li>
-
-
 
 
 			                                            @if(\Auth::user()->isConsultant())
