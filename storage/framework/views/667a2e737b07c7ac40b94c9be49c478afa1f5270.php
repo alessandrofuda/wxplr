@@ -53,12 +53,8 @@
                 <div class="top_bar_left clearfix">
                     <!-- Logo-->
                     <div class="logo">
-                        <a id="logo" href="<?php echo e(URL::to('/')); ?>" title="Wexplore">
-                            <?php if(isset($settings)): ?>
-                                <img class="scale-with-grid"  src="<?php echo e(asset($settings->logo)); ?>" alt="Wexplore">
-                            <?php else: ?>
-                                <img class="scale-with-grid" src="<?php echo e(asset('frontend/immagini/logo-wexplore.png')); ?>" alt="Wexplore" />
-                            <?php endif; ?>
+                        <a id="logo" href="<?php echo e(URL::to('/')); ?>" title="Wexplore">           
+                            <img class="scale-with-grid" src="<?php echo e(asset('frontend/images/wexplore-logo.svg')); ?>" alt="Wexplore" /> 
                         </a>
                     </div>
                     <!-- Main menu-->

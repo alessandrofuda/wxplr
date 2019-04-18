@@ -1652,7 +1652,7 @@ body.minimalist-header.header-below:not(.template-slider) #Header {
     border-right-width: 1px;
     border-style: solid;
 	font-weight: 600;
-    font-size: 22px;
+    font-size: 18px;
 }
 
 #Top_bar .menu > li > a span.description {
@@ -4126,7 +4126,7 @@ body:not(.with_aside) .portfolio_group.list .portfolio-item .portfolio-item-fw-w
 
 #Footer .footer_copy .one {
     margin-bottom: 20px;
-    padding-top: 30px;
+    /*padding-top: 30px;*/
 }
 
 #Footer .footer_copy .copyright {
@@ -5181,8 +5181,8 @@ html,body {
         position: fixed;
         width: 100%;
         left: 0;
-        top: -60px;
-        height: 60px;
+        top: -70px;
+        height: 70px;
         z-index: 701;
         background: #fff;
         opacity: .97;
@@ -5208,12 +5208,12 @@ html,body {
 
     #Top_bar.is-sticky #logo {
         padding: 5px 0;
-        height: 50px;
-        line-height: 50px;
+        height: 60px;
+        line-height: 60px;
     }
 
     #Top_bar.is-sticky #logo img {
-        max-height: 35px;
+        /*max-height: 35px;*/
         width: auto !important;
     }
 

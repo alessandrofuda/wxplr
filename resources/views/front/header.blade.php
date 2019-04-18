@@ -53,12 +53,8 @@
                 <div class="top_bar_left clearfix">
                     <!-- Logo-->
                     <div class="logo">
-                        <a id="logo" href="{{ URL::to('/') }}" title="Wexplore">
-                            @if(isset($settings))
-                                <img class="scale-with-grid"  src="{{ asset($settings->logo) }}" alt="Wexplore">
-                            @else
-                                <img class="scale-with-grid" src="{{ asset('frontend/immagini/logo-wexplore.png') }}" alt="Wexplore" />
-                            @endif
+                        <a id="logo" href="{{ URL::to('/') }}" title="Wexplore">           
+                            <img class="scale-with-grid" src="{{ asset('frontend/images/wexplore-logo.svg') }}" alt="Wexplore" /> 
                         </a>
                     </div>
                     <!-- Main menu-->
