@@ -6,6 +6,7 @@ Homestead.json
 .env
 /vendor
 /storage/*.key
+/storage/logs
 MyProject.komodoproject
 git4rv
 .idea
