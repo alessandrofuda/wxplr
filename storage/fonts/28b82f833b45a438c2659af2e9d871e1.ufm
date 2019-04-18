@@ -1,0 +1,26 @@
+StartFontMetrics 4.1
+Notice Converted by PHP-font-lib
+Comment https://github.com/PhenX/php-font-lib
+EncodingScheme FontSpecific
+FontName slick
+FontSubfamily Regular
+UniqueID FontForge 2.0 : slick : 14-4-2014
+FullName slick
+Version Version 1.0
+PostScriptName slick
+Weight Medium
+ItalicAngle 0
+IsFixedPitch true
+UnderlineThickness 0
+UnderlinePosition 0
+FontHeightOffset 90
+Ascender 928
+Descender 0
+FontBBox 72 72 928 928
+StartCharMetrics 7
+U 97 ; WX 1000 ; N a ; G 6
+U 8226 ; WX 1000 ; N bullet ; G 5
+U 8592 ; WX 1000 ; N arrowleft ; G 4
+U 8594 ; WX 1000 ; N arrowright ; G 3
+EndCharMetrics
+EndFontMetrics

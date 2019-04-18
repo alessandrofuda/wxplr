@@ -4,9 +4,8 @@
 Homestead.yaml
 Homestead.json
 .env
-vendor
-storage
-bootstrap
+/vendor
+/storage/*.key
 MyProject.komodoproject
 git4rv
 .idea
@@ -18,3 +17,4 @@ env.php
 /en/wexsite/.env
 /it/wexsite/.env
 /uploads/cv_file
+/public/uploads/cv_file

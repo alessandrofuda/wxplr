@@ -1,0 +1,373 @@
+<?php $__env->startSection('content'); ?>
+
+<?php if(Route::current()->getName() == 'professional.kit'): ?>
+	<?php
+		$containerClass = 'prof_kit_profile';
+		$industryClass = 'popup-right';
+		$occupationClass = 'popup-left';
+	?>
+<?php else: ?>
+	<?php
+		$containerClass = '';
+		$industryClass = 'popup-left'; 
+		$occupationClass = 'popup-right';
+	?> 
+<?php endif; ?>
+
+<div class="container user_profile_form <?php echo e($containerClass); ?>">
+	<div class="row">
+		<div class="heading">
+			<h1><?php echo e($page_title); ?></h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+            <div class="">
+				<div class="panel-body">
+					<p>Thank you for choosing Wexplore’s Professional Kit. In order to customize your journey to your future dream job, kindly fill in the profile form below:</p>
+            	<form accept-charset="UTF-8" method="post" action=" <?php echo e(url('user/profile/update')); ?>" class="checkout-form"  enctype="multipart/form-data">
+                	<?php echo e(csrf_field()); ?>
+
+					<?php if(Route::current()->getName() == 'professional.kit'): ?>
+						<?php
+							$redirect_url = 'market_analysis';
+							$submit_label = 'Save & Proceed to Market Analysis';
+						?>
+					<?php else: ?>
+						<?php
+							$redirect_url = 'user_profile';
+							$submit_label = 'Save Profile';
+						?>
+					<?php endif; ?>
+					<input type="hidden" name="redirect_url" value="<?php echo e($redirect_url); ?>">
+					<input type="hidden" name="user_id" value="<?php echo e($user->id); ?>">
+					<?php if(Route::current()->getName() != 'professional.kit'): ?>
+						<div class="form-group col-md-6 has-feedback">
+							<label for="name">Name </label>
+							<input type="text" class="form-control" required placeholder="Name" name="name" value="<?php echo e($user->name); ?>">
+							<span class="glyphicon glyphicon-user form-control-feedback"></span>
+						</div>
+						<div class="form-group col-md-6 has-feedback">
+							<label for="surname">Surname </label>
+							<input type="text" class="form-control" required placeholder="Surname" name="surname" value="<?php echo e($user->surname); ?>">
+							<span class="glyphicon glyphicon-user form-control-feedback"></span>
+					  	</div>
+					<?php endif; ?>
+                    <div class="form-group col-md-6 has-feedback profile_picture">
+
+                		<?php if(isset($user->userProfile->profile_picture)): ?>
+							<?php if($user->userProfile->profile_picture != null): ?>
+							<div class="col-xs-2">
+                        		<img alt="<?php echo e($user->name); ?>" src="<?php echo e(asset($user->userProfile->profile_picture)); ?>">
+							</div>
+							<?php endif; ?>
+                    	<?php endif; ?>
+
+						<div class="col-xs-10">
+							<label for="profile_picture">Profile Picture </label>
+                        	<input type="file" name="profile_picture">
+						</div>
+				    </div>
+					<?php if(Route::current()->getName() != 'professional.kit'): ?>
+						<div class="form-group col-md-6 has-feedback">
+							<label for="email">Email </label>
+							<input type="email" class="form-control" disabled required email placeholder="Email" name="email" value="<?php echo e($user->email); ?>">
+							<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+						</div>
+						<!--div class="form-group col-md-6">
+							<label>Password</label>
+							<input type="password" name="password" class="form-control" placeholder="Enter password..." value="">
+						</div>
+						<div class="form-group col-md-6">
+							<label>Confirm Password</label>
+							<input type="password" class="form-control" placeholder="Confirm password" name="password_confirmation">
+						</div-->
+					<?php endif; ?>
+				<div class="form-group col-md-6 Gender">
+                    <label>Gender</label>
+                    <span><input type="radio" required name="gender" <?php if(isset($user->userProfile->gender) && $user->userProfile->gender == 'Male'): ?> checked <?php endif; ?> class="" value="Male">Male</span>
+					<span><input type="radio" required name="gender" <?php if(isset($user->userProfile->gender) && $user->userProfile->gender == 'Female'): ?> checked <?php endif; ?> class="" value="Female">Female</span>
+                </div>
+
+                <div class="form-group col-md-6 has-feedback">
+				<label for="age_range">Age </label>
+				<div class="date">
+					<select required name="age_range" id="age_range" class="form-control">
+						<option <?php if(isset($user->userProfile->age_range) && $user->userProfile->age_range == '20-24'): ?> selected <?php endif; ?> value="20-24">20-24</option>
+						<option <?php if(isset($user->userProfile->age_range) && $user->userProfile->age_range == '25-29'): ?> selected <?php endif; ?> value="25-29">25-29</option>
+						<option <?php if(isset($user->userProfile->age_range) && $user->userProfile->age_range == '30-34'): ?> selected <?php endif; ?> value="30-34">30-34</option>
+						<option <?php if(isset($user->userProfile->age_range) && $user->userProfile->age_range == '35-39'): ?> selected <?php endif; ?> value="35-39">35-39</option>
+						<option <?php if(isset($user->userProfile->age_range) && $user->userProfile->age_range == '40-44'): ?> selected <?php endif; ?> value="40-44">40-44</option>
+						<option <?php if(isset($user->userProfile->age_range) && $user->userProfile->age_range == '45-49'): ?> selected <?php endif; ?> value="45-49">45-49</option>
+						<option <?php if(isset($user->userProfile->age_range) && $user->userProfile->age_range == '50-54'): ?> selected <?php endif; ?> value="50-54">50-54</option>
+						<option <?php if(isset($user->userProfile->age_range) && $user->userProfile->age_range == 'over 55'): ?> selected <?php endif; ?> value="over 55">over 55</option>
+					</select>
+				</div>
+			 </div>
+
+			<div class="form-group col-md-6 has-feedback">
+				<label for="country_origin">Country of Origin </label>
+				<select id="country_origin" required name="country_origin" class="form-control">
+				<option value="">-- Country of origin --</option>
+				<?php if(count($countries_code)>0): ?>
+				<?php $__currentLoopData = $countries_code; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+					<option <?php if(isset($user->userProfile->country_origin) && $user->userProfile->country_origin == $country['country_name']): ?> selected <?php endif; ?> value="<?php echo e($country['country_name']); ?>"><?php echo e($country['country_name']); ?></option>
+				<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+				<?php endif; ?>
+				</select>
+			</div>
+			<div class="form-group col-md-6 has-feedback">
+				<label for="country_interest">Country of Interest </label>
+				<select id="country_origin" required name="country_interest" class="form-control">
+					<option value="">-- Country of interest --</option>
+				<?php if(count($countries_code)>0): ?>
+				<?php $__currentLoopData = $countries_code; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+					<option <?php if(isset($user->userProfile->country_interest) && $user->userProfile->country_interest == $country['country_name']): ?> selected <?php endif; ?> value="<?php echo e($country['country_name']); ?>"><?php echo e($country['country_name']); ?></option>
+				<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+				<?php endif; ?>
+				</select>
+			</div>
+			<div class="form-group col-md-6 has-feedback">
+				<label for="education">Education </label>
+				<div class="date">
+				<select name="education" class="form-control">
+					<option value="">-- Choose Education --</option>
+					<option <?php if(isset($user->userProfile->education) && $user->userProfile->education == 'High School Diploma'): ?> selected <?php endif; ?> value="High School Diploma">High School Diploma</option>
+					<option <?php if(isset($user->userProfile->education) && $user->userProfile->education == 'Bachelor’s degree'): ?> selected <?php endif; ?> value="Bachelor’s degree">Bachelor’s degree</option>
+					<option <?php if(isset($user->userProfile->education) && $user->userProfile->education == 'Master’s degree'): ?> selected <?php endif; ?> value="Master’s degree">Master’s degree</option>
+					<option <?php if(isset($user->userProfile->education) && $user->userProfile->education == 'Post-university education'): ?> selected <?php endif; ?> value="Post-university education">Post-university education</option>
+				</select>
+				</div>
+			</div>
+			<div class="form-group col-md-6 has-feedback">
+				<label for="industry"> Industry </label>
+				<div class="date industry <?php echo e($industryClass); ?>">
+					<div class='selectBox'>
+						<input type="hidden" id="selected_option_id" value="<?php echo e(isset($user->userProfile->industry) ? $user->userProfile->industry :""); ?>" class="price_values" name="industry"/>
+						<span class='selected'></span>
+						<span class='selectArrow'>&#9660</span>
+						<ul class="selectOptions" >
+							<li class="selectOption" id="industry_0">---Choose Industry---</li>
+							<?php $__currentLoopData = \App\User::getIndustryList(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $industry): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+								<li class="selectOption" id="industry_<?php echo e(explode(' ',$industry)[0]); ?>" data-value="value <?php echo e($industry); ?>"><?php echo e($industry); ?></li>
+								<div class="occupation-help-wrap">
+									<div id="industry_tip_<?php echo e(explode(' ',$industry)[0]); ?>" class="profile-help-desc" style="display:none;">
+										<?php echo e(\App\User::getIndustryText($industry)); ?>
+
+									</div>
+								</div>
+							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="form-group col-md-6 has-feedback">
+				<label for="occupational">Occupation </label>
+				<div class="date Occupation <?php echo e($occupationClass); ?>">
+					<div class='selectBox'>
+						<input type="hidden" id="selected_option_id" value="<?php echo e(isset($user->userProfile->occupation) ? $user->userProfile->occupation :""); ?>" class="price_values" name="occupation"/>
+						<span class='selected'></span>
+						<span class='selectArrow'>&#9660</span>
+						<ul class="selectOptions" >
+							<li class="selectOption" id="occupation_0">---Choose Occupation---</li>
+							<?php $__currentLoopData = \App\User::getOccupationsList(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $occupation): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+								<li class="selectOption" id="occupation_<?php echo e(explode(' ',$occupation)[0]); ?>" data-value="value <?php echo e($occupation); ?>"><?php echo e($occupation); ?></li>
+								<div class="occupation-help-wrap">
+									<div id="occupation_tip_<?php echo e(explode(' ',$occupation)[0]); ?>" class="profile-help-desc" style="display:none;">
+										<?php echo e(\App\User::getOccupationText($occupation)); ?>
+
+									</div>
+								</div>
+							<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="form-group col-md-6 has-feedback">
+				<label for="occupational">Occupational Status </label>
+				<div class="date Occupation">
+					<select name="occupational_status" class="form-control">
+						<option>---Select Occupation status</option>
+						<option <?php if(isset($user->userProfile->occupational_status) && $user->userProfile->occupational_status == 'Student'): ?> selected <?php endif; ?> value="Student">Student</option>
+						<option <?php if(isset($user->userProfile->occupational_status) && $user->userProfile->occupational_status == 'Employed'): ?> selected <?php endif; ?> value="Employed">Employed</option>
+						<option <?php if(isset($user->userProfile->occupational_status) && $user->userProfile->occupational_status == 'Unemployed'): ?> selected <?php endif; ?> value="Unemployed">Unemployed</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-md-6 has-feedback">
+				<label for="salary_range">Salary Range </label>
+				<div class="date">
+					<select name="salary_range" required id="salary_range" class="form-control">
+						<option>-- Select Salary Range --</option>
+						<option <?php if(isset($user->userProfile->salary_range) && $user->userProfile->salary_range == 'Up to 25,000'): ?> selected <?php endif; ?> value="Up to 25,000">Up to 25,000</option>
+						<option <?php if(isset($user->userProfile->salary_range) && $user->userProfile->salary_range == '25,001 - 40,000'): ?> selected <?php endif; ?> value="25,001 - 40,000">25,001 - 40,000</option>
+						<option <?php if(isset($user->userProfile->salary_range) && $user->userProfile->salary_range == '40,001 - 55,000'): ?> selected <?php endif; ?> value="40,001 - 55,000">40,001 - 55,000</option>
+						<option <?php if(isset($user->userProfile->salary_range) && $user->userProfile->salary_range == '55,001 - 70,000'): ?> selected <?php endif; ?> value="55,001 - 70,000">55,001 - 70,000</option>
+						<option <?php if(isset($user->userProfile->salary_range) && $user->userProfile->salary_range == 'More than 70,000'): ?> selected <?php endif; ?> value="More than 70,000">More than 70,000</option>
+					</select>
+				</div>
+			 </div>
+					<?php if(Route::current()->getName() != 'professional.kit'): ?>
+						<div class="form-group col-md-6 has-feedback email">
+							<label for="pan">Personal Identification Number </label>
+							<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="<?php echo e($user->userProfile->pan); ?>">
+						</div>
+						<div class="form-group col-md-6 has-feedback email">
+							<label for="vat">VAT (If Applicable) </label>
+							<input type="text" class="form-control" required placeholder="VAT" name="vat"
+								   value="<?php echo e($user->userProfile->vat); ?>">
+							<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+						</div>
+						<div class="form-group col-md-6 has-feedback email">
+							<label for="company">Company (If Applicable) </label>
+							<input type="text" class="form-control" placeholder="Company" name="company"
+								   value="<?php echo e($user->userProfile->company); ?>">
+						</div>
+						<div class="form-group col-md-6 has-feedback email">
+							<label for="address">Address </label>
+							<textarea required rows="4" cols="50" class="form-control" name="address" placeholder="Address" value="<?php echo e($user->userProfile->address); ?>"><?php echo e($user->userProfile->address); ?></textarea>
+							<span class="glyphicon glyphicon-list-alt form-control-feedback"></span>
+						</div>
+						<div class="form-group col-md-6 has-feedback email">
+							<label for="country">Country </label>
+							<?php if(count($countries_code) > 0): ?>
+								<select name="country" id="country" required class="form-control">
+									<option value="">Select Country</option>
+									<?php $__currentLoopData = $countries_code; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+										<option <?php if($user->userProfile->country == $country['country_name'] ): ?> selected <?php endif; ?> value = "<?php echo e($country['country_name']); ?>">
+											<?php echo e($country['country_name']); ?></option>
+									<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+								</select>
+							<?php endif; ?>
+						</div>
+						<div class="form-group col-md-6 has-feedback email">
+							<label for="text">City</label>
+							<input type="text" class="form-control" required placeholder="City" name="city"
+								   value="<?php echo e($user->userProfile->city); ?>">
+						</div>
+						<div class="form-group col-md-6 has-feedback email">
+							<label for="zip_code">ZIP Code </label>
+							<input type="text" class="form-control" required placeholder="ZIP Code" name="zip_code"
+								   value="<?php echo e($user->userProfile->zip_code); ?>"></div>
+						<div class="form-group col-md-6 has-feedback">
+							<label for="telephone">Telephone </label>
+							<input type="tel" class="form-control"  placeholder="Telephone Number" name="telephone" value="<?php echo e($user->userProfile->telephone); ?>">
+							<span class="glyphicon glyphicon-phone-alt form-control-feedback"></span>
+						</div>
+
+						<?php endif; ?>
+					<input type="hidden" name="allow_personal_data" value="1" >
+
+			<div class="form-group col-md-6 has-feedback">
+				<div class="date">
+					<input type="submit" class="Save_profile" value="<?php echo e($submit_label); ?>" name="save_profile">
+				</div>
+			</div>
+				</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<style type='text/css'>
+	div.selectBox{position: relative; display: inline-block; cursor: default; text-align: left; line-height: 30px; clear: both; color: rgb(114, 97, 97);}
+	span.selected{width: 167px; text-indent: 10px; border: 1px solid rgb(233, 233, 233); border-right: none; border-top-left-radius: 5px; border-bottom-left-radius: 5px; background: #f6f6f6; overflow: hidden;font-family: Arial, sans-serif;font-size: 12px;font-weight: bold;
+		background: #ffffff;
+		background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJod…EiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+		background: -moz-linear-gradient(top, #ffffff 0%, #f3f3f3 50%, #ededed 51%, #ffffff 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f3f3f3), color-stop(51%,#ededed), color-stop(100%,#ffffff));
+		background: -webkit-linear-gradient(top, #ffffff 0%,#f3f3f3 50%,#ededed 51%,#ffffff 100%);
+		background: -o-linear-gradient(top, #ffffff 0%,#f3f3f3 50%,#ededed 51%,#ffffff 100%);
+		background: -ms-linear-gradient(top, #ffffff 0%,#f3f3f3 50%,#ededed 51%,#ffffff 100%);
+		background: linear-gradient(to bottom, #ffffff 0%,#f3f3f3 50%,#ededed 51%,#ffffff 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ffffff',GradientType=0 );
+	}
+	span.selectArrow{width: 30px; border: 1px solid #60abf8; border-top-right-radius: 5px; border-bottom-right-radius: 5px; text-align: center; font-size: 12px; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; background: #4096ee; color: #fff;}
+	span.selectArrow,span.selected{position: relative; float: left; height: 30px; z-index: 1;}
+	ul.selectOptions{position: absolute; top: 28px; left: 0; width: 198px; border: 1px solid #ccc; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; overflow: hidden; background: rgb(250, 250, 250); padding-top: 2px; display: none;margin: 0;list-style: none inside none;padding-left: 0;z-index:1;}
+	li.selectOption{display: block; line-height: 20px; padding: 5px 0 5px 10px; font-size: 12px; font-weight: bold; font-family: arial, sans-serif;list-style: none;margin: 0}
+	li.selectOption:hover{color: #f6f6f6;background: #4096ee;}
+</style>
+<script src="<?php echo e(asset('frontend/js/jquery-2.1.4.min.js')); ?>"></script>
+<script src="<?php echo e(asset('frontend/js/jquery.ui.js')); ?>"></script>
+<script>
+	function enable() {
+		$('div.selectBox').each(function () {
+			$(this).children('span.selected').html($(this).children('ul.selectOptions').children('li.selectOption:first').html());
+			$('input.price_values').attr('value', $(this).children('ul.selectOptions').children('li.selectOption:first').attr('data-value'));
+
+			$(this).children('span.selected,span.selectArrow').click(function () {
+				if ($(this).parent().children('ul.selectOptions').css('display') == 'none') {
+					$(this).parent().children('ul.selectOptions').css('display', 'block');
+				}
+				else {
+					$(this).parent().children('ul.selectOptions').css('display', 'none');
+				}
+			});
+
+			$(this).children().find('li.selectOption').click(function () {
+				$(this).parent().css('display', 'none');
+				var ori_value = $(this).attr('data-value').split('value ')[1];
+				console.log('ori'+ori_value);
+				$(this).parent().siblings('input.price_values').attr('value', ori_value);
+				$(this).parent().siblings('span.selected').html($(this).html());
+			});
+			var value = $(this).find("#selected_option_id").val();
+			var value = "value "+value;
+			$(this).children().find("[data-value='" + value + "']").parent().css('display', 'none');
+			$(this).children().find("[data-value='" + value + "']").parent().siblings('span.selected').html($(this).children().find("[data-value='" + value + "']").html());
+		});
+	}
+	$(document).ready(function () {
+		enable();
+		$(".date.industry").click(function() {
+			$(".date.Occupation .selectOptions").css("display", "none");
+		});
+		$(".date.Occupation").click(function() {
+			$(".date.industry .selectOptions").css("display", "none");
+		});
+	});
+	$(document).delegate('.selectOptions li','mouseover mouseout', function(event) {
+		if (event.type == 'mouseover') {
+			var id = $(this).attr('id');
+			var id = id.split('occupation_')[1];
+			$('#occupation_tip_'+id).show();
+			$('[id^=occupation_tip_]').not('#occupation_tip_'+id).each(function(){
+				$(this).hide();
+			});
+
+			var id = $(this).attr('id');
+			var id = id.split('industry_')[1];
+			$('#industry_tip_'+id).show();
+			$('[id^=industry_tip_]').not('#industry_tip_'+id).each(function(){
+				$(this).hide();
+			});
+		}else{
+			var id = $(this).attr('id').split('occupation_')[1];
+			$('#occupation_tip_'+id).hide();
+		}
+
+		$(this).parent().toggleClass('over');
+	});
+
+	$(document).ready(function() {
+		var val = $('[name=company]').val();
+		if(val != '') {
+			$('[name=vat]').attr('required','required');
+		}else{
+			$('[name=vat]').attr('required',false);
+		}
+	});
+
+	$('[name=company]').change(function(){
+		var val = $(this).val();
+		if(val != '') {
+			$('[name=vat]').attr('required','required');
+		}else{
+			$('[name=vat]').attr('required',false);
+		}
+	});
+</script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('front.dashboard_layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
