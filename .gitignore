@@ -8,6 +8,7 @@ Homestead.json
 /storage/*.key
 /storage/logs
 /storage/framework/views
+/storage/framework/sessions
 MyProject.komodoproject
 git4rv
 .idea
