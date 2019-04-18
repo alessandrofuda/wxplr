@@ -1,6 +1,6 @@
 <!-- Main Content -->
 <?php $__env->startSection('content'); ?>
-<div class="container">
+<div id="reset-psw-page" class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default" style="opacity:1;max-height:none;padding:0;">

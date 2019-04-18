@@ -3709,7 +3709,7 @@ h6 {
 }
 
 #Footer {
-    background-color: #545454;
+    background-color: #FFFFFF;
 }
 
 .feature_list ul li a,.flat_box a,.flat_box a:hover,.icon_box a .desc,.icon_box a:hover .desc,.list_item a,.list_item a:hover,.widget_recent_entries ul li a,body,ul.timeline_items {
@@ -3816,8 +3816,10 @@ a.mfn-link-6:before {
 }
 
 #Header .top_bar_left,#Header_creative,#Top_bar #menu,.header-below #Top_bar,.header-classic #Top_bar,.header-fixed #Top_bar,.header-stack #Top_bar {
-    background-image: url(images/sfondo-menu.jpg);
+    /*background-image: url(images/sfondo-menu.jpg);*/
 	background-repeat: no-repeat;
+    background: linear-gradient(to right, #003452 15%, #00829a 32%, #00a04c 100%);
+
 }
 
 #Top_bar .top_bar_right:before {
@@ -3829,7 +3831,7 @@ a.mfn-link-6:before {
 }
 
 #Top_bar .menu > li > a,#Top_bar .top_bar_right a {
-    color: #444;
+    color: #FFFFFF;
 }
 
 #Top_bar .menu > li.current-menu-ancestor > a,#Top_bar .menu > li.current-menu-item > a,#Top_bar .menu > li.current_page_ancestor > a,#Top_bar .menu > li.current_page_item > a,#Top_bar .menu > li.hover > a {

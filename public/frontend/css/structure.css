@@ -1330,11 +1330,12 @@ body.minimalist-header.header-below:not(.template-slider) #Header {
     line-height: 0;
     font-size: 0;
     margin: 0;
+    height: auto;
 }
 
 #Top_bar #logo {
+    width: 190px;
     display: block;
-   /* height: 60px;*/
     line-height: 60px;
     padding: 15px 0;
 }
@@ -1651,6 +1652,7 @@ body.minimalist-header.header-below:not(.template-slider) #Header {
     border-right-width: 1px;
     border-style: solid;
 	font-weight: 600;
+    font-size: 22px;
 }
 
 #Top_bar .menu > li > a span.description {
@@ -4129,6 +4131,13 @@ body:not(.with_aside) .portfolio_group.list .portfolio-item .portfolio-item-fw-w
 
 #Footer .footer_copy .copyright {
     float: left;
+    font-size: 12px;
+    color: #808080;
+}
+
+#Footer .footer_copy .copyright a {
+    color: #808080;
+    margin: auto 10px;
 }
 
 #Footer .footer_copy a#back_to_top {
