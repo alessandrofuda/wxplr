@@ -67,7 +67,6 @@
     <div id="Wrapper">
         <!-- Header Wrapper -->
         <div id="Header_wrapper">
-            @include('cookieConsent::index')
             <!-- Header -->
             @include('front.header')
 

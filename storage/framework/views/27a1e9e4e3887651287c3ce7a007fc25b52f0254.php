@@ -67,7 +67,6 @@
     <div id="Wrapper">
         <!-- Header Wrapper -->
         <div id="Header_wrapper">
-            <?php echo $__env->make('cookieConsent::index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
             <!-- Header -->
             <?php echo $__env->make('front.header', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
