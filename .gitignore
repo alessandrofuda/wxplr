@@ -21,3 +21,4 @@ env.php
 /it/wexsite/.env
 /uploads/cv_file
 /public/uploads/cv_file
+/bootstrap/cache

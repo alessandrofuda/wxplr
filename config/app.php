@@ -149,7 +149,6 @@ return [
 		//Vinkla\Vimeo\VimeoServiceProvider::class,
         Vimeo\Laravel\VimeoServiceProvider::class,
 		Maatwebsite\Excel\ExcelServiceProvider::class,
-		Spatie\CookieConsent\CookieConsentServiceProvider::class,
         Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
         Spatie\UrlSigner\Laravel\UrlSignerServiceProvider::class,
         Illuminate\Notifications\NotificationServiceProvider::class,

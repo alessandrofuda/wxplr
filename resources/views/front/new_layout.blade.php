@@ -68,7 +68,6 @@
 		<div id="Wrapper">
 	    	<!-- Header Wrapper -->
 		    <div id="Header_wrapper">
-		    	@include('cookieConsent::index')
 		    	<!-- Header -->
 			    <header id="Header">
 			        <!-- Header Top -  Info Area -->

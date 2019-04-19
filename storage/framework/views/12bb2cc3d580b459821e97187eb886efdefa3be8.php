@@ -68,7 +68,6 @@
 		<div id="Wrapper">
 	    	<!-- Header Wrapper -->
 		    <div id="Header_wrapper">
-		    	<?php echo $__env->make('cookieConsent::index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 		    	<!-- Header -->
 			    <header id="Header">
 			        <!-- Header Top -  Info Area -->
@@ -400,6 +399,5 @@
 
 		    });
 		</script>
-		<script id="dsq-count-scr" src="//wexplore-com.disqus.com/count.js" async></script>
 	</body>
-</html>
+</html><?php /**PATH /home/vagrant/Code/wexplore/resources/views/front/new_layout.blade.php ENDPATH**/ ?>

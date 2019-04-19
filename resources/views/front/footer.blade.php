@@ -7,10 +7,9 @@
                 <!-- Text Area -->
                 <aside id="text-7" class="widget widget_text">
                     <div class="textwidget">
-                        <img class="footer_logo" src="{{ asset('frontend/images/Wexplore_colore.png') }}" alt="" />
-                        <img class="footer_social fb" src="{{ asset('frontend/images/fb_footer_logo.png') }}" alt="" />
-                        <img class="footer_social lkn" src="{{ asset('frontend/images/linkedin_footer_logo.png') }}" alt="" />
-                        <!--<a href="{{ isset($settings->facebook_url) ? $settings->facebook_url : ""}}" class="icon_bar icon_bar_facebook icon_bar_small"><span class="t"><i class="icon-facebook"></i></span><span class="b"><i class="icon-facebook"></i></span></a><a href="{{ isset($settings->google_plus_url) ? $settings->google_plus_url : ""}}" class="icon_bar icon_bar_google icon_bar_small"><span class="t"><i class="icon-gplus"></i></span><span class="b"><i class="icon-gplus"></i></span></a><a href="{{ isset($settings->twitter_url) ? $settings->twitter_url : ""}}" class="icon_bar icon_bar_twitter icon_bar_small"><span class="t"><i class="icon-twitter"></i></span><span class="b"><i class="icon-twitter"></i></span></a>{{--<a href="" class="icon_bar icon_bar_vimeo icon_bar_small"><span class="t"><i class="icon-vimeo"></i></span><span class="b"><i class="icon-vimeo"></i></span></a><a href="#" class="icon_bar icon_bar_youtube icon_bar_small"><span class="t"><i class="icon-play"></i></span><span class="b"><i class="icon-play"></i></span></a>--}}-->
+                        <a href="{{url('/')}}"><img class="footer_logo" src="{{ asset('frontend/images/Wexplore_colore.png') }}" alt="" /></a>
+                        <a href="{{ isset($settings->facebook_url) ? $settings->facebook_url : ""}}"><img class="footer_social fb" src="{{ asset('frontend/images/fb_footer_logo.png') }}" alt="" /></a>
+                        <a href="{{ isset($settings->linkedin_url) ? $settings->linkedin_url : ""}}"><img class="footer_social lkn" src="{{ asset('frontend/images/linkedin_footer_logo.png') }}" alt="" /></a>
                     </div>
                 </aside>
             </div>
