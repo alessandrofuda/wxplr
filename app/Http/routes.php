@@ -93,10 +93,12 @@ Auth::routes();
 Route::get('/', function() {
 	return redirect('login');
 });
-
 Route::get('home', function(){
 	return redirect('login');
 })->name('home');
+Route::get('auth/login', function(){
+	return redirect('login');
+});
 
 Route::get('time', function() {
     return date('Y-m-d H:i:s');  // getdate();
@@ -123,7 +125,7 @@ Route::get('time', function() {
 	Route::get('culture_match/return_callback', ['as'=>'culture_match_callback','uses'=>'Admin\CultureMatchController@survey_return_callback']);
 
 	// Authentication routes...
-	Route::get('auth/login', array('as'=>'authLogin','uses'=>'Auth\AuthController@getLogin'));
+	// Route::get('auth/login', array('as'=>'authLogin','uses'=>'Auth\AuthController@getLogin'));
 	Route::post('auth/login', array('as'=>'authLoginPost','uses'=>'Auth\AuthController@postLogin'));  // authenticated
 	Route::get('auth/logout', array('as'=>'authLogout','uses'=>'Auth\AuthController@getLogout'));
 	// Registration routes...

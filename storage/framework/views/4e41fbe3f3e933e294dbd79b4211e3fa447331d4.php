@@ -37,7 +37,7 @@
 					  </div>
 					</div>
 					<!-- /.col -->
-					<div class="col-xs-4">
+					<div class="col-md-4 col-xs-12">
 					  <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
 					</div>
 					<!-- /.col -->
@@ -50,4 +50,4 @@
 	</div>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('front.new_layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+<?php echo $__env->make('front.new_layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/vagrant/Code/wexplore/resources/views/front/login.blade.php ENDPATH**/ ?>

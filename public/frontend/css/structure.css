@@ -30,7 +30,7 @@ body {
 #Wrapper {
     width: 1240px;
     margin: 0 auto;
-    overflow: hidden;
+    /*overflow: hidden;*/  /*!!! fix menu mobile hide !!!! */
 }
 
 .layout-full-width {
@@ -5783,6 +5783,7 @@ html,body {
         right: 10px;
         -webkit-border-radius: 3px;
         border-radius: 3px;
+        color: #452b2b;
     }
 
     #Top_bar a:hover.responsive-menu-toggle {
@@ -5790,7 +5791,7 @@ html,body {
     }
 
     #Top_bar a.responsive-menu-toggle i {
-        font-size: 25px;
+        font-size: 30px;
         line-height: 35px;
     }
 
@@ -6583,7 +6584,7 @@ body {
 
     /* Header */
     #Top_bar,#Action_bar {
-        background: #fff !important;
+        /*background: #fff !important;*/
         position: static;
     }
 

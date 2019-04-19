@@ -251,17 +251,17 @@
             });
         </script>
 
-        <script>
+        <!--script>
             jQuery(window).load(function() {
                 var retina = window.devicePixelRatio > 1 ? true : false;
                 if (retina) {
                     var retinaEl = jQuery("#logo img");
                     var retinaLogoW = retinaEl.width();
                     var retinaLogoH = retinaEl.height();
-                    retinaEl.attr("src", "<?php echo e(asset('frontend/immagini/logo-wexplore-retina.png')); ?>").width(retinaLogoW).height(retinaLogoH)
+                    retinaEl.attr("src", "").width(retinaLogoW).height(retinaLogoH)
                 }
             });
-        </script>
+        </script-->
         <input type="hidden" id="user_timezone" value="<?php echo e(session('timezone')); ?>">
         <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js"></script>
         <script type="text/javascript">
@@ -301,4 +301,4 @@
     </div>
 </body>
 
-</html>
+</html><?php /**PATH /home/vagrant/Code/wexplore/resources/views/front/dashboard_layout.blade.php ENDPATH**/ ?>

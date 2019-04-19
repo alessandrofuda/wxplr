@@ -4045,7 +4045,7 @@ ul.clients.clients_tiles li .client_wrapper:after {
 
 @media only screen and (max-width: 767px) {
     #Action_bar,#Top_bar {
-        background: #fff !important;
+        /*background: #fff !important;*/
     }
 }
 

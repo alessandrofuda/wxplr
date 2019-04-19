@@ -360,17 +360,17 @@
 		    });
 		</script>
 
-		<script>
+		<!--script>
 		    jQuery(window).load(function() {
 		        var retina = window.devicePixelRatio > 1 ? true : false;
 		        if (retina) {
 		            var retinaEl = jQuery("#logo img");
 		            var retinaLogoW = retinaEl.width();
 		            var retinaLogoH = retinaEl.height();
-		            retinaEl.attr("src", "{{ asset('frontend/immagini/logo-wexplore-retina.png') }}").width(retinaLogoW).height(retinaLogoH)
+		            retinaEl.attr("src", "{{-- asset('frontend/immagini/logo-wexplore-retina.png') --}}").width(retinaLogoW).height(retinaLogoH)
 		        }
 		    });
-		</script>
+		</script-->
 		<input type="hidden" id="user_timezone" value="{{ session('timezone') }}">
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js">
 		</script>
