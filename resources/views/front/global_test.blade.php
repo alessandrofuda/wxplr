@@ -28,7 +28,7 @@
 				
 				@if($global_test_compiled_yet === true && !empty($outcome_data))
 				
-					<div class="alert alert-info">You have already completed the <b>Global Orientation Test</b>. If you want to recompile <a href="{{ asset('global_orientation_test?force=recompile') }}">click here</a> otherwise proceed to <a class="btn btn-success" href="{{route('got_pro')}}" style="text-decoration: none;"> Global Orientation Test PRO</a></div>
+					<div class="alert alert-info">You have already completed the <b>Global Orientation Test</b>. If you want to recompile <a href="{{ asset('global_orientation_test?force=recompile') }}">click here</a> otherwise proceed to <a class="btn btn-success got-pro" href="{{route('got_pro')}}" style="text-decoration: none; line-height:30px; margin:3px 0 3px 15px;">Global Orientation Test PRO</a></div>
 				
 				@endif
 				
@@ -101,8 +101,8 @@
 	<div class="col-md-8">
 		<p>How can you use this information to your best advantage? How can you get more insights on your target countries? Find out with the Global Orientation Test PRO!</p>
 		<a id="proceed" style="position:relative; top:-50px; visibility: hidden;"></a>
-		<a href="{{ route('got_pro') }}" class="btn btn-success btn-lg btn-block" style="margin:25px auto;">
-			Proceed to <b>Global Orientation Test PRO</b> <span class="glyphicon glyphicon-triangle-right" style="font-size: 17px; 
+		<a href="{{ route('got_pro') }}" class="btn btn-success btn-lg btn-block got-pro">
+			Proceed to Global Orientation Test PRO <span class="glyphicon glyphicon-triangle-right" style="font-size: 17px; 
 			margin-left: 30px; position: relative; display: inline-block;"></span>
 		</a>
 	</div>

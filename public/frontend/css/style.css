@@ -164,7 +164,10 @@ li.treeview.treeview-menu-open i.fa.fa-angle-left.pull-right {
 .box-style img{display:block;margin:0 auto;width:100px}
 .box-style .imgblock{display:block;min-height:115px}
 .box-style:hover .hover_column{top:0;transition:top .8s ease}
-.hover_column{position:absolute;top:-235px;width:100%;background-color:rgba(32,135,200,0.58);transition:top .8s ease;padding:15px;z-index:999;color:#fff;height:235px}
+.hover_column{
+    position: absolute; top: -235px; width: 100%; transition: top .8s ease; padding: 20px; z-index: 999; color: #fff; height: 235px; background-image: linear-gradient(to right, #6bb97acc 31%, #5ab282cc 38%, #41a98ecc 52%, #2fa297b3 66%, #259e9c80 82%, #229d9e 100%);
+    border-radius: 10px; font-size: 16px; text-align: center; font-family: 'Open Sans','sans-serif'; padding-top: 6%;
+    }
 .hover_column p{color:#f9f9f9}
 .button_view a.button{background:#2087c8}
 .button_view a.button:hover{color:#fff;background:#55B241}

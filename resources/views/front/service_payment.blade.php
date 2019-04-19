@@ -308,7 +308,9 @@
 			        </div>
 			        <div class="right_service_details">
 				        <div class="section_heading">Payment Method</div><br/>
-						{{ $price = $amount }}
+						@php 
+							$price = $amount 
+						@endphp
 		                @if(isset($service))
 		                    @if(is_object($service) && !empty($service))
 		                        @if($service->price > 0 )@endif
