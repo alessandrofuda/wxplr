@@ -15,7 +15,7 @@
 	    </script>
 
 	    <!-- Facebook Pixel Code -->
-	    <script>
+	    <!--script>
 		    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 		    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 		    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
@@ -26,7 +26,7 @@
 	    </script>
 	    <noscript><img height="1" width="1" style="display:none"
 	    src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
-	    /></noscript>
+	    /></noscript-->
 	    <!-- DO NOT MODIFY -->
 	    <!-- End Facebook Pixel Code -->
 
@@ -402,6 +402,5 @@
 
 		    });
 		</script>
-		<script id="dsq-count-scr" src="//wexplore-com.disqus.com/count.js" async></script>
 	</body>
 </html>

@@ -52,9 +52,9 @@
 								<h2><a href="{{ url('blog/'.$blog->id.'/show') }}">{{ $blog->title }}</a></h2>
 								<p>{{ substr($blog->description,0,150) }} {{ strlen($blog->description) > 150 ? '...' : '' }}</p>
 								<div class="date_and_comment">
-									   <span class="Shares disqus-comment-count" data-disqus-identifier="{{ md5($blog->id.$blog->title) }}"
-											 data-disqus-url="{{ url('blog/'.$blog->id.'/show') }}"
-									   > <!-- Count will be inserted here --> </span>
+									   <!--span class="Shares disqus-comment-count" data-disqus-identifier="{{ md5($blog->id.$blog->title) }}"
+											 data-disqus-url="{{-- url('blog/'.$blog->id.'/show') --}}"
+									   >  Count will be inserted here </span-->
 									<span><a href="#">{{ date('M d, Y',strtotime($blog->created_at)) }}</a></span>
 								</div>
 							</div>
@@ -89,6 +89,5 @@
 		</div><!-- /.col -->
     </div><!-- /.row -->
     </div>
-	<script id="dsq-count-scr" src="//wexplore-com.disqus.com/count.js" async></script>
 	</div>
 @endsection

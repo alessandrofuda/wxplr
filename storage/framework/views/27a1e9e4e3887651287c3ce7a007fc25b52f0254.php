@@ -297,7 +297,6 @@
         <!-- owl carousel js-->
 
         <!-- owl carousel js-->
-        <script id="dsq-count-scr" src="//wexplore-com.disqus.com/count.js" async></script>
         <script src="<?php echo e(asset('frontend/js/bootstrap.min.js')); ?>"></script>
         <?php echo $__env->yieldContent('js'); ?>
     </div>

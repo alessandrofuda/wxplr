@@ -191,9 +191,9 @@
                                 <p>
                                  <i  class="fa fa-user"></i>{{ $blog->createUser->name }}&nbsp;&nbsp;
                                     <i class="fa fa-comment"></i>
-                                    <span class="disqus-comment-count"
-                                          data-disqus-url="{{ url('blog/'.$blog->id.'/show') }}"
-                                          > <!-- Count will be inserted here --> </span>
+                                    <!--span class="disqus-comment-count"
+                                          data-disqus-url="{{-- url('blog/'.$blog->id.'/show') --}}"
+                                          > Count will be inserted here </span-->
                                     &nbsp;&nbsp;
                                 </p>
                             </div>
@@ -205,8 +205,5 @@
         </div>
     </div>
 </div>
-
-<script id="dsq-count-scr" src="//wexplore-com.disqus.com/count.js" async></script>
-
 @endsection
 

@@ -3,8 +3,12 @@
 </header>
 </div>
 <div class="container">
-	<div id="success_div" style="display: none;">
-		<div class="alert alert-success" id="success_data"></div>
+	<div class="row">
+		<div class="col-md-12">	
+			<div id="success_div" style="display: none;">
+				<div class="alert alert-success" id="success_data"></div>
+			</div>
+		</div>
 	</div>
     @if(!isset($service) && !isset($package) && !isset($event) && !isset($video))
         <div class="select-div">
@@ -23,32 +27,30 @@
         </div>
     @else
 		<div class="login_and_register_div">
-			<p>Please register and refill all the required fields in order to proceed to Checkout.
-				<span class="pull-right">@if(!Auth::check())
+			<div class="pull-right">
+				@if(!Auth::check())
 					Already Have an Account? <a class="btn btn-primary" href="{{ url('auth/login') }}">Login</a>
 				@endif
 				<a class="btn btn-success" id="have_promo">
 					Have a Promo Code?
 				</a>
-					</span>
-			</p>
+			</div>
 			<div id="promo_div" style="display: {{ isset($code) ? '' : 'none' }};">
 				<div class="col-md-8">
-				<form id="promo_form" action="{{ url('service/checkcode') }}" method="POST">
-					{{ csrf_field() }}
-					<input type="text" class="form-control" id="code" value="{{ isset($code) ? $code : '' }}" name="code" placeHolder="Enter Code"/>
-					<div class="error" id="code_error"></div>
-				</form>
-					</div>
+					<form id="promo_form" action="{{ url('service/checkcode') }}" method="POST">
+						{{ csrf_field() }}
+						<input type="text" class="form-control" id="code" value="{{ isset($code) ? $code : '' }}" name="code" placeHolder="Enter Code"/>
+						<div class="error" id="code_error"></div>
+					</form>
+				</div>
 				<div class="col-md-4">
-				<button class="btn btn-success" id="submit_promo">
-					Apply Now
-				</button>
-
-				<button class="btn btn-success" id="cancel_promo">
-					Cancel
-				</button>
-					</div>
+					<button class="btn btn-success" id="submit_promo">
+						Apply Now
+					</button>
+					<button class="btn btn-success" id="cancel_promo">
+						Cancel
+					</button>
+				</div>
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -530,16 +532,16 @@
 		                        @endif
 		                    </button>
 		                @elseif(isset($package))
-		                                <button  value="Pay $@if(is_object($package) && !empty($package)){{ round(\App\Service::usdprice('EUR', 'USD', $package->price)) }}@endif" type="submit"
-		                                         class="order_now">
-		                                    @if(is_object($package) && !empty($package))
-		                                        @if(\App\Service::usdprice('EUR', 'USD', $package->price) > 0 )
-		                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now
-		                                        @else
-		                                            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Get Now
-		                                        @endif
-		                                    @endif
-		                                </button>
+                            <button  value="Pay $@if(is_object($package) && !empty($package)){{ round(\App\Service::usdprice('EUR', 'USD', $package->price)) }}@endif" type="submit"
+                                     class="order_now">
+                                @if(is_object($package) && !empty($package))
+                                    @if(\App\Service::usdprice('EUR', 'USD', $package->price) > 0 )
+                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now
+                                    @else
+                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Get Now
+                                    @endif
+                                @endif
+                            </button>
 		                @else
 		                    <button  id="submit-button" value="" type="submit" class="order_now">
 		                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now

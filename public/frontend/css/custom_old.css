@@ -287,7 +287,7 @@ ul.profile_details li:before{content:"\f0a4";font:normal normal normal 14px/1 Fo
 .acc-btn h1.selected:after{content:"\f068";position:absolute;font:normal normal normal 14px/1 FontAwesome;right:20px;top:13px}
 .acc-btn h1:after{content:"\f067";position:absolute;font:normal normal normal 14px/1 FontAwesome;right:20px;top:13px}
 .tab-content input[type="radio"]{margin:11px 4px 0 9px;position:relative;top:2px}
-.login_and_register_div{display:inline-block;float:left;width:100%;margin-bottom:20px;padding-right:0;position:relative;text-align:right;text-transform:uppercase;margin-top:0}
+.login_and_register_div{display:inline-block;float:left;width:100%;margin:20px auto;padding-right:0;position:relative;text-align:right;text-transform:uppercase;}
 .login_and_register_div p{float:left;width:100%;text-align:left;text-transform:none}
 .login_and_register_div > a{background-color:#2087c8;color:#fff;margin:0 10px;padding:5px 10px;text-decoration:none;-webkit-transition:all .5s;-moz-transition:all .5s;-o-transition:all .5s}
 .login_and_register_div > a:hover{background-color:#55b241}
