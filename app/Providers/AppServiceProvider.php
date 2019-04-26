@@ -14,13 +14,19 @@ class AppServiceProvider extends ServiceProvider {
     * @return void
     */
 	public function boot() {
-		Order::creating(function ($order) {
-			if(!isset($order->invoice_number) || empty($order->invoice_number)) {
-	  			$order->invoice_number = Order::getNextInvoiceNumber();
-	  		}
-	  	});
-	}
 
+        \Braintree_Configuration::environment(env('BRAINTREE_ENV'));
+        \Braintree_Configuration::merchantId(env('BRAINTREE_MERCHANT_ID'));
+        \Braintree_Configuration::publicKey(env('BRAINTREE_PUBLIC_KEY'));
+        \Braintree_Configuration::privateKey(env('BRAINTREE_PRIVATE_KEY'));
+
+		// Order::creating(function ($order) {
+		//     if(!isset($order->invoice_number) || empty($order->invoice_number)) {
+        //         $order->invoice_number = Order::getNextInvoiceNumber();
+        //     }
+        // });
+	}
+    
     /**
      * Register any application services.
      *

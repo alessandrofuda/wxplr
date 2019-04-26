@@ -1,7 +1,6 @@
 @extends('front.new_layout')
+
 @section('content')
-</header>
-</div>
 <div class="container">
 	<div class="row">
 		<div class="col-md-12">	
@@ -380,104 +379,7 @@
 		                        <span class="paymentOption_div">
 		                         Note:  Click on PayPal button to pay with paypal Or Fill in credit card details</span>
 		                    </div>--}}
-		                    <?php
-		                    	$clientToken = Braintree_ClientToken::generate();
-		                    ?>
-		                    <script src="https://js.braintreegateway.com/js/braintree-2.27.0.min.js"></script>
-
-		                    <script>
-		                    	console.log('start');
-		                        var clientToken = "{{ $clientToken }}"; //eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiI1Mjc3NzQ2ZjY5MzM5NzYzMWFmODYzYmUyZGU5ZGJmYTUzODE5ZDYxNjc0NTkyZmZhMjdkNWE4NTE3YzY2NDUyfGNyZWF0ZWRfYXQ9MjAxNi0wOC0yMlQwNTowOTowOS40NzgwNDMzNjIrMDAwMFx1MDAyNm1lcmNoYW50X2lkPTM0OHBrOWNnZjNiZ3l3MmJcdTAwMjZwdWJsaWNfa2V5PTJuMjQ3ZHY4OWJxOXZtcHIiLCJjb25maWdVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvMzQ4cGs5Y2dmM2JneXcyYi9jbGllbnRfYXBpL3YxL2NvbmZpZ3VyYXRpb24iLCJjaGFsbGVuZ2VzIjpbXSwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwiY2xpZW50QXBpVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzLzM0OHBrOWNnZjNiZ3l3MmIvY2xpZW50X2FwaSIsImFzc2V0c1VybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXV0aFVybCI6Imh0dHBzOi8vYXV0aC52ZW5tby5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIiwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vY2xpZW50LWFuYWx5dGljcy5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tLzM0OHBrOWNnZjNiZ3l3MmIifSwidGhyZWVEU2VjdXJlRW5hYmxlZCI6dHJ1ZSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImRpc3BsYXlOYW1lIjoiQWNtZSBXaWRnZXRzLCBMdGQuIChTYW5kYm94KSIsImNsaWVudElkIjpudWxsLCJwcml2YWN5VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3BwIiwidXNlckFncmVlbWVudFVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS90b3MiLCJiYXNlVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhc3NldHNVcmwiOiJodHRwczovL2NoZWNrb3V0LnBheXBhbC5jb20iLCJkaXJlY3RCYXNlVXJsIjpudWxsLCJhbGxvd0h0dHAiOnRydWUsImVudmlyb25tZW50Tm9OZXR3b3JrIjp0cnVlLCJlbnZpcm9ubWVudCI6Im9mZmxpbmUiLCJ1bnZldHRlZE1lcmNoYW50IjpmYWxzZSwiYnJhaW50cmVlQ2xpZW50SWQiOiJtYXN0ZXJjbGllbnQzIiwiYmlsbGluZ0FncmVlbWVudHNFbmFibGVkIjp0cnVlLCJtZXJjaGFudEFjY291bnRJZCI6ImFjbWV3aWRnZXRzbHRkc2FuZGJveCIsImN1cnJlbmN5SXNvQ29kZSI6IlVTRCJ9LCJjb2luYmFzZUVuYWJsZWQiOmZhbHNlLCJtZXJjaGFudElkIjoiMzQ4cGs5Y2dmM2JneXcyYiIsInZlbm1vIjoib2ZmIn0=";
-		                        var price = $('#selected_service_price').val();
-		                        var checkout;
-
-								$('#payment-form').empty();
-		                        braintree.setup(clientToken, 'custom', {id: 'checkout'});
-		                        braintree.setup(clientToken, "custom", {
-		                            onReady: function (integration) {
-		                                checkout = integration;
-		                                loginPayPalEffettuato = false;
-		                                // checkAbilitazioneButtonOrderNow();
-		                            },
-		                            paypal: {
-		                                container: "payment-form",
-		                                singleUse: true,
-		                                amount: price,
-		                                currency: 'EUR',
-		                            },
-		                            onPaymentMethodReceived: function (obj) {
-		                                setNonce(obj.nonce);
-		                            }
-		                        });
-
-		                        if($("#paypal-method").is(":checked")) {
-		                          //  $('form').attr('id','');
-		                            $("#payment-form").show();
-		                            $("#payment-form-card").hide();
-
-		                        }
-		                        if($("#card-method").is(":checked")) {
-		                           // $('form').attr('id','checkout');
-		                            $("#payment-form-card").show();
-		                            $("#payment-form").hide();
-		                            $("#payment-form-card").find('input').attr('required', true);
-		                           /* checkout.teardown(function () {
-		                                checkout = null;
-		                                // braintree.setup can safely be run again!
-		                            });
-		                            var checkout;
-		                            braintree.setupXXXXX(clientToken, 'custom', { onReady: function (integration) {
-		                                checkout = integration;
-		                            },id: 'checkout'});*/
-		                        }
-		                        $("[name=payment_method]").change(function () {
-		                            if($("#paypal-method").is(":checked")) {
-		                           //     $('form').attr('id','');
-		                                $("#payment-form").show();
-		                                $("#payment-form-card").hide();
-		                                $("#payment-form-card").find('input').attr('required', false);
-
-
-		                               /* checkout.teardown(function () {
-		                                    checkout = null;
-		                                    // braintree.setup can safely be run again!
-		                                });
-		                                var checkout;
-		                                braintree.setupXXXXX(clientToken, "custom", {
-		                                    onReady: function (integration) {
-		                                        checkout = integration;
-		                                    },
-		                                    container: "payment-form",
-		                                    paypal: {
-		                                        container: "payment-form",
-		                                        singleUse: true,
-		                                        amount:price ,
-		                                        currency: 'USD',
-
-		                                    },
-		                                    onPaymentMethodReceived: function (obj) {
-		                                    setNonce(obj.nonce);
-		                                }
-		                                });*/
-		                            }
-		                            if($("#card-method").is(":checked")) {
-		                                $("#payment-form-card").show();
-		                                $("#payment-form").hide();
-										$("#payment-form-card").find('input').attr('required', true);
-		                                /*  checkout.teardown(function () {
-		                                    checkout = null;
-		                                    // braintree.setup can safely be run again!
-		                                });
-		                                var checkout;
-		                                braintree.setupXXXXX(clientToken, 'custom', { onReady: function (integration) {
-		                                    checkout = integration;
-		                                },id: 'checkout'});*/
-		                            }
-		                        })
-		                        // We generated a client token for you so you can test out this code
-		                        // immediately. In a production-ready integration, you will need to
-		                        // generate a client token on your server (see section below).
-		                    </script>
+		                    
 					        <hr/>
 				        @endif
 		                <div class="ligle_terms servic_Payment_method">
@@ -553,6 +455,80 @@
 		</div>
     @endif
 </div>
+<?php
+	$clientToken = Braintree_ClientToken::generate();
+?>
+<script src="https://js.braintreegateway.com/js/braintree-2.27.0.min.js"></script>
+<script>
+	console.log('start');
+    var clientToken = "{{ $clientToken }}"; //eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiI1Mjc3NzQ2ZjY5MzM5NzYzMWFmODYzYmUyZGU5ZGJmYTUzODE5ZDYxNjc0NTkyZmZhMjdkNWE4NTE3YzY2NDUyfGNyZWF0ZWRfYXQ9MjAxNi0wOC0yMlQwNTowOTowOS40NzgwNDMzNjIrMDAwMFx1MDAyNm1lcmNoYW50X2lkPTM0OHBrOWNnZjNiZ3l3MmJcdTAwMjZwdWJsaWNfa2V5PTJuMjQ3ZHY4OWJxOXZtcHIiLCJjb25maWdVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvMzQ4cGs5Y2dmM2JneXcyYi9jbGllbnRfYXBpL3YxL2NvbmZpZ3VyYXRpb24iLCJjaGFsbGVuZ2VzIjpbXSwiZW52aXJvbm1lbnQiOiJzYW5kYm94IiwiY2xpZW50QXBpVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzLzM0OHBrOWNnZjNiZ3l3MmIvY2xpZW50X2FwaSIsImFzc2V0c1VybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXV0aFVybCI6Imh0dHBzOi8vYXV0aC52ZW5tby5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tIiwiYW5hbHl0aWNzIjp7InVybCI6Imh0dHBzOi8vY2xpZW50LWFuYWx5dGljcy5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tLzM0OHBrOWNnZjNiZ3l3MmIifSwidGhyZWVEU2VjdXJlRW5hYmxlZCI6dHJ1ZSwicGF5cGFsRW5hYmxlZCI6dHJ1ZSwicGF5cGFsIjp7ImRpc3BsYXlOYW1lIjoiQWNtZSBXaWRnZXRzLCBMdGQuIChTYW5kYm94KSIsImNsaWVudElkIjpudWxsLCJwcml2YWN5VXJsIjoiaHR0cDovL2V4YW1wbGUuY29tL3BwIiwidXNlckFncmVlbWVudFVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS90b3MiLCJiYXNlVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhc3NldHNVcmwiOiJodHRwczovL2NoZWNrb3V0LnBheXBhbC5jb20iLCJkaXJlY3RCYXNlVXJsIjpudWxsLCJhbGxvd0h0dHAiOnRydWUsImVudmlyb25tZW50Tm9OZXR3b3JrIjp0cnVlLCJlbnZpcm9ubWVudCI6Im9mZmxpbmUiLCJ1bnZldHRlZE1lcmNoYW50IjpmYWxzZSwiYnJhaW50cmVlQ2xpZW50SWQiOiJtYXN0ZXJjbGllbnQzIiwiYmlsbGluZ0FncmVlbWVudHNFbmFibGVkIjp0cnVlLCJtZXJjaGFudEFjY291bnRJZCI6ImFjbWV3aWRnZXRzbHRkc2FuZGJveCIsImN1cnJlbmN5SXNvQ29kZSI6IlVTRCJ9LCJjb2luYmFzZUVuYWJsZWQiOmZhbHNlLCJtZXJjaGFudElkIjoiMzQ4cGs5Y2dmM2JneXcyYiIsInZlbm1vIjoib2ZmIn0=";
+    var price = $('#selected_service_price').val();
+    var checkout;
+
+	$('#payment-form').empty();
+    braintree.setup(clientToken, 'custom', {id: 'checkout'});
+    braintree.setup(clientToken, "custom", {
+        onReady: function (integration) {
+            checkout = integration;
+            loginPayPalEffettuato = false;
+            // checkAbilitazioneButtonOrderNow();
+        },
+        paypal: {
+            container: "payment-form",
+            singleUse: true,
+            amount: price,
+            currency: 'EUR',
+        },
+        onPaymentMethodReceived: function (obj) {
+            setNonce(obj.nonce);
+        }
+    });
+
+    if($("#paypal-method").is(":checked")) {
+      //  $('form').attr('id','');
+        $("#payment-form").show();
+        $("#payment-form-card").hide();
+
+    }
+    if($("#card-method").is(":checked")) {
+       // $('form').attr('id','checkout');
+        $("#payment-form-card").show();
+        $("#payment-form").hide();
+        $("#payment-form-card").find('input').attr('required', true);
+       /* checkout.teardown(function () {
+            checkout = null;
+            // braintree.setup can safely be run again!
+        });
+        var checkout;
+        braintree.setupXXXXX(clientToken, 'custom', { onReady: function (integration) {
+            checkout = integration;
+        },id: 'checkout'});*/
+    }
+    $("[name=payment_method]").change(function () {
+        if($("#paypal-method").is(":checked")) {
+       //     $('form').attr('id','');
+            $("#payment-form").show();
+            $("#payment-form-card").hide();
+            $("#payment-form-card").find('input').attr('required', false);
+        }
+        if($("#card-method").is(":checked")) {
+            $("#payment-form-card").show();
+            $("#payment-form").hide();
+			$("#payment-form-card").find('input').attr('required', true);
+            /*  checkout.teardown(function () {
+                checkout = null;
+                // braintree.setup can safely be run again!
+            });
+            var checkout;
+            braintree.setupXXXXX(clientToken, 'custom', { onReady: function (integration) {
+                checkout = integration;
+            },id: 'checkout'});*/
+        }
+    })
+    // We generated a client token for you so you can test out this code
+    // immediately. In a production-ready integration, you will need to
+    // generate a client token on your server (see section below).
+</script>
 <script src="{{ asset('frontend/js/jquery-2.1.4.min.js') }}"></script>
 <script src="{{ asset('frontend/js/jquery.ui.js') }}"></script>
 <script>
@@ -601,23 +577,23 @@
 					$("#braintree-dropin-frame").hide();
 				}
 
-					$('#payment-form').empty();
-					braintree.setup(clientToken, "custom", {
-						paypal: {
-							container: "payment-form",
-							singleUse: true,
-							amount: response.price,
-							currency: 'EUR'
-						},
-						onPaymentMethodReceived: function (obj) {
-							setNonce(obj.nonce);
-						}
-					});
+				$('#payment-form').empty();
+				braintree.setup(clientToken, "custom", {
+					paypal: {
+						container: "payment-form",
+						singleUse: true,
+						amount: response.price,
+						currency: 'EUR'
+					},
+					onPaymentMethodReceived: function (obj) {
+						setNonce(obj.nonce);
+					}
+				});
 	        }
 	    }); 
 	});
 
-	function setNonce(nonce) {   // definizione di funzione ...
+	function setNonce(nonce) {  
 	    console.log('nonce'+nonce);
 		$("#payment_method_nonce_paypal").val(nonce);
 	    loginPayPalEffettuato = true;
@@ -634,7 +610,7 @@
 	});
 
 	$('[name=company]').change(function(){ // come sopra ...
-	   var val = $(this).val(); // this = name company
+	   var val = $(this).val(); 
 	    if(val != '') {
 	        $('[name=vat]').attr('required','required');
 	    }else{
@@ -804,7 +780,6 @@
 	    // checkAbilitazioneButtonOrderNow();
 	    console.log('end --> ok no error');
 	});
-
 </script>
 
 @endsection

@@ -208,7 +208,7 @@ class ServiceOrdersController extends CustomBaseController {
 			$rules['password'] = 'required|confirmed|min:6';
 		}
 
-		$rules['pan'] = 'required|max:40'; 	
+		$rules['pan'] = 'required|max:40'; 	// tax code
 		$rules['vat'] = 'max:40';		
 		$rules['company'] = 'max:255';		// 'required'
 		$rules['address'] = 'required';
@@ -278,7 +278,6 @@ class ServiceOrdersController extends CustomBaseController {
 		$used_count = 0;
 		$discount = 0;
 
-
 		if($code != null) {   // SE ... CODICE SCONTO ..
 			$code_arr = $service->checkCode($code);
 
@@ -302,7 +301,6 @@ class ServiceOrdersController extends CustomBaseController {
 		
 		$amount = round($amount, 2);
 
-
 		$result = \Braintree_Transaction::sale([  // !!!  elaborazione transazione !!!
 			'amount' => $amount,
 			'paymentMethodNonce' => $nonceFromTheClient,
@@ -311,11 +309,9 @@ class ServiceOrdersController extends CustomBaseController {
 			]
 		]);
 
-
-
 		Log::info("RESULT: " . print_r($result, true));
 
-		if($result->success == '1' || $amount <= 0) {  // ???
+		if($result->success == '1' || $amount <= 0) {
 
 			if ($user_obj != null) {  // $user_obj --> utente loggato (o che effettua la transazione)
 				$user_obj->update($user_data);
@@ -378,7 +374,7 @@ class ServiceOrdersController extends CustomBaseController {
 		    if($result->success == '1') {
 				$txn_id = $result->transaction->id;
 		    }
-		    
+
 		    $transaction_data = [
                 'order_id' => $order_id,
                 'transaction_id' => $txn_id,
@@ -398,7 +394,6 @@ class ServiceOrdersController extends CustomBaseController {
 
 	        	$transaction_data['paypal_data'] = json_encode($result->transaction->paypal);
 			    $transaction_data['payment_method_id'] = 2;
-
 	        } elseif(isset($result->transaction->creditCard)) {
 
 	            $transaction_data['credit_card_data'] = json_encode($result->transaction->creditCard);
@@ -406,7 +401,6 @@ class ServiceOrdersController extends CustomBaseController {
 				$credit_card_array = json_decode($transaction_data['credit_card_data']);
 				$payment_method = isset($credit_card_array->cardType) ? $credit_card_array->cardType : "Credit Card";
 				$payment_method .= isset($credit_card_array->last4) ? '(************'.$credit_card_array->last4.')' : "";
-
 			}
 
 			if(OrderTransaction::create($transaction_data)) {  // !!! inserimento dettagli transazione in DB (TABELLA: transactions !!!!)
@@ -419,25 +413,24 @@ class ServiceOrdersController extends CustomBaseController {
 				    }
 			    }
 
-			    // gen pdf invoice
-			    $service_name = $service->name;
-			    $data['order_obj'] = $order_obj;
-			    $settings = Setting::find('1');
-			    $data['settings'] = $settings;
-			    $data['price'] =  $service->price;
-			    $data['total'] =  $original_amount;
-			    $data['product_name'] = $service_name;
-			    $data['payment_method'] = $payment_method;
-			    $data['page_title'] = 'Order Invoice';
-			    $data['discount'] = $discount;
-			    $data['vat_price'] = round($service->vatprice() * 22/100) ;
+			 //    // gen pdf invoice
+			 //    $service_name = $service->name;
+			 //    $data['order_obj'] = $order_obj;
+			 //    $settings = Setting::find('1');
+			 //    $data['settings'] = $settings;
+			 //    $data['price'] =  $service->price;
+			 //    $data['total'] =  $original_amount;
+			 //    $data['product_name'] = $service_name;
+			 //    $data['payment_method'] = $payment_method;
+			 //    $data['page_title'] = 'Order Invoice';
+			 //    $data['discount'] = $discount;
+			 //    $data['vat_price'] = round($service->vatprice() * 22/100) ;
   
-			    $pdf = \App::make('dompdf.wrapper');
-				// return view('client.invoice_pdf', $data);   
-			    $pdf->loadView('client.invoice_pdf', $data);									// genera fattura
-				// return $pdf->stream();    // fix ssl https://
-			    $invoice_pdf_path = base_path().'/../uploads/invoice_'.time().'.pdf';
-			    $pdf->save($invoice_pdf_path);
+			 //    $pdf = \App::make('dompdf.wrapper');
+				// // return view('client.invoice_pdf', $data);   
+			 //    $pdf->loadView('client.invoice_pdf', $data);									// genera fattura
+			 //    $invoice_pdf_path = base_path().'/../uploads/invoice_'.time().'.pdf';
+			 //    $pdf->save($invoice_pdf_path);
 
 
 				// mail notification
@@ -455,14 +448,14 @@ class ServiceOrdersController extends CustomBaseController {
 				   'vat_price' => round($service->vatprice() * 22/100)
 			    ];
 
-			    \Mail::send('emails.service_activation', $mail_data, function ($m) use ($user_obj, $invoice_pdf_path) {  // invio MAIL notifica pagamento
+			    \Mail::send('emails.service_activation', $mail_data, function ($m) use ($user_obj) {  // invio MAIL notifica pagamento
 				   $settings=Setting::find(1);
 				   $site_email = $settings->website_email;
 				   $m->from($site_email, 'Wexplore');
-				   $m->attach($invoice_pdf_path);
+				   //$m->attach($invoice_pdf_path);
 				   $m->to($user_obj->email, $user_obj->name)->subject('Service Activation!');
 			    });
-			    @unlink($invoice_pdf_path);   // elimina invoice ???
+			    //@unlink($invoice_pdf_path);   // elimina invoice ???
 
 				/*  if($service->name == 'Professional Kit') {
 				   $code = SurveyCode::where('is_assigned',0)->first();
@@ -477,7 +470,7 @@ class ServiceOrdersController extends CustomBaseController {
 		    }
 
 			return redirect('thank-you/' . $service_id);
-		} // ????
+		}
 		
 		return redirect()->back()->withInput()->with('error', 'Please fill correctly all the payment informations.');
 	}

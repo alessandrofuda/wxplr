@@ -144,7 +144,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-		'Oureastudios\Laravel\BraintreeServiceProvider',
+		// 'Oureastudios\Laravel\BraintreeServiceProvider',
 		Barryvdh\DomPDF\ServiceProvider::class,
 		//Vinkla\Vimeo\VimeoServiceProvider::class,
         Vimeo\Laravel\VimeoServiceProvider::class,
