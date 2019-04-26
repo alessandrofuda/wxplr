@@ -380,20 +380,21 @@ class SkillDevelopmentController extends CustomBaseController
 
                 $service_name =  $video->video_title;
 
-                $data['order_obj'] = $order_obj;
-                $settings = Setting::find('1');
-                $data['settings'] = $settings;
-                $data['price'] =  $video->price;
-                $data['total'] =  $original_amount;
-                $data['product_name'] = $service_name;
-                $data['payment_method'] = $payment_method;
-                $data['page_title'] = 'Order Invoice';
-                $data['discount'] = $discount;
-                $data['vat_price'] = round($video->vatprice() * 22/100) ;
-                $pdf = \App::make('dompdf.wrapper');
-                $pdf->loadView('client.invoice_pdf', $data);
-                $invoice_pdf_path = base_path().'/../uploads/invoice_'.time().'.pdf';
-                $pdf->save($invoice_pdf_path);
+                // // invoice gener
+                // $data['order_obj'] = $order_obj;
+                // $settings = Setting::find('1');
+                // $data['settings'] = $settings;
+                // $data['price'] =  $video->price;
+                // $data['total'] =  $original_amount;
+                // $data['product_name'] = $service_name;
+                // $data['payment_method'] = $payment_method;
+                // $data['page_title'] = 'Order Invoice';
+                // $data['discount'] = $discount;
+                // $data['vat_price'] = round($video->vatprice() * 22/100) ;
+                // $pdf = \App::make('dompdf.wrapper');
+                // $pdf->loadView('client.invoice_pdf', $data);
+                // $invoice_pdf_path = base_path().'/../uploads/invoice_'.time().'.pdf';
+                // $pdf->save($invoice_pdf_path);
 
 
                 $mail_data = [
@@ -410,14 +411,14 @@ class SkillDevelopmentController extends CustomBaseController
                     'vat_price' => round($video->vatprice() * 22/100)
                 ];
 
-                \Mail::send('emails.service_activation', $mail_data, function ($m) use ($user_obj, $invoice_pdf_path) {
+                \Mail::send('emails.service_activation', $mail_data, function ($m) use ($user_obj) {
                     $settings=Setting::find(1);
                     $site_email = $settings->website_email;
                     $m->from($site_email, 'Wexplore');
-                    $m->attach($invoice_pdf_path);
+                    // $m->attach($invoice_pdf_path);
                     $m->to($user_obj->email, $user_obj->name)->subject('Service Activation!');
                 });
-                @unlink($invoice_pdf_path);
+                // @unlink($invoice_pdf_path);
 
                 return redirect('user/myvideos')->with('status', 'Payment has been completed!');
             }
@@ -706,20 +707,21 @@ class SkillDevelopmentController extends CustomBaseController
 
                 $service_name =  $event->name;
 
-                $data['order_obj'] = $order_obj;
-                $settings = Setting::find('1');
-                $data['settings'] = $settings;
-                $data['price'] =  $event->price;
-                $data['total'] =  $original_amount;
-                $data['product_name'] = $service_name;
-                $data['payment_method'] = $payment_method;
-                $data['page_title'] = 'Order Invoice';
-                $data['discount'] = $discount;
-                $data['vat_price'] = round($event->vatprice() * 22/100) ;
-                $pdf = \App::make('dompdf.wrapper');
-                $pdf->loadView('client.invoice_pdf', $data);
-                $invoice_pdf_path = base_path().'/../uploads/invoice_'.time().'.pdf';
-                $pdf->save($invoice_pdf_path);
+                // // invoice generat
+                // $data['order_obj'] = $order_obj;
+                // $settings = Setting::find('1');
+                // $data['settings'] = $settings;
+                // $data['price'] =  $event->price;
+                // $data['total'] =  $original_amount;
+                // $data['product_name'] = $service_name;
+                // $data['payment_method'] = $payment_method;
+                // $data['page_title'] = 'Order Invoice';
+                // $data['discount'] = $discount;
+                // $data['vat_price'] = round($event->vatprice() * 22/100) ;
+                // $pdf = \App::make('dompdf.wrapper');
+                // $pdf->loadView('client.invoice_pdf', $data);
+                // $invoice_pdf_path = base_path().'/../uploads/invoice_'.time().'.pdf';
+                // $pdf->save($invoice_pdf_path);
 
 
                 $mail_data = [
@@ -736,14 +738,14 @@ class SkillDevelopmentController extends CustomBaseController
                     'vat_price' => round($event->vatprice() * 22/100)
                 ];
 
-                \Mail::send('emails.service_activation', $mail_data, function ($m) use ($user_obj, $invoice_pdf_path) {
+                \Mail::send('emails.service_activation', $mail_data, function ($m) use ($user_obj) {
                     $settings=Setting::find(1);
                     $site_email = $settings->website_email;
                     $m->from($site_email, 'Wexplore');
-                    $m->attach($invoice_pdf_path);
+                    // $m->attach($invoice_pdf_path);
                     $m->to($user_obj->email, $user_obj->name)->subject('Service Activation!');
                 });
-                @unlink($invoice_pdf_path);
+                // @unlink($invoice_pdf_path);
 
                 return redirect('user/events')->with('status', 'Payment has been completed!');
             }

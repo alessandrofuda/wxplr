@@ -407,20 +407,21 @@ class PackageController extends CustomBaseController
 
             $transaction_obj = OrderTransaction::create($transaction_data);
 
-            $data['order_obj'] = $order_obj;
-            $settings = Setting::find('1');
-            $data['settings'] = $settings;
-            $data['price'] =  $package_obj->price;
-            $data['total'] =  $original_amount;
-            $data['product_name'] = $package_obj->title;;
-            $data['payment_method'] = $payment_method;
-            $data['page_title'] = 'Order Invoice';
-            $data['discount'] = $discount;
-            $data['vat_price'] = round($package_obj->vatprice() * 22/100) ;
-            $pdf = \App::make('dompdf.wrapper');
-            $pdf->loadView('client.invoice_pdf', $data);
-            $invoice_pdf_path = base_path().'/../uploads/invoice_'.time().'.pdf';
-            $pdf->save($invoice_pdf_path);
+            // // invoice gener
+            // $data['order_obj'] = $order_obj;
+            // $settings = Setting::find('1');
+            // $data['settings'] = $settings;
+            // $data['price'] =  $package_obj->price;
+            // $data['total'] =  $original_amount;
+            // $data['product_name'] = $package_obj->title;;
+            // $data['payment_method'] = $payment_method;
+            // $data['page_title'] = 'Order Invoice';
+            // $data['discount'] = $discount;
+            // $data['vat_price'] = round($package_obj->vatprice() * 22/100) ;
+            // $pdf = \App::make('dompdf.wrapper');
+            // $pdf->loadView('client.invoice_pdf', $data);
+            // $invoice_pdf_path = base_path().'/../uploads/invoice_'.time().'.pdf';
+            // $pdf->save($invoice_pdf_path);
 
             $mail_data = [
                 'order_id' => $order_obj->id,
@@ -436,14 +437,14 @@ class PackageController extends CustomBaseController
                 'vat_price' => round($package_obj->vatprice() * 22/100)
             ];
 
-            \Mail::send('emails.service_activation', $mail_data, function ($m) use ($user_obj, $invoice_pdf_path) {
+            \Mail::send('emails.service_activation', $mail_data, function ($m) use ($user_obj) {
                 $settings=Setting::find(1);
                 $site_email = $settings->website_email;
                 $m->from($site_email, 'Wexplore');
-                $m->attach($invoice_pdf_path);
+                // $m->attach($invoice_pdf_path);
                 $m->to($user_obj->email, $user_obj->name)->subject('Service Activation!');
             });
-            @unlink($invoice_pdf_path);
+            //@unlink($invoice_pdf_path);
 
             return redirect('user/dashboard')->with('status', 'Payment has been completed!');
 

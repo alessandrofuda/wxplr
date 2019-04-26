@@ -241,12 +241,6 @@ Route::get('time', function() {
 			Route::get('global_orientation_test', 'PagesController@global_online_test');
 			Route::post('global_orientation_test', 'PagesController@global_online_test_next');
 
-
-			Route::get('user/got-pro', array('as'=>'got_pro', 'uses'=>'GotProController@index'));
-			Route::get('user/career-ready', array('as'=>'career_ready', 'uses'=>'CareerReadyController@index'));
-			Route::get('user/wow', array('as'=>'wow', 'uses'=>'WowController@index'));
-
-
 			Route::get('get_address/{addr_id}', 'ServiceOrdersController@get_address');
 			Route::get('user/orders', 'ServiceOrdersController@user_orders');
 			Route::get('order/{order_id}/invoice', 'ServiceOrdersController@order_invoice');
@@ -262,18 +256,23 @@ Route::get('time', function() {
 
 			// Professional Kit
 			Route::get('user/professional_kit', ['as'=>'professional.kit.step','uses'=>'ProfessionalKitController@overview']);
-
 			Route::get('user/professional_kit/profile', ['as'=>'professional.kit','uses'=>'ProfessionalKitController@index']);
 			Route::get('user/market_analysis', ['as' => 'market_analysis','uses'=>'ProfessionalKitController@market_analysis']);
 			Route::get('user/culture_match',['as'=>'culture_match','uses' => 'ProfessionalKitController@culture_match_index']);
 			Route::get('user/culture_match/submit',['as'=>'culture_match_submit_get','uses' => 'ProfessionalKitController@culture_match_index']);
 			Route::post('user/culture_match/submit',['as'=>'culture_match_submit','uses' => 'ProfessionalKitController@culture_match_submit']);
 			Route::get('culture/match/survey/{country}',['as'=>'culture_match_survey','uses' => 'ProfessionalKitController@culture_match_iframe']);
-			
 			Route::get('user/dream_check_lab', ['as'=>'dream.check.lab','uses'=>'ProfessionalKitController@dream_check_lab']);
 			Route::post('user/dream_check_lab/store', ['as'=>'dream.check.lab.store','uses'=>'ProfessionalKitController@dream_check_lab_store']);
 			Route::post('user/dream_check_lab/submit', ['as'=>'dream.check.lab.submit','uses'=>'ProfessionalKitController@dream_check_lab_submit']);
 			Route::get('user/dream_check_lab/feedback/{dreamcheck_id}',['as'=>'dreamcheck.lab.submission.fb','uses' => 'ProfessionalKitController@dream_check_lab_submission_feedback']);
+
+			// Got PRO
+			Route::get('user/got-pro', array('as'=>'got_pro', 'uses'=>'GotProController@index'));
+			// Career Ready
+			Route::get('user/career-ready', array('as'=>'career_ready', 'uses'=>'CareerReadyController@index'));
+			// Wow
+			Route::get('user/wow', array('as'=>'wow', 'uses'=>'WowController@index'));
 
 			// Skill Development
 			Route::get('user/myvideos','UserSubscriptionController@my');

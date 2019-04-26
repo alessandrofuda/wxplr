@@ -1,4 +1,18 @@
 @extends('front.dashboard_layout')
+
 @section('content')
-	ksdhgfdsk
+	<div class="container">
+	    <div class="row">
+	    	<div class="col-md-12">
+		        <div class="heading">
+		            <h1>{{ $page_title }}</h1>
+		        </div>
+	        </div>
+	    </div>
+	    <div class="row">
+	        <div class="col-md-12">
+	        	chatbot 1 PRO
+	        </div>
+	    </div>
+	</div>
 @endsection

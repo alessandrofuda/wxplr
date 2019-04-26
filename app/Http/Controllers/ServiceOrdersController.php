@@ -330,7 +330,6 @@ class ServiceOrdersController extends CustomBaseController {
 				   $role_arr = array('user_id' => $user_obj->id, 'role_id' => 1);
 				   $ur = UserRoles::create($role_arr);
 			    }
-
 		    } else {
 				$user_obj = User::create($user_data);
             	$user_profile_data['user_id'] = $user_obj->id;

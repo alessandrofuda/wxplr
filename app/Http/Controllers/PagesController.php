@@ -224,7 +224,7 @@ class PagesController extends CustomBaseController {
 		return redirect('contact-us')->with('status', 'Your message has been sent successfully!');
 	}
 
-	public function client_dashboar1d(){
+	/*public function client_dashboar1d(){
 		$noti_msg = '';
 		$dash_noti = [];
 		$user = Auth::user();
@@ -278,7 +278,7 @@ class PagesController extends CustomBaseController {
 
 		$data['page_title'] = 'Dashboard';
 		return view('client.client_dashboard',$data);
-	}
+	}*/
 
 	public function client_dashboard() {
 
@@ -287,7 +287,6 @@ class PagesController extends CustomBaseController {
 
 		//Professional Kit status
 		$order = Order::where('user_id',Auth::user()->id)->where('item_name','Professional Kit')->first();
-
 
 		if($order != null) {
 
@@ -334,7 +333,6 @@ class PagesController extends CustomBaseController {
 					'noti_url' => $noti_url];
 			}
 
-
 			if ($order->step_id == 4) {
 				$dreamcheck_lab = DreamCheckLab::where('user_id', Auth::user()->id)->first();
 				$validate_by = $dreamcheck_lab->validate_by;  // se crea errore (nei test!) --> in DB: "Orders" tab.--> step_id = 3 o meno
@@ -369,7 +367,6 @@ class PagesController extends CustomBaseController {
 				'noti_url' => ''];
 			}
 
-
 			if ($order->step_id == 5) {
 				$dash_noti[] = ['heading' => 'Steady Aim Shoot',
 								'noti_msg' => link_to_route("steady_aim_shoot", "Click here", array(), array("class" => "")) . ' to proceed to last step.',
@@ -402,6 +399,7 @@ class PagesController extends CustomBaseController {
 				$roles[]=$r->role_id;
 			}
 		}
+
 		$services=array();
 		$user_id=Auth::user()->id;
 		$user_free_service=Service::where('type','free')->first();
@@ -415,9 +413,6 @@ class PagesController extends CustomBaseController {
 		$services_obj=Service::whereIn('id',$services)->get();
 		$user_services=array();
 
-
-
-
 		// modifica 12/04/2019 
 		$services_obj = Service::whereIn('id', [1,5,6,7])->get();  // 1,5,6,7 sono gli id dei nuovi servizi !!
 		$services_purchased_by_user = Order::where('user_id',$user_id)->pluck('item_name'); 
@@ -425,8 +420,6 @@ class PagesController extends CustomBaseController {
 		foreach ($services_purchased_by_user as $k => $service_name) {
 			$services_purchased_by_user_arr[] = $service_name;
 		}
-
-
 
 		if($services_obj->count() > 0){
 			foreach($services_obj as $service){

@@ -70,7 +70,6 @@ class ProfessionalKitController extends CustomBaseController {
 		$data['page_title'] = 'Professional Kit';
 		
 		return view('client.professional_kit_step', $data);
-	
 	}
 
 

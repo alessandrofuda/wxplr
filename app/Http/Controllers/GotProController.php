@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Order;
 
 class GotProController extends Controller {
 
@@ -13,11 +14,12 @@ class GotProController extends Controller {
     public function index(){
 
     	// payment check
-    	// if(Order::....),{
-    	// 	return ....
-    	// }
+    	$order = Order::where('user_id',\Auth::user()->id)->where('item_name','Global Orientation Test PRO')->first();
+        if($order != null) {
+            $data['page_title'] = 'Global Orientation Test PRO';
+            return view('client.got_pro', $data);
+        }
 
-    	//return view('client.got_pro');
     	return redirect('service/payment/'.$this->service_Id);
     }
 }
