@@ -94,12 +94,12 @@
             </a>
         </li>
 
-        <li class="<?php echo e(\Route::getCurrentRoute()->uri() == "user/myappointments" ? "active" : ""); ?>">
-            <a href="<?php echo e(url('user/myappointments')); ?>">
+        <!--li class="">
+            <a href="">
                 <i class="fa fa-clock-o" aria-hidden="true"></i>
                 <span>My Appointments </span>
             </a>
-        </li>
+        </li-->
 
         <!--li class="">
   			<a href="">
@@ -134,3 +134,4 @@
     </section>
     <!-- /.sidebar -->
   </aside>
+<?php /**PATH /home/vagrant/Code/wexplore/resources/views/front/dashboard_sidebar.blade.php ENDPATH**/ ?>

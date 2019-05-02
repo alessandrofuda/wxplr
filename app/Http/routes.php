@@ -313,9 +313,6 @@ Route::get('time', function() {
 
 			Route::get('/user/{form_id}/download', 'ProfessionalKitController@download_form');
 
-			//My videos
-			Route::get('user/video/{video_id}/view','SkillDevelopmentController@view');
-
 			//My Packages
 			Route::get('user/packages','PackageController@my');
 		});  // end Auth userClient
@@ -507,15 +504,21 @@ Route::get('time', function() {
 	}); // end Auth middleware
 
 
+
+
+	
 	Route::get('skill_development/browse','SkillDevelopmentController@browse');
 	Route::get('skill_development/videos','SkillDevelopmentController@index');
+	Route::post('skill_development/videos','SkillDevelopmentController@index');
+
+	// convertire queste rotte/controllers per il nuovo servizio wow (NO LOGGED USER !!)
 	Route::get('video/{video_id}/purchase','SkillDevelopmentController@purchase');
-	Route::get('video/{video_id}/view',[ 'as'=>'video_view','uses' =>  'SkillDevelopmentController@show']);
 	Route::post('video/{video_id}/purchase','SkillDevelopmentController@purchase_video');
+	Route::get('video/{video_id}/view',[ 'as'=>'video_view','uses' =>  'SkillDevelopmentController@show']);
 	Route::post('skill_development/code','SkillDevelopmentController@code');
 	Route::post('skill_development/payment_code','SkillDevelopmentController@payment_code');
 
-	Route::post('skill_development/videos','SkillDevelopmentController@index');
+	
 	Route::post('service_detail','SkillDevelopmentController@service_detail');
 	Route::get('/events','SkillDevelopmentController@events');
 	Route::get('/event/{event_id}/purchase','SkillDevelopmentController@purchase_event');

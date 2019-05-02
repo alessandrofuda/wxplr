@@ -94,12 +94,12 @@
             </a>
         </li>
 
-        <li class="{{\Route::getCurrentRoute()->uri() == "user/myappointments" ? "active" : ""}}">
-            <a href="{{ url('user/myappointments') }}">
+        <!--li class="{{--\Route::getCurrentRoute()->uri() == "user/myappointments" ? "active" : ""--}}">
+            <a href="{{-- url('user/myappointments') --}}">
                 <i class="fa fa-clock-o" aria-hidden="true"></i>
                 <span>My Appointments </span>
             </a>
-        </li>
+        </li-->
 
         <!--li class="{{-- \Route::getCurrentRoute()->uri() == "user/myvideos" ? "active" : ""--}}">
   			<a href="{{-- url('user/myvideos') --}}">
