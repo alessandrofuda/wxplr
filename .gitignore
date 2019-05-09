@@ -6,8 +6,6 @@ Homestead.json
 .env
 /vendor
 /storage/*.key
-/storage/logs
-/storage/framework
 MyProject.komodoproject
 git4rv
 .idea
@@ -24,4 +22,5 @@ env.php
 /public/.well-known
 /*/error_log
 error_log
+/public/.htaccess
 
