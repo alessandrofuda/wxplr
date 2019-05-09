@@ -21,3 +21,7 @@ env.php
 /uploads/cv_file
 /public/uploads/cv_file
 /bootstrap/cache
+/public/.well-known
+/*/error_log
+error_log
+
