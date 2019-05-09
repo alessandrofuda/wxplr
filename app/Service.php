@@ -28,7 +28,7 @@ class Service extends Model
     public function vatprice($only = false) {
         $price = $this->price;
         $p = $price / 1.22;
-        $p =  round($p);
+        $p =  round($p,2);
         return $p;
     }
 

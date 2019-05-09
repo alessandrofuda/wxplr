@@ -239,10 +239,10 @@
 		                        <span class="service-name">{!! $service != null ? $service->name : "" !!}</span>
 		                    </li>
 		                    <li><span>Price</span>
-		                        <span>{{ $service != null ? '€'.round($service->vatprice()) : ""}}</span>
+		                        <span>{{ $service != null ? '€'.round($service->vatprice(),2) : ""}}</span>
 		                    </li>
 		                    <li><span>Vat</span>
-		                        <span>{{  $service != null ? '€'.round($service->vatprice(true) * 22/100) : "" }}</span>
+		                        <span>{{  $service != null ? '€'.round(($service->vatprice(true) * 22/100), 2) : "" }}</span>
 		                    </li>
 		                    <li><span>Total Price</span>
 		                        <span id="total_price">{{ $service != null ? '€'.$service->price : "" }} </span>
@@ -252,10 +252,10 @@
 		                            <span >{!! $video->video_title !!}</span>
 		                        </li>
 		                        <li><span>Price</span>
-		                            <span>{{ '€'.$video->vatprice() }}</span>
+		                            <span>{{ '€'.round($video->vatprice(), 2) }}</span>
 		                        </li>
 		                        <li><span>Vat</span>
-		                            <span>{{ '€'.round($video->vatprice() * 22/100)  }}</span>
+		                            <span>{{ '€'.round(($video->vatprice() * 22/100), 2)  }}</span>
 		                        </li>
 		                        <li><span>Total Price</span>
 		                            <span id="total_price">{{  '€'.$video->price  }} </span>
@@ -265,10 +265,10 @@
 		                            <span>{!! $event->name !!}</span>
 		                        </li>
 		                        <li><span>Price</span>
-		                            <span>{{ '€'.$event->vatprice() }}</span>
+		                            <span>{{ '€'.round($event->vatprice(), 2) }}</span>
 		                        </li>
 		                        <li><span>Vat</span>
-		                            <span>{{ '€'.round($event->vatprice() * 22/100)  }}</span>
+		                            <span>{{ '€'.round(($event->vatprice() * 22/100), 2)  }}</span>
 		                        </li>
 		                        <li><span>Total Price</span>
 		                            <span id="total_price">{{  '€'.$event->price  }} </span>
@@ -278,10 +278,10 @@
 		                            <span>{!! $package->title !!}</span>
 		                        </li>
 		                        <li><span>Price</span>
-		                            <span>{{ '€'.$package->vatprice() }}</span>
+		                            <span>{{ '€'.round($package->vatprice(), 2) }}</span>
 		                        </li>
 		                        <li><span>Vat</span>
-		                            <span>{{ '€'.round($package->vatprice() * 22/100)  }}</span>
+		                            <span>{{ '€'.round(($package->vatprice() * 22/100), 2)  }}</span>
 		                        </li>
 		                        <li><span>Total Price</span>
 		                            <span id="total_price">{{  '€'.$package->price  }} </span>

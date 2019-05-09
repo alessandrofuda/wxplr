@@ -15,9 +15,10 @@
 		</div>
 
 		<div class="row">
-			<div class="col-md-12">
-				<p>Your basic package to kick-start your international career.</p>
-				<p>Map your professional journey from the application to the recruitment phase, and get faster to your final destination, by avoiding slowdowns and pitfalls.</p>
+			<div class="col-md-12" style="font-size: 18px;">
+				<p>Welcome to your personal space in Wexplore's world.</p>
+				<p>Are your ready for #yournextchange?</p>
+				<p>Browse through our different services to kick-start your international career.</p>
 			</div>
 		</div>
 
