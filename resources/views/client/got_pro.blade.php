@@ -35,11 +35,11 @@
 			var chat = new Ewbot();
 			chat.Init({
 				hubendpoint : 'http://94.76.213.73/Ewbot',
-				chat_image_welcome : {{asset('custom/chat-vic/logo_apri_chat.png')}},
-				chat_image_header_opened : {{asset('custom/chat-vic/header_chat.png')}},
-				chat_image_header_closed : {{asset('custom/chat-vic/logo_chat_aperta.png')}},			
-				chat_send : {{asset('custom/chat-vic/chat_send_msg.png')}},
-				css_headers : {{asset('custom/chat-vic/chat_CT.css')}},
+				chat_image_welcome : '{{asset('custom/chat-vic/logo_apri_chat.png')}}',
+				chat_image_header_opened : '{{asset('custom/chat-vic/header_chat.png')}}',
+				chat_image_header_closed : '{{asset('custom/chat-vic/logo_chat_aperta.png')}}',			
+				chat_send : '{{asset('custom/chat-vic/chat_send_msg.png')}}',
+				css_headers : '{{asset('custom/chat-vic/chat_CT.css')}}',
 				flow: 'WeExploreFlow',
 				context: 'nn...'
 			});

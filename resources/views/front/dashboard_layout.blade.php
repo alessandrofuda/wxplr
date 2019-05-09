@@ -298,7 +298,6 @@
         <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
         @yield('js')
     </div>
-
-    @stack('scripts')
 </body>
+@stack('scripts')
 </html>
