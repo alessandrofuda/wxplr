@@ -59,7 +59,8 @@
     <link rel="stylesheet" href="<?php echo e(asset('frontend/css/owl.theme.css')); ?>" type="text/css">
     <link rel="stylesheet" href="<?php echo e(asset('frontend/css/owl.carousel.css')); ?>" type="text/css">
     <link rel="stylesheet" href="<?php echo e(asset('frontend/css/owl-custom.css')); ?>" type="text/css">
-    <!-- owl carousel css-->
+    
+    <?php echo $__env->yieldPushContent('js-libraries'); ?>
 </head>
 
 <body class="home page template-slider menu-line-below layout-full-width header-classic sticky-header sticky-white subheader-title-left no-content-padding">
@@ -299,6 +300,7 @@
         <script src="<?php echo e(asset('frontend/js/bootstrap.min.js')); ?>"></script>
         <?php echo $__env->yieldContent('js'); ?>
     </div>
-</body>
 
+    <?php echo $__env->yieldPushContent('scripts'); ?>
+</body>
 </html><?php /**PATH /home/vagrant/Code/wexplore/resources/views/front/dashboard_layout.blade.php ENDPATH**/ ?>

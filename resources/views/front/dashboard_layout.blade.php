@@ -59,7 +59,8 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('frontend/css/owl-custom.css') }}" type="text/css">
-    <!-- owl carousel css-->
+    
+    @stack('js-libraries')
 </head>
 
 <body class="home page template-slider menu-line-below layout-full-width header-classic sticky-header sticky-white subheader-title-left no-content-padding">
@@ -297,6 +298,7 @@
         <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
         @yield('js')
     </div>
-</body>
 
+    @stack('scripts')
+</body>
 </html>
