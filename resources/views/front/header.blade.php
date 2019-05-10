@@ -87,9 +87,16 @@
                                                 </a>
                                             </li>
                                         @else
+                                            @if(Route::currentRouteName() != 'user.dashboard')
+                                                <li>
+                                                    <a href="/user/dashboard" style="padding-bottom: 10px;">
+                                                        <span>Dashboard</span>
+                                                    </a>
+                                                </li>
+                                            @endif
                                             <li>
-                                                <a href="/user/dashboard" style="padding-bottom: 10px;">
-                                                    <span>Dashboard 
+                                                <a style="padding-bottom: 10px;">
+                                                    <span>
                                                         @if(!empty(Auth::user()->userProfile->profile_picture))
                                                             <img class="img-circle" src="{{ asset(Auth::user()->userProfile->profile_picture) }}" alt="" width="35px" height="35px" />
                                                         @else
@@ -108,7 +115,7 @@
                             </nav><a href="#" class="responsive-menu-toggle "><i class="icon-menu"></i></a>
                         </div>
                     <!-- Secondary menu area - only for certain pages -->
-                    <div class="secondary_menu_wrapper">
+                    <!--div class="secondary_menu_wrapper">
                         <nav id="secondary-menu" class="menu-secondary-menu-container">
                             <ul id="menu-secondary-menu" class="secondary-menu">
                                 <li class="_menu-item-1568">
@@ -136,7 +143,7 @@
                                 </li>
                             </ul>
                         </nav>
-                    </div>
+                    </div-->
                     <!-- Banner area - only for certain pages-->
                     <div class="banner_wrapper">
                         <a href="#" target="_blank"></a>

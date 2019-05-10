@@ -10,9 +10,10 @@ li.active {
 }
 
 button.order_now:disabled {
-	background: gray !important;
-	border-bottom: solid 2px gray !important;
+	/*background: gray !important;
+	border-bottom: solid 2px gray !important;*/
     opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .button_disabled,
@@ -23,6 +24,16 @@ button.order_now:disabled {
 .button_disabled::after {
 	background: transparent !important;
 }
+
+.link_disabled {
+	cursor: not-allowed!important;
+	opacity: 0.5;
+	
+}
+.link_disabled > a {
+	pointer-events: none!important;
+}
+
 
 /* GLOBAL TEST */
 

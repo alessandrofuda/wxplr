@@ -61,7 +61,7 @@
               <span>WOW</span>
             </a>
         </li>
-        <li class="{{\Route::getCurrentRoute()->uri() == "user/orders" ? "active open" : ""}}">
+        <li class="{{\Route::getCurrentRoute()->uri() == "user/orders" ? "active open" : ""}} link_disabled">
             <a href="{{ url('user/orders') }}">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 <span>My Orders</span>
@@ -87,7 +87,7 @@
             </ul>
         </li-->
 
-        <li class="{{\Route::getCurrentRoute()->uri() == "user/mydocuments" ? "active" : ""}} ">
+        <li class="{{\Route::getCurrentRoute()->uri() == "user/mydocuments" ? "active" : ""}} link_disabled">
             <a href="{{ url('user/mydocuments') }}">
                 <i class="fa fa-clock-o" aria-hidden="true"></i>
                 <span>My Documents </span>
