@@ -270,7 +270,7 @@
                 }
             });
             jQuery(document).ready(function(){
-                var tz = jstz.determine(); // Determines the time zone of the browser client
+                var tz = jstz.determine(); // Determines the time zone of the browser client,
                 var timezone = tz.name(); //'Asia/Kolhata' for Indian Time.
                 var val = jQuery("#user_timezone").val();
                 var _token = "{{ csrf_token() }}";
@@ -288,6 +288,14 @@
                 }
 
             });
+        </script>
+        <script>
+            // fix footer to bottom of page
+            var window_h = jQuery(document).height();
+            var head_h = jQuery('header').height();
+            var foot_h = jQuery('footer').height();
+            var h = window_h-head_h-foot_h;
+            jQuery('.content-wrapper').css('min-height', h);
         </script>
 
 

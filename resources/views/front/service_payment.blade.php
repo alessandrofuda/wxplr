@@ -401,7 +401,7 @@
 		                    </span>
 		                </div>
 		                @if(isset($service))
-		                    <button  value="Pay $@if(is_object($service) && !empty($service)){{ $service->usdprice($service->currency_type, 'USD', $service->price) }}@endif" type="submit" class="order_now" disabled >
+		                    <button  value="Pay $@if(is_object($service) && !empty($service)){{ $service->usdprice($service->currency_type, 'USD', $service->price) }}@endif" type="submit" class="order_now" disabled>
 		                        @if(is_object($service) && !empty($service))
 		                            @if($service->usdprice($service->currency_type, 'USD', $service->price) > 0 )
 		                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now

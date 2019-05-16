@@ -382,7 +382,7 @@
 		        }
 		    });
 		    jQuery(document).ready(function(){
-		        var tz = jstz.determine(); // Determines the time zone of the browser client
+		        var tz = jstz.determine(); // Determines the time zone of the browser client..
 		        var timezone = tz.name(); //'Asia/Kolhata' for Indian Time.
 		        var val = jQuery("#user_timezone").val();
 

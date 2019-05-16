@@ -50,13 +50,13 @@
             </a>
         </li>
         <li class="{{\Route::getCurrentRoute()->uri() == "user/career-ready" ? "active open" : ""}}">
-            <a href="{{ url('user/career-ready') }}">
+            <a href="http://eepurl.com/grpRwb{{-- url('user/career-ready') --}}">
               <i class="fa fa-user" aria-hidden="true"></i>
               <span>Career Ready - VIC</span>
             </a>
         </li>
         <li class="{{\Route::getCurrentRoute()->uri() == "user/wow" ? "active open" : ""}}">
-            <a href="{{ url('user/wow') }}">
+            <a href="http://eepurl.com/grpRwb{{-- url('user/wow') --}}">
               <i class="fa fa-user" aria-hidden="true"></i>
               <span>WOW</span>
             </a>
