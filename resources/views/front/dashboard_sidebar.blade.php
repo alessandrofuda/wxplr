@@ -87,12 +87,12 @@
             </ul>
         </li-->
 
-        <li class="{{\Route::getCurrentRoute()->uri() == "user/mydocuments" ? "active" : ""}} link_disabled">
-            <a href="{{ url('user/mydocuments') }}">
+        <!--li class="{{--\Route::getCurrentRoute()->uri() == "user/mydocuments" ? "active" : ""--}} link_disabled">
+            <a href="{{-- url('user/mydocuments') --}}">
                 <i class="fa fa-clock-o" aria-hidden="true"></i>
                 <span>My Documents </span>
             </a>
-        </li>
+        </li-->
 
         <!--li class="{{--\Route::getCurrentRoute()->uri() == "user/myappointments" ? "active" : ""--}}">
             <a href="{{-- url('user/myappointments') --}}">
