@@ -128,6 +128,35 @@ ul > li {
     display: none;
 }
 
+
+
+
+
+/* custom */
+.chat-container {
+    width:750px;
+    height: 600px;
+    bottom: 20px;
+    right: 20px;
+}
+.chat-footer {
+    padding-left:50px;
+}
+.chat-footer input {
+    height: 40px;
+}
+.chat-messages-container {
+    max-height: 370px;
+}
+.chat-message-container {
+    font-size:15px;
+    line-height: 1.7;
+}
+
+
+
+
+
 @media screen and (max-width: 760px) {
 	.chat-avatar{
 		/* nasconde l'avatar di sinistra (utente) */
