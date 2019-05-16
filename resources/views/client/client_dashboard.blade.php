@@ -22,6 +22,7 @@
 			</div>
 		</div>
 
+		{{-- barra notifiche in alto del Professional Kit - oscurata 16/5/2019
 		<div class="row">
 			<div class="col-md-12">
 				@if(count($notifications) > 0)
@@ -30,7 +31,6 @@
 						<div class="box-header">
 							<h3 class="box-title">{{ $notification['heading'] }}</h3>
 						</div>
-						<!-- /.box-header -->
 						<div class="box-body no-padding">
 							<table class="table table-condensed">
 								@foreach($notification['notifications'] as $key => $notification)
@@ -40,20 +40,20 @@
 										<td>
 											{!! $notification['noti_msg']  !!}
 										</td>
-										{{--<td>
+										<td>
 											@if($notification['noti_url'] != null)
 												<a target="_blank" class="btn btn-success" href="{{ url($notification['noti_url']) }}">Download Form</a>
 												@endif
-										</td>--}}
+										</td>
 									</tr>
 								@endforeach
 							</table>
-						</div><!-- /.box-body -->
-					</div><!-- /.box -->
+						</div>
+					</div>
 					@endforeach
 				@endif
 			</div>
-		</div>
+		</div> --}}
 
 		<div class="row">
 			<div class="col-md-12">

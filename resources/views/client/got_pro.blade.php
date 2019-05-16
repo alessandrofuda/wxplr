@@ -40,8 +40,14 @@
 				chat_image_header_closed : '{{asset('custom/chat-vic/logo_chat_aperta.png')}}',			
 				chat_send : '{{asset('custom/chat-vic/chat_send_msg.png')}}',
 				css_headers : '{{asset('custom/chat-vic/chat_CT.css')}}',
-				flow: 'WeExploreFlow',
-				context: 'nn...'
+				flow: 'WeExploreFlowNew',
+				disable_signalR: true,
+				context: 'nn...',
+				parameters: 
+				{ 
+					user_id: 10,
+					chat_object_name: 'chat'
+				}
 			});
 			chat.InitializeContent();
 		}	
