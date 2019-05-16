@@ -437,9 +437,9 @@ class PagesController extends CustomBaseController {
 				}elseif ($service->name == 'Global Orientation Test PRO') {
 					$url = url('/user/got-pro');
 				}elseif ($service->name == 'Career Ready') {
-					$url = url('/user/career-ready');
+					$url = 'http://eepurl.com/grpRwb'; //url('/user/career-ready');
 				}elseif ($service->name == 'WOW') {
-					$url = url('/user/wow');
+					$url = 'http://eepurl.com/grpRwb'; //url('/user/wow');
 				}
 
 				$label = in_array($service->name, $services_purchased_by_user_arr) ? 'start' : 'buy';

@@ -68,7 +68,7 @@
 							<div class="col-md-6">
 								<div class="box-style">
 									<div class="top-stripe bckg-custom-orange"></div>
-									<span class="imgblock"><img src="{{ asset($service["user_dashboard_image"]) }}" alt="Professional Kit"></span>											
+									<span class="imgblock"><img src="{{ asset($service["user_dashboard_image"]) }}" alt=""></span>											
 									<div class="tile-title">
 										<h3>{{ $service['name'] }}</h3>
 									</div>
@@ -98,7 +98,7 @@
 			</div>
 			  
 			<div class="clearfix"></div>
-			<!-- @if(count($user_unpaid_services)>0)
+			{{-- @if(count($user_unpaid_services)>0)
 				<div class="col-md-12">
 				<div class="box">
 				<div class="box-title">
@@ -109,7 +109,7 @@
 					<div class="col-md-4">
 						<div class="box-style">
 							<div class="top-stripe bckg-custom-orange"></div>
-							<span class="imgblock"><img src="{{ asset($service["user_dashboard_image"]) }}" alt="Professional Kit"></span>
+							<span class="imgblock"><img src="{{ asset($service["user_dashboard_image"]) }}" alt=""></span>
 							<div class="tile-title">
 								<h3>{{ $service['name'] }}</h3>
 								<h5>@if ($service['price']==0)Free @else Price: <span class="service_price">&euro;{{ $service['price'] }}</span>@endif</h5>
@@ -153,7 +153,7 @@
 						</div>
 				</div>
 					</div>
-			@endif -->
+			@endif --}}
 		</div>
 	</div>
 	<!--/div-->
