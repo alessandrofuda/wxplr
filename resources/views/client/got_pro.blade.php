@@ -20,7 +20,7 @@
 	        	<div class="box">
 	        		<div class="box-title"></div>
 	        		<div class="box-body">
-	        			<p>Run the Chat-Bot by clicking on the lower right button.</p>
+	        			<p>Run the Chat-Bot by clicking on the lower button.</p>
 	        		</div>
 	        	</div>
 	        	

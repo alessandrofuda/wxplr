@@ -294,8 +294,8 @@
             var window_h = jQuery(document).height();
             var head_h = jQuery('header').height();
             var foot_h = jQuery('footer').height();
-            var h = window_h-head_h-foot_h;
-            jQuery('.content-wrapper').css('min-height', h);
+            var h = window_h-head_h-foot_h+10;
+            jQuery('.content-wrapper').css('min-height', h+'px');
         </script>
 
 
@@ -306,6 +306,7 @@
         <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
         @yield('js')
     </div>
+    @stack('scripts')
 </body>
-@stack('scripts')
+
 </html>
