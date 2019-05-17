@@ -401,13 +401,13 @@
 		                    </span>
 		                </div>
 		                @if(isset($service))
-		                    <button  value="Pay $@if(is_object($service) && !empty($service)){{ $service->usdprice($service->currency_type, 'USD', $service->price) }}@endif" type="submit" class="order_now" disabled>
+		                    <button  value="Pay $@if(is_object($service) && !empty($service)){{ $service->usdprice($service->currency_type, 'USD', $service->price) }}@endif" type="submit" class="order_now"> {{-- disabled --}}
 		                        @if(is_object($service) && !empty($service))
 		                            @if($service->usdprice($service->currency_type, 'USD', $service->price) > 0 )
 		                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now
 		                            @else
 		                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Get Now
-		                                <span style="font-size:xx-small;font-weight:lighter;display:block;line-height:1;">..soon available..</span>
+		                                <!-- span style="font-size:xx-small;font-weight:lighter;display:block;line-height:1;">..soon available..</span-->
 		                            @endif
 		                        @endif
 		                    </button>

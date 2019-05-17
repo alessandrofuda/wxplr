@@ -2,8 +2,8 @@
 
 @push('js-libraries')
 	<!--vic chatbot-->
-    <script src="http://94.76.213.73/lib/signalr/signalr.js"></script>
-	<script src="http://94.76.213.73/js/ewbot.js"></script>
+    <script src="https://www.ew9102bot.it/lib/signalr/signalr.js"></script>
+	<script src="https://www.ew9102bot.it/js/ewbot.js"></script>
 @endpush
 
 @section('content')
@@ -16,8 +16,14 @@
 	        </div>
 	    </div>
 	    <div class="row">
-	        <div class="col-md-12">
-	        	chatbot 1 PRO
+	        <div class="col-md-12" style="font-size: 16px;">
+	        	<div class="box">
+	        		<div class="box-title"></div>
+	        		<div class="box-body">
+	        			<p>Run the Chat-Bot by clicking on the lower right button.</p>
+	        		</div>
+	        	</div>
+	        	
 	        </div>
 	    </div>
 	</div>
@@ -34,7 +40,7 @@
 		if(CheckCompatibility()){
 			var chat = new Ewbot();
 			chat.Init({
-				hubendpoint : 'http://94.76.213.73/Ewbot',
+				hubendpoint : 'https://www.ew9102bot.it/Ewbot',
 				chat_image_welcome : '{{asset('custom/chat-vic/logo_apri_chat.png')}}',
 				chat_image_header_opened : '{{asset('custom/chat-vic/header_chat.png')}}',
 				chat_image_header_closed : '{{asset('custom/chat-vic/logo_chat_aperta.png')}}',			
