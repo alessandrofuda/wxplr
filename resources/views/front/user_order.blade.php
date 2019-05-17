@@ -20,10 +20,10 @@
                     <table id="list_table" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
                         <thead>
                             <tr role="row">
-                                <th>Name</th>
+                                <th>Service Name</th>
                                 <th>Price</th>
                                 <th>Date</th>
-                                <th>Invoice</th>
+                                <!--th>Invoice</th-->
                             </tr>
                         </thead>
                         <tbody>
@@ -33,7 +33,7 @@
                                         <td class="sorting_1">{{ $order->item_name }}</td>
                                         <td class="sorting_1">€{{ $order->item_amount }}</td>
                                         <td class="sorting_1">{{ $order->created_at }}</td>
-                                        <td class="sorting_1"><!--a href="{{-- url("order/".$order->id.'/download/invoice') --}}"><i class="fa fa-file-pdf-o" style="font-size:25px;"></i></a--></td>
+                                        <!--td class="sorting_1"><a href="{{-- url("order/".$order->id.'/download/invoice') --}}"><i class="fa fa-file-pdf-o" style="font-size:25px;"></i></a></td-->
                                     </tr>
                                 @endforeach
                             @else

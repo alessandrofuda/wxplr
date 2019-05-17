@@ -61,7 +61,7 @@
               <span>WOW</span>
             </a>
         </li>
-        <li class="{{\Route::getCurrentRoute()->uri() == "user/orders" ? "active open" : ""}} link_disabled">
+        <li class="{{\Route::getCurrentRoute()->uri() == "user/orders" ? "active open" : ""}}"> {{-- link_disabled --}}
             <a href="{{ url('user/orders') }}">
                 <i class="fa fa-user" aria-hidden="true"></i>
                 <span>My Orders</span>
