@@ -6,9 +6,9 @@
       <div class="user-panel">
         <div class="pull-left image">
           @if(isset(Auth::user()->userProfile->profile_picture) && !empty(Auth::user()->userProfile->profile_picture))
-          <img src="{{ asset(Auth::user()->userProfile->profile_picture) }}" class="img-circle" alt="User Image">
+            <img src="{{ asset(Auth::user()->userProfile->profile_picture) }}" class="img-circle" alt="User Image">
           @else
-          <img src="{{ asset('/frontend/images/user_icon.png') }}" class="img-circle" alt="User Image">
+            <img src="{{asset('frontend/images/wexplore-logo-tondo.png')}}{{-- asset('/frontend/images/user_icon.png') --}}" class="img-circle" alt="User Image">
           @endif
         </div>
         <div class="pull-left info" style="color:#CCCCCC;">
@@ -39,31 +39,31 @@
         </li>
         <li class="{{\Route::getCurrentRoute()->uri() == "global_orientation_test" ? "active open" : ""}}">
             <a href="{{ url('global_orientation_test') }}">
-              <i class="fa fa-user" aria-hidden="true"></i>
+              <i class="fa fa-question-circle" aria-hidden="true"></i>
               <span>Global Orientation Test</span>
             </a>
         </li>
         <li class="{{\Route::getCurrentRoute()->uri() == "user/got-pro" ? "active open" : ""}}">
             <a href="{{ url('user/got-pro') }}">
-              <i class="fa fa-user" aria-hidden="true"></i>
-              <span>Global Orientation Test Pro</span>
+              <i class="fa fa-commenting" aria-hidden="true"></i>
+              <span>Global Orientation Test <b>Pro</b></span>
             </a>
         </li>
         <li class="{{\Route::getCurrentRoute()->uri() == "user/career-ready" ? "active open" : ""}}">
             <a href="http://eepurl.com/grpRwb{{-- url('user/career-ready') --}}">
-              <i class="fa fa-user" aria-hidden="true"></i>
+              <i class="fa fa-comments" aria-hidden="true"></i>
               <span>Career Ready - VIC</span>
             </a>
         </li>
         <li class="{{\Route::getCurrentRoute()->uri() == "user/wow" ? "active open" : ""}}">
             <a href="http://eepurl.com/grpRwb{{-- url('user/wow') --}}">
-              <i class="fa fa-user" aria-hidden="true"></i>
+              <i class="fa fa-video-camera" aria-hidden="true"></i>
               <span>WOW</span>
             </a>
         </li>
         <li class="{{\Route::getCurrentRoute()->uri() == "user/orders" ? "active open" : ""}}"> {{-- link_disabled --}}
             <a href="{{ url('user/orders') }}">
-                <i class="fa fa-user" aria-hidden="true"></i>
+                <i class="fa fa-usd" aria-hidden="true"></i>
                 <span>My Orders</span>
             </a>
         </li>
