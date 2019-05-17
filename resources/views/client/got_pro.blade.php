@@ -17,10 +17,10 @@
 	    </div>
 	    <div class="row">
 	        <div class="col-md-12" style="font-size: 16px;">
-	        	<div class="box">
+	        	<div class="box" style="margin-top:20px;">
 	        		<div class="box-title"></div>
 	        		<div class="box-body">
-	        			<p>Run the Chat-Bot by clicking on the lower button.</p>
+	        			<p>Run the Chat-Bot by clicking on the button below.</p>
 	        		</div>
 	        	</div>
 	        	
