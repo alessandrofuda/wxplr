@@ -51,7 +51,7 @@
 				context: 'nn...',
 				parameters: 
 				{ 
-					user_id: 10,
+					user_id: {{Auth::user()->id}},
 					chat_object_name: 'chat'
 				}
 			});
