@@ -21,9 +21,11 @@
 	        		<div class="box-title"></div>
 	        		<div class="box-body">
 	        			<p>Run the Chat-Bot by clicking on the button below.</p>
+	        			<div class="img-container" style="max-height: 500px; overflow: hidden; text-align: center; ">
+	        				<img src="{{asset('frontend/images/got-pro-img.jpg')}}" style="width: 100%; position: relative; top: -1020px; ">
+	        			</div>
 	        		</div>
 	        	</div>
-	        	
 	        </div>
 	    </div>
 	</div>

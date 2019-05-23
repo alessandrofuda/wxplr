@@ -14,7 +14,7 @@
                 <div class="top_bar_left clearfix">
                     <!-- Logo-->
                     <div class="logo">
-                        <a id="logo" href="{{ URL::to('/') }}" title="Wexplore">           
+                        <a id="logo" href="https://www.wexplore.eu" title="Wexplore">           
                             <img class="scale-with-grid" src="{{ asset('frontend/images/wexplore-logo.svg') }}" alt="Wexplore" /> 
                         </a>
                     </div>

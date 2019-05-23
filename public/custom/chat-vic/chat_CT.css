@@ -137,7 +137,7 @@ ul > li {
     width: 300px;
     position: absolute;
     top: calc(50%);
-    left: calc(50% - 150px);
+    left: calc(50% - 150px + 100px); /*offset to right for sidebar*/
 }
 .chat-container {
     width:750px;
@@ -162,7 +162,11 @@ ul > li {
 }
 
 
-
+@media screen and (max-width: 767px) {
+    .chat-with-me {
+        left: calc(50% - 150px);
+    }
+}
 
 
 @media screen and (max-width: 760px) {
