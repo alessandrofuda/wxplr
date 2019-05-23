@@ -1,18 +1,16 @@
 @extends('front.new_layout')
+
+
 @section('content')
 
-</header>
-</div>
 <div class="column one column_fancy_heading">
-								<div class="fancy_heading fancy_heading_icon">
-									<h2 style="color:#54b141; background: url(/frontend/immagini/linea-titolo-verde.png) no-repeat bottom center; padding-bottom: 25px;">REGISTRATION</h2><p style="text-align:center;">Register now to enter in the world of Wexplore.<br>For you our free Global Orientation Test: find out your best destination!</p>
-								</div>
-							</div>
-
+	<div class="fancy_heading fancy_heading_icon">
+		<h2 style="color:#54b141; background: url(/frontend/immagini/linea-titolo-verde.png) no-repeat bottom center; padding-bottom: 25px;">REGISTRATION</h2><p style="text-align:center;">Register now to enter in the world of Wexplore.<br>For you our free Global Orientation Test: find out your best destination!</p>
+	</div>
+</div>
 
 <div class="user_login_form">
     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin-none">
-
         @if($errors->any())
             <div class="row">
                 <ul class="alert-box warning radius">
@@ -72,18 +70,16 @@
                             <b>I give my consent to the processing of my personal data for marketing purposes and trade in such Regulations (optional)</b>
                     </span>
 
-                <div class="row form-group has-feedback submit-btn">
-                    <!-- /.col -->
+                <div class="form-group has-feedback submit-btn" style="margin-bottom: 30px;">
                     <div class="Register_now">
                         <button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
                     </div>
-                    <!-- /.col -->
                 </div>
             </form>
-            <a style="padding-left: 0px;" href="{{ URL::to('/auth/login') }}" class="text-center">I already have a membership</a>
+            <div class="already-registered-block">
+                <a class="btn btn-success btn-sm already-registered-link" href="{{ URL::to('/auth/login') }}">Already registered ?</a>
+            </div>
     </div>
-    </div>
+</div>
 
-</div>
-</div>
 @endsection

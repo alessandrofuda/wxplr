@@ -10,7 +10,6 @@
 li.active {
     background-color: black;
 }
-.online-test-banner img{width:100%}
 .container .ask-Question ul{list-style:none;height:100%;width:100%;margin:0;padding:0}
 h2.Question_heading{float:left;width:100%;color:#2087c8}
 .ask-Question ul li{color:#AAA;display:inline-bloc
@@ -42,9 +41,11 @@ a:hover.tooltips span{
 }
 
 .social_icon a.first-cls span{background-color:transparent;font-size:17px;margin-right:4px;width:auto}
+.online-test-banner .txt-container {max-width: 420px; background-color: #FFFFFFDE; padding: 10px; max-width: 445px;}
+.online-test-banner .txt-container .txt {color: #55b241; text-shadow:0px 1px 0 #000;}
 .online-test-banner{position:relative}
-.online-test-banner > p{color:#000;display:block;font-size:16px;text-align:left;max-width: 410px;}
-.online-test-banner h2{font-size:35px;color:#55B241;text-transform:uppercase;text-shadow:1px 1px 0 #fff;font-weight:700;letter-spacing:-.3px}
+.online-test-banner p{color:#000;display:block;font-size:16px;text-align:left;}
+.online-test-banner h2{font-size:35px;color:#55B241;text-transform:uppercase;text-shadow:1px 1px 0 #000;font-weight:700;letter-spacing:-.3px}
 .navbar-inverse .navbar-nav>li>a:before{content:'';position:absolute;width:0;left:0;height:3px;bottom:0;background:#0b639a;right:0;margin:0 auto;-webkit-transition:all .3s;-moz-transition:all .3s;-o-transition:all .3s}
 .navbar-inverse .navbar-nav>li>a:hover{border:none!important}
 .navbar-inverse .navbar-nav>li>a:hover:before{content:'';position:absolute;width:100%;left:0;height:3px;bottom:0;background:#0b639a}
@@ -217,11 +218,13 @@ input.Save_profile:hover{background:#55B241;color:#fff}
 .country_form form button.Country_submit:hover{background:#55b241}
 .country_form p{padding:10px 70px 0 0}
 .user_login_form, #reset-psw-page{ min-height: 580px; }
-.user_login_form .form-group.has-feedback{float:left;width:100%}
+.user_login_form .form-group.has-feedback{float:left; width:100%}
 .user_login_form .margin-none{margin:0 auto;float:none;background:rgba(204,204,204,0.23);border:solid 1px rgba(204,204,204,0.6);padding:40px}
 .user_login_form .form-group.has-feedback input.form-control{width:100%}
 .user_login_form .form-group.has-feedback span.glyphicon{right:0;color:#55b241}
-
+.user_login_form .other-links .forgot-link { display: block; }
+.user_login_form .other-links .register-block {display:block; margin-top: 80px; text-align: center;}
+.user_login_form .already-registered-block {text-align: center; margin-top: 80px;}
 
 
 .user_login_form button.btn.btn-primary.btn-block.btn-flat:hover,.login-box-body button.btn.btn-primary.btn-block.btn-flat:hover{
@@ -231,7 +234,7 @@ input.Save_profile:hover{background:#55B241;color:#fff}
 .user_login_form button.btn.btn-primary.btn-block.btn-flat,.login-box-body button.btn.btn-primary.btn-block.btn-flat {
 	/*border-radius:0;background:#2087c8;border:solid 1px #0066a7;-webkit-transition:all .4s;-moz-transition:all .4s;-o-transition:all .4s*/
 	height: 48px; width: 269px;	border-radius: 10px; background-image: linear-gradient(to right, #6bb97a 31%, #5ab282 38%, #41a98e 52%, #2fa297 66%, #259e9c 82%, #229d9e 100%);
-	text-transform: uppercase; font-weight: bolder; font-family: 'Open Sans', 'sans-serif'; border:none;}
+	text-transform: uppercase; font-weight: bolder; font-family: 'Open Sans', 'sans-serif'; border:none; max-width: 100%;}
 
 .btn.btn-success.got-pro {
 	margin:25px auto; background-image: linear-gradient(to right, #6bb97a 31%, #5ab282 38%, #41a98e 52%, #2fa297 66%, #259e9c 82%, #229d9e 100%);
@@ -788,8 +791,31 @@ body.open_class {
 	.Packages .workBoxText{min-height: inherit;}
 	.Packages .workBoxText p { float: left; width: 100%;}
 	.Packages .applynow{position: static;}
+	.content-wrapper.user-dash-wrapper .container {
+		margin: auto;
+		padding: 0;
+		width: 100% !important;
+	}
 
 }
+
+@media (max-width: 480px){
+	#Top_bar > .container {
+		width: 100%!important;
+	}
+	#Footer .container {
+		width: 100% !important;
+		text-align: center;
+	}
+	.user_login_form button {
+		margin: 30px auto;
+	}
+	.user_login_form .other-links a {
+		text-align:center;
+		margin:30px auto;
+	}
+}
+
 @media (max-width: 375px){
 	.My_Videos div#mainVideoThumbs{padding: 0 !important;}
 	.Toggle_menu_burger{right: -30px; top: 30px;}

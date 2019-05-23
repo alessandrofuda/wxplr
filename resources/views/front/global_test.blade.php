@@ -3,10 +3,10 @@
 
 @if(!$last_question)
 	<div class="online-test-banner">
-	<!--<h1>Global Orientation Test</h1>-->
-		<!--<img src="{{ asset('frontend/images/online-test-banner.jpg') }}" alt="test-banner.jpg">-->
-		<h2>Global Orientation Test</h2>
-	    <p>Every journey starts with you! And if you know who you are and where your playground is, then really the horizon is your only limit! Find out your ideal company and your country match.</p>
+		<div class="txt-container">
+			<h2>Global Orientation Test</h2>
+	    	<p class="txt">Every journey starts with you! And if you know who you are and where your playground is, then really the horizon is your only limit! Find out your ideal company and your country match.</p>
+		</div>
 	</div>
 @endif
 

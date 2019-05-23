@@ -44,9 +44,13 @@
 					<!-- /.col -->
 				  </div>
 			</form>
-			<a href="{{ URL::to('/password/email') }}">I forgot my password</a><br>
-			<a href="{{ URL::to('register?type=basic') }}" class="text-center">Register a new membership</a><br>
-		  <?php /*<a href="{{ URL::route('consultant_register', ['type' => 'basic']) }}" class="text-center">Register as Consultant </a> */?>
+			<div class="other-links">
+				<a class="forgot-link" href="{{ URL::to('/password/email') }}">I forgot my password</a>
+
+				<div class="register-block">
+					Not registered? <a class="btn btn-success register-link" href="{{ URL::to('register?type=basic') }}">Register a new membership</a>
+				</div>
+			</div>
 		</div>
 	</div>
 @endsection
