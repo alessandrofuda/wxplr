@@ -84,7 +84,7 @@
 			                    <div class="top_bar_left clearfix">
 			                        <!-- Logo-->
 			                        <div class="logo">
-			                            <a id="logo" href="{{ URL::to('/') }}" title="Wexplore">
+			                            <a id="logo" href="https://www.wexplore.eu" title="Wexplore">
 			                                {{-- @if(isset($settings))
 			                                    <img class="scale-with-grid"  src="{{ asset($settings->logo) }}" alt="Wexplore">
 			                                @else --}}

@@ -22,11 +22,9 @@
                         <div class="menu_wrapper">
                             <nav id="menu">
                                 <ul class="menu" id="menu-main-menu" style="margin-bottom:auto;">
-                                    <!--@if(isset($navigation))
-                                        @foreach ($navigation as $nav)
-                                            <li  id="menu-item-1354"  class="{{--\Route::getCurrentRoute()->uri() == url($nav->path) ? "current_page_item" : ""--}}" ><a href="{{-- url($nav->path) --}}"><span>{{-- $nav->title --}}</span></a></li>
-                                        @endforeach
-                                    @endif-->
+                                    <li>
+                                        <a href="https://www.wexplore.eu"><span>Home</span></a>
+                                    </li>
                                     @if(!\Auth::check())
                                         <li>
                                             <a href="{{ url('auth/login') }}"><span>Login</span></a>
