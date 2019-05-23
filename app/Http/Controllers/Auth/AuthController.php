@@ -186,8 +186,8 @@ class AuthController extends CustomBaseController
      */
     protected function create(array $data) {
 
-		$users['name'] = $data['name'];
-		$users['surname'] = $data['surname'];
+		$users['name'] = ucwords($data['name']);
+		$users['surname'] = ucwords($data['surname']);
 		$users['email'] = $data['email'];
 		$users['password'] = bcrypt($data['password']);
 		if(isset($data['allow_personal_data'])){
@@ -226,17 +226,6 @@ class AuthController extends CustomBaseController
             $m->from($site_email, 'Wexplore');
             $m->to($admin_emails)->subject('New account at Wexplore has been activated');
         });
-
-		/*$service_name = 'Global Orientation Test';
-
-
-		Mail::send('emails.service_activation', ['user' => $user_obj,'service_name'=>$service_name,'password'=>$password], function ($m) use ($user_obj) {
-			$settings=Setting::find(1);
-			$site_email = $settings->website_email;
-			$m->from($site_email, 'Wexplore');
-
-			$m->to($user_obj->email, $user_obj->name)->subject('You are registered successfuly!');
-		});*/
 
         return $user_obj;
     }
