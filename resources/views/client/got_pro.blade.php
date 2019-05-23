@@ -49,7 +49,7 @@
 				chat_send : '{{asset('custom/chat-vic/chat_send_msg.png')}}',
 				css_headers : '{{asset('custom/chat-vic/chat_CT.css')}}',
 				flow: 'WeExploreFlowNew',
-				disable_signalR: true,
+				disable_signalR: false,
 				context: 'nn...',
 				parameters: 
 				{ 
