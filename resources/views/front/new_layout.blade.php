@@ -74,46 +74,6 @@
 			        <div id="Action_bar">
 			            <div class="container">
 			                <div class="column one">
-			                    <!-- Header - contact info area-->
-			                    <!--ul class="contact_details">
-			                        <li class="phone">
-			                            <i class="icon-clock"></i>{{-- isset($settings) ? $settings->timings : "MON - SAT: 9.00 - 18.00" --}}
-			                        </li>
-			                        <li class="mail">
-			                            <i class="icon-mail-line"></i><a style="color:#ffffff;" href="mailto:{{-- isset($settings) ? $settings->website_email  : 'info@wexplore.com' --}}"> {{-- isset($settings) ? $settings->website_email  : 'info@wexplore.com' --}}</a>
-			                        </li>
-			                    </ul-->
-			                    <!--Social info area-->
-			                    <!--ul class="social">
-			                        <li class="skype">
-			                            <a href="#" title="Skype"><i class="icon-skype"></i></a>
-			                        </li>
-			                        <li class="facebook">
-			                            <a href="http://www.facebook.com/Beantown-Themes-653197714728193" title="Facebook"><i class="icon-facebook"></i></a>
-			                        </li>
-			                        <li class="googleplus">
-			                            <a href="http://plus.google.com/" title="Google+"><i class="icon-gplus"></i></a>
-			                        </li>
-			                        <li class="twitter">
-			                            <a href="http://twitter.com/Muffin_Group" title="Twitter"><i class="icon-twitter"></i></a>
-			                        </li>
-			                        <li class="vimeo">
-			                            <a href="http://vimeo.com/" title="Vimeo"><i class="icon-vimeo"></i></a>
-			                        </li>
-			                        <li class="youtube">
-			                            <a href="#" title="Dribbble"><i class="icon-play"></i></a>
-			                        </li>
-			                        <li class="flickr">
-			                            <a href="http://www.flickr.com/" title="Flickr"><i class="icon-flickr"></i></a>
-			                        </li>
-			                        <li class="pinterest">
-			                            <a href="http://www.pinterest.com/" title="Pinterest"><i class="icon-pinterest"></i></a>
-			                        </li>
-			                        <li class="dribbble">
-			                            <a href="https://dribbble.com" title="Dribbble"><i class="icon-dribbble"></i></a>
-			                        </li>
-			                    </ul-->
-
 			                </div>
 			            </div>
 			        </div>

@@ -15,7 +15,7 @@
 							<div class="column one column_column">
 								<div class="column_attr ">
 <p><strong>COOKIES PRIVACY POLICY</strong><br><br>
-This website uses “cookies” to improve your browsing experience. Cookies are information (short code strings) that are temporarily archived in your browser’s memory. The data collected through cookies allow to compare old and new visitors, understand how users browse through the website, and generally improve the website experience. For any information concerning the use of cookies, please write to: <a href="mailto:info@wexplore.co">info@wexplore.co</a>.</p>
+This website uses “cookies” to improve your browsing experience. Cookies are information (short code strings) that are temporarily archived in your browser’s memory. The data collected through cookies allow to compare old and new visitors, understand how users browse through the website, and generally improve the website experience. For any information concerning the use of cookies, please write to: <a href="mailto:info@wexplore.eu">info@wexplore.eu</a>.</p>
 <p>The cookies of this website <strong>do not record any personal information on the user</strong>, and any identifiable data will not be memorized. Should you wish to disable the use of cookies, we advise you to customize the settings of your computer by selecting the option to cancel all cookies or to activate a notification message when cookies are memorized. To proceed without changing the cookie application, simply continue browsing the website. Visit AboutCookies.org for any further information on cookies and on how they influence your navigation experience. </p>
 <p><u>A. COOKIES IN USE</u><br>
   <strong>1. Mandatory Cookies</strong><br>
