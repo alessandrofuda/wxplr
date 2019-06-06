@@ -317,9 +317,10 @@ Route::get('time', function() {
 			Route::get('user/packages','PackageController@my');
 		});  // end Auth userClient
 
-		Route::get('user/role_play_video','ProfessionalKitController@role_play_video');
 
-		// Check if user is admin using custom 'Admin' middelware
+		//Route::get('user/role_play_video','ProfessionalKitController@role_play_video');
+
+		// ADMIN !!
 		Route::group(['namespace' => 'Admin','middleware' => 'admin'], function(){
 
 			Route::get('admin/save_meeting', 'AdminController@save_meeting');
@@ -498,8 +499,6 @@ Route::get('time', function() {
 			Route::get('admin/partner/{page_id}/edit', 'PartnerController@edit');
 			Route::post('admin/partner/{page_id}/edit', 'PartnerController@update');
 			Route::delete('admin/partner/{page_id}/delete', 'PartnerController@destroy');
-
-
 		});  // end Admin
 	}); // end Auth middleware
 

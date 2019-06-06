@@ -1,4 +1,4 @@
-@extends('front.layout')
+@extends('front.new_layout')
 @section('content')
 <div class="container">
 	<div class="row">

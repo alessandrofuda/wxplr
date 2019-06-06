@@ -219,5 +219,5 @@ ul > li {
 @media screen and (max-height: 500px) {    
     .chat-messages-container {        	
 		max-height: 250px;		
-    }    
+    }
 }

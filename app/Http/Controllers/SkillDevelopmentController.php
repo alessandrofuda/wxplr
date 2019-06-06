@@ -776,8 +776,8 @@ class SkillDevelopmentController extends CustomBaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
+
         $data['page_title'] = 'Videos Listing';
         $videos = SkillDevelopmentVideos::with(['videoCategory','videoTag']);
         $data['tag_names']  = '';
@@ -796,7 +796,6 @@ class SkillDevelopmentController extends CustomBaseController
                 $data['category_name'] = $category_name->category_name;
                 $videos->where('video_category', $category);
             }
-
         }
 
         if($request->get('tag')) {
