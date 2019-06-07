@@ -61,10 +61,16 @@
               <span>WOW</span>
             </a>
         </li>
-        <li class="{{\Route::getCurrentRoute()->uri() == "user/orders" ? "active open" : ""}}"> {{-- link_disabled --}}
+        <li class="{{\Route::getCurrentRoute()->uri() == "user/orders" ? "active open" : ""}}"> 
             <a href="{{ url('user/orders') }}">
                 <i class="fa fa-usd" aria-hidden="true"></i>
                 <span>My Orders</span>
+            </a>
+        </li>
+        <li class="{{--\Route::getCurrentRoute()->uri() == "user/orders" ? "active open" : ""--}}"> 
+            <a href="{{-- url('user/orders') --}}">
+                <i class="fa fa-usd" aria-hidden="true"></i>
+                <span>Free Videos</span>
             </a>
         </li>
         <!--li class="treeview  {{-- \Route::getCurrentRoute()->uri() == "user/orders" ? "active open" : ""--}} " >
