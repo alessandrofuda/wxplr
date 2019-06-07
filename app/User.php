@@ -603,4 +603,9 @@ class User extends Model implements AuthenticatableContract,
     }
 
 
+    public function subscriptions() {
+        return $this->hasMany('App\Subscription');
+    }
+
+
 }

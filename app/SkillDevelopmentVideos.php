@@ -193,4 +193,8 @@ class SkillDevelopmentVideos extends Model
         return '';
     }
 
+    public function subscriptions() {
+        return $this->hasMany('App\Subscription');
+    }
+
 }
