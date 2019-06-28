@@ -73,8 +73,6 @@
             <!-- Header -->
             @include('front.header')
 
-            {{-- @ include('front.dashboard_header')  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA --}}
-
             <div class="user-wrapper">
 
             	<?php $roles_arr = []; ?>
