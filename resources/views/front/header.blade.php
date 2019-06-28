@@ -1,4 +1,4 @@
-
+{{--
 <header id="Header">
     <!-- Header Top -  Info Area -->
     <div id="Action_bar">
@@ -121,3 +121,4 @@
     </div>
     <!-- Revolution slider area-->
 </header>
+--}}

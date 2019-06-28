@@ -1,24 +1,17 @@
 @extends('front.dashboard_layout')
-@section('top_section')
-	<h1>Dashboard<small>Services</small></h1>
-	<!--ol class="breadcrumb">
-	<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-	<li class="active">Dashboard</li>
-	</ol-->
-@endsection
+
 @section('content')
-	<div class="container">
-		<div class="row">
-			<div class="heading">
-				<h3>{{ $page_title }}</h3>
+	<div class="page-container">
+		<div class="row-first">
+			<div class="heading" style="background-image: url('{{@asset('frontend/images/DASH2.png')}}')">
+				<h3>Welcome <strong>{{ ucfirst(Auth::user()->name) }}</strong> to your personal space. </h3>
+				<div class="heading_sub-title">Are your ready for #yournextchange?</div>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-md-12" style="font-size: 18px;">
-				<p>Welcome to your personal space in Wexplore's world.</p>
-				<p>Are your ready for #yournextchange?</p>
-				<p>Browse through our different services to kick-start your international career.</p>
+			<div class="col-md-12">
+				<p>DDDDDDDDDDDDDDd</p>
 			</div>
 		</div>
 

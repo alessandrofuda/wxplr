@@ -230,7 +230,7 @@ ul.sidebar-menu li a:hover{padding-left:21px;color:#fff;background:#373e42}
 .form-group.has-feedback.membership:after{content:'';height:1px;position:absolute;top:0;width:100%;background-color:rgba(26,26,26,0.18);left:0}
 .form-group.has-feedback.membership a{display:block;padding-top:5px;float:left}
 .container.register .Register .row form .checkbox label{padding-left:26px}
-.user-dash-wrapper .content{overflow:hidden; min-height: 380px;}
+.user-dash-wrapper > .content{overflow:hidden; min-height: 380px; padding-left: 0; padding-right: 0; }
 .global-test-container .col-md-6+a{clear:both;float:left}
 .global-test-container{overflow:hidden}
 .online-test-banner h1{color:#367fa9}
