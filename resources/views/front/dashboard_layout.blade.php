@@ -53,25 +53,27 @@
     <!-- Revolution Slider -->
     <link rel="stylesheet" href="{{ asset('frontend/plugins/rs-plugin/css/settings.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/font-awesome/css/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/admin/dist/css/AdminLTE.min.css') }}">
 
     <script src="{{ asset('frontend/js/jquery-1.11.3.js') }}"></script>
-    <!-- owl carousel css-->
-    <link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('frontend/css/owl-custom.css') }}" type="text/css">
     
+    {{--
+        <!-- owl carousel css-->
+        <link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ asset('frontend/css/owl-custom.css') }}" type="text/css">
+    --}}
+
     @stack('js-libraries')
 </head>
 
 <body class="home page template-slider menu-line-below layout-full-width header-classic sticky-header sticky-white subheader-title-left no-content-padding">
-    <!-- Main Theme Wrapper -->
     <div id="Wrapper">
-        <!-- Header Wrapper -->
         <div id="Header_wrapper">
             <!-- Header -->
             @include('front.header')
 
-            @include('front.dashboard_header')
+            {{-- @ include('front.dashboard_header')  AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA --}}
 
             <div class="user-wrapper">
 
@@ -133,18 +135,18 @@
 
             @yield('footer_resources')
         </div>
+    </div>
 
-        <!-- JS -->
-        <script type="text/javascript" src="{{ asset('frontend/js/mfn.menu.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('frontend/js/jquery.plugins.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('frontend/js/jquery.jplayer.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('frontend/js/animations/animations.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('frontend/js/email.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('frontend/js/scripts.js') }}"></script>
-
+    <!-- JS -->
+    <script type="text/javascript" src="{{ asset('frontend/js/mfn.menu.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('frontend/js/jquery.plugins.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('frontend/js/jquery.jplayer.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('frontend/js/animations/animations.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('frontend/js/email.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('frontend/js/scripts.js') }}"></script>
+    {{--
         <script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/jquery.themepunch.tools.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/jquery.themepunch.revolution.min.js') }}"></script>
-
         <script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/extensions/revolution.extension.video.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/extensions/revolution.extension.actions.min.js') }}"></script>
@@ -153,7 +155,8 @@
         <script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/extensions/revolution.extension.navigation.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/extensions/revolution.extension.migration.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/extensions/revolution.extension.parallax.min.js') }}"></script>
-
+    --}}
+    {{--
         <script type="text/javascript">
             var tpj = jQuery;
             tpj.noConflict();
@@ -249,64 +252,61 @@
                 }
             });
         </script>
+    --}}
 
-        <!--script>
-            jQuery(window).load(function() {
-                var retina = window.devicePixelRatio > 1 ? true : false;
-                if (retina) {
-                    var retinaEl = jQuery("#logo img");
-                    var retinaLogoW = retinaEl.width();
-                    var retinaLogoH = retinaEl.height();
-                    retinaEl.attr("src", "{{-- asset('frontend/immagini/logo-wexplore-retina.png') --}}").width(retinaLogoW).height(retinaLogoH)
-                }
-            });
-        </script-->
-        <input type="hidden" id="user_timezone" value="{{ session('timezone') }}">
-        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js"></script>
-        <script type="text/javascript">
-            jQuery.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                }
-            });
-            jQuery(document).ready(function(){
-                var tz = jstz.determine(); // Determines the time zone of the browser client,
-                var timezone = tz.name(); //'Asia/Kolhata' for Indian Time.
-                var val = jQuery("#user_timezone").val();
-                var _token = "{{ csrf_token() }}";
-                if(val == "") {
-                    jQuery.ajax({
-                        url:"{{ url('user/set-timezone') }}",
-                        type:"POST",
+    <!--script>
+        jQuery(window).load(function() {
+            var retina = window.devicePixelRatio > 1 ? true : false;
+            if (retina) {
+                var retinaEl = jQuery("#logo img");
+                var retinaLogoW = retinaEl.width();
+                var retinaLogoH = retinaEl.height();
+                retinaEl.attr("src", "{{-- asset('frontend/immagini/logo-wexplore-retina.png') --}}").width(retinaLogoW).height(retinaLogoH)
+            }
+        });
+    </script-->
+    <input type="hidden" id="user_timezone" value="{{ session('timezone') }}">
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js"></script>
+    <script type="text/javascript">
+        jQuery.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            }
+        });
+        jQuery(document).ready(function(){
+            var tz = jstz.determine(); // Determines the time zone of the browser client,
+            var timezone = tz.name(); //'Asia/Kolhata' for Indian Time.
+            var val = jQuery("#user_timezone").val();
+            var _token = "{{ csrf_token() }}";
+            if(val == "") {
+                jQuery.ajax({
+                    url:"{{ url('user/set-timezone') }}",
+                    type:"POST",
 
-                        data:{'timezone':timezone, '_token': _token},
-                        success:function() {
-                            jQuery("#user_timezone").val(timezone);
-                        }
-                    })
+                    data:{'timezone':timezone, '_token': _token},
+                    success:function() {
+                        jQuery("#user_timezone").val(timezone);
+                    }
+                })
 
-                }
+            }
 
-            });
-        </script>
-        <script>
-            // fix footer to bottom of page
-            var window_h = jQuery(document).height();
-            var head_h = jQuery('header').height();
-            var foot_h = jQuery('footer').height();
-            var h = window_h-head_h-foot_h+10;
-            jQuery('.content-wrapper').css('min-height', h+'px');
-        </script>
+        });
+    </script>
+    <script>
+        // fix footer to bottom of page
+        var window_h = jQuery(document).height();
+        var head_h = jQuery('header').height();
+        var foot_h = jQuery('footer').height();
+        var h = window_h-head_h-foot_h+10;
+        jQuery('.content-wrapper').css('min-height', h+'px');
+    </script>
+    <!--footer close-->
+    <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
 
-
-        <!--footer close-->
-        <!-- owl carousel js-->
-
-        <!-- owl carousel js-->
-        <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
-        @yield('js')
-    </div>
+    @yield('js')
     @stack('scripts')
+
 </body>
 
 </html>
