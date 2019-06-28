@@ -1,0 +1,37 @@
+img.img-circle.logo-tondo {
+	width: 68px;
+	height: 68px;
+	max-width: 68px;
+}
+.user-wrapper {
+	position: relative;
+}
+.sidebar-bottom {
+	width: 138px;
+	height: 110px;
+	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+	border-radius: 10px 10px 10px 0;
+	background-color: #239e9e;
+	margin:auto;
+	position: absolute;
+	bottom: 100px;
+	left:30px;
+	text-transform: none;
+	padding:25px 15px;
+	z-index: 2;
+}
+.start-square {
+	color: #ffffff;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 18px;
+}
+.sidebar-bottom-corner {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100px;
+	height: 120px;
+	border:1px solid red;
+	background-color: #cccccc;
+}

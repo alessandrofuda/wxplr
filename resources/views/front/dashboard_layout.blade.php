@@ -6,7 +6,6 @@
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
-
 <head>
     <!--Google Analytics-->
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -15,7 +14,6 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', '{{ env('GOOGLE_ANALYTICS_ID') }}');
     </script>
 
@@ -26,45 +24,22 @@
     <meta name="meta_description" content="{{ isset($tag->id) ? $tag->meta_description : "" }} ">
     <!-- Mobile Specific Metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
-    @if(isset($meta_tags))
-        @foreach($meta_tags as $meta_tag)
-            <meta name="{{ $meta_tag->name }}" content="{{ $meta_tag->content }}">
-        @endforeach
-    @endif
-
     <!-- Favicons -->
     <link rel="shortcut icon" href="{{ asset('frontend/immagini/favicon.ico') }}">
-
     <!-- FONTS -->
     <link rel='stylesheet' id='Roboto-css' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,400italic,700'>
     <link rel='stylesheet' id='Patua+One-css' href='https://fonts.googleapis.com/css?family=Patua+One:100,300,400,400italic,700'>
-
     <!-- CSS -->
     <link rel='stylesheet' id='global-css'  href="{{ asset('frontend/css/global.css') }}">
     <link rel='stylesheet' id='structure-css' href='{{ asset('frontend/css/structure.css') }}'>
     <link rel='stylesheet' id='style-static' href='{{ asset('frontend/css/be_style.css') }}'>
     <link rel='stylesheet' id='style-static' href='{{ asset('frontend/css/style.css') }}'>
-    <link rel='stylesheet' id='custom-css' href='{{ asset('frontend/css/custom.css') }}'>
-
     <link rel="stylesheet" href="{{  \Route::getCurrentRoute()->uri() != "/" ? asset('frontend/css/bootstrap.min.css') : ""}}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('frontend/css/main.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('frontend/css/custom_old.css') }}" type="text/css">
-    <!-- Revolution Slider -->
-    <link rel="stylesheet" href="{{ asset('frontend/plugins/rs-plugin/css/settings.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('/admin/dist/css/AdminLTE.min.css') }}">
-
-    <script src="{{ asset('frontend/js/jquery-1.11.3.js') }}"></script>
-    
-    {{--
-        <!-- owl carousel css-->
-        <link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.css') }}" type="text/css">
-        <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.css') }}" type="text/css">
-        <link rel="stylesheet" href="{{ asset('frontend/css/owl-custom.css') }}" type="text/css">
-    --}}
-
-    @stack('js-libraries')
+    <link rel="stylesheet" href="{{ asset('frontend/css/main.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('frontend/css/custom-2.css') }}" type="text/css">
 </head>
 
 <body class="home page template-slider menu-line-below layout-full-width header-classic sticky-header sticky-white subheader-title-left no-content-padding">
@@ -136,6 +111,7 @@
     </div>
 
     <!-- JS -->
+    <script type="text/javascript" src="{{ asset('frontend/js/jquery-1.11.3.js') }}"></script>
     <script type="text/javascript" src="{{ asset('frontend/js/mfn.menu.js') }}"></script>
     <script type="text/javascript" src="{{ asset('frontend/js/jquery.plugins.js') }}"></script>
     <script type="text/javascript" src="{{ asset('frontend/js/jquery.jplayer.min.js') }}"></script>
@@ -299,7 +275,6 @@
         var h = window_h-head_h-foot_h+10;
         jQuery('.content-wrapper').css('min-height', h+'px');
     </script>
-    <!--footer close-->
     <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
 
     @yield('js')

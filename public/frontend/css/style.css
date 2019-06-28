@@ -138,8 +138,19 @@ ul.social-profile{list-style-type:none;padding:0;margin:0;color:#fff}
 .check-label label{font-weight:700}
 .redirect-cls{text-align:center;width:100%}
 .redirect-cls img{text-align:center;vertical-align:middle;width:30%}
-.main-sidebar.main-side-cls{position:relative!important;float:left;background-color:#222d32}
-.main-sidebar.main-side-cls .sidebar a{color:#b8c7ce;-webkit-transition: all .3s;
+.main-sidebar.main-side-cls{
+    /*position:relative!important;*/
+    float:left;
+    background-color: #055b76;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 20px;
+}
+.main-sidebar.main-side-cls .sidebar a {
+    color: #69ba7a;
+    -webkit-transition: all .3s;
     -moz-transition: all .3s;
     -o-transition: all .3s;}
     .treeview-menu-open ul.treeview-menu {
@@ -153,7 +164,7 @@ li.treeview.treeview-menu-open i.fa.fa-angle-left.pull-right {
 }
 .main-header.user-header-cls{max-height:unset!important;background-color:#3c8dbc;clear:both}
 .main-header.user-header-cls .logo{background-color:#367fa9;color:#fff}
-.user-wrapper{background-color:#222d32}
+.user-wrapper{background-color: #055b76;}
 .user-header-cls .nav > li > a{color:#fff}
 .user-header-cls .nav > li > a > img{height:auto;max-width:45px}
 .box-style .service_btn{background:#55B241 none repeat scroll 0 0;bottom:25px;color:#fff;display:inline-block;font-size:17px;left:0;margin:0 auto;padding:7px 20px;position:absolute;right:0;width:150px;text-transform:uppercase;font-weight:600}
