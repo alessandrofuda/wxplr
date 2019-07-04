@@ -3,60 +3,202 @@
 @section('content')
 	<div class="page-container">
 		<div class="row-first">
-			<div class="heading" style="background-image: url('{{@asset('frontend/images/DASH2.png')}}')">
-				<h3>Welcome <strong>{{ ucfirst(Auth::user()->name) }}</strong> to your personal space. </h3>
-				<div class="heading_sub-title">Are your ready for #yournextchange?</div>
+			<div class="heading" style="background-image: url('{{ asset('frontend/images/DASH2.png')}}')">
+				<div class="heading-text-container">
+					<div class="heading_title">Welcome {{ ucfirst(Auth::user()->name) }} to your personal space. </div>
+					<div class="heading_sub-title">Are your ready for #yournextchange?</div>
+				</div>
 			</div>
 		</div>
-
-		<div class="row">
-			<div class="col-md-12">
-				<p>DDDDDDDDDDDDDDd</p>
-			</div>
-		</div>
-
-		{{-- barra notifiche in alto del Professional Kit - oscurata 16/5/2019
-		<div class="row">
-			<div class="col-md-12">
-				@if(count($notifications) > 0)
-					@foreach($notifications as $notification)
-					<div class="box">
-						<div class="box-header">
-							<h3 class="box-title">{{ $notification['heading'] }}</h3>
-						</div>
-						<div class="box-body no-padding">
-							<table class="table table-condensed">
-								@foreach($notification['notifications'] as $key => $notification)
-									<tr>
-										<td>{{ $key+1 }}.</td>
-										<td><strong>{{ $notification['heading'] }}</strong></td>
-										<td>
-											{!! $notification['noti_msg']  !!}
-										</td>
-										<td>
-											@if($notification['noti_url'] != null)
-												<a target="_blank" class="btn btn-success" href="{{ url($notification['noti_url']) }}">Download Form</a>
-												@endif
-										</td>
-									</tr>
-								@endforeach
-							</table>
-						</div>
-					</div>
-					@endforeach
-				@endif
-			</div>
-		</div> --}}
-
-		<div class="row">
-			<div class="col-md-12">
-				{{-- service boxes --}}	
-				@if(count($user_services)>0)
-				<div class="box">
+		<div class="row-second">
+			<div class="container boxs">
+				<div class="col-md-12" style="padding-right: 0;">
 					<div class="box-title">
-						<h3 style="padding: 0px 10px;">Your services:</h3>
+						Start your route
 					</div>
+					<div class="box box-body got">
+						<div class="col-md-6 sx">
+							<div class="box-top">got</div>
+							<div class="box-middle">global orientation test</div>
+							<div class="box-description">Start your journey to discover more about you: which kind of companies and which countries better match your values and preferences?</div>
+							<div class="box-cta">
+								<a class="btn cta" href="#">Start now it's free!</a>
+							</div>
+						</div>
+						<div class="col-md-6 dx">
+							<div class="box-img">
+								<img src="{{asset('frontend/images/GOT_placeholder.png')}}">
+							</div>
+						</div>
+					</div>
+					<div class="box-title">
+						Go ahead
+					</div>
+					<div class="box box-body got-pro">
+						<div class="col-md-6 sx">
+							<div class="box-top">got pro</div>
+							<div class="box-middle">global orientation test pro</div>
+							<div class="box-description">Take your journey one step further with our GOT Pro: find out exactly where in Europe your profile is most in demand.</div>
+							<div class="box-cta">
+								<a class="btn cta" href="#">buy for {{$user_services[5]['price']}}€</a>
+								<!-- Button trigger modal -->
+								<a type="button" class="how-it-w" data-toggle="modal" data-target="#how-got-pro">
+  									How it works
+								</a>
+								<!-- Modal -->
+								<div class="modal fade" id="how-got-pro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+												<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+											</div>
+											<div class="modal-body">
+												...
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+												<button type="button" class="btn btn-primary">Save changes</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 dx">
+							<div class="box-img">
+								<img src="{{asset('frontend/images/GOTPRO2.png')}}">
+							</div>
+						</div>
+					</div>
+
+					<div class="box box-body vic">
+						<div class="col-md-6 sx">
+							<div class="box-top">vic</div>
+							<div class="box-middle">virtual international consultant</div>
+							<div class="box-description">Your best ally to walk you through an international job search journey: 12 steps to prepare your journey.</div>
+							<div class="box-cta">
+								<a class="btn cta" href="#">buy for {{$user_services[6]['price']}}€</a>
+								<!-- Button trigger modal -->
+								<a type="button" class="how-it-w" data-toggle="modal" data-target="#how-vic-modal">
+  									How it works
+								</a>
+								<!-- Modal -->
+								<div class="modal fade" id="how-vic-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+												<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+											</div>
+											<div class="modal-body">
+												...
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+												<button type="button" class="btn btn-primary">Save changes</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 dx">
+							<div class="box-img">
+								<img src="{{asset('frontend/images/VIC2.png')}}">
+							</div>
+						</div>
+					</div>
+					<div class="box-title">
+						Enjoy our wow
+					</div>
+					<div class="box box-body wow">
+						<div class="col-md-6 sx">
+							<div class="box-top">wow</div>
+							<div class="box-middle">Wexplore Original Webinar</div>
+							<div class="box-description">Top managers and entrepreneurs open the doors to their “professional house” and share a wealth of insights and knowledge in short learning pills – just like taking a coffee with them.</div>
+							<div class="box-cta">
+								<a class="btn cta" href="#">explore wow</a>
+								<!-- Button trigger modal -->
+								<a type="button" class="how-it-w" data-toggle="modal" data-target="#how-wow-modal">
+  									How it works
+								</a>
+								<!-- Modal -->
+								<div class="modal fade" id="how-wow-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+									<div class="modal-dialog" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+												<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+											</div>
+											<div class="modal-body">
+												...
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+												<button type="button" class="btn btn-primary">Save changes</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 dx">
+							<div class="row">
+								<div class="col-md-6"> {{-- CICLARE da DB !! --}}
+									<a class="video-prew" href="#">
+										<img src="{{asset('frontend/images/aaaaaaaaaaa.png')}}">
+									</a>
+									<div class="video-author">Alessandro Donadio</div>
+									<div class="video-title">intro</div>
+								</div>
+								<div class="col-md-6">
+									<a class="video-prew" href="#">
+										<img src="{{asset('frontend/images/aaaaaaaaaaa.png')}}">
+									</a>
+									<div class="video-author">Mario Rossi</div>
+									<div class="video-title">Episode 1: multicultural</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<a class="video-prew" href="#">
+										<img src="{{asset('frontend/images/aaaaaaaaaaa.png')}}">
+									</a>
+									<div class="video-author">Giovanni Storti</div>
+									<div class="video-title">intro</div>
+								</div>
+								<div class="col-md-6">
+									<a class="video-prew" href="#">
+										<img src="{{asset('frontend/images/aaaaaaaaaaa.png')}}">
+									</a>
+									<div class="video-author">Laura Minella</div>
+									<div class="video-title">Episode4: colorato e divertente</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+
+
+
+
+
+
+
+
+
+
+
 					<div class="box-body">
+						{{--
 						@foreach($user_services as $service_id=>$service)
 							<div class="col-md-6">
 								<div class="box-style">
@@ -85,11 +227,14 @@
 								</div>
 							</div>
 						@endforeach
+						--}}
 					</div>
 				</div>
-				@endif	
 			</div>
-			  
+
+
+
+
 			<div class="clearfix"></div>
 			{{-- @if(count($user_unpaid_services)>0)
 				<div class="col-md-12">

@@ -3688,10 +3688,6 @@ h6 {
 }
 
 /* style-colors.php */
-#Header_wrapper {
-    background-color: #000119;
-}
-
 #Subheader {
     background-color: #F7F7F7;
 }
@@ -3815,13 +3811,6 @@ a.mfn-link-6:before {
     }
 }
 
-#Header .top_bar_left,#Header_creative,#Top_bar #menu,.header-below #Top_bar,.header-classic #Top_bar,.header-fixed #Top_bar,.header-stack #Top_bar {
-    /*background-image: url(images/sfondo-menu.jpg);*/
-	background-repeat: no-repeat;
-    background: linear-gradient(to right, #003452 15%, #00829a 32%, #00a04c 100%);
-
-}
-
 #Top_bar .top_bar_right:before {
     background-color: #e3e3e3;
 }
@@ -3844,6 +3833,7 @@ a.mfn-link-6:before {
 
 #Top_bar .menu > li ul {
     background-color: #F2F2F2;
+    padding: 0; 
 }
 
 #Top_bar .menu > li ul li a {

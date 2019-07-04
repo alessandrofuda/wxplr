@@ -1,3 +1,9 @@
+html, body {
+    overflow-x: visible;
+}
+.content-wrapper {
+	background-color: #ffffff;
+}
 img.img-circle.logo-tondo {
 	width: 68px;
 	height: 68px;
@@ -34,4 +40,152 @@ img.img-circle.logo-tondo {
 	height: 120px;
 	border:1px solid red;
 	background-color: #cccccc;
+}
+
+.heading .heading-text-container {
+	position: absolute;
+	top: calc(50% - 65px);
+	left: 50px;
+	width: 45%;
+}
+.heading .heading_title {
+	color: #055b76;
+	font-family: "Varela Round";
+	font-size: 36px;
+	font-weight: 400;
+	line-height: 46px;
+}
+.heading .heading_sub-title {
+	color: #808080;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 30px;
+	margin-top: 20px;
+}
+#Top_bar .menu > li > a, #Top_bar .top_bar_right a {
+    color: #808080;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;
+	padding-bottom: 0px;
+}
+#menu .nav > li > a:hover, #menu .nav > li > a:active, #menu .nav > li > a:focus {
+    background: transparent;
+}
+#Header {
+	position: absolute;
+	top:0;
+	left:0;
+	right: 20px;
+}
+#Top_bar.is-sticky {
+	background-color: transparent;
+	box-shadow: none;
+	border:none;
+}
+.menu.nav .dropdown.submenu .caret {
+	color: #69ba7a;
+	border-top: 8px dashed;
+	border-top: 8px solid\9;
+	border-right: 8px solid transparent;
+	border-left: 8px solid transparent;
+}
+.menu.nav .dropdown.submenu .img-circle {
+	width: 60px;
+	height: auto;
+	margin-right: 10px;
+}
+.row-second {
+	border-top:1px solid #c4c4c4;
+}
+.row-second .container.boxs {
+	padding-right: 0;
+	padding-left: 50px;
+}
+.row-second .box-title {
+	color: #055b76;
+	font-family: "Varela Round";
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 34px;
+	margin-top: 50px;
+	margin-bottom: 30px;
+}
+.row-second .box {
+	background-image: linear-gradient(180deg, #e6e6e6 0%, #e9e9e9 57%, #f2f2f2 100%);
+	border-radius: 20px;
+	border:none;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+.row-second .box.box-body {
+	position: relative;
+	padding:0;
+}
+.row-second .box .box-top {
+	color: #055b76;
+	font-family: "Varela Round";
+	font-size: 36px;
+	font-weight: 400;
+	line-height: 46px;
+	text-transform: uppercase;
+	margin-top:30px;
+	margin-bottom: 10px;
+}
+.row-second .box .box-middle{
+	color: #69ba7a;
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 20px;
+	/* Text style for "Global Ori" */
+	text-transform: uppercase;
+	margin-bottom: 20px;
+}
+.row-second .box .box-description{
+	color: #808080;
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;
+	margin-bottom: 35px;
+}
+.row-second .box .box-cta{
+	
+}
+.row-second .box-body > .sx {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+a.btn.cta {
+	width: 206px;
+	height: 40px;
+	border-radius: 10px;
+	background-image: linear-gradient(to right, #6bb97a 31%, #5ab282 38%, #41a98e 52%, #2fa297 66%, #259e9c 82%, #229d9e 100%);
+	color: #ffffff;
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 25px;
+}
+.box.got {
+	height: 352px;
+}
+.box.wow {
+	height: 512px;
+}
+.box.wow .box-top {
+	margin-top:50px;
+}
+.box.got-pro {
+	height: 300px;
+}
+.box.vic {
+	height: 300px;
+}
+.box-body .how-it-w {
+	margin-left:50px;
+}
+.modal-open .modal {
+	z-index: 999999;
 }

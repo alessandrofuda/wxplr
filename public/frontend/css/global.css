@@ -35,6 +35,7 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
     border: 0;
     font-size: 100%;
     font: inherit;
+    font-family: 'Open Sans', sans-serif;
     vertical-align: baseline;
 }
 
@@ -6049,9 +6050,9 @@ hr {
 }
 
 /************************ Header ************************/
-#Top_bar .menu > li > a span {
+/*#Top_bar .menu > li > a span {
     border-color: rgba(0,0,0,.05);
-}
+}*/
 
 #Top_bar .search_wrapper input[type="text"] {
     border-color: #fff;
