@@ -29,6 +29,7 @@
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/19c354b673.js"></script>
     <!-- CSS -->
     <link rel='stylesheet' id='global-css'  href="{{ asset('frontend/css/global.css') }}">
     <link rel='stylesheet' id='structure-css' href='{{ asset('frontend/css/structure.css') }}'>

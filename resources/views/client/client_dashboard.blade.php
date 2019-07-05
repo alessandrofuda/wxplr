@@ -3,7 +3,7 @@
 @section('content')
 	<div class="page-container">
 		<div class="row-first">
-			<div class="heading" style="background-image: url('{{ asset('frontend/images/DASH2.png')}}')">
+			<div class="heading" style="background-image: url('{{ asset('frontend/images/hp/top_img.png')}}')">
 				<div class="heading-text-container">
 					<div class="heading_title">Welcome {{ ucfirst(Auth::user()->name) }} to your personal space. </div>
 					<div class="heading_sub-title">Are your ready for #yournextchange?</div>
@@ -27,7 +27,7 @@
 						</div>
 						<div class="col-md-6 dx">
 							<div class="box-img">
-								<img src="{{asset('frontend/images/GOT_placeholder.png')}}">
+								<img src="{{asset('frontend/images/hp/img_got.png')}}">
 							</div>
 						</div>
 					</div>
@@ -43,7 +43,7 @@
 								<a class="btn cta" href="#">buy for {{$user_services[5]['price']}}€</a>
 								<!-- Button trigger modal -->
 								<a type="button" class="how-it-w" data-toggle="modal" data-target="#how-got-pro">
-  									How it works
+  									<i class="fas fa-question-circle"></i> How it works
 								</a>
 								<!-- Modal -->
 								<div class="modal fade" id="how-got-pro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -53,14 +53,23 @@
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 													<span aria-hidden="true">&times;</span>
 												</button>
-												<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+												<h4 class="modal-title" id="myModalLabel">Got Pro</h4>
 											</div>
 											<div class="modal-body">
-												...
+												<div class="modal-subtitle">How it works</div>
+												<div class="modal-text">
+													Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+												</div>
+												<div class="modal-img">
+													<img class="" src="" style="border:1px solid gray; width:100%; height: 200px;">
+												</div>
+												<div class="modal-subtitle">how much is it ?</div>
+												<div class="modal-text">
+													Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+												</div>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-												<button type="button" class="btn btn-primary">Save changes</button>
+												<a type="button" class="btn cta" data-dismiss="modal">Go</a>
 											</div>
 										</div>
 									</div>
@@ -69,7 +78,7 @@
 						</div>
 						<div class="col-md-6 dx">
 							<div class="box-img">
-								<img src="{{asset('frontend/images/GOTPRO2.png')}}">
+								<img src="{{asset('frontend/images/hp/img_got-pro.png')}}">
 							</div>
 						</div>
 					</div>
@@ -83,7 +92,7 @@
 								<a class="btn cta" href="#">buy for {{$user_services[6]['price']}}€</a>
 								<!-- Button trigger modal -->
 								<a type="button" class="how-it-w" data-toggle="modal" data-target="#how-vic-modal">
-  									How it works
+  									<i class="fas fa-question-circle"></i> How it works
 								</a>
 								<!-- Modal -->
 								<div class="modal fade" id="how-vic-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -93,14 +102,23 @@
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 													<span aria-hidden="true">&times;</span>
 												</button>
-												<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+												<h4 class="modal-title" id="myModalLabel">Vic</h4>
 											</div>
 											<div class="modal-body">
-												...
+												<div class="modal-subtitle">How it works</div>
+												<div class="modal-text">
+													Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+												</div>
+												<div class="modal-img">
+													<img class="" src="" style="border:1px solid gray; width:100%; height: 200px;">
+												</div>
+												<div class="modal-subtitle">how much is it ?</div>
+												<div class="modal-text">
+													Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+												</div>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-												<button type="button" class="btn btn-primary">Save changes</button>
+												<a type="button" class="btn cta" data-dismiss="modal">Go</a>
 											</div>
 										</div>
 									</div>
@@ -108,8 +126,8 @@
 							</div>
 						</div>
 						<div class="col-md-6 dx">
-							<div class="box-img">
-								<img src="{{asset('frontend/images/VIC2.png')}}">
+							<div class="box-img" style="margin-right: 100px;">
+								<img src="{{asset('frontend/images/hp/img_vic.png')}}">
 							</div>
 						</div>
 					</div>
@@ -125,7 +143,7 @@
 								<a class="btn cta" href="#">explore wow</a>
 								<!-- Button trigger modal -->
 								<a type="button" class="how-it-w" data-toggle="modal" data-target="#how-wow-modal">
-  									How it works
+  									<i class="fas fa-question-circle"></i> How it works
 								</a>
 								<!-- Modal -->
 								<div class="modal fade" id="how-wow-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -135,14 +153,23 @@
 												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 													<span aria-hidden="true">&times;</span>
 												</button>
-												<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+												<h4 class="modal-title" id="myModalLabel">WOW</h4>
 											</div>
 											<div class="modal-body">
-												...
+												<div class="modal-subtitle">How it works</div>
+												<div class="modal-text">
+													Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+												</div>
+												<div class="modal-img">
+													<img class="" src="" style="border:1px solid gray; width:100%; height: 200px;">
+												</div>
+												<div class="modal-subtitle">how much is it ?</div>
+												<div class="modal-text">
+													Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+												</div>
 											</div>
 											<div class="modal-footer">
-												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-												<button type="button" class="btn btn-primary">Save changes</button>
+												<a type="button" class="btn cta" data-dismiss="modal">Go</a>
 											</div>
 										</div>
 									</div>
@@ -151,36 +178,20 @@
 						</div>
 						<div class="col-md-6 dx">
 							<div class="row">
-								<div class="col-md-6"> {{-- CICLARE da DB !! --}}
-									<a class="video-prew" href="#">
-										<img src="{{asset('frontend/images/aaaaaaaaaaa.png')}}">
-									</a>
-									<div class="video-author">Alessandro Donadio</div>
-									<div class="video-title">intro</div>
-								</div>
-								<div class="col-md-6">
-									<a class="video-prew" href="#">
-										<img src="{{asset('frontend/images/aaaaaaaaaaa.png')}}">
-									</a>
-									<div class="video-author">Mario Rossi</div>
-									<div class="video-title">Episode 1: multicultural</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-6">
-									<a class="video-prew" href="#">
-										<img src="{{asset('frontend/images/aaaaaaaaaaa.png')}}">
-									</a>
-									<div class="video-author">Giovanni Storti</div>
-									<div class="video-title">intro</div>
-								</div>
-								<div class="col-md-6">
-									<a class="video-prew" href="#">
-										<img src="{{asset('frontend/images/aaaaaaaaaaa.png')}}">
-									</a>
-									<div class="video-author">Laura Minella</div>
-									<div class="video-title">Episode4: colorato e divertente</div>
-								</div>
+								@for ($i = 0; $i < 4; $i++)
+									<div class="col-md-6"> {{-- CICLARE da DB !! --}}
+										<div class="video-prev-container">
+											<a class="video-prev" href="#">
+												<img class="video-prev-img" src="{{asset('frontend/images/hp/video_prev.jpg')}}">
+												<span class="video-prev-icon">
+													<i class="far fa-play-circle"></i>
+												</span>
+											</a>
+										</div>
+										<div class="video-author">Author {{$i}}</div>
+										<div class="video-title">intro {{ $i }}</div>
+									</div>
+								@endfor
 							</div>
 						</div>
 					</div>

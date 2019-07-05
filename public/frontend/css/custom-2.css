@@ -12,18 +12,21 @@ img.img-circle.logo-tondo {
 .user-wrapper {
 	position: relative;
 }
+.sidebar-menu > li > a {
+    padding: 12px 15px 12px 15px;
+}
 .sidebar-bottom {
 	width: 138px;
 	height: 110px;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 	border-radius: 10px 10px 10px 0;
-	background-color: #239e9e;
-	margin:auto;
+	background-color: #69ba7a;
+	margin: auto;
 	position: absolute;
-	bottom: 100px;
-	left:30px;
+	bottom: 200px;
+	left: 70px;
 	text-transform: none;
-	padding:25px 15px;
+	padding: 25px 15px;
 	z-index: 2;
 }
 .start-square {
@@ -36,10 +39,9 @@ img.img-circle.logo-tondo {
 	position: absolute;
 	bottom: 0;
 	left: 0;
-	width: 100px;
-	height: 120px;
-	border:1px solid red;
-	background-color: #cccccc;
+	width: 100%;
+	height: auto;
+	z-index: 3;
 }
 
 .heading .heading-text-container {
@@ -172,7 +174,7 @@ a.btn.cta {
 	height: 352px;
 }
 .box.wow {
-	height: 512px;
+	height: 470px;
 }
 .box.wow .box-top {
 	margin-top:50px;
@@ -181,11 +183,75 @@ a.btn.cta {
 	height: 300px;
 }
 .box.vic {
-	height: 300px;
+	
 }
 .box-body .how-it-w {
 	margin-left:50px;
 }
 .modal-open .modal {
 	z-index: 999999;
+}
+.box-body .box-img {
+	margin-top: 20px; 
+	text-align: right; 
+	margin-right: 20px;
+	padding-bottom:20px;
+}
+.video-prev-container {
+	margin-top:50px;
+}
+a.video-prev {
+	position: relative;
+}
+.video-prev-icon {
+	position: absolute;
+	top: calc(50% - 15px);
+	left: calc(50% - 15px);
+}
+.video-prev-icon i {
+	color: #ffffff;
+	/*font-family: "Font Awesome 5 Free";*/
+	font-size: 24px;
+	line-height: 24px;
+}
+.box-body.wow .video-author {
+	color: #055b76;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 30px;
+}
+.box-body.wow .video-title {
+	color: #69ba7a;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 20px;
+}
+.modal-content {
+	padding:60px;
+}
+.modal-title {
+	color: #055b76;
+	font-family: "Varela Round";
+	font-size: 36px;
+	font-weight: 400;
+	line-height: 46px;
+	margin-bottom:25px;
+}
+.modal-subtitle {
+	color: #055b76;
+	font-family: "Varela Round";
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 34px;
+	margin: 15px auto;
+}
+.modal-text {
+	color: #808080;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;
+	margin:15px auto;
+}
+.modal-img {
+	margin:20px auto;
 }

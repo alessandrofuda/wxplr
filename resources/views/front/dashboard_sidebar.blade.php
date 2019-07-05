@@ -41,8 +41,8 @@
       <div class="sidebar-bottom">
         <div class="start-square">Start with our free feature like GOT or see our WOW video!</div>
       </div>
-      <div class="sidebar-bottom-corner">
-        <img src="">
+      <div class="sidebar-bottom-corner-container">
+        <img class="sidebar-bottom-corner" src="{{asset('frontend/images/sidebar/sidebar_bottom.png')}}">
       </div>
     </section>
     <!-- /.sidebar -->
