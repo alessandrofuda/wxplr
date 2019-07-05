@@ -17,13 +17,6 @@
                                             <a href="{{ url('auth/login') }}"><span>Login</span></a>
                                         </li>
                                     @else
-                                        @if(Route::currentRouteName() != 'user.dashboard')
-                                            <li>
-                                                <a href="/user/dashboard" style="padding-bottom: 10px;">
-                                                    <span>Dashboard</span>
-                                                </a>
-                                            </li>
-                                        @endif
                                         <li class="dropdown">
                                             <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                                 <span>
