@@ -238,6 +238,7 @@ Route::get('time', function() {
 			Route::post('service/profile/save', 'ServiceOrdersController@service_profile_save');
 			//Route::get('user/services', 'PagesController@services');
 			Route::get('user/dashboard', ['as' => 'user.dashboard','uses' => 'PagesController@client_dashboard']);
+			Route::get('global_orientation_test_intro', 'PagesController@global_online_test_intro');
 			Route::get('global_orientation_test', 'PagesController@global_online_test');
 			Route::post('global_orientation_test', 'PagesController@global_online_test_next');
 

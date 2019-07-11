@@ -582,6 +582,11 @@ class PagesController extends CustomBaseController {
 		return view('client.services',$data);
 	}
 
+	public function global_online_test_intro() {
+
+		return view('front.global_test_intro');
+	}
+
 	public function global_online_test(Request $request){
 		// $order = Order::where('item_name','Global Orientation Test')->where('user_id', \Auth::user()->id)->first();
 		//

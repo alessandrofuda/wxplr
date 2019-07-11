@@ -5,7 +5,7 @@
 		<div class="row-first">
 			<div class="heading" style="background-image: url('{{ asset('frontend/images/hp/top_img.png')}}')">
 				<div class="heading-text-container">
-					<div class="heading_title">Welcome {{ ucfirst(Auth::user()->name) }} to your personal space. </div>
+					<div class="heading_title">Welcome to your personal space {{ ucfirst(Auth::user()->name) }}. </div>
 					<div class="heading_sub-title">Are your ready for #yournextchange?</div>
 				</div>
 			</div>
@@ -14,7 +14,7 @@
 			<div class="container boxs">
 				<div class="col-md-12" style="padding-right: 0;">
 					<div class="box-title">
-						Start your route
+						Start your journey
 					</div>
 					<div class="box box-body got">
 						<div class="col-md-6 sx">
@@ -32,7 +32,7 @@
 						</div>
 					</div>
 					<div class="box-title">
-						Go ahead
+						Take it one Step Further
 					</div>
 					<div class="box box-body got-pro">
 						<div class="col-md-6 sx">
@@ -87,7 +87,7 @@
 						<div class="col-md-6 sx">
 							<div class="box-top">vic</div>
 							<div class="box-middle">virtual international consultant</div>
-							<div class="box-description">Your best ally to walk you through an international job search journey: 12 steps to prepare your journey.</div>
+							<div class="box-description">Your best ally to walk you through an international job search journey: 11 steps to prepare your journey.</div>
 							<div class="box-cta">
 								<a class="btn cta" href="#">buy for {{$user_services[6]['price']}}€</a>
 								<!-- Button trigger modal -->
@@ -132,7 +132,7 @@
 						</div>
 					</div>
 					<div class="box-title">
-						Enjoy our wow
+						Enjoy our WOW Effect
 					</div>
 					<div class="box box-body wow">
 						<div class="col-md-6 sx">

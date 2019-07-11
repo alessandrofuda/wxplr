@@ -17,8 +17,8 @@
             <span>Dashboard</span> <!--<i class="fa fa-angle-left pull-right"></i>-->
           </a>
         </li>
-        <li class="{{\Route::getCurrentRoute()->uri() == "global_orientation_test" ? "active open" : ""}}">
-            <a href="{{ url('global_orientation_test') }}">
+        <li class="{{\Route::getCurrentRoute()->uri() == "global_orientation_test_intro" ? "active open" : ""}}">
+            <a href="{{ url('global_orientation_test_intro') }}">
               <span>Got</span>
             </a>
         </li>

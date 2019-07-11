@@ -255,3 +255,53 @@ a.video-prev {
 .modal-img {
 	margin:20px auto;
 }
+#got-intro-page > .row{
+	margin-top:100px;
+}
+#got-intro-page .got-intro-container {
+	margin-left: 50px;	
+}
+#got-intro-page .got-page-title {
+	color: #055b76;
+	font-family: "Varela Round";
+	font-size: 36px;
+	font-weight: 400;
+	line-height: 46px;
+	text-transform: uppercase;	
+}
+#got-intro-page .got-page-subtitle {
+	color: #69ba7a;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 20px;	
+	margin-top: 7px;
+	margin-bottom: 50px;
+}
+#got-intro-page .got-paragr-title {
+	color: #055b76;
+	font-family: "Varela Round";
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 34px;
+	margin-bottom: 16px;
+}
+#got-intro-page .got-page-body{
+	color: #808080;
+	font-family: "Open Sans";
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 30px;
+	margin-bottom: 50px;
+}
+#got-intro-page .btn.cta{
+	width: 125px;
+}
+#got-intro-page .got-page-img{
+	max-width: 100%;
+	height: auto;	
+	margin-top: 100px;
+	margin-bottom: 150px;
+}
+#got-intro-page {
+	
+}
