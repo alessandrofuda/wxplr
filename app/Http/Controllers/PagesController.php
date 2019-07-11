@@ -588,13 +588,6 @@ class PagesController extends CustomBaseController {
 	}
 
 	public function global_online_test(Request $request){
-		// $order = Order::where('item_name','Global Orientation Test')->where('user_id', \Auth::user()->id)->first();
-		//
-		// if($order == null) {
-		// 	$service = Service::where('name','Global Orientation Test')->first();
-		// 	\Session::put('payment_service_id',$service->id);
-		// 	return redirect('service/payment');
-		// }
 
 		$question=GlobalTest::first();  // first question in survey
 		$question_data=array('id' => $question->id,
@@ -608,9 +601,7 @@ class PagesController extends CustomBaseController {
 		$user_id = Auth::user()->id;
 		$compiled = GlobalTestResult::where('user_id', $user_id)->get();
 
-
 		$query_string = $request->query('force');
-
 		
 		if(count($compiled) > 0 && $query_string != 'recompile') {  // .. and NOT force=recompile ..
 			$global_test_compiled_yet = true;

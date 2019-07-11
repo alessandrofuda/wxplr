@@ -302,6 +302,140 @@ a.video-prev {
 	margin-top: 100px;
 	margin-bottom: 150px;
 }
-#got-intro-page {
+#got-page .got-page-bread-crumbs{
+	color: #69ba7a;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 20px;
+	text-transform: uppercase;
+	margin-bottom: 30px;
+}
+#got-page .Question_heading{
+	color: #055b76;
+	font-family: "Varela Round";
+	font-size: 36px;
+	font-weight: 400;
+	line-height: 46px;
+	max-width: 500px;	
+}
+#got-page .ask-Question li{
+	background-color: #e6e6e6;
+	border-radius: 20px;
+	margin-bottom: 16px;
+}
+#got-page .ask-Question label {
+	color: #808080;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;	
+}
+#got-page .ask-Question .check{
+	background-color: #ffffff;
+	border: 3px solid #ffffff;
+}
+#got-page .got-page-img {
+	max-width: 100%;
+	height: auto;
+}
+#got-page .ask-Question button.prev{
+	width: 93px;
+	height: 40px;
+	border: 1px solid #69ba7a;
+	background-color: #ffffff;
+	color: #69ba7a;
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 20px;
+	/* Text style for "prev," */
+	text-transform: uppercase;
+	border-radius: 10px;
+}
+#got-page .ask-Question button.next{
+	width: 125px;
+	height: 40px;
+	border-radius: 10px;
+	background-image: linear-gradient(to right, #6bb97a 31%, #5ab282 38%, #41a98e 52%, #2fa297 66%, #259e9c 82%, #229d9e 100%);
+	color: #ffffff;
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 18px;
+	text-transform: uppercase;
+	border:none;
+	border-radius:10px;
+}
+#got-page .output-title{
+	color: #055b76;
+	font-family: "Varela Round";
+	font-size: 36px;
+	font-weight: 400;
+	line-height: 46px;
+	margin-bottom: 25px;
+}
+#got-page .outcome-content{
+	padding: 33px;
+	border-radius: 20px;
+	background-color: #e6e6e6;
+	color: #808080;
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;
+}
+#got-page .redo-test {
+	margin-top:35px;
+	margin-bottom: 30px;
+	line-height: 20px;
+	text-transform: uppercase;
+}
+#got-page .redo-test a{
+	color: #69ba7a;
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 700;
+}
+#got-page .dx-block{
+	position: relative;	
+}
+#got-page .cta-to-got-pro{
+	position: absolute;
+	bottom:-50px;
+	right: 10px;
+	width: 300px;
+	height: auto;
+	background-color: #ffffff;
+	padding:30px;
+	border-radius: 20px;
+	box-shadow: 4px 10px 16px rgba(0, 0, 0, 0.16);
+
+}
+#got-page .cta-to-got-pro .text {
+	color: #808080;
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;
+	margin-bottom: 20px;
+}
+#got-page {
+	
+}
+#got-page {
+	
+}
+#got-page {
+	
+}
+#got-page {
+	
+}
+#got-page {
+	
+}
+#got-page {
+	
+}
+#got-page {
 	
 }

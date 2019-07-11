@@ -17,8 +17,7 @@ button.order_now:disabled {
 }  
 #ask-Question > ul { width:100%; display:inline-block }  
 @media screen and (min-width: 768px) { 
-	.online-test-banner { background-position: 100% center; }  
-	#ask-Question > ul { width:70%; }  
+	.online-test-banner { background-position: 100% center; }   
 }  
 @media screen and (min-width: 992px) { 
 	.Colorfull-window { padding-left: 200px !important; padding-right: 200px !important; }  
@@ -144,19 +143,16 @@ hr.primary-line {
 }
 .container .ask-Question ul{list-style:none;height:100%;width:100%;margin:0;padding:0}
 h2.Question_heading{float:left;width:100%;color:#2087c8}
-.ask-Question ul li{color:#AAA;display:inline-bloc
-	k;position:relative;width:auto;height:auto;margin:0 15px;min-height:50px}
+.ask-Question ul li{color:#AAA;display:inline-block;position:relative;width:auto;height:auto;min-height:50px}
 .ask-Question ul li input[type=radio]{position:absolute;visibility:visible;top:24px;left:10px;opacity:0}
-.ask-Question ul li label{display:block;position:relative;font-weight:400;font-size:20px;padding:7px 25px 10px 40px;margin:10px auto;height:auto;z-index:9;color:#55B241;cursor:pointer;-webkit-transition:all .25s linear}
+.ask-Question ul li label{display:block;position:relative;font-weight:400;font-size:20px;padding:10px 25px 10px 55px;margin:10px auto;height:auto;z-index:9;color:#55B241;cursor:pointer;-webkit-transition:all .25s linear}
 .ask-Question ul li:hover label{color:#2087c8}
-.ask-Question ul li .check{display:block;position:absolute;border:3px solid #55B241;border-radius:100%;height:25px;width:25px;top:20px;left:0;z-index:5;transition:border .25s linear;-webkit-transition:border .25s linear}
+.ask-Question ul li .check{display:block;position:absolute;border:3px solid #55B241;border-radius:100%;height:25px;width:25px;top:16px;left:15px;z-index:5;transition:border .25s linear;-webkit-transition:border .25s linear}
 .ask-Question ul li:hover .check{border:3px solid #4ea8df}
 .ask-Question ul li .check::before{display:block;position:absolute;content:'';border-radius:100%;transition:background .25s linear;-webkit-transition:background .25s linear;height:13px;left:0;margin:0 auto;right:0;top:3px;width:13px}
 .ask-Question ul li input[type=radio]:checked ~ .check{border:3px solid #2087c8}
-.ask-Question ul li input[type=radio]:checked ~ .check::before{background:#2087c8}
+.ask-Question ul li input[type=radio]:checked ~ .check::before{background:#69ba7a;}
 .ask-Question ul li input[type=radio]:checked ~ label{color:#2087c8}
-.ask-Question button.next{margin:40px 0 0;color:#fff;font-size:20px;padding:10px 100px;border:none;transition:all .4s;position:relative;overflow:hidden;float:right;font-weight:700;letter-spacing:.7px;background-color:#2087c8}
-.ask-Question button.next:hover{background-color:#55B241}
 .ask-Question button.next:after{content:'';background:url(../images/next-arrow.png) no-repeat;position:absolute;width:22px;height:15px;top:16px;left:111px;opacity:0;background-size:68%;background-position:center;transition:all .5s}
 .ask-Question button.next:hover:after{content:'';background:url(../images/next-arrow.png) no-repeat;position:absolute;width:22px;height:15px;top:18px;left:150px;opacity:1;background-size:68%;background-position:center;transition:all .5s}
 .back { text-align: right; color:#2087c8; font-size: 110%;}
@@ -181,7 +177,6 @@ a:hover.tooltips span{
 .navbar-inverse .navbar-nav>li>a:before{content:'';position:absolute;width:0;left:0;height:3px;bottom:0;background:#0b639a;right:0;margin:0 auto;-webkit-transition:all .3s;-moz-transition:all .3s;-o-transition:all .3s}
 .navbar-inverse .navbar-nav>li>a:hover{border:none!important}
 .navbar-inverse .navbar-nav>li>a:hover:before{content:'';position:absolute;width:100%;left:0;height:3px;bottom:0;background:#0b639a}
-.global-test-container.content.box{border-top:3px solid #2087c8;margin-top:15px}
 .global-test-container.content.box h2{display:inline-block;margin-left: 15px;color:#2087c8}
 .global-test-container.content.box a.btn.btn-primary.back-dashboard{background:#ffbd33;border:solid 1px #da9c19;-webkit-transition:all .3s;-moz-transition:all .3s;-o-transition:all .3s}
 .global-test-container.content.box a.btn.btn-primary.back-dashboard:hover{background:#da9c19}
@@ -232,7 +227,6 @@ ul.sidebar-menu li a:hover{padding-left:21px;color:#fff;background:#373e42}
 .container.register .Register .row form .checkbox label{padding-left:26px}
 .user-dash-wrapper > .content{min-height: 380px; padding-left: 0; padding-right: 0; padding-top:0;}
 .global-test-container .col-md-6+a{clear:both;float:left}
-.global-test-container{overflow:hidden}
 .online-test-banner h1{color:#367fa9}
 .Question_heading span.glyphicon{font-size:22px}
 .outcome_image img{max-width:100%}

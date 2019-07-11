@@ -263,9 +263,16 @@
                         jQuery("#user_timezone").val(timezone);
                     }
                 })
-
             }
-
+        });
+    </script>
+    <script>
+        jQuery(document).ready(function(){
+            jQuery('button#back').click(function(e){
+                e.preventDefault();
+                parent.history.back();
+                return false;
+            });
         });
     </script>
     <script>
@@ -277,6 +284,7 @@
         jQuery('.content-wrapper').css('min-height', h+'px');
     </script>
     <script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('frontend/js/custom-2.js') }}"></script>
 
     @yield('js')
     @stack('scripts')
