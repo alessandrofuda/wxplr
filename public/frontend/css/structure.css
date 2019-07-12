@@ -1612,9 +1612,9 @@ body.minimalist-header.header-below:not(.template-slider) #Header {
     float: left;
 }
 
-#Top_bar .menu > li:not(.mfn-megamenu-parent) {
+/*#Top_bar .menu > li:not(.mfn-megamenu-parent) {
     position: relative;
-}
+}*/
 
 #Top_bar .menu > li.hover {
     z-index: 204;
@@ -1708,14 +1708,11 @@ body.minimalist-header.header-below:not(.template-slider) #Header {
 /* main menu 2nd level */
 #Top_bar .menu li ul {
     position: absolute;
-    left: 0;
-    top: 100%;
+    right: 0;
+    left: auto;
     z-index: 205;
-    margin: 0;
     display: none;
-    background-image: url(../images/box_shadow.png);
-    background-repeat: repeat-x;
-    background-position: left top;
+    margin:0;
 }
 
 #Top_bar .menu li > ul {

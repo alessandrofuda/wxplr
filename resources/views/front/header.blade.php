@@ -30,10 +30,10 @@
                                             </a>
                                             <ul class="dropdown-menu">
                                                 <li>
-                                                    <a href="https://www.wexplore.eu">Home</a>
+                                                    <a href="{{route('user_profile')}}">Personal area</a>
                                                 </li>
                                                 <li>
-                                                    <a href="{{ url('auth/logout') }}">Logout</a>
+                                                    <a href="{{ url('auth/logout') }}"><i class="fas fa-sign-out-alt"></i>Logout</a>
                                                 </li>
                                             </ul>
                                         </li>

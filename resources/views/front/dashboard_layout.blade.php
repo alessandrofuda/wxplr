@@ -65,10 +65,7 @@
             	    @include('front.dashboard_sidebar')
             	@endif
 
-                <!-- Content Wrapper. Contains page content -->
                 <div class="content-wrapper user-dash-wrapper">
-                    <!-- Content Header (Page header) -->
-                    <!-- Main content -->
                     <section class="content">
                         <div class="section-row">
                           <div class="col-md-12">
@@ -101,7 +98,6 @@
                       @yield('content')
 
                     </section>
-                    <!-- /.content -->
                 </div>
             </div>
 

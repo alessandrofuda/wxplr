@@ -1,28 +1,28 @@
 <div class="container">
     @if(session('status'))
-    <div class="row" style="margin-top: 20px">
-        <div class="col-md-12">
-            <div class="alert alert-success">
+        <div class="row" style="margin-top: 20px">
+            <div class="col-md-12">
+                <div class="alert alert-success">
                     <ul>
                         <li>{{ session('status') }}</li>
                     </ul>
+                </div>
             </div>
         </div>
-    </div>
     @endif
 
     @if (count($errors) > 0)
-    <div class="row" style="margin-top: 20px">
-        <div class="col-md-12">
-            <div class="alert alert-danger">
-                <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                </ul>
+        <div class="row" style="margin-top: 20px">
+            <div class="col-md-12">
+                <div class="alert alert-danger">
+                    <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
     @endif
 </div>
 
@@ -60,10 +60,11 @@
                                             <a href="/user/dashboard">
                                         @endif
                                             <img class="scale-with-grid" style="margin:-4px 0px 15px 0; float:left;width:330px;" src="/frontend/immagini/free-button.png" alt="" />
-                                        </a></div>
-                                        <br/><br/><br/>
-                                        <p class="hrmargin_0" style="color:#ffffff; text-align:left; font-family: 'Varela Round', sans-serif; font-size:16px; line-height:25px; font-weight:600;">CONTACT US for a first FREE orientation session with one of our consultants</p>
-                                        <form method="post" action="{{ url('services') }}" style="margin-top: 6px;">
+                                        </a>
+                                    </div>
+                                    <br/><br/><br/>
+                                    <p class="hrmargin_0" style="color:#ffffff; text-align:left; font-family: 'Varela Round', sans-serif; font-size:16px; line-height:25px; font-weight:600;">CONTACT US for a first FREE orientation session with one of our consultants</p>
+                                    <form method="post" action="{{ url('services') }}" style="margin-top: 6px;">
                                         <!-- CASELLE DI TESTO -->
                                         <div class="column one-second form-row">
                                             <input type="text" required placeholder="Name" name="name" value="{{ old('name') }}">
@@ -88,41 +89,43 @@
                                         <p style="text-align:center;" class="no-margins"><input type="submit" name="invia" value="SEND"></p>
                                             <input type="hidden" name="service_id" value="1" />
                                             {{ csrf_field() }}
-                                        </form>
-					                </div>
-                                </div>
+                                    </form>
+					            </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+
+			<div class="section flv_sections_6" style="padding-top:50px;" id="global-toolbox">
+				<div class="section_wrapper clearfix">
+                    <div class="items_group clearfix flex-container">
+                        <div class="column one-second box-image-container flex-col">
+                            <div class="box-image box-globaltest"></div>
+                            <div class="box-image-hover box-globaltest-hover"></div>
+                        </div>
+                        <div class="column one-second box-border-container flex-col">
+                            <div class="box-border">
+                                <p class="text-gray default-font text-left">In a world with so many changes and with increased competition, you might be tempted to accept the first offer you get, because you don’t know better, or because you don’t know <b>yourself</b> better.</p>
+                                <p class="text-gray default-font text-left">How do you make the right choice when starting a new job? How do you find the right environment where you can grow your skills and ensure you can be well positioned for the future? <b>How do you know where in the global market is the right place for you?</b></p>
+                                <p class="text-gray default-font text-left">Try out our exclusive Global Orientation Test to find: <br/>- The ideal company for you <br/>- In which Country it is most likely to be located <br/>- Which countries in Europe are most open to foreign workers</p>
+                                <p class="text-gray default-font text-left">Aren’t you curious to see where your next career move might take you?</p>
                             </div>
                         </div>
                     </div>
-
-				<div class="section flv_sections_6" style="padding-top:50px;" id="global-toolbox">
-					<div class="section_wrapper clearfix">
-                        <div class="items_group clearfix flex-container">
-                            <div class="column one-second box-image-container flex-col">
-                                <div class="box-image box-globaltest"></div>
-                                <div class="box-image-hover box-globaltest-hover"></div>
-                            </div>
-                            <div class="column one-second box-border-container flex-col">
-                                <div class="box-border">
-                                    <p class="text-gray default-font text-left">In a world with so many changes and with increased competition, you might be tempted to accept the first offer you get, because you don’t know better, or because you don’t know <b>yourself</b> better.</p>
-                                    <p class="text-gray default-font text-left">How do you make the right choice when starting a new job? How do you find the right environment where you can grow your skills and ensure you can be well positioned for the future? <b>How do you know where in the global market is the right place for you?</b></p>
-                                    <p class="text-gray default-font text-left">Try out our exclusive Global Orientation Test to find: <br/>- The ideal company for you <br/>- In which Country it is most likely to be located <br/>- Which countries in Europe are most open to foreign workers</p>
-                                    <p class="text-gray default-font text-left">Aren’t you curious to see where your next career move might take you?</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            @if(!\Auth::check())
-                                <a href="/register"> 
-                            @else
-                                <a href="/user/dashboard">
-                            @endif
-                                <img class="scale-with-grid" src="/frontend/immagini/free-button.png" alt="" />
-                            </a>
-                        </div>
-					</div>
+                    <div class="text-center">
+                        @if(!\Auth::check())
+                            <a href="/register"> 
+                        @else
+                            <a href="/user/dashboard">
+                        @endif
+                            <img class="scale-with-grid" src="/frontend/immagini/free-button.png" alt="" />
+                        </a>
+                    </div>
 				</div>
 			</div>
 		</div>
+</div>
+
+
 	</div>
 </div>

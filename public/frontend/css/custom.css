@@ -564,7 +564,7 @@ form#final_form {background: #fff;margin-left: -20px;margin-right: -20px;padding
 #final_form .form-group.Submit_final_form + input#back_3 {float: left;margin-top: 21px;margin-right: 15px;padding: 8px 20px;background: #55b241;border: solid 1px #3b9827;}
 .Profile-Data-form .form-group {width: 100%;display: table;}
 .Profile-Data-form .form-group input[type="text"], .Profile-Data-form .form-group select, .Profile-Data-form .form-group input[type="file"]{width: 100%;}
-a#view_profile, .edit_profile {float: right;cursor: pointer;position: absolute;z-index: 9999;width: 30px;height: 30px;text-align: center;background: #2087c8;right: 20px;top: 20px;line-height: 28px;color: #fff;border-radius: 3px;}
+a#view_profile, .edit_profile {float: right;cursor: pointer;position: absolute;z-index: 99;width: 30px;height: 30px;text-align: center;background: #2087c8;right: 20px;top: 20px;line-height: 28px;color: #fff;border-radius: 3px;}
 .Profile_details:nth-last-child(1) div#edit_login_data {width: 70%;}
 .occupation-help-wrap { position: absolute; width: 290px; right: -360px; z-index: 999; margin-top: -35px;}
 .occupation-help-wrap .profile-help-desc {line-height: 25px;background: #222d32;padding: 10px;color: #fff;border-radius: 3px;}

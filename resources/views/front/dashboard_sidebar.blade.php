@@ -27,14 +27,14 @@
               <span>GOT <span style="text-transform: none;">Pro</span></span>
             </a>
         </li>
+        <li class="{{\Route::getCurrentRoute()->uri() == "user/career-ready" ? "active open" : ""}}">
+            <a href="{{ url('user/career-ready') }}{{-- http://eepurl.com/grpRwb --}}">
+              <span>VIC</span>
+            </a>
+        </li>
         <li class="{{\Route::getCurrentRoute()->uri() == "user/wow" ? "active open" : ""}}">
             <a href="http://eepurl.com/grpRwb{{-- url('user/wow') --}}">
               <span>WOW</span>
-            </a>
-        </li>
-        <li class="{{\Route::getCurrentRoute()->uri() == "user/career-ready" ? "active open" : ""}}">
-            <a href="http://eepurl.com/grpRwb{{-- url('user/career-ready') --}}">
-              <span>VIC</span>
             </a>
         </li>
       </ul>

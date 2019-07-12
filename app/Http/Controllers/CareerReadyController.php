@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Service;
 use App\Order;
 
 
@@ -14,13 +15,18 @@ class CareerReadyController extends Controller {
 
     public function index(){
 
-    	// payment check
+        $data['page_title'] = 'Career Ready';
+        $data['payed'] = false;
+        $data['price'] = Service::find($this->service_Id)->price;
+
+        // payment check
     	$order = Order::where('user_id',\Auth::user()->id)->where('item_name','Career Ready')->first();
         if($order != null) {
-            $data['page_title'] = 'Career Ready';
-            return view('client.career_ready', $data);
+            $data['payed'] = true;
         }
-
-    	return redirect('service/payment/'.$this->service_Id);
+        
+        return view('client.career_ready', $data);
+    	//return redirect('service/payment/'.$this->service_Id);
     }
+
 }
