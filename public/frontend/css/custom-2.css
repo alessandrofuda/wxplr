@@ -397,6 +397,7 @@ a.video-prev {
 }
 #got-page .dx-block{
 	position: relative;	
+	padding-top:125px;
 }
 #got-page .cta-to-got-pro{
 	position: absolute;
