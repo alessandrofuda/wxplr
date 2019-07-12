@@ -423,28 +423,28 @@ a.video-prev {
 	line-height: 22px;
 	margin-bottom: 20px;
 }
-#login {
+#login, #registr {
 	padding-right: 0;
 	padding-left: 0;
 	height: 100vh;
 	/*overflow: hidden;*/
 }
-#login .login-container {
+#login .login-container, #registr .registr-container {
 	padding: 70px 10%;
 	position: relative;
 	height: 100%;
 }
-#login .login-sx{
+#login .login-sx, #registr .registr-sx{
 	background-image: linear-gradient(270deg, #69ba7a 0%, #055b76 100%);
 	padding:0;
 	height: 100%;
 	position: relative;
 }
-#login .login-dx{
+#login .login-dx, #registr .registr-dx{
 	padding: 0;
 	height: 100%;
 }
-#login .sx-title{
+#login .sx-title, #registr .sx-title{
 	margin-bottom: 80px;
 	color: #ffffff;
 	font-family: "Varela Round", 'sans serif';
@@ -457,67 +457,83 @@ a.video-prev {
 	bottom: 0;
 	left: calc(50% - 56px);
 }
-#login .login-dx .login-logo{
-
-}
-#login .login-logo{
+#login .login-logo, #registr .registr-logo{
 	text-align: left;
 	margin-bottom: 40px;
 }
-#login .login-logo img{
+#login .login-logo img, #registr .registr-logo img{
 	width: 230px;
 	height: auto;
 }
-#login label {
+#login label, #registr label {
 	color: #808080;
 	font-family: "Open Sans";
 	font-size: 12px;
 	font-weight: 400;
 	line-height: 18px;
 }
-#login input {
+#login input, #registr input {
 	border: none;
 	border-bottom: 1px solid #CCC;
 }
-#login .form-group {
+#login .form-group, #registr .form-group {
     display: block;
     max-width: 550px;
 }
-#login .icheck > label {
+#login .icheck > label, #registr .icheck > label {
     padding-left: 20px;
 }
-#login .checkbox.icheck{
+#login .checkbox.icheck, #registr .checkbox.icheck{
 	margin-top: 0px;
 }
-#login .other-links{
+#login .other-links, #registr .other-links{
 	margin-top: 40px;
 	margin-bottom: 120px;
 }
 #login .register-block{
 	margin-bottom: 100px;
 }
-#login button.login-btn{
+#login button.login-btn, #registr button.registr-btn{
 	width: 138px;
 	height: 40px;
 }
-#login .corner-bottom-img{
+#login .corner-bottom-img, #registr .corner-bottom-img{
 	position: absolute;
 	bottom: 0;
 	right: 0;
 }
-#login {
-
+#login .has-feedback, #registr .has-feedback {
+	position: initial;
 }
-#login {
-
+#registr .registr-sx .sx-title {
+	left:calc(50% - 147px);
 }
-#login {
-
+#registr .register-btn-container button{
+	width: 153px;
+	height: 40px;
+	border-radius: 10px;
+	background-image: linear-gradient(to right, #6bb97a 31%, #5ab282 38%, #41a98e 52%, #2fa297 66%, #259e9c 82%, #229d9e 100%);
+	border:none;
+	color: #ffffff;
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 20px;
+	margin-bottom: 30px;
 }
-#login {
-
+#registr .other-links{
+	margin-bottom: 45px;
 }
-#login {
-
+#registr .login-block{
+	color: #808080;
+	font-family: "Open Sans";
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 18px;
 }
+#registr .login-block a {
+	text-decoration: underline;
+	color: #808080;
+}
+
 
