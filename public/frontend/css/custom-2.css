@@ -492,6 +492,15 @@ a.video-prev {
 }
 #login .register-block{
 	margin-bottom: 100px;
+	color: #808080;
+	font-family: "Open Sans";
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 18px;
+}
+#login .register-link {
+	color:#808080;
+	text-decoration: underline;
 }
 #login button.login-btn, #registr button.registr-btn{
 	width: 138px;
@@ -504,6 +513,10 @@ a.video-prev {
 }
 #login .has-feedback, #registr .has-feedback {
 	position: initial;
+}
+#login .forgot-link {
+	text-decoration: underline;
+	color: #808080;
 }
 #registr .registr-sx .sx-title {
 	left:calc(50% - 147px);
