@@ -4,7 +4,7 @@
 
 <div id="got-page" class="container">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-6 sx-block">
 			<div class="got-container">
 				<div class="got-page-bread-crumbs">GOT</div>
 				

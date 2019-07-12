@@ -13,23 +13,6 @@
 
 	      gtag('config', '{{ env('GOOGLE_ANALYTICS_ID') }}');
 	    </script>
-
-	    <!-- Facebook Pixel Code -->
-	    <!--script>
-		    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-		    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-		    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-		    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-		    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-		    fbq('init', '395106547540931'); // Insert your pixel ID here.
-		    fbq('track', 'PageView');
-	    </script>
-	    <noscript><img height="1" width="1" style="display:none"
-	    src="https://www.facebook.com/tr?id=395106547540931&ev=PageView&noscript=1"
-	    /></noscript-->
-	    <!-- DO NOT MODIFY -->
-	    <!-- End Facebook Pixel Code -->
-
 	    <!-- Basic Page Needs -->
 	    <meta charset="utf-8">
 	    <title>{{ isset($meta_tag->title ) ? $meta_tag->title : "Wexplore" }}</title>
@@ -85,11 +68,7 @@
 			                        <!-- Logo-->
 			                        <div class="logo">
 			                            <a id="logo" href="https://www.wexplore.eu" title="Wexplore">
-			                                {{-- @if(isset($settings))
-			                                    <img class="scale-with-grid"  src="{{ asset($settings->logo) }}" alt="Wexplore">
-			                                @else --}}
-			                                    <img class="scale-with-grid" src="{{ asset('frontend/images/wexplore-logo.svg') }}" alt="Wexplore" />
-			                                {{--@endif--}}
+			                                <img class="scale-with-grid" src="{{ asset('frontend/images/wexplore-logo.svg') }}" alt="Wexplore" />
 			                            </a>
 			                        </div>
 			                        <!-- Main menu-->
@@ -122,8 +101,6 @@
 			                                                        </span>
 			                                                    </a>
 			                                                </li>
-
-
 
 			                                            @else
 			                                                <li>
@@ -220,113 +197,7 @@
 		<script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/extensions/revolution.extension.migration.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('frontend/plugins/rs-plugin/js/extensions/revolution.extension.parallax.min.js') }}"></script>
 
-		<script type="text/javascript">
-		    var tpj = jQuery;
-		    tpj.noConflict();
-		    var revapi34;
-		    tpj(document).ready(function() {
-		        if (tpj("#rev_slider_34_2").revolution == undefined) {
-		            revslider_showDoubleJqueryError("#rev_slider_34_2");
-		        } else {
-		            revapi34 = tpj("#rev_slider_34_2").show().revolution({
-		                sliderType: "standard",
-
-		                sliderLayout: "auto",
-		                dottedOverlay: "none",
-		                delay: 7000,
-		                navigation: {
-		                    keyboardNavigation: "off",
-		                    keyboard_direction: "horizontal",
-		                    mouseScrollNavigation: "off",
-		                    onHoverStop: "on",
-		                    touch: {
-		                        touchenabled: "on",
-		                        swipe_threshold: 0.7,
-		                        swipe_min_touches: 1,
-		                        swipe_direction: "horizontal",
-		                        drag_block_vertical: false
-		                    },
-		                    arrows: {
-		                        style: "uranus",
-		                        enable: true,
-		                        hide_onmobile: false,
-		                        hide_onleave: false,
-		                        tmp: '',
-		                        left: {
-		                            h_align: "right",
-		                            v_align: "bottom",
-		                            h_offset: 90,
-		                            v_offset: 40
-		                        },
-		                        right: {
-		                            h_align: "right",
-		                            v_align: "bottom",
-		                            h_offset: 40,
-		                            v_offset: 40
-		                        }
-		                    },
-		                    thumbnails: {
-		                        style: "hesperiden",
-		                        enable: true,
-		                        width: 200,
-		                        height: 80,
-		                        min_width: 100,
-		                        wrapper_padding: 5,
-		                        wrapper_color: "transparent",
-		                        wrapper_opacity: "1",
-		                        tmp: '<span class="tp-thumb-image"></span><span class="tp-thumb-title">Slide</span>',
-		                        visibleAmount: 3,
-		                        hide_onmobile: true,
-		                        hide_under: 0,
-		                        hide_onleave: false,
-		                        direction: "horizontal",
-		                        span: false,
-		                        position: "inner",
-		                        space: 5,
-		                        h_align: "left",
-		                        v_align: "bottom",
-		                        h_offset: 40,
-		                        v_offset: 40
-		                    }
-		                },
-		                gridwidth: 1180,
-		                gridheight: 550,
-		                lazyType: "none",
-		                shadow: 0,
-		                spinner: "spinner3",
-		                stopLoop: "off",
-		                stopAfterLoops: -1,
-		                stopAtSlide: -1,
-		                shuffle: "off",
-		                autoHeight: "off",
-		                disableProgressBar: "on",
-		                hideThumbsOnMobile: "on",
-		                hideSliderAtLimit: 0,
-		                hideCaptionAtLimit: 0,
-		                hideAllCaptionAtLilmit: 0,
-		                startWithSlide: 0,
-		                debugMode: false,
-		                fallbacks: {
-		                    simplifyAll: "on",
-		                    nextSlideOnWindowFocus: "off",
-		                    disableFocusListener: "off",
-		                }
-		            });
-		        }
-		    });
-		</script>
-
-		<!--script>
-		    jQuery(window).load(function() {
-		        var retina = window.devicePixelRatio > 1 ? true : false;
-		        if (retina) {
-		            var retinaEl = jQuery("#logo img");
-		            var retinaLogoW = retinaEl.width();
-		            var retinaLogoH = retinaEl.height();
-		            retinaEl.attr("src", "{{-- asset('frontend/immagini/logo-wexplore-retina.png') --}}").width(retinaLogoW).height(retinaLogoH)
-		        }
-		    });
-		</script-->
+		
 		<input type="hidden" id="user_timezone" value="{{ session('timezone') }}">
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js">
 		</script>

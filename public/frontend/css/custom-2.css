@@ -309,6 +309,7 @@ a.video-prev {
 	line-height: 20px;
 	text-transform: uppercase;
 	margin-bottom: 30px;
+	margin-left: 25px;
 }
 #got-page .Question_heading{
 	color: #055b76;
@@ -399,6 +400,9 @@ a.video-prev {
 	position: relative;	
 	padding-top:125px;
 }
+#got-page .sx-block {	
+	padding-top:125px;
+}
 #got-page .cta-to-got-pro{
 	position: absolute;
 	bottom:-50px;
@@ -419,24 +423,101 @@ a.video-prev {
 	line-height: 22px;
 	margin-bottom: 20px;
 }
-#got-page {
-	
+#login {
+	padding-right: 0;
+	padding-left: 0;
+	height: 100vh;
+	/*overflow: hidden;*/
 }
-#got-page {
-	
+#login .login-container {
+	padding: 70px 10%;
+	position: relative;
+	height: 100%;
 }
-#got-page {
-	
+#login .login-sx{
+	background-image: linear-gradient(270deg, #69ba7a 0%, #055b76 100%);
+	padding:0;
+	height: 100%;
+	position: relative;
 }
-#got-page {
-	
+#login .login-dx{
+	padding: 0;
+	height: 100%;
 }
-#got-page {
-	
+#login .sx-title{
+	margin-bottom: 80px;
+	color: #ffffff;
+	font-family: "Varela Round", 'sans serif';
+	font-size: 36px;
+	font-weight: 400;
+	line-height: 46px;
+	text-transform: uppercase;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	left: calc(50% - 56px);
 }
-#got-page {
-	
+#login .login-dx .login-logo{
+
 }
-#got-page {
-	
+#login .login-logo{
+	text-align: left;
+	margin-bottom: 40px;
 }
+#login .login-logo img{
+	width: 230px;
+	height: auto;
+}
+#login label {
+	color: #808080;
+	font-family: "Open Sans";
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 18px;
+}
+#login input {
+	border: none;
+	border-bottom: 1px solid #CCC;
+}
+#login .form-group {
+    display: block;
+    max-width: 550px;
+}
+#login .icheck > label {
+    padding-left: 20px;
+}
+#login .checkbox.icheck{
+	margin-top: 0px;
+}
+#login .other-links{
+	margin-top: 40px;
+	margin-bottom: 120px;
+}
+#login .register-block{
+	margin-bottom: 100px;
+}
+#login button.login-btn{
+	width: 138px;
+	height: 40px;
+}
+#login .corner-bottom-img{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+#login {
+
+}
+#login {
+
+}
+#login {
+
+}
+#login {
+
+}
+#login {
+
+}
+
