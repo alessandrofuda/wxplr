@@ -6,8 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
-class Service extends Model
-{
+class Service extends Model {
+
+    const GOT = 1;
+    const PK = 2;
+    const SKILL = 3;
+    const GLOB_TOOL = 4;
+    const GOT_PRO = 5;
+    const VIC = 6;
+    const WOW = 7;    
+
     public $vatprice;
     use SoftDeletes;
     /**

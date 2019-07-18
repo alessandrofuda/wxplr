@@ -2,7 +2,7 @@
 
 @section('content')
 	<div id="vic" class="container-fluid">
-	    <div class="row">
+	    <div class="row vic-container">
 	    	<div class="col-md-6">
 		        <div class="top-heading">Vic</div>
 		        <div class="sub-heading">virtual international consultant</div>
@@ -14,7 +14,10 @@
 		        	@if ($payed === true)
 		        		<a class="btn cta" href="#">Start</a>
 		        	@else
-		        		<a class="btn cta" href="#">Buy for {{$price}}€</a>
+		        		<a class="btn cta" href="{{route('service_payment_direct', [ 'service_id' => $service_id ])}}">Buy for {{$price}}€</a>
+
+		        		@include('partials.vic.how_it_works_modal')
+
 		        	@endif
 		        </div>
 
