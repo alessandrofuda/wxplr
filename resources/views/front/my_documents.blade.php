@@ -1,4 +1,4 @@
-@extends('front.dashboard_layout')
+@extends('layouts.dashboard_layout')
 @section('content')
     <div class="upper-test-container">
         @if (count($errors) > 0)

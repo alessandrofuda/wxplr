@@ -1,4 +1,4 @@
-@extends('front.dashboard_layout')
+@extends('layouts.dashboard_layout')
 
 @section('content')
 	<div id="vic" class="container-fluid">

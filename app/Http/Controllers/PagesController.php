@@ -224,62 +224,6 @@ class PagesController extends CustomBaseController {
 		return redirect('contact-us')->with('status', 'Your message has been sent successfully!');
 	}
 
-	/*public function client_dashboar1d(){
-		$noti_msg = '';
-		$dash_noti = [];
-		$user = Auth::user();
-		// Culture Match
-		$culture_match_survey_obj = CultureMatchSurvey::where('user_id',$user->id);
-
-
-		if($culture_match_survey_obj->count() > 0){
-			$culture_match_survey = $culture_match_survey_obj->first(['status'])->toArray();
-			$noti_msg_url = '#';
-
-			if($culture_match_survey['status'] == 1){
-				// Dream Check Lab
-				$dreamcheck_lab = DreamCheckLab::where('user_id',$user->id)->first(['id','validate','validate_by']);
-				//echo '<pre>'; print_r($dreamcheck_lab); die;
-				if(!empty($dreamcheck_lab)){
-					$noti_msg_url = url('user/'.$dreamcheck_lab->id.'/download');
-					if($dreamcheck_lab->validate == 1 && !empty($dreamcheck_lab->validate_by)) {
-						$validate_by = $dreamcheck_lab->validate_by;
-						$consultant = User::find($validate_by);
-						if(!empty($consultant) && is_object($consultant)) {
-							$consultant_name = $consultant->name;
-							if(!empty($consultant->surname)){
-								$consultant_name.=' '.$consultant->surname;
-							}
-							$noti_msg = 'Your Dream Check Lab form has been validated by '.$consultant_name.'. To check consultant feedback '. link_to_route("dreamcheck.lab.submission.fb", "Click here", array($dreamcheck_lab->id), array("class" => "")).'. Please proceed to book your session with your consultant. <a href="'.url('user/role_play_interview').'">\'ROLE PLAY INTERVIEW\'</a>.';
-							$role_play_msg = "Now you can proceed to book your session with your consultant. <a href='".url('user/role_play_interview')."'>'ROLE PLAY INTERVIEW'</a>";
-							$dash_noti[] = ['heading'=>'Role Play interview','noti_msg' => $role_play_msg, 'noti_url'=>$noti_msg_url ];
-						}
-						else {
-							$noti_msg = 'Your Dream Check Lab form has been validated';
-						}
-					} else {
-						$noti_msg = 'You have submitted the Dream Check Lab form. You are now being matched to your consultant. He or she will review the forms you have submitted within 3 working days.';
-					}
-				} else {
-					$noti_msg = 'You didn\'t submit the Dream Check Lab form yet, '. link_to_route("dream.check.lab", "Click here", array(), array("class" => "")).' to complete the professional kit steps and get expert advice to achieve your career goal.';
-				}
-
-				$dash_noti[] = ['heading'=>'Dream Check Lab','noti_msg' => $noti_msg,'noti_url'=>$noti_msg_url];
-			} else {
-
-				$noti_msg = link_to_route("professional.kit", "Click here", array(), array("class" => "")).' to proceed the first step.';
-				$dash_noti[] = ['heading'=>'First Step','noti_msg' => $noti_msg,'noti_url'=>$noti_msg_url];
-			}
-		}
-
-
-		//$data['dreamcheck_lab'] = $dreamcheck_lab;
-		$data['notifications'] = $dash_noti;
-
-		$data['page_title'] = 'Dashboard';
-		return view('client.client_dashboard',$data);
-	}*/
-
 	public function client_dashboard() {
 
 		$all_notifications = [];

@@ -1,4 +1,4 @@
-@extends('front.dashboard_layout')
+@extends('layouts.dashboard_layout')
 @section('top_section')
 	<h1>Dashboard<small>Consultant Listing</small></h1>
 @endsection

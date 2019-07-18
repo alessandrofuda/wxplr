@@ -1,4 +1,4 @@
-@extends('front.dashboard_layout')
+@extends('layouts.dashboard_layout')
 
 @push('js-libraries')
 	<!--vic chatbot-->

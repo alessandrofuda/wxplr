@@ -1,4 +1,4 @@
-@extends('front.dashboard_layout')
+@extends('layouts.dashboard_layout')
 @section('content')
     @include('front.navigation')
     <div class="container user_profile_form">

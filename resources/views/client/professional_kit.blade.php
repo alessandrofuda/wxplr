@@ -1,4 +1,4 @@
-@extends('front.dashboard_layout')
+@extends('layouts.dashboard_layout')
 @section('content')
 <div class="container user_profile_form">
 	<div class="row">

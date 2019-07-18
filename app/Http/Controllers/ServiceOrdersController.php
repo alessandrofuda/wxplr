@@ -158,7 +158,6 @@ class ServiceOrdersController extends CustomBaseController {
 					return redirect('/skill_development/browse');   // IMP redireziona alla pag browse !!
 				}
 			}
-
 		}
 
 		$country_list = Country::all();
@@ -175,12 +174,7 @@ class ServiceOrdersController extends CustomBaseController {
 
 		return view('front.service_payment',$data);
 	}
-
-
-
-
-
-
+	
 
 	public function service_ckeck_code(Request $request) {
 		return redirect('service/payment/'.$request->get('code'))->withInput();

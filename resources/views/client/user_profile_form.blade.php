@@ -1,4 +1,4 @@
-@extends('front.dashboard_layout')
+@extends('layouts.dashboard_layout')
 @section('content')
 
 @if(Route::current()->getName() == 'professional.kit')

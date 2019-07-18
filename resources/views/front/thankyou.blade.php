@@ -1,4 +1,4 @@
-@extends('front.new_layout')
+@extends('layouts.new_layout')
 
 @section('content')
 	@if(isset($service_id) && $service_id == 2)

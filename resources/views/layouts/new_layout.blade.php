@@ -47,20 +47,15 @@
 	</head>
 
 	<body class="home page template-slider menu-line-below layout-full-width header-classic sticky-header sticky-white subheader-title-left no-content-padding">
-		<!-- Main Theme Wrapper -->
 		<div id="Wrapper">
-	    	<!-- Header Wrapper -->
 		    <div id="Header_wrapper">
-		    	<!-- Header -->
 			    <header id="Header">
-			        <!-- Header Top -  Info Area -->
 			        <div id="Action_bar">
 			            <div class="container">
 			                <div class="column one">
 			                </div>
 			            </div>
 			        </div>
-			        <!-- Header -  Logo and Menu area -->
 			        <div id="Top_bar">
 			            <div class="container">
 			                <div class="column one">

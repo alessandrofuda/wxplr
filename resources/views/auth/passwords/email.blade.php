@@ -1,4 +1,4 @@
-@extends('front.new_layout')
+@extends('layouts.new_layout')
 
 <!-- Main Content -->
 @section('content')

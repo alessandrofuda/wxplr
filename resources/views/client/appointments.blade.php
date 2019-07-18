@@ -1,4 +1,4 @@
-@extends('front.dashboard_layout')
+@extends('layouts.dashboard_layout')
 @section('top_section')
 	<h1>Dashboard<small>Appointments</small></h1>
 	<!--<ol class="breadcrumb">
