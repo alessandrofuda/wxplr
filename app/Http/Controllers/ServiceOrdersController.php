@@ -174,15 +174,11 @@ class ServiceOrdersController extends CustomBaseController {
 
 		return view('front.service_payment',$data);
 	}
-	
+
 
 	public function service_ckeck_code(Request $request) {
 		return redirect('service/payment/'.$request->get('code'))->withInput();
 	}
-
-
-
-
 
 
 

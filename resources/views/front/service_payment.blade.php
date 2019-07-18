@@ -2,60 +2,266 @@
 @extends('layouts.clean_layout')
 
 @section('content')
-<div class="container">
+
+<div id="checkout" class="container-fluid">
 	<div class="row">
+		<div class="col-md-12 logo-container">
+			<img class="logo" src="{{asset('frontend/images/wexplore-logo-tondo.png')}}" title="Wexplore"> 
+		</div>
+	</div>
+	<div class="row title-container">
+		<div class="col-md-8 col-md-offset-2 boxed no-bg no-padding">
+			<div class="title">Checkout</div>
+		</div>
+	</div>
+	<div class="row alerts-container">
 		<div class="col-md-12">	
 			<div id="success_div" style="display: none;">
 				<div class="alert alert-success" id="success_data"></div>
 			</div>
 		</div>
+		@if(session('error'))
+	        <div class="col-md-12">
+	            <div class="alert alert-danger">
+	                <ul>
+	                    <li>{{ session('error') }}</li>
+	                </ul>
+	            </div>
+	        </div>
+		@endif
+	    @if (count($errors) > 0)
+	        <div class="col-md-12">
+	            <div class="alert alert-danger">
+	                <ul>
+	                    @foreach ($errors->all() as $error)
+	                        <li>{{ $error }}</li>
+	                    @endforeach
+	                </ul>
+	            </div>
+	        </div>
+	    @endif
 	</div>
-    @if(!isset($service) && !isset($package) && !isset($event) && !isset($video))
-        <div class="select-div">
-            <div class="form-group has-feedback ">
-                <div class="col-md-12 col-sm-12 col-xs-12" style="padding-left:0;">
-                    <div class="col-md-9 col-md-offset-2">
-                        <select class="form-control" name="select_service_id" id="select_service_id">
-                            <option>---Select Service---</option>
-                            @foreach(\App\Service::all() as $select_service)
-                                <option value="{{ $select_service->id }}"> {{ $select_service->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @else
-    SSSSSSS
-		<div class="login_and_register_div">
-			<div class="pull-right">
-				@if(!Auth::check())
-					Already Have an Account? <a class="btn btn-primary" href="{{ url('auth/login') }}">Login</a>
-				@endif
-				<a class="btn btn-success" id="have_promo">
-					Have a Promo Code?
-				</a>
-			</div>
-			<div id="promo_div" style="display: {{ isset($code) ? '' : 'none' }};">
-				<div class="col-md-8">
-					<form id="promo_form" action="{{ url('service/checkcode') }}" method="POST">
-						{{ csrf_field() }}
-						<input type="text" class="form-control" id="code" value="{{ isset($code) ? $code : '' }}" name="code" placeHolder="Enter Code"/>
-						<div class="error" id="code_error"></div>
-					</form>
-				</div>
-				<div class="col-md-4">
-					<button class="btn btn-success" id="submit_promo">
-						Apply Now
-					</button>
-					<button class="btn btn-success" id="cancel_promo">
-						Cancel
-					</button>
-				</div>
-			</div>
+	<form id="checkout" class="" action="{{ $url }}" method="post">
+		{{ csrf_field() }}
+		<input type="hidden" id="payment_method_nonce_paypal" name="payment_method_nonce_paypal">
+		@if(isset($service))
+			<input type="hidden" id="selected_service_price"  name="amount" value="@if(is_object($service) && !empty($service)){{ $amount }}@endif">
+			<input type="hidden" name="service_name" value="@if(is_object($service) && !empty($service)){{ $service->name }}@endif">
+			<input type="hidden" id="service_id" name="service_id" value="@if(is_object($service) && !empty($service)){{ $service->id }}@endif">
+			<input type="hidden" id="service_type" name="service_type" value="{{ \App\OrderTransaction::TYPE_SERVICE }}">
+            <input type="hidden" id="usdprice" value="{{ round($service->usdprice($service->currency_type,'USD',$service->price)) }}">
+		@elseif(isset($video))
+			<input type="hidden" id="service_id" name="service_id" value="@if(is_object($video) && !empty($video)){{ $video->id }}@endif">
+			<input type="hidden" id="selected_service_price"  name="amount" value="@if(is_object($video) && !empty($video)){{ $video->price }}@endif">
+			<br/>
+			<img alt="{{ $video->video_title }}" border="0" width="150" src="{{ asset($video->video_image) }}" />
+			<input type="hidden" id="service_type" name="service_type" value="{{ \App\OrderTransaction::TYPE_VIDEO }}">
+            <input type="hidden" id="usdprice" value="{{ round(App\Service::usdprice('EUR','USD',$video->price)) }}">
+        @elseif(isset($event))
+            <input type="hidden" id="service_id" name="service_id" value="@if(is_object($event) && !empty($event)){{ $event->id }}@endif">
+            <input type="hidden" id="selected_service_price"  name="amount" value="@if(is_object($event) && !empty($event)){{ $event->price }}@endif">
+			<br/>
+		    <img alt="{{ $event->name  }}" border="0" width="150" src="{{ asset($event->image_file) }}" />
+            <input type="hidden" id="service_type" name="service_type" value="{{ \App\OrderTransaction::TYPE_EVENT }}">
+            <input type="hidden" id="usdprice" value="{{ round(App\Service::usdprice('EUR','USD',$event->price)) }}">
+        @elseif(isset($package))
+			<input type="hidden" id="service_id" name="service_id" value="@if(is_object($package) && !empty($package)){{ $package->id }}@endif">
+			<input type="hidden" id="selected_service_price"  name="amount" value="@if(is_object($package) && !empty($package)){{ $package->price }}@endif">
+			<br/>
+			<input type="hidden" id="service_type" name="service_type" value="{{ \App\OrderTransaction::TYPE_PACKAGE }}">
+			<input type="hidden" id="usdprice" value="{{ round(App\Service::usdprice('EUR','USD',$package->price)) }}">
+
 			<div class="clearfix"></div>
+			<br/>
+			<input type="hidden" id="selected_service_price"  name="amount" value="">
+            <input type="hidden" id="service_type" name="service_type" value="{{ \App\OrderTransaction::TYPE_SERVICE }}">
+            <input type="hidden" id="usdprice" value="">
+			<input type="hidden" id="service_id" name="service_id">
+		@endif
+		<input type="hidden" name="code_id" id="code_id" value="{{ isset($code) ? $code : "" }}">
+		<div class="row personal-data-container">
+			<div class="col-md-8 col-md-offset-2 boxed">
+				<div class="title-box personal-data-title">Personal Data</div>
+				<div class="row">
+					<div class="col-md-6 form-group has-feedback">
+						<label>Name</label>
+						@if($user != null)
+							<input type="text" class="form-control" required placeholder="Name" name="name" value="{{ $user->name }}">
+						@else
+							<input type="text" class="form-control" required placeholder="Name" name="name" value="{{ old('name') }}">
+						@endif
+					</div>
+					<div class="col-md-6 form-group has-feedback">
+						<label>Surname</label>
+						@if($user != null)
+							<input type="text" class="form-control" required placeholder="Surname" name="surname" value="{{ $user->surname }}">
+						@else
+							<input type="text" class="form-control" required placeholder="Surname" name="surname" value="{{ old('surname') }}">
+						@endif
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 form-group has-feedback">
+						<label>Email</label>
+						@if($user != null)
+							<span class="form-control" > {{ $user->email }}</span>
+						@else
+							<input type="email" class="form-control" required  placeholder="Email" name="email" value="{{ old('email') }}">
+						@endif
+					</div>
+					<div class="col-md-6 form-group has-feedback">
+						<label>Fiscal Code</label>
+						@if($userProfile  != null && $userProfile->pan  != null) 
+							<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="{{ $userProfile->pan }}" title="fiscal code">
+						@else 
+							<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="{{ old('pan') }}" title="fiscal code">
+						@endif
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 form-group has-feedback">
+						<label>Invoice Address (Street and Number)</label>
+						@if($userProfile != null && $userProfile->address  != null)
+							<textarea required rows="4" cols="50" class="form-control" name="address" placeholder="Address" value="{{ $userProfile->address }}">
+								{{ $userProfile->address }}
+							</textarea>
+						@else
+							<textarea required rows="4" cols="50" class="form-control" name="address" placeholder="Address" value="{{ old('address') }}">
+								{{ old('address') }}
+							</textarea>
+						@endif
+					</div>
+
+
+
+
+					<div class="col-md-6 form-group has-feedback">
+						<label>ZIP Code</label>
+						<input type="" name="">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 form-group has-feedback">
+						<label>City</label>
+						<input type="" name="">
+					</div>
+					<div class="col-md-6 form-group has-feedback">
+						<label>Province</label>
+						<input type="" name="">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 form-group has-feedback">
+						<label>Country</label>
+						<select>....</select>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="row">
+		<div class="row order-container">
+			<div class="col-md-8 col-md-offset-2 boxed">
+				<div class="title-box your-order-title">your order</div>
+				<div class="row">
+					<div class="col-md-6">
+						<div class="first-row">Service</div>
+						<div class="service-name">SERVICE NAME</div>
+					</div>
+					<div class="col-md-6">
+						<div class="prices-container">
+							<div class="price">€ 000.00</div>
+							<div class="vat-disclaimer">Include VAT XX% 00,00€</div>
+						</div>
+					</div>
+				</div>
+				<div class="row promo-code-container">
+					<div class="col-md-12">
+						<div class="promo-code-title">
+							<a id="have_promo" class="btn btn-success">Do you have a PROMO CODE ?</a>
+						</div>
+						<div id="promo_div" style="display: {{ isset($code) ? '' : 'none' }};">
+							<div class="col-md-8">
+								<form id="promo_form" action="{{ url('service/checkcode') }}" method="POST">
+									{{ csrf_field() }}
+									<input type="text" class="form-control" id="code" value="{{ isset($code) ? $code : '' }}" name="code" placeHolder="Enter Code"/>
+									<div class="error" id="code_error"></div>
+								</form>
+							</div>
+							<div class="col-md-4">
+								<button class="btn btn-success" id="submit_promo">
+									Apply Now
+								</button>
+								<button class="btn btn-success" id="cancel_promo">
+									Cancel
+								</button>
+							</div>
+						</div>
+						<input class="promo-code" type="" name="">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row payment-method-container">
+			<div class="col-md-8 col-md-offset-2 boxed">
+				<div class="title-box payment-method-title">Payment Method</div>
+				COPIARE ORIGINALS
+			</div>
+		</div>
+		<div class="row buttons-container">
+			<div class="col-md-8 col-md-offset-2 boxed no-bg no-padding">
+				<div class="back-btn">
+					<a class="btn" href="#" title="Go Back">Back</a>
+				</div>
+				<div class="get-btn">
+					<a class="btn btn-get-now">Get Now</a>
+				</div>
+			</div>
+		</div>
+	</form>
+
+
+
+
+
+
+
+
+
+	----- OLD ------
+	<!--div class="row">
+		<div class="col-md-12">	
+			<div id="success_div" style="display: none;">
+				<div class="alert alert-success" id="success_data"></div>
+			</div>
+		</div>
+	</div-->
+	<!--div class="login_and_register_div">
+		<div class="pull-right">
+			<a id="have_promo" class="btn btn-success">
+				Have a Promo Code?
+			</a>
+		</div>
+		<div id="promo_div" style="display: {{-- isset($code) ? '' : 'none' --}};">
+			<div class="col-md-8">
+				<form id="promo_form" action="{{-- url('service/checkcode') --}}" method="POST">
+					{{-- csrf_field() --}}
+					<input type="text" class="form-control" id="code" value="{{-- isset($code) ? $code : '' --}}" name="code" placeHolder="Enter Code"/>
+					<div class="error" id="code_error"></div>
+				</form>
+			</div>
+			<div class="col-md-4">
+				<button class="btn btn-success" id="submit_promo">
+					Apply Now
+				</button>
+				<button class="btn btn-success" id="cancel_promo">
+					Cancel
+				</button>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div-->
+
+	<div class="row">
+		{{-- // alerts-container
 		    @if(session('error'))
 		        <div class="col-md-12">
 		            <div class="alert alert-danger">
@@ -76,37 +282,39 @@
 		            </div>
 		        </div>
 		    @endif
-			<form id="checkout" class="Credit_Card" action="{{ $url }}" method="post">
-				<input type="hidden" id="payment_method_nonce_paypal" name="payment_method_nonce_paypal">
-		        <div class="col-lg-7 col-sm-8 col-xs-12">
-					<div class="right_service_details">
-						<div class="section_heading">
-							<span class="fa-stack fa-lg">
-							  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-							  <i class="fa fa-check" aria-hidden="true"></i>
-							</span>{{ $page_title }}
-						</div>
-							@if(isset($service))
-									<input type="hidden" id="selected_service_price"  name="amount" value="@if(is_object($service) && !empty($service)){{ $amount }}@endif">
-									<input type="hidden" name="service_name" value="@if(is_object($service) && !empty($service)){{ $service->name }}@endif">
-									<input type="hidden" id="service_id" name="service_id" value="@if(is_object($service) && !empty($service)){{ $service->id }}@endif">
-									 <input type="hidden" id="service_type" name="service_type" value="{{ \App\OrderTransaction::TYPE_SERVICE }}">
-		                              <input type="hidden" id="usdprice" value="{{ round($service->usdprice($service->currency_type,'USD',$service->price)) }}">
-								 @elseif(isset($video))
-									  <input type="hidden" id="service_id" name="service_id" value="@if(is_object($video) && !empty($video)){{ $video->id }}@endif">
-									  <input type="hidden" id="selected_service_price"  name="amount" value="@if(is_object($video) && !empty($video)){{ $video->price }}@endif">
-										<br/>
-									<img alt="{{ $video->video_title }}" border="0" width="150" src="{{ asset($video->video_image) }}" />
-									  <input type="hidden" id="service_type" name="service_type" value="{{ \App\OrderTransaction::TYPE_VIDEO }}">
-		                              <input type="hidden" id="usdprice" value="{{ round(App\Service::usdprice('EUR','USD',$video->price)) }}">
-		                          @elseif(isset($event))
-		                              <input type="hidden" id="service_id" name="service_id" value="@if(is_object($event) && !empty($event)){{ $event->id }}@endif">
-		                              <input type="hidden" id="selected_service_price"  name="amount" value="@if(is_object($event) && !empty($event)){{ $event->price }}@endif">
-										<br/>
-							          <img alt="{{ $event->name  }}" border="0" width="150" src="{{ asset($event->image_file) }}" />
-		                              <input type="hidden" id="service_type" name="service_type" value="{{ \App\OrderTransaction::TYPE_EVENT }}">
-		                              <input type="hidden" id="usdprice" value="{{ round(App\Service::usdprice('EUR','USD',$event->price)) }}">
-		                          @elseif(isset($package))
+	    --}}
+		<form id="checkout" class="Credit_Card" action="{{ $url }}" method="post">
+			<!--input type="hidden" id="payment_method_nonce_paypal" name="payment_method_nonce_paypal"-->
+	        <div class="col-lg-7 col-sm-8 col-xs-12">
+				<div class="right_service_details">
+					<!--div class="section_heading">
+						<span class="fa-stack fa-lg">
+						  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+						  <i class="fa fa-check" aria-hidden="true"></i>
+						</span>{{-- $page_title --}}  ZZZZZ
+					</div-->
+					{{--
+						@if(isset($service))
+							<input type="hidden" id="selected_service_price"  name="amount" value="@if(is_object($service) && !empty($service)){{ $amount }}@endif">
+							<input type="hidden" name="service_name" value="@if(is_object($service) && !empty($service)){{ $service->name }}@endif">
+							<input type="hidden" id="service_id" name="service_id" value="@if(is_object($service) && !empty($service)){{ $service->id }}@endif">
+							<input type="hidden" id="service_type" name="service_type" value="{{ \App\OrderTransaction::TYPE_SERVICE }}">
+	                        <input type="hidden" id="usdprice" value="{{ round($service->usdprice($service->currency_type,'USD',$service->price)) }}">
+						@elseif(isset($video))
+							<input type="hidden" id="service_id" name="service_id" value="@if(is_object($video) && !empty($video)){{ $video->id }}@endif">
+							<input type="hidden" id="selected_service_price"  name="amount" value="@if(is_object($video) && !empty($video)){{ $video->price }}@endif">
+							<br/>
+							<img alt="{{ $video->video_title }}" border="0" width="150" src="{{ asset($video->video_image) }}" />
+							<input type="hidden" id="service_type" name="service_type" value="{{ \App\OrderTransaction::TYPE_VIDEO }}">
+	                        <input type="hidden" id="usdprice" value="{{ round(App\Service::usdprice('EUR','USD',$video->price)) }}">
+	                    @elseif(isset($event))
+	                        <input type="hidden" id="service_id" name="service_id" value="@if(is_object($event) && !empty($event)){{ $event->id }}@endif">
+	                        <input type="hidden" id="selected_service_price"  name="amount" value="@if(is_object($event) && !empty($event)){{ $event->price }}@endif">
+							<br/>
+						    <img alt="{{ $event->name  }}" border="0" width="150" src="{{ asset($event->image_file) }}" />
+	                        <input type="hidden" id="service_type" name="service_type" value="{{ \App\OrderTransaction::TYPE_EVENT }}">
+	                        <input type="hidden" id="usdprice" value="{{ round(App\Service::usdprice('EUR','USD',$event->price)) }}">
+	                    @elseif(isset($package))
 							<input type="hidden" id="service_id" name="service_id" value="@if(is_object($package) && !empty($package)){{ $package->id }}@endif">
 							<input type="hidden" id="selected_service_price"  name="amount" value="@if(is_object($package) && !empty($package)){{ $package->price }}@endif">
 							<br/>
@@ -115,128 +323,142 @@
 
 							<div class="clearfix"></div>
 							<br/>
-									  <input type="hidden" id="selected_service_price"  name="amount" value="">
-		                              <input type="hidden" id="service_type" name="service_type" value="{{ \App\OrderTransaction::TYPE_SERVICE }}">
-		                              <input type="hidden" id="usdprice" value="">
-									  <input type="hidden" id="service_id" name="service_id">
-								  @endif
-		                          	{{ csrf_field() }}
-								  	<input type="hidden" name="code_id" id="code_id" value="{{ isset($code) ? $code : "" }}">
-									<div class="form-group has-feedback" style="margin-top: 20px">
-										<div class="col-md-6 col-sm-6 col-xs-12" style="padding-left:0;">
-											<label for="name">Name</label>
-											@if($user != null)
-												<input type="text" class="form-control" required placeholder="Name" name="name" value="{{ $user->name }}">
-											@else
-												<input type="text" class="form-control" required placeholder="Name" name="name" value="{{ old('name') }}">
-											@endif
-										</div>
-										<div class="col-md-6 col-sm-6 col-xs-12" style="padding-right:0;">
-											<label for="surname">Surname</label>
-											@if($user != null)
-												<input type="text" class="form-control" required placeholder="Surname" name="surname" value="{{ $user->surname }}">
-											@else
-												<input type="text" class="form-control" required placeholder="Surname" name="surname" value="{{ old('surname') }}">
-											@endif
-										</div>
-									</div>
-
-									<div class="form-group has-feedback email">
-										<label for="email">Email</label>
-										@if($user == null)
-											<input type="email" class="form-control" required  placeholder="Email" name="email" value="{{ old('email') }}">
-										@else
-											<span class="form-control" > {{ $user->email }}</span>
-										@endif
-									</div>
-									@if($user == null)
-										<div class="form-group has-feedback ">
-											<label for="password">Password</label>
-											<input type="password" class="form-control" required placeholder="Password" name="password">
-										</div>
-										<div class="form-group has-feedback">
-											<label>Confirm Password</label>
-											<input type="password" class="form-control" placeholder="Confirm password" name="password_confirmation">
-										</div>
-									@endif
-
-									<div class="form-group has-feedback ">
-										<label for="pan"> Tax Code / Fiscal Code</label>
-										@if($userProfile  != null && $userProfile->pan  != null) 
-											<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="{{ $userProfile->pan }}" title="fiscal code">
-										@else 
-											<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="{{ old('pan') }}" title="fiscal code">
-										@endif 
-									</div>
-									<div class="form-group has-feedback ">
-										<label for="company">Company <span style="font-size: 70%;">(If Applicable)</span></label>
-										@if($userProfile != null && $userProfile->company  != null)
-											<input type="text" class="form-control"  placeholder="Company" name="company" value="{{ $userProfile->company }}">
-										@else
-											<input type="text" class="form-control"  placeholder="Company" name="company" value="{{ old('company') }}">
-										@endif
-									</div>
-									<div class="form-group has-feedback ">
-										<label for="vat">VAT <span style="font-size: 70%;">(Required if 'Company' is compiled)</span></label>
-										@if($userProfile != null && $userProfile->vat  != null)
-											<input type="text" class="form-control" placeholder="VAT number" name="vat" value="{{ $userProfile->vat }}">
-										@else
-											<input type="text" class="form-control" placeholder="VAT number" name="vat" value="{{ old('vat') }}">
-										@endif
-									</div>
-									
-									<div class="form-group has-feedback ">
-										<label for="address">Invoice Address</label>
-										@if($userProfile != null && $userProfile->address  != null)
-											<textarea required rows="4" cols="50" class="form-control" name="address" placeholder="Address" value="{{ $userProfile->address }}">{{ $userProfile->address }}</textarea>
-										@else
-										<textarea required rows="4" cols="50" class="form-control" name="address" placeholder="Address" value="{{ old('address') }}">{{ old('address') }}</textarea>
-										@endif
-									</div>
-									<div class="form-group has-feedback email">
-										<label for="country">Country</label>
-										@if (count($country_list) > 0)
-											<select name="country" id="country" required class="form-control" style="clear: both;">
-												<option value="">Select Country</option>
-												@foreach ($country_list as $country)
-													@if($userProfile != null && $userProfile->country  != null)
-														<option @if($userProfile->country == $country['country_name']) selected="selected" @endif value = "{{  $country['country_name'] }}">{{  $country['country_name'] }}</option>
-													@else
-														<option @if(old('country') == $country['country_name']) selected="selected" @endif value = "{{  $country['country_name'] }}">{{  $country['country_name'] }}</option>
-													@endif
-												@endforeach
-											</select>
-										@endif
-									</div>
-
-						<div class="form-group has-feedback">
-							<label for="city" style="display: block; padding-top: 20px;"> City</label>
-							@if($userProfile != null && $userProfile->city  != null)
-								<input type="text" name="city" placeholder="City" required class="form-control" value="{{ $userProfile->city }}"> {{-- old('city',$userProfile->city) --}}
+							<input type="hidden" id="selected_service_price"  name="amount" value="">
+	                        <input type="hidden" id="service_type" name="service_type" value="{{ \App\OrderTransaction::TYPE_SERVICE }}">
+	                        <input type="hidden" id="usdprice" value="">
+							<input type="hidden" id="service_id" name="service_id">
+						@endif
+					--}}
+                    {{-- csrf_field() --}}
+					<!--input type="hidden" name="code_id" id="code_id" value="{{-- isset($code) ? $code : "" --}}"-->
+					{{--
+					<div class="form-group has-feedback" style="margin-top: 20px">
+						<div class="col-md-6 col-sm-6 col-xs-12" style="padding-left:0;">
+							<label for="name">Name</label>
+							@if($user != null)
+								<input type="text" class="form-control" required placeholder="Name" name="name" value="{{ $user->name }}">
 							@else
-								<input type="text" name="city" placeholder="City" required="" class="form-control" value="{{ old('city') }}">
+								<input type="text" class="form-control" required placeholder="Name" name="name" value="{{ old('name') }}">
 							@endif
 						</div>
+						<div class="col-md-6 col-sm-6 col-xs-12" style="padding-right:0;">
+							<label for="surname">Surname</label>
+							@if($user != null)
+								<input type="text" class="form-control" required placeholder="Surname" name="surname" value="{{ $user->surname }}">
+							@else
+								<input type="text" class="form-control" required placeholder="Surname" name="surname" value="{{ old('surname') }}">
+							@endif
+						</div>
+					</div>
+					--}}
 
-		                <div class="form-group has-feedback ">
-		                    <label for="zip_code">ZIP Code</label>
-		                    @if($userProfile != null && $userProfile->zip_code  != null)
-		                        <input type="text" class="form-control" required placeholder="ZIP Code" name="zip_code" value="{{ $userProfile->zip_code }}">
-		                    @else
-		                        <input type="text" class="form-control" required placeholder="ZIP Code" name="zip_code" value="{{ old('zip_code') }}">
-		                    @endif
-		                </div>
-		        	</div>
-		    	</div>
-		    	<div class="col-lg-5 col-sm-4 col-xs-12">
-			    <div class="right_service_details">
+					{{--
+						<div class="form-group has-feedback email">
+							<label for="email">Email</label>
+							@if($user == null)
+								<input type="email" class="form-control" required  placeholder="Email" name="email" value="{{ old('email') }}">
+							@else
+								<span class="form-control" > {{ $user->email }}</span>
+							@endif
+						</div>
+					
+						@if($user == null)
+							<div class="form-group has-feedback ">
+								<label for="password">Password</label>
+								<input type="password" class="form-control" required placeholder="Password" name="password">
+							</div>
+							<div class="form-group has-feedback">
+								<label>Confirm Password</label>
+								<input type="password" class="form-control" placeholder="Confirm password" name="password_confirmation">
+							</div>
+						@endif
+					--}}
+					{{--
+						<div class="form-group has-feedback ">
+							<label for="pan"> Tax Code / Fiscal Code</label>
+							@if($userProfile  != null && $userProfile->pan  != null) 
+								<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="{{ $userProfile->pan }}" title="fiscal code">
+							@else 
+								<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="{{ old('pan') }}" title="fiscal code">
+							@endif 
+						</div>
+					--}}
+					{{--
+						<div class="form-group has-feedback ">
+							<label for="company">Company <span style="font-size: 70%;">(If Applicable)</span></label>
+							@if($userProfile != null && $userProfile->company  != null)
+								<input type="text" class="form-control"  placeholder="Company" name="company" value="{{ $userProfile->company }}">
+							@else
+								<input type="text" class="form-control"  placeholder="Company" name="company" value="{{ old('company') }}">
+							@endif
+						</div>
+						<div class="form-group has-feedback ">
+							<label for="vat">VAT <span style="font-size: 70%;">(Required if 'Company' is compiled)</span></label>
+							@if($userProfile != null && $userProfile->vat  != null)
+								<input type="text" class="form-control" placeholder="VAT number" name="vat" value="{{ $userProfile->vat }}">
+							@else
+								<input type="text" class="form-control" placeholder="VAT number" name="vat" value="{{ old('vat') }}">
+							@endif
+						</div>
+					--}}
+					{{--
+						<div class="form-group has-feedback ">
+							<label for="address">Invoice Address</label>
+							@if($userProfile != null && $userProfile->address  != null)
+								<textarea required rows="4" cols="50" class="form-control" name="address" placeholder="Address" value="{{ $userProfile->address }}">
+									{{ $userProfile->address }}
+								</textarea>
+							@else
+								<textarea required rows="4" cols="50" class="form-control" name="address" placeholder="Address" value="{{ old('address') }}">
+									{{ old('address') }}
+								</textarea>
+							@endif
+						</div>
+					--}}
+					<div class="form-group has-feedback email">
+						<label for="country">Country</label>
+						@if (count($country_list) > 0)
+							<select name="country" id="country" required class="form-control" style="clear: both;">
+								<option value="">Select Country</option>
+								@foreach ($country_list as $country)
+									@if($userProfile != null && $userProfile->country  != null)
+										<option @if($userProfile->country == $country['country_name']) selected="selected" @endif value = "{{  $country['country_name'] }}">{{  $country['country_name'] }}</option>
+									@else
+										<option @if(old('country') == $country['country_name']) selected="selected" @endif value = "{{  $country['country_name'] }}">{{  $country['country_name'] }}</option>
+									@endif
+								@endforeach
+							</select>
+						@endif
+					</div>
+					<div class="form-group has-feedback">
+						<label for="city" style="display: block; padding-top: 20px;"> City</label>
+						@if($userProfile != null && $userProfile->city  != null)
+							<input type="text" name="city" placeholder="City" required class="form-control" value="{{ $userProfile->city }}"> {{-- old('city',$userProfile->city) --}}
+						@else
+							<input type="text" name="city" placeholder="City" required="" class="form-control" value="{{ old('city') }}">
+						@endif
+					</div>
+
+	                <div class="form-group has-feedback ">
+	                    <label for="zip_code">ZIP Code</label>
+	                    @if($userProfile != null && $userProfile->zip_code  != null)
+	                        <input type="text" class="form-control" required placeholder="ZIP Code" name="zip_code" value="{{ $userProfile->zip_code }}">
+	                    @else
+	                        <input type="text" class="form-control" required placeholder="ZIP Code" name="zip_code" value="{{ old('zip_code') }}">
+	                    @endif
+	                </div>
+	        	</div>
+	    	</div>
+	    	<div class="col-lg-5 col-sm-4 col-xs-12">
+		    	<div class="right_service_details">
 				    <div class="section_heading">
 					    <span class="fa-stack fa-lg">
 					      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
 					     <i class="fa fa-check" aria-hidden="true"></i>
-					    </span>Your Order</div>
-					    <ul class="service_order">
-		                    @if(isset($service))
+					    </span>Your Order
+					</div>
+				    <ul class="service_order">
+	                    @if(isset($service))
 		                    <li><span>Service</span>
 		                        <span class="service-name">{!! $service != null ? $service->name : "" !!}</span>
 		                    </li>
@@ -249,214 +471,214 @@
 		                    <li><span>Total Price</span>
 		                        <span id="total_price">{{ $service != null ? '€'.$service->price : "" }} </span>
 		                    </li>
-		                    @elseif(isset($video))
-		                        <li><span class="service-name">Video Name</span>
-		                            <span >{!! $video->video_title !!}</span>
-		                        </li>
-		                        <li><span>Price</span>
-		                            <span>{{ '€'.round($video->vatprice(), 2) }}</span>
-		                        </li>
-		                        <li><span>Vat</span>
-		                            <span>{{ '€'.round(($video->vatprice() * 22/100), 2)  }}</span>
-		                        </li>
-		                        <li><span>Total Price</span>
-		                            <span id="total_price">{{  '€'.$video->price  }} </span>
-		                        </li>
-		                    @elseif(isset($event))
-		                        <li><span class="service-name">Event Name</span>
-		                            <span>{!! $event->name !!}</span>
-		                        </li>
-		                        <li><span>Price</span>
-		                            <span>{{ '€'.round($event->vatprice(), 2) }}</span>
-		                        </li>
-		                        <li><span>Vat</span>
-		                            <span>{{ '€'.round(($event->vatprice() * 22/100), 2)  }}</span>
-		                        </li>
-		                        <li><span>Total Price</span>
-		                            <span id="total_price">{{  '€'.$event->price  }} </span>
-		                        </li>
-		                    @elseif(isset($package))
-		                        <li><span class="service-name">Package Name</span>
-		                            <span>{!! $package->title !!}</span>
-		                        </li>
-		                        <li><span>Price</span>
-		                            <span>{{ '€'.round($package->vatprice(), 2) }}</span>
-		                        </li>
-		                        <li><span>Vat</span>
-		                            <span>{{ '€'.round(($package->vatprice() * 22/100), 2)  }}</span>
-		                        </li>
-		                        <li><span>Total Price</span>
-		                            <span id="total_price">{{  '€'.$package->price  }} </span>
-		                        </li>
-		                    @else
-		                        <li><span>Service</span>
-		                        <span id="selected_service_name"></span>
-			                    </li>
-			                    <li><span>Price</span>
-			                        <span id="selected_service_amount"></span>
-			                    </li>
-			                    <li><span>Vat</span>
-			                        <span id="selected_service_vat"></span>
-			                    </li>
-			                    <li><span>Total Price</span>
-			                        <span id="total_price"></span>
-			                    </li>
-		                    @endif
-		                    <li id="discount_avail" style="display: {{ isset($discount_amount) ? '' : 'none' }};"><span>Discount</span><span id="discount_value">{{ isset($discount_amount) ? '€'.$discount_amount : '0.00' }}</span></li>
-						    <li id="total_price_new" style="display: {{ isset($discount_amount) ? '' : 'none' }};"><span>Discounted Amount</span><span id="total_price_value_new">{{ isset($amount) ? '€'.$amount : '0.00' }}</span></li>
-					    </ul>
-					    <style>
-					    	.service_order .service-name { padding: 0 15px; background-color: #5cb85c; color: #fff; }
-					    </style>
-			        </div>
-			        <div class="right_service_details">
-				        <div class="section_heading">Payment Method</div><br/>
-						@php 
-							$price = $amount 
-						@endphp
-		                @if(isset($service))
-		                    @if(is_object($service) && !empty($service))
-		                        @if($service->price > 0 )@endif
-		                    @endif
-		                @endif
-		                @if(isset($video))
-		                    @if(is_object($video) && !empty($video))
-		                        @if($video->price > 0 )@endif
-		                    @endif
-		                @endif
-		                @if(isset($event))
-		                    @if(is_object($event) && !empty($event))
-		                        @if($event->price > 0 )@endif
-		                    @endif
-		                @endif
-		                @if(isset($package))
-		                    @if(is_object($package) && !empty($package))
-		                        @if($package->price > 0 )@endif
-		                    @endif
-		                @endif
-		                @if($price > 0)
-		                    <div id="payment-method-div" class="form-group">
-		                        <div class="col-md-12">
-		                        	<input checked type="radio" value="1" id="paypal-method" name="payment_method"> Paypal <input id="card-method" type="radio" value="2" name="payment_method"> Credit Card
-		                        </div>
-		                    </div>
-		                    <br/>
-		                    <div id="payment-form" class="text-center"></div><!--js paypal button injection-->
-		                    <div id="payment-form-card">
-		                        <div class="col-md-6 col-sm-6 col-xs-12">
-		                            <div class="form-group">
-		                                <label for="credit_card_number">Number</label>
-		                                <input name="credit_card_number" data-braintree-name="number" class="form-control" placeholder="4111111111111111">
-		                            </div>
-		                        </div>
-		                        <div class="col-md-6 col-sm-6 col-xs-12">
-		                            <div class="form-group">
-		                                <label for="credit_card_cvv">CVV</label>
-		                                <input name="credit_card_cvv" data-braintree-name="cvv" class="form-control" placeholder="100">
-		                            </div>
-		                        </div>
-		                        <div class="col-md-6 col-sm-6 col-xs-12">
-		                            <div class="form-group">
-		                                <label for="credit_card_exp_date">Expiration date</label>
-		                                <input name="credit_card_exp_date" data-braintree-name="expiration_date" class="form-control" placeholder="10/20">
-		                            </div>
-		                        </div>
-		                        <div class="col-md-6 col-sm-6 col-xs-12">
-		                            <div class="form-group">
-		                                <label for="credit_card_postal_code">Postal code</label>
-		                                <input name="credit_card_postal_code" data-braintree-name="postal_code" class="form-control" placeholder="94107">
-		                            </div>
-		                        </div>
-		                        <div class="col-md-12">
-		                            <div class="form-group">
-		                                <label for="credit_card_card_holder">Card holder</label>
-		                                <input name="credit_card_card_holder" data-braintree-name="cardholder_name" class="form-control" placeholder="John Smith">
-		                            </div>
-		                        </div>
-		                    </div>
-
-				            <div class="clearfix"></div>
-
-		                    {{--<div class="servic_Payment_method  text-center" id="note">
-		                        <span class="paymentOption_div">
-		                         Note:  Click on PayPal button to pay with paypal Or Fill in credit card details</span>
-		                    </div>--}}
-		                    
-					        <hr/>
-				        @endif
-		                <div class="ligle_terms servic_Payment_method">
-		                    <span class="paymentOption_div">
-		                        <input   type="checkbox" required name="tos">
-		                            <i></i>
-		                            <b>I have read and accepted the General <a href="/terms-service" target="_blank">Terms and Conditions</a> and have read the <a href="/privacy-policy" target="_blank">Privacy Policy</a></b>
-		                    </span>
-		                    <span class="paymentOption_div">
-		                            <input  type="checkbox" required name="tos">
-		                            <i></i>
-		                            <b>I have read and accepted the terms pursuant to art. 1341 and 1342 of the Civil Code</b><br>
-		                            <div style="overflow:scroll; max-height:50px; overflow-style:marquee-line;font-size:8px; line-height:10px;"><span>Clausole vessatorie[C1]: Ai sensi e per gli effetti di cui agli artt. 1341 e 1342 Cod. Civ., il Cliente, dopo averne presa attenta e specifica conoscenza e visione, approva e ed accetta espressamente le seguenti clausole: 2)  Registrazione al Sito e conclusione del contratto di fornitura dei Servizi riservati agli Utenti e dei Servizi a Pagamento; 4) Modalità di registrazione; 5) Caratteristiche dei servizi; 6) Corrispettivi e modalità di pagamento dei Servizi a Pagamento; 7) Attivazione ed erogazione del servizio; 8) Durata, rinnovo, cessazione, recesso dal contratto; 9) Utilizzo dei blog; 10) Tutela minori; 11) Funzionalità dei Servizi; 12) Modifiche dei servizi e variazioni alle condizioni dell'offerta; 13) Cessione del Contratto; 14) Diritti di proprietà industriale e/o intellettuale – contenuti scaricabili; 15) Limitazione della responsabilità; 16) Sospensione del Servizio; 17) Dati del Cliente; 18) Limitazioni di responsabilità di Gielle; 20) Clausola risolutiva espressa; 21) Disposizioni finali e comunicazioni 22) Legge applicabile e Foro competente.</span></div>
-		                    </span>
-		                    <span class="paymentOption_div">
-		                        <input  type="checkbox" value="1" name="allow_personal_data">
-		                            <i></i>
-		                            <b>I give my consent to the processing of my personal data for marketing purposes and trade in such Regulations (optional)</b>
-		                    </span>
-		                </div>
-		                @if(isset($service))
-		                    <button  value="Pay $@if(is_object($service) && !empty($service)){{ $service->usdprice($service->currency_type, 'USD', $service->price) }}@endif" type="submit" class="order_now"> {{-- disabled --}}
-		                        @if(is_object($service) && !empty($service))
-		                            @if($service->usdprice($service->currency_type, 'USD', $service->price) > 0 )
-		                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now
-		                            @else
-		                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Get Now
-		                                <!-- span style="font-size:xx-small;font-weight:lighter;display:block;line-height:1;">..soon available..</span-->
-		                            @endif
-		                        @endif
-		                    </button>
-		                @elseif(isset($video))
-		                    <button  value="Pay $@if(is_object($video) && !empty($video)){{ round(\App\Service::usdprice('EUR', 'USD', $video->price)) }}@endif" type="submit"
-		                             class="order_now">
-		                        @if(is_object($video) && !empty($video))
-		                            @if(\App\Service::usdprice('EUR', 'USD', $video->price) > 0 )
-		                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now
-		                            @else
-		                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Get Now
-		                            @endif
-		                        @endif
-		                    </button>
-		                @elseif(isset($event))
-		                    <button  value="Pay $@if(is_object($event) && !empty($event)){{ round(\App\Service::usdprice('EUR', 'USD', $event->price)) }}@endif" type="submit"
-		                             class="order_now">
-		                        @if(is_object($event) && !empty($event))
-		                            @if(\App\Service::usdprice('EUR', 'USD', $event->price) > 0 )
-		                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now
-		                            @else
-		                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Get Now
-		                            @endif
-		                        @endif
-		                    </button>
-		                @elseif(isset($package))
-                            <button  value="Pay $@if(is_object($package) && !empty($package)){{ round(\App\Service::usdprice('EUR', 'USD', $package->price)) }}@endif" type="submit"
-                                     class="order_now">
-                                @if(is_object($package) && !empty($package))
-                                    @if(\App\Service::usdprice('EUR', 'USD', $package->price) > 0 )
-                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now
-                                    @else
-                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Get Now
-                                    @endif
-                                @endif
-                            </button>
-		                @else
-		                    <button  id="submit-button" value="" type="submit" class="order_now">
-		                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now
-		                    </button>
-		                @endif
-		            </div>
+	                    @elseif(isset($video))
+	                        <li><span class="service-name">Video Name</span>
+	                            <span >{!! $video->video_title !!}</span>
+	                        </li>
+	                        <li><span>Price</span>
+	                            <span>{{ '€'.round($video->vatprice(), 2) }}</span>
+	                        </li>
+	                        <li><span>Vat</span>
+	                            <span>{{ '€'.round(($video->vatprice() * 22/100), 2)  }}</span>
+	                        </li>
+	                        <li><span>Total Price</span>
+	                            <span id="total_price">{{  '€'.$video->price  }} </span>
+	                        </li>
+	                    @elseif(isset($event))
+	                        <li><span class="service-name">Event Name</span>
+	                            <span>{!! $event->name !!}</span>
+	                        </li>
+	                        <li><span>Price</span>
+	                            <span>{{ '€'.round($event->vatprice(), 2) }}</span>
+	                        </li>
+	                        <li><span>Vat</span>
+	                            <span>{{ '€'.round(($event->vatprice() * 22/100), 2)  }}</span>
+	                        </li>
+	                        <li><span>Total Price</span>
+	                            <span id="total_price">{{  '€'.$event->price  }} </span>
+	                        </li>
+	                    @elseif(isset($package))
+	                        <li><span class="service-name">Package Name</span>
+	                            <span>{!! $package->title !!}</span>
+	                        </li>
+	                        <li><span>Price</span>
+	                            <span>{{ '€'.round($package->vatprice(), 2) }}</span>
+	                        </li>
+	                        <li><span>Vat</span>
+	                            <span>{{ '€'.round(($package->vatprice() * 22/100), 2)  }}</span>
+	                        </li>
+	                        <li><span>Total Price</span>
+	                            <span id="total_price">{{  '€'.$package->price  }} </span>
+	                        </li>
+	                    @else
+	                        <li><span>Service</span>
+	                        <span id="selected_service_name"></span>
+		                    </li>
+		                    <li><span>Price</span>
+		                        <span id="selected_service_amount"></span>
+		                    </li>
+		                    <li><span>Vat</span>
+		                        <span id="selected_service_vat"></span>
+		                    </li>
+		                    <li><span>Total Price</span>
+		                        <span id="total_price"></span>
+		                    </li>
+	                    @endif
+	                    <li id="discount_avail" style="display: {{ isset($discount_amount) ? '' : 'none' }};"><span>Discount</span><span id="discount_value">{{ isset($discount_amount) ? '€'.$discount_amount : '0.00' }}</span></li>
+					    <li id="total_price_new" style="display: {{ isset($discount_amount) ? '' : 'none' }};"><span>Discounted Amount</span><span id="total_price_value_new">{{ isset($amount) ? '€'.$amount : '0.00' }}</span></li>
+				    </ul>
+				    <style>
+				    	.service_order .service-name { padding: 0 15px; background-color: #5cb85c; color: #fff; }
+				    </style>
 		        </div>
-		    </form>
-		</div>
-    @endif
+		        <div class="right_service_details">
+			        <div class="section_heading">Payment Method</div><br/>
+					@php 
+						$price = $amount 
+					@endphp
+	                @if(isset($service))
+	                    @if(is_object($service) && !empty($service))
+	                        @if($service->price > 0 )@endif
+	                    @endif
+	                @endif
+	                @if(isset($video))
+	                    @if(is_object($video) && !empty($video))
+	                        @if($video->price > 0 )@endif
+	                    @endif
+	                @endif
+	                @if(isset($event))
+	                    @if(is_object($event) && !empty($event))
+	                        @if($event->price > 0 )@endif
+	                    @endif
+	                @endif
+	                @if(isset($package))
+	                    @if(is_object($package) && !empty($package))
+	                        @if($package->price > 0 )@endif
+	                    @endif
+	                @endif
+	                @if($price > 0)
+	                    <div id="payment-method-div" class="form-group">
+	                        <div class="col-md-12">
+	                        	<input checked type="radio" value="1" id="paypal-method" name="payment_method"> Paypal <input id="card-method" type="radio" value="2" name="payment_method"> Credit Card
+	                        </div>
+	                    </div>
+	                    <br/>
+	                    <div id="payment-form" class="text-center"></div><!--js paypal button injection-->
+	                    <div id="payment-form-card">
+	                        <div class="col-md-6 col-sm-6 col-xs-12">
+	                            <div class="form-group">
+	                                <label for="credit_card_number">Number</label>
+	                                <input name="credit_card_number" data-braintree-name="number" class="form-control" placeholder="4111111111111111">
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-6 col-xs-12">
+	                            <div class="form-group">
+	                                <label for="credit_card_cvv">CVV</label>
+	                                <input name="credit_card_cvv" data-braintree-name="cvv" class="form-control" placeholder="100">
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-6 col-xs-12">
+	                            <div class="form-group">
+	                                <label for="credit_card_exp_date">Expiration date</label>
+	                                <input name="credit_card_exp_date" data-braintree-name="expiration_date" class="form-control" placeholder="10/20">
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-6 col-xs-12">
+	                            <div class="form-group">
+	                                <label for="credit_card_postal_code">Postal code</label>
+	                                <input name="credit_card_postal_code" data-braintree-name="postal_code" class="form-control" placeholder="94107">
+	                            </div>
+	                        </div>
+	                        <div class="col-md-12">
+	                            <div class="form-group">
+	                                <label for="credit_card_card_holder">Card holder</label>
+	                                <input name="credit_card_card_holder" data-braintree-name="cardholder_name" class="form-control" placeholder="John Smith">
+	                            </div>
+	                        </div>
+	                    </div>
+
+			            <div class="clearfix"></div>
+
+	                    {{--<div class="servic_Payment_method  text-center" id="note">
+	                        <span class="paymentOption_div">
+	                         Note:  Click on PayPal button to pay with paypal Or Fill in credit card details</span>
+	                    </div>--}}
+	                    
+				        <hr/>
+			        @endif
+	                <div class="ligle_terms servic_Payment_method">
+	                    <span class="paymentOption_div">
+	                        <input   type="checkbox" required name="tos">
+	                            <i></i>
+	                            <b>I have read and accepted the General <a href="/terms-service" target="_blank">Terms and Conditions</a> and have read the <a href="/privacy-policy" target="_blank">Privacy Policy</a></b>
+	                    </span>
+	                    <span class="paymentOption_div">
+	                            <input  type="checkbox" required name="tos">
+	                            <i></i>
+	                            <b>I have read and accepted the terms pursuant to art. 1341 and 1342 of the Civil Code</b><br>
+	                            <div style="overflow:scroll; max-height:50px; overflow-style:marquee-line;font-size:8px; line-height:10px;"><span>Clausole vessatorie[C1]: Ai sensi e per gli effetti di cui agli artt. 1341 e 1342 Cod. Civ., il Cliente, dopo averne presa attenta e specifica conoscenza e visione, approva e ed accetta espressamente le seguenti clausole: 2)  Registrazione al Sito e conclusione del contratto di fornitura dei Servizi riservati agli Utenti e dei Servizi a Pagamento; 4) Modalità di registrazione; 5) Caratteristiche dei servizi; 6) Corrispettivi e modalità di pagamento dei Servizi a Pagamento; 7) Attivazione ed erogazione del servizio; 8) Durata, rinnovo, cessazione, recesso dal contratto; 9) Utilizzo dei blog; 10) Tutela minori; 11) Funzionalità dei Servizi; 12) Modifiche dei servizi e variazioni alle condizioni dell'offerta; 13) Cessione del Contratto; 14) Diritti di proprietà industriale e/o intellettuale – contenuti scaricabili; 15) Limitazione della responsabilità; 16) Sospensione del Servizio; 17) Dati del Cliente; 18) Limitazioni di responsabilità di Gielle; 20) Clausola risolutiva espressa; 21) Disposizioni finali e comunicazioni 22) Legge applicabile e Foro competente.</span></div>
+	                    </span>
+	                    <span class="paymentOption_div">
+	                        <input  type="checkbox" value="1" name="allow_personal_data">
+	                            <i></i>
+	                            <b>I give my consent to the processing of my personal data for marketing purposes and trade in such Regulations (optional)</b>
+	                    </span>
+	                </div>
+	                @if(isset($service))
+	                    <button  value="Pay $@if(is_object($service) && !empty($service)){{ $service->usdprice($service->currency_type, 'USD', $service->price) }}@endif" type="submit" class="order_now"> {{-- disabled --}}
+	                        @if(is_object($service) && !empty($service))
+	                            @if($service->usdprice($service->currency_type, 'USD', $service->price) > 0 )
+	                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now
+	                            @else
+	                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Get Now
+	                                <!-- span style="font-size:xx-small;font-weight:lighter;display:block;line-height:1;">..soon available..</span-->
+	                            @endif
+	                        @endif
+	                    </button>
+	                @elseif(isset($video))
+	                    <button  value="Pay $@if(is_object($video) && !empty($video)){{ round(\App\Service::usdprice('EUR', 'USD', $video->price)) }}@endif" type="submit"
+	                             class="order_now">
+	                        @if(is_object($video) && !empty($video))
+	                            @if(\App\Service::usdprice('EUR', 'USD', $video->price) > 0 )
+	                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now
+	                            @else
+	                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Get Now
+	                            @endif
+	                        @endif
+	                    </button>
+	                @elseif(isset($event))
+	                    <button  value="Pay $@if(is_object($event) && !empty($event)){{ round(\App\Service::usdprice('EUR', 'USD', $event->price)) }}@endif" type="submit"
+	                             class="order_now">
+	                        @if(is_object($event) && !empty($event))
+	                            @if(\App\Service::usdprice('EUR', 'USD', $event->price) > 0 )
+	                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now
+	                            @else
+	                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Get Now
+	                            @endif
+	                        @endif
+	                    </button>
+	                @elseif(isset($package))
+                        <button  value="Pay $@if(is_object($package) && !empty($package)){{ round(\App\Service::usdprice('EUR', 'USD', $package->price)) }}@endif" type="submit"
+                                 class="order_now">
+                            @if(is_object($package) && !empty($package))
+                                @if(\App\Service::usdprice('EUR', 'USD', $package->price) > 0 )
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now
+                                @else
+                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> Get Now
+                                @endif
+                            @endif
+                        </button>
+	                @else
+	                    <button  id="submit-button" value="" type="submit" class="order_now">
+	                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now
+	                    </button>
+	                @endif
+	            </div>
+	        </div>
+	    </form>
+	</div> 
 </div>
+
 <?php 
 	$clientToken = Braintree_ClientToken::generate();
 ?>
@@ -548,52 +770,54 @@
 		$("#promo_div").hide();
 	});
 
-	$("#select_service_id").change(function() {    // interviene SOLO SE non viene specificato nessun ID servizio nell'URL (..2..)
-	    var val = $(this).val();
-	    $("#service_id").val(val);
-	    $.ajax({
-	        url:"{{ url('service_detail') }}",
-	        method:'POST',
-	        _token:"{{ csrf_token() }}",
-	        data:{'service_id':val,'_token':"{{ csrf_token() }}"},
-	        success:function(response) {
-				location.reload();
-	            $("#selected_service_price").val(response.price);
-	            $("#submit-button").val('PAY $'+response.usdprice);
-	            $("#usdprice").val(response.usdprice);
-	            $("#selected_service_name").html(response.name);
-	            $("#selected_service_vat").html(response.vat);
-	            $("#code_error").html('');
-	            $("#code_id").val('');
-	            $("#code").val('');
-	            $('#submit_promo').html('Check Availability');
-	            $('#success_div').hide();
-	            $("#discount_avail").hide();
-	            $("#discount_value").html('');
-	            $("#total_price").html('€'+response.price);
-	            $("#selected_service_amount").html('€'+response.vatprice);
-	            $("#total_price_new").hide();
-	            $("#total_price_value_new").html('');
-	            var total_price_usd = response.usdprice;
-				if(total_price_usd == 0) {
-					$("#braintree-dropin-frame").hide();
-				}
-
-				$('#payment-form').empty();
-				braintree.setup(clientToken, "custom", {
-					paypal: {
-						container: "payment-form",
-						singleUse: true,
-						amount: response.price,
-						currency: 'EUR'
-					},
-					onPaymentMethodReceived: function (obj) {
-						setNonce(obj.nonce);
+	{{--  // interviene SOLO SE non viene specificato nessun ID servizio nell'URL (..2..)
+		$("#select_service_id").change(function() {    
+		    var val = $(this).val();
+		    $("#service_id").val(val);
+		    $.ajax({
+		        url:"{{ url('service_detail') }}",
+		        method:'POST',
+		        _token:"{{ csrf_token() }}",
+		        data:{'service_id':val,'_token':"{{ csrf_token() }}"},
+		        success:function(response) {
+					location.reload();
+		            $("#selected_service_price").val(response.price);
+		            $("#submit-button").val('PAY $'+response.usdprice);
+		            $("#usdprice").val(response.usdprice);
+		            $("#selected_service_name").html(response.name);
+		            $("#selected_service_vat").html(response.vat);
+		            $("#code_error").html('');
+		            $("#code_id").val('');
+		            $("#code").val('');
+		            $('#submit_promo').html('Check Availability');
+		            $('#success_div').hide();
+		            $("#discount_avail").hide();
+		            $("#discount_value").html('');
+		            $("#total_price").html('€'+response.price);
+		            $("#selected_service_amount").html('€'+response.vatprice);
+		            $("#total_price_new").hide();
+		            $("#total_price_value_new").html('');
+		            var total_price_usd = response.usdprice;
+					if(total_price_usd == 0) {
+						$("#braintree-dropin-frame").hide();
 					}
-				});
-	        }
-	    }); 
-	});
+
+					$('#payment-form').empty();
+					braintree.setup(clientToken, "custom", {
+						paypal: {
+							container: "payment-form",
+							singleUse: true,
+							amount: response.price,
+							currency: 'EUR'
+						},
+						onPaymentMethodReceived: function (obj) {
+							setNonce(obj.nonce);
+						}
+					});
+		        }
+		    }); 
+		});
+	--}}
 
 	function setNonce(nonce) {  
 	    console.log('nonce'+nonce);
@@ -602,23 +826,25 @@
 	    // checkAbilitazioneButtonOrderNow();
 	}
 
-	$(document).ready(function() { // se esiste, setta 'required' al nome Company
-	    var val = $('[name=company]').val(); // val = nome company
-	    if(val != '') {
-	        $('[name=vat]').attr('required','required');
-	    }else{
-	        $('[name=vat]').attr('required',false);
-	    }
-	});
+	{{--  // interviene sul campo VAT (partita iva azienda): se campo Company è compilato, setta 'required' al campo VAT 
+		$(document).ready(function() { 
+		    var val = $('[name=company]').val(); // val = nome company
+		    if(val != '') {
+		        $('[name=vat]').attr('required','required');
+		    }else{
+		        $('[name=vat]').attr('required',false);
+		    }
+		});
 
-	$('[name=company]').change(function(){ // come sopra ...
-	   var val = $(this).val(); 
-	    if(val != '') {
-	        $('[name=vat]').attr('required','required');
-	    }else{
-	        $('[name=vat]').attr('required',false);
-	    }
-	});
+		$('[name=company]').change(function(){ // come sopra ...
+		   var val = $(this).val(); 
+		    if(val != '') {
+		        $('[name=vat]').attr('required','required');
+		    }else{
+		        $('[name=vat]').attr('required',false);
+		    }
+		});
+	--}}
 
 	$("#submit_promo").click(function(){   // interviene solo all'eventuale submit del promo code
 		var code = $("#code").val();
@@ -632,20 +858,18 @@
 			_token:"{{ csrf_token() }}",
 			data:value,
 			success:function(response) {
-
 				// console.log(response);
-
 				if(response.status == 'OK') {
 					//$("#promo_form").submit();
 					$("#code_error").html('');
-	            $("#submit_promo").attr('id','');
+	            	$("#submit_promo").attr('id','');
 					$("#code_id").val(code);
 					$('#submit_promo').html('<i class="fa fa-check"></i> Available');
 					$('#success_div').show();
 					$('#success_data').html('Congratulations!!! You have successfully availed discount');
 					//$("#code_id").val(response.id);
 					$("#discount_avail").show();
-	            // console.log(response.amount);
+	            	// console.log(response.amount);
 					$("#discount_value").html('€'+response.amount);
 
 					var price = $("#selected_service_price").val();
@@ -654,7 +878,7 @@
 					var total_price = response.total;
 					// console.log("Total-price: " + total_price + "(" + price + " - " + response.amount + ")");
 
-	            //var total_price = total_price.toPrecision(2);
+	            	//var total_price = total_price.toPrecision(2);
 					// console.log("Total-price-round: " + total_price);
 
 					$("#total_price_new").show();
@@ -689,19 +913,19 @@
 							$("#payment-form-card").show();
 						}
 					} else {
-	                     // When you are ready to tear down your integration
-	               checkout.teardown(function () {
-	                   checkout = null;
-	                   // braintree.setup can safely be run again!
-	               });
+	                    // When you are ready to tear down your integration
+		                checkout.teardown(function () {
+		                    checkout = null;
+		                    // braintree.setup can safely be run again!
+		                });
 						$("input[type='radio'][name='payment_method']").removeAttr('checked');
-					  	$("#payment-method-div").hide();
+						$("#payment-method-div").hide();
 						$("#payment-form-card").hide();
-	               $("#note").hide();
-	               $('#braintree-dropin-frame').contents().find('#expiration').val('myValue');
-	               $("#braintree-dropin-frame").hide();
-	               $("#credit-card-number").val(0);
-	               $("#expiration").val(20 / 2020);
+		                $("#note").hide();
+		                $('#braintree-dropin-frame').contents().find('#expiration').val('myValue');
+		                $("#braintree-dropin-frame").hide();
+		                $("#credit-card-number").val(0);
+		                $("#expiration").val(20 / 2020);
 					}
 				} else {
 					$('#success_div').hide();

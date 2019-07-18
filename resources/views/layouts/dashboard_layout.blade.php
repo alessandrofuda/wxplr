@@ -28,7 +28,7 @@
     <link rel="shortcut icon" href="{{ asset('frontend/immagini/favicon.ico') }}">
     <!-- FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
     <script src="https://kit.fontawesome.com/19c354b673.js"></script>
     <!-- CSS -->
     <link rel='stylesheet' id='global-css'  href="{{ asset('frontend/css/global.css') }}">

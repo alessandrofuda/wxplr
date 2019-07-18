@@ -27,76 +27,38 @@
 	    <link rel="shortcut icon" href="{{ asset('frontend/immagini/favicon.ico') }}">
 
 	    <!-- FONTS -->
-	    <link rel='stylesheet' id='Roboto-css' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,400italic,700'>
-	    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-	    <link rel='stylesheet' id='Patua+One-css' href='https://fonts.googleapis.com/css?family=Patua+One:100,300,400,400italic,700'>
+    	<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+    	<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+    	<script src="https://kit.fontawesome.com/19c354b673.js"></script>
 
 	    <!-- CSS -->
 	    <link rel='stylesheet' id='global-css'  href="{{ asset('frontend/css/global.css') }}">
 	    <link rel='stylesheet' id='structure-css' href='{{ asset('frontend/css/structure.css') }}'>
 	    <link rel='stylesheet' id='style-static' href='{{ asset('frontend/css/be_style.css') }}'>
 	    <link rel='stylesheet' id='style-static' href='{{ asset('frontend/css/style.css') }}'>
-	    <link rel='stylesheet' id='custom-css' href='{{ asset('frontend/css/custom.css') }}'>
-
 	    <link rel="stylesheet" href="{{  \Route::getCurrentRoute()->uri() != "/" ? asset('frontend/css/bootstrap.min.css') : ""}}" type="text/css">
-	    <link rel="stylesheet" href="{{ asset('frontend/css/main.css') }}" type="text/css">
-	    <link rel="stylesheet" href="{{ asset('frontend/css/custom_old.css') }}" type="text/css">
 	    <link rel="stylesheet" href="{{ asset('frontend/font-awesome/css/font-awesome.min.css') }}">
+	    <link rel="stylesheet" href="{{ asset('/admin/dist/css/AdminLTE.min.css') }}">
+	    <link rel="stylesheet" href="{{ asset('frontend/css/main.css') }}" type="text/css">
+	    <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}" type="text/css">
+	    <link rel="stylesheet" href="{{ asset('frontend/css/custom-2.css') }}" type="text/css">
+
 	    <script src="{{ asset('frontend/js/jquery-1.11.3.js') }}"></script>
 	</head>
 
 	<body class="home page template-slider menu-line-below layout-full-width header-classic sticky-header sticky-white subheader-title-left no-content-padding">
 		<div id="Wrapper">
-		    <div id="Header_wrapper">
-			    <header id="Header">
-			        <div id="Action_bar">
-			            <div class="container">
-			                <div class="column one">
-			                </div>
-			            </div>
-			        </div>
-			        <div id="Top_bar">
-			            <div class="container">
-			                <div class="column one">
-			                    <div class="top_bar_left clearfix">
-			                        <!-- Logo-->
-			                        <div class="logo">
-			                            <a id="logo" href="https://www.wexplore.eu" title="Wexplore">
-			                                <img class="scale-with-grid" src="{{ asset('frontend/images/wexplore-logo.svg') }}" alt="Wexplore" />
-			                            </a>
-			                        </div>
-			                        <div class="banner_wrapper">
-			                            <a href="#" target="_blank"></a>
-			                        </div>
-			                        <!-- Header Searchform area-->
-			                        <div class="search_wrapper">
-			                            <form method="get" action="#">
-			                                <i class="icon_search icon-search"></i><a href="#" class="icon_close"><i class="icon-cancel"></i></a>
-			                                <input type="text" class="field" name="s" placeholder="Enter your search" />
-			                                <input type="submit flv_disp_none" class="submit" value="" />
-			                            </form>
-			                        </div>
-			                    </div>
-			                </div>
-			            </div>
-			        </div>
-			        <!-- Revolution slider area-->
-			    </header>
-			</div>
+		    
 			@yield('content')
-
-			<!-- Footer-->
-			{{-- @ include ('front.footer') --}}
 
 		</div>
 		<!-- JS -->
 		<script type="text/javascript" src="{{ asset('frontend/js/mfn.menu.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('frontend/js/jquery.plugins.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('frontend/js/jquery.jplayer.min.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('frontend/js/animations/animations.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('frontend/js/email.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('frontend/js/scripts.js') }}"></script>
 		
+		<!-- user timezone -->
 		<input type="hidden" id="user_timezone" value="{{ session('timezone') }}">
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js">
 		</script>

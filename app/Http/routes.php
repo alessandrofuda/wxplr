@@ -136,7 +136,7 @@ Route::get('time', function() {
 	Route::get('client/register', array('as' => 'client_register', 'uses' => 'Auth\AuthController@getClientRegister'));
 	Route::post('client/register', array('as' => 'client_register', 'uses' => 'Auth\AuthController@postClientRegister'));
 // Service Payment
-	Route::get('service/payment', array('as'=>'service_payment','uses'=>'ServiceOrdersController@service_payment'));
+	//Route::get('service/payment', array('as'=>'service_payment','uses'=>'ServiceOrdersController@service_payment'));
 	Route::get('service/payment/{service_id}', array('as'=>'service_payment_direct','uses'=>'ServiceOrdersController@service_payment'));
 
 //Partner page
