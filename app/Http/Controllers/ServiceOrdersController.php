@@ -204,6 +204,7 @@ class ServiceOrdersController extends CustomBaseController {
 		$rules['address'] = 'required';
 		$rules['country'] = 'required';
 		$rules['city'] = 'required';
+		$rules['province'] = 'max:10';
 		$rules['zip_code'] = 'required';
 		$rules['tos'] = 'required';
 
@@ -236,6 +237,7 @@ class ServiceOrdersController extends CustomBaseController {
 		$user_profile_data['country'] = $request->get('country');
 		$user_profile_data['company'] = $request->get('company');
 		$user_profile_data['city'] = $request->get('city');
+		$user_profile_data['province'] = $request->get('province');
 		$user_profile_data['zip_code'] = $request->get('zip_code');
 		$tos = $request->get('tos');  // tos --> term of service (checkbox in form)
 		$user_data['tos'] = 0;

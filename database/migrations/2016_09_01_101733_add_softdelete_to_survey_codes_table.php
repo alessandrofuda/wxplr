@@ -25,7 +25,7 @@ class AddSoftdeleteToSurveyCodesTable extends Migration
     public function down()
     {
         Schema::table('survey_codes', function (Blueprint $table) {
-            ;
+            $table->dropSoftDeletes();
         });
     }
 }

@@ -12,107 +12,97 @@
 	*/
 
 
-/* To load artisan commands without console CLI*/
-//Route::get('/pulisci-cache', function () {
-//    $exitCode = Artisan::call('cache:clear' //, [  optional options
-        //'user' => 1, '--queue' => 'default'
-    //]
-//	);
+	/* To load artisan commands without console CLI*/
+	//Route::get('/pulisci-cache', function () {
+	//    $exitCode = Artisan::call('cache:clear' //, [  optional options
+	        //'user' => 1, '--queue' => 'default'
+	    //]
+	//	);
 
-    //
-//});
-
-
-
-// users API (provvisoria)
-Route::get('api/users/list/{token}', array('as'=>'usersLists','uses'=>'Api\UserController@lists'));
+	    //
+	//});
 
 
 
-
-
-// TEST ROUTES
-//Route::get('phpinfo', function(){
-//  return date('Y-m-d H:i:s');
-//	return phpinfo();
-//});
-/* Route::get('demo-email', function() {
-	//$user->name = 'alessandro';
-	//$user->email = 'test@test.com';
-	$user = App\User::find(1042);
-
-	return view('emails.service_activation')->with('order_id', 999)
-											->with('product_name', 'product_test')
-											->with('quantity', 2)
-											->with('price', 456)
-											->with('subtotal', 654)
-											->with('discount', 100)
-											->with('promo_code', null)
-											->with('total', 951)
-											->with('payment_method', 'credit card')
-											->with('vat_price', 851)
-											->with('user', $user)
-											;
-}); */
-//Route::get('/token',function () {
-//	return \App\ConsultantBooking::getAccessToken();
-//});
-
-//Route::get('zoom_token', function() {
-//	return \App\ConsultantBooking::getZoomAccessToken();
-//});
-
-//Route::get('cancel_meeting_test', function() {
-//	$test = new \App\ConsultantBooking;
-//	return dd('ok: '.$test->cancelMeeting());
-//});
-
-//use Illuminate\Support\Facades\Mail;
-//use App\Setting;
-/*
-Route::get('send_email_test', function() {
-	
-	$test['data']['client_id'] = 1026;
-	$test['data']['client_name'] = 'testing';
-	$test['data']['dream_check_lab_id'] = 9999;
-
-	return view('emails.dream_check_client_notification', $test );
-
-	//$tests = ['Test1..', 'Test2..'];
-	//Mail::send('emails.a_test', ['tests' => $tests], function ($m) use ($tests) {
-    //            $settings = Setting::find(1);
-    //            $site_email = $settings->website_email;
-    //            $m->from($site_email, 'Wexplore');
-    //            $m->to('alessandro.fuda@gmail.com', 'Ale_test')->subject('Testing...');
-    //        }); 
-});
-*/
-Auth::routes();
-
-
-Route::get('/', function() {
-	return redirect('login');
-});
-Route::get('home', function(){
-	return redirect('login');
-})->name('home');
-Route::get('auth/login', function(){
-	return redirect('login');
-});
-
-Route::get('time', function() {
-    return date('Y-m-d H:i:s');  // getdate();
-});
+	// users API (provvisoria)
+	Route::get('api/users/list/{token}', array('as'=>'usersLists','uses'=>'Api\UserController@lists'));
 
 
 
-	// Route::get('/', array('as' => 'homepage', 'uses' => 'PagesController@homepage'));
-	
-	// REDIRECT PROVVISORIO !!!!!
-	// Route::get('/', function () {
-	//     return redirect('https://www.wexplore.co');
-	// });
 
+
+	// TEST ROUTES
+	//Route::get('phpinfo', function(){
+	//  return date('Y-m-d H:i:s');
+	//	return phpinfo();
+	//});
+	/* Route::get('demo-email', function() {
+		//$user->name = 'alessandro';
+		//$user->email = 'test@test.com';
+		$user = App\User::find(1042);
+
+		return view('emails.service_activation')->with('order_id', 999)
+												->with('product_name', 'product_test')
+												->with('quantity', 2)
+												->with('price', 456)
+												->with('subtotal', 654)
+												->with('discount', 100)
+												->with('promo_code', null)
+												->with('total', 951)
+												->with('payment_method', 'credit card')
+												->with('vat_price', 851)
+												->with('user', $user)
+												;
+	}); */
+	//Route::get('/token',function () {
+	//	return \App\ConsultantBooking::getAccessToken();
+	//});
+
+	//Route::get('zoom_token', function() {
+	//	return \App\ConsultantBooking::getZoomAccessToken();
+	//});
+
+	//Route::get('cancel_meeting_test', function() {
+	//	$test = new \App\ConsultantBooking;
+	//	return dd('ok: '.$test->cancelMeeting());
+	//});
+
+	//use Illuminate\Support\Facades\Mail;
+	//use App\Setting;
+	/*
+	Route::get('send_email_test', function() {
+		
+		$test['data']['client_id'] = 1026;
+		$test['data']['client_name'] = 'testing';
+		$test['data']['dream_check_lab_id'] = 9999;
+
+		return view('emails.dream_check_client_notification', $test );
+
+		//$tests = ['Test1..', 'Test2..'];
+		//Mail::send('emails.a_test', ['tests' => $tests], function ($m) use ($tests) {
+	    //            $settings = Setting::find(1);
+	    //            $site_email = $settings->website_email;
+	    //            $m->from($site_email, 'Wexplore');
+	    //            $m->to('alessandro.fuda@gmail.com', 'Ale_test')->subject('Testing...');
+	    //        }); 
+	});
+	*/
+	Auth::routes();
+
+
+	Route::get('/', function() {
+		return redirect('login');
+	});
+	Route::get('home', function(){
+		return redirect('login');
+	})->name('home');
+	Route::get('auth/login', function(){
+		return redirect('login');
+	});
+
+	Route::get('time', function() {
+	    return date('Y-m-d H:i:s');  // getdate();
+	});
 
     Route::post('/user/set-timezone', array('as' => 'set-timezone', 'uses' => 'PagesController@setTimezone'));
 
@@ -135,30 +125,18 @@ Route::get('time', function() {
 	Route::post('consultant/register', array('as' => 'consultant_register_post', 'uses' => 'Auth\AuthController@postConsultantRegister'));
 	Route::get('client/register', array('as' => 'client_register', 'uses' => 'Auth\AuthController@getClientRegister'));
 	Route::post('client/register', array('as' => 'client_register', 'uses' => 'Auth\AuthController@postClientRegister'));
-// Service Payment
+	// Service Payment
 	//Route::get('service/payment', array('as'=>'service_payment','uses'=>'ServiceOrdersController@service_payment'));
 	Route::get('service/payment/{service_id}', array('as'=>'service_payment_direct','uses'=>'ServiceOrdersController@service_payment'));
 
-//Partner page
+	//Partner page
 	Route::any('/partners','PagesController@partners');
 	Route::post('service/payment/checkout','ServiceOrdersController@checkout');
-/*Route::post('service/payment/process', array(
-			'as' => 'payment_process',
-			'uses' => 'PaypalController@postPayment',
-	));*/
-	Route::post('service/payment/process', array(
-		'as' => 'payment_process',
-		'uses' => 'ServiceOrdersController@service_payment_process_braintree',
-	));
+	/*Route::post('service/payment/process', array('as' => 'payment_process', 'uses' => 'PaypalController@postPayment'));*/
+	Route::post('service/payment/process', array('as' => 'payment_process', 'uses' => 'ServiceOrdersController@service_payment_process_braintree'));
 	// returm url is required for the paypal direct payment only
-	Route::get('service/payment/return_url', array(
-			'as' => 'paypal_return_url',
-			'uses' => 'PaypalController@return_url',
-	));
-	Route::post('service/payment/return_post_url', array(
-		'as' => 'paypal_return_post_url',
-		'uses' => 'PaypalController@return_post_url',
-	));
+	Route::get('service/payment/return_url', array('as' => 'paypal_return_url', 'uses' => 'PaypalController@return_url'));
+	Route::post('service/payment/return_post_url', array('as' => 'paypal_return_post_url', 'uses' => 'PaypalController@return_post_url'));
 	Route::get('service/payment/status', 'PaypalController@payment_status');
 	// Service Page routes..
 	Route::get('services', array('as'=>'frontServices','uses'=>'PagesController@showServices'));
@@ -200,7 +178,6 @@ Route::get('time', function() {
 			//Route::get('user/{user_id}/profile', ['as'=>'form_user_profile','uses'=>'ConsultantProfileController@user_profile']);
 			Route::get('booking/profile/{service_id}/{service_type}/detail', ['as'=>'form_user_profile','uses'=>'ConsultantProfileController@form_user_profile']);
 
-
 			// Consultant Profile
 			Route::get('consultant/profile', 'ConsultantProfileController@consultant_show');
 			Route::get('consultant/profile/edit', 'ConsultantProfileController@edit');
@@ -218,7 +195,6 @@ Route::get('time', function() {
 			// meeting
 			Route::get('consultant/meeting/{booking_id}',array('as'=>'consultant_start_meeting', 'uses' => 'GlobalToolController@start_meeting'));
 
-
 			Route::get('/consultant/forms/list/', 'ConsultantProfileController@consultant_forms');
 			Route::get('/download/{service_id}/{service_type}/feedback', 'ConsultantProfileController@download_feedback');
 
@@ -228,8 +204,8 @@ Route::get('time', function() {
 			//Global Tool Box Feed back
 			Route::get('consultant/global_tool_form/feedback/{global_tool_form}',['as'=>'global_tool_form_feedback','uses' => 'ConsultantProfileController@global_tool_form_feedback']);
 			Route::post('consultant/global_tool_form/feedback/{global_tool_form}/store',['as' => 'global_tool_form_feedback.store','uses' =>  'ConsultantProfileController@global_tool_form_feedback_store']);
-
 		});
+
 		Route::group(['middleware' => 'userClient'], function(){
 			Route::get('consultant/{booking_id}/{type_id}/calendar', 'ProfessionalKitController@availability_calender');
 			Route::get('user/meeting/{booking_id}',array('as'=>'user_start_meeting', 'uses' => 'ProfessionalKitController@start_meeting'));
@@ -517,7 +493,6 @@ Route::get('time', function() {
 	Route::post('skill_development/code','SkillDevelopmentController@code');
 	Route::post('skill_development/payment_code','SkillDevelopmentController@payment_code');
 
-	
 	Route::post('service_detail','SkillDevelopmentController@service_detail');
 	Route::get('/events','SkillDevelopmentController@events');
 	Route::get('/event/{event_id}/purchase','SkillDevelopmentController@purchase_event');
@@ -526,7 +501,6 @@ Route::get('time', function() {
 
 	Route::get('/global_toolbox','GlobalToolController@index');
     Route::post('/global/query','GlobalToolController@query');
-
 
 
     /*  IMPORTANT */
@@ -538,10 +512,7 @@ Route::get('time', function() {
 	Route::get('searchajax', array('as'=>'searchajax', 'uses'=>'SkillDevelopmentController@auto_complete'));
 	Route::post('availcode', array('as'=>'availcode', 'uses'=>'ServiceOrdersController@availCode'));
 
-
-
 	Route::get('get-download/{file_name}', 'PagesController@getDownload');
-
 
 	// unsubscribe link in Clients side email text (spatie/laravel-url-signer 1.0.0 package)
 	Route::get('user/{user_id}/delete-account', array('middleware'=>'signedurl', 'as'=>'delete-account', 'uses'=>'UserProfileController@deletePersonalFromEmailLink'));

@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSoftDeleteToSurveyCodesTable extends Migration
+class AddProvinceToUserProfileTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +13,8 @@ class AddSoftDeleteToSurveyCodesTable extends Migration
      */
     public function up()
     {
-        Schema::table('survey_codes', function (Blueprint $table) {
-            //
+        Schema::table('user_profile', function (Blueprint $table) {
+            $table->string('province')->after('city')->nullable();
         });
     }
 
@@ -24,8 +25,8 @@ class AddSoftDeleteToSurveyCodesTable extends Migration
      */
     public function down()
     {
-        Schema::table('survey_codes', function (Blueprint $table) {
-            //
+        Schema::table('user_profile', function (Blueprint $table) {
+            $table->dropColumn('province');
         });
     }
 }
