@@ -371,7 +371,7 @@ a.button_large .button_icon {
         text-decoration: none;
     }
 
-    a.button:hover:after,a.tp-button:hover:after,button:hover:after,input[type="submit"]:hover:after,input[type="reset"]:hover:after,input[type="button"]:hover:after {
+    a.button:hover:after,a.tp-button:hover:after,button:hover:after,a.btn:hover:after,input[type="submit"]:hover:after,input[type="reset"]:hover:after,input[type="button"]:hover:after {
         width: 100%;
     }
 }

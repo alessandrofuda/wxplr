@@ -181,7 +181,7 @@ img.img-circle.logo-tondo {
 	padding-left: 30px;
 	padding-right: 30px;
 }
-a.btn.cta {
+a.btn.cta, button.btn.cta {
 	width: 206px;
 	height: 40px;
 	border-radius: 10px;
@@ -191,6 +191,7 @@ a.btn.cta {
 	font-size: 14px;
 	font-weight: 700;
 	line-height: 25px;
+	border: none;
 }
 .box.got {
 	height: 352px;
@@ -209,6 +210,7 @@ a.btn.cta {
 }
 .box-body .how-it-w {
 	margin-left:50px;
+	cursor: pointer;
 }
 .modal-open .modal {
 	z-index: 999999;
@@ -610,9 +612,21 @@ a.video-prev {
 }
 #checkout {
 	background-image: linear-gradient(270deg, #69ba7a 0%, #055b76 100%);
+	position: relative;
 }
 #checkout form label {
 	display: block;
+	color: #808080;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 18px;
+}
+#checkout form input, #checkout form textarea {
+	color: #0d3552;
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;
 }
 #checkout .boxed{
 	background-color: #ffffff;
@@ -633,6 +647,7 @@ a.video-prev {
 	font-size: 36px;
 	font-weight: 400;
 	line-height: 46px;
+	margin-top: 170px;
 }
 #checkout .title-box {
 	color: #055b76;
@@ -641,50 +656,116 @@ a.video-prev {
 	line-height: 24px;
 	margin-bottom: 24px;
 }
-#checkout {
-
+#checkout .logo-container .logo{
+	position: absolute;
+	left: 67px;
+	top: 40px;
 }
-#checkout {
-
+#checkout .promo-code-container {
+	margin-bottom: 0;
 }
-#checkout {
-
+#checkout .promo-code-container div{
+	padding-right: 0;
+	padding-left: 0;
 }
-#checkout {
-
+#checkout .promo-code-container #promo_div{
+	border-radius: 20px;
+	background-color: #ffffff;
+	padding: 20px;
 }
-#checkout {
-
+#checkout .promo-code-container #code{
+	margin-bottom: 0;
 }
-#checkout {
-
+#checkout .promo-code-container #code_error{
+	margin-top: 10px;
 }
-#checkout {
-
+#checkout .promo-code-container .promo-code-btn{
+	/*width: 199px;*/
+	height: 40px;
+	border-radius: 10px;
+	border: 2px solid #ffffff;
+	background-color: transparent;
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: 700;
+	padding:8px 20px;
 }
-#checkout {
-
+#checkout .order-container .first-row {
+	color: #808080;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 18px;
+	margin-bottom: 7px;
 }
-#checkout {
-
+#checkout .order-container .service-name, #checkout .order-container .price{
+	color: #055b76;
+	font-family: "Varela Round";
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 34px;
+	text-transform: uppercase;
 }
-#checkout {
-
+#checkout .prices-container .vat-disclaimer{
+	color: #808080;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 18px;
 }
-#checkout {
-
+#checkout .payment-method-radios {
+	color: #0d3552;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;
 }
-#checkout {
-
+#checkout .tos-disclaimer {
+	overflow:scroll;
+	max-height:100px;
+	font-size:11px;
+	line-height:14px;
+	border:1px solid #cccccc;
+	padding:8px 8px 2px 8px;
+	margin-top: 10px;
 }
-#checkout {
-
+#checkout .ligle_terms{
+	color: #808080;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 18px;
 }
-#checkout {
-
+#checkout .ligle_terms a {
+	color: #808080;
+	text-decoration: underline;
 }
-#checkout {
+#checkout .buttons-container {
+	margin-bottom: 240px;
+}
+#checkout .buttons-container .back-btn{
+	display: inline-block;
+	float: left;
+}
 
+#checkout .buttons-container .get-btn{
+	display: inline-block;
+	float: right;
+}
+#checkout .buttons-container .back-link{
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 20px;
+	text-transform: uppercase;
+}
+#checkout .buttons-container .order_now{
+	width: 200px;
+	height: 40px;
+	border-radius: 10px;
+	border: 2px solid #ffffff;
+	background-color: transparent;
+	color: #ffffff;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 15px;
+	text-transform: uppercase;
 }
 
 

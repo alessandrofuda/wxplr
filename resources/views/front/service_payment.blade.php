@@ -17,7 +17,7 @@
 	<div class="row alerts-container">
 		<div class="col-md-12">	
 			<div id="success_div" style="display: none;">
-				<div class="alert alert-success" id="success_data"></div>
+				<div class="alert alert-success boxed" id="success_data"></div>
 			</div>
 		</div>
 		@if(session('error'))
@@ -40,6 +40,30 @@
 	            </div>
 	        </div>
 	    @endif
+	</div>
+	<div class="row promo-code-container boxed no-bg no-padding text-right">
+		<div class="col-md-12">
+			<div class="promo-code-title">
+				<a id="have_promo" class="btn btn-success promo-code-btn">Do you have a PROMO CODE ?</a>
+			</div>
+			<div id="promo_div" style="display: {{ isset($code) ? '' : 'none' }};">
+				<div class="col-md-6">
+					<form id="promo_form" action="{{ url('service/checkcode') }}" method="POST">
+						{{ csrf_field() }}
+						<input type="text" class="form-control" id="code" value="{{ isset($code) ? $code : '' }}" name="code" placeholder="Enter Code"/>
+						<div class="error text-left" id="code_error"></div>
+					</form>
+				</div>
+				<div class="col-md-6">
+					<button class="btn cta" id="submit_promo">
+						Apply Now
+					</button>
+					<button class="btn cta" id="cancel_promo">
+						Cancel
+					</button>
+				</div>
+			</div>
+		</div>
 	</div>
 	<form id="checkout" class="" action="{{ $url }}" method="post">
 		{{ csrf_field() }}
@@ -104,7 +128,7 @@
 					<div class="col-md-6 form-group has-feedback">
 						<label>Email</label>
 						@if($user != null)
-							<span class="form-control" > {{ $user->email }}</span>
+							<span class="precompiled">{{ $user->email }}</span>
 						@else
 							<input type="email" class="form-control" required  placeholder="Email" name="email" value="{{ old('email') }}">
 						@endif
@@ -122,13 +146,9 @@
 					<div class="col-md-6 form-group has-feedback">
 						<label>Invoice Address (Street and Number)</label>
 						@if($userProfile != null && $userProfile->address  != null)
-							<textarea required rows="4" cols="50" class="form-control" name="address" placeholder="Address" value="{{ $userProfile->address }}">
-								{{ $userProfile->address }}
-							</textarea>
+							<textarea required rows="4" cols="50" class="form-control" name="address" placeholder="Address" value="{{ $userProfile->address }}">{{ $userProfile->address }}</textarea>
 						@else
-							<textarea required rows="4" cols="50" class="form-control" name="address" placeholder="Address" value="{{ old('address') }}">
-								{{ old('address') }}
-							</textarea>
+							<textarea required rows="4" cols="50" class="form-control" name="address" placeholder="Address" value="{{ old('address') }}">{{ old('address') }}</textarea>
 						@endif
 					</div>
 					<div class="col-md-6 form-group has-feedback">
@@ -200,66 +220,41 @@
 						@endif
 					</div>
 					<div class="col-md-6">
-						<div class="prices-container">
-							<div class="spacer" style="visibility: hidden;">AAA</div>
+						<div class="prices-container text-right">
+							<div class="first-row spacer" style="visibility: hidden;">AAA</div>
 							@if(isset($service))
 								<div class="price">
-									{{ $service != null ? '€'.$service->price : "" }}
+									{{ $service != null ? '€ '.$service->price : "" }}
 								</div>
 								<div class="vat-disclaimer">
-									Include VAT 22% {{  $service != null ? '€'.round(($service->vatprice(true) * 22/100), 2) : "" }}
+									Include VAT 22% {{  $service != null ? '€ '.round(($service->vatprice(true) * 22/100), 2) : "" }}
 								</div>
 							@elseif(isset($video))
 								<div class="price">
 									{{  '€'.$video->price  }}
 								</div>
 								<div class="vat-disclaimer">
-									Include VAT 22% {{ '€'.round(($video->vatprice() * 22/100), 2)  }}
+									Include VAT 22% {{ '€ '.round(($video->vatprice() * 22/100), 2)  }}
 								</div>
 							@elseif(isset($event))
 								<div class="price">
 									{{  '€'.$event->price  }}
 								</div>
 								<div class="vat-disclaimer">
-									Include VAT 22% {{ '€'.round(($event->vatprice() * 22/100), 2)  }}
+									Include VAT 22% {{ '€ '.round(($event->vatprice() * 22/100), 2)  }}
 								</div>
 							@elseif(isset($package))
 								<div class="price">
 									{{  '€'.$package->price  }}
 								</div>
 								<div class="vat-disclaimer">
-									Include VAT 22% {{ '€'.round(($package->vatprice() * 22/100), 2)  }}
+									Include VAT 22% {{ '€ '.round(($package->vatprice() * 22/100), 2)  }}
 								</div>
 							@else
 								<div class="price">n.a.</div>
 								<div class="vat-disclaimer">n.a.</div>
 							@endif
 						</div>
-					</div>
-				</div>
-				<div class="row promo-code-container">
-					<div class="col-md-12">
-						<div class="promo-code-title">
-							<a id="have_promo" class="btn btn-success">Do you have a PROMO CODE ?</a>
-						</div>
-						<div id="promo_div" style="display: {{ isset($code) ? '' : 'none' }};">
-							<div class="col-md-8">
-								<form id="promo_form" action="{{ url('service/checkcode') }}" method="POST">
-									{{ csrf_field() }}
-									<input type="text" class="form-control" id="code" value="{{ isset($code) ? $code : '' }}" name="code" placeHolder="Enter Code"/>
-									<div class="error" id="code_error"></div>
-								</form>
-							</div>
-							<div class="col-md-4">
-								<button class="btn btn-success" id="submit_promo">
-									Apply Now
-								</button>
-								<button class="btn btn-success" id="cancel_promo">
-									Cancel
-								</button>
-							</div>
-						</div>
-						<input class="promo-code" type="" name="">
 					</div>
 				</div>
 			</div>
@@ -269,8 +264,8 @@
 				<div class="title-box payment-method-title">Payment Method</div>
 				@if($amount > 0)
 					<div id="payment-method-div" class="form-group">
-                        <div class="col-md-12">
-                        	<input checked type="radio" value="1" id="paypal-method" name="payment_method"> Paypal <input id="card-method" type="radio" value="2" name="payment_method"> Credit Card
+                        <div class="payment-method-radios">
+                        	<input checked type="radio" value="1" id="paypal-method" name="payment_method"> Paypal <input id="card-method" type="radio" value="2" name="payment_method" style="margin-left: 25px;"> Credit Card
                         </div>
                     </div>
                     <br/>
@@ -321,7 +316,9 @@
                             <input  type="checkbox" required name="tos">
                             <i></i>
                             <b>I have read and accepted the terms pursuant to art. 1341 and 1342 of the Civil Code</b><br>
-                            <div style="overflow:scroll; max-height:50px; overflow-style:marquee-line;font-size:8px; line-height:10px;"><span>Clausole vessatorie[C1]: Ai sensi e per gli effetti di cui agli artt. 1341 e 1342 Cod. Civ., il Cliente, dopo averne presa attenta e specifica conoscenza e visione, approva e ed accetta espressamente le seguenti clausole: 2)  Registrazione al Sito e conclusione del contratto di fornitura dei Servizi riservati agli Utenti e dei Servizi a Pagamento; 4) Modalità di registrazione; 5) Caratteristiche dei servizi; 6) Corrispettivi e modalità di pagamento dei Servizi a Pagamento; 7) Attivazione ed erogazione del servizio; 8) Durata, rinnovo, cessazione, recesso dal contratto; 9) Utilizzo dei blog; 10) Tutela minori; 11) Funzionalità dei Servizi; 12) Modifiche dei servizi e variazioni alle condizioni dell'offerta; 13) Cessione del Contratto; 14) Diritti di proprietà industriale e/o intellettuale – contenuti scaricabili; 15) Limitazione della responsabilità; 16) Sospensione del Servizio; 17) Dati del Cliente; 18) Limitazioni di responsabilità di Gielle; 20) Clausola risolutiva espressa; 21) Disposizioni finali e comunicazioni 22) Legge applicabile e Foro competente.</span></div>
+                            <div class="tos-disclaimer">
+                            	Clausole vessatorie[C1]: Ai sensi e per gli effetti di cui agli artt. 1341 e 1342 Cod. Civ., il Cliente, dopo averne presa attenta e specifica conoscenza e visione, approva e ed accetta espressamente le seguenti clausole:<br/><br/> 1)  Registrazione al Sito e conclusione del contratto di fornitura dei Servizi riservati agli Utenti e dei Servizi a Pagamento; 2) Modalità di registrazione; 3) Caratteristiche dei servizi; 4) Corrispettivi e modalità di pagamento dei Servizi a Pagamento; 5) Attivazione ed erogazione del servizio; 6) Durata, rinnovo, cessazione, recesso dal contratto; 7) Utilizzo dei blog; 8) Tutela minori; 9) Funzionalità dei Servizi; 10) Modifiche dei servizi e variazioni alle condizioni dell'offerta; 11) Cessione del Contratto; 12) Diritti di proprietà industriale e/o intellettuale – contenuti scaricabili; 13) Limitazione della responsabilità; 14) Sospensione del Servizio; 15) Dati del Cliente; 16) Limitazioni di responsabilità di Gielle; 17) Clausola risolutiva espressa; 18) Disposizioni finali e comunicazioni 19) Legge applicabile e Foro competente.
+                            </div>
                     </span>
                     <span class="paymentOption_div">
                         <input  type="checkbox" value="1" name="allow_personal_data">
@@ -334,55 +331,37 @@
 		<div class="row buttons-container">
 			<div class="col-md-8 col-md-offset-2 boxed no-bg no-padding">
 				<div class="back-btn">
-					<button class="btn" title="Go Back" onclick="goBack()">Back</button>
+					<a href="#" class="back-link" title="Go Back" onclick="goBack(event)">Back</a>
 					<script>
-						function goBack() {
+						function goBack(e) {
+							e.preventDefault();
 							window.history.back();
 						}
 					</script>
 				</div>
 				<div class="get-btn">
 					@if(isset($service))
-	                    <button  value="Pay $@if(is_object($service) && !empty($service)){{ $service->usdprice($service->currency_type, 'USD', $service->price) }}@endif" type="submit" class="order_now">
+	                    <button type="submit" class="order_now">
 	                        @if(is_object($service) && !empty($service))
-	                            @if($service->usdprice($service->currency_type, 'USD', $service->price) > 0 )
-	                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now
-	                            @else
-	                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Get Now
-	                            @endif
+	                            Get Now
 	                        @endif
 	                    </button>
 	                @elseif(isset($video))
-	                    <button  value="Pay $@if(is_object($video) && !empty($video)){{ round(\App\Service::usdprice('EUR', 'USD', $video->price)) }}@endif" type="submit"
-	                             class="order_now">
+	                    <button type="submit" class="order_now">
 	                        @if(is_object($video) && !empty($video))
-	                            @if(\App\Service::usdprice('EUR', 'USD', $video->price) > 0 )
-	                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now
-	                            @else
-	                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Get Now
-	                            @endif
+	                            Get Now Video
 	                        @endif
 	                    </button>
 	                @elseif(isset($event))
-	                    <button  value="Pay $@if(is_object($event) && !empty($event)){{ round(\App\Service::usdprice('EUR', 'USD', $event->price)) }}@endif" type="submit"
-	                             class="order_now">
+	                    <button type="submit" class="order_now">
 	                        @if(is_object($event) && !empty($event))
-	                            @if(\App\Service::usdprice('EUR', 'USD', $event->price) > 0 )
-	                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now
-	                            @else
-	                                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Get Now
-	                            @endif
+	                            Get Now Event
 	                        @endif
 	                    </button>
 	                @elseif(isset($package))
-                        <button  value="Pay $@if(is_object($package) && !empty($package)){{ round(\App\Service::usdprice('EUR', 'USD', $package->price)) }}@endif" type="submit"
-                                 class="order_now">
+                        <button type="submit" class="order_now">
                             @if(is_object($package) && !empty($package))
-                                @if(\App\Service::usdprice('EUR', 'USD', $package->price) > 0 )
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> Order Now
-                                @else
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> Get Now
-                                @endif
+                                Get Now Package
                             @endif
                         </button>
 	                @else
@@ -394,8 +373,6 @@
 			</div>
 		</div>
 	</form>
-
-
 
 	{{-- OLD STYLES CODE --}}
 	{{--
