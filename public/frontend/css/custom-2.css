@@ -208,9 +208,11 @@ a.btn.cta, button.btn.cta {
 .box.vic {
 	
 }
+.how-it-w {
+	cursor: pointer;
+}
 .box-body .how-it-w {
 	margin-left:50px;
-	cursor: pointer;
 }
 .modal-open .modal {
 	z-index: 999999;
