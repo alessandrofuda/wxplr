@@ -13,6 +13,11 @@
 		<div class="row-second">
 			<div class="container boxs">
 				<div class="col-md-12" style="padding-right: 0;">
+
+					{{-- dd($user_services) /*elenca sempre TUTTI i servizi ACQUISTABILI (cioè ESCLUSO il GOT! */ --}}
+					{{ dd($user_unpaid_services)  /*elenca solo quelli NON ancora acquistati tra gli ACQUISTABILI (cioè EsCLUSO il GOT*/  }}
+					{{--per individuare se l'utente ha fatto il got ../?? interrogare direttamente il db? --}}
+
 					<div class="box-title">
 						Start your journey
 					</div>
@@ -22,7 +27,7 @@
 							<div class="box-middle">global orientation test</div>
 							<div class="box-description">Start your journey to discover more about you: which kind of companies and which countries better match your values and preferences?</div>
 							<div class="box-cta">
-								<a class="btn cta" href="#">Start now it's free!</a>
+								<a class="btn cta" href="{{route('got_intro')}}">Start now it's free!</a>
 							</div>
 						</div>
 						<div class="col-md-6 dx">
@@ -40,7 +45,7 @@
 							<div class="box-middle">global orientation test pro</div>
 							<div class="box-description">Take your journey one step further with our GOT Pro: find out exactly where in Europe your profile is most in demand.</div>
 							<div class="box-cta">
-								<a class="btn cta" href="#">buy for {{$user_services[App\Service::GOT_PRO]['price']}}€</a>
+								<a class="btn cta" href="{{ route('got_pro') }}">buy for {{$user_services[App\Service::GOT_PRO]['price']}}€</a>
 								<!-- Button trigger modal -->
 								<a type="button" class="how-it-w" data-toggle="modal" data-target="#how-got-pro">
   									<i class="fas fa-question-circle"></i> How it works
@@ -93,7 +98,7 @@
 							<div class="box-middle">virtual international consultant</div>
 							<div class="box-description">Your best ally to walk you through an international job search journey: 11 steps to prepare your journey.</div>
 							<div class="box-cta">
-								<a class="btn cta" href="#">buy for {{$user_services[App\Service::VIC]['price']}}€</a>
+								<a class="btn cta" href="{{route('career_ready')}}">buy for {{$user_services[App\Service::VIC]['price']}}€</a>
 
 								@include('partials.vic.how_it_works_modal')
 								
@@ -114,7 +119,7 @@
 							<div class="box-middle">Wexplore Original Webinar</div>
 							<div class="box-description">Top managers and entrepreneurs open the doors to their “professional house” and share a wealth of insights and knowledge in short learning pills – just like taking a coffee with them.</div>
 							<div class="box-cta">
-								<a class="btn cta" href="#">explore wow</a>
+								<a class="btn cta" href="http://eepurl.com/grpRwb">explore wow</a>
 								<!-- Button trigger modal -->
 								<a type="button" class="how-it-w" data-toggle="modal" data-target="#how-wow-modal">
   									<i class="fas fa-question-circle"></i> How it works

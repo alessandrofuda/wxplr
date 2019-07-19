@@ -213,8 +213,8 @@
 			Route::post('service/profile/save', 'ServiceOrdersController@service_profile_save');
 			//Route::get('user/services', 'PagesController@services');
 			Route::get('user/dashboard', ['as' => 'user.dashboard','uses' => 'PagesController@client_dashboard']);
-			Route::get('global_orientation_test_intro', 'PagesController@global_online_test_intro');
-			Route::get('global_orientation_test', 'PagesController@global_online_test');
+			Route::get('global_orientation_test_intro', ['as'=>'got_intro', 'uses'=>'PagesController@global_online_test_intro']);
+			Route::get('global_orientation_test', ['as'=>'got', 'uses'=>'PagesController@global_online_test']);
 			Route::post('global_orientation_test', 'PagesController@global_online_test_next');
 
 			Route::get('get_address/{addr_id}', 'ServiceOrdersController@get_address');

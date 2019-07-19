@@ -328,6 +328,9 @@ a.video-prev {
 	margin-top: 100px;
 	margin-bottom: 130px;
 }
+#got-page {
+	/*min-height: 100vh;*/
+}
 #got-page .got-page-bread-crumbs{
 	color: #69ba7a;
 	font-size: 14px;

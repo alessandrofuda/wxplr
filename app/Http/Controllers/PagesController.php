@@ -229,9 +229,8 @@ class PagesController extends CustomBaseController {
 		$all_notifications = [];
 		$dash_noti = [];
 
-		//Professional Kit status
+		//INIZIO - Professional Kit status
 		$order = Order::where('user_id',Auth::user()->id)->where('item_name','Professional Kit')->first();
-
 		if($order != null) {
 
 			if ($order->step_id == -1) {
@@ -335,6 +334,7 @@ class PagesController extends CustomBaseController {
 				'notifications' => $dash_noti
 			];
 		}
+		// FINE - Professional Kit Status
 
 		$roles = array();
 		if(Auth::user()->userRoles){
@@ -438,9 +438,6 @@ class PagesController extends CustomBaseController {
 		$data['user_services']=$user_services;
 		$data['user_unpaid_services'] = $user_unpaid_services;
 		$data['notifications'] = $all_notifications;
-		$data['page_title'] = 'Dashboard';
-
-
 
 		return view('client.client_dashboard',$data);
 
