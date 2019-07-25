@@ -39,7 +39,11 @@
         </li>
       </ul>
       <div class="sidebar-bottom">
-        <div class="start-square">Start with our free feature like GOT or see our WOW video!</div>
+        @if (!empty($got_compiled) && $got_compiled === true)
+          <div class="start-square">Try Got PRO:<br/>discover the three best locations for you</div>
+        @else
+          <div class="start-square">Start with our free feature like GOT or see our WOW video!</div>
+        @endif
       </div>
       <div class="sidebar-bottom-corner-container">
         <img class="sidebar-bottom-corner" src="{{asset('frontend/images/sidebar/sidebar_bottom.png')}}">

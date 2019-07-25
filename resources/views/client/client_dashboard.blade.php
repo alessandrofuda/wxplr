@@ -1,7 +1,7 @@
 @extends('layouts.dashboard_layout')
 
 @section('content')
-	<div class="page-container">
+	<div id="dashboard" class="page-container">
 		<div class="row-first">
 			<div class="heading" style="background-image: url('{{ asset('frontend/images/hp/top_img.png')}}')">
 				<div class="heading-text-container">
@@ -15,37 +15,67 @@
 				<div class="col-md-12" style="padding-right: 0;">
 
 					{{-- dd($user_services) /*elenca sempre TUTTI i servizi ACQUISTABILI (cioè ESCLUSO il GOT! */ --}}
-					{{ dd($user_unpaid_services)  /*elenca solo quelli NON ancora acquistati tra gli ACQUISTABILI (cioè EsCLUSO il GOT*/  }}
-					{{--per individuare se l'utente ha fatto il got ../?? interrogare direttamente il db? --}}
-
-					<div class="box-title">
-						Start your journey
-					</div>
-					<div class="box box-body got">
-						<div class="col-md-6 sx">
-							<div class="box-top">got</div>
-							<div class="box-middle">global orientation test</div>
-							<div class="box-description">Start your journey to discover more about you: which kind of companies and which countries better match your values and preferences?</div>
-							<div class="box-cta">
-								<a class="btn cta" href="{{route('got_intro')}}">Start now it's free!</a>
+					{{-- dd($user_unpaid_services)  /*elenca solo quelli NON ancora acquistati tra gli ACQUISTABILI (cioè EsCLUSO il GOT*/  --}}
+					
+					{{-- dd($user_unpaid_services) --}}
+					@if ($got_compiled)    {{-- && ONLY got compiled --}}
+						<div class="box-title">
+							My Milestones
+						</div>
+						<div class="box box-body got compiled">
+							<div class="col-md-6 sx">
+								<div class="box-above-top">got</div>
+								<div class="box-top">You are a {{ $got_outcome_data->outcome_name ?? 'n.a.'}}</div>
+								<div class="box-description">
+									Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.
+									{{-- !! $got_outcome_data->description ?? 'n.a.' !! --}}
+								</div>
+								<div class="box-cta">
+									<a class="btn cta report" href="#">Report</a>
+									<a class="redo-link" href="{{ asset('global_orientation_test?force=recompile') }}">REDO TEST</a>
+								</div>
+							</div>
+							<div class="col-md-6 dx got-compiled">
+								<div class="box-img got-compiled">
+									<img src="{{asset('frontend/images/hp/img_got_compiled.png')}}">
+								</div>
 							</div>
 						</div>
-						<div class="col-md-6 dx">
-							<div class="box-img">
-								<img src="{{asset('frontend/images/hp/img_got.png')}}">
+						<div class="box-title">
+							Take another step in your journey
+						</div>
+					@else
+						<div class="box-title">
+							Start your journey
+						</div>
+						<div class="box box-body got">
+							<div class="col-md-6 sx">
+								<div class="box-top">got</div>
+								<div class="box-middle">global orientation test</div>
+								<div class="box-description">Start your journey to discover more about you: which kind of companies and which countries better match your values and preferences?</div>
+								<div class="box-cta">
+									<a class="btn cta" href="{{route('got_intro')}}">Start now it's free!</a>
+								</div>
+							</div>
+							<div class="col-md-6 dx">
+								<div class="box-img">
+									<img src="{{asset('frontend/images/hp/img_got.png')}}">
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="box-title">
-						Take it one Step Further
-					</div>
+						<div class="box-title">
+							Take it one Step Further
+						</div>
+					@endif
+					
+					
 					<div class="box box-body got-pro">
 						<div class="col-md-6 sx">
 							<div class="box-top">got pro</div>
 							<div class="box-middle">global orientation test pro</div>
 							<div class="box-description">Take your journey one step further with our GOT Pro: find out exactly where in Europe your profile is most in demand.</div>
 							<div class="box-cta">
-								<a class="btn cta" href="{{ route('got_pro') }}">buy for {{$user_services[App\Service::GOT_PRO]['price']}}€</a>
+								<a class="btn cta" href="{{ route('got_pro') }}">buy for {{$user_services[App\Service::GOT_PRO]['price'] ?? 'n.a.'}}€</a>
 								<!-- Button trigger modal -->
 								<a type="button" class="how-it-w" data-toggle="modal" data-target="#how-got-pro">
   									<i class="fas fa-question-circle"></i> How it works

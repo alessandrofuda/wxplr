@@ -1,6 +1,12 @@
 html, body {
     overflow-x: visible;
 }
+aside.main-sidebar {
+	padding-top: 0;
+}
+aside .sidebar .user-panel {
+	padding-top: 50px;
+}
 #Header_wrapper {
 	min-height: 100vh;
 }
@@ -20,17 +26,16 @@ img.img-circle.logo-tondo {
 }
 .sidebar-bottom {
 	width: 138px;
-	height: 110px;
+	height: auto;
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 	border-radius: 10px 10px 10px 0;
 	background-color: #69ba7a;
 	margin: auto;
-	position: absolute;
-	bottom: 200px;
-	left: 70px;
 	text-transform: none;
 	padding: 25px 15px;
 	z-index: 2;
+	margin-top: 100px;
+	margin-right: 16px;
 }
 .start-square {
 	color: #ffffff;
@@ -39,9 +44,7 @@ img.img-circle.logo-tondo {
 	line-height: 18px;
 }
 .sidebar-bottom-corner {
-	position: absolute;
-	bottom: 0;
-	left: 0;
+	margin-top:-60px;
 	width: 100%;
 	height: auto;
 	z-index: 3;
@@ -52,6 +55,7 @@ img.img-circle.logo-tondo {
 	top: calc(50% - 65px);
 	left: 50px;
 	width: 45%;
+	max-width: 500px;
 }
 .heading .heading_title {
 	color: #055b76;
@@ -118,9 +122,6 @@ img.img-circle.logo-tondo {
 .dropdown-menu i.fas.fa-sign-out-alt {
 	margin-right: 10px;
 	font-size: 18px;
-}
-.row-second {
-	border-top:1px solid #c4c4c4;
 }
 .row-second .container.boxs {
 	padding-right: 0;
@@ -281,6 +282,55 @@ a.video-prev {
 .modal-img {
 	margin:20px auto;
 }
+
+
+
+#dashboard .box.box-body.got.compiled{
+	max-width: 650px;
+	height: auto;
+	padding-top: 35px;
+}
+#dashboard .btn.cta.report{
+	width: 109px;
+	height: 40px;
+	border: 1px solid #69ba7a;
+	background: #ffffff;
+	color: #49b16b;
+	font-size: 14px;
+	text-transform: uppercase;
+	margin-right: 20px;
+}
+#dashboard .redo-link {
+	margin-bottom: 50px;
+	display: inline-block;
+}
+#dashboard .box.box-body.got.compiled .sx {
+	padding-right: 0;
+}
+#dashboard .box.box-body.got.compiled .dx{
+	padding-left: 0;
+}
+#dashboard .box.box-body.got.compiled .box-top{
+	font-size: 24px;
+}
+#dashboard .box.box-body.compiled .box-above-top{
+	color: #69ba7a;
+	font-weight: 700;
+	line-height: 20px;
+	text-transform: uppercase;
+}
+#dashboard {
+
+}
+#dashboard {
+
+}
+#dashboard {
+
+}
+
+
+
 #got-intro-page > .row{
 	margin-top:100px;
 }

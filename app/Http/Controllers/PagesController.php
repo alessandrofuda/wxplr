@@ -354,7 +354,7 @@ class PagesController extends CustomBaseController {
 			$services[]=$user_service->item_id;
 		}
 
-		$services_obj=Service::whereIn('id',$services)->get();
+		// $services_obj=Service::whereIn('id',$services)->get();
 		$user_services=array();
 
 		// modifica 12/04/2019 
@@ -402,10 +402,8 @@ class PagesController extends CustomBaseController {
 			}
 		}
 
-
-		$unpaid_services_obj=Service::whereNotIn('id',$services)->get();
+		$unpaid_services_obj=Service::whereNotIn('id', [2,3,4])->whereNotIn('id',$services)->get();  // 2,3,4 sono gli ID dei servizi DISATTIVATI (luglio 2019) !!
 		$user_unpaid_services=array();
-
 
 		if($unpaid_services_obj->count() > 0){
 
@@ -432,12 +430,20 @@ class PagesController extends CustomBaseController {
 				);
 			}
 		}
+		$gots_user = GlobalTestResult::where('user_id', Auth::user()->id);
+		$got_compiled = count($gots_user->get()) > 0 ?? null;
+		if($got_compiled) {
+			$got_outcome_data_id = $gots_user->orderBy('created_at', 'DESC')->first()->outcome_id;
+			$got_outcome_data = GlobalTestOutcomes::where('id', $got_outcome_data_id)->first();
+		}
 
 		$data['page_title']='Dashboard';
 		$data['user_roles']=$roles;
 		$data['user_services']=$user_services;
 		$data['user_unpaid_services'] = $user_unpaid_services;
 		$data['notifications'] = $all_notifications;
+		$data['got_compiled'] = $got_compiled;
+		$data['got_outcome_data'] = $got_outcome_data;
 
 		return view('client.client_dashboard',$data);
 
@@ -479,15 +485,15 @@ class PagesController extends CustomBaseController {
                     $url = url('/professional_kit');
                 }
 				$user_services[$service->id]=array(
-																		'purchased'=>'yes',
-																		'name'=>$service->name,
-																		'image'=>$service->image,
-																		'user_dashboard_image'=>$service->user_dashboard_image,
-																		'price'=>$service->price,
-																		'description'=>$service->description,
-																		'user_dashboard_desc'=>$service->user_dashboard_desc,
-                                                                        'url' => $url,
-																		);
+												'purchased'=>'yes',
+												'name'=>$service->name,
+												'image'=>$service->image,
+												'user_dashboard_image'=>$service->user_dashboard_image,
+												'price'=>$service->price,
+												'description'=>$service->description,
+												'user_dashboard_desc'=>$service->user_dashboard_desc,
+                                                'url' => $url,
+												);
 			}
 		}
 		$unpaid_services_obj=Service::whereNotIn('id',$services)->get();
@@ -528,7 +534,7 @@ class PagesController extends CustomBaseController {
 		return view('front.global_test_intro');
 	}
 
-	public function global_online_test(Request $request){
+	public function global_online_test(Request $request) {
 
 		$question=GlobalTest::first();  // first question in survey
 		$question_data=array('id' => $question->id,
@@ -539,14 +545,13 @@ class PagesController extends CustomBaseController {
 
 		$global_test_compiled_yet = false;
 		$outcome_data=array();
-		$user_id = Auth::user()->id;
-		$compiled = GlobalTestResult::where('user_id', $user_id)->get();
+		$compileds = GlobalTestResult::where('user_id', Auth::user()->id);
 
 		$query_string = $request->query('force');
 		
-		if(count($compiled) > 0 && $query_string != 'recompile') {  // .. and NOT force=recompile ..
+		if(count($compileds->get()) > 0 && $query_string != 'recompile') {  // .. and NOT force=recompile ..
 			$global_test_compiled_yet = true;
-			$outcome_id = $compiled->first()->outcome_id;
+			$outcome_id = $compileds->orderBy('created_at', 'DESC')->first()->outcome_id;
 			$outcome = GlobalTestOutcomes::where('id', $outcome_id)->first();
 			$outcome_data=array('id' => $outcome->id,
 							'outcome_name' => $outcome->outcome_name,
