@@ -22,8 +22,8 @@
 						@if( ($last_question && !empty($outcome_data)) || ($global_test_compiled_yet === true && !empty($outcome_data)) )
 							
 							@if($global_test_compiled_yet === true && !empty($outcome_data))
-								<div class="alert alert-info">
-									You have already completed the <b>Global Orientation Test</b>. If you want to recompile <a href="{{ asset('global_orientation_test?force=recompile') }}">click here</a> otherwise proceed to <a class="btn btn-success got-pro" href="{{route('got_pro')}}" style="text-decoration: none; line-height:30px; margin:3px 0 3px 15px;">Global Orientation Test PRO</a>
+								<div class="alert alert-info got-compiled-yet">
+									You have already completed the <b>Global Orientation Test</b>. If you want to recompile <a class="link" href="{{ asset('global_orientation_test?force=recompile') }}">click here</a> otherwise proceed to <a class="btn btn-success got-pro" href="{{route('got_pro')}}" style="text-decoration: none; line-height:30px; margin:3px 0 3px 15px;">Global Orientation Test PRO</a>
 								</div>
 							@endif
 							
@@ -74,7 +74,8 @@
 			</div>
 			<div class="col-md-6 dx-block">
 				@if( ($last_question && !empty($outcome_data)) || ($global_test_compiled_yet === true && !empty($outcome_data)) )
-					<img class="got-page-img" src="{{asset('frontend/images/got/got_output_page.png')}}" title="">
+					<!--img class="got-page-img" src="{{-- asset('frontend/images/got/got_output_page.png') --}}" title=""-->
+					<img class="got-page-img" src="{{ asset( $outcome_data['outcome_image']) }}" title=""> {{-- 'uploads/club-privato.jpg' --}}
 					<div class="cta-to-got-pro">
 						<div class="text">
 							How can you use this information to your best advantage? How can you get more insights on your target countries? Find out with the Global Orientation Test PRO!

@@ -502,6 +502,21 @@ a.video-prev {
 	line-height: 22px;
 	margin-bottom: 20px;
 }
+#got-page .alert.got-compiled-yet {
+	background-color: transparent!important;
+	border-radius: 20px;
+	border-color: #69ba7a;
+	color:#69ba7a!important;
+}
+#got-page .alert.got-compiled-yet a.link {
+	color: #69ba7a!important;
+}
+#got-page .outcome-content .countries{
+	color: #055b76;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 24px;
+}
 #login, #registr {
 	padding-right: 0;
 	padding-left: 0;
