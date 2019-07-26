@@ -256,7 +256,7 @@ class ServiceOrdersController extends CustomBaseController {
 		$nonceFromTheClient = $request->get("payment_method_nonce_paypal");
 
 		if($nonceFromTheClient == null) {
-			$nonceFromTheClient = $request->get("payment_method_nonce");
+			$nonceFromTheClient = $request->get("payment_method_nonce");  // viene iniettata in automatico da braintree ??
 		}
 
 		// dd($nonceFromTheClient);
