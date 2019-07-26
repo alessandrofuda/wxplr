@@ -7,7 +7,7 @@ use App\Service;
 use App\Order;
 
 
-class CareerReadyController extends Controller {
+class VicController extends Controller {
 
 	public function __construct(){
 		$this->service_id = Service::VIC;
@@ -26,7 +26,7 @@ class CareerReadyController extends Controller {
             $data['payed'] = true;
         }
         
-        return view('client.career_ready', $data);
+        return view('client.vic', $data);
     }
 
 }

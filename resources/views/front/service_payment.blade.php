@@ -274,31 +274,31 @@
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label for="credit_card_number">Number</label>
-                                <input name="credit_card_number" data-braintree-name="number" class="form-control" placeholder="4111111111111111">
+                                <input id="credit_card_number" name="credit_card_number" data-braintree-name="number" class="form-control" placeholder="4111111111111111">
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label for="credit_card_cvv">CVV</label>
-                                <input name="credit_card_cvv" data-braintree-name="cvv" class="form-control" placeholder="100">
+                                <input id="credit_card_cvv" name="credit_card_cvv" data-braintree-name="cvv" class="form-control" placeholder="100">
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label for="credit_card_exp_date">Expiration date</label>
-                                <input name="credit_card_exp_date" data-braintree-name="expiration_date" class="form-control" placeholder="10/20">
+                                <input id="credit_card_exp_date" name="credit_card_exp_date" data-braintree-name="expiration_date" class="form-control" placeholder="10/20">
                             </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="form-group">
                                 <label for="credit_card_postal_code">Postal code</label>
-                                <input name="credit_card_postal_code" data-braintree-name="postal_code" class="form-control" placeholder="94107">
+                                <input id="credit_card_postal_code" name="credit_card_postal_code" data-braintree-name="postal_code" class="form-control" placeholder="94107">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="credit_card_card_holder">Card holder</label>
-                                <input name="credit_card_card_holder" data-braintree-name="cardholder_name" class="form-control" placeholder="John Smith">
+                                <input id="credit_card_card_holder" name="credit_card_card_holder" data-braintree-name="cardholder_name" class="form-control" placeholder="John Smith">
                             </div>
                         </div>
                     </div>
@@ -341,25 +341,25 @@
 				</div>
 				<div class="get-btn">
 					@if(isset($service))
-	                    <button type="submit" class="order_now">
+	                    <button value="Pay $@if(is_object($service) && !empty($service)){{ $service->usdprice($service->currency_type, 'USD', $service->price) }}@endif" type="submit" class="order_now">
 	                        @if(is_object($service) && !empty($service))
 	                            Get Now
 	                        @endif
 	                    </button>
 	                @elseif(isset($video))
-	                    <button type="submit" class="order_now">
+	                    <button value="Pay $@if(is_object($video) && !empty($video)){{ round(\App\Service::usdprice('EUR', 'USD', $video->price)) }}@endif" type="submit" class="order_now">
 	                        @if(is_object($video) && !empty($video))
 	                            Get Now Video
 	                        @endif
 	                    </button>
 	                @elseif(isset($event))
-	                    <button type="submit" class="order_now">
+	                    <button value="Pay $@if(is_object($event) && !empty($event)){{ round(\App\Service::usdprice('EUR', 'USD', $event->price)) }}@endif" type="submit" class="order_now">
 	                        @if(is_object($event) && !empty($event))
 	                            Get Now Event
 	                        @endif
 	                    </button>
 	                @elseif(isset($package))
-                        <button type="submit" class="order_now">
+                        <button value="Pay $@if(is_object($package) && !empty($package)){{ round(\App\Service::usdprice('EUR', 'USD', $package->price)) }}@endif" type="submit" class="order_now">
                             @if(is_object($package) && !empty($package))
                                 Get Now Package
                             @endif
@@ -875,69 +875,157 @@
     var price = $('#selected_service_price').val();
     var checkout;
 
-	$('#payment-form').empty();
-    braintree.setup(clientToken, 'custom', {id: 'checkout'});
-    braintree.setup(clientToken, "custom", {
-        onReady: function (integration) {
-            checkout = integration;
-            loginPayPalEffettuato = false;
-            // checkAbilitazioneButtonOrderNow();
-        },
-        paypal: {
-            container: "payment-form",
-            singleUse: true,
-            amount: price,
-            currency: 'EUR',
-        },
-        onPaymentMethodReceived: function (obj) {
-            setNonce(obj.nonce);
-        }
-    });
+
+
+	{{-- https://developers.braintreepayments.com/guides/credit-cards/client-side/javascript/v2 --}}
+
+
+	// $('#payment-form').empty();
+ //    braintree.setup(clientToken, 'custom', {id: 'checkout'});
+ //    braintree.setup(clientToken, "custom", {
+ //        onReady: function (integration) {
+ //            checkout = integration;
+ //        },
+ //        //id: 'checkout',
+ //        paypal: {
+ //            container: "payment-form",
+ //            singleUse: true,
+ //            amount: price,
+ //            currency: 'EUR',
+ //        },
+ //        onPaymentMethodReceived: function (obj) {
+ //            setNonce(obj.nonce);
+ //        }
+ //    });
+
+
+
+
+
+
 
     if($("#paypal-method").is(":checked")) {
-      //  $('form').attr('id','');
+      	//  $('form').attr('id','');
         $("#payment-form").show();
         $("#payment-form-card").hide();
 
+        //new
+        $('#payment-form').empty();
+	    braintree.setup(clientToken, 'custom', {id: 'checkout'});
+	    braintree.setup(clientToken, "custom", {
+	        onReady: function (integration) {
+	            checkout = integration;
+	        },
+	        //id: 'checkout',
+	        paypal: {
+	            container: "payment-form",
+	            singleUse: true,
+	            amount: price,
+	            currency: 'EUR',
+	        },
+	        onPaymentMethodReceived: function (obj) {
+	            setNonce(obj.nonce);
+	        }
+	    });
     }
+
+
     if($("#card-method").is(":checked")) {
        // $('form').attr('id','checkout');
         $("#payment-form-card").show();
         $("#payment-form").hide();
         $("#payment-form-card").find('input').attr('required', true);
-       /* checkout.teardown(function () {
-            checkout = null;
-            // braintree.setup can safely be run again!
-        });
+        
+        //new
+        // checkout.teardown(function () {
+        //     checkout = null;
+        //     // braintree.setup can safely be run again!
+        // });
         var checkout;
-        braintree.setupXXXXX(clientToken, 'custom', { onReady: function (integration) {
-            checkout = integration;
-        },id: 'checkout'});*/
+        braintree.setup(clientToken, 'custom', {id: 'checkout'});
+        braintree.setup(clientToken, 'custom', {
+        	onReady: function (integration) {
+            	checkout = integration;
+        	},
+        	//id: 'checkout',
+        	onPaymentMethodReceived: function (obj) {
+	            //setNonce(obj.nonce);
+	            $("#payment_method_nonce").val(obj.nonce);
+	        }
+    	});
     }
+
+
+
+
+
+
+
     $("[name=payment_method]").change(function () {
         if($("#paypal-method").is(":checked")) {
-       //     $('form').attr('id','');
+        	console.log('paypal method selez');
+       		// $('form').attr('id','');
             $("#payment-form").show();
             $("#payment-form-card").hide();
             $("#payment-form-card").find('input').attr('required', false);
+
+            //new
+            $('#payment-form').empty();
+		    braintree.setup(clientToken, 'custom', {id: 'checkout'});
+		    braintree.setup(clientToken, "custom", {
+		        onReady: function (integration) {
+		            checkout = integration;
+		        },
+		        //id: 'checkout',
+		        paypal: {
+		            container: "payment-form",
+		            singleUse: true,
+		            amount: price,
+		            currency: 'EUR',
+		        },
+		        onPaymentMethodReceived: function (obj) {
+		            setNonce(obj.nonce);
+		        }
+		    });
+
         }
         if($("#card-method").is(":checked")) {
+        	console.log('carta credito selez');
             $("#payment-form-card").show();
             $("#payment-form").hide();
 			$("#payment-form-card").find('input').attr('required', true);
-            /*  checkout.teardown(function () {
-                checkout = null;
-                // braintree.setup can safely be run again!
-            });
+
+			//new
+
+            // checkout.teardown(function () {
+            //     checkout = null;
+            //     // braintree.setup can safely be run again!
+            // });
             var checkout;
-            braintree.setupXXXXX(clientToken, 'custom', { onReady: function (integration) {
-                checkout = integration;
-            },id: 'checkout'});*/
+            //braintree.setup(clientToken, 'custom', {id: 'checkout'});
+            braintree.setup(clientToken, 'custom', { 
+            	id: 'checkout',
+          //   	onReady: function (integration) {
+          //       	checkout = integration;
+          //   	},
+          //   	onPaymentMethodReceived: function (obj) {
+		        //     //setNonce(obj.nonce);
+		        //     $("#payment_method_nonce_paypal").val('');
+		        //     console.log('Val di paypal nonce: ' + $('#payment_method_nonce_paypal').val());
+		        //     $("#payment_method_nonce").val(obj.nonce);
+		        //     console.log('Val di CC nonce: ' + $('#payment_method_nonce').val());
+		        // }
+            });
+            console.log('braintree setup ok! per carta di credito')
         }
-    })
-    // We generated a client token for you so you can test out this code
-    // immediately. In a production-ready integration, you will need to
-    // generate a client token on your server (see section below).
+    });
+
+
+
+
+
+
+
 </script>
 <script src="{{ asset('frontend/js/jquery-2.1.4.min.js') }}"></script>
 <script src="{{ asset('frontend/js/jquery.ui.js') }}"></script>
@@ -956,81 +1044,10 @@
 		$("#promo_div").hide();
 	});
 
-	{{--  // interviene SOLO SE non viene specificato nessun ID servizio nell'URL (..2..)
-		$("#select_service_id").change(function() {    
-		    var val = $(this).val();
-		    $("#service_id").val(val);
-		    $.ajax({
-		        url:"{{ url('service_detail') }}",
-		        method:'POST',
-		        _token:"{{ csrf_token() }}",
-		        data:{'service_id':val,'_token':"{{ csrf_token() }}"},
-		        success:function(response) {
-					location.reload();
-		            $("#selected_service_price").val(response.price);
-		            $("#submit-button").val('PAY $'+response.usdprice);
-		            $("#usdprice").val(response.usdprice);
-		            $("#selected_service_name").html(response.name);
-		            $("#selected_service_vat").html(response.vat);
-		            $("#code_error").html('');
-		            $("#code_id").val('');
-		            $("#code").val('');
-		            $('#submit_promo').html('Check Availability');
-		            $('#success_div').hide();
-		            $("#discount_avail").hide();
-		            $("#discount_value").html('');
-		            $("#total_price").html('€'+response.price);
-		            $("#selected_service_amount").html('€'+response.vatprice);
-		            $("#total_price_new").hide();
-		            $("#total_price_value_new").html('');
-		            var total_price_usd = response.usdprice;
-					if(total_price_usd == 0) {
-						$("#braintree-dropin-frame").hide();
-					}
-
-					$('#payment-form').empty();
-					braintree.setup(clientToken, "custom", {
-						paypal: {
-							container: "payment-form",
-							singleUse: true,
-							amount: response.price,
-							currency: 'EUR'
-						},
-						onPaymentMethodReceived: function (obj) {
-							setNonce(obj.nonce);
-						}
-					});
-		        }
-		    }); 
-		});
-	--}}
-
 	function setNonce(nonce) {  
-	    console.log('nonce'+nonce);
+	    console.log('nonce: '+nonce);
 		$("#payment_method_nonce_paypal").val(nonce);
-	    loginPayPalEffettuato = true;
-	    // checkAbilitazioneButtonOrderNow();
 	}
-
-	{{--  // interviene sul campo VAT (partita iva azienda): se campo Company è compilato, setta 'required' al campo VAT 
-		$(document).ready(function() { 
-		    var val = $('[name=company]').val(); // val = nome company
-		    if(val != '') {
-		        $('[name=vat]').attr('required','required');
-		    }else{
-		        $('[name=vat]').attr('required',false);
-		    }
-		});
-
-		$('[name=company]').change(function(){ // come sopra ...
-		   var val = $(this).val(); 
-		    if(val != '') {
-		        $('[name=vat]').attr('required','required');
-		    }else{
-		        $('[name=vat]').attr('required',false);
-		    }
-		});
-	--}}
 
 	$("#submit_promo").click(function(){   // interviene solo all'eventuale submit del promo code
 		var code = $("#code").val();
@@ -1080,7 +1097,7 @@
 						braintree.setup(clientToken, "custom", {
 							onReady: function (integration) {
 								checkout = integration;
-	                            loginPayPalEffettuato = false;
+	                            // loginPayPalEffettuato = false;
 	                            // checkAbilitazioneButtonOrderNow();
 							},
 							paypal: {
@@ -1138,58 +1155,7 @@
 		});  
 	});
 
-	var loginPayPalEffettuato = false;
-
-	//var checkAbilitazioneButtonOrderNow = function() {
-	//    $(".order_now").prop("disabled", !isFormPagamentoValido());
-	//}
-
-	var isFormPagamentoValido = function() {  // true or false
-	    var isValido = true;
-	    // verifica TOS
-	    $("input[type='checkbox'][name='tos']").each(function() {
-	        if(!$(this).is(':checked')) {
-	            isValido = false;
-	        }
-	    });
-
-	    var metodoPagamentoSelezionato = $("input[type='radio'][name='payment_method']:checked").val();
-
-	    if(metodoPagamentoSelezionato == "1") {
-	        // verifica PAYPAL
-	        if(!loginPayPalEffettuato) {
-	            isValido = false;
-	        }
-	    } else if(metodoPagamentoSelezionato == "2") {
-	        // verifica CC
-	        if(
-	            !$("input[name='credit_card_number']").val() ||
-	            !$("input[name='credit_card_cvv']").val() ||
-	            !$("input[name='credit_card_exp_date']").val() ||
-	            !$("input[name='credit_card_postal_code']").val() ||
-	            !$("input[name='credit_card_card_holder']").val()
-	        ) {
-	            isValido = false;
-	        }
-	    }
-	    return isValido;
-	}
-
 	$(function() {
-		console.log('middle');
-	    // $("input[type='checkbox'][name='tos']").change(checkAbilitazioneButtonOrderNow);
-	    // $("input[type='radio'][name='payment_method']").change(checkAbilitazioneButtonOrderNow);
-	    // $("input[name='credit_card_number']").keyup(checkAbilitazioneButtonOrderNow); // keyup = digitazione su tastiera
-	    // $("input[name='credit_card_cvv']").keyup(checkAbilitazioneButtonOrderNow);
-	    // $("input[name='credit_card_exp_date']").keyup(checkAbilitazioneButtonOrderNow);
-	    // $("input[name='credit_card_postal_code']").keyup(checkAbilitazioneButtonOrderNow);
-	    // $("input[name='credit_card_card_holder']").keyup(checkAbilitazioneButtonOrderNow);
-	    $("#payment-form").on("click", "#bt-pp-cancel", function() {
-	        loginPayPalEffettuato = false;
-	    //    checkAbilitazioneButtonOrderNow();
-	    });
-
-	    // checkAbilitazioneButtonOrderNow();
 	    console.log('end --> ok no error');
 	});
 </script>

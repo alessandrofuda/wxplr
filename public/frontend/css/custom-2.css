@@ -837,5 +837,49 @@ a.video-prev {
 	line-height: 15px;
 	text-transform: uppercase;
 }
-
+/*got-pro*/
+#got-pro .got-pro-container {
+	margin-top: 160px;
+}
+#got-pro .got-pro-container .sx {
+	padding-left: 48px;
+	padding-right: 0;
+}
+#got-pro .got-pro-container .dx {
+	overflow: hidden;
+}
+#got-pro .top-heading {
+	color: #055b76;
+	font-family: "Varela Round";
+	font-size: 36px;
+	font-weight: 400;
+	line-height: 46px;
+	text-transform: uppercase
+}
+#got-pro .sub-heading{
+	color: #69ba7a;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 20px;
+	margin-bottom:50px;
+}
+#got-pro .intro{
+	color: #055b76;
+	font-family: "Varela Round";
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 34px;
+	margin-bottom: 80px;
+}
+#got-pro .body {
+	color: #808080;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 30px;
+	margin-bottom: 35px;
+}
+#got-pro .buttons-section .btn.cta {
+	width: 145px;
+	margin-right: 25px;
+}
 

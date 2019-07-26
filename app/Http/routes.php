@@ -244,9 +244,10 @@
 			Route::get('user/dream_check_lab/feedback/{dreamcheck_id}',['as'=>'dreamcheck.lab.submission.fb','uses' => 'ProfessionalKitController@dream_check_lab_submission_feedback']);
 
 			// Got PRO
+			/*Route::get('user/got-pro-intro', array('as'=>'got_pro_intro', 'uses'=>'GotProController@intro'));*/
 			Route::get('user/got-pro', array('as'=>'got_pro', 'uses'=>'GotProController@index'));
-			// Career Ready
-			Route::get('user/career-ready', array('as'=>'career_ready', 'uses'=>'CareerReadyController@index'));
+			// Career Ready / Vic
+			Route::get('user/vic', array('as'=>'vic', 'uses'=>'VicController@index'));
 			// Wow
 			Route::get('user/wow', array('as'=>'wow', 'uses'=>'WowController@index'));
 

@@ -76,43 +76,9 @@
 							<div class="box-description">Take your journey one step further with our GOT Pro: find out exactly where in Europe your profile is most in demand.</div>
 							<div class="box-cta">
 								<a class="btn cta" href="{{ route('got_pro') }}">buy for {{$user_services[App\Service::GOT_PRO]['price'] ?? 'n.a.'}}€</a>
-								<!-- Button trigger modal -->
-								<a type="button" class="how-it-w" data-toggle="modal" data-target="#how-got-pro">
-  									<i class="fas fa-question-circle"></i> How it works
-								</a>
-								<!-- Modal -->
-								<div class="modal fade" id="how-got-pro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-									<div class="modal-dialog" role="document">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-													<span aria-hidden="true">&times;</span>
-												</button>
-												<h4 class="modal-title" id="myModalLabel">Got Pro</h4>
-											</div>
-											<div class="modal-body">
-												<div class="modal-subtitle">How it works</div>
-												<div class="modal-text">
-													<ol>
-														<li>Start the chat.</li>
-														<li>Answer the profiling questions: the virtual consultant will guide you through the conversation.</li>
-														<li>Discover the 3 countries in Europe that best match your professional skills.</li>
-													</ol>
-												</div>
-												<div class="modal-img">
-													<img class="" src="" style="border:1px solid gray; width:100%; height: 200px;">
-												</div>
-												<div class="modal-subtitle">how much is it ?</div>
-												<div class="modal-text">
-													Price: {{$user_services[App\Service::GOT_PRO]['price']}}€
-												</div>
-											</div>
-											<div class="modal-footer">
-												<a type="button" class="btn cta" data-dismiss="modal">Go</a>
-											</div>
-										</div>
-									</div>
-								</div>
+
+								@include('partials.got-pro.how_it_works_modal')
+
 							</div>
 						</div>
 						<div class="col-md-6 dx">
@@ -128,7 +94,7 @@
 							<div class="box-middle">virtual international consultant</div>
 							<div class="box-description">Your best ally to walk you through an international job search journey: 11 steps to prepare your journey.</div>
 							<div class="box-cta">
-								<a class="btn cta" href="{{route('career_ready')}}">buy for {{$user_services[App\Service::VIC]['price']}}€</a>
+								<a class="btn cta" href="{{route('vic')}}">buy for {{$user_services[App\Service::VIC]['price'] ?? 'n.a.'}}€</a>
 
 								@include('partials.vic.how_it_works_modal')
 								

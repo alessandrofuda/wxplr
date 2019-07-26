@@ -151,7 +151,7 @@ class ServiceOrdersController extends CustomBaseController {
 				}
 			}
 
-			$amount = round($amount);
+			$amount = round($amount,2);
 
 			if ($service->price == 0) {
 				if ($service->name == 'Skill Development') {
@@ -190,15 +190,16 @@ class ServiceOrdersController extends CustomBaseController {
 		$service_name	=	$request['service_name'];
 		$service_id		=	$request['service_id'];
 		$payment_method	=	$request['payment_method'];
+
+
+		//validation
 		$rules['name'] = 'required|max:255';
 		$rules['surname'] ='required|max:255';
-
 		if(!Auth::check()) {
 			$rules['email'] = 'required|email|max:255|unique:users';
 			$rules['password'] = 'required|confirmed|min:6';
 		}
-
-		$rules['pan'] = 'required|max:40'; 	// tax code
+		$rules['pan'] = 'required|max:40'; 	// fiscal code
 		$rules['vat'] = 'max:40';		
 		$rules['company'] = 'max:255';		// 'required'
 		$rules['address'] = 'required';
@@ -207,20 +208,18 @@ class ServiceOrdersController extends CustomBaseController {
 		$rules['province'] = 'max:10';
 		$rules['zip_code'] = 'required';
 		$rules['tos'] = 'required';
-
-		if($service_price > 0) {
+		//if($service_price > 0) {
 			//	$rules['payment_method_nonce'] = 'required';
-		}
-
+		//}
 		$messages = [
-			'pan.required' => 'Tax Code field is required.',  // only one custom message
+			'pan.required' => 'Fiscal Code field is required.',  // only one custom message
 		];
-
 		$validator = Validator::make($request->all(),$rules, $messages);		//  form validation
-
 		if ($validator->fails()) {
 			return redirect()->back()->withInput()->withErrors($validator->errors());
 		}
+
+
 
 		$user_data['name'] = $request->get('name');
 		$user_data['surname'] =  $request->get('surname');
@@ -259,6 +258,8 @@ class ServiceOrdersController extends CustomBaseController {
 		if($nonceFromTheClient == null) {
 			$nonceFromTheClient = $request->get("payment_method_nonce");
 		}
+
+		// dd($nonceFromTheClient);
 
 		$service = Service::find($service_id);
 		$original_amount = $service->price;
@@ -436,7 +437,7 @@ class ServiceOrdersController extends CustomBaseController {
 				   'user' => $user_obj,
 				   'discount' => $discount,
 				   'promo_code' => $code,
-				   'vat_price' => round($service->vatprice() * 22/100)
+				   'vat_price' => round($service->vatprice() * 22/100, 2)
 			    ];
 
 			    \Mail::send('emails.service_activation', $mail_data, function ($m) use ($user_obj) {  // invio MAIL notifica pagamento

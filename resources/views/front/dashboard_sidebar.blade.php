@@ -13,27 +13,27 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="{{\Route::getCurrentRoute()->uri() == "user/dashboard" ? "active open" : ""}}">
-          <a href="{{ url('user/dashboard') }}">
-            <span>Dashboard</span> <!--<i class="fa fa-angle-left pull-right"></i>-->
+          <a href="{{ route('user.dashboard') }}">
+            <span>Dashboard</span> 
           </a>
         </li>
         <li class="{{\Route::getCurrentRoute()->uri() == "global_orientation_test_intro" ? "active open" : ""}}">
-            <a href="{{ url('global_orientation_test_intro') }}">
+            <a href="{{ route('got_intro') }}">
               <span>Got</span>
             </a>
         </li>
         <li class="{{\Route::getCurrentRoute()->uri() == "user/got-pro" ? "active open" : ""}}">
-            <a href="{{ url('user/got-pro') }}">
+            <a href="{{ route('got_pro') }}">
               <span>GOT <span style="text-transform: none;">Pro</span></span>
             </a>
         </li>
-        <li class="{{\Route::getCurrentRoute()->uri() == "user/career-ready" ? "active open" : ""}}">
-            <a href="{{ url('user/career-ready') }}{{-- http://eepurl.com/grpRwb --}}">
+        <li class="{{\Route::getCurrentRoute()->uri() == "user/vic" ? "active open" : ""}}">
+            <a href="{{ route('vic') }}{{-- http://eepurl.com/grpRwb --}}">
               <span>VIC</span>
             </a>
         </li>
         <li class="{{\Route::getCurrentRoute()->uri() == "user/wow" ? "active open" : ""}}">
-            <a href="http://eepurl.com/grpRwb{{-- url('user/wow') --}}">
+            <a href="http://eepurl.com/grpRwb{{-- route('wow') --}}">
               <span>WOW</span>
             </a>
         </li>
