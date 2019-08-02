@@ -254,13 +254,13 @@ class ServiceOrdersController extends CustomBaseController {
 		}
 
 		$nonceFromTheClient = $request->get("payment_method_nonce_paypal");
-
-		if($nonceFromTheClient == null) {
-			$nonceFromTheClient = $request->get("payment_method_nonce");  // viene iniettata in automatico da braintree ??
+		
+		if($nonceFromTheClient == null ) {
+			$nonceFromTheClient = $request->get("payment_method_nonce"); 
 		}
 
-		// dd($nonceFromTheClient);
-
+		dump($nonceFromTheClient);
+		
 		$service = Service::find($service_id);
 		$original_amount = $service->price;
 		$amount = $service->usdprice($service->currency_code,'USD',$service->price);
@@ -294,13 +294,26 @@ class ServiceOrdersController extends CustomBaseController {
 		
 		$amount = round($amount, 2);
 
-		$result = \Braintree_Transaction::sale([  // !!!  elaborazione transazione !!!
+		dump($nonceFromTheClient);
+		
+		$result = \Braintree_Transaction::sale([  // !!!  TRANSACTION !!!
 			'amount' => $amount,
 			'paymentMethodNonce' => $nonceFromTheClient,
 			'options' => [
 				'submitForSettlement' => True,
 			]
 		]);
+
+
+
+
+
+		dd($result);
+
+
+
+
+
 
 		Log::info("RESULT: " . print_r($result, true));
 
@@ -609,7 +622,7 @@ class ServiceOrdersController extends CustomBaseController {
 		}
 	}
 
-	public function checkout(Request $request) {
+	/*public function checkout(Request $request) {
 		$nonceFromTheClient = $request->get("payment_method_nonce");
 		$result = \Braintree_Transaction::sale([
 			'amount' => '10.00',
@@ -618,7 +631,7 @@ class ServiceOrdersController extends CustomBaseController {
 				'submitForSettlement' => True,
 			]
 		]);
-	}
+	}*/
     protected function getCredentialsConsultant(Request $request)
     {
         return $request->only('email', 'password');

@@ -131,8 +131,8 @@
 
 	//Partner page
 	Route::any('/partners','PagesController@partners');
-	Route::post('service/payment/checkout','ServiceOrdersController@checkout');
-	/*Route::post('service/payment/process', array('as' => 'payment_process', 'uses' => 'PaypalController@postPayment'));*/
+	// Route::post('service/payment/checkout','ServiceOrdersController@checkout');
+	// Route::post('service/payment/process', array('as' => 'payment_process', 'uses' => 'PaypalController@postPayment'));
 	Route::post('service/payment/process', array('as' => 'payment_process', 'uses' => 'ServiceOrdersController@service_payment_process_braintree'));
 	// returm url is required for the paypal direct payment only
 	Route::get('service/payment/return_url', array('as' => 'paypal_return_url', 'uses' => 'PaypalController@return_url'));

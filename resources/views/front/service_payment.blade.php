@@ -1,5 +1,5 @@
-{{-- @ extends ('front.new_layout') --}}
 @extends('layouts.clean_layout')
+
 
 @section('content')
 
@@ -65,9 +65,11 @@
 			</div>
 		</div>
 	</div>
-	<form id="checkout" class="" action="{{ $url }}" method="post">
+	<form id="checkout-form" class="" action="{{ $url }}" method="post">
 		{{ csrf_field() }}
-		<input type="hidden" id="payment_method_nonce_paypal" name="payment_method_nonce_paypal">
+		<input type="hidden" id="payment_method_nonce_paypal" name="payment_method_nonce_paypal" />
+		<input type="hidden" id="nonce" name="payment_method_nonce" />
+
 		@if(isset($service))
 			<input type="hidden" id="selected_service_price"  name="amount" value="@if(is_object($service) && !empty($service)){{ $amount }}@endif">
 			<input type="hidden" name="service_name" value="@if(is_object($service) && !empty($service)){{ $service->name }}@endif">
@@ -262,49 +264,49 @@
 		<div class="row payment-method-container">
 			<div class="col-md-8 col-md-offset-2 boxed">
 				<div class="title-box payment-method-title">Payment Method</div>
-				@if($amount > 0)
-					<div id="payment-method-div" class="form-group">
-                        <div class="payment-method-radios">
-                        	<input checked type="radio" value="1" id="paypal-method" name="payment_method"> Paypal <input id="card-method" type="radio" value="2" name="payment_method" style="margin-left: 25px;"> Credit Card
-                        </div>
-                    </div>
-                    <br/>
-                    <div id="payment-form" class="text-center"></div><!--js paypal button injection-->
-                    <div id="payment-form-card">
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="credit_card_number">Number</label>
-                                <input id="credit_card_number" name="credit_card_number" data-braintree-name="number" class="form-control" placeholder="4111111111111111">
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="credit_card_cvv">CVV</label>
-                                <input id="credit_card_cvv" name="credit_card_cvv" data-braintree-name="cvv" class="form-control" placeholder="100">
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="credit_card_exp_date">Expiration date</label>
-                                <input id="credit_card_exp_date" name="credit_card_exp_date" data-braintree-name="expiration_date" class="form-control" placeholder="10/20">
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="form-group">
-                                <label for="credit_card_postal_code">Postal code</label>
-                                <input id="credit_card_postal_code" name="credit_card_postal_code" data-braintree-name="postal_code" class="form-control" placeholder="94107">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label for="credit_card_card_holder">Card holder</label>
-                                <input id="credit_card_card_holder" name="credit_card_card_holder" data-braintree-name="cardholder_name" class="form-control" placeholder="John Smith">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div>
-                    <hr/>
-				@endif
+					@if($amount > 0)
+						<div id="payment-method-div" class="form-group">
+	                        <div class="payment-method-radios">
+	                        	<input type="radio" value="1" id="paypal-method" name="payment_method"> Paypal <input id="card-method" type="radio" value="2" name="payment_method" style="margin-left: 25px;"> Credit Card
+	                        </div>
+	                    </div>
+	                    <br/>
+	                    <div id="payment-form" class="text-center"></div><!--js paypal button injection-->
+	                    <div id="payment-form-card">
+	                        <div class="col-md-6 col-sm-6 col-xs-12">
+	                            <div class="form-group">
+	                                <label for="credit_card_number">Number</label>
+	                                <input id="credit_card_number" data-braintree-name="number" class="form-control" placeholder="4111111111111111">
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-6 col-xs-12">
+	                            <div class="form-group">
+	                                <label for="credit_card_cvv">CVV</label>
+	                                <input id="credit_card_cvv" data-braintree-name="cvv" class="form-control" placeholder="100">
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-6 col-xs-12">
+	                            <div class="form-group">
+	                                <label for="credit_card_exp_date">Expiration date</label>
+	                                <input id="credit_card_exp_date" data-braintree-name="expiration_date" class="form-control" placeholder="10/20">
+	                            </div>
+	                        </div>
+	                        <div class="col-md-6 col-sm-6 col-xs-12">
+	                            <div class="form-group">
+	                                <label for="credit_card_postal_code">Postal code</label>
+	                                <input id="credit_card_postal_code" data-braintree-name="postal_code" class="form-control" placeholder="94107">
+	                            </div>
+	                        </div>
+	                        <div class="col-md-12">
+	                            <div class="form-group">
+	                                <label for="credit_card_card_holder">Card holder</label>
+	                                <input id="credit_card_card_holder" data-braintree-name="cardholder_name" class="form-control" placeholder="John Smith">
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="clearfix"></div>
+	                    <hr/>
+					@endif
 
 				<div class="ligle_terms servic_Payment_method">
                     <span class="paymentOption_div">
@@ -341,7 +343,7 @@
 				</div>
 				<div class="get-btn">
 					@if(isset($service))
-	                    <button value="Pay $@if(is_object($service) && !empty($service)){{ $service->usdprice($service->currency_type, 'USD', $service->price) }}@endif" type="submit" class="order_now">
+	                    <button type="submit" value="Pay" class="order_now">
 	                        @if(is_object($service) && !empty($service))
 	                            Get Now
 	                        @endif
@@ -868,55 +870,45 @@
 	$clientToken = Braintree_ClientToken::generate();
 @endphp
 
-<script src="https://js.braintreegateway.com/js/braintree-2.27.0.min.js"></script>
+
+
+
+
+
+<script src="{{ asset('frontend/js/jquery-2.1.4.min.js') }}"></script>
+<script src="{{ asset('frontend/js/jquery.ui.js') }}"></script>
+<!--script src="https://js.braintreegateway.com/js/braintree-2.27.0.min.js"></script-->
+<script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
+<!--script src="https://js.braintreegateway.com/web/dropin/1.19.0/js/dropin.min.js"></script-->
 <script>
 	console.log('start');
+
     var clientToken = "{{ $clientToken }}";
     var price = $('#selected_service_price').val();
+    var paymentFormCard = $('#payment-form-card');
+    var paymentFormPaypal = $('#payment-form');
     var checkout;
 
-
+    paymentFormPaypal.hide();
+    paymentFormCard.hide();
 
 	{{-- https://developers.braintreepayments.com/guides/credit-cards/client-side/javascript/v2 --}}
 
 
-	// $('#payment-form').empty();
- //    braintree.setup(clientToken, 'custom', {id: 'checkout'});
- //    braintree.setup(clientToken, "custom", {
- //        onReady: function (integration) {
- //            checkout = integration;
- //        },
- //        //id: 'checkout',
- //        paypal: {
- //            container: "payment-form",
- //            singleUse: true,
- //            amount: price,
- //            currency: 'EUR',
- //        },
- //        onPaymentMethodReceived: function (obj) {
- //            setNonce(obj.nonce);
- //        }
- //    });
-
-
-
-
-
-
-
-    if($("#paypal-method").is(":checked")) {
-      	//  $('form').attr('id','');
+ 	// if paypal checked on FIRST page load ..
+    /*if($("#paypal-method").is(":checked")) {
+      	// $('form').attr('id','');
         $("#payment-form").show();
         $("#payment-form-card").hide();
 
         //new
         $('#payment-form').empty();
-	    braintree.setup(clientToken, 'custom', {id: 'checkout'});
+	    //braintree.setup(clientToken, 'custom', {id: 'checkout-form'});
 	    braintree.setup(clientToken, "custom", {
+	    	id: 'checkout-form',
 	        onReady: function (integration) {
 	            checkout = integration;
 	        },
-	        //id: 'checkout',
 	        paypal: {
 	            container: "payment-form",
 	            singleUse: true,
@@ -927,56 +919,54 @@
 	            setNonce(obj.nonce);
 	        }
 	    });
-    }
+    }*/
 
-
-    if($("#card-method").is(":checked")) {
-       // $('form').attr('id','checkout');
+    // if credit card checked on FIRST page load..
+    /*if($("#card-method").is(":checked")) {
+        // $('form').attr('id','checkout');
         $("#payment-form-card").show();
         $("#payment-form").hide();
         $("#payment-form-card").find('input').attr('required', true);
         
         //new
-        // checkout.teardown(function () {
-        //     checkout = null;
-        //     // braintree.setup can safely be run again!
-        // });
-        var checkout;
-        braintree.setup(clientToken, 'custom', {id: 'checkout'});
-        braintree.setup(clientToken, 'custom', {
-        	onReady: function (integration) {
-            	checkout = integration;
-        	},
-        	//id: 'checkout',
-        	onPaymentMethodReceived: function (obj) {
-	            //setNonce(obj.nonce);
-	            $("#payment_method_nonce").val(obj.nonce);
-	        }
-    	});
-    }
+        //braintree.setup(clientToken, 'custom', {id: 'checkout-form'});
+	    braintree.setup(clientToken, 'custom', {
+	    	id: 'checkout-form',
+	      	// onReady: function (integration) {
+	       	//     checkout = integration;
+	       	// },
+	       	onPaymentMethodReceived: function (obj) {
+		        //setNonce(obj.nonce);
+		        $("#payment_method_nonce").val(obj.nonce);
+		    }
+	    });
+    }*/
 
 
 
 
 
 
-
+    // radio buttons --> ON CHANGE ...
     $("[name=payment_method]").change(function () {
         if($("#paypal-method").is(":checked")) {
-        	console.log('paypal method selez');
-       		// $('form').attr('id','');
-            $("#payment-form").show();
-            $("#payment-form-card").hide();
-            $("#payment-form-card").find('input').attr('required', false);
+            paymentFormPaypal.show();
+            paymentFormCard .hide();
+            paymentFormCard.find('input').attr('required', false);
+            paymentFormPaypal.empty();
 
-            //new
-            $('#payment-form').empty();
-		    braintree.setup(clientToken, 'custom', {id: 'checkout'});
+            if(checkout) {
+            	checkout.teardown(function () {
+	            	checkout = null;
+	            	// braintree.setup can safely be run again!
+	        	});
+            }
+            
+            braintree.setup(clientToken, 'custom', {id: 'checkout-form'});
 		    braintree.setup(clientToken, "custom", {
 		        onReady: function (integration) {
 		            checkout = integration;
 		        },
-		        //id: 'checkout',
 		        paypal: {
 		            container: "payment-form",
 		            singleUse: true,
@@ -984,51 +974,44 @@
 		            currency: 'EUR',
 		        },
 		        onPaymentMethodReceived: function (obj) {
-		            setNonce(obj.nonce);
+		            setNoncePaypalInTheForm(obj.nonce);
 		        }
 		    });
-
         }
+
+
+
         if($("#card-method").is(":checked")) {
-        	console.log('carta credito selez');
-            $("#payment-form-card").show();
-            $("#payment-form").hide();
-			$("#payment-form-card").find('input').attr('required', true);
+            paymentFormPaypal.empty();
+            paymentFormPaypal.hide();
+            paymentFormCard.show();
+			paymentFormCard.find('input').attr('required', true);
 
-			//new
-
-            // checkout.teardown(function () {
-            //     checkout = null;
-            //     // braintree.setup can safely be run again!
-            // });
-            var checkout;
-            //braintree.setup(clientToken, 'custom', {id: 'checkout'});
+			if(checkout) {
+            	checkout.teardown(function () {
+	            	checkout = null;
+	            	// braintree.setup can safely be run again!
+	        	});
+            }
+            
+            braintree.setup(clientToken, 'custom', {id: 'checkout-form'});
             braintree.setup(clientToken, 'custom', { 
-            	id: 'checkout',
-          //   	onReady: function (integration) {
-          //       	checkout = integration;
-          //   	},
-          //   	onPaymentMethodReceived: function (obj) {
-		        //     //setNonce(obj.nonce);
-		        //     $("#payment_method_nonce_paypal").val('');
-		        //     console.log('Val di paypal nonce: ' + $('#payment_method_nonce_paypal').val());
-		        //     $("#payment_method_nonce").val(obj.nonce);
-		        //     console.log('Val di CC nonce: ' + $('#payment_method_nonce').val());
-		        // }
+          		onReady: function (integration) {
+          			checkout = integration;
+          		},
+            	onPaymentMethodReceived: function (obj) {
+		            setNonceCreditCardInTheForm(obj.nonce);  
+		        }
             });
-            console.log('braintree setup ok! per carta di credito')
         }
+
+
+
     });
 
 
 
-
-
-
-
 </script>
-<script src="{{ asset('frontend/js/jquery-2.1.4.min.js') }}"></script>
-<script src="{{ asset('frontend/js/jquery.ui.js') }}"></script>
 <script>
 
 	$.ajaxSetup({
@@ -1044,9 +1027,15 @@
 		$("#promo_div").hide();
 	});
 
-	function setNonce(nonce) {  
-	    console.log('nonce: '+nonce);
-		$("#payment_method_nonce_paypal").val(nonce);
+	function setNoncePaypalInTheForm(nonce) {  
+	    //console.log('Paypal nonce: '+nonce);
+	    $('input[name="payment_method_nonce"]').val('');
+		$('input[name="payment_method_nonce_paypal"]').val(nonce);
+	}
+	function setNonceCreditCardInTheForm(nonce) {  
+	    //console.log('Credit Card nonce: '+nonce);
+	    $('input[name="payment_method_nonce_paypal"]').val('');
+		$('input[name="payment_method_nonce"]').val(nonce);
 	}
 
 	$("#submit_promo").click(function(){   // interviene solo all'eventuale submit del promo code
@@ -1097,8 +1086,6 @@
 						braintree.setup(clientToken, "custom", {
 							onReady: function (integration) {
 								checkout = integration;
-	                            // loginPayPalEffettuato = false;
-	                            // checkAbilitazioneButtonOrderNow();
 							},
 							paypal: {
 								container: "payment-form",

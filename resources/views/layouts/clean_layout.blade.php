@@ -84,9 +84,7 @@
 		                    jQuery("#user_timezone").val(timezone);
 		                }
 		            })
-
 		        }
-
 		    });
 		</script>
 	</body>
