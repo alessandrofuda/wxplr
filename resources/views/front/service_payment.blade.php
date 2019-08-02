@@ -887,7 +887,8 @@
     var price = $('#selected_service_price').val();
     var paymentFormCard = $('#payment-form-card');
     var paymentFormPaypal = $('#payment-form');
-    var checkout;
+    var checkoutPP;
+    var checkoutCC;
 
     paymentFormPaypal.hide();
     paymentFormCard.hide();
@@ -955,9 +956,9 @@
             paymentFormCard.find('input').attr('required', false);
             paymentFormPaypal.empty();
 
-            if(checkout) {
-            	checkout.teardown(function () {
-	            	checkout = null;
+            if(checkoutCC) {
+            	checkoutCC.teardown(function () {
+	            	checkoutCC = null;
 	            	// braintree.setup can safely be run again!
 	        	});
             }
@@ -965,7 +966,7 @@
             braintree.setup(clientToken, 'custom', {id: 'checkout-form'});
 		    braintree.setup(clientToken, "custom", {
 		        onReady: function (integration) {
-		            checkout = integration;
+		            checkoutPP = integration;
 		        },
 		        paypal: {
 		            container: "payment-form",
@@ -979,17 +980,17 @@
 		    });
         }
 
-
-
         if($("#card-method").is(":checked")) {
-            paymentFormPaypal.empty();
-            paymentFormPaypal.hide();
+        	if(paymentFormPaypal.lenght) {
+        		paymentFormPaypal.hide();
+        		paymentFormPaypal.empty();
+        	}
             paymentFormCard.show();
 			paymentFormCard.find('input').attr('required', true);
 
-			if(checkout) {
-            	checkout.teardown(function () {
-	            	checkout = null;
+			if(checkoutPP) {
+            	checkoutPP.teardown(function () {
+	            	checkoutPP = null;
 	            	// braintree.setup can safely be run again!
 	        	});
             }
@@ -997,16 +998,13 @@
             braintree.setup(clientToken, 'custom', {id: 'checkout-form'});
             braintree.setup(clientToken, 'custom', { 
           		onReady: function (integration) {
-          			checkout = integration;
+          			checkoutCC = integration;
           		},
             	onPaymentMethodReceived: function (obj) {
 		            setNonceCreditCardInTheForm(obj.nonce);  
 		        }
             });
         }
-
-
-
     });
 
 

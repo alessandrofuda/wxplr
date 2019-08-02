@@ -258,8 +258,6 @@ class ServiceOrdersController extends CustomBaseController {
 		if($nonceFromTheClient == null ) {
 			$nonceFromTheClient = $request->get("payment_method_nonce"); 
 		}
-
-		dump($nonceFromTheClient);
 		
 		$service = Service::find($service_id);
 		$original_amount = $service->price;
@@ -294,8 +292,6 @@ class ServiceOrdersController extends CustomBaseController {
 		
 		$amount = round($amount, 2);
 
-		dump($nonceFromTheClient);
-		
 		$result = \Braintree_Transaction::sale([  // !!!  TRANSACTION !!!
 			'amount' => $amount,
 			'paymentMethodNonce' => $nonceFromTheClient,
@@ -308,7 +304,7 @@ class ServiceOrdersController extends CustomBaseController {
 
 
 
-		dd($result);
+		// dd($result);
 
 
 
