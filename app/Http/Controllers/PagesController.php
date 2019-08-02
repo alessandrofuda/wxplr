@@ -443,7 +443,7 @@ class PagesController extends CustomBaseController {
 		$data['user_unpaid_services'] = $user_unpaid_services;
 		$data['notifications'] = $all_notifications;
 		$data['got_compiled'] = $got_compiled;
-		$data['got_outcome_data'] = $got_outcome_data;
+		$data['got_outcome_data'] = $got_outcome_data ?? null;
 
 		return view('client.client_dashboard',$data);
 
