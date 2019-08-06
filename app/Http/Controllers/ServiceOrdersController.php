@@ -95,6 +95,7 @@ class ServiceOrdersController extends CustomBaseController {
 				$code_arr['total_usd'] = round($total, 2);
 
 				// Log::info("RET ARRAY: " . print_r($code_arr, true));
+
 				return $code_arr;
 			}
 		}
@@ -180,9 +181,6 @@ class ServiceOrdersController extends CustomBaseController {
 	public function service_ckeck_code(Request $request) {
 		return redirect('service/payment/'.$request->get('code'))->withInput();
 	}
-
-
-
 
 
 	public function service_payment_process_braintree(Request $request) {
@@ -283,11 +281,11 @@ class ServiceOrdersController extends CustomBaseController {
 			$used_count = $code_arr['used_count'];
 			$discount = round($code_arr['amount'], 2);
 
-			$original_amount = $service->price - $discount;
-			$original_amount = round($original_amount, 2);
+			$discounted_amount = $service->price - $discount;
+			$discounted_amount = round($discounted_amount, 2);
 
-			$amount = Service::usdprice($service->currency_code, 'USD', $original_amount);
-			$amount = $original_amount;
+			//$amount = Service::usdprice($service->currency_code, 'USD', $original_amount);
+			$amount = $discounted_amount;
 		}
 		
 		$amount = round($amount, 2);
@@ -300,15 +298,8 @@ class ServiceOrdersController extends CustomBaseController {
 			]
 		]);
 
-
-
-
+		// verifica codice sconto
 		//dd($result);
-
-
-
-
-
 
 		Log::info("RESULT: " . print_r($result, true));
 

@@ -67,7 +67,6 @@
 	</div>
 	<form id="checkout-form" class="" action="{{ $url }}" method="post">
 		{{ csrf_field() }}
-		<!--input type="hidden" id="payment_method_nonce_paypal" name="payment_method_nonce_paypal" /-->
 		<input type="hidden" id="nonce" name="payment_method_nonce" />
 
 		@if(isset($service))
@@ -225,35 +224,38 @@
 						<div class="prices-container text-right">
 							<div class="first-row spacer" style="visibility: hidden;">AAA</div>
 							@if(isset($service))
-								<div class="price">
+								<div class="price original_price">
 									{{ $service != null ? '€ '.$service->price : "" }}
 								</div>
 								<div class="vat-disclaimer">
 									Include VAT 22% {{  $service != null ? '€ '.round(($service->vatprice(true) * 22/100), 2) : "" }}
 								</div>
+								<div class="discounted_price">
+									Discounted Price: <span class="price">€ 9089</span>
+								</div>
 							@elseif(isset($video))
-								<div class="price">
+								<div class="price original_price">
 									{{  '€'.$video->price  }}
 								</div>
 								<div class="vat-disclaimer">
 									Include VAT 22% {{ '€ '.round(($video->vatprice() * 22/100), 2)  }}
 								</div>
 							@elseif(isset($event))
-								<div class="price">
+								<div class="price original_price">
 									{{  '€'.$event->price  }}
 								</div>
 								<div class="vat-disclaimer">
 									Include VAT 22% {{ '€ '.round(($event->vatprice() * 22/100), 2)  }}
 								</div>
 							@elseif(isset($package))
-								<div class="price">
+								<div class="price original_price">
 									{{  '€'.$package->price  }}
 								</div>
 								<div class="vat-disclaimer">
 									Include VAT 22% {{ '€ '.round(($package->vatprice() * 22/100), 2)  }}
 								</div>
 							@else
-								<div class="price">n.a.</div>
+								<div class="price original_price">n.a.</div>
 								<div class="vat-disclaimer">n.a.</div>
 							@endif
 						</div>
@@ -1090,6 +1092,8 @@
 	    $('input[name="payment_method_nonce_paypal"]').val('');
 		$('input[name="payment_method_nonce"]').val(nonce);
 	}*/
+	
+	$('.discounted_price').hide();
 
 	$("#submit_promo").click(function(){   // interviene solo all'eventuale submit del promo code
 		var code = $("#code").val();
@@ -1136,7 +1140,9 @@
 						$("#braintree-dropin-frame").remove();
 
 						$('#payment-form').empty();
-						braintree.setup(clientToken, "custom", {
+
+						// OLD JS CODE
+						/*braintree.setup(clientToken, "custom", {
 							onReady: function (integration) {
 								checkout = integration;
 							},
@@ -1149,6 +1155,34 @@
 							onPaymentMethodReceived: function (obj) {
 								setNonce(obj.nonce);
 							}
+						});*/
+
+						// new for promo code
+						braintree.dropin.create({
+							authorization: client_token,
+							selector: '#bt-dropin',
+							paypal: {
+								flow: 'checkout',
+								amount: total_price_usd, 
+								currency: 'EUR'
+							}
+						}, function (createErr, instance) {
+							if (createErr) {
+								console.log('Create Error', createErr);
+								return;
+							}
+							form.addEventListener('submit', function (event) {
+								event.preventDefault();
+								instance.requestPaymentMethod(function (err, payload) {
+							  		if (err) {
+							    		console.log('Request Payment Method Error', err);
+							    		return;
+							  		}
+							  		// Add the nonce to the form and submit
+							  		document.querySelector('#nonce').value = payload.nonce;
+							  		form.submit();
+								});
+							});
 						});
 
 						if($("#card-method").is(":checked")) {
@@ -1156,11 +1190,11 @@
 							$("#payment-form-card").show();
 						}
 					} else {
-	                    // When you are ready to tear down your integration
-		                checkout.teardown(function () {
-		                    checkout = null;
-		                    // braintree.setup can safely be run again!
-		                });
+	                 //    // When you are ready to tear down your integration
+		                // checkout.teardown(function () {
+		                //     checkout = null;
+		                //     // braintree.setup can safely be run again!
+		                // });
 						$("input[type='radio'][name='payment_method']").removeAttr('checked');
 						$("#payment-method-div").hide();
 						$("#payment-form-card").hide();
@@ -1170,6 +1204,16 @@
 		                $("#credit-card-number").val(0);
 		                $("#expiration").val(20 / 2020);
 					}
+
+					// rewrite price in page
+					$('.prices-container .original_price').css({
+						'text-decoration': 'line-through',
+						'color': '#cccccc',
+					});
+					$('.discounted_price').show();
+					$('.discounted_price .price').text('€ '+total_price_usd);
+
+
 				} else {
 					$('#success_div').hide();
 					$('#submit_promo').text('Check Availability');
