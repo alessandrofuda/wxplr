@@ -30,6 +30,7 @@ use App\UserAddress;
 use App\Event;
 use Session;
 use Braintree_TestHelper;
+use Braintree_Transaction;
 
 use Illuminate\Support\Facades\Log;
 
@@ -253,12 +254,11 @@ class ServiceOrdersController extends CustomBaseController {
 			$user_obj = User::where('email', $user_data['email'])->first();
 		}
 
-		$nonceFromTheClient = $request->get("payment_method_nonce_paypal");
-		
-		if($nonceFromTheClient == null ) {
-			$nonceFromTheClient = $request->get("payment_method_nonce"); 
-		}
-		
+		//$nonceFromTheClient = $request->get("payment_method_nonce_paypal");
+		//if($nonceFromTheClient == null ) {
+		$nonceFromTheClient = $request->get("payment_method_nonce"); 
+		//}
+
 		$service = Service::find($service_id);
 		$original_amount = $service->price;
 		$amount = $service->usdprice($service->currency_code,'USD',$service->price);
@@ -303,8 +303,7 @@ class ServiceOrdersController extends CustomBaseController {
 
 
 
-
-		// dd($result);
+		dd($result);
 
 
 

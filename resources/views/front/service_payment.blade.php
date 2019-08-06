@@ -67,7 +67,7 @@
 	</div>
 	<form id="checkout-form" class="" action="{{ $url }}" method="post">
 		{{ csrf_field() }}
-		<input type="hidden" id="payment_method_nonce_paypal" name="payment_method_nonce_paypal" />
+		<!--input type="hidden" id="payment_method_nonce_paypal" name="payment_method_nonce_paypal" /-->
 		<input type="hidden" id="nonce" name="payment_method_nonce" />
 
 		@if(isset($service))
@@ -264,14 +264,14 @@
 		<div class="row payment-method-container">
 			<div class="col-md-8 col-md-offset-2 boxed">
 				<div class="title-box payment-method-title">Payment Method</div>
-					@if($amount > 0)
+					{{-- @if($amount > 0)
 						<div id="payment-method-div" class="form-group">
 	                        <div class="payment-method-radios">
 	                        	<input type="radio" value="1" id="paypal-method" name="payment_method"> Paypal <input id="card-method" type="radio" value="2" name="payment_method" style="margin-left: 25px;"> Credit Card
 	                        </div>
 	                    </div>
 	                    <br/>
-	                    <div id="payment-form" class="text-center"></div><!--js paypal button injection-->
+	                    <div id="payment-form" class="text-center"></div>< ! - -js paypal button injection - - >
 	                    <div id="payment-form-card">
 	                        <div class="col-md-6 col-sm-6 col-xs-12">
 	                            <div class="form-group">
@@ -306,8 +306,11 @@
 	                    </div>
 	                    <div class="clearfix"></div>
 	                    <hr/>
-					@endif
-
+					@endif --}}
+					<div class="bt-drop-in-wrapper">
+                        <div id="bt-dropin"></div>
+                        {{-- <div id="paypal-button"></div> --}}
+                    </div>
 				<div class="ligle_terms servic_Payment_method">
                     <span class="paymentOption_div">
                         <input   type="checkbox" required name="tos">
@@ -877,9 +880,112 @@
 
 <script src="{{ asset('frontend/js/jquery-2.1.4.min.js') }}"></script>
 <script src="{{ asset('frontend/js/jquery.ui.js') }}"></script>
-<!--script src="https://js.braintreegateway.com/js/braintree-2.27.0.min.js"></script-->
-<script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script>
-<!--script src="https://js.braintreegateway.com/web/dropin/1.19.0/js/dropin.min.js"></script-->
+<!--script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script-->
+<script src="https://js.braintreegateway.com/web/dropin/1.19.0/js/dropin.min.js"></script>
+
+{{-- <!-- Load PayPal's checkout.js Library. -->
+<script src="https://www.paypalobjects.com/api/checkout.js" data-version-4 log-level="warn"></script>
+<!-- Load the client component. -->
+<script src="https://js.braintreegateway.com/web/3.50.0/js/client.min.js"></script>
+<!-- Load the PayPal Checkout component. -->
+<script src="https://js.braintreegateway.com/web/3.50.0/js/paypal-checkout.min.js"></script> --}}
+
+<script>
+    var form = document.querySelector('#checkout-form');
+    var client_token = "{{ $clientToken }}";
+    var price = $('#selected_service_price').val();
+
+    braintree.dropin.create({
+      authorization: client_token,
+      selector: '#bt-dropin',
+      paypal: {
+        flow: 'checkout',
+        amount: price, 
+        currency: 'EUR'
+      }
+    }, function (createErr, instance) {
+      if (createErr) {
+        console.log('Create Error', createErr);
+        return;
+      }
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        instance.requestPaymentMethod(function (err, payload) {
+          if (err) {
+            console.log('Request Payment Method Error', err);
+            return;
+          }
+          // Add the nonce to the form and submit
+          document.querySelector('#nonce').value = payload.nonce;
+          form.submit();
+        });
+      });
+    });
+
+
+
+/* // PAYPAL  BLOCK
+	// Create a client.
+	braintree.client.create({
+	  authorization: client_token
+	}, function (clientErr, clientInstance) {
+
+	  // Stop if there was a problem creating the client.
+	  // This could happen if there is a network error or if the authorization
+	  // is invalid.
+	  if (clientErr) {
+	    console.error('Error creating client:', clientErr);
+	    return;
+	  }
+
+	  // Create a PayPal Checkout component.
+	  braintree.paypalCheckout.create({
+	    client: clientInstance
+	  }, function (paypalCheckoutErr, paypalCheckoutInstance) {
+
+	    // Stop if there was a problem creating PayPal Checkout.
+	    // This could happen if there was a network error or if it's incorrectly
+	    // configured.
+	    if (paypalCheckoutErr) {
+	      console.error('Error creating PayPal Checkout:', paypalCheckoutErr);
+	      return;
+	    }
+
+	    // Set up PayPal with the checkout.js library
+	    paypal.Button.render({
+	      env: 'sandbox',   //'production' or 'sandbox'
+
+	      payment: function () {
+	        return paypalCheckoutInstance.createPayment({
+	          // Your PayPal options here. For available options, see
+	          // http://braintree.github.io/braintree-web/current/PayPalCheckout.html#createPayment
+	        });
+	      },
+
+	      onAuthorize: function (data, actions) {
+	        return paypalCheckoutInstance.tokenizePayment(data, function (err, payload) {
+	          // Submit `payload.nonce` to your server.
+	        });
+	      },
+
+	      onCancel: function (data) {
+	        console.log('checkout.js payment cancelled', JSON.stringify(data, 0, 2));
+	      },
+
+	      onError: function (err) {
+	        console.error('checkout.js error', err);
+	      }
+	    }, '#paypal-button').then(function () {
+	      // The PayPal button will be rendered in an html element with the id
+	      // `paypal-button`. This function will be called when the PayPal button
+	      // is set up and ready to be used.
+	    });
+
+	  });
+
+	});*/
+</script>
+
 <script>
 	console.log('start');
 
@@ -887,8 +993,7 @@
     var price = $('#selected_service_price').val();
     var paymentFormCard = $('#payment-form-card');
     var paymentFormPaypal = $('#payment-form');
-    var checkoutPP;
-    var checkoutCC;
+    var PaypalInstance;
 
     paymentFormPaypal.hide();
     paymentFormCard.hide();
@@ -949,28 +1054,33 @@
 
 
     // radio buttons --> ON CHANGE ...
-    $("[name=payment_method]").change(function () {
+    /*$("[name=payment_method]").change(function () {
+    	
+    	//braintree.setup(clientToken, 'custom', {id: 'checkout-form'});
+
         if($("#paypal-method").is(":checked")) {
             paymentFormPaypal.show();
             paymentFormCard .hide();
             paymentFormCard.find('input').attr('required', false);
             paymentFormPaypal.empty();
 
-            if(checkoutCC) {
-            	checkoutCC.teardown(function () {
-	            	checkoutCC = null;
-	            	// braintree.setup can safely be run again!
-	        	});
-            }
-            
-            braintree.setup(clientToken, 'custom', {id: 'checkout-form'});
+          	// if(checkoutCC) {
+          	// 		checkoutCC.teardown(function () {
+	        //    		checkoutCC = null;
+	        //    		// braintree.setup can safely be run again!
+	        // 		});
+          	// }
+            //var s = (function() {
+        	braintree.setup(clientToken, 'custom', {id: 'checkout-form'});
 		    braintree.setup(clientToken, "custom", {
-		        onReady: function (integration) {
-		            checkoutPP = integration;
+		        onReady: function (instance) {
+		            	PaypalInstance = instance;
+		        //     	checkoutPP = true;
+		        		return PaypalInstance;
 		        },
 		        paypal: {
 		            container: "payment-form",
-		            singleUse: true,
+		            singleUse: false,
 		            amount: price,
 		            currency: 'EUR',
 		        },
@@ -978,34 +1088,64 @@
 		            setNoncePaypalInTheForm(obj.nonce);
 		        }
 		    });
+            //});
+            
         }
 
         if($("#card-method").is(":checked")) {
-        	if(paymentFormPaypal.lenght) {
+        	// location.reload();
+        	// $('#card-method').trigger('click');
+        	//console.log(PaypalSetup);
+        	if(paymentFormPaypal.lenght > 0) {
+        		console.log('empty paypal form');
         		paymentFormPaypal.hide();
         		paymentFormPaypal.empty();
         	}
             paymentFormCard.show();
 			paymentFormCard.find('input').attr('required', true);
 
-			if(checkoutPP) {
-            	checkoutPP.teardown(function () {
-	            	checkoutPP = null;
-	            	// braintree.setup can safely be run again!
-	        	});
-            }
-            
-            braintree.setup(clientToken, 'custom', {id: 'checkout-form'});
+			// if(checkoutPP == true) {
+			// 	console.log('richiamato teardown');
+   			//  checkout.teardown(function () {
+	  		//      checkout = null;
+	  		//      // braintree.setup can safely be run again!
+	  		// 	});
+   			// } 
+        	//console.log('setup braintree for CC');
+        	//if(paymentFormPaypal.lenght) {
+        		
+        		
+        		//braintree.setup(clientToken, 'custom', {id: 'checkout-form'}).teardown();
+        		if(PaypalInstance) {
+        			console.log('PaypalInstance: ');
+	            	console.log(PaypalInstance);
+	            	console.log('init teardown');
+	        		PaypalInstance.teardown();
+	        	}
+        		braintree.setup(clientToken, 'custom', {id: 'checkout-form'});
+        	//} else {
+        	//	console.log('first setup for CC');
+	        //	braintree.setup(clientToken, 'custom', {id: 'checkout-form'});	
+        	//}
+        	
+        	//console.log('setup CC ok');
             braintree.setup(clientToken, 'custom', { 
           		onReady: function (integration) {
-          			checkoutCC = integration;
+          			console.log('integration: ');
+          			console.log(integration);
+          		    $('input[name="payment_method_nonce_paypal"]').val('');
+          		 	//checkout = integration;
+          		 	//alert(checkout);
           		},
             	onPaymentMethodReceived: function (obj) {
+            		console.log('nonce for CC: ');
+            		console.log(obj.nonce);
+            		alert(obj.nonce);
 		            setNonceCreditCardInTheForm(obj.nonce);  
 		        }
             });
         }
-    });
+    });*/
 
 
 
@@ -1025,7 +1165,7 @@
 		$("#promo_div").hide();
 	});
 
-	function setNoncePaypalInTheForm(nonce) {  
+	/*function setNoncePaypalInTheForm(nonce) {  
 	    //console.log('Paypal nonce: '+nonce);
 	    $('input[name="payment_method_nonce"]').val('');
 		$('input[name="payment_method_nonce_paypal"]').val(nonce);
@@ -1034,7 +1174,7 @@
 	    //console.log('Credit Card nonce: '+nonce);
 	    $('input[name="payment_method_nonce_paypal"]').val('');
 		$('input[name="payment_method_nonce"]').val(nonce);
-	}
+	}*/
 
 	$("#submit_promo").click(function(){   // interviene solo all'eventuale submit del promo code
 		var code = $("#code").val();
