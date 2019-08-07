@@ -12,7 +12,7 @@
 		        </div>
 		        <div class="buttons-section">
 		        	@if ($payed === true)
-		        		<a class="btn cta" href="#">Start</a>
+		        		<a class="btn cta" href="{{route('got_pro_start')}}">Start</a>
 		        	@else
 		        		<a class="btn cta" href="{{route('service_payment_direct', [ 'service_id' => $service_id ])}}">Buy for {{$price}}€</a>
 

@@ -298,7 +298,6 @@ class ServiceOrdersController extends CustomBaseController {
 			]
 		]);
 
-		// verifica codice sconto
 		//dd($result);
 
 		Log::info("RESULT: " . print_r($result, true));

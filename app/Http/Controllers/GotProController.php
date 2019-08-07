@@ -18,13 +18,22 @@ class GotProController extends Controller {
         $data['price'] = Service::find($this->service_id)->price;
         $data['service_id'] = $this->service_id;
 
-    	// payment check
-    	$order = Order::where('user_id',\Auth::user()->id)->where('item_name','Global Orientation Test PRO')->first();
-        if($order != null) {
+        if($this->paymentCheck($this->service_id)) {
             $data['payed'] = true;
         }
-
-    	// return redirect('service/payment/'.$this->service_Id);
+        
         return view('client.got_pro_intro', $data);
     }
+
+    public function start() {
+
+        if(!$this->paymentCheck($this->service_id)) {
+            return back()->with('error', 'You have no order for this service!');
+        }
+        
+        $data['page_title'] = 'Got Pro';
+
+        return view('client.got_pro', $data);
+    }
+
 }

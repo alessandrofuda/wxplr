@@ -180,11 +180,31 @@ class PagesController extends CustomBaseController {
 
 		return view('front.pages',$data);
 	}
+
 	public function thankYouPage($service_id){
 		$data['page_title'] = 'Thank You';
 		$data['service_id'] = $service_id;
+
+		switch ($service_id) {
+			case Service::GOT_PRO:
+				$redirectTo = route('got_pro_start');
+				break;
+			case Service::VIC:
+				$redirectTo = route('vic_start');
+				break;
+			case Service::WOW:
+				$redirectTo = route('wow_start');
+				break;
+			default:
+				$redirectTo = route('user.dashboard');
+				break;
+		}
+		$data['redirect_to'] = $redirectTo;
+
 		return view('front.thankyou',$data);
 	}
+
+
 	public function contactform(){
 		$route_urlname=Route::getCurrentRoute()->uri();
 		$contact_page = Page::where('machine_name', $route_urlname)->first();

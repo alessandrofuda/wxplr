@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use App\MetaTags;
 use App\Setting;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -47,6 +48,11 @@ abstract class Controller extends BaseController
         View::share ( 'variable2', $variable2 );
         View::share ( 'variable3', 'I am Data 3' );
         View::share ( 'variable4', ['name'=>'Franky'] );*/
-
     }
+
+    public function paymentCheck($serviceId) {
+        $order = Order::where('user_id',\Auth::user()->id)->where('item_id', $serviceId)->first();
+        return $order ?? null;
+    }
+
 }

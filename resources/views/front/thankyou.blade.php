@@ -1,4 +1,6 @@
-@extends('layouts.new_layout')
+{{-- @extends('layouts.new_layout') --}}
+@extends('layouts.clean_layout')
+
 
 @section('content')
 	@if(isset($service_id) && $service_id == 2)
@@ -31,7 +33,7 @@
 				<p>Thank you for your choice.<br/>
 				Details of your order will be sent to you by email.<br/>
 				In a few seconds you will be redirected to your personal dashboard…</p>
-				<a href="{{ url('user/dashboard') }}">Got to Dashboard</a>
+				<a href="{{ route('user.dashboard') }}">Go to Dashboard</a>
 			</div>
 			<div class="redirect-cls"><img src="{{ asset('frontend/images/ajax-load.gif') }}" alt="Loading..."></div>
 		</div>
@@ -39,8 +41,8 @@
 	<script>
 		jQuery('document').ready(function(){
 			setTimeout(function() {
-				window.location.href="{{ url('user/dashboard') }}";
-			},10000);
+				window.location.href="{{ $redirect_to }}";
+			},5000);
 		})
 	</script>
 @endsection

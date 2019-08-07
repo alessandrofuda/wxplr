@@ -8,19 +8,21 @@ use App\Order;
 class WowController extends Controller {
 
 	public function __construct(){
-		$this->service_Id = 7;
+		$this->service_id = Service::WOW;
 	}
 
     public function index(){
 
-    	// payment check
-    	$order = Order::where('user_id',\Auth::user()->id)->where('item_name','WOW')->first();
-        if($order != null) {
+        if($this->paymentCheck($this->service_id)) {
             $data['page_title'] = 'WOW - Webinars';
             return view('client.wow', $data);
         }
 
     	return redirect('service/payment/'.$this->service_Id);
 
+    }
+
+    public function start() {
+        return 'ok';
     }
 }
