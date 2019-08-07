@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -21,7 +20,7 @@ class GotProController extends Controller {
         if($this->paymentCheck($this->service_id)) {
             $data['payed'] = true;
         }
-        
+
         return view('client.got_pro_intro', $data);
     }
 
