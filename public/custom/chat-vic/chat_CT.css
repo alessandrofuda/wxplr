@@ -1,12 +1,12 @@
 ﻿.chat-with-me{
     max-width:300px;
-    position:fixed;
+    /*position:fixed;*/
     bottom:5px;
     right:5px;
 }
 
 .chat-container {
-    position: fixed;
+    /*position: fixed;*/
     border: 1px solid #4F65A8;
     background: #fff;
     width: 350px;
@@ -20,7 +20,7 @@
     font-family: Arial;
     font-weight: bold;
     background-color: #4F65A8;
-    color: #fff;    
+    color: #fff;
 }
 
 .chat-header img {
@@ -29,7 +29,7 @@
 
 .chat-messages-container {
     margin: 0 auto;
-    max-height: 300px;
+    /*max-height: 300px;*/
     min-height: 300px;
     padding: 10px;
     overflow-y: auto;
@@ -38,6 +38,7 @@
 .chat-footer {
     color: #fff;
     padding: 10px;
+    padding-top: 25px;
 }
 
 .chat-footer input {
@@ -51,9 +52,8 @@
 
 .chat-footer img {
     max-height: 40px;
-    max-height: 40px;
+    max-width: 40px;
     margin-left: 10px;
-    position: fixed;
 }
 
 .chat-message-container {
@@ -90,7 +90,7 @@ ul > li {
 
 .chat-message-container .chat-avatar {
     float: left;
-    max-width: 60px;
+    max-width: 50px;
     width: 100%;
     margin-right: 20px;
     border-radius: 50%;
@@ -133,32 +133,88 @@ ul > li {
 
 
 /* custom */
-.chat-with-me {
-    width: 300px;
-    position: absolute;
-    top: calc(50%);
-    left: calc(50% - 150px + 100px); /*offset to right for sidebar*/
+#chat-wrapper {
+    position: relative;
+    text-align: center;
 }
 .chat-container {
-    width:750px;
-    max-width: 100%;
-    height: 600px;
-    top: calc(50% - 300px);
-    left: calc(50% - 375px);
+    width: 100%;
+    height: 530px;
     z-index: 999;
+    text-align: left;
+    box-shadow: 4px 10px 16px rgba(0, 0, 0, 0.16);
+    border-radius: 20px;
+    background-image: linear-gradient(180deg, #e6e6e6 0%, #e9e9e9 57%, #f2f2f2 100%);
+    border:none;
+    padding:10px;
 }
-.chat-footer {
-    padding-left:50px;
-}
-.chat-footer input {
-    height: 40px;
+.chat-header {
+    display: none;
 }
 .chat-messages-container {
-    max-height: 370px;
+    height: 420px;
 }
+#chatMessageList li {
+    position: relative;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+
+
+
+
 .chat-message-container {
     font-size:15px;
     line-height: 1.7;
+    width: 85%;
+    margin-left: 75px;
+    border-radius: 0 20px 20px 20px;
+    background-color: #ffffff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    border: none;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.chat-message-container > p {
+    margin-top: 10px;
+    margin-bottom:10px;
+}
+.chat-message-container > img {
+    position: absolute;
+    top:-5px;
+    left: 0;
+}
+.chat-message-container.darker {
+    border-radius: 20px 0 20px 20px;
+    margin-left: auto;
+    margin-right: 75px;
+    background-color: #239e9e;
+}
+.chat-message-container.darker > img {
+    position: absolute;
+    right: 0;
+    left: auto;
+}
+.time-left, .time-right {
+    display: none;
+}
+
+
+
+
+
+.chat-footer {
+    height: 100px;
+    padding-left:50px;
+    background-color: #ffffff;
+    border-radius: 0 0 20px 20px;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+.chat-footer input {
+    height: 40px;
+    border: none;
 }
 
 
@@ -194,7 +250,7 @@ ul > li {
         margin: 0 auto; 
 		min-height: 80%;		
         padding: 10px;	
-		max-height: 350px;		
+		/*max-height: 350px;*/		
     }
 	.chat-messages-container text, p, a, b, ul, li { 
 		font-size: 20px; 

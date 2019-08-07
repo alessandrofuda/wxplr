@@ -1,12 +1,12 @@
 @extends('layouts.dashboard_layout')
 
 @push('js-libraries')
-	<!--vic chatbot-->
+	<!--got pro chatbot-->
     <script src="https://www.ew9102bot.it/lib/signalr/signalr.js"></script>
 	<script src="https://www.ew9102bot.it/js/ewbot.js"></script>
 @endpush
 
-@section('content')
+{{-- @section('content')
 	<div class="container">
 	    <div class="row">
 	    	<div class="col-md-12">
@@ -26,6 +26,24 @@
 	        			</div>
 	        		</div>
 	        	</div>
+	        </div>
+	    </div>
+	</div>
+@endsection --}}
+
+@section('content')
+	<div id="got-pro" class="container-fluid">
+	    <div class="row got-pro-container">
+	    	<div class="col-md-6 sx">
+		        <div class="top-heading"></div>
+		        <div class="sub-heading" style="margin-bottom:10px;">GOT Pro</div>
+		        <!--div class="intro text-center">Take your journey one step further with our GOT Pro</div-->
+		        <div id="chat-wrapper" class="body"></div>
+		        
+
+	        </div>
+	        <div class="col-md-6 dx" style="padding-right: 0;">
+	        	<img class="img-got-pro-dx" src="{{asset('frontend/images/got-pro/green-world.png')}}">
 	        </div>
 	    </div>
 	</div>
@@ -59,5 +77,16 @@
 			});
 			chat.InitializeContent();
 		}	
+	</script>
+
+	<!--customization -->
+	<script>
+		jQuery(function($) {
+			$('#chat-with-me').detach().appendTo('#chat-wrapper');
+			$('#chat-main').detach().appendTo('#chat-wrapper');
+			$('#chat-with-me').trigger('click');
+			$('#chatMessageList .chat-message-container.darker img').attr('src', '/frontend/images/wexplore-logo-tondo-plain.png');
+			$('#chatTextBox').attr('placeholder', 'Compose your message ...');
+		});
 	</script>
 @endpush
