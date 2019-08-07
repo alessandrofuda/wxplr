@@ -74,14 +74,6 @@
 							<input type="email" class="form-control" disabled required email placeholder="Email" name="email" value="{{ $user->email }}">
 							<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
 						</div>
-						<!--div class="form-group col-md-6">
-							<label>Password</label>
-							<input type="password" name="password" class="form-control" placeholder="Enter password..." value="">
-						</div>
-						<div class="form-group col-md-6">
-							<label>Confirm Password</label>
-							<input type="password" class="form-control" placeholder="Confirm password" name="password_confirmation">
-						</div-->
 					@endif
 				<div class="form-group col-md-6 Gender">
                     <label>Gender</label>

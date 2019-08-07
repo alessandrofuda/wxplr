@@ -12,7 +12,7 @@
 
 @section('content')
 
-	<div class="row">	
+	<div id="personal-area" class="row">	
 		<div class="col-md-offset-1 col-md-10 col-xs-12 profile_page columns-center">
 			<h3 class="box-title">{{ $page_title }}</h3>
 		</div>

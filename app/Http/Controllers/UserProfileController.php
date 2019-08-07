@@ -31,7 +31,7 @@ class UserProfileController extends CustomBaseController
      */
     public function index() {
         
-        $data['page_title']='Profile';
+        $data['page_title']='Personal Area';
         $cc_code=Country::all();
         $data['countries_code'] = $cc_code;
         $data['user'] = Auth::user();
@@ -42,45 +42,13 @@ class UserProfileController extends CustomBaseController
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
-    {
+    public function edit() {
+        
         $cc_code=Country::all();		
 		$data['countries_code'] = $cc_code;
         $data['page_title']='Profile edit';
