@@ -48,7 +48,12 @@
     padding: 5px;
     width: 80%;
     display: inline-grid;
+    box-shadow: none;
 }
+.chat-footer input:focus {
+    background-color: transparent!important;
+}
+
 
 .chat-footer img {
     max-height: 40px;
