@@ -41,6 +41,9 @@
     <link rel="stylesheet" href="{{ asset('frontend/css/main.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('frontend/css/custom-2.css') }}" type="text/css">
+
+    @stack('js-libraries')
+
 </head>
 
 <body class="home page template-slider menu-line-below layout-full-width header-classic sticky-header sticky-white subheader-title-left no-content-padding">

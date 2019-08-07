@@ -12,27 +12,30 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
-        <li class="{{\Route::getCurrentRoute()->uri() == "user/dashboard" ? "active open" : ""}}">
+        <li class="{{\Route::getCurrentRoute()->uri() == "user/dashboard" ? "active open" : "" }}">
           <a href="{{ route('user.dashboard') }}">
             <span>Dashboard</span> 
           </a>
         </li>
-        <li class="{{\Route::getCurrentRoute()->uri() == "global_orientation_test_intro" ? "active open" : ""}}">
+        <li class="{{\Route::getCurrentRoute()->uri() == "global_orientation_test_intro" ? "active open" : "" }}">
             <a href="{{ route('got_intro') }}">
               <span>Got</span>
             </a>
         </li>
-        <li class="{{\Route::getCurrentRoute()->uri() == "user/got-pro" ? "active open" : ""}}">
+        {{-- <li class="{{\Route::getCurrentRoute()->uri() == "user/got-pro" ? "active open" : ""}}"> --}}
+        <li class="{{ strpos(\Route::getCurrentRoute()->uri(), 'user/got-pro') !== false ? "active open" : "" }}">
             <a href="{{ route('got_pro') }}">
               <span>GOT <span style="text-transform: none;">Pro</span></span>
             </a>
         </li>
-        <li class="{{\Route::getCurrentRoute()->uri() == "user/vic" ? "active open" : ""}}">
+        {{-- <li class="{{\Route::getCurrentRoute()->uri() == "user/vic" ? "active open" : "" }}"> --}}
+        <li class="{{ strpos(\Route::getCurrentRoute()->uri(), 'user/vic') !== false ? "active open" : "" }}">  
             <a href="{{ route('vic') }}{{-- http://eepurl.com/grpRwb --}}">
               <span>VIC</span>
             </a>
         </li>
-        <li class="{{\Route::getCurrentRoute()->uri() == "user/wow" ? "active open" : ""}}">
+        {{-- <li class="{{\Route::getCurrentRoute()->uri() == "user/wow" ? "active open" : "" }}"> --}}
+        <li class="{{ strpos(\Route::getCurrentRoute()->uri(), 'user/wow') !== false ? "active open" : "" }}">
             <a href="http://eepurl.com/grpRwb{{-- route('wow') --}}">
               <span>WOW</span>
             </a>
