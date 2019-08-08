@@ -49,10 +49,9 @@ class UserProfileController extends CustomBaseController
      */
     public function edit() {
         
-        $cc_code=Country::all();		
-		$data['countries_code'] = $cc_code;
-        $data['page_title']='Profile edit';
-        $data['occupations'] = User::getOccupationsList();
+		$data['countries_code'] = Country::all();
+        $data['page_title']='Personal area - edit';
+        // $data['occupations'] = User::getOccupationsList();
         $data['user'] = Auth::user();
 		return view('client.user_profile_form',$data);
     }
@@ -77,39 +76,28 @@ class UserProfileController extends CustomBaseController
         }
         //'email' => 'required|email|max:255|unique:users,email,'.$user_id,  
         $rules['profile_picture'] = 'image'; 
-        $rules['gender'] = 'required';
-        $rules['age_range'] = 'required';
-        $rules['country_origin'] = 'required';
-        $rules['country_interest'] = 'required';
-        $rules['education'] = 'required';
-        $rules['industry'] = 'required';
-        $rules['occupation'] = 'required';
-        $rules['occupational_status'] = 'required';
-        $rules['salary_range'] = 'required';
-
-        if($request->get('redirect_url') != 'market_analysis') {
-            $rules['pan'] = 'required';
-            $rules['country'] = 'required';
-            $rules['city'] = 'required';
-            $rules['zip_code'] = 'required';
-            $rules['address'] = 'required';
-        }
+        //$rules['gender'] = 'required';
+        //$rules['age_range'] = 'required';
+        //$rules['country_origin'] = 'required';
+        //$rules['country_interest'] = 'required';
+        //$rules['education'] = 'required';
+        //$rules['industry'] = 'required';
+        //$rules['occupation'] = 'required';
+        //$rules['occupational_status'] = 'required';
+        //$rules['salary_range'] = 'required';
+        $rules['pan'] = 'required';
+        $rules['country'] = 'required';
+        $rules['city'] = 'required';
+        $rules['zip_code'] = 'required';
+        $rules['address'] = 'required';
 
 		$validator = Validator::make($request->all(), $rules);
-		//echo '<pre>';print_r($validator->fails());exit;
 		if($validator->fails()) {
         	return back()->withErrors($validator->errors());
         }
-        $profile_picture_path='';
 
-
-        if($redirect_url != 'market_analysis') {
-            $users['name'] = $request['name'];
-            $users['surname'] = $request['surname'];
-            // if (!empty($request['password'])) {
-            //     $users['password'] = bcrypt($request['password']);
-            // }
-        }
+        $users['name'] = $request['name'];
+        $users['surname'] = $request['surname'];
 
         $profile_data['user_id'] = $user_id;
 		$profile_data['gender']=$request['gender'];
@@ -121,17 +109,15 @@ class UserProfileController extends CustomBaseController
 		$profile_data['occupation'] =  $request['occupation'];
 		$profile_data['occupational_status'] =  $request['occupational_status'];
 		$profile_data['salary_range'] = $request['salary_range'];
-
-        if($request->get('redirect_url') != 'market_analysis') {
-            $profile_data['pan'] = $request->get('pan');
-            $profile_data['vat'] = $request->get('vat');
-            $profile_data['country'] = $request->get('country');
-            $profile_data['city'] = $request->get('city');
-            $profile_data['telephone'] = $request->get('telephone');
-            $profile_data['zip_code'] = $request->get('zip_code');
-            $profile_data['address'] = $request->get('address');
-            $profile_data['company'] = $request->get('company');
-        }
+        $profile_data['pan'] = $request->get('pan');
+        $profile_data['vat'] = $request->get('vat');
+        $profile_data['country'] = $request->get('country');
+        $profile_data['city'] = $request->get('city');
+        $profile_data['telephone'] = $request->get('telephone');
+        $profile_data['zip_code'] = $request->get('zip_code');
+        $profile_data['address'] = $request->get('address');
+        $profile_data['company'] = $request->get('company');
+    
 
         if(empty($request['allow_personal_data'])){
             $profile_data['allow_personal_data'] = 0;
@@ -143,42 +129,24 @@ class UserProfileController extends CustomBaseController
 		$user_profile = UserProfile::where('user_id',$user_id)->first();
         $profile_image = $request->file('profile_picture');
         $profile_data['profile_picture'] = Setting::saveUploadedImage($profile_image,$user_profile->profile_picture);
+        
         if($user_profile->exists == 1){
             $user_profile->update($profile_data);
-        }
-        else{
+        } else {
             UserProfile::create($profile_data);
         }
+
         $user_profile->update(['is_profile_complete'=>1]);
-    
-        if($redirect_url == 'market_analysis'){
-            $status_message = 'Thank you for filling this Profile Form! Please proceed to the Market Analysis output.';
 
-            $label = 'student';
-
-            if($user_profile->occupational_status != 'Student') {
-                $label = 'pro';
-            }
-
-            $survey_code = SurveyCode::where('is_assigned',0)
-            ->where('label', $label)->first();
-
-            if($survey_code != null) {
-                $culture_match['user_id'] = $user_profile->user_id;
-                $culture_match['survey_code'] = $survey_code->survey_code;
-                $culture_match_obj = CultureMatchSurvey::create($culture_match);
-
-                $survey_code->update(['is_assigned' => 1]);
-            }
-
-        }else {
-            $status_message = 'Profile Updated!';
-        }
-
-
-
-		return redirect()->route($redirect_url)->with('status', $status_message);
+		return redirect()->route('user_profile')->with('status', 'Profile Updated!');
     }
+
+
+
+    public function uploadImageViaAjax() {
+        return 'ok';
+    }
+
 
 
     public function updateLogin(Request $request)

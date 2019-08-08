@@ -1,21 +1,110 @@
 @extends('layouts.dashboard_layout')
+
+
 @section('content')
 
-@if(Route::current()->getName() == 'professional.kit')
-	@php
-		$containerClass = 'prof_kit_profile';
-		$industryClass = 'popup-right';
-		$occupationClass = 'popup-left';
-	@endphp
-@else
-	@php
-		$containerClass = '';
-		$industryClass = 'popup-left'; 
-		$occupationClass = 'popup-right';
-	@endphp 
-@endif
+<div id="personal-area" class="container user_profile_form">
 
-<div class="container user_profile_form {{ $containerClass }}">
+
+	<form class="personal-area-form" accept-charset="UTF-8" method="post" action="{{ url('user/profile/update') }}"  enctype="multipart/form-data">
+		{{ csrf_field() }}
+		<input type="hidden" name="user_id" value="{{ $user->id }}">
+		<div class="row">
+			<div class="col-md-offset-1 col-md-4">
+				<div class="page-title">{{ $page_title }}</div>
+			</div>
+			<div class="col-md-offset-1 col-md-4 text-right">
+				<div class="submit-container">
+					<input type="submit" class="Save_profile" value="Save" name="save_profile">
+				</div>
+			</div>
+		</div>
+		<div class="row line-separator">
+			<div class="col-md-offset-1 col-md-9">
+				<hr>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-offset-1 col-md-4">
+				<div class="sub-title">
+					Personal Data
+				</div>
+				<div class="img-container">
+					@if(isset($user->userProfile->profile_picture) && !empty($user->userProfile->profile_picture))
+						<img alt="{{ $user->name }}" src="{{ asset($user->userProfile->profile_picture) }}" width="150" height="150">
+					@else
+						<img alt="{{ $user->name }}" src="{{ asset('uploads/profile_image.jpg') }}" width="150" height="150">
+					@endif
+				</div>
+				<div class="upload-container">
+                    <label for="profile_picture" class="upload-custom-btn">upload</label>
+                    <input id="profile_picture" type="file" name="profile_picture">
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-offset-1 col-md-4">
+				<div class="form-group">
+					<div class="pa-label">Name</div>
+					<input type="text" class="form-control" placeholder="Name" name="name" value="{{ old('name') ?? $user->name }}" required>
+				</div>
+				<div class="form-group">
+					<div class="pa-label">Address</div>
+					<textarea rows="2" cols="50" class="form-control" name="address" placeholder="Address" value="{{old('address') ?? ($user->userProfile->address ?? 'n.a.') }}" required>{{old('address') ?? ($user->userProfile->address ?? 'n.a.') }}</textarea>
+				</div>
+				<div class="form-group">
+					<div class="pa-label">ZIP code</div>
+					<input type="text" class="form-control" placeholder="ZIP Code" name="zip_code" value="{{ old('zip_code') ?? ($user->userProfile->zip_code ?? 'n.a.') }}" required>
+				</div>
+				<div class="form-group">
+					<div class="pa-label">CF</div>
+					<input type="text" class="form-control" placeholder="Fiscal Code" name="pan" value="{{ old('pan') ?? ($user->userProfile->pan ?? 'n.a.')  }}" required>
+				</div>
+			</div>
+			<div class="col-md-offset-1 col-md-4">
+				<div class="form-group">
+					<div class="pa-label">Surname</div>
+					<input type="text" class="form-control" placeholder="Surname" name="surname" value="{{ old('surname') ?? ($user->surname ?? 'n.a.') }}" required>
+				</div>
+				<div class="form-group">
+					<div class="pa-label">E-Mail</div>
+					<div class="value" style="height: 66px;">{{ $user->email ?? 'n.a.' }}</div>
+				</div>
+				<div class="form-group">
+					<div class="pa-label">City</div>
+					<input type="text" class="form-control" placeholder="City" name="city" value="{{ old('city') ?? ($user->userProfile->city ?? 'n.a.') }}" required>
+				</div>
+				<div class="form-group">
+					<div class="pa-label">Country</div>
+					<select id="country" name="country" class="form-control" required>
+						<option value="">-- Select Country --</option>
+						@if(count($countries_code)>0)
+							@foreach ($countries_code as $country)
+								<option @if(isset($user->userProfile->country_origin) && $user->userProfile->country_origin == $country['country_name']) selected @endif value="{{ $country['country_name'] }}">
+									{{ $country['country_name'] }}
+								</option>
+							@endforeach
+						@endif
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="row line-separator">
+			<div class="col-md-offset-1 col-md-9">
+				<hr>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-offset-1 col-md-9 text-right submit-container">
+				<input type="submit" class="Save_profile" value="Save" name="save_profile">
+			</div>
+		</div>
+	</form>
+
+
+
+{{-- // OLD CODE TYLE
+
 	<div class="row">
 		<div class="heading">
 			<h1>{{ $page_title }}</h1>
@@ -100,12 +189,12 @@
 			<div class="form-group col-md-6 has-feedback">
 				<label for="country_origin">Country of Origin </label>
 				<select id="country_origin" required name="country_origin" class="form-control">
-				<option value="">-- Country of origin --</option>
-				@if(count($countries_code)>0)
-				@foreach ($countries_code as $country)
-					<option @if(isset($user->userProfile->country_origin) && $user->userProfile->country_origin == $country['country_name']) selected @endif value="{{ $country['country_name'] }}">{{ $country['country_name'] }}</option>
-				@endforeach
-				@endif
+					<option value="">-- Country of origin --</option>
+					@if(count($countries_code)>0)
+						@foreach ($countries_code as $country)
+							<option @if(isset($user->userProfile->country_origin) && $user->userProfile->country_origin == $country['country_name']) selected @endif value="{{ $country['country_name'] }}">{{ $country['country_name'] }}</option>
+						@endforeach
+					@endif
 				</select>
 			</div>
 			<div class="form-group col-md-6 has-feedback">
@@ -133,7 +222,7 @@
 			</div>
 			<div class="form-group col-md-6 has-feedback">
 				<label for="industry"> Industry </label>
-				<div class="date industry {{ $industryClass }}">
+				<div class="date industry">
 					<div class='selectBox'>
 						<input type="hidden" id="selected_option_id" value="{{ isset($user->userProfile->industry) ? $user->userProfile->industry :"" }}" class="price_values" name="industry"/>
 						<span class='selected'></span>
@@ -154,7 +243,7 @@
 			</div>
 			<div class="form-group col-md-6 has-feedback">
 				<label for="occupational">Occupation </label>
-				<div class="date Occupation {{ $occupationClass }}">
+				<div class="date Occupation">
 					<div class='selectBox'>
 						<input type="hidden" id="selected_option_id" value="{{ isset($user->userProfile->occupation) ? $user->userProfile->occupation :"" }}" class="price_values" name="occupation"/>
 						<span class='selected'></span>
@@ -196,7 +285,7 @@
 						<option @if(isset($user->userProfile->salary_range) && $user->userProfile->salary_range == 'More than 70,000') selected @endif value="More than 70,000">More than 70,000</option>
 					</select>
 				</div>
-			 </div>
+			</div>
 					@if(Route::current()->getName() != 'professional.kit')
 						<div class="form-group col-md-6 has-feedback email">
 							<label for="pan">Personal Identification Number </label>
@@ -232,13 +321,12 @@
 						</div>
 						<div class="form-group col-md-6 has-feedback email">
 							<label for="text">City</label>
-							<input type="text" class="form-control" required placeholder="City" name="city"
-								   value="{{ $user->userProfile->city}}">
+							<input type="text" class="form-control" required placeholder="City" name="city" value="{{ $user->userProfile->city}}">
 						</div>
 						<div class="form-group col-md-6 has-feedback email">
 							<label for="zip_code">ZIP Code </label>
-							<input type="text" class="form-control" required placeholder="ZIP Code" name="zip_code"
-								   value="{{ $user->userProfile->zip_code }}"></div>
+							<input type="text" class="form-control" required placeholder="ZIP Code" name="zip_code" value="{{ $user->userProfile->zip_code }}">
+						</div>
 						<div class="form-group col-md-6 has-feedback">
 							<label for="telephone">Telephone </label>
 							<input type="tel" class="form-control"  placeholder="Telephone Number" name="telephone" value="{{ $user->userProfile->telephone }}">
@@ -258,8 +346,14 @@
 			</div>
 		</div>
 	</div>
+--}}
+
+
 </div>
-<style type='text/css'>
+
+
+{{--
+	<style type='text/css'>
 	div.selectBox{position: relative; display: inline-block; cursor: default; text-align: left; line-height: 30px; clear: both; color: rgb(114, 97, 97);}
 	span.selected{width: 167px; text-indent: 10px; border: 1px solid rgb(233, 233, 233); border-right: none; border-top-left-radius: 5px; border-bottom-left-radius: 5px; background: #f6f6f6; overflow: hidden;font-family: Arial, sans-serif;font-size: 12px;font-weight: bold;
 		background: #ffffff;
@@ -277,85 +371,101 @@
 	ul.selectOptions{position: absolute; top: 28px; left: 0; width: 198px; border: 1px solid #ccc; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; overflow: hidden; background: rgb(250, 250, 250); padding-top: 2px; display: none;margin: 0;list-style: none inside none;padding-left: 0;z-index:1;}
 	li.selectOption{display: block; line-height: 20px; padding: 5px 0 5px 10px; font-size: 12px; font-weight: bold; font-family: arial, sans-serif;list-style: none;margin: 0}
 	li.selectOption:hover{color: #f6f6f6;background: #4096ee;}
-</style>
-<script src="{{ asset('frontend/js/jquery-2.1.4.min.js') }}"></script>
-<script src="{{ asset('frontend/js/jquery.ui.js') }}"></script>
-<script>
-	function enable() {
-		$('div.selectBox').each(function () {
-			$(this).children('span.selected').html($(this).children('ul.selectOptions').children('li.selectOption:first').html());
-			$('input.price_values').attr('value', $(this).children('ul.selectOptions').children('li.selectOption:first').attr('data-value'));
+	</style>
+	<script src="{{ asset('frontend/js/jquery-2.1.4.min.js') }}"></script>
+	<script src="{{ asset('frontend/js/jquery.ui.js') }}"></script>
+	<script>
+		function enable() {
+			$('div.selectBox').each(function () {
+				$(this).children('span.selected').html($(this).children('ul.selectOptions').children('li.selectOption:first').html());
+				$('input.price_values').attr('value', $(this).children('ul.selectOptions').children('li.selectOption:first').attr('data-value'));
 
-			$(this).children('span.selected,span.selectArrow').click(function () {
-				if ($(this).parent().children('ul.selectOptions').css('display') == 'none') {
-					$(this).parent().children('ul.selectOptions').css('display', 'block');
-				}
-				else {
-					$(this).parent().children('ul.selectOptions').css('display', 'none');
-				}
-			});
+				$(this).children('span.selected,span.selectArrow').click(function () {
+					if ($(this).parent().children('ul.selectOptions').css('display') == 'none') {
+						$(this).parent().children('ul.selectOptions').css('display', 'block');
+					}
+					else {
+						$(this).parent().children('ul.selectOptions').css('display', 'none');
+					}
+				});
 
-			$(this).children().find('li.selectOption').click(function () {
-				$(this).parent().css('display', 'none');
-				var ori_value = $(this).attr('data-value').split('value ')[1];
-				console.log('ori'+ori_value);
-				$(this).parent().siblings('input.price_values').attr('value', ori_value);
-				$(this).parent().siblings('span.selected').html($(this).html());
+				$(this).children().find('li.selectOption').click(function () {
+					$(this).parent().css('display', 'none');
+					var ori_value = $(this).attr('data-value').split('value ')[1];
+					console.log('ori'+ori_value);
+					$(this).parent().siblings('input.price_values').attr('value', ori_value);
+					$(this).parent().siblings('span.selected').html($(this).html());
+				});
+				var value = $(this).find("#selected_option_id").val();
+				var value = "value "+value;
+				$(this).children().find("[data-value='" + value + "']").parent().css('display', 'none');
+				$(this).children().find("[data-value='" + value + "']").parent().siblings('span.selected').html($(this).children().find("[data-value='" + value + "']").html());
 			});
-			var value = $(this).find("#selected_option_id").val();
-			var value = "value "+value;
-			$(this).children().find("[data-value='" + value + "']").parent().css('display', 'none');
-			$(this).children().find("[data-value='" + value + "']").parent().siblings('span.selected').html($(this).children().find("[data-value='" + value + "']").html());
-		});
-	}
-	$(document).ready(function () {
-		enable();
-		$(".date.industry").click(function() {
-			$(".date.Occupation .selectOptions").css("display", "none");
-		});
-		$(".date.Occupation").click(function() {
-			$(".date.industry .selectOptions").css("display", "none");
-		});
-	});
-	$(document).delegate('.selectOptions li','mouseover mouseout', function(event) {
-		if (event.type == 'mouseover') {
-			var id = $(this).attr('id');
-			var id = id.split('occupation_')[1];
-			$('#occupation_tip_'+id).show();
-			$('[id^=occupation_tip_]').not('#occupation_tip_'+id).each(function(){
-				$(this).hide();
-			});
-
-			var id = $(this).attr('id');
-			var id = id.split('industry_')[1];
-			$('#industry_tip_'+id).show();
-			$('[id^=industry_tip_]').not('#industry_tip_'+id).each(function(){
-				$(this).hide();
-			});
-		}else{
-			var id = $(this).attr('id').split('occupation_')[1];
-			$('#occupation_tip_'+id).hide();
 		}
+		$(document).ready(function () {
+			enable();
+			$(".date.industry").click(function() {
+				$(".date.Occupation .selectOptions").css("display", "none");
+			});
+			$(".date.Occupation").click(function() {
+				$(".date.industry .selectOptions").css("display", "none");
+			});
+		});
+		$(document).delegate('.selectOptions li','mouseover mouseout', function(event) {
+			if (event.type == 'mouseover') {
+				var id = $(this).attr('id');
+				var id = id.split('occupation_')[1];
+				$('#occupation_tip_'+id).show();
+				$('[id^=occupation_tip_]').not('#occupation_tip_'+id).each(function(){
+					$(this).hide();
+				});
 
-		$(this).parent().toggleClass('over');
-	});
+				var id = $(this).attr('id');
+				var id = id.split('industry_')[1];
+				$('#industry_tip_'+id).show();
+				$('[id^=industry_tip_]').not('#industry_tip_'+id).each(function(){
+					$(this).hide();
+				});
+			}else{
+				var id = $(this).attr('id').split('occupation_')[1];
+				$('#occupation_tip_'+id).hide();
+			}
 
-	$(document).ready(function() {
-		var val = $('[name=company]').val();
-		if(val != '') {
-			$('[name=vat]').attr('required','required');
-		}else{
-			$('[name=vat]').attr('required',false);
-		}
-	});
+			$(this).parent().toggleClass('over');
+		});
 
-	$('[name=company]').change(function(){
-		var val = $(this).val();
-		if(val != '') {
-			$('[name=vat]').attr('required','required');
-		}else{
-			$('[name=vat]').attr('required',false);
-		}
-	});
-</script>
+		$(document).ready(function() {
+			var val = $('[name=company]').val();
+			if(val != '') {
+				$('[name=vat]').attr('required','required');
+			}else{
+				$('[name=vat]').attr('required',false);
+			}
+		});
+
+		$('[name=company]').change(function(){
+			var val = $(this).val();
+			if(val != '') {
+				$('[name=vat]').attr('required','required');
+			}else{
+				$('[name=vat]').attr('required',false);
+			}
+		});
+	</script>
+--}}
 @endsection
+
+@push('scripts')
+	<script>
+		//$('#profile_picture').val();
+		// jQuery(function($) {
+		// 	$('#profile_picture').on('change', function(e) {
+		// 		var fileName = e.target.files[0].name;   
+		// 		// var selected = $('#profile_picture').val();
+		// 		console.log(fileName);
+				
+		// 	});
+			
+		// });
+	</script>
+@endpush

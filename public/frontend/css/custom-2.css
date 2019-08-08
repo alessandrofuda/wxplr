@@ -194,6 +194,9 @@ a.btn.cta, button.btn.cta {
 	line-height: 25px;
 	border: none;
 }
+.alert{
+	margin-top: 80px;
+}
 .box.got {
 	height: 352px;
 }
@@ -881,5 +884,151 @@ a.video-prev {
 #got-pro .buttons-section .btn.cta {
 	width: 145px;
 	margin-right: 25px;
+}
+/* personal area */
+#personal-area {
+	padding-top: 170px;
+	color: #808080;
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;
+}
+#personal-area .page-title {
+	color: #055b76;
+	font-family: "Varela Round";
+	font-size: 36px;
+	font-weight: 400;
+	line-height: 46px;	
+}
+#personal-area .edit-btn{
+	color: #808080;
+	/*font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;*/
+}
+#personal-area .edit-container {
+	margin-top: 15px;
+}
+#personal-area .edit-btn .glyphicon {
+	color: #0d3552;
+	font-size: 16px;
+	margin-left: 10px;
+}
+#personal-area .line-separator hr{
+	border: 1px solid #49b16b;
+}
+#personal-area .sub-title {
+	color: #055b76;
+	font-family: "Varela Round";
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 34px;
+	margin-bottom: 15px;	
+}
+#personal-area .img-container {
+	margin-bottom: 40px;
+}
+#personal-area .img-container img {
+	border-radius: 50%;
+	border:1px solid #cccccc;
+}
+#personal-area .pa-label {
+	/*color: #808080;
+	font-family: "Open Sans";*/
+	font-size: 12px;
+	/*font-weight: 400;*/
+	line-height: 18px;	
+	margin:10px auto;
+}
+#personal-area .value {
+	color: #055b76;
+	/*font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;*/
+	margin:10px auto;	
+}
+#personal-area .form-group {
+	margin-bottom: 25px;	
+}
+#personal-area .account-info {
+	display: inline-block;
+	margin-right: 30px;	
+}
+#personal-area .delete-account{
+	display: inline-block;	
+}
+#personal-area .delete-account .delete-btn {
+	padding: 7px 10px;
+	background: transparent;
+	box-shadow: none;
+	color: #f700ff;
+	font-size: 16px;
+}
+#personal-area .account-infos {
+	margin-top: 40px;
+	margin-bottom: 60px;
+}
+/*personal area edit*/
+.personal-area-form .img-container {
+	display: inline-block;	
+	margin-right: 30px;
+}
+.personal-area-form .upload-container {
+	display: inline-block;	
+}
+.personal-area-form input[type="file"]{
+	display: none;	
+}
+.personal-area-form .upload-custom-btn {
+	color: #69ba7a;
+	font-weight: 700;
+	line-height: 20px;
+	text-transform: uppercase;	
+	background-color:#ffffff;
+	border: 1px solid #69ba7a;
+	border-radius: 10px;
+	padding:10px 20px;
+	cursor: pointer;
+}
+.personal-area-form input {
+	border: none;
+	border-bottom: 1px solid #CCC;
+	box-shadow: none;
+	padding-left: 0;
+}
+.personal-area-form input, .personal-area-form textarea, .personal-area-form select{
+	color: #0d3552;
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;
+}
+.personal-area-form input[type="submit"] {
+	color: #ffffff;
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 20px;
+	padding:10px 46px;
+	border-radius: 10px;
+	background-image: linear-gradient(to right, #6bb97a 31%, #5ab282 38%, #41a98e 52%, #2fa297 66%, #259e9c 82%, #229d9e 100%);
+}
+.personal-area-form {
+	
+}
+.personal-area-form {
+	
+}
+.personal-area-form {
+	
+}
+.personal-area-form {
+	
+}
+.personal-area-form {
+	
 }
 

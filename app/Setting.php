@@ -27,7 +27,7 @@ class Setting extends Model
         $base_path = base_path();
         $base_path = str_replace("/wexsite", "", $base_path);
         $file_save_folder_path = '/uploads/';
-        // get cv file
+        // get file
         $image_file_path = '';
 
         if($old_image != '') {

@@ -1,19 +1,117 @@
 @extends('layouts.dashboard_layout')
 
 
-@section('top_section')
-	<h1>Dashboard<small>Services</small></h1>
-	<!--<ol class="breadcrumb">
-	<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-	<li class="active">Dashboard</li>
-	</ol>-->
-@endsection
-
-
 @section('content')
 
-	<div id="personal-area" class="row">	
-		<div class="col-md-offset-1 col-md-10 col-xs-12 profile_page columns-center">
+	<div id="personal-area" class="container">
+
+
+
+
+
+		<div class="row">
+			<div class="col-md-offset-1 col-md-4">
+				<div class="page-title">{{ $page_title }}</div>
+			</div>
+			<div class="col-md-offset-1 col-md-4 text-right">
+				<div class="edit-container">
+					<a  class="edit-btn" href="{{ url('user/profile/edit') }}">Edit<span class="glyphicon glyphicon-pencil"></span></a>
+				</div>
+			</div>
+		</div>
+		<div class="row line-separator">
+			<div class="col-md-offset-1 col-md-9">
+				<hr>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-offset-1 col-md-4">
+				<div class="sub-title">
+					Personal Data
+				</div>
+				<div class="img-container">
+					@if(isset($user->userProfile->profile_picture) && !empty($user->userProfile->profile_picture))
+						<img alt="{{ $user->name }}" src="{{ asset($user->userProfile->profile_picture) }}" width="150" height="150">
+					@else
+						<img alt="{{ $user->name }}" src="{{ asset('uploads/profile_image.jpg') }}" width="150" height="150">
+					@endif
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-offset-1 col-md-4">
+				<div class="form-group">
+					<div class="pa-label">Name</div>
+					<div class="value">{{ $user->name.' '.$user->surname }}</div>
+				</div>
+				<div class="form-group">
+					<div class="pa-label">Address</div>
+					<div class="value">{{ $user->userProfile->address ?? 'n.a.' }}</div>
+				</div>
+				<div class="form-group">
+					<div class="pa-label">ZIP</div>
+					<div class="value">{{ $user->userProfile->zip_code ?? 'n.a.'}}</div>
+				</div>
+				<div class="form-group">
+					<div class="pa-label">CF</div>
+					<div class="value">{{ $user->userProfile->pan ?? 'n.a.' }}</div>
+				</div>
+			</div>
+			<div class="col-md-offset-1 col-md-4">
+				<div class="form-group">
+					<div class="pa-label">Mail</div>
+					<div class="value">{{ $user->email ?? 'n.a.' }}</div>
+				</div>
+				<div class="form-group">
+					<div class="pa-label">City</div>
+					<div class="value">{{ $user->userProfile->city ?? 'n.a.' }}</div>
+				</div>
+				<div class="form-group">
+					<div class="pa-label">Country of Origin</div>
+					<div class="value">{{ $user->userProfile->country_origin ?? 'n.a.' }}</div>
+				</div>
+			</div>
+		</div>
+		<div class="row line-separator">
+			<div class="col-md-offset-1 col-md-9">
+				<hr>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-offset-1 col-md-9 account-infos">
+				<div class="account-info">Account active since {{$active_from_date}} ({{$active_from_time}})</div>
+				<div class="delete-account">
+					Delete account 
+					<button type="button" class="delete-btn" data-toggle="modal" data-target="#deleteModal_{{ $user->id }}">
+						<span class="glyphicon glyphicon-trash"></span>
+					</button>
+				</div>
+				<!-- Modal -->
+				<div id="deleteModal_{{ $user->id }}" class="modal fade" role="dialog" style="z-index: 99999;">
+				  	<div class="modal-dialog">
+						<div class="modal-content">
+					  		<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Are you sure you want to delete your account?</h4>
+					  		</div>
+						  	<div class="modal-body">
+								<form role="form" class="delete_form operations_form" method="post" action="{{ url('user/profile/delete') }}">
+									{{ csrf_field() }}
+									<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-trash" style="margin-right: 10px;"></span> Yes, delete my Account</button>
+								</form>
+							</div>
+							<div class="modal-footer">
+						  		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+				  		</div>
+					</div>
+			  	</div><!-- end Modal -->
+			</div>
+		</div>
+
+
+	{{--
+		<div class="col-md-offset-1 col-md-10 col-xs-12 profile_page columns-center" style="margin-top:300px;">
 			<h3 class="box-title">{{ $page_title }}</h3>
 		</div>
 		<div class="col-md-offset-1 col-md-10 col-xs-12 Profile_details columns-center">
@@ -39,7 +137,7 @@
 							<li><span>Occupation: </span> <span class="Fill_detais">{{ $user->userProfile->occupation }}</span></li>
 							<li><span>Current Occupational status: </span> <span class="Fill_detais">{{ $user->userProfile->occupational_status }}</span></li>
 							<li><span>Salary Range: </span> <span class="Fill_detais">{{ $user->userProfile->salary_range }}</span></li>
-							</ul>
+						</ul>
 					</div>
 					@endif
 			</div>
@@ -228,6 +326,9 @@
 				</div>
 			</div>
 		</div>
+ 	--}}
+
+
 	</div>
 
 

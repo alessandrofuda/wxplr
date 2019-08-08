@@ -311,7 +311,7 @@ a.back-dashboard{float:right;background:#55B241;border:solid 1px #47960b}
 .Colorfull-window span.end_cot{font-size:55px;position:absolute;font-family:'Passion One',cursive;margin-top:15px;margin-left:10px}
 .download_pdf{float:left;width:100%;text-align:center}
 .bottom_content p{font-size:18px}
-.form-group input[type="text"],.form-group input[type="password"],.form-group select,.form-group input[type="email"],.form-group input[type="file"]{width:95%;float:left;height:36px}
+/*.form-group input[type="text"],.form-group input[type="password"],.form-group select,.form-group input[type="email"],.form-group input[type="file"]{width:95%;float:left;height:36px}*/
 .form-group span.glyphicon{right:6px}
 .Gender label{float:left;margin-right:15px;width:100%;margin-bottom:5px;font-size:20px}
 .profile_picture img{width:74px;margin-left:-15px;height:60px}
