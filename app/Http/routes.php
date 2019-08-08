@@ -229,6 +229,7 @@
 			Route::post('user/profile/update_login', 'UserProfileController@updateLogin');
 			Route::post('user/profile/update_personal', 'UserProfileController@updatePersonal');
 			Route::post('user/profile/delete', 'UserProfileController@deletePersonal');
+			Route::post('user/profile/upload-image', ['as'=>'user_profile_upload_image', 'uses'=>'UserProfileController@uploadImageViaAjax']);
 
 			// Professional Kit
 			Route::get('user/professional_kit', ['as'=>'professional.kit.step','uses'=>'ProfessionalKitController@overview']);

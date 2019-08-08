@@ -143,8 +143,16 @@ class UserProfileController extends CustomBaseController
 
 
 
-    public function uploadImageViaAjax() {
-        return 'ok';
+    public function uploadImageViaAjax(Request $request) {
+
+        dd($request);
+
+        $profile_image = $request->file('profile_picture');
+        $user_profile = UserProfile::where('user_id', Auth::user()->id)->first();
+        $image_file_path = Setting::saveUploadedImage($profile_image,$user_profile->profile_picture);
+        $user_profile->update(['profile_picture' => $image_file_path]);
+
+        return response()->json(['response'=> $image_file_path]);
     }
 
 

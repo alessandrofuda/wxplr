@@ -457,15 +457,69 @@
 
 @push('scripts')
 	<script>
+
+		{{-- https://www.codovel.com/ajax-image-upload-with-laravel-example.html --}}
 		//$('#profile_picture').val();
-		// jQuery(function($) {
-		// 	$('#profile_picture').on('change', function(e) {
-		// 		var fileName = e.target.files[0].name;   
-		// 		// var selected = $('#profile_picture').val();
-		// 		console.log(fileName);
-				
-		// 	});
-			
-		// });
+		jQuery(function($) {
+			$('#profile_picture').on('change', function(e) {
+				if( $(this).val() != '' ) {
+					var form_data = new FormData();
+			        form_data.append('file', e.target.files[0]);
+			        form_data.append('_token', '{{csrf_token()}}');
+					// var fileName = e.target.files[0].name;   
+					// var selected = $('#profile_picture').val();
+					$.ajax({
+						url: "{{route('user_profile_upload_image')}}",
+						data: form_data,
+						type: 'POST',
+						contentType: false,
+			            processData: false,
+			            success: function (data) {
+			            	alert('ok');
+			            	console.log(data);
+			                if (data.fail) {
+			                    $('.img-container img').attr('src', '{{ asset('uploads/profile_image.jpg') }}');
+			                    alert(data.errors['file']);
+			                } else {
+			                    $(this).val(data);
+			                    $('.img-container img').attr('src', '{{ asset($user->userProfile->profile_picture) }}');
+			                }
+			                //$('#loading').css('display', 'none');
+			            },
+			            error: function (xhr, status, error) {
+			                alert(xhr.responseText);
+			                $('.img-container img').attr('src', '{{ asset('uploads/profile_image.jpg') }}');
+			            }
+
+					});
+				} else {
+					// remove TODO ....
+				    /*function removeFile() {
+				        if ($('#file_name').val() != '')
+				            if (confirm('Are you sure want to remove profile picture?')) {
+				                $('#loading').css('display', 'block');
+				                var form_data = new FormData();
+				                form_data.append('_method', 'DELETE');
+				                form_data.append('_token', '{{--csrf_token()--}}');
+				                $.ajax({
+				                    url: "ajax-remove-image/" + $('#file_name').val(),
+				                    data: form_data,
+				                    type: 'POST',
+				                    contentType: false,
+				                    processData: false,
+				                    success: function (data) {
+				                        $('#preview_image').attr('src', '{{--asset('images/noimage.jpg')--}}');
+				                        $('#file_name').val('');
+				                        $('#loading').css('display', 'none');
+				                    },
+				                    error: function (xhr, status, error) {
+				                        alert(xhr.responseText);
+				                    }
+				                });
+				            }
+				    }*/
+				}
+			});
+		});
 	</script>
 @endpush
