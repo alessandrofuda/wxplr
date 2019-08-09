@@ -194,6 +194,12 @@ a.btn.cta, button.btn.cta {
 	line-height: 25px;
 	border: none;
 }
+a.btn.cta.light, button.btn.cta.light {
+	background-color: #ffffff;
+	color: #6bb97a;
+	border: 1px solid #6bb97a;
+	background-image: none;
+}
 .alert{
 	margin-top: 80px;
 }

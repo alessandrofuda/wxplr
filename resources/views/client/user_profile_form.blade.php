@@ -42,8 +42,34 @@
 	                    <input id="profile_picture" type="file" name="profile_picture">
 					</div>
 					@if(isset($user->userProfile->profile_picture) && !empty($user->userProfile->profile_picture))
-						<button class="remove-picture">Remove</button>
+						<button type="button" class="remove-picture" data-toggle="modal" data-target="#deleteModal_picture_profile">Remove</button>
+					@else
+						<button type="button" class="remove-picture" data-toggle="modal" data-target="#deleteModal_picture_profile" style="display: none;">Remove</button>
 					@endif
+					<!-- Modal -->
+					<div id="deleteModal_picture_profile" class="modal fade" role="dialog" style="z-index: 99999;">
+					  	<div class="modal-dialog">
+							<div class="modal-content">
+						  		<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h4 class="modal-title">Are you sure to permanently delete your profile picture?</h4>
+						  		</div>
+							  	<div class="modal-body">
+							  		<div class="row">
+							  			<div class="col-md-6">
+							  				<button class="btn cta remove-picture-confirm">Delete</button>		
+							  			</div>
+							  			<div class="col-md-6">
+							  				<button type="button" class="btn cta light" data-dismiss="modal">Not Delete</button>		
+							  			</div>
+							  		</div>
+								</div>
+								<!--div class="modal-footer"></div-->
+					  		</div>
+						</div>
+				  	</div>
+				  	<!-- end Modal -->
+					
 				</div>
 				<div class="upload-picture-error"></div>
 			</div>
@@ -465,6 +491,9 @@
 	<script>
 		jQuery(function($) {
 			var profile_picture_placeholder = "{{ asset('uploads/profile_image.jpg') }}";
+			// $('.remove-picture').hide();
+			// var removePictureBtn = $('.remove-picture');
+			// console.log(removePictureBtn);
 
 			$('#profile_picture').on('change', function(e) {
 
@@ -490,8 +519,8 @@
 			                    });
 			                    $('.upload-picture-error').html(data.error.profile_picture);
 			                } else {
-			                    //$(this).val(data.file_path);
 			                    $('.profile-picture-edit').attr('src', data.file_path);
+			                    $('.remove-picture').show();
 			                }
 			            },
 			            error: function (xhr, status, error) {
@@ -503,33 +532,26 @@
 				}
 			});
 
-			$('.remove-picture').on('click', function(e) {
+			$('.remove-picture-confirm').on('click', function(e) {
 				e.preventDefault();
-				//var form_data = new FormData();
-			    //form_data.append('profile_picture', e.target.files[0]);
-			    //form_data.append('_token', '{{csrf_token()}}');
 				$.ajax({
 					url: "{{route('user_profile_remove_image')}}",
-					//data: form_data,
 					type: 'GET',
 					contentType: false,
 		            processData: false,
 		            success: function (data) {
 		                if (data.error) {
 		                	console.error(data.error);
-		                    // $('.profile-picture-edit').attr('src', profile_picture_placeholder);
-		                    // $.each(data.error.profile_picture, function(i,errMsg) {
-		                    // 	$('.upload-picture-error').append(errMsg);
-		                    // });
-		                    // $('.upload-picture-error').html(data.error.profile_picture);
 		                } else {
 		                    $('.profile-picture-edit').attr('src', profile_picture_placeholder);
+		                    $('#deleteModal_picture_profile').modal('hide');
+		                    $('.remove-picture').hide();
 		                }
 		            },
 		            error: function (xhr, status, error) {
 		                console.error(xhr.responseText);
 		                console.error(error);
-		                //$('.profile-picture-edit').attr('src', profile_picture_placeholder);
+		                $('.profile-picture-edit').attr('src', profile_picture_placeholder);
 		            }
 				});
 			});
