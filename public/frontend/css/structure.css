@@ -5757,7 +5757,7 @@ html,body {
     #Top_bar #menu {
         display: none;
         height: auto;
-        width: 300px;
+        /*width: 300px;*/
         bottom: auto;
         top: 100%;
         right: 1px;
@@ -5859,7 +5859,7 @@ html,body {
     }
 
     /* main menu 2nd level */
-    #Top_bar #menu ul li ul {
+    /*#Top_bar #menu ul li ul {
         position: relative !important;
         left: 0 !important;
         top: 0;
@@ -5871,7 +5871,7 @@ html,body {
 
     #Top_bar #menu ul li ul li {
         width: 100% !important;
-    }
+    }*/
 
     #Top_bar #menu ul li ul li a {
         padding: 0 20px 0 30px;

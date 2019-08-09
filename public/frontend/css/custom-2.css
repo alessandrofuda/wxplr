@@ -1045,3 +1045,25 @@ a.video-prev {
 	
 }
 
+
+
+
+
+
+
+
+
+
+
+/*responsive*/
+@media only screen and (max-width: 1239px) {
+	#Header #menu {
+		display: block;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	#Header #menu {
+		display: none;
+	}
+}

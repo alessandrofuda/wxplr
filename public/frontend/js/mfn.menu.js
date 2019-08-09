@@ -44,22 +44,25 @@
 				menu.find( "li ul li:has(ul) > a" ).append( "<i class='menu-arrow icon-right-open'></i>" );
 			}
 			
-			// .hover() -------------------------
-			menu.find("> li, ul:not(.mfn-megamenu) li").hover(function() {
-				$(this).stop(true,true).addClass(options.hoverClass);
-				if (options.animation === "fade") {
-					$(this).children("ul").stop(true,true).fadeIn(options.delay);
-				} else if (options.animation === "toggle") {
-					$(this).children("ul").stop(true,true).slideDown(options.delay);
-				}
-			}, function(){
-				$(this).stop(true,true).removeClass(options.hoverClass);
-				if (options.animation === "fade") {
-					$(this).children("ul").stop(true,true).fadeOut(options.delay);
-				} else if (options.animation === "toggle") {
-					$(this).children("ul").stop(true,true).slideUp(options.delay);
-				}
-			});
+			// .hover() ------------------------- aggiunta media query per disabilitarlo sugli screen più piccoli
+			if (window.matchMedia('(min-width: 1240px)').matches) {
+
+				menu.find("> li, ul:not(.mfn-megamenu) li").hover(function() {
+					$(this).stop(true,true).addClass(options.hoverClass);
+					if (options.animation === "fade") {
+						$(this).children("ul").stop(true,true).fadeIn(options.delay);
+					} else if (options.animation === "toggle") {
+						$(this).children("ul").stop(true,true).slideDown(options.delay);
+					}
+				}, function(){
+					$(this).stop(true,true).removeClass(options.hoverClass);
+					if (options.animation === "fade") {
+						$(this).children("ul").stop(true,true).fadeOut(options.delay);
+					} else if (options.animation === "toggle") {
+						$(this).children("ul").stop(true,true).slideUp(options.delay);
+					}
+				});
+			}
 	
 		}
 	});
