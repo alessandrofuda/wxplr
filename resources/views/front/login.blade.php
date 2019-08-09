@@ -34,7 +34,7 @@
 							<label for="password">Password : </label>
 							<input type="password" name="password" required id="password" class="form-control" placeholder="Password">
 						</div>
-						<div class="row">
+						<div class="row" style="clear:both!important;">
 							<div class="col-md-6 other-links">
 								<div class="checkbox icheck">
 									<label>
