@@ -4,8 +4,6 @@
 @section('content')
 
 <div id="personal-area" class="container user_profile_form">
-
-
 	<form class="personal-area-form" accept-charset="UTF-8" method="post" action="{{ url('user/profile/update') }}"  enctype="multipart/form-data">
 		{{ csrf_field() }}
 		<input type="hidden" name="user_id" value="{{ $user->id }}">
@@ -132,8 +130,6 @@
 			</div>
 		</div>
 	</form>
-
-
 
 {{-- // OLD CODE TYLE
 
@@ -380,9 +376,7 @@
 	</div>
 --}}
 
-
 </div>
-
 
 {{--
 	<style type='text/css'>
@@ -491,13 +485,8 @@
 	<script>
 		jQuery(function($) {
 			var profile_picture_placeholder = "{{ asset('uploads/profile_image.jpg') }}";
-			// $('.remove-picture').hide();
-			// var removePictureBtn = $('.remove-picture');
-			// console.log(removePictureBtn);
 
 			$('#profile_picture').on('change', function(e) {
-
-				//var profile_picture_placeholder = $('.profile-picture-edit.placeholder').attr('src');
 				$('.upload-picture-error').text('');
 
 				if( $(this).val() != '' ) {
