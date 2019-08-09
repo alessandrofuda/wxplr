@@ -86,7 +86,7 @@
 						<option value="">-- Select Country --</option>
 						@if(count($countries_code)>0)
 							@foreach ($countries_code as $country)
-								<option @if(isset($user->userProfile->country_origin) && $user->userProfile->country_origin == $country['country_name']) selected @endif value="{{ $country['country_name'] }}">
+								<option @if(isset($user->userProfile->country) && ($user->userProfile->country == $country['country_name'])) selected @endif value="{{ $country['country_name'] }}">
 									{{ $country['country_name'] }}
 								</option>
 							@endforeach

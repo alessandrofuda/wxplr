@@ -67,8 +67,8 @@
 					<div class="value">{{ $user->userProfile->city ?? 'n.a.' }}</div>
 				</div>
 				<div class="form-group">
-					<div class="pa-label">Country of Origin</div>
-					<div class="value">{{ $user->userProfile->country_origin ?? 'n.a.' }}</div>
+					<div class="pa-label">Country</div>
+					<div class="value">{{ $user->userProfile->country ?? 'n.a.' }}</div>
 				</div>
 			</div>
 		</div>

@@ -94,8 +94,10 @@ class UserProfileController extends CustomBaseController
         	return back()->withErrors($validator->errors());
         }
 
-        $users['name'] = $request['name'];
-        $users['surname'] = $request['surname'];
+        $user_info['name'] = $request['name'];
+        $user_info['surname'] = $request['surname'];
+
+        User::find($user_id)->update($user_info);
 
         $profile_data['user_id'] = $user_id;
 		$profile_data['gender']=$request['gender'];
@@ -110,18 +112,21 @@ class UserProfileController extends CustomBaseController
         $profile_data['pan'] = $request->get('pan');
         $profile_data['vat'] = $request->get('vat');
         $profile_data['country'] = $request->get('country');
+
+
+        //dd($request->get('country'));
+
+
         $profile_data['city'] = $request->get('city');
         $profile_data['telephone'] = $request->get('telephone');
         $profile_data['zip_code'] = $request->get('zip_code');
         $profile_data['address'] = $request->get('address');
         $profile_data['company'] = $request->get('company');
-    
 
         if(empty($request['allow_personal_data'])){
             $profile_data['allow_personal_data'] = 0;
-        }
-        else{
-             $profile_data['allow_personal_data'] = $request['allow_personal_data'];
+        } else {
+            $profile_data['allow_personal_data'] = $request['allow_personal_data'];
         }
 
 		$user_profile = UserProfile::where('user_id',$user_id)->first();
