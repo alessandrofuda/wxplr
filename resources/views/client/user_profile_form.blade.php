@@ -25,21 +25,27 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-md-offset-1 col-md-4">
+			<div class="col-md-offset-1 col-md-9">
 				<div class="sub-title">
 					Personal Data
 				</div>
 				<div class="img-container">
 					@if(isset($user->userProfile->profile_picture) && !empty($user->userProfile->profile_picture))
-						<img alt="{{ $user->name }}" src="{{ asset($user->userProfile->profile_picture) }}" width="150" height="150">
+						<img class="profile-picture-edit" alt="{{ $user->name }}" src="{{ asset($user->userProfile->profile_picture) }}" width="150" height="150">
 					@else
-						<img alt="{{ $user->name }}" src="{{ asset('uploads/profile_image.jpg') }}" width="150" height="150">
+						<img class="profile-picture-edit placeholder" alt="{{ $user->name }}" src="{{ asset('uploads/profile_image.jpg') }}" width="150" height="150">
 					@endif
 				</div>
-				<div class="upload-container">
-                    <label for="profile_picture" class="upload-custom-btn">upload</label>
-                    <input id="profile_picture" type="file" name="profile_picture">
+				<div class="picture-controls">
+					<div class="upload-container">
+	                    <label for="profile_picture" class="upload-custom-btn">edit</label>
+	                    <input id="profile_picture" type="file" name="profile_picture">
+					</div>
+					@if(isset($user->userProfile->profile_picture) && !empty($user->userProfile->profile_picture))
+						<button class="remove-picture">Remove</button>
+					@endif
 				</div>
+				<div class="upload-picture-error"></div>
 			</div>
 		</div>
 		<div class="row">
@@ -457,17 +463,18 @@
 
 @push('scripts')
 	<script>
-
-		{{-- https://www.codovel.com/ajax-image-upload-with-laravel-example.html --}}
-		//$('#profile_picture').val();
 		jQuery(function($) {
+			var profile_picture_placeholder = "{{ asset('uploads/profile_image.jpg') }}";
+
 			$('#profile_picture').on('change', function(e) {
+
+				//var profile_picture_placeholder = $('.profile-picture-edit.placeholder').attr('src');
+				$('.upload-picture-error').text('');
+
 				if( $(this).val() != '' ) {
 					var form_data = new FormData();
-			        form_data.append('file', e.target.files[0]);
+			        form_data.append('profile_picture', e.target.files[0]);
 			        form_data.append('_token', '{{csrf_token()}}');
-					// var fileName = e.target.files[0].name;   
-					// var selected = $('#profile_picture').val();
 					$.ajax({
 						url: "{{route('user_profile_upload_image')}}",
 						data: form_data,
@@ -475,50 +482,56 @@
 						contentType: false,
 			            processData: false,
 			            success: function (data) {
-			            	alert('ok');
-			            	console.log(data);
-			                if (data.fail) {
-			                    $('.img-container img').attr('src', '{{ asset('uploads/profile_image.jpg') }}');
-			                    alert(data.errors['file']);
+			                if (data.error) {
+			                    $('.profile-picture-edit').attr('src', profile_picture_placeholder);
+			                    console.error(data.error.profile_picture);
+			                    $.each(data.error.profile_picture, function(i,errMsg) {
+			                    	$('.upload-picture-error').append(errMsg);
+			                    });
+			                    $('.upload-picture-error').html(data.error.profile_picture);
 			                } else {
-			                    $(this).val(data);
-			                    $('.img-container img').attr('src', '{{ asset($user->userProfile->profile_picture) }}');
+			                    //$(this).val(data.file_path);
+			                    $('.profile-picture-edit').attr('src', data.file_path);
 			                }
-			                //$('#loading').css('display', 'none');
 			            },
 			            error: function (xhr, status, error) {
-			                alert(xhr.responseText);
-			                $('.img-container img').attr('src', '{{ asset('uploads/profile_image.jpg') }}');
+			                console.error(xhr.responseText);
+			                console.error(error);
+			                $('.profile-picture-edit').attr('src', profile_picture_placeholder);
 			            }
-
 					});
-				} else {
-					// remove TODO ....
-				    /*function removeFile() {
-				        if ($('#file_name').val() != '')
-				            if (confirm('Are you sure want to remove profile picture?')) {
-				                $('#loading').css('display', 'block');
-				                var form_data = new FormData();
-				                form_data.append('_method', 'DELETE');
-				                form_data.append('_token', '{{--csrf_token()--}}');
-				                $.ajax({
-				                    url: "ajax-remove-image/" + $('#file_name').val(),
-				                    data: form_data,
-				                    type: 'POST',
-				                    contentType: false,
-				                    processData: false,
-				                    success: function (data) {
-				                        $('#preview_image').attr('src', '{{--asset('images/noimage.jpg')--}}');
-				                        $('#file_name').val('');
-				                        $('#loading').css('display', 'none');
-				                    },
-				                    error: function (xhr, status, error) {
-				                        alert(xhr.responseText);
-				                    }
-				                });
-				            }
-				    }*/
 				}
+			});
+
+			$('.remove-picture').on('click', function(e) {
+				e.preventDefault();
+				//var form_data = new FormData();
+			    //form_data.append('profile_picture', e.target.files[0]);
+			    //form_data.append('_token', '{{csrf_token()}}');
+				$.ajax({
+					url: "{{route('user_profile_remove_image')}}",
+					//data: form_data,
+					type: 'GET',
+					contentType: false,
+		            processData: false,
+		            success: function (data) {
+		                if (data.error) {
+		                	console.error(data.error);
+		                    // $('.profile-picture-edit').attr('src', profile_picture_placeholder);
+		                    // $.each(data.error.profile_picture, function(i,errMsg) {
+		                    // 	$('.upload-picture-error').append(errMsg);
+		                    // });
+		                    // $('.upload-picture-error').html(data.error.profile_picture);
+		                } else {
+		                    $('.profile-picture-edit').attr('src', profile_picture_placeholder);
+		                }
+		            },
+		            error: function (xhr, status, error) {
+		                console.error(xhr.responseText);
+		                console.error(error);
+		                //$('.profile-picture-edit').attr('src', profile_picture_placeholder);
+		            }
+				});
 			});
 		});
 	</script>

@@ -65,8 +65,6 @@ class UserProfileController extends CustomBaseController
      */
 
     public function update(Request $request) {
-        $base_path=base_path();
-        $base_path=str_replace("/wexsite", "", $base_path);
         $user_id = Auth::user()->id;
         $redirect_url = $request->get('redirect_url');
         if($redirect_url != 'market_analysis') {
@@ -127,8 +125,10 @@ class UserProfileController extends CustomBaseController
         }
 
 		$user_profile = UserProfile::where('user_id',$user_id)->first();
-        $profile_image = $request->file('profile_picture');
-        $profile_data['profile_picture'] = Setting::saveUploadedImage($profile_image,$user_profile->profile_picture);
+
+        // upload img --> via ajax
+        //$profile_image = $request->file('profile_picture');
+        //$profile_data['profile_picture'] = Setting::saveUploadedImage($profile_image,$user_profile->profile_picture);
         
         if($user_profile->exists == 1){
             $user_profile->update($profile_data);
@@ -145,14 +145,37 @@ class UserProfileController extends CustomBaseController
 
     public function uploadImageViaAjax(Request $request) {
 
-        dd($request);
+        $rules['profile_picture'] = 'required|image|mimes:jpeg,png,jpg,gif|max:2048';
+        $validator = Validator::make($request->all(), $rules);
+        if($validator->fails()) {
+            return response()->json(['error' => $validator->errors()]);
+        }
 
-        $profile_image = $request->file('profile_picture');
-        $user_profile = UserProfile::where('user_id', Auth::user()->id)->first();
-        $image_file_path = Setting::saveUploadedImage($profile_image,$user_profile->profile_picture);
-        $user_profile->update(['profile_picture' => $image_file_path]);
+        if($request->file('profile_picture')) {
+            $profile_image = $request->file('profile_picture');
+            $user_profile = UserProfile::where('user_id', Auth::user()->id)->first();
+            $image_file_path = Setting::saveUploadedImage($profile_image,$user_profile->profile_picture);
+            $user_profile->update(['profile_picture' => $image_file_path]);
 
-        return response()->json(['response'=> $image_file_path]);
+            return response()->json(['file_path'=> $image_file_path]);    
+        }
+        
+    }
+
+    public function removeImageViaAjax() {
+
+        $user_profile = UserProfile::where('user_id', Auth::user()->id)->first() ?? null;
+        $profile_picture = $user_profile->profile_picture;
+
+        if($user_profile) {
+            $user_profile->update(['profile_picture' => null]);  
+        }
+        
+        if( !is_null($profile_picture)) {
+            $removed = @unlink(base_path().'/public'.$profile_picture);
+        }
+
+        return response()->json(['removed'=>'Profile picture successfully removed']);
     }
 
 

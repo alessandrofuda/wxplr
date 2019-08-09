@@ -25,7 +25,6 @@ class Setting extends Model
 
     public static function saveUploadedImage($image_file,$old_image = '') {
         $base_path = base_path();
-        $base_path = str_replace("/wexsite", "", $base_path);
         $file_save_folder_path = '/uploads/';
         // get file
         $image_file_path = '';
@@ -39,7 +38,7 @@ class Setting extends Model
         if (!empty($image_file)) {
             $image_original_name = $image_file->getClientOriginalName();
             if (file_exists($base_path . $file_save_folder_path . $image_original_name)) {
-                $image_file_name = time() . '-' . $image_original_name;
+                $image_file_name = $image_original_name.'-'.time();
                 //$outcome_image->getClientOriginalExtension();
             } else {
                 $image_file_name = $image_original_name;
@@ -47,8 +46,9 @@ class Setting extends Model
 
             $image_file_name = str_replace(' ', '-', $image_file_name);
             $image_file_path = $file_save_folder_path . $image_file_name;
-            $image_public_path = $base_path . $file_save_folder_path;
-            if($image_file->move($image_public_path, $image_file_name) ) {  // uploads !!
+
+            $image_public_path = $base_path . '/public' . $file_save_folder_path; // upload img into public folder !!
+            if($image_file->move($image_public_path, $image_file_name) ) {  // upload
                 if($old_image != '') {
                     $old_image_path = $base_path.$old_image;
                     @unlink($old_image_path);  // @ --> prevent generating an error if file does not exist
