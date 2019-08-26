@@ -10,31 +10,6 @@
 	<script src="http://94.76.213.73:9999/js/ewbot.js"></script>
 @endpush
 
-{{-- @section('content')
-	<div class="container">
-	    <div class="row">
-	    	<div class="col-md-12">
-		        <div class="heading">
-		            <h1>{{ $page_title }}</h1>
-		        </div>
-	        </div>
-	    </div>
-	    <div class="row">
-	        <div class="col-md-12" style="font-size: 16px;">
-	        	<div class="box" style="margin-top:20px;">
-	        		<div class="box-title"></div>
-	        		<div class="box-body">
-	        			<p>Run the Chat-Bot by clicking on the button below.</p>
-	        			<div class="img-container" style="max-height: 500px; overflow: hidden; text-align: center; ">
-	        				<img src="{{asset('frontend/images/got-pro-img.jpg')}}" style="width: 100%; position: relative; top: -1020px; ">
-	        			</div>
-	        		</div>
-	        	</div>
-	        </div>
-	    </div>
-	</div>
-@endsection --}}
-
 @section('content')
 	<div id="got-pro" class="container-fluid">
 	    <div class="row got-pro-container">

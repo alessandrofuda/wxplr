@@ -251,6 +251,8 @@
 			// Career Ready / Vic
 			Route::get('user/vic', array('as'=>'vic', 'uses'=>'VicController@index'));
 			Route::get('user/vic/start', array('as'=>'vic_start', 'uses'=>'VicController@start'));
+			Route::get('user/vic/middle', array('as'=>'vic_middle', 'uses'=>'VicController@middle'));
+			Route::get('user/vic/completed', array('as'=>'vic_completed', 'uses'=>'VicController@completed'));
 			// Wow
 			Route::get('user/wow', array('as'=>'wow', 'uses'=>'WowController@index'));
 			Route::get('user/wow/start', array('as'=>'wow_start', 'uses'=>'WowController@start'));			

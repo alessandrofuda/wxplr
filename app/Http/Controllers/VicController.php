@@ -24,11 +24,26 @@ class VicController extends Controller {
             $data['payed'] = true;
         }
         
-        return view('client.vic', $data);
+        return view('client.vic_intro', $data);
     }
 
     public function start() {
-        return 'ok';
+
+        if(!$this->paymentCheck($this->service_id)) {
+            return back()->with('error', 'You have no order for this service!');
+        }
+
+        $data['page_title'] = 'Vic';
+
+        return view('client.vic', $data);
+    }
+
+    public function middle() {
+        return view('client.vic_middle');
+    }
+
+    public function completed() {
+        return view('client.vic_completed');
     }
 
 }
