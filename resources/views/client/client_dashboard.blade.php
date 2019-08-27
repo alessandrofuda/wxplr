@@ -75,9 +75,7 @@
 							<div class="col-md-6 sx">
 								<div class="box-above-top">got pro</div>
 								<div class="box-top">{{ $got_pro_completed->country1 }}, {{ $got_pro_completed->country2 }}, {{ $got_pro_completed->country3 }}.</div>
-								<div class="box-description">
-									XXXXXX
-								</div>
+								<div class="box-description"></div>
 								<div class="box-cta">
 									<a class="btn cta light report" href="#">Report</a>
 									<a class="go-chat-link" href="#">Go to chat</a>
@@ -110,24 +108,57 @@
 						</div>
 					@endif
 
-					<div class="box box-body vic">
-						<div class="col-md-6 sx">
-							<div class="box-top">vic</div>
-							<div class="box-middle">virtual international consultant</div>
-							<div class="box-description">Your best ally to walk you through an international job search journey: 11 steps to prepare your journey.</div>
-							<div class="box-cta">
-								<a class="btn cta" href="{{route('vic')}}">buy for {{$user_services[App\Service::VIC]['price'] ?? 'n.a.'}}€</a>
 
-								@include('partials.vic.how_it_works_modal')
-								
+
+
+
+
+					@if ($vic_b2c_completed)
+						<div class="box box-body vic completed" style="overflow: hidden;">
+							<div class="col-md-6 sx">
+								<div class="box-above-top">Vic Journey</div>
+								<div class="box-top">You are ready to go!</div>
+								<div class="box-description"></div>
+								<div class="box-cta">
+									<a class="btn cta light report" href="#">Prepare your letter</a>
+									<a class="btn cta light report" href="#">Prepare your interview</a>
+									<a class="btn cta light report" href="#">Prepare your transfer</a>
+									<a class="go-chat-link" href="#">Go to chat</a>
+								</div>
+							</div>
+							<div class="col-md-6 dx got-compiled">
+								<div class="box-img got-compiled">
+									<img src="{{asset('frontend/images/vic/completed.png')}}">
+								</div>
 							</div>
 						</div>
-						<div class="col-md-6 dx">
-							<div class="box-img" style="margin-right: 100px;">
-								<img src="{{asset('frontend/images/hp/img_vic.png')}}">
+						vic b2c completed
+					@else
+						<div class="box box-body vic">
+							<div class="col-md-6 sx">
+								<div class="box-top">vic</div>
+								<div class="box-middle">virtual international consultant</div>
+								<div class="box-description">Your best ally to walk you through an international job search journey: 11 steps to prepare your journey.</div>
+								<div class="box-cta">
+									<a class="btn cta" href="{{route('vic')}}">buy for {{$user_services[App\Service::VIC]['price'] ?? 'n.a.'}}€</a>
+
+									@include('partials.vic.how_it_works_modal')
+									
+								</div>
+							</div>
+							<div class="col-md-6 dx">
+								<div class="box-img" style="margin-right: 100px;">
+									<img src="{{asset('frontend/images/hp/img_vic.png')}}">
+								</div>
 							</div>
 						</div>
-					</div>
+					@endif
+
+
+
+
+
+
 					<div class="box-title">
 						Enjoy our WOW Effect
 					</div>

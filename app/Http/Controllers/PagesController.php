@@ -29,6 +29,9 @@ use App\DreamCheckLab;
 use App\User;
 use App\ConsultantBooking;
 use App\GotPro;
+use App\VicB2C;
+use App\VicB2B;
+
 
 use Illuminate\Support\Facades\Log;
 
@@ -463,6 +466,9 @@ class PagesController extends CustomBaseController {
 		$got_pro_results = GotPro::where('id_client', Auth::user()->id); 
 		$got_pro_completed = count($got_pro_results->get()) > 0 ? $got_pro_results->orderBy('crdate', 'DESC')->first() : null;
 
+		$vic_b2c_results = VicB2C::where('IdUser', Auth::user()->id);
+		$vic_b2c_completed = count($vic_b2c_results->get()) > 0 ?? null;
+
 		$data['page_title']='Dashboard';
 		$data['user_roles'] = $roles;
 		$data['user_services'] = $user_services;
@@ -471,6 +477,7 @@ class PagesController extends CustomBaseController {
 		$data['got_compiled'] = $got_compiled;
 		$data['got_outcome_data'] = $got_outcome_data ?? null;
 		$data['got_pro_completed'] = $got_pro_completed;
+		$data['vic_b2c_completed'] = $vic_b2c_completed;
 
 		return view('client.client_dashboard',$data);
 
