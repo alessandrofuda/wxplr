@@ -299,6 +299,11 @@ a.video-prev {
 	height: auto;
 	padding-top: 35px;
 }
+#dashboard .box.box-body.got-pro.completed{
+	max-width: 650px;
+	height: auto;
+	padding-top: 35px;
+}
 #dashboard .btn.cta.report{
 	width: 109px;
 	height: 40px;
@@ -316,13 +321,15 @@ a.video-prev {
 #dashboard .box.box-body.got.compiled .sx {
 	padding-right: 0;
 }
-#dashboard .box.box-body.got.compiled .dx{
+#dashboard .box.box-body.got.compiled .dx {
 	padding-left: 0;
 }
-#dashboard .box.box-body.got.compiled .box-top{
+#dashboard .box.box-body.compiled .box-top,
+#dashboard .box.box-body.completed .box-top {
 	font-size: 24px;
 }
-#dashboard .box.box-body.compiled .box-above-top{
+#dashboard .box.box-body.compiled .box-above-top,
+#dashboard .box.box-body.completed .box-above-top{
 	color: #69ba7a;
 	font-weight: 700;
 	line-height: 20px;

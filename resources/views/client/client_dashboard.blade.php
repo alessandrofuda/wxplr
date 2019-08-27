@@ -41,9 +41,11 @@
 								</div>
 							</div>
 						</div>
-						<div class="box-title">
-							Take another step in your journey
-						</div>
+						@if(!$got_pro_completed)
+							<div class="box-title">
+								Take another step in your journey
+							</div>
+						@endif
 					@else
 						<div class="box-title">
 							Start your journey
@@ -68,25 +70,45 @@
 						</div>
 					@endif
 					
-					
-					<div class="box box-body got-pro">
-						<div class="col-md-6 sx">
-							<div class="box-top">got pro</div>
-							<div class="box-middle">global orientation test pro</div>
-							<div class="box-description">Take your journey one step further with our GOT Pro: find out exactly where in Europe your profile is most in demand.</div>
-							<div class="box-cta">
-								<a class="btn cta" href="{{ route('got_pro') }}">buy for {{$user_services[App\Service::GOT_PRO]['price'] ?? 'n.a.'}}€</a>
-
-								@include('partials.got-pro.how_it_works_modal')
-
+					@if ($got_pro_completed)
+						<div class="box box-body got-pro completed">
+							<div class="col-md-6 sx">
+								<div class="box-above-top">got pro</div>
+								<div class="box-top">{{ $got_pro_completed->country1 }}, {{ $got_pro_completed->country2 }}, {{ $got_pro_completed->country3 }}.</div>
+								<div class="box-description">
+									XXXXXX
+								</div>
+								<div class="box-cta">
+									<a class="btn cta light report" href="#">Report</a>
+									<a class="go-chat-link" href="#">Go to chat</a>
+								</div>
+							</div>
+							<div class="col-md-6 dx got-compiled">
+								<div class="box-img got-compiled">
+									<img src="{{asset('frontend/images/hp/avion.png')}}">
+								</div>
 							</div>
 						</div>
-						<div class="col-md-6 dx">
-							<div class="box-img">
-								<img src="{{asset('frontend/images/hp/img_got-pro.png')}}">
+					@else
+						<div class="box box-body got-pro">
+							<div class="col-md-6 sx">
+								<div class="box-top">got pro</div>
+								<div class="box-middle">global orientation test pro</div>
+								<div class="box-description">Take your journey one step further with our GOT Pro: find out exactly where in Europe your profile is most in demand.</div>
+								<div class="box-cta">
+									<a class="btn cta" href="{{ route('got_pro') }}">buy for {{$user_services[App\Service::GOT_PRO]['price'] ?? 'n.a.'}}€</a>
+
+									@include('partials.got-pro.how_it_works_modal')
+
+								</div>
+							</div>
+							<div class="col-md-6 dx">
+								<div class="box-img">
+									<img src="{{asset('frontend/images/hp/img_got-pro.png')}}">
+								</div>
 							</div>
 						</div>
-					</div>
+					@endif
 
 					<div class="box box-body vic">
 						<div class="col-md-6 sx">
