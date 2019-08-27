@@ -35,4 +35,14 @@ class GotProController extends Controller {
         return view('client.got_pro', $data);
     }
 
+
+    // !! MOCKUP !! da utilizzare anche in dashboard!
+    // public function getGotProResults() { // API
+    //     $token = null;
+    //     $client = new eWhereApiRestClient($token); // Session::get('token')
+    //     $gotPro_results = $client->getGotProResults(Auth::user()->id);
+
+    //     return $gotPro_results;
+    // }
+
 }

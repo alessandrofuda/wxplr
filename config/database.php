@@ -64,6 +64,19 @@ return [
             'strict'    => false,
         ],
 
+        'ewhere' => [
+            'driver'    => 'mysql',
+            'host'      => env('DB_EWHERE_HOST'),
+            'port'      => env('DB_EWHERE_PORT'),
+            'database'  => env('DB_EWHERE_DATABASE'),
+            'username'  => env('DB_EWHERE_USER'),
+            'password'  => env('DB_EWHERE_PASSWORD'),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+        ],
+
         'pgsql' => [
             'driver'   => 'pgsql',
             'host'     => env('DB_HOST', 'localhost'),

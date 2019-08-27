@@ -28,6 +28,7 @@ use Carbon;
 use App\DreamCheckLab;
 use App\User;
 use App\ConsultantBooking;
+use App\GotPro;
 
 use Illuminate\Support\Facades\Log;
 
@@ -250,6 +251,7 @@ class PagesController extends CustomBaseController {
 		$dash_noti = [];
 
 		//INIZIO - Professional Kit status
+		/*
 		$order = Order::where('user_id',Auth::user()->id)->where('item_name','Professional Kit')->first();
 		if($order != null) {
 
@@ -354,6 +356,7 @@ class PagesController extends CustomBaseController {
 				'notifications' => $dash_noti
 			];
 		}
+		*/
 		// FINE - Professional Kit Status
 
 		$roles = array();
@@ -450,20 +453,24 @@ class PagesController extends CustomBaseController {
 				);
 			}
 		}
-		$gots_user = GlobalTestResult::where('user_id', Auth::user()->id);
-		$got_compiled = count($gots_user->get()) > 0 ?? null;
+		$got_results = GlobalTestResult::where('user_id', Auth::user()->id);
+		$got_compiled = count($got_results->get()) > 0 ?? null;
 		if($got_compiled) {
-			$got_outcome_data_id = $gots_user->orderBy('created_at', 'DESC')->first()->outcome_id;
+			$got_outcome_data_id = $got_results->orderBy('created_at', 'DESC')->first()->outcome_id;
 			$got_outcome_data = GlobalTestOutcomes::where('id', $got_outcome_data_id)->first();
 		}
 
+		$got_pro_results = GotPro::where('id_client', Auth::user()->id); 
+		$got_pro_completed = count($got_pro_results->get()) > 0 ? $got_pro_results->orderBy('crdate', 'DESC')->first() : null;
+
 		$data['page_title']='Dashboard';
-		$data['user_roles']=$roles;
-		$data['user_services']=$user_services;
+		$data['user_roles'] = $roles;
+		$data['user_services'] = $user_services;
 		$data['user_unpaid_services'] = $user_unpaid_services;
 		$data['notifications'] = $all_notifications;
 		$data['got_compiled'] = $got_compiled;
 		$data['got_outcome_data'] = $got_outcome_data ?? null;
+		$data['got_pro_completed'] = $got_pro_completed;
 
 		return view('client.client_dashboard',$data);
 
