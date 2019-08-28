@@ -213,9 +213,6 @@
 			Route::post('service/profile/save', 'ServiceOrdersController@service_profile_save');
 			//Route::get('user/services', 'PagesController@services');
 			Route::get('user/dashboard', ['as' => 'user.dashboard','uses' => 'PagesController@client_dashboard']);
-			Route::get('global_orientation_test_intro', ['as'=>'got_intro', 'uses'=>'PagesController@global_online_test_intro']);
-			Route::get('global_orientation_test', ['as'=>'got', 'uses'=>'PagesController@global_online_test']);
-			Route::post('global_orientation_test', 'PagesController@global_online_test_next');
 
 			Route::get('get_address/{addr_id}', 'ServiceOrdersController@get_address');
 			Route::get('user/orders', 'ServiceOrdersController@user_orders');
@@ -245,9 +242,17 @@
 			Route::post('user/dream_check_lab/submit', ['as'=>'dream.check.lab.submit','uses'=>'ProfessionalKitController@dream_check_lab_submit']);
 			Route::get('user/dream_check_lab/feedback/{dreamcheck_id}',['as'=>'dreamcheck.lab.submission.fb','uses' => 'ProfessionalKitController@dream_check_lab_submission_feedback']);
 
+			// GOT free
+			Route::get('global_orientation_test_intro', ['as'=>'got_intro', 'uses'=>'PagesController@global_online_test_intro']);
+			Route::get('global_orientation_test', ['as'=>'got', 'uses'=>'PagesController@global_online_test']);
+			Route::post('global_orientation_test', 'PagesController@global_online_test_next');
+			Route::get('got-report', ['as'=>'got_report', 'uses'=>'PagesController@generateGotReport']);
+
 			// Got PRO
 			Route::get('user/got-pro', array('as'=>'got_pro', 'uses'=>'GotProController@index'));
 			Route::get('user/got-pro/start', array('as'=>'got_pro_start', 'uses'=>'GotProController@start'));
+			Route::get('got-pro-report', ['as'=>'got_pro_report', 'uses'=>'GotProController@generateReport']);
+
 			// Career Ready / Vic
 			Route::get('user/vic', array('as'=>'vic', 'uses'=>'VicController@index'));
 			Route::get('user/vic/start', array('as'=>'vic_start', 'uses'=>'VicController@start'));

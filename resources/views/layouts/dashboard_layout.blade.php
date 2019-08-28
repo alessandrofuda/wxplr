@@ -54,7 +54,9 @@
 
             <div class="user-wrapper">
 
-            	<?php $roles_arr = []; ?>
+            	@php 
+                    $roles_arr = [];
+                @endphp
 
                 @if(isset(Auth::user()->userRoles))
                     @foreach(Auth::user()->userRoles as $roles)
@@ -71,14 +73,14 @@
                 <div class="content-wrapper user-dash-wrapper">
                     <section class="content">
                         <div class="section-row">
-                          <div class="col-md-12">
+                          <div class="notifications">
 
                               @if (session('status'))
                                   <div class="alert alert-success">
                                     {{ session('status') }}
                                   </div>
                               @endif
-
+                              
                               @if (session('error'))
                                 <div class="alert alert-failure" style="background-color:#f73737;">
                                     {{ session('error') }}
@@ -97,7 +99,6 @@
                               
                           </div>
                         </div>
-
                       @yield('content')
 
                     </section>

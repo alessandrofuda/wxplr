@@ -31,7 +31,7 @@
 									{{-- !! $got_outcome_data->description ?? 'n.a.' !! --}}
 								</div>
 								<div class="box-cta">
-									<a class="btn cta report" href="#">Report</a>
+									<a class="btn cta report" href="{{route('got_report')}}">Report</a>
 									<a class="redo-link" href="{{ asset('global_orientation_test?force=recompile') }}">REDO TEST</a>
 								</div>
 							</div>
@@ -77,7 +77,7 @@
 								<div class="box-top">{{ $got_pro_completed->country1 }}, {{ $got_pro_completed->country2 }}, {{ $got_pro_completed->country3 }}.</div>
 								<div class="box-description"></div>
 								<div class="box-cta">
-									<a class="btn cta light report" href="#">Report</a>
+									<a class="btn cta light report" href="{{route('got_pro_report')}}">Report</a>
 									<a class="go-chat-link" href="#">Go to chat</a>
 								</div>
 							</div>

@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 use App\Page;
 use App\GlobalTest;
@@ -31,6 +32,7 @@ use App\ConsultantBooking;
 use App\GotPro;
 use App\VicB2C;
 use App\VicB2B;
+use PDF;
 
 
 use Illuminate\Support\Facades\Log;
@@ -483,11 +485,7 @@ class PagesController extends CustomBaseController {
 
 	}
 
-
-
-
-
-
+	/*
 	public function services(){
 		$roles = array();
 		if(Auth::user()->userRoles){
@@ -562,6 +560,7 @@ class PagesController extends CustomBaseController {
 		$data['meta_tag'] = $meta_tag;
 		return view('client.services',$data);
 	}
+	*/
 
 	public function global_online_test_intro() {
 
@@ -603,9 +602,6 @@ class PagesController extends CustomBaseController {
 
 		return view('front.global_test',$data);
 	}
-
-
-
 
 	public function global_online_test_next(Request $request){
 		$validator = Validator::make($request->all(), [
@@ -681,7 +677,32 @@ class PagesController extends CustomBaseController {
 		return view('front.global_test',$data);
 	}
 
+	public function generateGotReport() {
 
+		$got_results = GlobalTestResult::where('user_id', Auth::user()->id);
+		$got_result = count($got_results->get()) > 0 ? $got_results->orderBy('created_at', 'DESC')->first() : null;
+
+		if(!$got_result) {
+			return  back()->with('error', 'You haven\'t compiled Global Orientation Test yet');
+		}
+
+		$got_result_profile = GlobalTestOutcomes::findOrFail($got_result->outcome_id);
+
+		$data = [
+			'title' => 'Global Orientation Test - Report',
+			'user_full_name' => Auth::user()->name.' '.Auth::user()->surname,
+			'user_email' => Auth::user()->email,
+			'outcome_name' => $got_result_profile->outcome_name,
+			'outcome_file' => $got_result_profile->outcome_file,
+			'description' => $got_result_profile->description,
+			'created_at' => $got_result_profile->created_at,
+		];
+
+        $pdf = PDF::loadView('reports.got', $data);
+        // return view('reports.got', $data);
+
+        return $pdf->download('got-report-'.Str::slug($data['user_full_name'], '-').'-'.date('Y-m-d').'-'.time().'.pdf');
+	}
 
 	public function partners() {
 		$partners = Partners::all();
@@ -752,7 +773,7 @@ class PagesController extends CustomBaseController {
 		return redirect()->back()->with('status', 'Your message has been sent successfully!');
 	}
 
-	public function aiesec_send_email(Request $request) {
+	/*public function aiesec_send_email(Request $request) {
 		$rules['name'] = 'required';
 		$rules['surname'] = 'required';
 		$rules['address'] = 'required';
@@ -791,9 +812,9 @@ class PagesController extends CustomBaseController {
 		});
 
 		return redirect()->back()->with('status', 'Your message has been sent successfully!');
-	}
+	}*/
 
-	private function updateMailchimp($name, $surname, $address, $email, $group) {
+	/*private function updateMailchimp($name, $surname, $address, $email, $group) {
       $apiKey = env('MC_API_KEY', 'NO_APIKEY'); 
       $listId = env('MC_LIST_ID', 'NO_LISTID'); 
       $emailHash = md5(strtolower($email));
@@ -827,6 +848,6 @@ class PagesController extends CustomBaseController {
 		Log::info(print_r($response, true));
 
 		return;
-	}
+	}*/
 
 }

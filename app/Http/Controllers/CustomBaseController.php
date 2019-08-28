@@ -13,8 +13,7 @@ use Session;
 use App\Navigation;
 use App\Setting;
 
-class CustomBaseController extends Controller
-{
+class CustomBaseController extends Controller {
     //public $variable1="I am Data";
     
     public function __construct() {
@@ -60,4 +59,6 @@ class CustomBaseController extends Controller
        View::share ( 'variable4', ['name'=>'Franky'] );*/
 
     }
+
+    
 }

@@ -201,8 +201,11 @@ a.btn.cta.light, button.btn.cta.light {
 	border: 1px solid #6bb97a;
 	background-image: none;
 }
-.alert{
-	margin-top: 80px;
+.notifications{
+	padding: 3%;
+	padding-top: 80px;
+	color:#ffffff;
+	
 }
 .box.got {
 	height: 352px;
