@@ -108,14 +108,9 @@
 						</div>
 					@endif
 
-
-
-
-
-
 					@if ($vic_b2c_completed)
 						<div class="box box-body vic completed" style="overflow: hidden;">
-							<div class="col-md-6 sx">
+							<div class="col-md-9 sx">
 								<div class="box-above-top">Vic Journey</div>
 								<div class="box-top">You are ready to go!</div>
 								<div class="box-description"></div>
@@ -126,13 +121,12 @@
 									<a class="go-chat-link" href="#">Go to chat</a>
 								</div>
 							</div>
-							<div class="col-md-6 dx got-compiled">
+							<div class="col-md-3 dx got-compiled">
 								<div class="box-img got-compiled">
 									<img src="{{asset('frontend/images/vic/completed.png')}}">
 								</div>
 							</div>
 						</div>
-						vic b2c completed
 					@else
 						<div class="box box-body vic">
 							<div class="col-md-6 sx">
@@ -153,11 +147,6 @@
 							</div>
 						</div>
 					@endif
-
-
-
-
-
 
 					<div class="box-title">
 						Enjoy our WOW Effect
@@ -207,12 +196,19 @@
 						<div class="col-md-6 dx">
 							<div class="row">
 								@for ($i = 0; $i < 4; $i++)
-									<div class="col-md-6"> {{-- CICLARE da DB !! --}}
+									<div class="col-sm-6 col-md-6"> {{-- CICLARE da DB !! --}}
 										<div class="video-prev-container">
 											<a class="video-prev" href="#">
 												<img class="video-prev-img" src="{{asset('frontend/images/hp/video_prev.jpg')}}">
 												<span class="video-prev-icon">
 													<i class="far fa-play-circle"></i>
+												</span>
+												<span class="video-payment-icon">
+													@if($i == 0 || $i == 2)
+														FREE
+													@else
+														€
+													@endif
 												</span>
 											</a>
 										</div>

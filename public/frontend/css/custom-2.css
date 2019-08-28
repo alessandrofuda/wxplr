@@ -103,6 +103,7 @@ img.img-circle.logo-tondo {
 	width: 60px;
 	height: auto;
 	margin-right: 10px;
+	border: 3px solid #49b16b;
 }
 #Top_bar #menu-main-menu li ul.dropdown-menu{
 	box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
@@ -176,7 +177,7 @@ img.img-circle.logo-tondo {
 	margin-bottom: 35px;
 }
 .row-second .box .box-cta{
-	
+	line-height: 60px;
 }
 .row-second .box-body > .sx {
 	padding-left: 30px;
@@ -207,7 +208,8 @@ a.btn.cta.light, button.btn.cta.light {
 	height: 352px;
 }
 .box.wow {
-	height: 470px;
+	min-height: 470px;
+	height: auto;
 }
 .box.wow .box-top {
 	margin-top:50px;
@@ -235,13 +237,16 @@ a.btn.cta.light, button.btn.cta.light {
 }
 .video-prev-container {
 	margin-top:50px;
-}
-a.video-prev {
 	position: relative;
+	max-width: 300px;
 }
+.video-prev-img {
+	width: 100%;
+}
+
 .video-prev-icon {
 	position: absolute;
-	top: calc(50% - 15px);
+	top: calc(50% - 20px);
 	left: calc(50% - 15px);
 }
 .video-prev-icon i {
@@ -249,6 +254,16 @@ a.video-prev {
 	/*font-family: "Font Awesome 5 Free";*/
 	font-size: 24px;
 	line-height: 24px;
+}
+.video-payment-icon {
+	position: absolute;
+	top: 5px;
+	right: 8px;
+	color: #ffffff;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 24px;
+	text-transform: uppercase;
 }
 .box-body.wow .video-author {
 	color: #055b76;
@@ -317,11 +332,11 @@ a.video-prev {
 	color: #49b16b;
 	font-size: 14px;
 	text-transform: uppercase;
-	margin-right: 20px;
-	margin-bottom: 20px;
+	margin-right: 14px;
+	/*margin-bottom: 20px;*/
 }
 #dashboard .redo-link {
-	margin-bottom: 50px;
+	/*margin-bottom: 50px;*/
 	display: inline-block;
 }
 #dashboard .go-chat-link {
