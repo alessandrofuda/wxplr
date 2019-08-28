@@ -102,13 +102,13 @@ class OrderTransaction extends Model
 
     public function getName() {
         if($this->type_id == 0 ) 
-            return  $this->order->service->name ;
+            return  $this->order->service->name ?? '(n.a. or order deleted)';
         elseif($this->type_id == 1) 
-            return $this->order->video->video_title;
+            return $this->order->video->video_title ?? '(n.a. or order deleted)';
         elseif($this->type_id == 2) 
-            return $this->order->event->name;
+            return $this->order->event->name ?? '(n.a. or order deleted)';
         elseif($this->type_id == 3)
-            return  $this->order->package->title;
+            return  $this->order->package->title ?? '(n.a. or order deleted)';
         else
             return "";
     }

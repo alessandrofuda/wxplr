@@ -37,7 +37,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('admin/users') }}"><i class="fa fa-circle-o"></i>Clients</a></li>
-            <li><a href="{{ url('admin/consultants') }}"><i class="fa fa-circle-o"></i>Consultants</a></li>
+            {{-- <li><a href="{{ url('admin/consultants') }}"><i class="fa fa-circle-o"></i>Consultants</a></li> --}}
             <li><a href="{{ url('admin/roles') }}"><i class="fa fa-circle-o"></i> Roles</a></li>
           </ul>
         </li>
@@ -54,7 +54,7 @@
             <li class="treeview">
               <a href="#">
                 <i class="glyphicon glyphicon-book"></i>
-                <span>Global oriented test</span>
+                <span>Got - free</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -67,48 +67,65 @@
             <li class="treeview">
               <a href="#">
                 <i class="glyphicon glyphicon-book"></i>
-                <span>Professional Kit</span>
+                <span>Got - PRO</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
-              <ul class="treeview-menu">
-                <li>
-                  <a href="#"><i class="fa fa-circle-o"></i> Market Analysis <i class="fa fa-angle-left pull-right"></i></a>
-                  <ul class="treeview-menu">
-                    <li><a href="{{ url('admin/market_analysis') }}"><i class="fa fa-circle-o"></i>Market Analysis PDFs</a></li>
-                  </ul>
-                </li>
-                <li>
-                  <a href="#"><i class="fa fa-circle-o"></i> Culture Match <i class="fa fa-angle-left pull-right"></i></a>
-                  <ul class="treeview-menu">
-                    <li><a href="{{ url('admin/cuture_match/survey_code/upload') }}"><i class="fa fa-circle-o"></i>Upload Survey Code</a></li>
-                    <li><a href="{{ url('admin/cuture_match/survey_code') }}"><i class="fa fa-circle-o"></i>Survey Code Listing</a></li>
-                  </ul>
-                </li>
-
-                <li>
-                  <a href="#"><i class="fa fa-circle-o"></i> Role play interview <i class="fa fa-angle-left pull-right"></i></a>
-                  <ul class="treeview-menu">
-                    <li><a href="{{ url('admin/booked/consultant/list') }}"><i class="fa fa-circle-o"></i>Consultant Bookings</a></li>
-                  <!--<li><a href="{{ url('admin/cuture_match/survey_code/assign') }}"><i class="fa fa-circle-o"></i>Assign Survey Code</a></li>-->
-                  </ul>
-                </li>
-                <li>
-                  <a href="#">
-                    <i class="fa fa-circle-o"></i>
-                    <span>Steady Aim Shoot</span>
-                    <i class="fa fa-angle-left pull-right"></i>
-                  </a>
-                  <ul class="treeview-menu">
-                    <li><a href="{{ url('admin/steady_aim_shoot/country_pdf/list') }}"><i class="fa fa-circle-o"></i>Upload country pdf</a></li>
-                    <li><a href="{{ url('admin/steady_aim_shoot') }}"><i class="fa fa-circle-o"></i>Change Text</a></li>
-                  </ul>
-                </li>
-              </ul>
             </li>
             <li class="treeview">
               <a href="#">
                 <i class="glyphicon glyphicon-book"></i>
-                <span>Skill Development</span>
+                <span>VIC</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+            </li>
+
+            {{--
+              <li class="treeview">
+                <a href="#">
+                  <i class="glyphicon glyphicon-book"></i>
+                  <span>Professional Kit</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                  <li>
+                    <a href="#"><i class="fa fa-circle-o"></i> Market Analysis <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                      <li><a href="{{ url('admin/market_analysis') }}"><i class="fa fa-circle-o"></i>Market Analysis PDFs</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#"><i class="fa fa-circle-o"></i> Culture Match <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                      <li><a href="{{ url('admin/cuture_match/survey_code/upload') }}"><i class="fa fa-circle-o"></i>Upload Survey Code</a></li>
+                      <li><a href="{{ url('admin/cuture_match/survey_code') }}"><i class="fa fa-circle-o"></i>Survey Code Listing</a></li>
+                    </ul>
+                  </li>
+
+                  <li>
+                    <a href="#"><i class="fa fa-circle-o"></i> Role play interview <i class="fa fa-angle-left pull-right"></i></a>
+                    <ul class="treeview-menu">
+                      <li><a href="{{ url('admin/booked/consultant/list') }}"><i class="fa fa-circle-o"></i>Consultant Bookings</a></li>
+                    <!--<li><a href="{{ url('admin/cuture_match/survey_code/assign') }}"><i class="fa fa-circle-o"></i>Assign Survey Code</a></li>-->
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-circle-o"></i>
+                      <span>Steady Aim Shoot</span>
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                      <li><a href="{{ url('admin/steady_aim_shoot/country_pdf/list') }}"><i class="fa fa-circle-o"></i>Upload country pdf</a></li>
+                      <li><a href="{{ url('admin/steady_aim_shoot') }}"><i class="fa fa-circle-o"></i>Change Text</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            --}}
+            <li class="treeview">
+              <a href="#">
+                <i class="glyphicon glyphicon-book"></i>
+                <span>WOW</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -118,17 +135,20 @@
                 <li><a href="{{ url('admin/events') }}"><i class="fa fa-circle-o"></i>Event/ Live webinars</a></li>
               </ul>
             </li>
-            <li class="treeview">
-              <a href="#">
-                <i class="glyphicon glyphicon-user"></i>
-                <span>Global Tool Box</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{{ url('admin/queries') }}"><i class="fa fa-circle-o"></i>List Queries</a></li>
-              </ul>
-            </li>
-            <li><a href="{{ url('admin/service/create') }}"><i class="fa fa-circle-o"></i>Create Service</a></li>
+            {{--
+              <li class="treeview">
+                <a href="#">
+                  <i class="glyphicon glyphicon-user"></i>
+                  <span>Global Tool Box</span>
+                  <i class="fa fa-angle-left pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                  <li><a href="{{ url('admin/queries') }}"><i class="fa fa-circle-o"></i>List Queries</a></li>
+                </ul>
+              </li>
+            --}}
+
+            {{-- <li><a href="{{ url('admin/service/create') }}"><i class="fa fa-circle-o"></i>Create Service</a></li> --}}
           </ul>
         </li>
 
@@ -140,7 +160,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="{{ url('admin/codes') }}"><i class="fa fa-circle-o"></i>Preferential Codes</a></li>
-            <li><a href="{{ url('admin/package/list') }}"><i class="fa fa-circle-o"></i>Packages</a></li>
+            {{-- <li><a href="{{ url('admin/package/list') }}"><i class="fa fa-circle-o"></i>Packages</a></li> --}}
           </ul>
         </li>
 
@@ -150,32 +170,33 @@
             <span>Transactions</span>
           </a>
         </li>
-
-        <li class="treeview">
-          <a href="{{ url('admin/queries') }}">
-            <i class="glyphicon glyphicon-book"></i>
-            <span>Queries</span>
-          </a>
-        </li>
-
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Pages</span>
-            <i class="fa fa-angle-left pull-right"></i>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{ url('admin/pages') }}"><i class="fa fa-circle-o"></i>List pages</a></li>
-            <li class="">
-              <a href="{{ url('admin/navigation') }}">
-                <i class="glyphicon glyphicon-menu-hamburger"></i>
-                <span>Navigation</span>
-              </a>
-            </li>
-            <li><a href="{{ url('admin/partners') }}"><i class="fa fa-circle-o"></i>List Partners</a></li>
-            <li><a href="{{ url('admin/blogs') }}"><i class="fa fa-circle-o"></i>Blogs</a></li>
-          </ul>
-        </li>
+        {{-- 
+          <li class="treeview">
+            <a href="{{ url('admin/queries') }}">
+              <i class="glyphicon glyphicon-book"></i>
+              <span>Queries</span>
+            </a>
+          </li>
+       
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-files-o"></i>
+              <span>Pages</span>
+              <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="{{ url('admin/pages') }}"><i class="fa fa-circle-o"></i>List pages</a></li>
+              <li class="">
+                <a href="{{ url('admin/navigation') }}">
+                  <i class="glyphicon glyphicon-menu-hamburger"></i>
+                  <span>Navigation</span>
+                </a>
+              </li>
+              <li><a href="{{ url('admin/partners') }}"><i class="fa fa-circle-o"></i>List Partners</a></li>
+              <li><a href="{{ url('admin/blogs') }}"><i class="fa fa-circle-o"></i>Blogs</a></li>
+            </ul>
+          </li>
+        --}}
 
 
         <li class="treeview">
@@ -185,16 +206,19 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-          <li><a href="{{ url('admin/meta-tags') }}">
-            <i class="glyphicon glyphicon-book"></i>
-            <span>Meta Tags</span>
-          </a></li>
+          {{--   
+            <li><a href="{{ url('admin/meta-tags') }}">
+              <i class="glyphicon glyphicon-book"></i>
+              <span>Meta Tags</span>
+            </a>
+            </li>
             <li>
               <a href="{{ url('admin/slider/settings') }}">
                 <i class="glyphicon glyphicon-book"></i>
                 <span>Slider Settings</span>
               </a>
             </li>
+          --}}  
             <li>
               <a href="{{ url('admin/settings') }}">
                 <i class="glyphicon glyphicon-book"></i>

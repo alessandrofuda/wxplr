@@ -5,13 +5,14 @@
     <div class="alert alert-success">
         {{ session('status') }}
     </div>
-@endif
-@if (session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
-<!-- Small boxes (Stat box) -->
+  @endif
+
+  @if (session('error'))
+      <div class="alert alert-danger">
+          {{ session('error') }}
+      </div>
+  @endif
+  <!-- Small boxes (Stat box) -->
       <div class="row">       
         
         <div class="col-lg-3 col-xs-6">
@@ -78,49 +79,51 @@
       </div>
       <!-- /.row -->
       <!-- Main row -->
-      <div class="row">
-        <!-- Left col -->
-        <div class="col-md-6 ">
-          <table class="table table-striped panel">
-            <thead>
-            <tr>
-              <th>This Week:</th>
-              <th>Professional Kit</th>
-              <th>Global Tool Box</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($weekOrders as $key => $order)
-            <tr>
-              <td>{{  $key }}</td>
-              <td>{{  isset($order['professional_kit']) ? $order['professional_kit'] : 0 }}</td>
-              <td>{{  isset($order['global_tool_query'] ) ? $order['global_tool_query'] : 0 }}</td>
-            </tr>
-           @endforeach
-            </tbody>
-          </table>
-        </div>
-        <div class="col-md-6">
-          <table class="table table-striped panel">
-            <thead>
-            <tr>
-              <th>This Month:</th>
-              <th>Professional Kit</th>
-              <th>Global Tool Box</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach($monthOrders as $key => $monthOrder)
+      {{--
+        <div class="row">
+          <!-- Left col -->
+          <div class="col-md-6 ">
+            <table class="table table-striped panel">
+              <thead>
+              <tr>
+                <th>This Week:</th>
+                <th>Professional Kit</th>
+                <th>Global Tool Box</th>
+              </tr>
+              </thead>
+              <tbody>
+              @foreach($weekOrders as $key => $order)
               <tr>
                 <td>{{  $key }}</td>
-                <td>{{ isset( $monthOrder['professional_kit']) ? $monthOrder['professional_kit'] : "" }}</td>
-                <td>{{ isset( $monthOrder['global_tool_query']) ? $monthOrder['global_tool_query'] : ""}}</td>
+                <td>{{  isset($order['professional_kit']) ? $order['professional_kit'] : 0 }}</td>
+                <td>{{  isset($order['global_tool_query'] ) ? $order['global_tool_query'] : 0 }}</td>
               </tr>
-            @endforeach
-            </tbody>
-          </table>
+             @endforeach
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-6">
+            <table class="table table-striped panel">
+              <thead>
+              <tr>
+                <th>This Month:</th>
+                <th>Professional Kit</th>
+                <th>Global Tool Box</th>
+              </tr>
+              </thead>
+              <tbody>
+              @foreach($monthOrders as $key => $monthOrder)
+                <tr>
+                  <td>{{  $key }}</td>
+                  <td>{{ isset( $monthOrder['professional_kit']) ? $monthOrder['professional_kit'] : "" }}</td>
+                  <td>{{ isset( $monthOrder['global_tool_query']) ? $monthOrder['global_tool_query'] : ""}}</td>
+                </tr>
+              @endforeach
+              </tbody>
+            </table>
+          </div>
         </div>
-      </div>
+      --}}
       <!-- /.row (main row) -->
       <!--<p><br><br>TESTING<br></p>
       <div class="row">

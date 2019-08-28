@@ -42,9 +42,10 @@
 										aria-label="Browser: activate to sort column ascending" style="width: 208px;">Paid By</th>
 									<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
 										aria-label="Browser: activate to sort column ascending" style="width: 208px;">Created At</th>
-									<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
+									{{-- <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1"
 										aria-label="Browser: activate to sort column ascending" style="width: 208px;">Operations</th>
-									<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 208px;">Invoice</th>
+										<th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 208px;">Invoice</th>
+									 --}}
 								</tr>
 								</thead>
 								<tbody>
@@ -57,11 +58,13 @@
 												<td class="sorting_1">{{ $transaction->getName() }}</td>
 												<td class="sorting_1">{{ isset($transaction->createUser->name) ? $transaction->createUser->name : "User Deleted" }}</td>
 												<td class="sorting_1">{{ $transaction->created_at }}</td>
-												<td class="sorting_1">{!! $transaction->order_status != \App\OrderTransaction::STATE_REFUND ? link_to_route('refund_transaction','Refund',['transaction_id' => $transaction->id]) : "Refunded" !!}</td>
-
-												<td class="sorting_1">
-													<a href="/order/{{ $transaction->order_id }}/download/invoice"><i class="fa fa-file-pdf-o" style="font-size:25px;"></i></a>
-												</td>
+												{{-- 
+													<td class="sorting_1">{!! $transaction->order_status != \App\OrderTransaction::STATE_REFUND ? link_to_route('refund_transaction','Refund',['transaction_id' => $transaction->id]) : "Refunded" !!}
+													</td>
+													<td class="sorting_1">
+														<a href="/order/{{ $transaction->order_id }}/download/invoice"><i class="fa fa-file-pdf-o" style="font-size:25px;"></i></a>
+													</td> 
+												--}}
 											</tr>
 										@endforeach
 									@else
