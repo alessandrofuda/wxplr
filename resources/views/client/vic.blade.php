@@ -1,13 +1,9 @@
 @extends('layouts.dashboard_layout')
 
 @push('js-libraries')
-	<!--got pro chatbot-->
-    {{-- 
-    	<script src="https://www.ew9102bot.it/lib/signalr/signalr.js"></script>
-		<script src="https://www.ew9102bot.it/js/ewbot.js"></script> 
-	--}}
-	<script src="http://94.76.213.73:9999/lib/signalr/signalr.js"></script>
-	<script src="http://94.76.213.73:9999/js/ewbot.js"></script>
+	<!--Vic_B2C chatbot-->
+	<script src="https://www.ew9102bot.it/lib/signalr/signalr.js"></script>
+	<script src="https://www.ew9102bot.it/js/ewbot.js"></script> 
 @endpush
 
 @section('content')
@@ -20,7 +16,7 @@
 		        <div id="chat-wrapper" class="body"></div>
 		        
 		        <div class="suspend-link">
-		        	<a href="{{route('vic_middle')}}">do you want suspend ?</a>
+		        	<a href="{{route('vic_middle')}}">Do you want to suspend the chat and continue it later?</a>
 		        </div>
 	        </div>
 	        <div class="col-md-6 dx" style="padding-right: 0;">
@@ -32,7 +28,7 @@
 
 
 
-{{-- 
+
 @push('scripts')
 	<script>
 		function resizeIframe(obj) {
@@ -57,15 +53,14 @@
 		if(CheckCompatibility()){
 			var chat = new Ewbot();
 			chat.Init({
-				hubendpoint : 'http://94.76.213.73:9999/Ewbot',  // 'https://www.ew9102bot.it/Ewbot',
+				hubendpoint : 'https://www.ew9102bot.it/Ewbot',
 				chat_image_welcome : '{{asset('custom/chat-vic/logo_apri_chat.png')}}',
 				chat_image_header_opened : '{{asset('custom/chat-vic/header_chat.png')}}',
 				chat_image_header_closed : '{{asset('custom/chat-vic/logo_chat_aperta.png')}}',			
 				chat_send : '{{asset('custom/chat-vic/chat_send_msg.png')}}',
 				css_headers : '{{asset('custom/chat-vic/chat_CT.css')}}',
-				flow: 'Wexplore_B2C',  // 'WeExploreFlowNew',
-				disable_signalR: true,  // false,
-				// context: 'nn...',
+				flow: 'Wexplore_B2C',
+				disable_signalR: true, 
 				session_id: queryParameter("session_id"),
 				parameters: 
 				{ 
@@ -89,4 +84,3 @@
 		});
 	</script>
 @endpush
- --}}

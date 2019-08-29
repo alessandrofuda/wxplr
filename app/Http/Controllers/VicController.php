@@ -46,13 +46,4 @@ class VicController extends Controller {
         return view('client.vic_completed');
     }
 
-    // !! MOCKUP !! da utilizzare anche in dashboard!
-    // public function getVicResults() { // API
-    //     $token = null;
-    //     $client = new eWhereApiRestClient($token); // Session::get('token')
-    //     $vic_results = $client->getVicResults(Auth::user()->id);
-
-    //     return $vic_results;
-    // }
-
 }

@@ -1,13 +1,13 @@
 @extends('layouts.dashboard_layout')
 
 @push('js-libraries')
-	<!--got pro chatbot-->
-    {{-- 
-    	<script src="https://www.ew9102bot.it/lib/signalr/signalr.js"></script>
-		<script src="https://www.ew9102bot.it/js/ewbot.js"></script> 
+	<!--got pro chatbot--> 
+    <script src="https://www.ew9102bot.it/lib/signalr/signalr.js"></script>
+	<script src="https://www.ew9102bot.it/js/ewbot.js"></script> 
+	{{--
+		<script src="http://94.76.213.73:9999/lib/signalr/signalr.js"></script>
+		<script src="http://94.76.213.73:9999/js/ewbot.js"></script>
 	--}}
-	<script src="http://94.76.213.73:9999/lib/signalr/signalr.js"></script>
-	<script src="http://94.76.213.73:9999/js/ewbot.js"></script>
 @endpush
 
 @section('content')
@@ -54,15 +54,14 @@
 		if(CheckCompatibility()){
 			var chat = new Ewbot();
 			chat.Init({
-				hubendpoint : 'http://94.76.213.73:9999/Ewbot',  // 'https://www.ew9102bot.it/Ewbot',
+				hubendpoint : 'https://www.ew9102bot.it/Ewbot',
 				chat_image_welcome : '{{asset('custom/chat-vic/logo_apri_chat.png')}}',
 				chat_image_header_opened : '{{asset('custom/chat-vic/header_chat.png')}}',
 				chat_image_header_closed : '{{asset('custom/chat-vic/logo_chat_aperta.png')}}',			
 				chat_send : '{{asset('custom/chat-vic/chat_send_msg.png')}}',
 				css_headers : '{{asset('custom/chat-vic/chat_CT.css')}}',
-				flow: 'Wexplore_GOT',  // 'WeExploreFlowNew',
-				disable_signalR: true,  // false,
-				// context: 'nn...',
+				flow: 'Wexplore_GOT', 
+				disable_signalR: true, 
 				session_id: queryParameter("session_id"),
 				parameters: 
 				{ 
