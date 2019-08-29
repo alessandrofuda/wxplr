@@ -196,7 +196,8 @@ ul > li {
     margin-right: 75px;
     background-color: #239e9e;
 }
-.chat-message-container.darker > img {
+.chat-message-container.darker > img,
+.chat-message-container.darker > div > img {
     position: absolute;
     right: 0;
     left: auto;

@@ -8,6 +8,7 @@ use App\GotPro;
 use App\Order;
 use PDF;
 use Auth;
+use Session;
 
 class GotProController extends Controller {
 
