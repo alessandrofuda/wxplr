@@ -39,11 +39,11 @@ use Illuminate\Support\Facades\Log;
 
 class PagesController extends CustomBaseController {
 
-	const MAILCHIMP_LIST_GROUP_GLOBAL_ORIENTATION_TEST = '882a0e5cfb';
-	const MAILCHIMP_LIST_GROUP_PROFESSIONAL_KIT = 'eb56a232f1';
-	const MAILCHIMP_LIST_GROUP_SKILLS_DEVELOPMENT = '4cfd24aacd';
-	const MAILCHIMP_LIST_GROUP_GLOBAL_TOOLBOX = '7d5c4ada11';
-	const MAILCHIMP_LIST_GROUP_AIESEC = 'd8b559b138';
+	// const MAILCHIMP_LIST_GROUP_GLOBAL_ORIENTATION_TEST = '882a0e5cfb';
+	// const MAILCHIMP_LIST_GROUP_PROFESSIONAL_KIT = 'eb56a232f1';
+	// const MAILCHIMP_LIST_GROUP_SKILLS_DEVELOPMENT = '4cfd24aacd';
+	// const MAILCHIMP_LIST_GROUP_GLOBAL_TOOLBOX = '7d5c4ada11';
+	// const MAILCHIMP_LIST_GROUP_AIESEC = 'd8b559b138';
 
 	public function homepage() {
 		$services = Service::get();
@@ -467,9 +467,12 @@ class PagesController extends CustomBaseController {
 
 		$got_pro_results = GotPro::where('id_client', Auth::user()->id); 
 		$got_pro_completed = count($got_pro_results->get()) > 0 ? $got_pro_results->orderBy('crdate', 'DESC')->first() : null;
+		$got_pro_payed = $this->paymentCheck(Service::GOT_PRO);
 
 		$vic_b2c_results = VicB2C::where('IdUser', Auth::user()->id);
 		$vic_b2c_completed = count($vic_b2c_results->get()) > 0 ?? null;
+		$vic_b2c_payed = $this->paymentCheck(Service::VIC);
+
 
 		$data['page_title']='Dashboard';
 		$data['user_roles'] = $roles;
@@ -479,7 +482,9 @@ class PagesController extends CustomBaseController {
 		$data['got_compiled'] = $got_compiled;
 		$data['got_outcome_data'] = $got_outcome_data ?? null;
 		$data['got_pro_completed'] = $got_pro_completed;
+		$data['got_pro_payed'] = $got_pro_payed;
 		$data['vic_b2c_completed'] = $vic_b2c_completed;
+		$data['vic_b2c_payed'] = $vic_b2c_payed;
 
 		return view('client.client_dashboard',$data);
 

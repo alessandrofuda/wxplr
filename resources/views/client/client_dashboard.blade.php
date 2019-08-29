@@ -78,7 +78,7 @@
 								<div class="box-description"></div>
 								<div class="box-cta">
 									<a class="btn cta light report" href="{{route('got_pro_report')}}">Report</a>
-									<a class="go-chat-link" href="#">Go to chat</a>
+									<a class="go-chat-link" href="{{route('got_pro_start')}}">Go to chat</a>
 								</div>
 							</div>
 							<div class="col-md-6 dx got-compiled">
@@ -94,7 +94,11 @@
 								<div class="box-middle">global orientation test pro</div>
 								<div class="box-description">Take your journey one step further with our GOT Pro: find out exactly where in Europe your profile is most in demand.</div>
 								<div class="box-cta">
-									<a class="btn cta" href="{{ route('got_pro') }}">buy for {{$user_services[App\Service::GOT_PRO]['price'] ?? 'n.a.'}}€</a>
+									@if ($got_pro_payed)
+										<a class="btn cta" href="{{ route('got_pro_start') }}">Start</a>
+									@else
+										<a class="btn cta" href="{{ route('got_pro') }}">buy for {{$user_services[App\Service::GOT_PRO]['price'] ?? 'n.a.'}}€</a>
+									@endif
 
 									@include('partials.got-pro.how_it_works_modal')
 
@@ -134,7 +138,11 @@
 								<div class="box-middle">virtual international consultant</div>
 								<div class="box-description">Your best ally to walk you through an international job search journey: 11 steps to prepare your journey.</div>
 								<div class="box-cta">
-									<a class="btn cta" href="{{route('vic')}}">buy for {{$user_services[App\Service::VIC]['price'] ?? 'n.a.'}}€</a>
+									@if ($vic_b2c_payed)
+										<a class="btn cta" href="{{route('vic_start')}}">Start</a>
+									@else
+										<a class="btn cta" href="{{route('vic')}}">buy for {{$user_services[App\Service::VIC]['price'] ?? 'n.a.'}}€</a>
+									@endif
 
 									@include('partials.vic.how_it_works_modal')
 									
