@@ -62,7 +62,8 @@
 				css_headers : '{{asset('custom/chat-vic/chat_CT.css')}}',
 				flow: 'Wexplore_GOT', 
 				disable_signalR: true, 
-				session_id: queryParameter("session_id"),
+				//session_id: queryParameter("session_id"),
+				session_id: '{{ 'GOT_'.time() }}',
 				parameters: 
 				{ 
 					user_id: {{Auth::user()->id}},

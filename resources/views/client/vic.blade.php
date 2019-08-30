@@ -24,6 +24,125 @@
 	        </div>
 	    </div>
 	</div>
+
+
+
+
+
+
+
+
+
+	<button type="button" class="countries-list-btn" data-toggle="modal" data-target="#countries-list-modal"> countries list - TEST </button>
+
+	<!-- Modal -->
+	<div class="modal fade" id="countries-list-modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+			    <div class="modal-header">
+				    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				        <span aria-hidden="true">&times;</span>
+				    </button>
+				     <!--h6 class="modal-title" id="exampleModalLabel">Lista paesi</h6-->
+			    </div>
+			    <div class="modal-body">
+			    	<ol id="countryList" style="">
+						<li>Africa</li>
+						<li>Albania</li>
+						<li>Arabia Saudita</li>
+						<li>Argentina</li>
+						<li>Australia</li>
+						<li>Austria</li>
+						<li>Belgio</li>
+						<li>Bhutan</li>
+						<li>Brasile</li>
+						<li>Bulgaria</li>
+						<li>Canada</li>
+						<li>Capo Verde</li>
+						<li>Cina</li>
+						<li>Colombia</li>
+						<li>Corea del Sud</li>
+						<li>Costa Rica</li>
+						<li>Croazia</li>
+						<li>Danimarca</li>
+						<li>Ecuador</li>
+						<li>Egitto</li>
+						<li>Estonia</li>
+						<li>Fiji</li>
+						<li>Filippine</li>
+						<li>Finlandia</li>
+						<li>Francia</li>
+						<li>Germania</li>
+						<li>Giamaica</li>
+						<li>Giordania</li>
+						<li>Grecia</li>
+						<li>Guatemala</li>
+						<li>Honduras</li>
+						<li>Hong Kong</li>
+						<li>India</li>
+						<li>Indonesia</li>
+						<li>Iran</li>
+						<li>Iraq</li>
+						<li>Irlanda</li>
+						<li>Islanda</li>
+						<li>Israele</li>
+						<li>Italia</li>
+						<li>Libano</li>
+						<li>Libia</li>
+						<li>Lituania</li>
+						<li>Lussemburgo</li>
+						<li>Malesia</li>
+						<li>Malta</li>
+						<li>Marocco</li>
+						<li>Medio Oriente</li>
+						<li>Messico</li>
+						<li>Namibia</li>
+						<li>Nepal</li>
+						<li>Norvegia</li>
+						<li>Nuova Zelanda</li>
+						<li>Olanda</li>
+						<li>Pakistan</li>
+						<li>Peru</li>
+						<li>Polonia</li>
+						<li>Portogallo</li>
+						<li>Repubblica Ceca</li>
+						<li>Repubblica Dominicana</li>
+						<li>Romania</li>
+						<li>Russia</li>
+						<li>Serbia</li>
+						<li>Singapore</li>
+						<li>Slovacchia</li>
+						<li>Slovenia</li>
+						<li>Spagna</li>
+						<li>Sri Lanka</li>
+						<li>Sud Africa</li>
+						<li>Svezia</li>
+						<li>Svizzera non tedesca</li>
+						<li>Svizzera tedesca</li>
+						<li>Taiwan</li>
+						<li>Thailandia</li>
+						<li>Turchia</li>
+						<li>UAE</li>
+						<li>UK</li>
+						<li>Ungheria</li>
+						<li>Uruguay</li>
+						<li>USA</li>
+						<li>Venezuela</li>
+						<li>Vietnam</li>
+					</ol>
+			    </div>
+			    <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+			    </div>
+			</div>
+		</div>
+	</div>
+
+
+	
+
+
+
 @endsection
 
 
@@ -61,7 +180,8 @@
 				css_headers : '{{asset('custom/chat-vic/chat_CT.css')}}',
 				flow: 'Wexplore_B2C',
 				disable_signalR: true, 
-				session_id: queryParameter("session_id"),
+				// session_id: queryParameter("session_id"),
+				session_id: '{{ 'VIC_B2C_'.time() }}',
 				parameters: 
 				{ 
 					user_id: {{Auth::user()->id}},
@@ -70,7 +190,7 @@
 				}
 			});
 			chat.InitializeContent();
-		}	
+		}
 	</script>
 
 	<!--customization -->
@@ -81,6 +201,17 @@
 			$('#chat-with-me').trigger('click');
 			$('#chatMessageList .chat-message-container.darker img').attr('src', '/frontend/images/wexplore-logo-tondo-plain.png');
 			$('#chatTextBox').attr('placeholder', 'Compose your message ...');
+
+
+			// countries list in modal
+			// $('#countries-list-modal').on('click', function(e) {
+			// 	e.preventDefault();
+			// 	countriesListModal();
+			// 	function countriesListModal(){
+			// 	}
+			// });
+
 		});
 	</script>
+	
 @endpush
