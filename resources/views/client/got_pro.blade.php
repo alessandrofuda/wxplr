@@ -66,7 +66,7 @@
 				session_id: '{{ 'GOT_'.time() }}',
 				parameters: 
 				{ 	
-					base_address: '{{ dd(url('/')) }}'   // 'https://wexplore.alessandrofuda.it',
+					base_address: '{{ url('/') }}', 
 					user_id: {{Auth::user()->id}},
 					chat_object_name: 'chat',
 					current_page: window.location.href
