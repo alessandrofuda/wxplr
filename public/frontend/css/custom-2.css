@@ -733,6 +733,12 @@ a.btn.cta.light, button.btn.cta.light {
 #vic .img-got-pro-dx.completed {
 	
 }
+#vic .countries-list-btn {
+	padding: 0px 10px 3px;
+	line-height: 1.0;
+	border: 1px solid #055b76;
+}
+
 /*checkout page*/
 #checkout {
 	background-image: linear-gradient(270deg, #69ba7a 0%, #055b76 100%);

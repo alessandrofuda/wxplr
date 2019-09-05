@@ -132,7 +132,7 @@
 					</ol>
 			    </div>
 			    <div class="modal-footer">
-			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+			        <button type="button" class="cta btn btn-secondary" data-dismiss="modal">Chiudi</button>
 			    </div>
 			</div>
 		</div>
