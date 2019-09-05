@@ -7,10 +7,10 @@
 		        <div class="top-heading">VIC</div>
 		        <div class="sub-heading">virtual international consultant</div>
 		        <div class="intro">Click here to resume your journey with VIC</div>
-		        <div id="chat-wrapper" class="body">Il percorso e lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd</div>
+		        <div id="chat-wrapper" class="body"></div>
 		        <div class="buttons-section">
-		        	<a class="btn cta light" href="#">CV Report</a>
-		        	<a class="btn cta light" href="#">Interview Report</a>
+		        	<a class="btn cta light" href="#">Preparation Report</a>
+		        	<a class="btn cta light" href="#">Job Hunt Report</a>
 		        	<br><br>
 		        	<a class="btn cta" href="#">Resume Your Journey</a>
 		        </div>

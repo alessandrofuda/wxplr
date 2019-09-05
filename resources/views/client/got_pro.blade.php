@@ -25,9 +25,9 @@
 	        	<img class="img-got-pro-dx" src="{{asset('frontend/images/got-pro/green-world.png')}}">
 	        	<div class="cta-to-vic">
 					<div class="text">
-						How can you ................... ................ ..................... ................................ ................... !
+						Your dream job is only a few clicks away. Now that you know the best countries for you, VIC can support you in starting your job search and navigate with confidence and speed in a new market.
 					</div>
-					<a class="btn cta" href="{{route('vic')}}">GO TO VIC !</a>
+					<a class="btn cta" href="{{route('vic')}}">ASK VIC</a>
 				</div>
 	        </div>
 	    </div>

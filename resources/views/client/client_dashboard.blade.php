@@ -54,7 +54,7 @@
 							<div class="col-md-6 sx">
 								<div class="box-top">got</div>
 								<div class="box-middle">global orientation test</div>
-								<div class="box-description">Start your journey to discover more about you: which kind of companies and which countries better match your values and preferences?</div>
+								<div class="box-description">Find out your international professional profile and start from here to define the next step in your career: which country works best for you? In which company you are most likely to thrive?</div>
 								<div class="box-cta">
 									<a class="btn cta" href="{{route('got_intro')}}">Start now it's free!</a>
 								</div>

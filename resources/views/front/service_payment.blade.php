@@ -871,7 +871,7 @@
 </div>
 
 @php 
-	$clientToken = Braintree_ClientToken::generate();
+	$clientToken = \Braintree_ClientToken::generate();
 @endphp
 
 

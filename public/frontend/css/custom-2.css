@@ -746,6 +746,7 @@ a.btn.cta.light, button.btn.cta.light {
 	padding: 0px 10px 3px;
 	line-height: 1.0;
 	border: 1px solid #055b76;
+	background-color: #055b76;
 }
 #vic .chat-message-container a {
 	color: #ffd281;
@@ -753,6 +754,16 @@ a.btn.cta.light, button.btn.cta.light {
 }
 #vic .suspend-link {
 	text-align: right;
+}
+#vic .citation {
+	font-size:14px;
+	margin-bottom: 30px;
+}
+#vic .cit-text {
+	font-style: italic;
+}
+#vic .completed-description {
+	margin-bottom: 50px;
 }
 
 /*checkout page*/
