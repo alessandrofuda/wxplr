@@ -16,7 +16,7 @@
 		        <div id="chat-wrapper" class="body"></div>
 		        
 		        <div class="suspend-link">
-		        	<a href="{{route('vic_middle')}}">Do you want to suspend the chat and continue it later?</a>
+		        	<a class="cta btn" href="{{route('vic_middle')}}" style="">Do you want to suspend the chat and continue it later?</a>
 		        </div>
 	        </div>
 	        <div class="col-md-6 dx" style="padding-right: 0;">
@@ -24,16 +24,6 @@
 	        </div>
 	    </div>
 	</div>
-
-
-
-
-
-
-
-
-
-	<button type="button" class="countries-list-btn" data-toggle="modal" data-target="#countries-list-modal"> countries list - TEST </button>
 
 	<!-- Modal -->
 	<div class="modal fade" id="countries-list-modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
@@ -46,7 +36,11 @@
 				     <!--h6 class="modal-title" id="exampleModalLabel">Lista paesi</h6-->
 			    </div>
 			    <div class="modal-body">
-			    	<ol id="countryList" style="">
+			    	<ul>
+			    		<li>Italia</li>
+			    		<li>Francia</li>
+			    	</ul>
+			    	{{-- <ol id="countryList" style="">
 						<li>Africa</li>
 						<li>Albania</li>
 						<li>Arabia Saudita</li>
@@ -129,7 +123,7 @@
 						<li>USA</li>
 						<li>Venezuela</li>
 						<li>Vietnam</li>
-					</ol>
+					</ol> --}}
 			    </div>
 			    <div class="modal-footer">
 			        <button type="button" class="cta btn btn-secondary" data-dismiss="modal">Chiudi</button>
@@ -137,12 +131,7 @@
 			</div>
 		</div>
 	</div>
-
-
 	
-
-
-
 @endsection
 
 
@@ -184,6 +173,7 @@
 				session_id: '{{ 'VIC_B2C_'.time() }}',
 				parameters: 
 				{ 
+					base_address: '{{ url('/') }}', 
 					user_id: {{Auth::user()->id}},
 					chat_object_name: 'chat',
 					current_page: window.location.href

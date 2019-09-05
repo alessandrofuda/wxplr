@@ -41,7 +41,10 @@
 									</div>
 								@ endif--}}
 								<div class="redo-test">
-									<a href="{{ asset('global_orientation_test?force=recompile') }}">REDO THE TEST</a>
+									<a href="{{ url('global_orientation_test?force=recompile') }}">REDO THE TEST</a>
+								</div>
+								<div class="got-report">
+									<a class="btn cta report" href="{{route('got_report')}}">Report</a>
 								</div>
 							</div>
 						@else
@@ -80,7 +83,7 @@
 						<div class="text">
 							How can you use this information to your best advantage? How can you get more insights on your target countries? Find out with the Global Orientation Test PRO!
 						</div>
-						<a class="btn cta" href="{{route('got_pro')}}">GO PRO!</a>
+						<a class="btn cta" href="{{route('got_pro')}}">GO to GOT-PRO !</a>
 					</div>				
 				@else
 					<img class="got-page-img" src="{{asset('frontend/images/got/got_intro_page.png')}}" title="">

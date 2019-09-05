@@ -27,7 +27,7 @@
 								<div class="box-above-top">got</div>
 								<div class="box-top">You are a {{ $got_outcome_data->outcome_name ?? 'n.a.'}}</div>
 								<div class="box-description">
-									Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et.
+									{{-- Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et. --}}
 									{{-- !! $got_outcome_data->description ?? 'n.a.' !! --}}
 								</div>
 								<div class="box-cta">
@@ -122,7 +122,7 @@
 									<a class="btn cta light report" href="#">Prepare your letter</a>
 									<a class="btn cta light report" href="#">Prepare your interview</a>
 									<a class="btn cta light report" href="#">Prepare your transfer</a>
-									<a class="go-chat-link" href="#">Go to chat</a>
+									{{-- <a class="go-chat-link" href="#">Go to chat</a> --}}
 								</div>
 							</div>
 							<div class="col-md-3 dx got-compiled">
@@ -185,9 +185,9 @@
 												<div class="modal-text">
 													Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 												</div>
-												<div class="modal-img">
+												{{-- <div class="modal-img">
 													<img class="" src="" style="border:1px solid gray; width:100%; height: 200px;">
-												</div>
+												</div> --}}
 												<div class="modal-subtitle">how much is it ?</div>
 												<div class="modal-text">
 													Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.

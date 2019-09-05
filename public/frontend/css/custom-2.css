@@ -184,7 +184,7 @@ img.img-circle.logo-tondo {
 	padding-right: 30px;
 }
 a.btn.cta, button.btn.cta {
-	width: 206px;
+	min-width: 206px;
 	height: 40px;
 	border-radius: 10px;
 	background-image: linear-gradient(to right, #6bb97a 31%, #5ab282 38%, #41a98e 52%, #2fa297 66%, #259e9c 82%, #229d9e 100%);
@@ -509,16 +509,21 @@ a.btn.cta.light, button.btn.cta.light {
 	line-height: 22px;
 }
 #got-page .redo-test {
+	display: inline-block;
 	margin-top:35px;
 	margin-bottom: 30px;
+	margin-right: 50px;
 	line-height: 20px;
 	text-transform: uppercase;
 }
-#got-page .redo-test a{
+#got-page .redo-test a {
 	color: #69ba7a;
 	font-family: "Open Sans";
 	font-size: 14px;
 	font-weight: 700;
+}
+#got-page .got-report {
+	display: inline-block;
 }
 #got-page .dx-block{
 	position: relative;	
@@ -687,6 +692,13 @@ a.btn.cta.light, button.btn.cta.light {
 	text-decoration: underline;
 	color: #808080;
 }
+#reset-psw-page .panel.panel-default {
+	width: 100%;
+}
+#reset-password .sx-title {
+	left: calc(50% - 150px);
+}
+
 /*vic*/
 #vic .vic-container {
 	margin-top: 160px;
@@ -723,20 +735,24 @@ a.btn.cta.light, button.btn.cta.light {
 	margin-bottom: 35px;
 }
 #vic .buttons-section .btn.cta {
-	min-width: 145px;
+	/*min-width: 145px;*/
 	margin-right: 25px;
 }
 
 #vic .vic-middle {
 	padding:1% 4%;
 }
-#vic .img-got-pro-dx.completed {
-	
-}
 #vic .countries-list-btn {
 	padding: 0px 10px 3px;
 	line-height: 1.0;
 	border: 1px solid #055b76;
+}
+#vic .chat-message-container a {
+	color: #ffd281;
+	text-decoration: underline;
+}
+#vic .suspend-link {
+	text-align: right;
 }
 
 /*checkout page*/
@@ -905,9 +921,6 @@ a.btn.cta.light, button.btn.cta.light {
 	padding-left: 48px;
 	padding-right: 0;
 }
-#got-pro .got-pro-container .dx {
-	overflow: hidden;
-}
 #got-pro .top-heading {
 	color: #055b76;
 	font-family: "Varela Round";
@@ -942,6 +955,34 @@ a.btn.cta.light, button.btn.cta.light {
 	width: 145px;
 	margin-right: 25px;
 }
+#got-pro .chat-message-container a {
+	color: #ffd281;
+	text-decoration: underline;
+}
+#got-pro .img-got-pro-dx {
+	max-width: 100%;
+}
+#got-pro .cta-to-vic{
+	position: absolute;
+	bottom:-50px;
+	right: 10px;
+	width: 300px;
+	height: auto;
+	background-color: #ffffff;
+	padding:30px;
+	border-radius: 20px;
+	box-shadow: 4px 10px 16px rgba(0, 0, 0, 0.16);
+
+}
+#got-pro .cta-to-vic .text {
+	color: #808080;
+	font-family: "Open Sans";
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 22px;
+	margin-bottom: 20px;
+}
+
 /* personal area */
 #personal-area {
 	padding-top: 170px;

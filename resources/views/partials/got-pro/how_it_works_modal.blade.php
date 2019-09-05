@@ -21,9 +21,9 @@
 						<li>Discover the 3 countries in Europe that best match your professional skills.</li>
 					</ol>
 				</div>
-				<div class="modal-img">
+				{{-- <div class="modal-img">
 					<img class="" src="" style="border:1px solid gray; width:100%; height: 200px;">
-				</div>
+				</div> --}}
 				<div class="modal-subtitle">how much is it ?</div>
 				<div class="modal-text">
 					Price: {{ $user_services[App\Service::GOT_PRO]['price'] ?? $price }}€

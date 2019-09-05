@@ -23,9 +23,9 @@
 						<li>The 3 reports are: preparation (from step 1 to 4) - hunt (from step 5 to 9) - take off (steps 10 and 11). The reports contain all the information you have discussed with VIC, and additional sources for your job search</li>
 					</ol>
 				</div>
-				<div class="modal-img">
+				{{-- <div class="modal-img">
 					<img class="" src="" style="border:1px solid gray; width:100%; height: 200px;">
-				</div>
+				</div> --}}
 				<div class="modal-subtitle">how much is it ?</div>
 				<div class="modal-text">
 					Price: {{ $user_services[App\Service::VIC]['price'] ?? $price }}€

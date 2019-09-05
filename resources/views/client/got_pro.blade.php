@@ -23,6 +23,12 @@
 	        </div>
 	        <div class="col-md-6 dx" style="padding-right: 0;">
 	        	<img class="img-got-pro-dx" src="{{asset('frontend/images/got-pro/green-world.png')}}">
+	        	<div class="cta-to-vic">
+					<div class="text">
+						How can you ................... ................ ..................... ................................ ................... !
+					</div>
+					<a class="btn cta" href="{{route('vic')}}">GO TO VIC !</a>
+				</div>
 	        </div>
 	    </div>
 	</div>
