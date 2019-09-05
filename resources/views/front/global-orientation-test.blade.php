@@ -83,7 +83,7 @@
                                         </div>
                                         <div class="form-group">
                                             <input type="radio" name="policy" required>
-                                            <span style="color: white;">I authorize the treatment of my personal data pursuant to the Italian Legislative Decree on privacy 196/2003. <a href="/privacy-policy" target="_blank">Read the privacy policy</a></span>
+                                            <span style="color: white;">I authorize the treatment of my personal data pursuant to the General Data Protection Regulation (EU GDPR) 2016/679. <a href="/privacy-policy" target="_blank">Read the privacy policy</a></span>
                                         </div>
                                         <!-- SUBMIT -->
                                         <p style="text-align:center;" class="no-margins"><input type="submit" name="invia" value="SEND"></p>

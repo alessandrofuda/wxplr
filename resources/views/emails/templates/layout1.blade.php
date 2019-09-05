@@ -289,7 +289,7 @@
 																		<span style="color:#000000"><a style="text-decoration: none; color: #999999;" href="{{ url('login') }}" target="_blank">Login </a>| <a style="text-decoration: none; color: #999999;" href="{{ url('terms-service') }}" target="_blank">Terms of service</a><br />
 																			<br />
 																			This mail was sent by Wexplore Srl, Via Sangallo, 33 20133 Milan, Italy<br />
-																			Tax code and&nbsp;registration at Registro delle Imprese di Milano n. 2120181, VAT n. 03560330130.<br />
+																			Tax code and&nbsp;registration at Registro delle Imprese di Milano n. 2120181, VAT n. 09896070969.<br />
 																		You have received this mail as you set on updates by mail regarding your products, however you can switch off it at any time by @yield('unsubscribe', 'deleting account') in your reserved area.</span>
 																	</td>
 																</tr>
