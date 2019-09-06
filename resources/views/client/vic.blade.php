@@ -38,8 +38,8 @@
 			    </div>
 			    <div class="modal-body">
 			    	<ul>
-			    		<li>Italia</li>
 			    		<li>Francia</li>
+			    		<li>Italia</li>
 			    	</ul>
 			    	{{-- <ol id="countryList" style="">
 						<li>Africa</li>

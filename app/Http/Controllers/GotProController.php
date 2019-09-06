@@ -66,7 +66,8 @@ class GotProController extends Controller {
         ];
 
         $pdf = PDF::loadView('reports.got-pro', $data);
-        // return view('reports.got', $data);
+        // return view('reports.got-pro', $data);
+        return $pdf->stream(); // load pdf in browser
 
         return $pdf->download('gotPro-report-'.Str::slug($data['user_full_name'], '-').'-'.date('Y-m-d').'-'.time().'.pdf');
 

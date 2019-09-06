@@ -88,6 +88,7 @@
   ),
   'roboto' => array(
     'normal' => $fontDir . '/cb0a27e5f5946b1cad32b332930bdc37',
+    'italic' => $fontDir . '/8195011e157d3a377682d918ecaef444',
   ),
   'oswald' => array(
     'normal' => $fontDir . '/e68c232a2d6843a002232154942f5405',
@@ -97,5 +98,11 @@
   ),
   'slick' => array(
     'normal' => $fontDir . '/28b82f833b45a438c2659af2e9d871e1',
+  ),
+  'varela round' => array(
+    'normal' => $fontDir . '/e49be071a480c6fbfd317d090b54d39c',
+  ),
+  'patua one' => array(
+    'normal' => $fontDir . '/239873c3c3bcf3527438e084b1ec79bc',
   ),
 ) ?>

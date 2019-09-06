@@ -1,38 +1,47 @@
 @extends('reports.layout')
 
 @section('title')
-	<h1>{{ $title }}</h1>
+	{{ $title }}
 @endsection
 
 @section('content')
-	<div class="">
-		User: {{ $user_full_name }}
+
+	<div id="got-pro-report">
+		<div class="top-section">
+			<div class="name">
+				Report of: {{$user_full_name}}
+			</div>
+			<div class="email">
+				Mail: {{$user_email}}
+			</div>		
+		</div>
+		<div class="middle-section">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="body">
+						<div class="chart-container">
+							<div class="chart">
+								<img class="img-fluid chart-img" src="{{ public_path('frontend/images/reports/chart.jpg') }}">
+							</div>
+
+							<div class="legend">
+								Countries: <span class="legend-1"></span> {{ $country1 }} <span class="legend-2"></span> {{ $country2 }} <span class="legend-3"></span> {{ $country3 }}
+							</div> 
+						</div>
+
+						<div class="claim">
+							These are the top 3 countries in Europe with the highest employment rate for your profile.						
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="compilation-date">
+				Compilation date: {{ $crdate }}
+			</div>
+		</div>
+		<div class="bottom-section">
+			<img class="img-fluid" src="{{ public_path('frontend/images/reports/bottom-image.jpg') }}">
+		</div>
 	</div>
-	<div class="">
-		Email: {{ $user_email }}
-	</div>
-	<div class="">
-		Birth date: {{ $birth_date }}
-	</div>
-	<div class="">
-		Gender: {{ $gender }}
-	</div>
-	<div class="">
-		Study Level: {{ $study_level }}
-	</div>
-	<div class="">
-		Work Function: {{ $work_function }}
-	</div>
-	<div class="">
-		Work Sector: {{ $work_sector }}
-	</div>
-	<div class="">
-		Work Level: {{ $work_level }}
-	</div>
-	<div class="">
-		Countries: {{ $country1 }}, {{ $country2 }}, {{ $country3 }}
-	</div>
-	<div class="">
-		Compilation date: {{ $crdate }}		
-	</div>
+
 @endsection
