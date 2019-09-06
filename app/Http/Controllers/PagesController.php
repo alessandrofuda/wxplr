@@ -704,7 +704,8 @@ class PagesController extends CustomBaseController {
 		];
 
         $pdf = PDF::loadView('reports.got', $data);
-        // return view('reports.got', $data);
+        //return view('reports.got', $data);
+        //return $pdf->stream();
 
         return $pdf->download('got-report-'.Str::slug($data['user_full_name'], '-').'-'.date('Y-m-d').'-'.time().'.pdf');
 	}

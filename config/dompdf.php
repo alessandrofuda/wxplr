@@ -209,7 +209,7 @@ return array(
          *
          * @var bool
          */
-        "DOMPDF_ENABLE_PHP" => false,
+        "DOMPDF_ENABLE_PHP" => true,  // false,
 
         /**
          * Enable inline Javascript
@@ -238,7 +238,7 @@ return array(
          *
          * @var bool
          */
-        "DOMPDF_ENABLE_REMOTE" => true,
+        "DOMPDF_ENABLE_REMOTE" => true, //true,
 
         /**
          * A ratio applied to the fonts height to be more like browsers' line height
@@ -251,13 +251,13 @@ return array(
          * Allows people to disabled CSS float support
          * @var bool
          */
-        "DOMPDF_ENABLE_CSS_FLOAT" => false,
+        "DOMPDF_ENABLE_CSS_FLOAT" => true, // false,
 
 
         /**
          * Use the more-than-experimental HTML5 Lib parser
          */
-        "DOMPDF_ENABLE_HTML5PARSER" => false,
+        "DOMPDF_ENABLE_HTML5PARSER" => true, // false,
 
 
     ),
