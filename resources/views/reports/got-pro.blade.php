@@ -25,7 +25,10 @@
 							</div>
 
 							<div class="legend">
-								Countries: <span class="legend-1"></span> {{ $country1 }} <span class="legend-2"></span> {{ $country2 }} <span class="legend-3"></span> {{ $country3 }}
+								<div class="legend-block" style="margin-left: 40px;">Countries:</div>
+								<div class="legend-block"><img src="{{ public_path('frontend/images/reports/chart-legend-1.jpg') }}"> {{ $country1 }}</div> 
+								<div class="legend-block"><img src="{{ public_path('frontend/images/reports/chart-legend-2.jpg') }}"> {{ $country2 }}</div>
+								<div class="legend-block"><img src="{{ public_path('frontend/images/reports/chart-legend-3.jpg') }}"> {{ $country3 }}</div>
 							</div> 
 						</div>
 
