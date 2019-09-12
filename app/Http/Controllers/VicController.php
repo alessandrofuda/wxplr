@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\VicB2CMatrix;
 use App\UserProfile;
 use App\Service;
 use App\VicB2C;
 use App\Order;
 use Auth;
+use PDF;
 
 
 class VicController extends Controller {
@@ -52,33 +54,40 @@ class VicController extends Controller {
         return view('client.vic_completed');
     }
 
+    public function getResponseFromVicB2CChat($vic_b2c_current_user_chat, $IdQuestionResponse) {
+        return $vic_b2c_current_user_chat->where('IdQuestionResponse', $IdQuestionResponse)->first()->Value ?? 'n.a.';
+    }
 
-
-
-    public function generatePreparationReport() {
+    public function fetchPreparationReportData() {
 
         $vic_b2c_current_user_chat = VicB2C::where('IdUser', Auth::user()->id)->orderBy('crdate', 'DESC')->get(); //orderby DESC// attenzione!: l'utente DEVE POTER FARE UN'UNICA compilazione, inserire un controllo a inizio chat!!
         // !! nella tabella manca l'informazione per identificare la chat da cui prendere le informazioni. Es. userId:10 ha records che fanno riferimento a più chats.
         // se l'utente compila una e una sola volta la chat potrebbe non servire l'id sessione.
 
-
-        $full_name = Auth::user()->name.' '.Auth::user()->surname;
-        $name = Auth::user()->name;
-        $origin_country = UserProfile::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first()->country ?? 'n.a.';
-        
-
-        /*///*/ $country_id = 4; // ???????? sistemare non appena comunicano dove prendere questa informazione per ora: 4 = Francia !!!!!!!
+        if(count($vic_b2c_current_user_chat) == 0 || !$vic_b2c_current_user_chat) {
+            return null;
+        }
         
 
 
-        $target_country_info = VicB2CMatrix::find($country_id); 
-        dump($target_country_info);
+
+
+
+        /*///*/ $target_country_id = 4; // ???????? sistemare non appena comunicano dove prendere questa informazione per ora: 4 = Francia !!!!!!!
+
+
+
+
+
+
+
+        $target_country_info = VicB2CMatrix::find($target_country_id); 
         $target_country_name = $target_country_info->paese ?? 'n.a.';
         $main_product_sectors = $target_country_info->Testo2_3_1_5 ?? 'n.a.';
-        $your_selection_on_product_sectors = $vic_b2c_current_user_chat->where('IdQuestionResponse', '1_6')->first()->Value ?? 'n.a.';
+        $your_selection_on_product_sectors = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '1_6'); 
         $geographic_area_where_you_move = $target_country_info->Testo2_3_1_7 ?? 'n.a.';
         $local_language_knowledge = $target_country_info->Testo2_3_1_9 ?? 'n.a.';
-        $local_language_knowledge_level = $vic_b2c_current_user_chat->where('IdQuestionResponse', '1_10')->first()->Value ?? 'n.a.';  // valori da 1 a 5 dove dove 1 è “molto basica” e 5 è “fluente”
+        $local_language_knowledge_level = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '1_10'); // valori da 1 a 5 dove dove 1 è “molto basica” e 5 è “fluente”
 
         /*your goal*/
         $goals = [
@@ -88,9 +97,9 @@ class VicController extends Controller {
             '4' => 'Soffro per la mancanza di opportunità nel mio paese',
             '5' => 'Altro',
         ];
-        $your_goal_code = $vic_b2c_current_user_chat->where('IdQuestionResponse', '2_4')->first()->Value ?? 'n.a.';
+        $your_goal_code = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_4');
         if($your_goal_code == '5' ) {
-            $your_goal = $vic_b2c_current_user_chat->where('IdQuestionResponse', '2_4_altro')->first()->Value ?? 'n.a.';
+            $your_goal = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_4_altro'); 
         } else {
             $your_goal = $goals[$your_goal_code];
         }
@@ -104,21 +113,70 @@ class VicController extends Controller {
             '5' => 'Rientrare nel mio Paese dopo diversi anni all’estero senza fare passi indietro',
             '6' => 'Altro',
         ];
-        $your_motivation_code = $vic_b2c_current_user_chat->where('IdQuestionResponse', '2_6')->first()->Value ?? 'n.a.';
+        $your_motivation_code = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_6');
         if($your_motivation_code == '6' ) {
-            $your_motivation = $vic_b2c_current_user_chat->where('IdQuestionResponse', '2_6_altro')->first()->Value ?? 'n.a.';
+            $your_motivation = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_6_altro');
         } else {
             $your_motivation = $motivations[$your_motivation_code];
         }
         
-        /*your target roles*/
+        /*your target role*/
+        $target_role = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_8');
+
+        /*sectors you can aim at*/
+        /// informazione non presente in db nè in chat
+
+        /*In [paese] è [facile/difficile] spostarsi da un settore all'altro*/
+        $modality = $target_country_info->modalita ?? 'n.a.';
         
-        
-        
+        /*cultural fit*/
+        $cultural_fit = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_13');
+
+        /*gap/ostacoli*/
+        $gaps = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_15');
+
+        /*cv check*/
+        //// non ci sono informazioni a database relative al cv check
 
 
-        return 'work in progress';
+        //$data = compact('target_role', 'your_motivation', 'your_goal');
+        //dd($data);
+
+        return compact('target_country_name', 'main_product_sectors', 'your_selection_on_product_sectors', 'geographic_area_where_you_move', 'local_language_knowledge', 'local_language_knowledge_level', 'your_goal', 'your_motivation', 'target_role', 'modality', 'cultural_fit', 'gaps');
     }
+
+
+    public function generatePreparationReport() {
+
+        $data = $this->fetchPreparationReportData();
+        if(!$data) {
+            return  back()->with('error', 'You haven\'t compiled Vic yet');
+        }
+
+        $data['full_name'] = Auth::user()->name.' '.Auth::user()->surname;
+        $data['name'] = Auth::user()->name;
+        $data['origin_country'] = UserProfile::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first()->country ?? 'n.a.';
+        $data['title'] = 'WELCOME IN WEXPLORE<br/>SBLOCCA IL POTENZIALE DELLA TUA CARRIERA';
+
+        //dd($data);
+
+        $pdf = PDF::loadView('reports.vic-b2c-preparation', $data);
+        //return view('reports.vic-b2c-preparation', $data);
+        return $pdf->stream(); // load pdf in browser
+
+        return $pdf->download('vic-b2c-preparation-report-'.Str::slug($data['full_name'], '-').'-'.date('Y-m-d').'-'.time().'.pdf');
+
+    }
+
+
+
+
+
+
+
+
+
+
 
     public function generateJobHuntReport() {
         return 'work in progress';
