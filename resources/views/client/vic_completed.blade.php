@@ -15,10 +15,10 @@
 		        		You have completed your journey with VIC and are now ready to take off and start a new and exciting journey in your professional life. <br>We wish you fun, challenges, learning, and fulfillment. <br>And for any “down” moments, let us know if we can lift you up again – after all, we are the wings that make your goals fly higher!
 		        	</div>
 			        <div class="buttons-section">
-			        	<a class="btn cta" href="#">Preparation Report</a>
-			        	<a class="btn cta" href="#">Job Hunt Report</a>
+			        	<a class="btn cta" href="{{ route('vic_preparation_report') }}">Preparation Report</a>
+			        	<a class="btn cta" href="{{ route('vic_job_hunt_report') }}">Job Hunt Report</a>
 			        	<br><br>
-			        	<a class="btn cta" href="#">Take Off Report</a>
+			        	<a class="btn cta" href="{{ route('vic_take_off_report') }}">Take Off Report</a>
 			        	{{-- <a class="" href="#">go to chat</a>  ?? --}}
 			        </div>
 	        	</div>

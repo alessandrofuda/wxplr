@@ -258,6 +258,10 @@
 			Route::get('user/vic/start', array('as'=>'vic_start', 'uses'=>'VicController@start'));
 			Route::get('user/vic/middle', array('as'=>'vic_middle', 'uses'=>'VicController@middle'));
 			Route::get('user/vic/completed', array('as'=>'vic_completed', 'uses'=>'VicController@completed'));
+			Route::get('user/vic/preparation-report', array('as'=>'vic_preparation_report', 'uses'=>'VicController@generatePreparationReport'));
+			Route::get('user/vic/job-hunt-report', array('as'=>'vic_job_hunt_report', 'uses'=>'VicController@generateJobHuntReport'));
+			Route::get('user/vic/take-off-report', array('as'=>'vic_take_off_report', 'uses'=>'VicController@generateTakeOffReport'));
+
 			// Wow
 			Route::get('user/wow', array('as'=>'wow', 'uses'=>'WowController@index'));
 			Route::get('user/wow/start', array('as'=>'wow_start', 'uses'=>'WowController@start'));			
