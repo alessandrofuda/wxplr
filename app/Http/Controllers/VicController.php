@@ -21,6 +21,11 @@ class VicController extends Controller {
 
     public function index(){
 
+        // sa ha già compilato redirect to completed // DA SISTEMARE NON APPENA AVREMO l'INFO A DB E-WHERE
+        if($this->vicAlreadyCompletedCheck()) {
+            return redirect()->route('vic_completed')->with('status', 'Vic already compiled');
+        }
+
         $data['page_title'] = 'Career Ready';
         $data['payed'] = false;
         $data['price'] = Service::find($this->service_id)->price;
@@ -31,6 +36,12 @@ class VicController extends Controller {
         }
         
         return view('client.vic_intro', $data);
+    }
+
+    public function vicAlreadyCompletedCheck() {
+        // !! IMPORTANTE:  manca a db l'informazione che indica se un flusso è stato COMPLETATO CORRETTAMENTE (fino in fondo), appena disponibile:inserirla !!!!
+        $completed = VicB2C::where('IdUser', Auth::user()->id)->get();
+        return count($completed) > 0 ?? null;
     }
 
     public function start() {

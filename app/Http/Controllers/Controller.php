@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Order;
 use App\MetaTags;
 use App\Setting;
@@ -51,8 +52,9 @@ abstract class Controller extends BaseController
     }
 
     public function paymentCheck($serviceId) {
-        $order = Order::where('user_id',\Auth::user()->id)->where('item_id', $serviceId)->first();
+        $order = Order::where('user_id',Auth::user()->id)->where('item_id', $serviceId)->first();
         return $order ?? null;
     }
+
 
 }
