@@ -25,12 +25,11 @@
 			<div class="section-title">1) OVERVIEW DEL MERCATO DEL LAVORO IN {{ $target_country_name }}</div>
 			<div class="section-body">
 				<p class="paragr-title">Breve panoramica del mercato del lavoro in {{ $target_country_name }}</p>
-				I principali settori merceologici in {{ $target_country_name }}: 
-				{!! $main_product_sectors !!}
-				La tua selezione: {{ $your_selection_on_product_sectors }}
-				L’area geografica in cui ti muovi: {!! $geographic_area_where_you_move !!}
-				La tua conoscenza della lingua locale: {!! $local_language_knowledge !!}
-				Livello: {!! $local_language_knowledge_level !!}
+				<p>I principali settori merceologici in {{ $target_country_name }}: {!! $main_product_sectors !!}</p>
+				<p>La tua selezione: {{ $your_selection_on_product_sectors }}</p>
+				<p>L’area geografica in cui ti muovi: {!! $geographic_area_where_you_move !!}</p>
+				<p>La tua conoscenza della lingua locale: {!! $local_language_knowledge !!}</p>
+				<p>Livello: {!! $local_language_knowledge_level !!}</p>
 			</div>
 		</div>
 		<div class="second-section">
@@ -66,21 +65,38 @@
 				<p>Il tuo Score: {{ '???' }}</p>
 			</div>
 		</div>
-		<div class="fourth-section">
+		<div class="templates-section">
 			<div class="section-title underlined">Esclusiva Wexplore – Template CV Bonus</div>
 			<div class="section-body">
-				<div class="">CV ANTI-CRONOLOGICO</div>
-
-				<!-- page break -->
-				<div class="page-break"></div>
-
-
 				<div class="curriculum">
-					link a curriculum tempplate in doc da downloadare (?) -
+					<div class="cv-title">Scarica il template del CV in formato .DOC</div>
+					<div class="cv-link"><a href="{{ url('/') }}" target="_blank">CV ANTI-CRONOLOGICO</a></div>
+					<div class="cv-link"><a href="{{ url('/') }}" target="_blank">CV FUNZIONALE</a></div>
 				</div>
 			</div>
 		</div>
-		
+		<div class="fourth-section">
+			<div class="section-title">4) Lettera di presentazione</div>
+			<div class="section-body">
+				<p>
+					La lettera di presentazione è uno strumento di personal branding molto importante per creare un dialogo con l’azienda e valorizzare le tue motivazioni e punti di contatto con le attività previste o con il settore. Per le aziende, anche se non è un campo obbligatorio, è comunque un segnale importante e proporzionale al tuo interesse.<br>
+					Per te è un modo per qualificarti e far risaltare la tua value proposition rispetto alla concorrenza: per questo è importante trovare un tuo stile personale.<br>
+					Una lettera di presentazione deve necessariamente avere 2 elementi: raccontare cosa ci ha spinto a candidarci, quindi cosa ci ha colpito o affascinato dell’annuncio e raccontare le nostre qualità più rilevanti, cercando quanto più possibile dei collegamenti tra il nostro CV e l’annuncio a cui rispondiamo. 
+				</p>
+				<p>Altri elementi a cui prestare attenzione sono:</p>
+				<p>Lunghezza: {{ '????' }}</p>
+				<p>Lingua: {{ '????' }}</p>
+				<p>Motivazione: {{ '????' }}</p>
+				<p>Aggettivi qualificanti: {{ '????' }}</p>
+				<p>Vantaggi per l'azienda: {{ '????' }}</p>
+				<p>Il tuo score: {{ '????' }}</p>
+			</div>
+			<div class="section-title underlined">Esclusiva Wexplore – Template Lettera Bonus</div>
+			<div class="letter">
+				<div class="letter-title">Scarica un modello di Lettera di Presentazione in formato .DOC</div>
+				<div class="letter-link"><a href="{{ url('/') }}" target="_blank">Scarica</a></div>
+			</div>
+		</div>
 	</div>
 
 @endsection

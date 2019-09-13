@@ -29,11 +29,27 @@ class GotProController extends Controller {
         return view('client.got_pro_intro', $data);
     }
 
+    public function gotProAlreadyCompletedCheck() {
+        // !! IMPORTANTE:  manca a db l'informazione che indica se un flusso è stato COMPLETATO CORRETTAMENTE (fino in fondo), appena disponibile:inserirla !!!!
+        $completed = GotPro::where('id_client', Auth::user()->id)->get();
+        return count($completed) > 0 ?? null;
+    }
+
+
+
     public function start() {
 
         if(!$this->paymentCheck($this->service_id)) {
             return back()->with('error', 'You have no order for this service!');
         }
+
+
+        // sa ha già compilato redirect to completed // DA SISTEMARE NON APPENA AVREMO l'INFO A DB E-WHERE
+        if($this->gotProAlreadyCompletedCheck()) {
+            return redirect()->route('user.dashboard')->with('status', 'Got Pro already compiled'); 
+        }
+
+
         
         $data['page_title'] = 'Got Pro';
 

@@ -37,7 +37,7 @@ verticalbar { position: fixed; bottom: 0px; /*left: auto;*/ right: 0px; height: 
 	bottom: 100px;
 }
 .report-logo {
-	width: 250px;
+	width: 220px;
 	margin-top: -60px;
 }
 .report-title {
@@ -64,6 +64,9 @@ verticalbar { position: fixed; bottom: 0px; /*left: auto;*/ right: 0px; height: 
 }
 .page-break {
 	page-break-after: always;
+}
+.bold {
+	font-weight: bold;
 }
 
 
@@ -108,6 +111,40 @@ verticalbar { position: fixed; bottom: 0px; /*left: auto;*/ right: 0px; height: 
 
 
  /*vic b2c report*/
+ .fullname {
+	font-size:16px;
+	margin-bottom: 30px;
+}
+.contries-wrap {
+	margin-bottom: 30px;
+}
+.title {
+	margin-top: 30px;
+	margin-bottom: 40px;
+	font-size: 14px;
+}
 .section-title {
 	text-transform: uppercase;
+	margin-top: 30px;
+	margin-bottom: 25px;
+	font-weight: bold;
+}
+.section-title.underlined {
+	text-decoration: underline;
+	font-weight: bold;
+	margin-top: 30px;
+}
+.slogan {
+	margin-top:40px;
+	margin-bottom: 40px;
+}
+a {
+	text-decoration: underline!important;
+}
+
+table.star-table td{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
 }

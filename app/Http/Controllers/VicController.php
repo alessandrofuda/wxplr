@@ -190,8 +190,28 @@ class VicController extends Controller {
 
 
     public function generateJobHuntReport() {
-        return 'work in progress';
+
+        $data = $this->fetchPreparationReportData();
+        if(!$data) {
+            return  back()->with('error', 'You haven\'t compiled Vic yet');
+        }
+
+        $data['full_name'] = Auth::user()->name.' '.Auth::user()->surname;
+        $data['name'] = Auth::user()->name;
+        $data['origin_country'] = UserProfile::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first()->country ?? 'n.a.';
+        $data['title'] = 'WELCOME IN WEXPLORE<br/>SBLOCCA IL POTENZIALE DELLA TUA CARRIERA';
+
+        $pdf = PDF::loadView('reports.vic-b2c-job-hunt', $data);
+        //return view('reports.vic-b2c-job-hunt', $data);
+        return $pdf->stream(); // load pdf in browser
+
+        return $pdf->download('vic-b2c-job-hunt-report-'.Str::slug($data['full_name'], '-').'-'.date('Y-m-d').'-'.time().'.pdf');
+
     }
+
+
+
+    
 
     public function generateTakeOffReport() {
         return 'work in progress';

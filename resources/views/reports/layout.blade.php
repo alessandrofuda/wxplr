@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-		<title>{{ $title }}</title>
+		<title>Wexplore report</title>
 		<!-- FONTS -->
 	    <link rel='stylesheet' id='Roboto-css' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,400italic,700'>
 	    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
@@ -68,9 +68,6 @@
 							</div>
 						</div>
 					</div>
-					<!--div class="vertical-right-bar">
-						<img class="img-fluid vertical-img" src="{{-- public_path('frontend/images/reports/vertical-bar.jpg') --}}">
-					</div-->
 				</div>
 			</div>
 		</main>
