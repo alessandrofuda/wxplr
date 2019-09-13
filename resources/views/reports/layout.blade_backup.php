@@ -15,30 +15,15 @@
 	</head>
 
 	<body>
-		<header class="row">
-			<div class="col-md-12">
-				<div class="top-bar">
-					<img class="img-fluid top-bar-img" src="{{ public_path('frontend/images/reports/top-bar.jpg') }}"/>
-				</div>
-			</div>
-		</header>
-		<footer>
-			<div class="col-md-12">
-				<div class="top-bar">
-					<img class="img-fluid top-bar-img" src="{{ public_path('frontend/images/reports/top-bar.jpg') }}"/>
-				</div>
-			</div>
-		</footer>
-		<verticalbar>
-			<div class="vertical-right-bar">
-				<img class="img-fluid vertical-img" src="{{ public_path('frontend/images/reports/vertical-bar.jpg') }}">
-			</div>
-		</verticalbar>
-		
-
-		<main class="report">
+		<div class="report">
 			<div class="container">
-				
+				<div class="row">
+					<div class="col-md-12">
+						<div class="top-bar">
+							<img class="img-fluid top-bar-img" src="{{ public_path('frontend/images/reports/top-bar.jpg') }}"/>
+						</div>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-md-6">
 						<div class="address">
@@ -68,11 +53,11 @@
 							</div>
 						</div>
 					</div>
-					<!--div class="vertical-right-bar">
-						<img class="img-fluid vertical-img" src="{{-- public_path('frontend/images/reports/vertical-bar.jpg') --}}">
-					</div-->
+					<div class="vertical-right-bar">
+						<img class="img-fluid vertical-img" src="{{ public_path('frontend/images/reports/vertical-bar.jpg') }}">
+					</div>
 				</div>
 			</div>
-		</main>
+		</div>
 	</body>
 </html>
