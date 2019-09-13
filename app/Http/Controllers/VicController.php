@@ -172,21 +172,12 @@ class VicController extends Controller {
         //dd($data);
 
         $pdf = PDF::loadView('reports.vic-b2c-preparation', $data);
-        //return view('reports.vic-b2c-preparation', $data);
-        return $pdf->stream(); // load pdf in browser
+        // return view('reports.vic-b2c-preparation', $data);
+        // return $pdf->stream(); // load pdf in browser
 
         return $pdf->download('vic-b2c-preparation-report-'.Str::slug($data['full_name'], '-').'-'.date('Y-m-d').'-'.time().'.pdf');
 
     }
-
-
-
-
-
-
-
-
-
 
 
     public function generateJobHuntReport() {
@@ -202,8 +193,8 @@ class VicController extends Controller {
         $data['title'] = 'WELCOME IN WEXPLORE<br/>SBLOCCA IL POTENZIALE DELLA TUA CARRIERA';
 
         $pdf = PDF::loadView('reports.vic-b2c-job-hunt', $data);
-        //return view('reports.vic-b2c-job-hunt', $data);
-        return $pdf->stream(); // load pdf in browser
+        // return view('reports.vic-b2c-job-hunt', $data);
+        // return $pdf->stream(); // load pdf in browser
 
         return $pdf->download('vic-b2c-job-hunt-report-'.Str::slug($data['full_name'], '-').'-'.date('Y-m-d').'-'.time().'.pdf');
 
@@ -211,7 +202,7 @@ class VicController extends Controller {
 
 
 
-    
+
 
     public function generateTakeOffReport() {
         return 'work in progress';
