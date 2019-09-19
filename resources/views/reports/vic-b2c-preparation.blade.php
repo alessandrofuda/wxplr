@@ -42,7 +42,7 @@
 				<p>Il tuo obiettivo: {{ $your_goal }}</p>
 				<p>La tua motivazione: {{ $your_motivation }}</p>
 				<p>I ruoli per cui ti proponi: {!! $target_role !!}</p>
-				<p>I settori a cui puoi puntare: {{ '?????' }}</p>
+				<p>Il settore a cui puoi puntare: {{ $target_sector }}</p>
 				<p>Nota: In {{ $target_country_name }} è più {{ $modality }} spostarsi da un settore all'altro.</p>
 				<p>Il tuo fit culturale: {{ $cultural_fit }}. Sottolineare le somiglianze tra l’azienda target e l’ambiente in cui sei più abituato a lavorare o dove ti trovi più a tuo agio è un buon modo per essere apprezzati.</p>
 				<p>I tuoi gap: {{ $gaps }}. <br>Attenzione, questo non vuol dire che ti devi focalizzare su questi gap, ma è importante giocare d’anticipo ed esserne consapevoli, perché possono essere delle obiezioni che ti faranno a colloquio. Sapendolo, è più facile ribattere o trovare degli aspetti positivi che possono ribaltare i punti di debolezza e farli diventare dei punti di forza.</p>

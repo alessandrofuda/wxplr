@@ -79,19 +79,8 @@ class VicController extends Controller {
             return null;
         }
         
-
-
-
-
-
-        /*///*/ $target_country_id = 4; // ???????? sistemare non appena comunicano dove prendere questa informazione per ora: 4 = Francia !!!!!!!
-
-
-
-
-
-
-
+        $target_country = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, 'country');
+        $target_country_id = VicB2CMatrix::where('paese', $target_country)->orderBy('Id', 'DESC')->first()->Id ?? null;
         $target_country_info = VicB2CMatrix::find($target_country_id); 
         $target_country_name = $target_country_info->paese ?? 'n.a.';
         $main_product_sectors = $target_country_info->Testo2_3_1_5 ?? 'n.a.';
@@ -135,7 +124,7 @@ class VicController extends Controller {
         $target_role = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_8');
 
         /*sectors you can aim at*/
-        /// informazione non presente in db nè in chat
+        $target_sector = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_10');
 
         /*In [paese] è [facile/difficile] spostarsi da un settore all'altro*/
         $modality = $target_country_info->modalita ?? 'n.a.';
@@ -149,11 +138,7 @@ class VicController extends Controller {
         /*cv check*/
         //// non ci sono informazioni a database relative al cv check
 
-
-        //$data = compact('target_role', 'your_motivation', 'your_goal');
-        //dd($data);
-
-        return compact('target_country_name', 'main_product_sectors', 'your_selection_on_product_sectors', 'geographic_area_where_you_move', 'local_language_knowledge', 'local_language_knowledge_level', 'your_goal', 'your_motivation', 'target_role', 'modality', 'cultural_fit', 'gaps');
+        return compact('target_country_name', 'main_product_sectors', 'your_selection_on_product_sectors', 'geographic_area_where_you_move', 'local_language_knowledge', 'local_language_knowledge_level', 'your_goal', 'your_motivation', 'target_role', 'target_sector', 'modality', 'cultural_fit', 'gaps');
     }
 
 
