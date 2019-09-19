@@ -172,6 +172,7 @@
 				disable_signalR: true, 
 				// session_id: queryParameter("session_id"),
 				session_id: '{{ 'VIC_B2C_'.time() }}',
+				customer_key: '{{ env('EWHERE_CUSTOMER_KEY') }}',
 				parameters: 
 				{ 
 					base_address: '{{ url('/') }}', 
