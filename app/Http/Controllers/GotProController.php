@@ -66,6 +66,7 @@ class GotProController extends Controller {
         }
 
         $data = [
+            'meta_title' => 'GOT Pro Report',
             'title' => 'Global Orientation Test PRO - Report',
             'user_full_name' => Auth::user()->name.' '.Auth::user()->surname,
             'user_email' => Auth::user()->email,

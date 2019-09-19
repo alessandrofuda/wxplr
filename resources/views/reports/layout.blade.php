@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-		<title>Wexplore report</title>
+		<title>Wexplore - {{ $meta_title }}</title>
 		<!-- FONTS -->
 	    <link rel='stylesheet' id='Roboto-css' href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,400italic,700'>
 	    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">

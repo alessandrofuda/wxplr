@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\VicB2CMatrix;
+use App\VicB2CScore;
 use App\UserProfile;
 use App\Service;
 use App\VicB2C;
@@ -66,10 +68,10 @@ class VicController extends Controller {
     }
 
     public function getResponseFromVicB2CChat($vic_b2c_current_user_chat, $IdQuestionResponse) {
-        return $vic_b2c_current_user_chat->where('IdQuestionResponse', $IdQuestionResponse)->first()->Value ?? 'n.a.';
+        return $vic_b2c_current_user_chat->where('IdQuestionResponse', $IdQuestionResponse)->first()->Value ?? null;
     }
 
-    public function fetchPreparationReportData() {
+    public function fetchReportsData() {
 
         $vic_b2c_current_user_chat = VicB2C::where('IdUser', Auth::user()->id)->orderBy('crdate', 'DESC')->get(); //orderby DESC// attenzione!: l'utente DEVE POTER FARE UN'UNICA compilazione, inserire un controllo a inizio chat!!
         // !! nella tabella manca l'informazione per identificare la chat da cui prendere le informazioni. Es. userId:10 ha records che fanno riferimento a più chats.
@@ -79,15 +81,15 @@ class VicController extends Controller {
             return null;
         }
         
-        $target_country = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, 'country');
+        $target_country = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, 'country') ?? 'n.a.';
         $target_country_id = VicB2CMatrix::where('paese', $target_country)->orderBy('Id', 'DESC')->first()->Id ?? null;
         $target_country_info = VicB2CMatrix::find($target_country_id); 
         $target_country_name = $target_country_info->paese ?? 'n.a.';
         $main_product_sectors = $target_country_info->Testo2_3_1_5 ?? 'n.a.';
-        $your_selection_on_product_sectors = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '1_6'); 
+        $your_selection_on_product_sectors = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '1_6') ?? 'n.a.'; 
         $geographic_area_where_you_move = $target_country_info->Testo2_3_1_7 ?? 'n.a.';
         $local_language_knowledge = $target_country_info->Testo2_3_1_9 ?? 'n.a.';
-        $local_language_knowledge_level = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '1_10'); // valori da 1 a 5 dove dove 1 è “molto basica” e 5 è “fluente”
+        $local_language_knowledge_level = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '1_10')  ?? 'n.a.'; // valori da 1 a 5 dove dove 1 è “molto basica” e 5 è “fluente”
 
         /*your goal*/
         $goals = [
@@ -97,13 +99,16 @@ class VicController extends Controller {
             '4' => 'Soffro per la mancanza di opportunità nel mio paese',
             '5' => 'Altro',
         ];
-        $your_goal_code = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_4');
-        if($your_goal_code == '5' ) {
-            $your_goal = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_4_altro'); 
+        $your_goal_code = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_4') ?? null;
+        if($your_goal_code) {
+            if($your_goal_code == '5' ) {
+                $your_goal = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_4_altro') ?? 'n.a.'; 
+            } else {
+                $your_goal = $goals[$your_goal_code];
+            }
         } else {
-            $your_goal = $goals[$your_goal_code];
+            $your_goal = 'n.a.';
         }
-        
         /*your motivation*/
         $motivations = [
             '1' => 'Crescere come persona e come professionista',
@@ -113,38 +118,66 @@ class VicController extends Controller {
             '5' => 'Rientrare nel mio Paese dopo diversi anni all’estero senza fare passi indietro',
             '6' => 'Altro',
         ];
-        $your_motivation_code = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_6');
-        if($your_motivation_code == '6' ) {
-            $your_motivation = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_6_altro');
+        $your_motivation_code = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_6') ?? null;
+        if($your_motivation_code) {
+            if($your_motivation_code == '6' ) {
+                $your_motivation = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_6_altro') ?? 'n.a.';
+            } else {
+                $your_motivation = $motivations[$your_motivation_code];
+            }
         } else {
-            $your_motivation = $motivations[$your_motivation_code];
+            $your_motivation = 'n.a.';
         }
-        
         /*your target role*/
-        $target_role = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_8');
-
+        $target_role = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_8') ?? 'n.a.';
         /*sectors you can aim at*/
-        $target_sector = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_10');
-
+        $target_sector = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_10') ?? 'n.a.';
         /*In [paese] è [facile/difficile] spostarsi da un settore all'altro*/
-        $modality = $target_country_info->modalita ?? 'n.a.';
-        
+        $modality = $target_country_info->modalita ?? null;
         /*cultural fit*/
-        $cultural_fit = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_13');
-
+        $cultural_fit = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_13') ?? 'n.a.';
         /*gap/ostacoli*/
-        $gaps = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_15');
+        $gaps = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_15') ?? 'n.a.';
 
         /*cv check*/
         //// non ci sono informazioni a database relative al cv check
 
-        return compact('target_country_name', 'main_product_sectors', 'your_selection_on_product_sectors', 'geographic_area_where_you_move', 'local_language_knowledge', 'local_language_knowledge_level', 'your_goal', 'your_motivation', 'target_role', 'target_sector', 'modality', 'cultural_fit', 'gaps');
+        /*lettera di presentazione*/
+        /// no info a db
+
+
+        /*job-hunt report2*/
+        $useful_sites_head_hunter = $target_country_info->Testo2_3_7_20 ?? 'n.a.';
+        $useful_sites_job_board = $target_country_info->Testo2_3_7_20 ?? 'n.a.';
+        $useful_sites_networking = $target_country_info->Testo2_3_7_20 ?? 'n.a.';
+
+        $scores = VicB2CScore::where('IdUser', Auth::user()->id)->get();
+        $score = 'n.a.';
+        $head_hunter_score = $scores->where('report6_iscompleted', 1)->first()->report6_sum ?? null; // nel DB e-where: è la view vVic_b2c_punti_6_7_8 colonne: report6 
+        $job_board_score = $scores->where('report7_iscompleted', 1)->first()->report7_sum ?? null; // nel DB e-where: è la view vVic_b2c_punti_6_7_8 colonna: report7
+        $network_score = $scores->where('report8_iscompleted', 1)->first()->report8_sum ?? null; // nel DB e-where: è la view vVic_b2c_punti_6_7_8 colonna: report8
+        if($head_hunter_score && $job_board_score && $network_score) {
+            $points = $head_hunter_score + $job_board_score + $network_score;
+            $total_base_score = count($scores);
+            $score = $points.' su '.$total_base_score;
+        } 
+        /*STAR method items*/
+        $star = [
+            's' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '9_4') ?? 'n.a.',
+            't' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '9_6') ?? 'n.a.',
+            'a' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '9_8') ?? 'n.a.',
+            'r' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '9_10') ?? 'n.a.',
+        ];
+
+        $final_recommendations = $target_country_info->Testo2_3_11_5 ?? '-';
+
+        return compact('target_country_name', 'main_product_sectors', 'your_selection_on_product_sectors', 'geographic_area_where_you_move', 'local_language_knowledge', 'local_language_knowledge_level', 'your_goal', 'your_motivation', 'target_role', 'target_sector', 'modality', 'cultural_fit', 'gaps', 'useful_sites_head_hunter', 'useful_sites_job_board', 'useful_sites_networking', 'score', 'final_recommendations', 'star');
     }
 
 
     public function generatePreparationReport() {
 
-        $data = $this->fetchPreparationReportData();
+        $data = $this->fetchReportsData();
         if(!$data) {
             return  back()->with('error', 'You haven\'t compiled Vic yet');
         }
@@ -153,6 +186,7 @@ class VicController extends Controller {
         $data['name'] = Auth::user()->name;
         $data['origin_country'] = UserProfile::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first()->country ?? 'n.a.';
         $data['title'] = 'WELCOME IN WEXPLORE<br/>SBLOCCA IL POTENZIALE DELLA TUA CARRIERA';
+        $data['meta_title'] = 'Vic Preparation Report';
 
         //dd($data);
 
@@ -167,7 +201,7 @@ class VicController extends Controller {
 
     public function generateJobHuntReport() {
 
-        $data = $this->fetchPreparationReportData();
+        $data = $this->fetchReportsData();
         if(!$data) {
             return  back()->with('error', 'You haven\'t compiled Vic yet');
         }
@@ -176,6 +210,7 @@ class VicController extends Controller {
         $data['name'] = Auth::user()->name;
         $data['origin_country'] = UserProfile::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first()->country ?? 'n.a.';
         $data['title'] = 'WELCOME IN WEXPLORE<br/>SBLOCCA IL POTENZIALE DELLA TUA CARRIERA';
+        $data['meta_title'] = 'Vic Job Hunt Report';
 
         $pdf = PDF::loadView('reports.vic-b2c-job-hunt', $data);
         // return view('reports.vic-b2c-job-hunt', $data);
@@ -186,11 +221,33 @@ class VicController extends Controller {
     }
 
 
-
+    
 
 
     public function generateTakeOffReport() {
         return 'work in progress';
     }
+
+
+
+
+
+    public function reportDocumentDownload($document_name) {
+        if(file_exists(storage_path('app/documents/reports/vic/'.$document_name.'.doc'))) {
+
+            if(!$this->paymentCheck($this->service_id)) {
+                return abort(403, 'You have no order for this service!'); //back()->with('error', 'You have no order for this service!');
+            }
+
+            return Storage::download('documents/reports/vic/'.$document_name.'.doc');
+        }
+
+        return abort(404, 'Document Not Found');
+    }
+
+
+
+
+
 
 }

@@ -43,7 +43,9 @@
 				<p>La tua motivazione: {{ $your_motivation }}</p>
 				<p>I ruoli per cui ti proponi: {!! $target_role !!}</p>
 				<p>Il settore a cui puoi puntare: {{ $target_sector }}</p>
-				<p>Nota: In {{ $target_country_name }} è più {{ $modality }} spostarsi da un settore all'altro.</p>
+				@if($modality)	
+					<p>Nota: In {{ $target_country_name }} è più {{ $modality }} spostarsi da un settore all'altro.</p>
+				@endif
 				<p>Il tuo fit culturale: {{ $cultural_fit }}. Sottolineare le somiglianze tra l’azienda target e l’ambiente in cui sei più abituato a lavorare o dove ti trovi più a tuo agio è un buon modo per essere apprezzati.</p>
 				<p>I tuoi gap: {{ $gaps }}. <br>Attenzione, questo non vuol dire che ti devi focalizzare su questi gap, ma è importante giocare d’anticipo ed esserne consapevoli, perché possono essere delle obiezioni che ti faranno a colloquio. Sapendolo, è più facile ribattere o trovare degli aspetti positivi che possono ribaltare i punti di debolezza e farli diventare dei punti di forza.</p>
 			</div>
@@ -70,8 +72,8 @@
 			<div class="section-body">
 				<div class="curriculum">
 					<div class="cv-title">Scarica il template del CV in formato .DOC</div>
-					<div class="cv-link"><a href="{{ url('/') }}" target="_blank">CV ANTI-CRONOLOGICO</a></div>
-					<div class="cv-link"><a href="{{ url('/') }}" target="_blank">CV FUNZIONALE</a></div>
+					<div class="cv-link"><a href="{{ url('user/vic/report/document-download/cv-1') }}" target="_blank">CV ANTI-CRONOLOGICO</a></div>
+					<div class="cv-link"><a href="{{ url('user/vic/report/document-download/cv-2') }}" target="_blank">CV FUNZIONALE</a></div>
 				</div>
 			</div>
 		</div>
@@ -94,7 +96,7 @@
 			<div class="section-title underlined">Esclusiva Wexplore – Template Lettera Bonus</div>
 			<div class="letter">
 				<div class="letter-title">Scarica un modello di Lettera di Presentazione in formato .DOC</div>
-				<div class="letter-link"><a href="{{ url('/') }}" target="_blank">Scarica</a></div>
+				<div class="letter-link"><a href="{{ url('user/vic/report/document-download/cover-letter') }}" target="_blank">Scarica</a></div>
 			</div>
 		</div>
 	</div>

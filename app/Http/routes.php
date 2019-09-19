@@ -158,6 +158,7 @@
 	Route::get('password/reset/{token}', array( 'as'=>'password.reset', 'uses'=>'Auth\ResetPasswordController@showResetForm'));
 	Route::post('password/reset', array('as'=>'auth.passwords.reset', 'uses'=>'Auth\ResetPasswordController@reset'));
 
+
 	Route::group( ['middleware' => ['auth'] ], function(){
 		Route::get('user/download/{file}',['as' => 'download_file', 'uses' => 'ConsultantProfileController@download_file']);
 		Route::group(['middleware' => 'userConsultant'], function(){
@@ -261,6 +262,7 @@
 			Route::get('user/vic/preparation-report', array('as'=>'vic_preparation_report', 'uses'=>'VicController@generatePreparationReport'));
 			Route::get('user/vic/job-hunt-report', array('as'=>'vic_job_hunt_report', 'uses'=>'VicController@generateJobHuntReport'));
 			Route::get('user/vic/take-off-report', array('as'=>'vic_take_off_report', 'uses'=>'VicController@generateTakeOffReport'));
+			Route::get('user/vic/report/document-download/{doc}', array('as'=>'vic_report_document_download', 'uses'=>'VicController@reportDocumentDownload'));
 
 			// Wow
 			Route::get('user/wow', array('as'=>'wow', 'uses'=>'WowController@index'));

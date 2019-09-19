@@ -35,12 +35,17 @@
                 font-size: 72px;
                 margin-bottom: 40px;
             }
+            .msg {
+                font-size: 25px;
+                color: #464B4D;
+            }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="content">
                 <div class="title">Page not found.</div>
+                <div class="msg">{{$exception->getMessage() ?:''}}</div>
             </div>
         </div>
     </body>

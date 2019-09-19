@@ -40,19 +40,19 @@
 				<p>Magari ti è già capitato di incontrarli. Capiamo insieme come lavorano e come possono esserci utili.</p>
 				<p>
 					<ul>
-						<li>Queste società consentono di entrare direttamente in contatto con le aziende  2.3.6.3</li>
-						<li>Uno dei vantaggi è poter avere informazioni sull’azienda e dei feedback sul processo di selezione  2.3.6.6</li>
-						<li>Trovano lavoro ai candidati  2.3.6.10</li>
-						<li>Risentono della concorrenza delle job board  2.3.6.13</li>
-						<li>Sono il primo canale a cui un’azienda si rivolge per assumere qualcuno 2.3.6.15</li>
-						<li>Ho già inviato il mio CV per un’altra offerta, ormai sono nel loro database e non è necessario che mi faccia vivo di nuovo 2.3.6.18</li>
-						<li>Sono specializzati per alcuni settori o funzioni  2.3.6.21</li>
-						<li>Non pubblicano mai offerte di lavoro funzioni  2.3.6.24</li>
-						<li>Posso contattarli tramite LinkedIn  2.3.6.27</li>
+						<li>Queste società consentono di entrare direttamente in contatto con le aziende</li>
+						<li>Uno dei vantaggi è poter avere informazioni sull’azienda e dei feedback sul processo di selezione</li>
+						<li>Trovano lavoro ai candidati</li>
+						<li>Risentono della concorrenza delle job board</li>
+						<li>Sono il primo canale a cui un’azienda si rivolge per assumere qualcuno</li>
+						<li>Se ho già inviato il mio CV per un’altra offerta, ormai sono nel loro database e non è necessario che mi faccia vivo di nuovo</li>
+						<li>Sono specializzati per alcuni settori o funzioni</li>
+						<li>Non pubblicano mai offerte di lavoro o funzioni</li>
+						<li>Posso contattarli tramite LinkedIn</li>
 					</ul>
 				</p>
 				<p>Siti utili da cui partire a cercare:</p>
-					[elenco da matrice Excel] ?????
+				<p>{!! $useful_sites_head_hunter !!}</p>
 			</div>
 		</div>
 		<div class="search-channel two">
@@ -61,23 +61,23 @@
 				<p>Le job board sono quei siti che vengono usati dalle aziende per pubblicare le loro ricerche e rappresentano uno dei canali più utilizzati da professionisti di tutto il mondo. Vediamo insieme se li hai usati nel modo giusto.</p>
 				<p>
 					<ul>
-						<li>Gli annunci mi permettono di capire quali sono le realtà che stanno davvero assumendo  2.3.7.3</li>
-						<li>È importante la tempestività nel rispondere a un annuncio  2.3.7.6</li>
-						<li>Una volta risposto, posso solo aspettare che mi rispondano  2.3.7.9</li>
-						<li>Dedico molto tempo a cercare annunci online perché è lo strumento più efficace per raggiungere il mio obiettivo 2.3.7.12</li>
-						<li>È molto utile tenere traccia di tutti gli annunci a cui mi candido  2.3.7.15</li>
-						<li>Vale la pena provare a rispondere anche se il mio profilo non è del tutto centrato o se mi mancano alcune delle competenze richieste 2.3.7.18</li>
+						<li>Gli annunci mi permettono di capire quali sono le realtà che stanno davvero assumendo</li>
+						<li>È importante la tempestività nel rispondere a un annuncio</li>
+						<li>Una volta risposto, posso solo aspettare che mi rispondano</li>
+						<li>Dedico molto tempo a cercare annunci online perché è lo strumento più efficace per raggiungere il mio obiettivo</li>
+						<li>È molto utile tenere traccia di tutti gli annunci a cui mi candido</li>
+						<li>Vale la pena provare a rispondere anche se il mio profilo non è del tutto centrato o se mi mancano alcune delle competenze richieste</li>
 					</ul>
 				</p>
 				<p>Siti utili da cui partire a cercare:</p>
-					[elenco da matrice Excel] ?????
+				<p>{!! $useful_sites_job_board !!}</p>
 			</div>
 			<div class="templates-section">
 				<div class="section-title underlined">Bonus Wexplore: template tabella per monitoraggio annunci</div>
 				<div class="section-body">
 					<div class="track-table">
 						<div class="track-table-link">
-							<a href="{{ url('/') }}" target="_blank">Scarica il template della tabella in formato .DOC</a>
+							<a href="{{ url('user/vic/report/document-download/track-advices-table') }}" target="_blank">Scarica il template della tabella in formato .DOC</a>
 						</div>
 					</div>
 				</div>
@@ -90,15 +90,15 @@
 				<p>Niente paura, c’è una soluzione per tutto, ma prima disambiguiamo insieme un po’ di falsi miti sul network:</p>
 				<p>
 					<ul>
-						<li>posso usare LinkedIn per fare networking 2.3.8.3</li>
-						<li>Chiedere un lavoro ai miei contatti è imbarazzante  2.3.8.6</li>
-						<li>Non conosco nessuno, soprattutto in [Paese selezionato]!  2.3.8.9</li>
-						<li>È passata una settimana e non mi hanno ancora fatto sapere niente, non insisto oltre 2.3.8.12</li>
-						<li>L’obiettivo del networking è parlare con chi sta assumendo  2.3.8.15</li>
+						<li>posso usare LinkedIn per fare networking</li>
+						<li>Chiedere un lavoro ai miei contatti è imbarazzante</li>
+						<li>Non conosco nessuno, soprattutto in {{ $target_country_name }}!</li>
+						<li>È passata una settimana e non mi hanno ancora fatto sapere niente, non insisto oltre</li>
+						<li>L’obiettivo del networking è parlare con chi sta assumendo</li>
 					</ul>
 				</p>
 				<p>Siti utili da cui partire a cercare:</p>
-					[elenco da matrice] ?????
+				<p>{!! $useful_sites_networking !!}</p>
 			</div>
 			<div class="templates-section">
 				<div class="section-title underlined">Bonus Wexplore: network maps</div>
@@ -202,7 +202,7 @@
 						</table>
 						<p>* su una scala da 1 a 5, dove 1 è minimo e 5 è il massimo </p>
 						<br><br>
-						<p>Il tuo score: [punteggio risposte giuste/risposte totali]  2.3.8.17</p>
+						<p style="font-weight: bold;">Il tuo score: <span style="color: #239e9e;">{{ $score }}</span></p>
 					</div>
 				</div>
 			</div>
@@ -219,25 +219,25 @@
 						<tr>
 							<td>
 								<span class="bold">S</span> (Situation – Contesto della situazione)<br><br>
-								2.3.9.4 ????
+								{{ $star['s'] }}
 							</td>
 						</tr>
 						<tr>
 							<td>
 								<span class="bold">T</span> (Task - Problema da risolvere - Obiettivo da raggiungere)<br><br>
-								2.3.9.6 ????
+								{{ $star['t'] }}
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<span class="bold">A</span> (Action - Azioni)<br><br>
-								2.3.9.8 ????
+								<span class="bold">A</span> (Actions - Azioni)<br><br>
+								{{ $star['a'] }}
 							</td>
 						</tr>
 						<tr>
 							<td>
 								<span class="bold">R</span> (Results – Risultati ottenuti)<br><br>
-								2.3.9.10 ????
+								{{ $star['r'] }}
 							</td>
 						</tr>
 					</table>
@@ -247,7 +247,7 @@
 					Il colloquio è uno dei momenti con la più alta variabile umana: ciascuna azienda può utilizzare strumenti diversi (come un assessment di gruppo, dei test psicoattitudinali, dei business case da risolvere e presentare) nelle varie fasi della selezione. Inoltre, ciascun selezionatore può focalizzarsi su alcuni aspetti in particolare del vostro profilo e/o del vostro carattere. Tuttavia, essere in grado di citare degli episodi specifici è qualcosa di universalmente apprezzato.
 				</p>
 				<p>In generale poi, posso dirti che la cultura in {{ $target_country_name }} apprezza particolarmente alcuni tipi di comportamento, ad esempio:</p>
-				<p>[frasi da matrice Excel]  ???? </p>
+				<p>{!! $final_recommendations !!}</p>
 			</div>
 		</div>
 	</div>
