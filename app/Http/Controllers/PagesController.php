@@ -695,6 +695,7 @@ class PagesController extends CustomBaseController {
 
 		$data = [
 			'title' => 'Global Orientation Test - Report',
+			'meta_title' => 'Got Report',
 			'user_full_name' => Auth::user()->name.' '.Auth::user()->surname,
 			'user_email' => Auth::user()->email,
 			'outcome_name' => $got_result_profile->outcome_name,
