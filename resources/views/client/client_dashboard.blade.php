@@ -118,11 +118,15 @@
 								<div class="box-above-top">Vic Journey</div>
 								<div class="box-top">You are ready to go!</div>
 								<div class="box-description"></div>
-								<div class="box-cta">
+								{{-- <div class="box-cta">
 									<a class="btn cta light report" href="#">Prepare your letter</a>
 									<a class="btn cta light report" href="#">Prepare your interview</a>
 									<a class="btn cta light report" href="#">Prepare your transfer</a>
-									{{-- <a class="go-chat-link" href="#">Go to chat</a> --}}
+								</div> --}}
+								<div class="box-cta">
+									<a class="btn cta light report" href="{{ route('vic_preparation_report') }}">Preparation Report</a>
+									<a class="btn cta light report" href="{{ route('vic_job_hunt_report') }}">Job Hunt Report</a>
+									<a class="btn cta light report" href="{{ route('vic_take_off_report') }}">Take Off Report</a>
 								</div>
 							</div>
 							<div class="col-md-3 dx got-compiled">
