@@ -237,3 +237,11 @@
 		</div>
 	</div>
 @endsection
+
+@section('js')
+{{--
+	<script>
+		var preparationReportUrl = ' route('vic_preparation_report') ';
+	</script>
+--}}
+@endsection

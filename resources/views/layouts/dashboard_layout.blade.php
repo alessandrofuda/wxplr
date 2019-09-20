@@ -110,6 +110,7 @@
             @yield('footer_resources')
         </div>
     </div>
+    {{-- <div class="loading-ajax-page" style="background: rgba( 255, 255, 255, .8 ) url('{{ asse t ('frontend/images/ajax-loader.gif')}}') 50% 50% no-repeat;"></div> --}}
 
     <!-- JS -->
     <script type="text/javascript" src="{{ asset('frontend/js/jquery-1.11.3.js') }}"></script>

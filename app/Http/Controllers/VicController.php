@@ -140,7 +140,38 @@ class VicController extends Controller {
         $gaps = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_15') ?? 'n.a.';
 
         /*cv check*/
-        //// non ci sono informazioni a database relative al cv check
+        $cv_check = [
+            'europass' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '3_2') ?? null,
+            'language' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '3_4') ?? null,
+            'lenght' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '3_6') ?? null,
+            'profile' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '3_8') ?? null,
+            'contacts' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '3_10') ?? null,
+            'informations' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '3_12') ?? null,
+            'linkedin' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '3_14') ?? null,
+        ];
+        $cv_check_score = null;
+        if(!in_array(null, $cv_check)) {
+            $cv_check_sum = array_sum($cv_check);
+            $cv_check_score = $cv_check_sum.' su '. count($cv_check);
+        } 
+
+        /*cover letter*/
+        $cover_letter = [
+            'lenght' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '4_6') ?? null,
+            'language' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '4_8') ?? null,
+            'motivation' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '4_10') ?? null,
+            'adjectives' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '4_12') ?? null,
+            'advantages' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '4_17') ?? null,
+        ];
+        $cover_letter_score = null;
+        if(!in_array(null, $cover_letter)){
+            $cover_letter_sum = array_sum($cover_letter);
+            $cover_letter_score = $cover_letter_sum.' su '. count($cover_letter);
+        }
+
+
+
+
 
         /*lettera di presentazione*/
         /// no info a db
@@ -171,7 +202,7 @@ class VicController extends Controller {
 
         $final_recommendations = $target_country_info->Testo2_3_11_5 ?? '-';
 
-        return compact('target_country_name', 'main_product_sectors', 'your_selection_on_product_sectors', 'geographic_area_where_you_move', 'local_language_knowledge', 'local_language_knowledge_level', 'your_goal', 'your_motivation', 'target_role', 'target_sector', 'modality', 'cultural_fit', 'gaps', 'useful_sites_head_hunter', 'useful_sites_job_board', 'useful_sites_networking', 'score', 'final_recommendations', 'star');
+        return compact('target_country_name', 'main_product_sectors', 'your_selection_on_product_sectors', 'geographic_area_where_you_move', 'local_language_knowledge', 'local_language_knowledge_level', 'your_goal', 'your_motivation', 'target_role', 'target_sector', 'modality', 'cultural_fit', 'gaps', 'cv_check', 'cv_check_score', 'cover_letter', 'cover_letter_score', 'useful_sites_head_hunter', 'useful_sites_job_board', 'useful_sites_networking', 'score', 'final_recommendations', 'star');
     }
 
 

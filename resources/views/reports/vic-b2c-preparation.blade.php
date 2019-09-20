@@ -56,15 +56,15 @@
 				<p>
 					Pensa al tuo profilo come a un prodotto da vendere sul mercato: devi convincere il tuo “compratore” che sei la scelta migliore e battere la concorrenza. Oggi molte aziende stanno sperimentando metodi di selezione alternativi, dal video-CV alla selezione di idee, ma il CV tradizionale resta ancora uno strumento potente di riconoscimento.
 				</p>
-				<p>Il punteggio del tuo CV:</p>
-				<p>Europass: {{ '???' }}</p>
-				<p>Lingua: {{ '???' }}</p>
-				<p>Lunghezza: {{ '???' }}</p>
-				<p>Profilo: {{ '???' }}</p>
-				<p>Contatti: {{ '???' }}</p>
-				<p>Informazioni rilevanti: {{ '???' }}</p>
-				<p>Allineamento con Linkedin: {{ '???' }}</p>
-				<p>Il tuo Score: {{ '???' }}</p>
+				<p style="font-weight: bold;">Il punteggio del tuo CV</p>
+				<p>E' in formato Europass: {{ $cv_check['europass'] ? 'Si' : ($cv_check['europass'] == '0' ? 'No' : 'n.a.') }}</p>
+				<p>E' scritto in lingua: {{ $cv_check['language'] ? 'Si' : ($cv_check['language'] == '0' ? 'No' : 'n.a.') }}</p>
+				<p>È lungo non più di 2 pagine: {{ $cv_check['lenght'] ? 'Si' : ($cv_check['lenght'] == '0' ? 'No' : 'n.a.')  }}</p>  
+				<p>Hai incluso un profilo professionale: {{ $cv_check['profile'] ? 'Si' : ($cv_check['profile'] == '0' ? 'No' : 'n.a.') }}</p> 
+				<p>Hai la possibilità di inserire un indirizzo o un numero di telefono locale: {{ $cv_check['contacts'] ? 'Si' : ($cv_check['contacts'] == '0' ? 'No' : 'n.a.') }}</p> 
+				<p>Il tuo ultimo job title è simile o coerente con il ruolo identificato: {{ $cv_check['informations'] ? 'Si' : ($cv_check['informations'] == '0' ? 'No' : 'n.a.') }}</p> 
+				<p>È allineato con il tuo profilo LinkedIn: {{ $cv_check['linkedin'] ? 'Si' : ($cv_check['linkedin'] == '0' ? 'No' : 'n.a.') }}</p> 
+				<p>Il tuo Score: {{ $cv_check_score ?? 'n.a.' }}</p>
 			</div>
 		</div>
 		<div class="templates-section">
@@ -85,13 +85,13 @@
 					Per te è un modo per qualificarti e far risaltare la tua value proposition rispetto alla concorrenza: per questo è importante trovare un tuo stile personale.<br>
 					Una lettera di presentazione deve necessariamente avere 2 elementi: raccontare cosa ci ha spinto a candidarci, quindi cosa ci ha colpito o affascinato dell’annuncio e raccontare le nostre qualità più rilevanti, cercando quanto più possibile dei collegamenti tra il nostro CV e l’annuncio a cui rispondiamo. 
 				</p>
-				<p>Altri elementi a cui prestare attenzione sono:</p>
-				<p>Lunghezza: {{ '????' }}</p>
-				<p>Lingua: {{ '????' }}</p>
-				<p>Motivazione: {{ '????' }}</p>
-				<p>Aggettivi qualificanti: {{ '????' }}</p>
-				<p>Vantaggi per l'azienda: {{ '????' }}</p>
-				<p>Il tuo score: {{ '????' }}</p>
+				<p style="font-weight: bold;">Altri elementi a cui prestare attenzione sono:</p>
+				<p>- la lettera è lunga meno di una pagina: {{ $cover_letter['lenght'] ? 'Si' : ($cover_letter['lenght'] == '0' ? 'No' : 'n.a.') }}</p>
+				<p>- è scritta in lingua: {{ $cover_letter['language'] ? 'Si' : ($cover_letter['language'] == '0' ? 'No' : 'n.a.') }}</p>
+				<p>- hai specificato la tua intenzione di trasferirti: {{ $cover_letter['motivation'] ? 'Si' : ($cover_letter['motivation'] == '0' ? 'No' : 'n.a.') }}</p>
+				<p>- hai usato aggettivi come “orientato al risultato”, “buon team player”, “flessibile” per descriverti: {{ $cover_letter['adjectives'] ? 'Si' : ($cover_letter['adjectives'] == '0' ? 'No' : 'n.a.') }}</p>
+				<p>- hai evidenziato i vantaggi per l'azienda: {{ $cover_letter['advantages'] ? 'Si' : ($cover_letter['advantages'] == '0' ? 'No' : 'n.a.') }}</p>
+				<p>Il tuo score: {{ $cover_letter_score ?? 'n.a.' }}</p>
 			</div>
 			<div class="section-title underlined">Esclusiva Wexplore – Template Lettera Bonus</div>
 			<div class="letter">

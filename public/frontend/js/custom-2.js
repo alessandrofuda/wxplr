@@ -26,4 +26,16 @@ jQuery(document).ready(function($){
 		});
 	}
 
+	// loading page animation for dompdf report
+	// $body = $("body");
+	// $(document).on({
+	//     ajaxStart: function() { $body.addClass("loading");    },
+	//      ajaxStop: function() { $body.removeClass("loading"); }    
+	// });
+	// $('a.report').on('click', function(e) {
+	// 	e.preventDefault();
+	// 	alert('ok');
+	// 	$.get(preparationReportUrl);
+	// });
+
 });
