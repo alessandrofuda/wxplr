@@ -16,7 +16,7 @@
 		        <div id="chat-wrapper" class="body"></div>
 		        
 		        <div class="suspend-link">
-		        	<a class="cta btn" href="{{route('vic_middle')}}" style="">Click here to pause your Career Ready session.</a>
+		        	<a class="cta btn" href="{{-- route('vic_middle') --}}" disabled>Click here to pause your Career Ready session.</a>
 		        	<div class="txt" style="font-size: 12px;">Remember that you can come back any time and resume from where you stopped.</div>
 		        </div>
 	        </div>
