@@ -1,5 +1,5 @@
 *
-!documents/reports/
+!documents/reports/*
 !public/
 !.gitignore
 
