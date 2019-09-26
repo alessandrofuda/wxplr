@@ -264,7 +264,7 @@ class VicController extends Controller {
 
 
     public function reportDocumentDownload($document_name) {
-        if(file_exists(storage_path('app/documents/reports/vic/'.$document_name.'.doc'))) {
+        if(file_exists(storage_path('app/documents/reports/vic/'.$document_name.'.docx'))) {
 
             if(!$this->paymentCheck($this->service_id)) {
                 return abort(403, 'You have no order for this service!'); //back()->with('error', 'You have no order for this service!');
