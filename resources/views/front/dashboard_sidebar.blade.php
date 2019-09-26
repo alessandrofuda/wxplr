@@ -35,11 +35,11 @@
             </a>
         </li>
         {{-- <li class="{{\Route::getCurrentRoute()->uri() == "user/wow" ? "active open" : "" }}"> --}}
-        <li class="{{ strpos(\Route::getCurrentRoute()->uri(), 'user/wow') !== false ? "active open" : "" }}">
-            <a href="http://eepurl.com/grpRwb{{-- route('wow') --}}">
+        {{-- <li class="{{ strpos(\Route::getCurrentRoute()->uri(), 'user/wow') !== false ? "active open" : "" }}">
+            <a href="{{ route('wow') }}"> 
               <span>WOW</span>
             </a>
-        </li>
+        </li> --}}
       </ul>
       <div class="sidebar-bottom">
         @if (!empty($got_compiled) && $got_compiled === true)

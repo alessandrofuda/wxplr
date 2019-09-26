@@ -72,8 +72,8 @@
 			<div class="section-body">
 				<div class="curriculum">
 					<div class="cv-title">Scarica il template del CV in formato .DOC</div>
-					<div class="cv-link"><a href="{{ url('user/vic/report/document-download/cv-1') }}" target="_blank">CV ANTI-CRONOLOGICO</a></div>
-					<div class="cv-link"><a href="{{ url('user/vic/report/document-download/cv-2') }}" target="_blank">CV FUNZIONALE</a></div>
+					<div class="cv-link"><a href="{{ url('user/vic/report/document-download/wexplore-cv-anticronologico') }}">CV ANTI-CRONOLOGICO</a></div>
+					<div class="cv-link"><a href="{{ url('user/vic/report/document-download/wexplore-cv-funzionale') }}">CV FUNZIONALE</a></div>
 				</div>
 			</div>
 		</div>
@@ -96,7 +96,7 @@
 			<div class="section-title underlined">Esclusiva Wexplore – Template Lettera Bonus</div>
 			<div class="letter">
 				<div class="letter-title">Scarica un modello di Lettera di Presentazione in formato .DOC</div>
-				<div class="letter-link"><a href="{{ url('user/vic/report/document-download/cover-letter') }}" target="_blank">Scarica</a></div>
+				<div class="letter-link"><a href="{{ url('user/vic/report/document-download/wexplore-lettera-presentazione') }}">Scarica</a></div>
 			</div>
 		</div>
 	</div>

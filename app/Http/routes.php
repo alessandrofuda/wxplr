@@ -266,7 +266,7 @@
 
 			// Wow
 			Route::get('user/wow', array('as'=>'wow', 'uses'=>'WowController@index'));
-			Route::get('user/wow/start', array('as'=>'wow_start', 'uses'=>'WowController@start'));			
+			Route::get('user/wow/start', array('as'=>'wow_start', 'uses'=>'WowController@start'));		
 
 			// Skill Development
 			Route::get('user/myvideos','UserSubscriptionController@my');

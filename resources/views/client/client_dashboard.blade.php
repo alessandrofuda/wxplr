@@ -16,8 +16,8 @@
 
 					{{-- dd($user_services) /*elenca sempre TUTTI i servizi ACQUISTABILI (cioè ESCLUSO il GOT! */ --}}
 					{{-- dd($user_unpaid_services)  /*elenca solo quelli NON ancora acquistati tra gli ACQUISTABILI (cioè EsCLUSO il GOT*/  --}}
-					
 					{{-- dd($user_unpaid_services) --}}
+
 					@if ($got_compiled)    {{-- && ONLY got compiled --}}
 						<div class="box-title">
 							My Milestones
@@ -126,7 +126,7 @@
 								<div class="box-cta">
 									<a class="btn cta light report" href="{{ route('vic_preparation_report') }}">Preparation Report</a>
 									<a class="btn cta light report" href="{{ route('vic_job_hunt_report') }}">Job Hunt Report</a>
-									<a class="btn cta light report" href="{{ route('vic_take_off_report') }}">Take Off Report</a>
+									{{-- <a class="btn cta light report" href="{{ route('vic_take_off_report') }}">Take Off Report</a> --}}
 								</div>
 							</div>
 							<div class="col-md-3 dx got-compiled">
@@ -169,11 +169,11 @@
 							<div class="box-middle">Wexplore Original Webinar</div>
 							<div class="box-description">Top managers and entrepreneurs open the doors to their “professional house” and share a wealth of insights and knowledge in short learning pills – just like taking a coffee with them.</div>
 							<div class="box-cta">
-								<a class="btn cta" href="http://eepurl.com/grpRwb">explore wow</a>
+								<a class="btn cta" href="javascript:void(0){{-- route('wow') --}}" disabled>explore wow</a> {{-- http://eepurl.com/grpRwb --}}
 								<!-- Button trigger modal -->
-								<a type="button" class="how-it-w" data-toggle="modal" data-target="#how-wow-modal">
+								{{-- <a type="button" class="how-it-w" data-toggle="modal" data-target="#how-wow-modal">
   									<i class="fas fa-question-circle"></i> How it works
-								</a>
+								</a> --}}
 								<!-- Modal -->
 								<div class="modal fade" id="how-wow-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 									<div class="modal-dialog" role="document">
@@ -203,6 +203,9 @@
 										</div>
 									</div>
 								</div>
+								<div class="coming-soon">
+									<img src="{{ asset('frontend/images/coming-soon.png') }}" style="width:100px;margin-left:50px;margin-top:-25px;">
+								</div>
 							</div>
 						</div>
 						<div class="col-md-6 dx">
@@ -210,7 +213,7 @@
 								@for ($i = 0; $i < 4; $i++)
 									<div class="col-sm-6 col-md-6"> {{-- CICLARE da DB !! --}}
 										<div class="video-prev-container">
-											<a class="video-prev" href="#">
+											<a class="video-prev" href="javascript:void(0)" disabled>
 												<img class="video-prev-img" src="{{asset('frontend/images/hp/video_prev.jpg')}}">
 												<span class="video-prev-icon">
 													<i class="far fa-play-circle"></i>

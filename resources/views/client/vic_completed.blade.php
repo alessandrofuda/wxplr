@@ -18,7 +18,7 @@
 			        	<a class="btn cta" href="{{ route('vic_preparation_report') }}">Preparation Report</a>
 			        	<a class="btn cta" href="{{ route('vic_job_hunt_report') }}">Job Hunt Report</a>
 			        	<br><br>
-			        	<a class="btn cta" href="{{ route('vic_take_off_report') }}">Take Off Report</a>
+			        	{{-- <a class="btn cta" href="{{ route('vic_take_off_report') }}">Take Off Report</a> --}}
 			        	{{-- <a class="" href="#">go to chat</a>  ?? --}}
 			        </div>
 	        	</div>
