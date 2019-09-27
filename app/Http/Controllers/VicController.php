@@ -135,7 +135,6 @@ class VicController extends Controller {
         $cultural_fit = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_13') ?? 'n.a.';
         /*gap/ostacoli*/
         $gaps = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '2_15') ?? 'n.a.';
-
         /*cv check*/
         $cv_check = [
             'europass' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '3_2') ?? null,
@@ -151,7 +150,6 @@ class VicController extends Controller {
             $cv_check_sum = array_sum($cv_check);
             $cv_check_score = $cv_check_sum.' su '. count($cv_check);
         } 
-
         /*cover letter*/
         $cover_letter = [
             'lenght' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '4_6') ?? null,
@@ -165,8 +163,6 @@ class VicController extends Controller {
             $cover_letter_sum = array_sum($cover_letter);
             $cover_letter_score = $cover_letter_sum.' su '. count($cover_letter);
         }
-
-        
 
         return compact('target_country_name', 'main_product_sectors', 'your_selection_on_product_sectors', 'geographic_area_where_you_move', 'local_language_knowledge', 'local_language_knowledge_level', 'your_goal', 'your_motivation', 'target_role', 'target_sector', 'modality', 'cultural_fit', 'gaps', 'cv_check', 'cv_check_score', 'cover_letter', 'cover_letter_score');
     }
