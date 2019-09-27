@@ -17,7 +17,7 @@
 		<div class="middle-section">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="sub-title">
+					<div class="sub-title" style="margin-bottom:20px;">
 						YOU ARE A: <span class="profile-name">{{ $outcome_name }}</span>
 					</div>
 				</div>
@@ -29,14 +29,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="compilation-date">
-				Compilation date: {{ $created_at }}
+			<div class="row">
+				<div class="compilation-date">
+					Compilation date: {{ $created_at }}
+				</div>
 			</div>
 		</div>
 		<div class="bottom-section">
 			<img class="img-fluid" src="{{ public_path('frontend/images/reports/bottom-image.jpg') }}">
-			{{-- <div class="above-frame">#yournextchange</div>
-			<div class="frame">giving you the freedom<br>to choose your future</div> --}}
 		</div>
 	</div>
 @endsection

@@ -38,13 +38,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="compilation-date">
-				Compilation date: {{ $crdate }}
+			<div class="row">
+				<div class="compilation-date">
+					Compilation date: {{ $crdate }}
+				</div>
 			</div>
 		</div>
 		<div class="bottom-section">
 			<img class="img-fluid" src="{{ public_path('frontend/images/reports/bottom-image.jpg') }}">
 		</div>
 	</div>
-
 @endsection

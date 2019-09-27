@@ -1,10 +1,13 @@
 /* got gotPro Vic reports styles */
-@page { margin: 100px 25px; }
 
-body { color: #055b76; line-height: 1.3; /*position: relative;*/ }
+
+
+/*@page { margin: 100px 25px; }
+
+body { color: #055b76; line-height: 1.3; }
 header { position: fixed; top: -60px; left: 0px; right: 0px; height: 50px; }
 footer { position: fixed; bottom: -60px; left: 0px; right: 0px; height: 50px; }
-verticalbar { position: fixed; bottom: 0px; /*left: auto;*/ right: 0px; height: 100%; width:50px; }
+verticalbar { position: fixed; bottom: 0px; right: 0px; height: 100%; width:50px; }
 .page { page-break-after: always; }
 .page:last-child { page-break-after: never; }
 
@@ -25,20 +28,15 @@ verticalbar { position: fixed; bottom: 0px; /*left: auto;*/ right: 0px; height: 
 	width:100%;
 }
 .vertical-img {
-	/*height: 800px;*/
 	vertical-align: bottom;
 }
 .vertical-right-bar {
-	/*position: absolute;
-	right: 0;
-	bottom: -110px;
-	width: 50px;*/
 	position: absolute;
 	bottom: 100px;
 }
 .report-logo {
 	width: 220px;
-	margin-top: -60px;
+	margin-top: -30px;
 }
 .report-title {
 	text-transform: uppercase;
@@ -67,12 +65,16 @@ verticalbar { position: fixed; bottom: 0px; /*left: auto;*/ right: 0px; height: 
 }
 .bold {
 	font-weight: bold;
-}
+}*/
+
+
 
 
 
 /*got-report*/
-#got-report {
+
+
+/*#got-report {
 	padding-left: 20px;
 	padding-right: 20px;
 }
@@ -83,10 +85,17 @@ verticalbar { position: fixed; bottom: 0px; /*left: auto;*/ right: 0px; height: 
 }
 #got-report .middle-section {
 	margin-bottom:70px;
-}
+}*/
+
+
+
+
+
 
 /*got-pro report*/
-#got-pro-report {
+
+
+/*#got-pro-report {
 	padding-left: 20px;
 	padding-right: 20px;
 }
@@ -107,11 +116,18 @@ verticalbar { position: fixed; bottom: 0px; /*left: auto;*/ right: 0px; height: 
 	display: inline-block;
 	margin-right: 20px;
 }
+*/
+
+
+
 
 
 
  /*vic b2c report*/
- .fullname {
+
+
+
+/*.fullname {
 	font-size:16px;
 	margin-bottom: 30px;
 }
@@ -147,4 +163,4 @@ table.star-table td{
 	padding-bottom: 20px;
 	padding-left: 20px;
 	padding-right: 20px;
-}
+}*/
