@@ -40,6 +40,8 @@
 			    	<ul>
 			    		<li>Francia</li>
 			    		<li>Italia</li>
+			    		<li>Olanda</li>
+			    		<li>Regno Unito</li>
 			    	</ul>
 			    	{{-- <ol id="countryList" style="">
 						<li>Africa</li>

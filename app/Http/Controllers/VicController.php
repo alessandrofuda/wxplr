@@ -73,16 +73,17 @@ class VicController extends Controller {
     }
 
     public function fetchReportsData() {
-
-        $vic_b2c_current_user_chat = DB::connection('ewhere')->table('wexpl_vic_b2c_reports')->where('IdUser', Auth::user()->id)->orderBy('crdate', 'DESC')->get();
-
+        $user_id = Auth::user()->id;
+        $vic_b2c_current_user_chat = DB::connection('ewhere')->table('wexpl_vic_b2c_reports')->where('IdUser', $user_id)->orderBy('crdate', 'DESC')->get();
 
         if(count($vic_b2c_current_user_chat) == 0 || !$vic_b2c_current_user_chat) {
             return null;
         }
         $target_country = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, 'country') ?? 'n.a.';
-        $target_country_id = VicB2CMatrix::where('paese', $target_country)->orderBy('Id', 'DESC')->first()->Id ?? null;
-        $target_country_info = VicB2CMatrix::find($target_country_id); 
+
+        $target_country_info = DB::connection('ewhere')->table('Matrice_VIC_B2C')->where('paese', $target_country)->orderBy('Id', 'DESC')->first() ?? null;
+        // $target_country_id = VicB2CMatrix::where('paese', $target_country)->orderBy('Id', 'DESC')->first()->Id ?? null;
+        // $target_country_info = VicB2CMatrix::find($target_country_id); 
         $target_country_name = $target_country_info->paese ?? 'n.a.';
         $main_product_sectors = $target_country_info->Testo2_3_1_5 ?? 'n.a.';
         $your_selection_on_product_sectors = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '1_6') ?? 'n.a.'; 
@@ -172,7 +173,7 @@ class VicController extends Controller {
         $useful_sites_job_board = $target_country_info->Testo2_3_7_20 ?? 'n.a.';
         $useful_sites_networking = $target_country_info->Testo2_3_7_20 ?? 'n.a.';
 
-        $scores = VicB2CScore::where('IdUser', Auth::user()->id)->get();
+        $scores = DB::connection('ewhere')->table('vVic_b2c_punti_6_7_8')->where('IdUser', $user_id)->get();
         $score = 'n.a.';
         $head_hunter_score = $scores->where('report6_iscompleted', 1)->first()->report6_sum ?? null; // nel DB e-where: è la view vVic_b2c_punti_6_7_8 colonne: report6 
         $job_board_score = $scores->where('report7_iscompleted', 1)->first()->report7_sum ?? null; // nel DB e-where: è la view vVic_b2c_punti_6_7_8 colonna: report7
@@ -198,21 +199,8 @@ class VicController extends Controller {
 
     public function generatePreparationReport() {
 
-
-
-
-
-        $start=dump(microtime(true));
         $data = $this->fetchReportsData();
-        $end=dump(microtime(true));
-        dump($end - $start);
-        dd('ok');
-
-
-
-
-
-
+       
         if(!$data) {
             return  back()->with('error', 'You haven\'t compiled Vic yet');
         }

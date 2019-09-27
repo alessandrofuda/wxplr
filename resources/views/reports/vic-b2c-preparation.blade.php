@@ -2,10 +2,10 @@
 
 @section('title')
 	<div class="fullname">
-		{{ $full_name }}
+		{!! $full_name !!}
 	</div>
 	<div class="contries-wrap">
-		{{ $origin_country }} - {{ $target_country_name }}
+		{!! $origin_country !!} - {!! $target_country_name !!}
 	</div>
 	<div class="title">
 		{!! $title !!}
@@ -16,17 +16,17 @@
 
 	<div id="vic-report">
 		<div class="intro">
-			<p>Gentile {{$name}},<br><br>
+			<p>Gentile {!!$name!!},<br><br>
 			grazie per l’opportunità di poter costruire insieme lo sviluppo della tua carriera. In questo report troverai il riassunto dei primi quattro step del tuo percorso Career Ready: i suggerimenti del nostro VIC, le tue risposte, e dei contenuti esclusivi Wexplore, per raggiungere il risultato desiderato in linea con le tue ambizioni.
 			In bocca al lupo per la tua ricerca!</p>
 			<div class="slogan text-center">Ready for #YourNextChange?</div>
 		</div>
 		<div class="first-section">
-			<div class="section-title">1) OVERVIEW DEL MERCATO DEL LAVORO IN {{ $target_country_name }}</div>
+			<div class="section-title">1) OVERVIEW DEL MERCATO DEL LAVORO IN {!! $target_country_name !!}</div>
 			<div class="section-body">
-				<p class="paragr-title">Breve panoramica del mercato del lavoro in {{ $target_country_name }}</p>
-				<p>I principali settori merceologici in {{ $target_country_name }}: {!! $main_product_sectors !!}</p>
-				<p>La tua selezione: {{ $your_selection_on_product_sectors }}</p>
+				<p class="paragr-title">Breve panoramica del mercato del lavoro in {!! $target_country_name !!}</p>
+				<p>I principali settori merceologici in {!! $target_country_name !!}: {!! $main_product_sectors !!}</p>
+				<p>La tua selezione: {!! $your_selection_on_product_sectors !!}</p>
 				<p>L’area geografica in cui ti muovi: {!! $geographic_area_where_you_move !!}</p>
 				<p>La tua conoscenza della lingua locale: {!! $local_language_knowledge !!}</p>
 				<p>Livello: {!! $local_language_knowledge_level !!}</p>
@@ -39,15 +39,15 @@
 					Come primo passo definiremo insieme il tuo obiettivo professionale: per che ruolo ti proponi e che competenze puoi portare al tuo futuro datore di lavoro? Avere ben chiaro questo punto e presentarlo in maniera altrettanto chiara determinerà il tuo successo come candidato.<br>
 					Ricordati: chi si candida a qualunque lavoro o è disposto a trasferirsi ovunque, in realtà viene dimenticato subito dopo aver letto il CV. Siamo noi che dobbiamo “risolvere” il problema del selezionatore facendogli capire come possiamo ricoprire al meglio la posizione che cerca. Non possiamo aspettarci che, tra le centinaia di CV che riceve, un selezionatore abbia voglia di capire qual è il lavoro che fa per noi…semplicemente, non è un suo problema!
 				</p>
-				<p>Il tuo obiettivo: {{ $your_goal }}</p>
-				<p>La tua motivazione: {{ $your_motivation }}</p>
+				<p>Il tuo obiettivo: {!! $your_goal !!}</p>
+				<p>La tua motivazione: {!! $your_motivation !!}</p>
 				<p>I ruoli per cui ti proponi: {!! $target_role !!}</p>
-				<p>Il settore a cui puoi puntare: {{ $target_sector }}</p>
+				<p>Il settore a cui puoi puntare: {!! $target_sector !!}</p>
 				@if($modality)	
-					<p>Nota: In {{ $target_country_name }} è più {{ $modality }} spostarsi da un settore all'altro.</p>
+					<p>Nota: In {!! $target_country_name !!} è più {!! $modality !!} spostarsi da un settore all'altro.</p>
 				@endif
-				<p>Il tuo fit culturale: {{ $cultural_fit }}. Sottolineare le somiglianze tra l’azienda target e l’ambiente in cui sei più abituato a lavorare o dove ti trovi più a tuo agio è un buon modo per essere apprezzati.</p>
-				<p>I tuoi gap: {{ $gaps }}. <br>Attenzione, questo non vuol dire che ti devi focalizzare su questi gap, ma è importante giocare d’anticipo ed esserne consapevoli, perché possono essere delle obiezioni che ti faranno a colloquio. Sapendolo, è più facile ribattere o trovare degli aspetti positivi che possono ribaltare i punti di debolezza e farli diventare dei punti di forza.</p>
+				<p>Il tuo fit culturale: {!! $cultural_fit !!}. Sottolineare le somiglianze tra l’azienda target e l’ambiente in cui sei più abituato a lavorare o dove ti trovi più a tuo agio è un buon modo per essere apprezzati.</p>
+				<p>I tuoi gap: {!! $gaps !!}. <br>Attenzione, questo non vuol dire che ti devi focalizzare su questi gap, ma è importante giocare d’anticipo ed esserne consapevoli, perché possono essere delle obiezioni che ti faranno a colloquio. Sapendolo, è più facile ribattere o trovare degli aspetti positivi che possono ribaltare i punti di debolezza e farli diventare dei punti di forza.</p>
 			</div>
 		</div>
 		<div class="third-section">
@@ -64,7 +64,7 @@
 				<p>Hai la possibilità di inserire un indirizzo o un numero di telefono locale: {{ $cv_check['contacts'] ? 'Si' : ($cv_check['contacts'] == '0' ? 'No' : 'n.a.') }}</p> 
 				<p>Il tuo ultimo job title è simile o coerente con il ruolo identificato: {{ $cv_check['informations'] ? 'Si' : ($cv_check['informations'] == '0' ? 'No' : 'n.a.') }}</p> 
 				<p>È allineato con il tuo profilo LinkedIn: {{ $cv_check['linkedin'] ? 'Si' : ($cv_check['linkedin'] == '0' ? 'No' : 'n.a.') }}</p> 
-				<p>Il tuo Score: {{ $cv_check_score ?? 'n.a.' }}</p>
+				<p>Il tuo Score: {!! $cv_check_score ?? 'n.a.' !!}</p>
 			</div>
 		</div>
 		<div class="templates-section">
@@ -91,7 +91,7 @@
 				<p>- hai specificato la tua intenzione di trasferirti: {{ $cover_letter['motivation'] ? 'Si' : ($cover_letter['motivation'] == '0' ? 'No' : 'n.a.') }}</p>
 				<p>- hai usato aggettivi come “orientato al risultato”, “buon team player”, “flessibile” per descriverti: {{ $cover_letter['adjectives'] ? 'Si' : ($cover_letter['adjectives'] == '0' ? 'No' : 'n.a.') }}</p>
 				<p>- hai evidenziato i vantaggi per l'azienda: {{ $cover_letter['advantages'] ? 'Si' : ($cover_letter['advantages'] == '0' ? 'No' : 'n.a.') }}</p>
-				<p>Il tuo score: {{ $cover_letter_score ?? 'n.a.' }}</p>
+				<p>Il tuo score: {!! $cover_letter_score ?? 'n.a.' !!}</p>
 			</div>
 			<div class="section-title underlined">Esclusiva Wexplore – Template Lettera Bonus</div>
 			<div class="letter">
