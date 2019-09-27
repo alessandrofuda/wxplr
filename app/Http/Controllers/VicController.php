@@ -13,6 +13,7 @@ use App\VicB2C;
 use App\Order;
 use Auth;
 use PDF;
+use DB;
 
 
 class VicController extends Controller {
@@ -73,14 +74,12 @@ class VicController extends Controller {
 
     public function fetchReportsData() {
 
-        $vic_b2c_current_user_chat = VicB2C::where('IdUser', Auth::user()->id)->orderBy('crdate', 'DESC')->get(); //orderby DESC// attenzione!: l'utente DEVE POTER FARE UN'UNICA compilazione, inserire un controllo a inizio chat!!
-        // !! nella tabella manca l'informazione per identificare la chat da cui prendere le informazioni. Es. userId:10 ha records che fanno riferimento a più chats.
-        // se l'utente compila una e una sola volta la chat potrebbe non servire l'id sessione.
+        $vic_b2c_current_user_chat = DB::connection('ewhere')->table('wexpl_vic_b2c_reports')->where('IdUser', Auth::user()->id)->orderBy('crdate', 'DESC')->get();
+
 
         if(count($vic_b2c_current_user_chat) == 0 || !$vic_b2c_current_user_chat) {
             return null;
         }
-        
         $target_country = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, 'country') ?? 'n.a.';
         $target_country_id = VicB2CMatrix::where('paese', $target_country)->orderBy('Id', 'DESC')->first()->Id ?? null;
         $target_country_info = VicB2CMatrix::find($target_country_id); 
@@ -90,7 +89,6 @@ class VicController extends Controller {
         $geographic_area_where_you_move = $target_country_info->Testo2_3_1_7 ?? 'n.a.';
         $local_language_knowledge = $target_country_info->Testo2_3_1_9 ?? 'n.a.';
         $local_language_knowledge_level = $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '1_10')  ?? 'n.a.'; // valori da 1 a 5 dove dove 1 è “molto basica” e 5 è “fluente”
-
         /*your goal*/
         $goals = [
             '1' => 'Ho terminato/sto terminando gli studi e sto cercando la mia prima esperienza professionale',
@@ -169,14 +167,6 @@ class VicController extends Controller {
             $cover_letter_score = $cover_letter_sum.' su '. count($cover_letter);
         }
 
-
-
-
-
-        /*lettera di presentazione*/
-        /// no info a db
-
-
         /*job-hunt report2*/
         $useful_sites_head_hunter = $target_country_info->Testo2_3_7_20 ?? 'n.a.';
         $useful_sites_job_board = $target_country_info->Testo2_3_7_20 ?? 'n.a.';
@@ -208,7 +198,21 @@ class VicController extends Controller {
 
     public function generatePreparationReport() {
 
+
+
+
+
+        $start=dump(microtime(true));
         $data = $this->fetchReportsData();
+        $end=dump(microtime(true));
+        dump($end - $start);
+        dd('ok');
+
+
+
+
+
+
         if(!$data) {
             return  back()->with('error', 'You haven\'t compiled Vic yet');
         }
