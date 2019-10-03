@@ -20,13 +20,18 @@ class VicController extends Controller {
 
 	public function __construct(){
 		$this->service_id = Service::VIC;
+        $this->user_chats = VicB2C::where('IdUser', Auth::user()->id)->get();
+
 	}
 
     public function index(){
 
-        // sa ha già compilato redirect to completed // DA SISTEMARE NON APPENA AVREMO l'INFO A DB E-WHERE
         if($this->vicAlreadyCompletedCheck()) {
             return redirect()->route('vic_completed')->with('status', 'Vic already compiled');
+        }
+
+        if($this->vicInterruptedCheck()) {
+             return redirect()->route('vic_start')->with('status', 'You have to complete an interrupted chat session');
         }
 
         $data['page_title'] = 'Career Ready';
@@ -42,9 +47,19 @@ class VicController extends Controller {
     }
 
     public function vicAlreadyCompletedCheck() {
-        // !! IMPORTANTE:  manca a db l'informazione che indica se un flusso è stato COMPLETATO CORRETTAMENTE (fino in fondo), appena disponibile:inserirla !!!!
-        $completed = VicB2C::where('IdUser', Auth::user()->id)->get();
+        //in attesa modifica a Db (Alessia???) - manca il completed perchè non arriva in fondo al flusso.
+        $last_session_id = $this->user_chats->where('IdQuestionResponse', 'start')->sortByDesc('crdate')->first()->Value ?? null;
+        $completed = $this->user_chats->where('IdQuestionResponse', 'completed')->where('Value', $last_session_id);
         return count($completed) > 0 ?? null;
+    }
+
+    public function vicInterruptedCheck() {
+        if(count($this->user_chats) === 0 ){
+            return null;
+        }
+        $last_session_id = $this->user_chats->where('IdQuestionResponse', 'start')->sortByDesc('crdate')->first()->Value ?? null;
+        $completed = $this->user_chats->where('IdQuestionResponse', 'completed')->where('Value', $last_session_id);
+        return count($completed) === 0 ?? null;
     }
 
     public function start() {
@@ -52,17 +67,32 @@ class VicController extends Controller {
         if(!$this->paymentCheck($this->service_id)) {
             return back()->with('error', 'You have no order for this service!');
         }
-
-        // !! inserire controllo: se l'utente ha già COMPLETATO la chat NON può rifarla. Se l'ha interrotta prima del completamento-> può riprenderla.
-
         $data['page_title'] = 'Vic';
+
+        // !! controllo: se l'utente ha già COMPLETATO la chat NON può rifarla. Se l'ha interrotta prima del completamento-> può riprenderla.
+        if($this->vicAlreadyCompletedCheck()) {
+            return redirect()->route('vic_completed')->with('status', 'Vic already compiled');
+        } else {
+            if($this->vicInterruptedCheck()) {
+                $data['session_id'] = $this->user_chats->where('IdQuestionResponse', 'start')->sortByDesc('crdate')->first()->Value ?? null;
+            } else {
+                $data['session_id'] = 'VIC_B2C_'.time();
+            }
+        }
 
         return view('client.vic', $data);
     }
 
+
     public function middle() {
-        return view('client.vic_middle');
-    }
+
+        if($this->vicAlreadyCompletedCheck()) {
+            return redirect()->route('vic_completed')->with('status', 'Vic already compiled');
+        }
+
+        $data['vic_interrupted'] = $this->vicInterruptedCheck() ?? null;
+        return view('client.vic_middle', $data);
+    } 
 
     public function completed() {
         return view('client.vic_completed');
