@@ -6,13 +6,13 @@
 <html class="no-js">
 	<!--<![endif]-->
 	<head>
-	    <script async src="https://www.googletagmanager.com/gtag/js?id={{ env('GOOGLE_ANALYTICS_ID') }}"></script>
+	    <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.google_analytics.id') }}"></script>
 	    <script>
 	      window.dataLayer = window.dataLayer || [];
 	      function gtag(){dataLayer.push(arguments);}
 	      gtag('js', new Date());
 
-	      gtag('config', '{{ env('GOOGLE_ANALYTICS_ID') }}');
+	      gtag('config', '{{ config('services.google_analytics.id') }}');
 	    </script>
 	    <!-- Basic Page Needs -->
 	    <meta charset="utf-8">

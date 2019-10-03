@@ -40,6 +40,18 @@ return [
         'merchant_id' => env('BRAINTREE_MERCHANT_ID'),
         'public_key' => env('BRAINTREE_PUBLIC_KEY'),
         'private_key' => env('BRAINTREE_PRIVATE_KEY'),
+    ],
+
+    'notification_list' => [
+        'additional_emails' => env('NOTIFICATION_LIST_ADDITIONAL_EMAIL')
+    ],
+
+    'google_analytics' => [
+        'id' => env('GOOGLE_ANALYTICS_ID')
+    ],
+
+    'ewhere' => [
+        'customer_key' => env('EWHERE_CUSTOMER_KEY')
     ]
 
 ];

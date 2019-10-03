@@ -16,7 +16,7 @@
 		        <div id="chat-wrapper" class="body"></div>
 		        
 		        <div class="suspend-link">
-		        	<a class="cta btn" h________ref="{{-- route('vic_middle') --}}" disabled>Click here to pause your Career Ready session.</a>
+		        	<a class="cta btn" href="{{ route('vic_middle') }}">Click here to pause your Career Ready session.</a>
 		        	<div class="txt" style="font-size: 12px;">Remember that you can come back any time and resume from where you stopped.</div>
 		        </div>
 	        </div>
@@ -173,8 +173,8 @@
 				flow: 'Wexplore_B2C',
 				disable_signalR: true, 
 				// session_id: queryParameter("session_id"),
-				session_id: '{{ 'VIC_B2C_'.time() }}',
-				customer_key: '{{ env('EWHERE_CUSTOMER_KEY') }}',
+				session_id: '{{ $session_id }}',
+				customer_key: '{{ config('services.ewhere.customer_key') }}',
 				parameters: 
 				{ 
 					base_address: '{{ url('/') }}', 

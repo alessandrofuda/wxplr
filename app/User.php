@@ -590,7 +590,7 @@ class User extends Model implements AuthenticatableContract,
             array_push($notification_list, $site_email);
 
             // add any $others receivers that is NOT Admin --> defined in .env config file , comma separated list
-            $additional_emails = env('NOTIFICATION_LIST_ADDITIONAL_EMAIL');
+            $additional_emails = config('services.notification_list.additional_emails');
 
             if($additional_emails !== null) {
                 $others = explode(',', trim($additional_emails, ','));
