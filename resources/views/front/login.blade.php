@@ -13,6 +13,12 @@
 					<div class="login-logo">
 						<img src="{{asset('frontend/images/login/login_logo.png')}}">
 					</div>
+					
+					@if (session('error'))
+	                    <div class="alert alert-failure" style="background-color:#f73737;">
+	                        {{ session('error') }}
+	                    </div>
+	                @endif
 
 					@if ($errors->any())
 					    <div class="alert alert-danger">

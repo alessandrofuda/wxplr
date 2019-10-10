@@ -19,8 +19,14 @@ use DB;
 class VicController extends Controller {
 
 	public function __construct(){
+        $this->middleware('auth');
 		$this->service_id = Service::VIC;
-        $this->user_chats = VicB2C::where('IdUser', Auth::user()->id)->get();
+        if(Auth::check()) {
+            $this->user_chats = VicB2C::where('IdUser', Auth::user()->id)->get();
+        } else {
+            return redirect()->route('login')->with('error', 'You are logged out, please enter your login credentials and go next');
+        }
+        
 
 	}
 
@@ -233,9 +239,9 @@ class VicController extends Controller {
         $target_country_info = DB::connection('ewhere')->table('Matrice_VIC_B2C')->where('paese', $target_country)->orderBy('Id', 'DESC')->first() ?? null;
         $target_country_name = $target_country_info->paese ?? 'n.a.';
         
-        $useful_sites_head_hunter = $target_country_info->Testo2_3_7_20 ?? 'n.a.';
+        $useful_sites_head_hunter = $target_country_info->Testo2_3_6_29 ?? 'n.a.';
         $useful_sites_job_board = $target_country_info->Testo2_3_7_20 ?? 'n.a.';
-        $useful_sites_networking = $target_country_info->Testo2_3_7_20 ?? 'n.a.';
+        $useful_sites_networking = $target_country_info->Testo2_3_8_15 ?? 'n.a.';
 
         $score = 'n.a.';
         $scores = DB::connection('ewhere')->table('vVic_b2c_punti_6_7_8')->where('IdUser', $user_id)->get(); // !! query sulla view mysql -> collo di bottiglia !!
@@ -253,9 +259,10 @@ class VicController extends Controller {
             'a' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '9_8') ?? 'n.a.',
             'r' => $this->getResponseFromVicB2CChat($vic_b2c_current_user_chat, '9_10') ?? 'n.a.',
         ];
-        $final_recommendations = $target_country_info->Testo2_3_11_5 ?? '-';
+        $final_recommendations = $target_country_info->Testo2_3_9_11 ?? 'n.a.'; 
+        $goodluck = $target_country_info->Testo2_3_11_6 ?? '';
 
-        return compact('target_country_name', 'useful_sites_head_hunter', 'useful_sites_job_board', 'useful_sites_networking', 'score', 'star', 'final_recommendations');
+        return compact('target_country_name', 'useful_sites_head_hunter', 'useful_sites_job_board', 'useful_sites_networking', 'score', 'star', 'final_recommendations', 'goodluck');
 
     }
 

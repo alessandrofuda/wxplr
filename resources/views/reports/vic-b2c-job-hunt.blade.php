@@ -39,7 +39,7 @@
 				<p>Gli headhunter o società di selezione sono società esterne a cui le aziende affidano delle ricerche, solitamente per profili con competenze specifiche o quando devono assumere grandi volumi.</p>
 				<p>Magari ti è già capitato di incontrarli. Capiamo insieme come lavorano e come possono esserci utili.</p>
 				<p>
-					<ul>
+					<ul> 
 						<li>Queste società consentono di entrare direttamente in contatto con le aziende</li>
 						<li>Uno dei vantaggi è poter avere informazioni sull’azienda e dei feedback sul processo di selezione</li>
 						<li>Trovano lavoro ai candidati</li>
@@ -51,7 +51,6 @@
 						<li>Posso contattarli tramite LinkedIn</li>
 					</ul>
 				</p>
-				<p>Siti utili da cui partire a cercare:</p>
 				<p>{!! $useful_sites_head_hunter !!}</p>
 			</div>
 		</div>
@@ -60,7 +59,7 @@
 			<div class="section-body">
 				<p>Le job board sono quei siti che vengono usati dalle aziende per pubblicare le loro ricerche e rappresentano uno dei canali più utilizzati da professionisti di tutto il mondo. Vediamo insieme se li hai usati nel modo giusto.</p>
 				<p>
-					<ul>
+					<ul>   
 						<li>Gli annunci mi permettono di capire quali sono le realtà che stanno davvero assumendo</li>
 						<li>È importante la tempestività nel rispondere a un annuncio</li>
 						<li>Una volta risposto, posso solo aspettare che mi rispondano</li>
@@ -89,7 +88,7 @@
 				<p>È il canale più potente ed efficace di tutti, ma quello più difficile da usare, soprattutto se non siamo fisicamente in {!! $target_country_name !!}: come facciamo a entrare “casualmente” in contatto con aziende interessanti o a scambiare biglietti da visita senza dover salire su un aereo ogni volta?</p>
 				<p>Niente paura, c’è una soluzione per tutto, ma prima disambiguiamo insieme un po’ di falsi miti sul network:</p>
 				<p>
-					<ul>
+					<ul>   
 						<li>posso usare LinkedIn per fare networking</li>
 						<li>Chiedere un lavoro ai miei contatti è imbarazzante</li>
 						<li>Non conosco nessuno, soprattutto in {!! $target_country_name !!}!</li>
@@ -97,7 +96,6 @@
 						<li>L’obiettivo del networking è parlare con chi sta assumendo</li>
 					</ul>
 				</p>
-				<p>Siti utili da cui partire a cercare:</p>
 				<p>{!! $useful_sites_networking !!}</p>
 			</div>
 			<div class="templates-section">
@@ -248,6 +246,7 @@
 				</p>
 				<p>In generale poi, posso dirti che la cultura in {!! $target_country_name !!} apprezza particolarmente alcuni tipi di comportamento, ad esempio:</p>
 				<p>{!! $final_recommendations !!}</p>
+				<p>{!! $goodluck !!}</p>
 			</div>
 		</div>
 	</div>

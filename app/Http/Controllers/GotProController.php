@@ -43,7 +43,6 @@ class GotProController extends Controller {
             return back()->with('error', 'You have no order for this service!');
         }
 
-
         // sa ha già compilato redirect to completed // DA SISTEMARE NON APPENA AVREMO l'INFO A DB E-WHERE
         if($this->gotProAlreadyCompletedCheck()) {
             return redirect()->route('user.dashboard')->with('status', 'Got Pro already compiled'); 
