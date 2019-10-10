@@ -23,6 +23,7 @@
 			.page { page-break-after: always; }
 			.page:last-child { page-break-after: never; }
 
+			ul li, ol li { margin-bottom: 12px; }
 			.container {position: relative;}
 	    	.row {width:100%; position: relative; padding-left:20px; padding-right: 20px;}
 	    	.col-md-6 {position: relative; width: 50%; display: inline-block;}
@@ -62,6 +63,7 @@
 			.slogan { margin-top:40px; margin-bottom: 40px; }
 			a { text-decoration: underline!important; }
 			table.star-table td { padding-top: 20px; padding-bottom: 20px; padding-left: 20px; padding-right: 20px; }
+			.italic { font-style: italic; }
 	    </style>
 	</head>
 

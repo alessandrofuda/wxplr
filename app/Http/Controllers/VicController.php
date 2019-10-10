@@ -206,6 +206,8 @@ class VicController extends Controller {
 
     public function generatePreparationReport() {
 
+        ini_set('max_execution_time', 180); //3 minutes
+
         $data = $this->fetchPreparationReportData();
 
         if(!$data) {
@@ -240,6 +242,8 @@ class VicController extends Controller {
         $target_country_name = $target_country_info->paese ?? 'n.a.';
         
         $useful_sites_head_hunter = $target_country_info->Testo2_3_6_29 ?? 'n.a.';
+        $are_first_channel = $target_country_info->Testo2_3_6_16 ?? 'n.a.';
+        $are_specialized = $target_country_info->Testo2_3_6_22 ?? '';
         $useful_sites_job_board = $target_country_info->Testo2_3_7_20 ?? 'n.a.';
         $useful_sites_networking = $target_country_info->Testo2_3_8_15 ?? 'n.a.';
 
@@ -262,11 +266,13 @@ class VicController extends Controller {
         $final_recommendations = $target_country_info->Testo2_3_9_11 ?? 'n.a.'; 
         $goodluck = $target_country_info->Testo2_3_11_6 ?? '';
 
-        return compact('target_country_name', 'useful_sites_head_hunter', 'useful_sites_job_board', 'useful_sites_networking', 'score', 'star', 'final_recommendations', 'goodluck');
+        return compact('target_country_name', 'useful_sites_head_hunter', 'are_first_channel', 'are_specialized', 'useful_sites_job_board', 'useful_sites_networking', 'score', 'star', 'final_recommendations', 'goodluck');
 
     }
 
     public function generateJobHuntReport() {
+
+        ini_set('max_execution_time', 180); //3 minutes
 
         $data = $this->fetchJobHuntReportData();
         

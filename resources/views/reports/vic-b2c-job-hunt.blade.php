@@ -40,15 +40,15 @@
 				<p>Magari ti è già capitato di incontrarli. Capiamo insieme come lavorano e come possono esserci utili.</p>
 				<p>
 					<ul> 
-						<li>Queste società consentono di entrare direttamente in contatto con le aziende</li>
-						<li>Uno dei vantaggi è poter avere informazioni sull’azienda e dei feedback sul processo di selezione</li>
-						<li>Trovano lavoro ai candidati</li>
-						<li>Risentono della concorrenza delle job board</li>
-						<li>Sono il primo canale a cui un’azienda si rivolge per assumere qualcuno</li>
-						<li>Se ho già inviato il mio CV per un’altra offerta, ormai sono nel loro database e non è necessario che mi faccia vivo di nuovo</li>
-						<li>Sono specializzati per alcuni settori o funzioni</li>
-						<li>Non pubblicano mai offerte di lavoro o funzioni</li>
-						<li>Posso contattarli tramite LinkedIn</li>
+						<li>Queste società consentono di entrare direttamente in contatto con le aziende. Una società di selezione è un alleato prezioso, perché agisce su mandato diretto di un’azienda cliente. Questo vuol dire che c’è un’esigenza specifica e reale a cui possiamo rispondere. Attenzione però: può capitare che un’azienda cambi idea, cambi esigenze o prenda una persona dall’interno e in quel caso l’opportunità sarà sfumata! Ecco perché conviene sempre seminare il più possibile.</li>
+						<li>Uno dei vantaggi è poter avere informazioni sull’azienda e dei feedback sul processo di selezione. Il selezionatore agisce come tramite tra l’azienda e i candidati che presenta, conosce pregi e difetti di entrambi e coordina il processo. Questo può essere sfruttato a nostro vantaggio: possiamo chiedergli di capire meglio l’ambiente di lavoro, la cultura aziendale, le caratteristiche del team e del futuro capo per essere più preparati per il colloquio. A posteriori, possiamo anche insistere per avere un feedback sull’incontro in azienda, così da avere più visibilità sulla nostra posizione e più in generale per migliorare sempre di più la nostra performance nei colloqui. Non aver timore o imbarazzo a chiedere queste informazioni al selezionatore: in questo momento i vostri obiettivi coincidono.</li>
+						<li>Il loro lavoro è trovare la persona che l’azienda loro cliente possa assumere, quindi non hanno assolutamente l’obbligo di supportarti o di segnalarti su altre posizioni. L’unico caso in cui lo faranno è per quella che viene chiamata “tentata vendita”, ossia per provare a portarsi a casa un nuovo cliente. Certo, se questo risulta in un contratto per te, ben venga, ma non aspettarti che lo facciano se non hanno la possibilità di guadagnare dal tuo profilo</li>
+						<li>Risentono, in parte, della concorrenza delle job board. L’aumento di strumenti digitali ha creato molta più disintermediazione tra domanda e offerta, e per le aziende utilizzare Internet ha comunque dei costi di gran lunga inferiori. Le situazioni in cui invece per un’azienda è più conveniente e competitivo incaricare un headhunter sono per professionalità particolari o molto elevate, per location nuove o poco conosciute dall’azienda, o per situazioni di inserimento urgente.</li>
+						<li><span class="italic">"Sono il primo canale a cui un’azienda si rivolge per assumere qualcuno"</span>. {!! $are_first_channel !!}</li>
+						<li><span class="italic">"Ho già inviato il mio CV per un’altra offerta, ormai sono nel loro database e non è necessario che mi faccia vivo di nuovo"</span>. Perderesti un’opportunità. Non è affatto scontato che il tuo CV venga recuperato dal database o condiviso tra colleghi di diverse divisioni o uffici. Quindi invialo pure tutte le volte che sarà necessario, magari – questo sì – adattando la lettera di presentazione alla nuova job.</li>
+						<li>{!! $are_specialized !!}. Quindi è importante individuare gli headhunter che seguono le selezioni e gestiscono un portafoglio clienti più in linea con il tuo profilo e con l’obiettivo. Come? Qualche suggerimento te lo darò io tra pochissimo, per avere ancora più opzioni prova con una ricerca su Google o LinkedIn inserendo le voci “headhunter” “la tua area funzionale” “la città in {!! $target_country_name !!} a cui sei interessato”.</li>
+						<li>Non tutti pubblicano sempre offerte di lavoro, e soprattutto non tutti le pubblicano su LinkedIn o sulle job board. Per questo è importante tenere monitorati i loro siti, per intercettare le posizioni che interessano</li>
+						<li>Posso contattarli tramite LinkedIn, ti consiglio comunque di procedere per contatti mirati, magari per rinforzare una candidatura già fatta sottolineando le tue motivazioni. Una richiesta di contatto generica del tipo “sto cercando lavoro e vorrei entrare in contatto con lei” è solitamente poco produttiva.</li>
 					</ul>
 				</p>
 				<p>{!! $useful_sites_head_hunter !!}</p>
@@ -59,13 +59,13 @@
 			<div class="section-body">
 				<p>Le job board sono quei siti che vengono usati dalle aziende per pubblicare le loro ricerche e rappresentano uno dei canali più utilizzati da professionisti di tutto il mondo. Vediamo insieme se li hai usati nel modo giusto.</p>
 				<p>
-					<ul>   
-						<li>Gli annunci mi permettono di capire quali sono le realtà che stanno davvero assumendo</li>
-						<li>È importante la tempestività nel rispondere a un annuncio</li>
-						<li>Una volta risposto, posso solo aspettare che mi rispondano</li>
-						<li>Dedico molto tempo a cercare annunci online perché è lo strumento più efficace per raggiungere il mio obiettivo</li>
-						<li>È molto utile tenere traccia di tutti gli annunci a cui mi candido</li>
-						<li>Vale la pena provare a rispondere anche se il mio profilo non è del tutto centrato o se mi mancano alcune delle competenze richieste</li>
+					<ul> 
+						<li>Gli annunci mi permettono di capire quali sono le realtà che stanno davvero assumendo. Quello che voglio dire è: se vedi un’azienda che sta assumendo molto, a prescindere dalle posizioni che pubblica in quel momento, può essere una realtà interessante da contattare proponendosi spontaneamente, per anticipare future esigenze legate alla sua crescita.</li>
+						<li>È importante la tempestività nel rispondere a un annuncio. Un selezionatore riceve centinaia di CV per ogni posizione, e spesso lavora su tempi molto stretti, quindi comincerà a portarsi avanti con lo screening dopo i primi 2-3 giorni. Se tra i primi CV che esamina ne trova già una ventina interessanti, comincerà a contattarli. Quindi ricordati: ritmo costante e mouse veloce!</li>
+						<li><span class="italic">"Una volta risposto, posso solo aspettare che mi rispondano"?</span>  Certo, sarebbe la strada più facile e comoda... ma a volte basta un piccolo e garbato messaggio (se chi segue la ricerca è specificato in chiaro) per distinguersi dalla massa e magari sbloccare una selezione che non stava andando avanti. Alle aziende fanno piacere i candidati motivati e intraprendenti, quindi non avere paura.</li>
+						<li><span class="italic">"Dedico molto tempo a cercare annunci online perché è lo strumento più efficace per raggiungere il mio obiettivo"</span>. Non è così invece, dammi retta. Gli annunci online sono lo strumento più accessibile e facile da usare, ma proprio per questo sono anche il canale più “congestionato”, dove troviamo più concorrenza. Ti sarà capitato di vedere annunci con 400 candidature già dopo 1 giorno. Per aumentare l’efficacia ti conviene lavorare di sponda con il network: dopo esserti candidato, fai follow up direttamente con l’hiring manager, o verifica se un tuo contatto ti può segnalare.</li>
+						<li>È molto utile tenere traccia di tutti gli annunci a cui mi candido. Te lo consiglio assolutamente. Quando gli annunci si accumuleranno, ti servirà per fare mente locale quando ti chiamerà un’azienda (ed evitare la pessima risposta “quale offerta? Non me la ricordo…”), ma anche a migliorare man mano. Basta un file Excel con: nome posizione, nome azienda, link all’annuncio, data in cui si è risposto e feedback ricevuti. Trovi un template qui sotto. </li>
+						<li>Vale la pena provare a rispondere anche se il mio profilo non è del tutto centrato o se mi mancano alcune delle competenze richieste. Fai bene a buttarti. Molto spesso le job description sono delle linee guida delle caratteristiche principali e cercare una corrispondenza perfetta sarebbe davvero limitante. Una buona linea di demarcazione è il 70% di match. Attenzione però: i requisiti indicati come “essenziali” devono esserci al 100%.</li>
 					</ul>
 				</p>
 				<p>Siti utili da cui partire a cercare:</p>
@@ -75,9 +75,47 @@
 				<div class="section-title underlined">Bonus Wexplore: template tabella per monitoraggio annunci</div>
 				<div class="section-body">
 					<div class="track-table">
-						<div class="track-table-link">
+						{{-- <div class="track-table-link">
 							<a href="{{ url('user/vic/report/document-download/track-advices-table') }}" target="_blank">Scarica il template della tabella in formato .DOC</a>
-						</div>
+						</div> --}}
+						<table border="1" width="100%">
+							<thead>
+								<tr>
+									<th>Posizione</th>
+									<th>Azienda</th>
+									<th>Link ad annuncio</th>
+									<th>Data di Application</th>
+									<th>Contatto (se presente)</th>
+									<th>Feedback</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>...</td>
+									<td>...</td>
+									<td>...</td>
+									<td>...</td>
+									<td>...</td>
+									<td>...</td>
+								</tr>
+								<tr>
+									<td>...</td>
+									<td>...</td>
+									<td>...</td>
+									<td>...</td>
+									<td>...</td>
+									<td>...</td>
+								</tr>
+								<tr>
+									<td>...</td>
+									<td>...</td>
+									<td>...</td>
+									<td>...</td>
+									<td>...</td>
+									<td>...</td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
@@ -88,12 +126,13 @@
 				<p>È il canale più potente ed efficace di tutti, ma quello più difficile da usare, soprattutto se non siamo fisicamente in {!! $target_country_name !!}: come facciamo a entrare “casualmente” in contatto con aziende interessanti o a scambiare biglietti da visita senza dover salire su un aereo ogni volta?</p>
 				<p>Niente paura, c’è una soluzione per tutto, ma prima disambiguiamo insieme un po’ di falsi miti sul network:</p>
 				<p>
-					<ul>   
-						<li>posso usare LinkedIn per fare networking</li>
-						<li>Chiedere un lavoro ai miei contatti è imbarazzante</li>
-						<li>Non conosco nessuno, soprattutto in {!! $target_country_name !!}!</li>
+					<ul> 
+						<li>Posso usare LinkedIn per fare networking. È fatto apposta! Ovviamente dipende da come lo usi: la cosa fondamentale è motivare e personalizzare sempre la richiesta di contatto, magari facendo riferimento a un confronto professionale o alla expertise del contatto in un settore e non al “cerco lavoro” puro e semplice. Inoltre, anche partecipare attivamente a discussioni e gruppi o seguire alcune figure di spicco è molto utile a farsi conoscere.</li>
+						<li>Lo scopo del networking non è chiedere un lavoro ai propri contatti, ma piuttosto di ottenere nuovi contatti vantaggiosi e informazioni utili su cosa avviene in determinate aziende. Questo vuol dire che è un gioco che possiamo giocare alla pari: anche noi abbiamo informazioni o spunti interessanti da condividere grazie al percorso che abbiamo fatto, quindi possiamo a nostra volta essere utili ai nostri interlocutori…ci hai mai pensato? E inoltre, tieniti forte: non stiamo elemosinando un lavoro, ma possiamo essere la soluzione ai problemi di qualcuno. In un mercato dove il 45% dei datori di lavoro fatica a trovare le competenze di cui ha bisogno, anche chi ci segnala ad un’azienda può fare bella figura grazie a noi!</li>
+
+						<li><span class="italic">"Non conosco nessuno, soprattutto in {!! $target_country_name !!}!"</span>: Pensare ai primi nomi che ci vengono in mente può essere sicuramente sconfortante: scommetto che dopo i primi 5 o 6 ti sei arreso vero? Prova invece a metterli per iscritto con calma, e magari a raggrupparli con calma. Nel report che riceverai troverai dei suggerimenti, ma sono sicuro che resterai stupito dal risultato. E soprattutto, ricorda: non devi pensare solo a chi ti può dare un lavoro, perché stai limitando le tue possibilità. Prova invece a pensare chi ti può presentare qualcun altro in {!! $target_country_name !!}. Un ex collega? Una compagna di Erasmus? Il fratello del tuo compagno di allenamenti in palestra? Più riesci ad allargare il giro, più sarà facile muoverti.</li>
 						<li>È passata una settimana e non mi hanno ancora fatto sapere niente, non insisto oltre</li>
-						<li>L’obiettivo del networking è parlare con chi sta assumendo</li>
+						<li>L’obiettivo del networking non è parlare con chi sta assumendo. Nulla di più sbagliato, anzi, rischiamo di addossare all’altro una responsabilità molto scomoda. Il network serve principalmente per conoscere altre persone in maniera finalizzata o avere informazioni utili per il nostro obiettivo. Per questo è un’attività da coltivare in maniera costante nel tempo e non tartassando le persone dopo anni di silenzio solo quando ci serve. </li>
 					</ul>
 				</p>
 				<p>{!! $useful_sites_networking !!}</p>
