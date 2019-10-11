@@ -264,6 +264,19 @@
 			Route::get('user/vic/take-off-report', array('as'=>'vic_take_off_report', 'uses'=>'VicController@generateTakeOffReport'));
 			Route::get('user/vic/report/document-download/{doc}', array('as'=>'vic_report_document_download', 'uses'=>'VicController@reportDocumentDownload'));
 
+
+
+
+
+
+			// TEST !!!! report generate via Ajax
+			Route::get('user/vic/preparation-report-ajax', array('as'=>'vic_preparation_report_ajax', 'uses'=>'VicController@generatePreparationReportAjax'));
+			// TEST !!!!
+
+
+
+
+
 			// Wow
 			Route::get('user/wow', array('as'=>'wow', 'uses'=>'WowController@index'));
 			Route::get('user/wow/start', array('as'=>'wow_start', 'uses'=>'WowController@start'));		

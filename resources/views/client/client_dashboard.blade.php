@@ -124,8 +124,8 @@
 									<a class="btn cta light report" href="#">Prepare your transfer</a>
 								</div> --}}
 								<div class="box-cta">
-									<a class="btn cta light report" href="{{ route('vic_preparation_report') }}">Preparation Report</a>
-									<a class="btn cta light report" href="{{ route('vic_job_hunt_report') }}">Job Hunt Report</a>
+									<a class="btn cta light report loading-report" href="{{ route('vic_preparation_report') }}">Preparation Report</a>
+									<a class="btn cta light report loading-report" href="{{ route('vic_job_hunt_report') }}">Job Hunt Report</a>
 									{{-- <a class="btn cta light report" href="{{ route('vic_take_off_report') }}">Take Off Report</a> --}}
 								</div>
 							</div>

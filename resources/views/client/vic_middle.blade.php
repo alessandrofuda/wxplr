@@ -16,8 +16,8 @@
 		        @endif
 		        <div id="chat-wrapper" class="body"></div>
 		        <div class="buttons-section">
-		        	<a class="btn cta light" href="{{ route('vic_preparation_report') }}">Preparation Report</a>
-		        	<a class="btn cta light" href="{{ route('vic_job_hunt_report') }}">Job Hunt Report</a>
+		        	<a class="btn cta light loading-report" href="{{ route('vic_preparation_report') }}">Preparation Report</a>
+		        	<a class="btn cta light loading-report" href="{{ route('vic_job_hunt_report') }}">Job Hunt Report</a>
 		        	<br><br>
 		        	{{-- <a class="btn cta" href="#">Resume Your Journey</a> --}}
 		        </div>

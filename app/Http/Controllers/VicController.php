@@ -207,8 +207,10 @@ class VicController extends Controller {
     public function generatePreparationReport() {
 
         ini_set('max_execution_time', 180); //3 minutes
-
+        
+        
         $data = $this->fetchPreparationReportData();
+        
 
         if(!$data) {
             return  back()->with('error', 'You haven\'t compiled Vic yet');
@@ -227,6 +229,61 @@ class VicController extends Controller {
         return $pdf->download('vic-b2c-preparation-report-'.Str::slug($data['full_name'], '-').'-'.date('Y-m-d').'-'.time().'.pdf');
 
     }
+
+
+
+
+
+
+
+
+
+
+    // !!! TEST
+    public function generatePreparationReportAjax() {
+        ini_set('max_execution_time', 180);  //3 minutes
+        $result = null;
+        $data = $this->fetchPreparationReportData();
+        if(!$data) {
+            return response()->json(['status' => 403, 'message' => 'You haven\'t compiled Vic yet']);
+        }
+        $data['full_name'] = Auth::user()->name.' '.Auth::user()->surname;
+        $data['name'] = Auth::user()->name;
+        $data['origin_country'] = UserProfile::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first()->country ?? 'n.a.';
+        $data['title'] = 'WELCOME IN WEXPLORE<br/>SBLOCCA IL POTENZIALE DELLA TUA CARRIERA';
+        $data['meta_title'] = 'Vic Preparation Report';
+
+        // lato client: a inizio chiamata parte loading animation
+        // lato server (questo controller): genero pdf, salvo in Storage e ritorno json con status ok, nome del file storato o direttamente il link per scaricarlo
+        // lato client: on success --> se ok 200, 
+            // 1) prendo il link e genero in runtime l'html per scaricare il file
+            // 2) triggero il click sul link
+            // 3) nascondo il loading animation
+        // su stackoverflow riportare il flusso corretto con Laravel (https://stackoverflow.com/questions/25612890/using-php-dompdf-and-ajax-to-download-a-pdf-file)
+
+        $pdf = PDF::loadView('reports.vic-b2c-preparation', $data);
+
+        $storage_path = storage_path('dhaskdsjkhds/hjdskhdskjsda');  // /home/vagrant/Code/wexplore/storage/dhaskdsjkhds/hjdskhdskjsda
+        $filename = 'vic-b2c-preparation-report-'.Str::slug($data['full_name'], '-').'-'.date('Y-m-d').'-'.time().'.pdf';
+        Storage::put('__path_to_reports_storage__'.$filename, $pdf->output());
+
+        return response()->json(['status' => 200, 'message' => 'Report correctly generated', 'storage_path' => $storage_path, 'filename' => $filename]);
+    }
+    // fine TEST !!!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function fetchJobHuntReportData() {
 

@@ -110,7 +110,11 @@
             @yield('footer_resources')
         </div>
     </div>
-    {{-- <div class="loading-ajax-page" style="background: rgba( 255, 255, 255, .8 ) url('{{ asse t ('frontend/images/ajax-loader.gif')}}') 50% 50% no-repeat;"></div> --}}
+    {{-- <div class="loading" style="display:block; position:absolute; top: calc(50% - 150px); left: calc(50% - 150px); width:300px; height:300px; border:1px solid black;">
+        <div class="">Wait a moment please.. we're going to generate your report..</div>
+        <div class="img-container"><img class="img-fluid" src="http://rpg.drivethrustuff.com/shared_images/ajax-loader.gif"></div>
+        <a class="btn btn-cta light">Close</a>
+    </div> --}}
 
     <!-- JS -->
     <script type="text/javascript" src="{{ asset('frontend/js/jquery-1.11.3.js') }}"></script>
