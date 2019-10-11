@@ -259,6 +259,7 @@ class VicController extends Controller {
             // 1) prendo il link e genero in runtime l'html per scaricare il file
             // 2) triggero il click sul link
             // 3) nascondo il loading animation
+        // settare il .gitignore
         // su stackoverflow riportare il flusso corretto con Laravel (https://stackoverflow.com/questions/25612890/using-php-dompdf-and-ajax-to-download-a-pdf-file)
 
         $pdf = PDF::loadView('reports.vic-b2c-preparation', $data);
