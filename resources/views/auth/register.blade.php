@@ -54,10 +54,10 @@
                             <input type="password" class="form-control" required placeholder="Conferma Password" name="password_confirmation">
                         </div>
                         <div class="form-group has-feedback">
-                            <div class="col-md-11 other-links">
+                            <div class="other-links">
                                 <div class="checkbox icheck">
                                     <label>
-                                        <input type="checkbox" name="tos" required> Accetto i termini del servizio
+                                        <input type="checkbox" name="tos" required> Accetto i <a href="{{route('terms_service')}}">termini del servizio</a>
                                     </label>
                                 </div>
                             </div>
@@ -66,9 +66,11 @@
                             <button type="submit" class="btn btn-primary btn-block btn-flat registr-btn">Registrati</button>
                         </div>
                     </form>
-                    <div class="row">
-                        <div class="col-md-8 login-block">
-                            Già registrato? <a class="register-link" href="{{ URL::to('/auth/login') }}">Accedi</a>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 login-block">
+                                Già registrato? <a class="register-link" href="{{ URL::to('/auth/login') }}">Accedi</a>
+                            </div>
                         </div>
                     </div>
                     <div class="corner-bottom-img">

@@ -780,81 +780,8 @@ class PagesController extends CustomBaseController {
 		return redirect()->back()->with('status', 'Your message has been sent successfully!');
 	}
 
-	/*public function aiesec_send_email(Request $request) {
-		$rules['name'] = 'required';
-		$rules['surname'] = 'required';
-		$rules['address'] = 'required';
-		$rules['email'] = 'required|email|max:255';
-		$rules['policy'] = 'required';
-		$rules['message'] = 'required';
-
-		$validator = Validator::make($request->all(),$rules);
-		if ($validator->fails()) {
-			return redirect()->back()->withInput()->withErrors($validator->errors());
-		}
-
-		$website_email = '';
-		$data['contact_form_data'] = $request;
-
-		$mytime = Carbon\Carbon::now();
-		$current_date = $mytime->toDateTimeString();
-		$data['current_date'] = $current_date;
-		$data['service_name'] = 'AIESEC';
-
-		$mailchimpGroup = PagesController::MAILCHIMP_LIST_GROUP_AIESEC;
-
-		$esito = $this->updateMailchimp($request->name, $request->surname, $request->address, $request->email, $mailchimpGroup);
-		Mail::send('emails.service_email', $data, function ($m) {
-			$settings=Setting::find(1);
-			$website_email = $settings['website_email'];
-			$m->from($website_email, 'Wexplore');
-			$m->to($website_email, 'Wexplore')->subject('New AIESEC Contact Us Form Submission');
-		});
-
-		Mail::send('emails.aiesec_user_email', $data, function ($m) use($request) {
-			$settings=Setting::find(1);
-			$website_email = $settings['website_email'];
-			$m->from($website_email, 'Wexplore');
-			$m->to($request->email, $request->name)->subject('Benvenuto in Wexplore: il tuo viaggio comincia da qui');
-		});
-
-		return redirect()->back()->with('status', 'Your message has been sent successfully!');
-	}*/
-
-	/*private function updateMailchimp($name, $surname, $address, $email, $group) {
-      $apiKey = env('MC_API_KEY', 'NO_APIKEY'); 
-      $listId = env('MC_LIST_ID', 'NO_LISTID'); 
-      $emailHash = md5(strtolower($email));
-
-      $endpoint = "https://us13.api.mailchimp.com/3.0/lists/" . $listId . "/members/". $emailHash;
-      $requestBody = array(
-	       "email_address" => $email,
-	       "status" => "subscribed",
-	       "merge_fields" => array(
-	           	"FNAME" => $name,
-	           	"LNAME" => $surname,
-				"ADDRESS" => $address
-	       ),
-	       'interests' => array(
-	           $group => true
-	       )
-	   );
-
-      $connection = curl_init($endpoint);
-      curl_setopt($connection, CURLOPT_RETURNTRANSFER, true);
-      curl_setopt($connection, CURLOPT_CUSTOMREQUEST, "PUT");
-      curl_setopt($connection, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-      curl_setopt($connection, CURLOPT_SSL_VERIFYPEER, false);
-      curl_setopt($connection, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-      curl_setopt($connection, CURLOPT_USERPWD, "mailchimp:" . $apiKey);
-      curl_setopt($connection, CURLOPT_POSTFIELDS, json_encode($requestBody));
-
-      $response = curl_exec($connection);
-      curl_close($connection);
-
-		Log::info(print_r($response, true));
-
-		return;
-	}*/
+	public function termsService() {
+		return view('front.termini_servizio');
+	}
 
 }

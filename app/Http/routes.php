@@ -534,12 +534,8 @@
     Route::post('/global/query','GlobalToolController@query');
 
 
-    /*  IMPORTANT */
-	/* !!! Please make sure to place this route at the end of route file, Otherwise some pages may not work !!! */
-	/* this machine_name param include this pages: about-us, contact-us, terms-service, privacy-policy, cookies-policy, code-ethics, servicesb, global-orientation-test, professional-kit, global-toolbox, skills-development, aiesec, faq, ... */
-
-	Route::get('/{machine_name}', array('as'=>'getContent', 'uses'=>'PagesController@getContent'));
-	Route::get('autocomplete', array('as'=>'autocomplete', 'uses'=>'SkillDevelopmentController@all'));
+    /*others mix */
+    Route::get('autocomplete', array('as'=>'autocomplete', 'uses'=>'SkillDevelopmentController@all'));
 	Route::get('searchajax', array('as'=>'searchajax', 'uses'=>'SkillDevelopmentController@auto_complete'));
 	Route::post('availcode', array('as'=>'availcode', 'uses'=>'ServiceOrdersController@availCode'));
 
@@ -547,3 +543,29 @@
 
 	// unsubscribe link in Clients side email text (spatie/laravel-url-signer 1.0.0 package)
 	Route::get('user/{user_id}/delete-account', array('middleware'=>'signedurl', 'as'=>'delete-account', 'uses'=>'UserProfileController@deletePersonalFromEmailLink'));
+
+	Route::get('termini-del-servizio', ['as'=>'terms_service', 'uses'=>'PagesController@termsService']);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*  IMPORTANT: this is the LAST route !! */
+	/* !!! Please make sure to place this route at the end of route file, Otherwise some pages may not work !!! */
+	/* this machine_name param include this pages: about-us, contact-us, terms-service, privacy-policy, cookies-policy, code-ethics, servicesb, global-orientation-test, professional-kit, global-toolbox, skills-development, aiesec, faq, ... */
+	Route::get('/{machine_name}', array('as'=>'getContent', 'uses'=>'PagesController@getContent')); /*!! the LAST !!*/
+	

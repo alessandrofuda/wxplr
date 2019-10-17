@@ -52,6 +52,7 @@
 
 		</div>
 		<!-- JS -->
+		<script type="text/javascript" src="{{ asset('frontend/js/jquery-1.11.3.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('frontend/js/mfn.menu.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('frontend/js/jquery.plugins.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('frontend/js/jquery.jplayer.min.js') }}"></script>
@@ -63,5 +64,6 @@
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js">
 		</script>
 		<script src="{{ asset('frontend/js/bootstrap.min.js') }}"></script>
+		@yield('js')
 	</body>
 </html>

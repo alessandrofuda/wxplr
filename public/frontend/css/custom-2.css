@@ -706,7 +706,7 @@ body.loading .loading-ajax-page {
 	font-weight: 400;
 	line-height: 18px;
 }
-#registr .login-block a {
+#registr .login-block a, #registr .other-links a {
 	text-decoration: underline;
 	color: #808080;
 }
@@ -1194,10 +1194,20 @@ body.loading .loading-ajax-page {
 	#login .corner-bottom-img, #registr .corner-bottom-img {
 		z-index: 0;
 	}
+	#registr.terms-conditions .registr-sx {
+		max-height: 900px;
+	}
+	#registr.terms-conditions .registr-dx .registr-container {
+		padding-left: 0;
+		padding-right: 0;
+	}
 }
 @media only screen and (max-width: 767px) {
 	#Header #menu {
 		display: none;
+	}
+	#login .login-sx, #registr .registr-sx {
+		overflow: hidden;
 	}
 }
 @media only screen and (max-width: 480px) {
@@ -1208,5 +1218,8 @@ body.loading .loading-ajax-page {
 	}
 	#login .login-sx, #registr .registr-sx {
 		overflow: hidden;
+	}
+	#registr.terms-conditions .registr-dx .container {
+		width: auto!important;
 	}
 }
