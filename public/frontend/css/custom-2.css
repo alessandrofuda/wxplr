@@ -1180,9 +1180,33 @@ body.loading .loading-ajax-page {
 		display: block;
 	}
 }
-
+@media only screen and (max-width: 991px) {
+	#login, #registr {
+		height: auto;
+	}
+	#login .register-block, #registr .register-block {
+		display: inline-block;
+		z-index: 9;
+		background-color: #FCFCFC;
+		padding: 10px;
+		border-radius: 5px;
+	}
+	#login .corner-bottom-img, #registr .corner-bottom-img {
+		z-index: 0;
+	}
+}
 @media only screen and (max-width: 767px) {
 	#Header #menu {
 		display: none;
+	}
+}
+@media only screen and (max-width: 480px) {
+	#login .corner-bottom-img, #registr .corner-bottom-img {
+		position: relative;
+		text-align: right;
+		margin-top: 100px;
+	}
+	#login .login-sx, #registr .registr-sx {
+		overflow: hidden;
 	}
 }

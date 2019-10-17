@@ -53,7 +53,7 @@
                             <label for="password_confirmation">Confirm Password : </label>
                             <input type="password" class="form-control" required placeholder="Conferma Password" name="password_confirmation">
                         </div>
-                        <div class="row">
+                        <div class="form-group has-feedback">
                             <div class="col-md-11 other-links">
                                 <div class="checkbox icheck">
                                     <label>

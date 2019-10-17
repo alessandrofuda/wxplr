@@ -29,7 +29,7 @@
           <input type="password" name="password" required id="password" class="form-control" placeholder="Password">
           <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         </div>
-        <div class="row">
+        <div class="form-group has-feedback">
           <div class="col-xs-8">
             <div class="checkbox icheck">
               <label>
