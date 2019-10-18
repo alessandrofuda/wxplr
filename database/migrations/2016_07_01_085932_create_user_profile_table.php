@@ -24,7 +24,7 @@ class CreateUserProfileTable extends Migration
             $table->string('industry',255)->nullable();
             $table->string('occupational_status',255)->nullable();
             $table->string('salary_range',255)->nullable();
-            $table->enum('allow_personal_data', [0, 1])->default(0);
+            $table->enum('allow_personal_data', ['0', '1'])->default('0');
             $table->timestamps();
         });
     }
