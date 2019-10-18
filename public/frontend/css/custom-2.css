@@ -191,7 +191,8 @@ img.img-circle.logo-tondo {
 }
 a.btn.cta, button.btn.cta {
 	min-width: 206px;
-	height: 40px;
+	height: auto;
+	min-height: 40px;
 	border-radius: 10px;
 	background-image: linear-gradient(to right, #6bb97a 31%, #5ab282 38%, #41a98e 52%, #2fa297 66%, #259e9c 82%, #229d9e 100%);
 	color: #ffffff;
@@ -1332,5 +1333,8 @@ body.loading .loading-ajax-page {
 	}
 	.row-second .container.boxs > div {
 		padding-right: 15px!important;
+	}
+	#reset-psw-page {
+		width: 100%!important;
 	}
 }
