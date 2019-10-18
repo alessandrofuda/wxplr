@@ -141,6 +141,7 @@ ul > li {
 #chat-wrapper {
     position: relative;
     text-align: center;
+    z-index: 9;
 }
 .chat-container {
     width: 100%;
@@ -259,19 +260,18 @@ ul > li {
 		/*max-height: 350px;*/		
     }
 	.chat-messages-container text, p, a, b, ul, li { 
-		font-size: 20px; 
-		font-weight: bold; 
+		font-size: 14px; 
 	} 
     .chat-footer {
 		/* 
 			Il piè di pagina, contiene la casella di testo in cui si scrive e il bottone "Invia"
 		*/
-		background: #fff;
+		/*background: #fff;
         color: #fff;
 		padding: 10px;
 		position: fixed;
 		bottom: 10px;
-		width: 90%;
+		width: 90%;*/
     }
 	.chat-footer img {
 		display: inline-table;		

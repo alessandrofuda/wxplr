@@ -137,7 +137,7 @@ ul.social-profile{list-style-type:none;padding:0;margin:0;color:#fff}
 @media screen and (max-width:786px) {
 .social_icon a.first-cls span.open_search{margin-right:0}
 .link_site,.link_site a{font-size:12px!important;text-align:right!important;float:none!important}
-.nav>li{border-bottom:#0d7faf 2px solid!important}
+/*.nav>li{border-bottom:#0d7faf 2px solid!important}*/
 .navbar-inverse .navbar-nav>li>a{font-size:20px!important;text-align:center!important}
 .navbar-inverse .navbar-nav>li>a:hover{border-bottom:none!important}
 }

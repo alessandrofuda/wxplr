@@ -43,6 +43,7 @@
 	    <!-- Revolution Slider -->
 	    <link rel="stylesheet" href="{{ asset('frontend/plugins/rs-plugin/css/settings.css') }}">
 	    <link rel="stylesheet" href="{{ asset('frontend/font-awesome/css/font-awesome.min.css') }}">
+
 	    <script src="{{ asset('frontend/js/jquery-1.11.3.js') }}"></script>
 	</head>
 

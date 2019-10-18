@@ -37,7 +37,7 @@
 							</div>
 							<div class="col-md-6 dx got-compiled">
 								<div class="box-img got-compiled">
-									<img src="{{asset('frontend/images/hp/img_got_compiled.png')}}">
+									<img class="img-dx-1" src="{{asset('frontend/images/hp/img_got_compiled.png')}}">
 								</div>
 							</div>
 						</div>
@@ -61,7 +61,7 @@
 							</div>
 							<div class="col-md-6 dx">
 								<div class="box-img">
-									<img src="{{asset('frontend/images/hp/img_got.png')}}">
+									<img class="img-dx-2" src="{{asset('frontend/images/hp/img_got.png')}}">
 								</div>
 							</div>
 						</div>
@@ -83,7 +83,7 @@
 							</div>
 							<div class="col-md-6 dx got-compiled">
 								<div class="box-img got-compiled">
-									<img src="{{asset('frontend/images/hp/avion.png')}}">
+									<img class="img-dx-3" src="{{asset('frontend/images/hp/avion.png')}}">
 								</div>
 							</div>
 						</div>
@@ -106,7 +106,7 @@
 							</div>
 							<div class="col-md-6 dx">
 								<div class="box-img">
-									<img src="{{asset('frontend/images/hp/img_got-pro.png')}}">
+									<img class="img-dx-4" src="{{asset('frontend/images/hp/img_got-pro.png')}}">
 								</div>
 							</div>
 						</div>
@@ -131,7 +131,7 @@
 							</div>
 							<div class="col-md-3 dx got-compiled">
 								<div class="box-img got-compiled">
-									<img src="{{asset('frontend/images/vic/completed.png')}}">
+									<img class="img-dx-5" src="{{asset('frontend/images/vic/completed.png')}}">
 								</div>
 							</div>
 						</div>
@@ -154,7 +154,7 @@
 							</div>
 							<div class="col-md-6 dx">
 								<div class="box-img" style="margin-right: 100px;">
-									<img src="{{asset('frontend/images/hp/img_vic.png')}}">
+									<img class="img-dx-6" src="{{asset('frontend/images/hp/img_vic.png')}}">
 								</div>
 							</div>
 						</div>

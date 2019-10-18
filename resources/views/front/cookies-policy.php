@@ -3,7 +3,7 @@
 		<div class="sections_group">
 			<div class="entry-content">
 				<div class="section flv_sections_8" id="orientation-test">
-					<div class="section_wrapper clearfix">
+					<div class="section_wrapper clearfix" style="width:auto!important; padding:0 20px;">
 						<div class="items_group clearfix">
 							<!-- Page Title-->
 							<!-- One full width row-->
