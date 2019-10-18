@@ -269,7 +269,7 @@
 
 
 
-			// TEST !!!! report generate via Ajax
+			// TEST !!!! report generate via Ajax (link-test da:  /user/vic/completed)
 			Route::get('user/vic/preparation-report-ajax', array('as'=>'vic_preparation_report_ajax', 'uses'=>'VicController@generatePreparationReportAjax'));
 			// TEST !!!!
 

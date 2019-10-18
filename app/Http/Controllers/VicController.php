@@ -264,7 +264,7 @@ class VicController extends Controller {
 
         $pdf = PDF::loadView('reports.vic-b2c-preparation', $data);
 
-        $storage_path = storage_path('dhaskdsjkhds/hjdskhdskjsda');  // /home/vagrant/Code/wexplore/storage/dhaskdsjkhds/hjdskhdskjsda
+        $storage_path = storage_path('dhaskdsjkhds/hjdskhdskjsda');  //  .... /wexplore/storage/dhaskdsjkhds/hjdskhdskjsda
         $filename = 'vic-b2c-preparation-report-'.Str::slug($data['full_name'], '-').'-'.date('Y-m-d').'-'.time().'.pdf';
         Storage::put('__path_to_reports_storage__'.$filename, $pdf->output());
 

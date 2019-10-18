@@ -18,6 +18,13 @@
 			        	<a class="btn cta report loading-report" href="{{ route('vic_preparation_report') }}">Preparation Report</a>
 			        	<a class="btn cta report loading-report" href="{{ route('vic_job_hunt_report') }}">Job Hunt Report</a>
 			        	<br><br>
+			        	
+
+			        	@if (App::environment('local'))
+			        		<a class="loading-report-ajax preparation-report" href="javascript:void(0)">Preparation Report Ajax (test only local env)</a> {{-- custom-2.js --}}
+			        	@endif
+
+
 			        	{{-- <a class="btn cta" href="{{ route('vic_take_off_report') }}">Take Off Report</a> --}}
 			        	{{-- <a class="" href="#">go to chat</a>  ?? --}}
 			        </div>
@@ -28,4 +35,13 @@
 	        </div>
 		</div>
 	</div>
+@endsection
+
+
+
+@section('js')
+	<script>
+		var preparationReportUrl = '{{ route('vic_preparation_report_ajax') }}';
+		var jobHuntReportUrl = '??????????';
+	</script>
 @endsection

@@ -26,13 +26,25 @@ jQuery(document).ready(function($){
 		});
 	}
 
+
+
+
 	// loading page animation for dompdf report
-	// $('.loading-report').on('click', function() {
-	// 	$('.loading').show();
-	// 	setTimeout(function() {
-	// 		$('.loading').hide();
-	// 	}, 3000);
-	// 	//alert('ok');
-	// });
+	$('.report-loading-modal').hide(); // dashboard_layout.blade.php
+
+	$('.loading-report-ajax.preparation-report').on('click', function() {
+		$('.report-loading-modal').show();
+		$.ajax({
+	    	url: preparationReportUrl,
+	    	success: function(result) {
+	    		console.log(result);
+	        	alert('success');
+	        	$('.report-loading-modal').hide();
+	    	},
+	    	complete: function(){
+	    		//
+	    	}
+	    });
+	});
 
 });
