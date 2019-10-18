@@ -190,7 +190,6 @@ class ServiceOrdersController extends CustomBaseController {
 		$service_id		=	$request['service_id'];
 		$payment_method	=	$request['payment_method'];
 
-
 		//validation
 		$rules['name'] = 'required|max:255';
 		$rules['surname'] ='required|max:255';
@@ -218,8 +217,6 @@ class ServiceOrdersController extends CustomBaseController {
 			return redirect()->back()->withInput()->withErrors($validator->errors());
 		}
 
-
-
 		$user_data['name'] = $request->get('name');
 		$user_data['surname'] =  $request->get('surname');
 
@@ -237,12 +234,9 @@ class ServiceOrdersController extends CustomBaseController {
 		$user_profile_data['city'] = $request->get('city');
 		$user_profile_data['province'] = $request->get('province');
 		$user_profile_data['zip_code'] = $request->get('zip_code');
-		$tos = $request->get('tos');  // tos --> term of service (checkbox in form)
-		$user_data['tos'] = 0;
-
-		if($tos == 'on') {
-			$user_data['tos'] = 1;
-		}
+		$user_profile_data['allow_personal_data'] = $request->get('allow_personal_data') == '1' ? '1' : '0';  // string ! important!
+		$user_profile_data['allow_personal_data_to_third_parties'] = $request->get('allow_personal_data_to_third_parties') == '1' ? '1' : '0'; // string ! important!
+		$user_data['tos'] = $request->get('tos') == 'on' ? 1 : 0;  // tos --> term of service (checkbox in form) // INT ! important!
 
 		$user = [];
 
@@ -298,8 +292,6 @@ class ServiceOrdersController extends CustomBaseController {
 			]
 		]);
 
-		//dd($result);
-
 		Log::info("RESULT: " . print_r($result, true));
 
 		if($result->success == '1' || $amount <= 0) {
@@ -307,6 +299,7 @@ class ServiceOrdersController extends CustomBaseController {
 			if ($user_obj != null) {  // $user_obj --> utente loggato (o che effettua la transazione)
 				$user_obj->update($user_data);
 				$profile = $user_obj->userProfile;
+				//dd($profile);
 				$user_profile_data['user_id'] = $user_obj->id;
 
 				if ($profile != null) {
@@ -403,26 +396,6 @@ class ServiceOrdersController extends CustomBaseController {
 				    }
 			    }
 
-			 //    // gen pdf invoice
-			 //    $service_name = $service->name;
-			 //    $data['order_obj'] = $order_obj;
-			 //    $settings = Setting::find('1');
-			 //    $data['settings'] = $settings;
-			 //    $data['price'] =  $service->price;
-			 //    $data['total'] =  $original_amount;
-			 //    $data['product_name'] = $service_name;
-			 //    $data['payment_method'] = $payment_method;
-			 //    $data['page_title'] = 'Order Invoice';
-			 //    $data['discount'] = $discount;
-			 //    $data['vat_price'] = round($service->vatprice() * 22/100) ;
-  
-			 //    $pdf = \App::make('dompdf.wrapper');
-				// // return view('client.invoice_pdf', $data);   
-			 //    $pdf->loadView('client.invoice_pdf', $data);									// genera fattura
-			 //    $invoice_pdf_path = base_path().'/../uploads/invoice_'.time().'.pdf';
-			 //    $pdf->save($invoice_pdf_path);
-
-
 				// mail notification
 			    $mail_data = [
 				   'order_id' => $order_obj->id,
@@ -437,7 +410,6 @@ class ServiceOrdersController extends CustomBaseController {
 				   'promo_code' => $code,
 				   'vat_price' => round($service->vatprice() * 22/100, 2)
 			    ];
-
 			    \Mail::send('emails.service_activation', $mail_data, function ($m) use ($user_obj) {  // invio MAIL notifica pagamento
 				   $settings=Setting::find(1);
 				   $site_email = $settings->website_email;
@@ -445,18 +417,6 @@ class ServiceOrdersController extends CustomBaseController {
 				   //$m->attach($invoice_pdf_path);
 				   $m->to($user_obj->email, $user_obj->name)->subject('Service Activation!');
 			    });
-			    //@unlink($invoice_pdf_path);   // elimina invoice ???
-
-				/*  if($service->name == 'Professional Kit') {
-				   $code = SurveyCode::where('is_assigned',0)->first();
-				   if($code != null) {
-					   $culture_match['user_id'] = $user_obj->id;
-					   $culture_match['survey_code'] = $code->survey_code;
-					   $culture_match['status'] = 1;
-					   $culture_match_obj = CultureMatchSurvey::create($culture_match);
-					   $code->update(['is_assigned' => 1]);
-				   }
-			   }*/
 		    }
 
 			return redirect('thank-you/' . $service_id);

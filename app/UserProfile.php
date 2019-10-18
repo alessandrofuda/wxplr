@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
-class UserProfile extends Model
-{
+class UserProfile extends Model {
+
     use SoftDeletes;
 
     const AREA_CAREER_SESSION = 0;
@@ -21,29 +21,7 @@ class UserProfile extends Model
      *
      * @var array
      */
-    protected $fillable = [
-        'deleted_at', 
-        'user_id',
-        'profile_picture',
-        'age_range', 
-        'country_origin', 
-        'country_interest',
-        'education', 
-        'industry',
-        'occupation', 
-        'occupational_status', 
-        'salary_range',
-        'allow_personal_data',
-        'pan',
-        'telephone',
-        'company',
-        'country',
-        'city',
-        'address',
-        'vat',
-        'gender',
-        'zip_code'
-    ];
+    protected $guarded = ['updated_at', 'created_at'];
    /**
      * The table associated with the model.
      *

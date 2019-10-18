@@ -314,22 +314,24 @@
                     </div>
 				<div class="ligle_terms servic_Payment_method">
                     <span class="paymentOption_div">
-                        <input   type="checkbox" required name="tos">
-                            <i></i>
-                            <b>I have read and accepted the General <a href="/terms-service" target="_blank">Terms and Conditions</a> and have read the <a href="/privacy-policy" target="_blank">Privacy Policy</a></b>
+                        <input type="checkbox" name="tos" required>
+                        <i></i>
+                        <b>I have read and accepted the General <a href="/terms-service" target="_blank">Terms and Conditions</a>.*</b>
                     </span>
                     <span class="paymentOption_div">
-                            <input  type="checkbox" required name="tos">
-                            <i></i>
-                            <b>I have read and accepted the terms pursuant to art. 1341 and 1342 of the Civil Code</b><br>
-                            <div class="tos-disclaimer">
-                            	Clausole vessatorie[C1]: Ai sensi e per gli effetti di cui agli artt. 1341 e 1342 Cod. Civ., il Cliente, dopo averne presa attenta e specifica conoscenza e visione, approva e ed accetta espressamente le seguenti clausole:<br/><br/> 1)  Registrazione al Sito e conclusione del contratto di fornitura dei Servizi riservati agli Utenti e dei Servizi a Pagamento; 2) Modalità di registrazione; 3) Caratteristiche dei servizi; 4) Corrispettivi e modalità di pagamento dei Servizi a Pagamento; 5) Attivazione ed erogazione del servizio; 6) Durata, rinnovo, cessazione, recesso dal contratto; 7) Utilizzo dei blog; 8) Tutela minori; 9) Funzionalità dei Servizi; 10) Modifiche dei servizi e variazioni alle condizioni dell'offerta; 11) Cessione del Contratto; 12) Diritti di proprietà industriale e/o intellettuale – contenuti scaricabili; 13) Limitazione della responsabilità; 14) Sospensione del Servizio; 15) Dati del Cliente; 16) Limitazioni di responsabilità di Gielle; 17) Clausola risolutiva espressa; 18) Disposizioni finali e comunicazioni 19) Legge applicabile e Foro competente.
-                            </div>
+                    	<input type="checkbox" name="tos" required>
+                    	<i></i>
+                    	<b>I give my consent to the processing of my personal data as per the <a href="/privacy-policy" target="_blank">Privacy Policy</a> for the purpose of service delivery.*</b>	
                     </span>
                     <span class="paymentOption_div">
                         <input  type="checkbox" value="1" name="allow_personal_data">
-                            <i></i>
-                            <b>I give my consent to the processing of my personal data for marketing purposes and trade in such Regulations (optional)</b>
+                        <i></i>
+                        <b>I give my consent to the processing of my personal data as per the <a href="/privacy-policy" target="_blank">Privacy Policy</a> for newsletter and other institutional communication purposes (optional)</b>
+                    </span>
+                    <span class="paymentOption_div">
+                    	<input type="checkbox" value="1" name="allow_personal_data_to_third_parties">
+                    	<i></i>
+                    	<b>I give my consent to the processing of my personal data to be communicated to recruiting and/or headhunting and/or partner companies (optional)</b>
                     </span>
                 </div>
 			</div>
