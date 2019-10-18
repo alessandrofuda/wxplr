@@ -1290,6 +1290,13 @@ body.loading .loading-ajax-page {
 	#got-page .dx-block {
 		padding-right: 0;
 	}
+	.user-wrapper {
+		overflow: hidden;
+	}
+	#personal-area {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
 }
 
 @media only screen and (max-width: 480px) {
