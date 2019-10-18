@@ -1208,6 +1208,19 @@ body.loading .loading-ajax-page {
 	}
 	#login .login-sx, #registr .registr-sx {
 		overflow: hidden;
+		max-height: 250px;
+	}
+	#login .other-links, #registr .other-links{
+		margin-bottom: 40px; 
+	}
+	.user_login_form .other-links a {
+	    text-align: left;
+	}
+	#login .register-block {
+		margin-bottom: 40px;
+	}
+	#registr .registr-container .container {
+		width: auto!important;
 	}
 }
 @media only screen and (max-width: 480px) {
