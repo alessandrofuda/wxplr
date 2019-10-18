@@ -231,6 +231,7 @@ a.btn.cta.light, button.btn.cta.light {
 }
 .how-it-w {
 	cursor: pointer;
+	display: inline-block;
 }
 .box-body .how-it-w {
 	margin-left:50px;
