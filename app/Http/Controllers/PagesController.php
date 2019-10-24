@@ -473,7 +473,6 @@ class PagesController extends CustomBaseController {
 		$vic_b2c_started = count($vic_b2c_results->get()) > 0 ?? null;
 		$vic_b2c_payed = $this->paymentCheck(Service::VIC);
 
-
 		$data['page_title']='Dashboard';
 		$data['user_roles'] = $roles;
 		$data['user_services'] = $user_services;

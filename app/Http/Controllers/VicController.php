@@ -18,7 +18,7 @@ use DB;
 
 class VicController extends Controller {
 
-	public function __construct(){
+	public function __construct() {
         $this->middleware('auth');
 		$this->service_id = Service::VIC;
         if(Auth::check()) {
@@ -26,11 +26,9 @@ class VicController extends Controller {
         } else {
             return redirect()->route('login')->with('error', 'You are logged out, please enter your login credentials and go next');
         }
-        
-
 	}
 
-    public function index(){
+    public function index() {
 
         if($this->vicAlreadyCompletedCheck()) {
             return redirect()->route('vic_completed')->with('status', 'Vic already compiled');

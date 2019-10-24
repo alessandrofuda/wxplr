@@ -1312,6 +1312,9 @@ body.loading .loading-ajax-page {
 	#vic .row.vic-container {
 		margin-top:5px;
 	}
+	#promo_div button {
+		min-width: 150px;
+	}
 }
 
 @media only screen and (max-width: 480px) {
@@ -1350,5 +1353,17 @@ body.loading .loading-ajax-page {
 	}
 	#reset-psw-page {
 		width: 100%!important;
+	}
+	#Footer .footer_copy .copyright a {
+	    margin: auto;
+	}
+	#checkout .logo-container .logo {
+	    left:40px;
+	}
+	#checkout .title {
+	    font-size: 29px;
+	}
+	#promo_div button {
+		min-width: 135px;
 	}
 }

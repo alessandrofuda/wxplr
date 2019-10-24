@@ -278,6 +278,16 @@ ul > li {
 	}
 }
 
+@media only screen and (max-width: 480px) {
+    .chat-message-container,
+    .chat-message-container.darker {
+        margin: auto;
+        width: auto;
+    }
+    #chatSendButton { width: 12%; }
+    .chat-footer { padding-left: 20px; } 
+}
+
 @media screen and (max-height: 500px) {    
     .chat-messages-container {        	
 		max-height: 250px;		
