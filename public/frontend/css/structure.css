@@ -5838,7 +5838,7 @@ html,body {
         position: absolute;
         right: 0;
         top: 0;
-        border-left: 1px solid rgba(0,0,0,0.03);
+        /*border-left: 1px solid rgba(0,0,0,0.03);*/
         background: url(../images/menu-plus.png) center no-repeat;
     }
 

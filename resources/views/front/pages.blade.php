@@ -1,6 +1,7 @@
 {{-- @ex__tends( Auth::check() ? 'front.dashboard_layout' : 'front.new_layout') --}}
 
-@extends('layouts.new_layout') 
+{{-- @extends('layouts.new_layout')  --}}
+@extends('layouts.clean_layout') 
 
 @section('content')
 
