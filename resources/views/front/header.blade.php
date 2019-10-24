@@ -29,6 +29,21 @@
                                                 </span>
                                             </a>
                                             <ul class="dropdown-menu">
+                                                <li class="mobile-menu">
+                                                    <a href="{{ route('user.dashboard') }}">Dashboard</a>
+                                                </li>
+                                                <li class="mobile-menu">
+                                                    <a href="{{ route('got_intro') }}">Got</a>
+                                                </li>
+                                                <li class="mobile-menu">
+                                                    <a href="{{ route('got_pro') }}">Got Pro</a>
+                                                </li>
+                                                <li class="mobile-menu">
+                                                    <a href="{{ route('vic') }}">VIC</a>
+                                                </li>
+
+                                                <hr class="mobile-menu">
+                                                
                                                 <li>
                                                     <a href="{{route('user_profile')}}">Personal area</a>
                                                 </li>

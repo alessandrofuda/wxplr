@@ -130,6 +130,9 @@ img.img-circle.logo-tondo {
 	margin-right: 10px;
 	font-size: 18px;
 }
+.dropdown-menu .mobile-menu {
+	display: none;
+}
 .row-second .container.boxs {
 	padding-right: 0;
 	padding-left: 50px;
@@ -1257,6 +1260,9 @@ body.loading .loading-ajax-page {
 	#Header #menu {
 		display: none;
 	}
+	.dropdown-menu .mobile-menu {
+		display: block;
+	}
 	#login .login-sx, #registr .registr-sx {
 		overflow: hidden;
 		max-height: 250px;
@@ -1297,6 +1303,9 @@ body.loading .loading-ajax-page {
 	#personal-area {
 		padding-left: 20px;
 		padding-right: 20px;
+	}
+	#vic .row.vic-container {
+		margin-top:5px;
 	}
 }
 
