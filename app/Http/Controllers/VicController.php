@@ -52,7 +52,7 @@ class VicController extends Controller {
         return view('client.vic_intro', $data);
     }
 
-    public function vicAlreadyCompletedCheck() {
+    /*public function vicAlreadyCompletedCheck() {
         //in attesa modifica a Db (Alessia???) - manca il completed perchè non arriva in fondo al flusso.
         $last_session_id = $this->user_chats->where('IdQuestionResponse', 'start')->sortByDesc('crdate')->first()->Value ?? null;
         $completed = $this->user_chats->where('IdQuestionResponse', 'completed')->where('Value', $last_session_id);
@@ -66,7 +66,7 @@ class VicController extends Controller {
         $last_session_id = $this->user_chats->where('IdQuestionResponse', 'start')->sortByDesc('crdate')->first()->Value ?? null;
         $completed = $this->user_chats->where('IdQuestionResponse', 'completed')->where('Value', $last_session_id);
         return count($completed) === 0 ?? null;
-    }
+    }*/
 
     public function start() {
 

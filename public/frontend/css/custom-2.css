@@ -218,7 +218,7 @@ a.btn.cta.light, button.btn.cta.light {
 	
 }
 .box.got {
-	height: 352px;
+	min-height: 352px;
 }
 .box.wow {
 	min-height: 470px;
@@ -228,7 +228,7 @@ a.btn.cta.light, button.btn.cta.light {
 	margin-top:50px;
 }
 .box.got-pro {
-	height: 300px;
+	min-height: 300px;
 }
 .box.vic {
 	
@@ -345,6 +345,7 @@ body.loading .loading-ajax-page {
 #dashboard .box.box-body.completed{
 	max-width: 650px;
 	height: 400px;
+	/*max-height: 700px;*/
 	padding-top: 35px;
 	display: inline-block;
 	margin-left: 20px;
@@ -1293,6 +1294,10 @@ body.loading .loading-ajax-page {
 	#checkout .buttons-container > div {
 		margin-left: 20px;
 		margin-right: 20px;
+	}
+	#dashboard .box.box-body.compiled, 
+	#dashboard .box.box-body.completed {
+		height: 600px;
 	}
 	#got-page .dx-block {
 		padding-right: 0;

@@ -112,7 +112,7 @@
 						</div>
 					@endif
 
-					@if ($vic_b2c_completed)
+					@if ($vic_b2c_started)
 						<div class="box box-body vic completed" style="overflow: hidden;">
 							<div class="col-md-9 sx">
 								<div class="box-above-top">Vic Journey</div>
@@ -127,6 +127,11 @@
 									<a class="btn cta light report loading-report" href="{{ route('vic_preparation_report') }}">Preparation Report</a>
 									<a class="btn cta light report loading-report" href="{{ route('vic_job_hunt_report') }}">Job Hunt Report</a>
 									{{-- <a class="btn cta light report" href="{{ route('vic_take_off_report') }}">Take Off Report</a> --}}
+									@if ($vic_b2c_interrupted)
+										<div class="continue-chat-btn">
+											You have an interrupted chat session <a class="btn cta" href="{{ route('vic') }}">click here to continue</a>
+										</div>
+									@endif
 								</div>
 							</div>
 							<div class="col-md-3 dx got-compiled">

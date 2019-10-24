@@ -470,7 +470,7 @@ class PagesController extends CustomBaseController {
 		$got_pro_payed = $this->paymentCheck(Service::GOT_PRO);
 
 		$vic_b2c_results = VicB2C::where('IdUser', Auth::user()->id);
-		$vic_b2c_completed = count($vic_b2c_results->get()) > 0 ?? null;
+		$vic_b2c_started = count($vic_b2c_results->get()) > 0 ?? null;
 		$vic_b2c_payed = $this->paymentCheck(Service::VIC);
 
 
@@ -483,8 +483,9 @@ class PagesController extends CustomBaseController {
 		$data['got_outcome_data'] = $got_outcome_data ?? null;
 		$data['got_pro_completed'] = $got_pro_completed;
 		$data['got_pro_payed'] = $got_pro_payed;
-		$data['vic_b2c_completed'] = $vic_b2c_completed;
 		$data['vic_b2c_payed'] = $vic_b2c_payed;
+		$data['vic_b2c_started'] = $vic_b2c_started;
+		$data['vic_b2c_interrupted'] = $this->vicInterruptedCheck();
 
 		return view('client.client_dashboard',$data);
 
