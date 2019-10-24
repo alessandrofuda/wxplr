@@ -767,6 +767,7 @@ body.loading .loading-ajax-page {
 #vic .buttons-section .btn.cta {
 	/*min-width: 145px;*/
 	margin-right: 25px;
+	margin-top: 25px;
 }
 
 #vic .vic-middle {
