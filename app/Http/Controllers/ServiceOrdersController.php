@@ -299,7 +299,6 @@ class ServiceOrdersController extends CustomBaseController {
 			if ($user_obj != null) {  // $user_obj --> utente loggato (o che effettua la transazione)
 				$user_obj->update($user_data);
 				$profile = $user_obj->userProfile;
-				//dd($profile);
 				$user_profile_data['user_id'] = $user_obj->id;
 
 				if ($profile != null) {
