@@ -37,13 +37,7 @@ use PDF;
 
 use Illuminate\Support\Facades\Log;
 
-class PagesController extends CustomBaseController {
-
-	// const MAILCHIMP_LIST_GROUP_GLOBAL_ORIENTATION_TEST = '882a0e5cfb';
-	// const MAILCHIMP_LIST_GROUP_PROFESSIONAL_KIT = 'eb56a232f1';
-	// const MAILCHIMP_LIST_GROUP_SKILLS_DEVELOPMENT = '4cfd24aacd';
-	// const MAILCHIMP_LIST_GROUP_GLOBAL_TOOLBOX = '7d5c4ada11';
-	// const MAILCHIMP_LIST_GROUP_AIESEC = 'd8b559b138';
+class PagesController extends Controller  { //CustomBaseController { 
 
 	public function homepage() {
 		$services = Service::get();

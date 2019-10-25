@@ -14,7 +14,6 @@ use App\Navigation;
 use App\Setting;
 
 class CustomBaseController extends Controller {
-    //public $variable1="I am Data";
     
     public function __construct() {
         $current_route_name = Route::currentRouteName();
@@ -51,14 +50,6 @@ class CustomBaseController extends Controller {
         view()->share('settings', $settings);
         view()->share('meta_tag', $tag);
 
-
-       /*$variable2 = 'I am Data 2';
-       View::share ( 'variable1', $this->variable1 );
-       View::share ( 'variable2', $variable2 );
-       View::share ( 'variable3', 'I am Data 3' );
-       View::share ( 'variable4', ['name'=>'Franky'] );*/
-
     }
-
     
 }

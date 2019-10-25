@@ -16,19 +16,18 @@ abstract class Controller extends BaseController {
 
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    public $user_chats;
+
     public function __construct() {
-
-        //if(Auth::check()) {
-        //    $this->user_chats = VicB2C::where('IdUser', Auth::user()->id)->get();
-        //} else {
-        //    return redirect()->route('login')->with('error', 'You are logged out, please enter your login credentials and go next');
-        //} 
-
+        if(Auth::check()) {
+            $this->user_chats = VicB2C::where('IdUser', Auth::user()->id)->get();
+        } else {
+            return redirect()->route('login')->with('error', 'You are logged out, please enter your login credentials and go next');
+        } 
+        
         $settings=Setting::find(1);
         $route = \Route::getCurrentRoute()->uri();
-
         $path = \Request::fullUrl();
-
         $tag = MetaTags::where(\DB::raw('trim(name)'),$path)->first();
         if($tag == null) {
             $type = MetaTags::PAGE_TYPE_HOME;
@@ -46,10 +45,8 @@ abstract class Controller extends BaseController {
             }
             $tag = MetaTags::where('page_type',$type)->first();
         }
-
         view()->share('settings', $settings);
         view()->share('meta_tag', $tag);
-
     }
 
 
@@ -59,21 +56,17 @@ abstract class Controller extends BaseController {
     }
 
     public function vicInterruptedCheck() {
-        
-        $user_chats = VicB2C::where('IdUser', Auth::user()->id)->get();
-
-        if(count($user_chats) === 0 ){
+        if(count($this->user_chats) === 0 ){
             return null;
         }
-        $last_session_id = $user_chats->where('IdQuestionResponse', 'start')->sortByDesc('crdate')->first()->Value ?? null;
-        $completed = $user_chats->where('IdQuestionResponse', 'completed')->where('Value', $last_session_id);
+        $last_session_id = $this->user_chats->where('IdQuestionResponse', 'start')->sortByDesc('crdate')->first()->Value ?? null;
+        $completed = $this->user_chats->where('IdQuestionResponse', 'completed')->where('Value', $last_session_id);
         return count($completed) === 0 ?? null;
     }
 
     public function vicAlreadyCompletedCheck() {
-        $user_chats = VicB2C::where('IdUser', Auth::user()->id)->get();
-        $last_session_id = $user_chats->where('IdQuestionResponse', 'start')->sortByDesc('crdate')->first()->Value ?? null;
-        $completed = $user_chats->where('IdQuestionResponse', 'completed')->where('Value', $last_session_id);
+        $last_session_id = $this->user_chats->where('IdQuestionResponse', 'start')->sortByDesc('crdate')->first()->Value ?? null;
+        $completed = $this->user_chats->where('IdQuestionResponse', 'completed')->where('Value', $last_session_id);
         return count($completed) > 0 ?? null;
     }
 
