@@ -13,10 +13,8 @@ use App\UserProfile;
 use App\UserRoles;
 use Hamcrest\Core\Set;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-
 use Auth;
 use Psy\Test\Exception\RuntimeExceptionTest;
 use Route;
@@ -31,12 +29,11 @@ use App\Event;
 use Session;
 use Braintree_TestHelper;
 use Braintree_Transaction;
-
 use Illuminate\Support\Facades\Log;
-
-// fix https:// img to pdf invoices
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use App\Http\Requests\ServicePaymentProcessRequest;
+use App\Http\Requests\EmailCheckRequest;
 
 class ServiceOrdersController extends CustomBaseController {
 
@@ -176,6 +173,17 @@ class ServiceOrdersController extends CustomBaseController {
 
 	public function service_payment_process_braintree(ServicePaymentProcessRequest $request) {
 		
+		// se NON loggato, controlla se la mail inserita è gia in DB. Se gia in Db --> fai login, altrimenti --> registra (SEPARARE LA LOGICA CON METODI ESTERNI)
+		if(!Auth::check()) {
+			$registered_user = User::where('email', $request->get('email'))->where('is_admin', false)->first() ?? null;
+			if($registered_user) {
+				// prendi credentials e fai login
+			} else {
+				// prendi credentials, fai registrazione nuovo user e fai il login
+			}
+			
+		}
+
         $service_price = $request->get('amount');
 		$service_name =	$request->get('service_name');
 		$service_id	= $request->get('service_id');
@@ -281,17 +289,6 @@ class ServiceOrdersController extends CustomBaseController {
             	$ur = UserRoles::create($role_arr);
 		    }
 
-		    if(!Auth::check()) {
-            	$credentials = $this->getCredentialsConsultant($request);
-
-			    if (Auth::attempt($credentials, $request->has('remember'))) {
-              		if (Session::has('login_redirect')) {
-                  		$redirect_url = Session::get('login_redirect');
-                  		Session::forget('login_redirect');
-              		}
-			    }
-		    }
-
 		    if($user_package > 0) {
 			    $user_package_obj = UserPackage::where('id',$user_package)->first();
 			    $user_package_obj->update([
@@ -387,9 +384,16 @@ class ServiceOrdersController extends CustomBaseController {
 	 * @return json
 	 *
 	 */
-	public function emailCheck(Request $request) {
+	public function emailCheck(EmailCheckRequest $request) {
+
+		$registered_user = User::where('email', $request->get('email'))->where('is_admin', false)->first() ?? null;
+		if($registered_user) {
+			$status = 'registered';
+		} else {
+			$status = 'not_registered';
+		}
 		
-		return response()->json(['aaa' => 'bbb']);
+		return response()->json(['user_status' => $status]);
 	}
 
 

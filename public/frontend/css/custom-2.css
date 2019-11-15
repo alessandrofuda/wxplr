@@ -903,8 +903,6 @@ body.loading .loading-ajax-page {
 	line-height: 18px;
 	text-transform: uppercase;
 }
-
-
 #checkout .login-wrap, #checkout .register-wrap {
 	margin-top: 20px;
 	margin-bottom: 20px;
@@ -936,7 +934,11 @@ body.loading .loading-ajax-page {
 #checkout .register-wrap input[name="password_confirmation"] {
 	margin-top: 15px;
 }
-
+#checkout .email-wrap .check-email-validation {
+	color: red;
+	font-size: 12px;
+	font-style: italic;
+}
 
 
 #checkout .order-container .service-name, #checkout .order-container .price {

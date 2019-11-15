@@ -134,14 +134,15 @@
 							<div class="email-wrap">
 								<input type="email" class="form-control" required  placeholder="Email" name="email" value="{{ old('email') }}">
 								<button id="email-check" class="btn">Check Email</button>
+								<div class="check-email-validation"></div>
 							</div>
 							<div class="login-wrap">
-								<label for="password">You are already registered.<br/>Enter the password to proceed</label>
+								<label for="password">You are already registered.<br/>Enter the password and proceed to checkout.</label>
 								<input type="password" class="form-control" name="password" placeholder="Password">
 								<span class="forgot-psw"><a href="{{route('forgot-psw')}}">Forgot password?</a></span>
 							</div>
 							<div class="register-wrap">
-								<label for="password">You are not registered.<br>Choose a password and proceed to purchase.</label>
+								<label for="password">You are not registered.<br>Choose a password and proceed to checkout.</label>
 								<input type="password" class="form-control" name="password" placeholder="Type password">
 								<input type="password" class="form-control" name="password_confirmation" placeholder="Retype password">
 							</div>
@@ -365,7 +366,6 @@
     var form = document.querySelector('#checkout-form');
     var client_token = "{{ $clientToken }}";
     var price = $('#selected_service_price').val();
-
     var dropinInstance;
 
     braintree.dropin.create({
@@ -398,8 +398,6 @@
 </script>
 
 <script>
-	console.log('start');
-
     var clientToken = "{{ $clientToken }}";
     var price = $('#selected_service_price').val();
     var paymentFormCard = $('#payment-form-card');
@@ -408,14 +406,12 @@
 
     paymentFormPaypal.hide();
     paymentFormCard.hide();
-</script>
 
-<script>
-	$.ajaxSetup({
-		headers: {
-			'X-CSRF-TOKEN': "{{ csrf_token() }}"
-		}
-	});
+	// $.ajaxSetup({
+	// 	headers: {
+	// 		'X-CSRF-TOKEN': "{{-- csrf_token() --}}"
+	// 	}
+	// });
 	
 	$("#have_promo").click(function(){
 		$("#promo_div").show();
@@ -532,20 +528,52 @@
 			}
 		});  
 	});
-</script>
 
-<script>
+
+
+
+
+
+
 	// email check
-	$('#email-check').on('click', function() {
+	var email_notif = $('.check-email-validation');
+	var login = $('.login-wrap');
+	var register = $('.register-wrap');
+
+	login.hide(); // !! attenzione: anche se nascosto, nel codice rimane il name="password" !! usare add/remove attribute
+	register.hide();
+	$('#email-check').on('click', function(e) {
+
+		e.preventDefault();
 		var email = $('[name="email"]').val();
-		alert(email);
+
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': "{{ csrf_token() }}"
+			}
+		});
+
 		$.ajax({
 			url:'{{ route('email_check') }}',
 			method:'POST',
-			_token:'{{ csrf_token() }}',
 			data:{'email': email},
 			success:function(response) {
-				//
+				email_notif.text('');
+
+				if(response.user_status == 'registered') {
+					login.show();
+					register.hide();
+				} else if(response.user_status == 'not_registered') {
+					login.hide();
+					register.show();
+				} else {
+					email_notif.text('Unknown error');
+					login.hide();
+					register.hide();
+				}
+			},
+			error:function(error) {
+				email_notif.text(error.responseJSON.message);  // The given data was invalid
 			}
 		});
 	});
