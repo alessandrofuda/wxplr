@@ -109,7 +109,7 @@
 				<div class="title-box personal-data-title">Personal Data</div>
 				<div class="row">
 					<div class="col-md-6 form-group has-feedback">
-						<label>Name</label>
+						<label for="name">Name</label>
 						@if($user != null)
 							<input type="text" class="form-control" required placeholder="Name" name="name" value="{{ $user->name }}">
 						@else
@@ -117,7 +117,7 @@
 						@endif
 					</div>
 					<div class="col-md-6 form-group has-feedback">
-						<label>Surname</label>
+						<label for="surname">Surname</label>
 						@if($user != null)
 							<input type="text" class="form-control" required placeholder="Surname" name="surname" value="{{ $user->surname }}">
 						@else
@@ -127,15 +127,28 @@
 				</div>
 				<div class="row">
 					<div class="col-md-6 form-group has-feedback">
-						<label>Email</label>
-						@if($user != null)
+						<label for="email">Email</label>
+						@if(Auth::check() && $user != null)
 							<span class="precompiled">{{ $user->email }}</span>
 						@else
-							<input type="email" class="form-control" required  placeholder="Email" name="email" value="{{ old('email') }}">
+							<div class="email-wrap">
+								<input type="email" class="form-control" required  placeholder="Email" name="email" value="{{ old('email') }}">
+								<button id="email-check" class="btn">Check Email</button>
+							</div>
+							<div class="login-wrap">
+								<label for="password">You are already registered.<br/>Enter the password to proceed</label>
+								<input type="password" class="form-control" name="password" placeholder="Password">
+								<span class="forgot-psw"><a href="{{route('forgot-psw')}}">Forgot password?</a></span>
+							</div>
+							<div class="register-wrap">
+								<label for="password">You are not registered.<br>Choose a password and proceed to purchase.</label>
+								<input type="password" class="form-control" name="password" placeholder="Type password">
+								<input type="password" class="form-control" name="password_confirmation" placeholder="Retype password">
+							</div>
 						@endif
 					</div>
 					<div class="col-md-6 form-group has-feedback">
-						<label>Fiscal Code</label>
+						<label for="pan">Fiscal Code</label>
 						@if($userProfile  != null && $userProfile->pan  != null) 
 							<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="{{ $userProfile->pan }}" title="fiscal code">
 						@else 
@@ -145,7 +158,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-6 form-group has-feedback">
-						<label>Invoice Address (Street and Number)</label>
+						<label for="address">Invoice Address (Street and Number)</label>
 						@if($userProfile != null && $userProfile->address  != null)
 							<textarea required rows="4" cols="50" class="form-control" name="address" placeholder="Address" value="{{ $userProfile->address }}">{{ $userProfile->address }}</textarea>
 						@else
@@ -153,7 +166,7 @@
 						@endif
 					</div>
 					<div class="col-md-6 form-group has-feedback">
-						<label>ZIP Code</label>
+						<label for="zip_code">ZIP Code</label>
 						@if($userProfile != null && $userProfile->zip_code  != null)
 	                        <input type="text" class="form-control" required placeholder="ZIP Code" name="zip_code" value="{{ $userProfile->zip_code }}">
 	                    @else
@@ -163,7 +176,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-6 form-group has-feedback">
-						<label>City</label>
+						<label for="city">City</label>
 						@if($userProfile != null && $userProfile->city  != null)
 							<input type="text" name="city" placeholder="City" required class="form-control" value="{{ $userProfile->city }}">
 						@else
@@ -171,7 +184,7 @@
 						@endif
 					</div>
 					<div class="col-md-6 form-group has-feedback">
-						<label>Province</label>
+						<label for="province">Province</label>
 						@if($userProfile != null && $userProfile->province  != null)
 							<input type="text" name="province" placeholder="Prov" class="form-control" value="{{ $userProfile->province }}">
 						@else
@@ -181,7 +194,7 @@
 				</div>
 				<div class="row">
 					<div class="col-md-6 form-group has-feedback">
-						<label>Country</label>
+						<label for="country">Country</label>
 						@if (count($country_list) > 0)
 							<select name="country" id="country" required class="form-control" style="clear: both;">
 								<option value="">Select Country</option>
@@ -341,14 +354,11 @@
 </div>
 
 @php 
-	/*$clientToken = \Braintree_ClientToken::generate();*/
 	$clientToken = \Braintree\ClientToken::generate();
 @endphp
 
-
 <script src="{{ asset('frontend/js/jquery-2.1.4.min.js') }}"></script>
 <script src="{{ asset('frontend/js/jquery.ui.js') }}"></script>
-<!--script src="https://js.braintreegateway.com/js/braintree-2.32.1.min.js"></script-->
 <script src="https://js.braintreegateway.com/web/dropin/1.19.0/js/dropin.min.js"></script>
 
 <script>
@@ -488,15 +498,6 @@
 								});
 							});
 						});
-					} else {
-
-						//alert(total_price_usd);
-						// Destroy Drop-in
-						//dropinInstance.teardown(function(err) {
-						//    if (err) { console.error('An error occurred during teardown: ', err); }
-						//});
-						//$(".bt-drop-in-wrapper").html('<p><em>Free Transaction</em></p>');
-						//$("[name='payment_method_nonce']").remove();
 					}
 
 					// rewrite price in page
@@ -531,10 +532,22 @@
 			}
 		});  
 	});
-
-	$(function() {
-	    console.log('end --> ok no error');
-	});
 </script>
 
+<script>
+	// email check
+	$('#email-check').on('click', function() {
+		var email = $('[name="email"]').val();
+		alert(email);
+		$.ajax({
+			url:'{{ route('email_check') }}',
+			method:'POST',
+			_token:'{{ csrf_token() }}',
+			data:{'email': email},
+			success:function(response) {
+				//
+			}
+		});
+	});
+</script>
 @endsection

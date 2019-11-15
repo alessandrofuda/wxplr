@@ -127,7 +127,8 @@
 	Route::post('client/register', array('as' => 'client_register', 'uses' => 'Auth\AuthController@postClientRegister'));
 	// Service Payment
 	//Route::get('service/payment', array('as'=>'service_payment','uses'=>'ServiceOrdersController@service_payment'));
-	Route::get('service/payment/{service_id}', array('as'=>'service_payment_direct','uses'=>'ServiceOrdersController@service_payment'));
+	Route::get('service/payment/{service_id}', array('as'=>'service_payment_direct','uses'=>'ServiceOrdersController@service_payment'))->where('service_id', '5|6');
+	Route::post('email-check', array('as' => 'email_check', 'uses' => 'ServiceOrdersController@emailCheck'));
 
 	//Partner page
 	Route::any('/partners','PagesController@partners');
@@ -151,15 +152,15 @@
 	Route::get('thank-you/{service_id}', 'PagesController@thankYouPage');
 
 	// Password reset link request routes...
-	Route::get('password/email', 'Auth\ForgotPasswordController@showLinkRequestForm'); // 'Auth\PasswordController@getEmail');
-	Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');  // 'Auth\PasswordController@postEmail');
+	Route::get('password/email', array('as' => 'forgot-psw', 'uses' => 'Auth\ForgotPasswordController@showLinkRequestForm')); // 'Auth\PasswordController@getEmail');
+	Route::post('password/email', array('as' => 'forgot-psw-post', 'uses' => 'Auth\ForgotPasswordController@sendResetLinkEmail'));  // 'Auth\PasswordController@postEmail');
 
 	// Password reset routes...
 	Route::get('password/reset/{token}', array( 'as'=>'password.reset', 'uses'=>'Auth\ResetPasswordController@showResetForm'));
 	Route::post('password/reset', array('as'=>'auth.passwords.reset', 'uses'=>'Auth\ResetPasswordController@reset'));
 
 
-	Route::group( ['middleware' => ['auth'] ], function(){
+	Route::group(['middleware' => ['auth']], function(){
 		Route::get('user/download/{file}',['as' => 'download_file', 'uses' => 'ConsultantProfileController@download_file']);
 		Route::group(['middleware' => 'userConsultant'], function(){
 			Route::get('consultant/dashboard', ['as' => 'consultant.dashboard','uses' => 'ConsultantProfileController@index']);
@@ -323,10 +324,7 @@
 			//My Packages
 			Route::get('user/packages','PackageController@my');
 		});  // end Auth userClient
-
-
-		//Route::get('user/role_play_video','ProfessionalKitController@role_play_video');
-
+		
 		// ADMIN !!
 		Route::group(['namespace' => 'Admin','middleware' => 'admin'], function(){
 

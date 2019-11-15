@@ -111,7 +111,6 @@ class ServiceOrdersController extends CustomBaseController {
 			Session::put('login_redirect',$current_route_url);
 		} else {
 			$data['user'] =Auth::user();
-
 			if($data['user'] != null) {
 				$userProfile = Auth::user()->userProfile;
 
@@ -122,7 +121,6 @@ class ServiceOrdersController extends CustomBaseController {
 		}
 
 		$service_id='';
-
 		if(!empty($request['service_id'])) {
 			$service_id=$request['service_id'];
 			Session::put('payment_service_id',$service_id);
@@ -152,14 +150,7 @@ class ServiceOrdersController extends CustomBaseController {
 					$data['discount_amount'] = $discount_amount;
 				}
 			}
-
 			$amount = round($amount,2);
-
-			if ($service->price == 0) {
-				if ($service->name == 'Skill Development') {
-					return redirect('/skill_development/browse');   // IMP redireziona alla pag browse !!
-				}
-			}
 		}
 
 		$country_list = Country::all();
@@ -183,39 +174,11 @@ class ServiceOrdersController extends CustomBaseController {
 	}
 
 
-	public function service_payment_process_braintree(Request $request) {
-
-        $service_price  =   $request['amount'];
-		$service_name	=	$request['service_name'];
-		$service_id		=	$request['service_id'];
-		$payment_method	=	$request['payment_method'];
-
-		//validation
-		$rules['name'] = 'required|max:255';
-		$rules['surname'] ='required|max:255';
-		if(!Auth::check()) {
-			$rules['email'] = 'required|email|max:255|unique:users';
-			$rules['password'] = 'required|confirmed|min:6';
-		}
-		$rules['pan'] = 'required|max:40'; 	// fiscal code
-		$rules['vat'] = 'max:40';		
-		$rules['company'] = 'max:255';		// 'required'
-		$rules['address'] = 'required';
-		$rules['country'] = 'required';
-		$rules['city'] = 'required';
-		$rules['province'] = 'max:10';
-		$rules['zip_code'] = 'required';
-		$rules['tos'] = 'required';
-		//if($service_price > 0) {
-			//	$rules['payment_method_nonce'] = 'required';
-		//}
-		$messages = [
-			'pan.required' => 'Fiscal Code field is required.',  // only one custom message
-		];
-		$validator = Validator::make($request->all(),$rules, $messages);		//  form validation
-		if ($validator->fails()) {
-			return redirect()->back()->withInput()->withErrors($validator->errors());
-		}
+	public function service_payment_process_braintree(ServicePaymentProcessRequest $request) {
+		
+        $service_price = $request->get('amount');
+		$service_name =	$request->get('service_name');
+		$service_id	= $request->get('service_id');
 
 		$user_data['name'] = $request->get('name');
 		$user_data['surname'] =  $request->get('surname');
@@ -246,10 +209,7 @@ class ServiceOrdersController extends CustomBaseController {
 			$user_obj = User::where('email', $user_data['email'])->first();
 		}
 
-		//$nonceFromTheClient = $request->get("payment_method_nonce_paypal");
-		//if($nonceFromTheClient == null ) {
-		$nonceFromTheClient = $request->get("payment_method_nonce"); 
-		//}
+		$nonceFromTheClient = $request->get("payment_method_nonce");
 
 		$service = Service::find($service_id);
 		$original_amount = $service->price;
@@ -363,21 +323,18 @@ class ServiceOrdersController extends CustomBaseController {
                 'amount' => $original_amount,
                 'transaction_type' => 'credit',
                 'payment_gateway_id' => 2,
-               	// 'payment_method_id' => 1,
                 'order_status' => 1,
                 'type_id' => OrderTransaction::TYPE_SERVICE,
 				'created_by'=>Auth::user()->id,
 				'code_id'=>$code_id
 		    ];
 
-		    $payment_method = 'Paypal';
-
+		    $payment_method = 'Unknown';
 	        if(isset($result->transaction->paypal)) {
-
 	        	$transaction_data['paypal_data'] = json_encode($result->transaction->paypal);
 			    $transaction_data['payment_method_id'] = 2;
+			    $payment_method = 'Paypal';
 	        } elseif(isset($result->transaction->creditCard)) {
-
 	            $transaction_data['credit_card_data'] = json_encode($result->transaction->creditCard);
 				$transaction_data['payment_method_id'] = 1;
 				$credit_card_array = json_decode($transaction_data['credit_card_data']);
@@ -424,7 +381,16 @@ class ServiceOrdersController extends CustomBaseController {
 		return redirect()->back()->withInput()->with('error', 'Please fill correctly all the payment informations.');
 	}
 
-
+	/**
+	 * Ajax call from checkout page. Current user email is registered in db?
+	 *
+	 * @return json
+	 *
+	 */
+	public function emailCheck(Request $request) {
+		
+		return response()->json(['aaa' => 'bbb']);
+	}
 
 
 

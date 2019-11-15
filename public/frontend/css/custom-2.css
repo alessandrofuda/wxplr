@@ -885,7 +885,61 @@ body.loading .loading-ajax-page {
 	line-height: 18px;
 	margin-bottom: 7px;
 }
-#checkout .order-container .service-name, #checkout .order-container .price{
+#checkout .email-wrap input {
+	padding-right: 12px;
+	display: inline-block;
+	width: calc(100% - 135px);
+	min-width: 200px;
+	max-width: 100%;
+}
+#checkout .email-wrap button {
+	float: right;
+	border-radius: 10px;
+	border: 2px solid #69ba7a;
+	background-color: transparent;
+	color:#69ba7a;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 18px;
+	text-transform: uppercase;
+}
+
+
+#checkout .login-wrap, #checkout .register-wrap {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-right:10px;
+	padding-left: 10px;
+	border:1px solid #69ba7a;
+	box-shadow: 0px 0px 1px #69ba7a;
+	border-radius: 5px;
+}
+#checkout .login-wrap input {
+	display: inline-block;
+	padding-right: 12px;
+	width: calc(100% - 120px);
+	min-width: 200px;
+	max-width: 100%;
+}
+#checkout .login-wrap .forgot-psw {
+	font-size: 12px;
+	display: inline-block;
+	float: right;
+	line-height: 34px;
+}
+#checkout .login-wrap .forgot-psw a {
+	text-decoration: underline;
+	color: #808080;
+}
+#checkout .register-wrap input[name="password_confirmation"] {
+	margin-top: 15px;
+}
+
+
+
+#checkout .order-container .service-name, #checkout .order-container .price {
 	color: #055b76;
 	font-family: "Varela Round";
 	font-size: 24px;
