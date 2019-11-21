@@ -16,7 +16,7 @@
 					
 					@if (session('error'))
 	                    <div class="alert alert-failure" style="background-color:#f73737;">
-	                        {{ session('error') }}
+	                        {!! session('error') !!}
 	                    </div>
 	                @endif
 
@@ -24,7 +24,7 @@
 					    <div class="alert alert-danger">
 					        <ul>
 					            @foreach ($errors->all() as $error)
-					                <li>{{ $error }}</li>
+					                <li>{!! $error !!}</li>
 					            @endforeach
 					        </ul>
 					    </div>

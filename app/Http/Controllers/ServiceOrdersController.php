@@ -170,44 +170,54 @@ class ServiceOrdersController extends CustomBaseController {
 		return redirect('service/payment/'.$request->get('code'))->withInput();
 	}
 
+	
+	public function alreadyRegisteredUser($email) {
+		return User::where('email', $email)->where('is_admin', false)->first() ?? null;
+	}
+
 
 	public function service_payment_process_braintree(ServicePaymentProcessRequest $request) {
 		
+		$user_data['name'] = $request->get('name');
+		$user_data['surname'] =  $request->get('surname');
+		$user_data['tos'] = $request->get('tos') == 'on' ? 1 : 0;  // tos --> term of service (checkbox in form) // INT ! important!
+		if(!Auth::check()) {
+			$user_data['email'] = $request->get('email');
+			$user_data['password'] = bcrypt($request->get('password'));
+		}
+
 		// se NON loggato, controlla se la mail inserita è gia in DB. Se gia in Db --> fai login, altrimenti --> registra (SEPARARE LA LOGICA CON METODI ESTERNI)
 		if(!Auth::check()) {
-			$registered_user = User::where('email', $request->get('email'))->where('is_admin', false)->first() ?? null;
-			if($registered_user) {
-				// prendi credentials e fai login
+
+			if($this->alreadyRegisteredUser($request->get('email'))) {
+				
+				$credentials = $request->only('email', 'password');
+		
+				if (!Auth::attempt($credentials, $request->has('remember'))) { // LOGIN !
+					return back()->withInput()->with('error', 'Failed authentication. <b>Check Email</b> and <b>Password</b>.')->with('login_failed', 'Login Failed');
+				} 
+				
 			} else {
-				// prendi credentials, fai registrazione nuovo user e fai il login
+				
+				Auth::login(User::create($user_data), true); // REGISTRATION + LOGIN !
+				UserRoles::create(['user_id' => Auth::user()->id, 'role_id'=> 1]); // User role !!
 			}
-			
 		}
 
         $service_price = $request->get('amount');
 		$service_name =	$request->get('service_name');
 		$service_id	= $request->get('service_id');
 
-		$user_data['name'] = $request->get('name');
-		$user_data['surname'] =  $request->get('surname');
-
-		if(!Auth::check()) {
-			$user_data['email'] = $request->get('email');
-			$password = $request->get('password');
-			$user_data['password'] = bcrypt($password);
-		}
-
 		$user_profile_data['pan'] = $request->get('pan');
-		$user_profile_data['vat'] = $request->get('vat');
+		$user_profile_data['vat'] = $request->get('vat') ?? '';
 		$user_profile_data['address'] = $request->get('address');
 		$user_profile_data['country'] = $request->get('country');
-		$user_profile_data['company'] = $request->get('company');
+		$user_profile_data['company'] = $request->get('company') ?? '';
 		$user_profile_data['city'] = $request->get('city');
 		$user_profile_data['province'] = $request->get('province');
 		$user_profile_data['zip_code'] = $request->get('zip_code');
 		$user_profile_data['allow_personal_data'] = $request->get('allow_personal_data') == '1' ? '1' : '0';  // string ! important!
 		$user_profile_data['allow_personal_data_to_third_parties'] = $request->get('allow_personal_data_to_third_parties') == '1' ? '1' : '0'; // string ! important!
-		$user_data['tos'] = $request->get('tos') == 'on' ? 1 : 0;  // tos --> term of service (checkbox in form) // INT ! important!
 
 		$user = [];
 
@@ -386,8 +396,7 @@ class ServiceOrdersController extends CustomBaseController {
 	 */
 	public function emailCheck(EmailCheckRequest $request) {
 
-		$registered_user = User::where('email', $request->get('email'))->where('is_admin', false)->first() ?? null;
-		if($registered_user) {
+		if($this->alreadyRegisteredUser($request->get('email'))) {
 			$status = 'registered';
 		} else {
 			$status = 'not_registered';

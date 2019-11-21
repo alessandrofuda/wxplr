@@ -17,8 +17,7 @@ use App\Country;
 use App\ConsultantProfile;
 use App\Http\Controllers\CustomBaseController;
 
-class AuthController extends CustomBaseController
-{
+class AuthController extends CustomBaseController {
     /*
     |--------------------------------------------------------------------------
     | registeration & Login Controller
@@ -40,8 +39,7 @@ class AuthController extends CustomBaseController
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct() {
 		parent::__construct();
         $this->middleware('customquest', ['except' => 'getLogout']);
     }
@@ -52,8 +50,7 @@ class AuthController extends CustomBaseController
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
+    protected function validator(array $data) {
         return Validator::make($data, [
             'name' => 'required|max:255',
 			'surname' => 'required|max:255',
@@ -61,6 +58,7 @@ class AuthController extends CustomBaseController
             'password' => 'required|confirmed|min:6',
         ]);
     }
+
 	public function getConsultantRegister(){
 		$cc_code=Country::all();
 		$data['countries_code'] = $cc_code;
@@ -68,6 +66,7 @@ class AuthController extends CustomBaseController
 		$data['areas'] = UserProfile::getExpertiesOptions();
         return view('auth.consultant_register',$data);
 	}
+
 	public function postConsultantRegister(Request $request){
 		$users = array();$role_arr = array();
 		$validator = Validator::make($request->all(), [
@@ -84,14 +83,15 @@ class AuthController extends CustomBaseController
 			'bio' => 'required',
 			'languages' => 'required',
 			'policy' => 'required'
-/*
+			/*
 			'pin_number' => 'required',
 			'vat_number' => 'required',
 			'address' => 'required',
 			'bank_details' => 'required',
 			'oigp_company' => 'required',
 			'city' => 'required',
-			'bank_iban' => 'required'*/
+			'bank_iban' => 'required'
+			*/
 
         ]);
         if ($validator->fails()) {
@@ -174,8 +174,7 @@ class AuthController extends CustomBaseController
 		//echo '<pre>';print_r($request['name']);exit;
 		//return redirect('consultant/dashboard');
 	}
-	protected function getCredentialsConsultant(Request $request)
-    {
+	protected function getCredentialsConsultant(Request $request) {
         return $request->only('email', 'password');
     }
     /**
@@ -190,6 +189,7 @@ class AuthController extends CustomBaseController
 		$users['surname'] = ucwords($data['surname']);
 		$users['email'] = $data['email'];
 		$users['password'] = bcrypt($data['password']);
+
 		if(isset($data['allow_personal_data'])){
 			$profile_data['allow_personal_data'] = $data['allow_personal_data'];
 		}else{
@@ -208,7 +208,7 @@ class AuthController extends CustomBaseController
 		UserProfile::create($profile_data);
 		$user = User::findOrFail($user_obj->id);
 
-		$role_arr = array('user_id'=>$user->id,'role_id'=>1);  // User role !!
+		$role_arr = array('user_id' => $user->id, 'role_id' => 1);  // User role !!
 		$ur = UserRoles::create($role_arr);
 
         // user notification
@@ -229,6 +229,7 @@ class AuthController extends CustomBaseController
 
         return $user_obj;
     }
+
 	/**
      * overrride redirect after login based on user role.
      *
@@ -282,14 +283,17 @@ class AuthController extends CustomBaseController
 	}
 
 	public function loginPath() {
+
 		return property_exists($this, 'loginPath') ? $this->loginPath : '/login';
 	}
 
 	protected function getFailedLoginMessage() {
+
 		return 'Login incorrect, please retry.';
 	}
 
 	public function postRegister(Request $request) {
+
         $validator = $this->validator($request->all());
         if ($validator->fails()) {
         	return back()->withInput()->withErrors($validator->errors());
@@ -304,6 +308,7 @@ class AuthController extends CustomBaseController
 		return redirect('/user/dashboard');
         //return redirect($this->redirectPath());
     }
+
 	/**
      * Create a new form for website users/customers.
      *
@@ -325,6 +330,7 @@ class AuthController extends CustomBaseController
 		$data['page_title'] = 'Client Register';
 		return view('auth.client_register',$data);
 	}
+
 	public function postclientregister(Request $request) {
 		$rules['name'] = 'required|max:255';
 		$rules['surname'] ='required|max:255';
@@ -413,6 +419,7 @@ class AuthController extends CustomBaseController
 	}
 
 	public function getRegister() {
+
 		return view('auth.register');
 	}
 

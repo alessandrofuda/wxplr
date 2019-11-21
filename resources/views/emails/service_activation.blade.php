@@ -90,12 +90,12 @@
                                                         </table>
                                                         <p><strong>I authorize the treatment of my personal data pursuant to the General Data Protection Regulation (EU GDPR) 2016/679.</strong></p>
                                                         @if($total != 0) <p><strong>Payment method:</strong> {!! $payment_method !!}</p>@endif
-                                                        <h2 style="color: #1f87c7; display: block; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; font-size: 18px; font-weight: bold; line-height: 130%; margin: 16px 0 8px; text-align: left;">Client details</h2>
-                                                        <p>  Email: <a href="mailto:{{ $user->email }}">{!! $user->email !!}</a><br>
+                                                        <h2 style="color: #1f87c7; display: block; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; font-size: 18px; font-weight: bold; line-height: 130%; margin: 16px 0 8px; text-align: left;">
+                                                            Client details
+                                                        </h2>
+                                                        <p>Email: <a href="mailto:{{ $user->email }}">{!! $user->email !!}</a><br>
                                                             Tel: {{ isset($user->userProfile->Telephone) ?  $user->userProfile->Telephone :""}}<br>
-                                                            @if($user->userProfile->company != null)
-                                                            VAT ID: {{ isset($user->userProfile->vat) ? $user->userProfile->vat : "" }}
-                                                        @endif</p>
+                                                        </p>
                                                         <table width="90%" border="0" cellspacing="0" cellpadding="0">
                                                             <tbody>
                                                             <tr>

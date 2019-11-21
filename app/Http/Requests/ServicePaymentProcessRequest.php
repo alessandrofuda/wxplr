@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\User;
+use Auth;
 
 class ServicePaymentProcessRequest extends FormRequest {
 
@@ -22,8 +24,8 @@ class ServicePaymentProcessRequest extends FormRequest {
      */
     public function rules() {
         $rules = [
-            'name' = 'required|max:255',
-            'surname' ='required|max:255',
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255',
             'pan' => 'required|max:40',  // fiscal code  
             'address' => 'required',
             'country' => 'required',
@@ -34,12 +36,13 @@ class ServicePaymentProcessRequest extends FormRequest {
         ];
 
         if(!Auth::check()) {
-            $rules['email'] = 'required|email|max:255|unique:users';
             
             if($this->alreadyRegisteredUser()) {
-                $rules['password'] => 'required';
+                $rules['email'] = 'required|email|max:255';
+                $rules['password'] = 'required';
             } else {
-                $rules['password'] => 'required|confirmed|min:6';
+                $rules['email'] = 'required|email|max:255|unique:users';
+                $rules['password'] = 'required|confirmed|min:6';
             }
         }
 
@@ -48,15 +51,19 @@ class ServicePaymentProcessRequest extends FormRequest {
 
     public function messages() {
         return [
-            'pan.required' => 'Fiscal Code field is required.'
+            'pan.required' => 'Fiscal Code field is required.',
+            'password.required' => 'Password is required. Please <b>Check Email</b> to proceed.'
         ];
     }
 
     /**
      *
-     * @return bool
+     * @return obj | null
      */
     public function alreadyRegisteredUser() {
-        // TO DO
+        if($this->get('email')) {
+            return User::where('email', $this->get('email'))->where('is_admin', false)->first() ?? null;
+        }
+        return null;
     }
 }

@@ -12,7 +12,7 @@
         <div class="row">
           <ul class="alert-box warning radius">
             @foreach($errors->all() as $error)
-              <li> {{ $error }} </li>
+              <li> {!! $error !!} </li>
             @endforeach
           </ul>
         </div>

@@ -3,6 +3,13 @@
 
 @section('content')
 
+
+@if (session('test'))
+	{{ dd(session('test')) }}
+@endif
+
+
+
 <div id="checkout" class="container-fluid">
 	<div class="row">
 		<div class="col-md-12 logo-container">
@@ -24,7 +31,7 @@
 	        <div class="col-md-12">
 	            <div class="alert alert-danger">
 	                <ul>
-	                    <li>{{ session('error') }}</li>
+	                    <li>{!! session('error') !!}</li>
 	                </ul>
 	            </div>
 	        </div>
@@ -34,7 +41,7 @@
 	            <div class="alert alert-danger">
 	                <ul>
 	                    @foreach ($errors->all() as $error)
-	                        <li>{{ $error }}</li>
+	                        <li>{!! $error !!}</li>
 	                    @endforeach
 	                </ul>
 	            </div>
@@ -138,13 +145,13 @@
 							</div>
 							<div class="login-wrap">
 								<label for="password">You are already registered.<br/>Enter the password and proceed to checkout.</label>
-								<input type="password" class="form-control" name="password" placeholder="Password">
+								<input type="password" class="form-control" name="" placeholder="Password"> <!--name compiled via js-->
 								<span class="forgot-psw"><a href="{{route('forgot-psw')}}">Forgot password?</a></span>
 							</div>
 							<div class="register-wrap">
 								<label for="password">You are not registered.<br>Choose a password and proceed to checkout.</label>
-								<input type="password" class="form-control" name="password" placeholder="Type password">
-								<input type="password" class="form-control" name="password_confirmation" placeholder="Retype password">
+								<input class="form-control password" type="password" name="" placeholder="Type password"><!--name compiled via js-->
+								<input class="form-control password-confirmation" type="password" name="" placeholder="Retype password"><!--name compiled via js-->
 							</div>
 						@endif
 					</div>
@@ -530,19 +537,15 @@
 	});
 
 
-
-
-
-
-
 	// email check
+	var emailCheckBtn = $('#email-check');
 	var email_notif = $('.check-email-validation');
 	var login = $('.login-wrap');
 	var register = $('.register-wrap');
 
-	login.hide(); // !! attenzione: anche se nascosto, nel codice rimane il name="password" !! usare add/remove attribute
+	login.hide(); 
 	register.hide();
-	$('#email-check').on('click', function(e) {
+	emailCheckBtn.on('click', function(e) {
 
 		e.preventDefault();
 		var email = $('[name="email"]').val();
@@ -562,14 +565,21 @@
 
 				if(response.user_status == 'registered') {
 					login.show();
+					login.find('input').attr('name','password');
 					register.hide();
+					register.find('input').removeAttr('name');
 				} else if(response.user_status == 'not_registered') {
 					login.hide();
+					login.find('input').removeAttr('name','password');
 					register.show();
+					register.find('input.password').attr('name','password');
+					register.find('input.password-confirmation').attr('name','password_confirmation');
 				} else {
 					email_notif.text('Unknown error');
 					login.hide();
+					login.find('input').removeAttr('name');
 					register.hide();
+					register.find('input').removeAttr('name');
 				}
 			},
 			error:function(error) {
@@ -577,5 +587,9 @@
 			}
 		});
 	});
+
+	@if (session('login_failed') || session('register_failed'))
+		emailCheckBtn.trigger('click');
+	@endif
 </script>
 @endsection
