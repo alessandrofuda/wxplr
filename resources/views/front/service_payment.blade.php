@@ -3,13 +3,6 @@
 
 @section('content')
 
-
-@if (session('test'))
-	{{ dd(session('test')) }}
-@endif
-
-
-
 <div id="checkout" class="container-fluid">
 	<div class="row">
 		<div class="col-md-12 logo-container">
@@ -47,6 +40,18 @@
 	            </div>
 	        </div>
 	    @endif
+	</div>
+	<div class="row checkout-page-intro boxed no-bg no-padding text-center">
+		<div class="col-md-12">
+			@if (Auth::check())
+				You're almost there! Welcome to the Checkout page!<br>
+				Few steps left and you will be able to use the VIC made by Wexplore.
+			@else
+				Ci sei quasi! Benvenuto nella pagina di Checkout!<br>
+				Mancano pochissimi passi e riuscirai ad utilizzare il VIC realizzato da Wexplore.
+			@endif
+			
+		</div>
 	</div>
 	<div class="row promo-code-container boxed no-bg no-padding text-right">
 		<div class="col-md-12">

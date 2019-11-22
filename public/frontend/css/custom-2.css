@@ -849,6 +849,14 @@ body.loading .loading-ajax-page {
 	left: 67px;
 	top: 40px;
 }
+#checkout .checkout-page-intro {
+	color: #FFFFFF;
+	font-size: 16px;
+	font-weight: 700;
+	padding:8px 20px;
+	letter-spacing: 1px;
+	margin-bottom: 30px;
+}
 #checkout .promo-code-container {
 	margin-bottom: 0;
 }
