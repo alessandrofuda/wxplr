@@ -851,8 +851,8 @@ body.loading .loading-ajax-page {
 }
 #checkout .checkout-page-intro {
 	color: #FFFFFF;
-	font-size: 16px;
-	font-weight: 700;
+	font-size: 20px;
+	font-weight: 300;
 	padding:8px 20px;
 	letter-spacing: 1px;
 	margin-bottom: 30px;
@@ -1301,6 +1301,14 @@ body.loading .loading-ajax-page {
 	.box-img .img-dx-2 {
 		display: none;
 	}
+	#Top_bar #menu {
+		position: absolute;
+		top: 20px;
+		right: -20px;
+	}
+	#Top_bar #menu .dropdown-toggle {
+		font-size: 13px;
+	}
 	#Top_bar #menu ul li ul li a {
 	    padding: 10px;
 	}
@@ -1427,6 +1435,27 @@ body.loading .loading-ajax-page {
 	}
 	#checkout .title {
 	    font-size: 29px;
+	}
+	#checkout .promo-code-btn {
+		font-size: 12px;
+	}
+	#checkout .email-wrap input {
+		width: 100%;
+		display: block;
+		float: none;
+	}
+	#checkout .email-wrap button {
+		width: 100%;
+		margin-top: 20px;
+		display: block;
+		float: none;
+		height: 45px;
+	}
+	#checkout .login-wrap .forgot-psw {
+		float: none;
+	}
+	#checkout .checkout-page-intro {
+		font-size: 18px;
 	}
 	#promo_div button {
 		min-width: 135px;
