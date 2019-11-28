@@ -1302,7 +1302,7 @@ body.loading .loading-ajax-page {
 		display: none;
 	}
 	#Top_bar #menu ul li ul li a {
-	    padding: 10px 0;
+	    padding: 10px;
 	}
 	#dashboard .box.box-body {
 		max-width: 650px;

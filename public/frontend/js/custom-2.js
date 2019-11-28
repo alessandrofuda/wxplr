@@ -17,7 +17,7 @@ jQuery(document).ready(function($){
 			$('.dropdown-menu').toggle();
 		});
 	};
-	if (window.matchMedia('(max-width: 768px)').matches) {
+	if (window.matchMedia('(max-width: 767px)').matches) {
 		$('.dropdown-toggle').hide();
 		$('.responsive-menu-toggle i').click(function() {
 			$('.dropdown-toggle').hide();
