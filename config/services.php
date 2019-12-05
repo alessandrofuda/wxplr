@@ -52,6 +52,11 @@ return [
 
     'ewhere' => [
         'customer_key' => env('EWHERE_CUSTOMER_KEY')
+    ],
+
+    'hotjar' => [
+        'id' => env('HOTJAR_ID'),
+        'sv' => env('HOTJAR_SV')
     ]
 
 ];

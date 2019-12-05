@@ -1436,6 +1436,9 @@ body.loading .loading-ajax-page {
 	#checkout .title {
 	    font-size: 29px;
 	}
+	#checkout .promo-code-container div{
+		text-align: center;
+	}
 	#checkout .promo-code-btn {
 		font-size: 12px;
 	}

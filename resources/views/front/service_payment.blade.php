@@ -56,7 +56,13 @@
 	<div class="row promo-code-container boxed no-bg no-padding text-right">
 		<div class="col-md-12">
 			<div class="promo-code-title">
-				<a id="have_promo" class="btn btn-success promo-code-btn">Do you have a PROMO CODE ?</a>
+				<a id="have_promo" class="btn btn-success promo-code-btn">
+					@if (Auth::check())
+						Do you have a PROMO CODE ?
+					@else
+						Hai un codice PROMO ?
+					@endif
+				</a>
 			</div>
 			<div id="promo_div" style="display: {{ isset($code) ? '' : 'none' }};">
 				<div class="col-md-6">
