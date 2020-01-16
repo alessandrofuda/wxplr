@@ -50,22 +50,6 @@ class VicController extends Controller {
         return view('client.vic_intro', $data);
     }
 
-    /*public function vicAlreadyCompletedCheck() {
-        //in attesa modifica a Db (Alessia???) - manca il completed perchè non arriva in fondo al flusso.
-        $last_session_id = $this->user_chats->where('IdQuestionResponse', 'start')->sortByDesc('crdate')->first()->Value ?? null;
-        $completed = $this->user_chats->where('IdQuestionResponse', 'completed')->where('Value', $last_session_id);
-        return count($completed) > 0 ?? null;
-    }
-
-    public function vicInterruptedCheck() {
-        if(count($this->user_chats) === 0 ){
-            return null;
-        }
-        $last_session_id = $this->user_chats->where('IdQuestionResponse', 'start')->sortByDesc('crdate')->first()->Value ?? null;
-        $completed = $this->user_chats->where('IdQuestionResponse', 'completed')->where('Value', $last_session_id);
-        return count($completed) === 0 ?? null;
-    }*/
-
     public function start() {
 
         if(!$this->paymentCheck($this->service_id)) {
@@ -239,6 +223,7 @@ class VicController extends Controller {
 
     // !!! TEST
     public function generatePreparationReportAjax() {
+
         ini_set('max_execution_time', 180);  //3 minutes
         $result = null;
         $data = $this->fetchPreparationReportData();
@@ -262,11 +247,14 @@ class VicController extends Controller {
 
         $pdf = PDF::loadView('reports.vic-b2c-preparation', $data);
 
-        $storage_path = storage_path('dhaskdsjkhds/hjdskhdskjsda');  //  .... /wexplore/storage/dhaskdsjkhds/hjdskhdskjsda
-        $filename = 'vic-b2c-preparation-report-'.Str::slug($data['full_name'], '-').'-'.date('Y-m-d').'-'.time().'.pdf';
-        Storage::put('__path_to_reports_storage__'.$filename, $pdf->output());
+        $storage_path = 'reports/user/'.Auth::user()->id.'/';
+        $filename = 'vic-b2c-preparation-report-'.Str::slug($data['full_name'], '-').'-'.date('Y-m-d').'-'.time().'.pdf'; // troncare i full-names troppo lunghi !!
+        Storage::put($storage_path.$filename, $pdf->output());
 
-        return response()->json(['status' => 200, 'message' => 'Report correctly generated', 'storage_path' => $storage_path, 'filename' => $filename]);
+        //store path in db !
+        // gestire conflitti nel caso in cui l'utente abbia già un suo report
+
+        return response()->json(['status' => 200, 'message' => 'Report correctly generated', 'storage_path' => storage_path($storage_path), 'filename' => $filename]);
     }
     // fine TEST !!!
 
