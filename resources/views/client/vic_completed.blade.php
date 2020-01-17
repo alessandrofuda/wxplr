@@ -15,18 +15,17 @@
 		        		You have completed your journey with VIC and are now ready to take off and start a new and exciting journey in your professional life. <br>We wish you fun, challenges, learning, and fulfillment. <br>And for any “down” moments, let us know if we can lift you up again – after all, we are the wings that make your goals fly higher!
 		        	</div>
 			        <div class="buttons-section">
-			        	<a class="btn cta report loading-report" href="{{ route('vic_preparation_report') }}">Preparation Report</a>
-			        	<a class="btn cta report loading-report" href="{{ route('vic_job_hunt_report') }}">Job Hunt Report</a>
-			        	<br><br>
-			        	
-
-			        	@if (App::environment('local'))
-			        		<a class="loading-report-ajax preparation-report" href="javascript:void(0)">Preparation Report Ajax (test only local env)</a> {{-- custom-2.js --}}
+			        	@if ($preparation_report)
+			        		<a class="btn cta report one" href="{{ route('vic_userReport_download', ['report_name' => 'preparation-report']) }}">
+			        			Download<br/>Preparation Report
+			        		</a>
+			        	@else
+			        		<a class="btn cta report one loading-report-ajax preparation-report" href="javascript:void(0)">Preparation Report</a>
+			        		<a class="btn cta report download-preparation-report" style="display: none;" href=""></a>
 			        	@endif
-
-
-			        	{{-- <a class="btn cta" href="{{ route('vic_take_off_report') }}">Take Off Report</a> --}}
-			        	{{-- <a class="" href="#">go to chat</a>  ?? --}}
+			        	
+			        	<a class="btn cta report two loading-report" href="{{ route('vic_job_hunt_report') }}">Job Hunt Report</a>
+			        	<br><br>
 			        </div>
 	        	</div>
 	        </div>
@@ -41,7 +40,8 @@
 
 @section('js')
 	<script>
-		var preparationReportUrl = '{{ route('vic_preparation_report_ajax') }}';
+		var preparationReportGenerationUrl = '{{ route('vic_preparation_report_ajax') }}';
+		var preparationReportDownloadUrl = '{{ route('vic_userReport_download', ['report_name' => 'preparation-report']) }}';
 		var jobHuntReportUrl = '??????????';
 	</script>
 @endsection

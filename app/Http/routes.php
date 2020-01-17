@@ -264,7 +264,7 @@
 			Route::get('user/vic/job-hunt-report', array('as'=>'vic_job_hunt_report', 'uses'=>'VicController@generateJobHuntReport'));
 			Route::get('user/vic/take-off-report', array('as'=>'vic_take_off_report', 'uses'=>'VicController@generateTakeOffReport'));
 			Route::get('user/vic/report/document-download/{doc}', array('as'=>'vic_report_document_download', 'uses'=>'VicController@reportDocumentDownload'));
-
+			Route::get('user/vic/{report_name}/download', array('as'=>'vic_userReport_download', 'uses'=>'VicController@userReportDownload'));
 
 
 

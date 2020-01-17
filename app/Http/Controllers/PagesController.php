@@ -32,6 +32,7 @@ use App\ConsultantBooking;
 use App\GotPro;
 use App\VicB2C;
 use App\VicB2B;
+use App\UserReport;
 use PDF;
 
 
@@ -467,6 +468,8 @@ class PagesController extends Controller  { //CustomBaseController {
 		$vic_b2c_started = count($vic_b2c_results->get()) > 0 ?? null;
 		$vic_b2c_payed = $this->paymentCheck(Service::VIC);
 
+		$preparation_report = UserReport::where('user_id', Auth::user()->id)->where('report_name', 'vic-b2c-preparation')->orderBy('created_at','DESC')->first() ?? null;
+
 		$data['page_title']='Dashboard';
 		$data['user_roles'] = $roles;
 		$data['user_services'] = $user_services;
@@ -479,6 +482,7 @@ class PagesController extends Controller  { //CustomBaseController {
 		$data['vic_b2c_payed'] = $vic_b2c_payed;
 		$data['vic_b2c_started'] = $vic_b2c_started;
 		$data['vic_b2c_interrupted'] = $this->vicInterruptedCheck();
+		$data['preparation_report'] = $preparation_report;
 
 		return view('client.client_dashboard',$data);
 

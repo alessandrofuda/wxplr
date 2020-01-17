@@ -16,7 +16,7 @@ class CreateUserReportTable extends Migration
         Schema::create('user_reports', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('user_id');
-            $table->string('service_name');
+            $table->string('report_name');
             $table->string('report_url');
             $table->timestamps();
         });

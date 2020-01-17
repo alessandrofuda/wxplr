@@ -111,10 +111,18 @@
         </div>
     </div>
 
-    <div class="report-loading-modal" style="display:none; position:absolute; top: calc(50% - 150px); left: calc(50% - 150px); width:300px; height:300px; border:1px solid black;">
-        <div class="">Wait a moment please.. <br>we're going to generate your report..</div>
-        <div class="img-container"><img class="img-fluid" src="http://rpg.drivethrustuff.com/shared_images/ajax-loader.gif" style="max-width: 100%;"></div>
-        <a class="btn btn-cta light">Close</a>
+    <div class="report-loading-modal" style="display:none;">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="loading-title">
+                <p>Wait a moment please..</p>
+                <p>we're going to generate your report..</p>
+            </div>
+        </div>
+        <div class="img-container"><img class="img-fluid" src="{{asset('frontend/images/ajax-loader.gif')}}" style="max-width: 100%;"></div>
+        <div class="modal-advice">Need a minute.. be patient</div>
     </div>
 
     <!-- JS -->

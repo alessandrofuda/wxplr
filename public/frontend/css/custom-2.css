@@ -359,7 +359,7 @@ body.loading .loading-ajax-page {
 #dashboard .btn.cta.report{
 	min-width: 109px;
 	width: auto;
-	height: 40px;
+	height: auto;
 	border: 1px solid #69ba7a;
 	background: #ffffff;
 	color: #49b16b;
@@ -1240,8 +1240,43 @@ body.loading .loading-ajax-page {
 	margin-left: 30px;
 	color: red;	
 }
+/* modal for report */
+.report-loading-modal {
+	position: absolute;
+	top: calc(50% - 150px);
+	left: calc(50% - 150px);
+	width: 350px;
+	height: 300px;
+	border: 1px solid #ccc;
+	background-color: #cccccced;
+	border-radius: 10px;
+	text-align: center;
 
-
+	color: #69ba7a;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 20px;
+	text-transform: uppercase;
+}
+.report-loading-modal .modal-header {
+	border-bottom-color: #69ba7a;
+}
+.report-loading-modal .loading-title {
+	margin-top: 30px;
+	
+}
+.report-loading-modal .img-container {
+	margin-top: 30px;
+}
+.report-loading-modal .modal-advice {
+	text-transform: none;
+	margin-top: 18px;
+	font-size: 12px;
+}
+/*background of custom modal*/
+.div-disabled {
+	pointer-events: none;
+}
 
 
 

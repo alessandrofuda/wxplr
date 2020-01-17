@@ -124,7 +124,16 @@
 									<a class="btn cta light report" href="#">Prepare your transfer</a>
 								</div> --}}
 								<div class="box-cta">
-									<a class="btn cta light report loading-report" href="{{ route('vic_preparation_report') }}">Preparation Report</a>
+									@if ($preparation_report)
+						        		<a class="btn cta report one" href="{{ route('vic_userReport_download', ['report_name' => 'preparation-report']) }}">
+						        			Download<br/>Preparation Report
+						        		</a>
+						        	@else
+						        		<a class="btn cta report one loading-report-ajax preparation-report" href="javascript:void(0)">Preparation Report</a>
+						        		<a class="btn cta report download-preparation-report" style="display: none;" href=""></a>
+						        	@endif
+									<!--a class="btn cta light report loading-report" href="{{-- route('vic_preparation_report') --}}">Preparation Report</a-->
+
 									<a class="btn cta light report loading-report" href="{{ route('vic_job_hunt_report') }}">Job Hunt Report</a>
 									{{-- <a class="btn cta light report" href="{{ route('vic_take_off_report') }}">Take Off Report</a> --}}
 									@if ($vic_b2c_interrupted)
@@ -247,9 +256,9 @@
 @endsection
 
 @section('js')
-{{--
 	<script>
-		var preparationReportUrl = ' route('vic_preparation_report') ';
+		var preparationReportGenerationUrl = '{{ route('vic_preparation_report_ajax') }}';
+		var preparationReportDownloadUrl = '{{ route('vic_userReport_download', ['report_name' => 'preparation-report']) }}';
+		var jobHuntReportUrl = '??????????';
 	</script>
---}}
 @endsection

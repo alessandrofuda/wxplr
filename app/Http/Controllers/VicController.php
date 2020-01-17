@@ -8,6 +8,7 @@ use Illuminate\Support\Str;
 use App\VicB2CMatrix;
 use App\VicB2CScore;
 use App\UserProfile;
+use App\UserReport;
 use App\Service;
 use App\VicB2C;
 use App\Order;
@@ -83,7 +84,9 @@ class VicController extends Controller {
     } 
 
     public function completed() {
-        return view('client.vic_completed');
+        $preparation_report = UserReport::where('user_id', Auth::user()->id)->where('report_name', 'vic-b2c-preparation')->orderBy('created_at','DESC')->first() ?? null;
+        
+        return view('client.vic_completed', compact('preparation_report'));
     }
 
     public function getResponseFromVicB2CChat($vic_b2c_current_user_chat, $IdQuestionResponse) {
@@ -224,6 +227,14 @@ class VicController extends Controller {
     // !!! TEST
     public function generatePreparationReportAjax() {
 
+
+
+        //TEST!!
+        // return response()->json(['status' => 200, 'message' => 'Report correctly generated', 'storage_path' => storage_path('reports/user/1103/'), 'filename' => 'vic-b2c-preparation-report-ale-test-2020-01-17-1579258244.pdf']);
+
+
+
+
         ini_set('max_execution_time', 180);  //3 minutes
         $result = null;
         $data = $this->fetchPreparationReportData();
@@ -247,11 +258,14 @@ class VicController extends Controller {
 
         $pdf = PDF::loadView('reports.vic-b2c-preparation', $data);
 
+        
+        // store in filesystem
         $storage_path = 'reports/user/'.Auth::user()->id.'/';
-        $filename = 'vic-b2c-preparation-report-'.Str::slug($data['full_name'], '-').'-'.date('Y-m-d').'-'.time().'.pdf'; // troncare i full-names troppo lunghi !!
+        $filename = 'vic-b2c-preparation-report-'.Str::slug(Str::limit($data['full_name'], 25), '-').'-'.date('Y-m-d').'-'.time().'.pdf'; 
         Storage::put($storage_path.$filename, $pdf->output());
 
-        //store path in db !
+        //store in DB
+        UserReport::create(['user_id' => Auth::user()->id, 'report_name' => 'vic-b2c-preparation', 'report_url' => $storage_path.$filename]);
         // gestire conflitti nel caso in cui l'utente abbia già un suo report
 
         return response()->json(['status' => 200, 'message' => 'Report correctly generated', 'storage_path' => storage_path($storage_path), 'filename' => $filename]);
@@ -259,6 +273,32 @@ class VicController extends Controller {
     // fine TEST !!!
 
 
+    public function userReportDownload($report_name) {
+
+        switch ($report_name) {
+            case 'preparation-report':
+                $report_name = 'vic-b2c-preparation';
+                break;
+            case 'job-hunt-report':
+                $report_name = 'vic-b2c-job-hunt';
+                break;
+            default:
+                $report_name = null;
+                break;
+        }
+
+        $report = UserReport::where('user_id', Auth::user()->id)->where('report_name', $report_name)->orderBy('created_at', 'DESC')->first() ?? null;
+        if($report && file_exists(storage_path('app/'.$report->report_url))) {
+
+            // if(!$this->paymentCheck($this->service_id)) {
+            //     return abort(403, 'You have no order for this service!');
+            // }
+
+            return Storage::download($report->report_url);
+        }
+
+        return abort(404, 'Report Not Found');
+    }
 
 
 

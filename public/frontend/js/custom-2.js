@@ -31,20 +31,33 @@ jQuery(document).ready(function($){
 
 	// loading page animation for dompdf report
 	$('.report-loading-modal').hide(); // dashboard_layout.blade.php
+	$('#Wrapper').removeClass('div-disabled');
 
 	$('.loading-report-ajax.preparation-report').on('click', function() {
 		$('.report-loading-modal').show();
+		$('#Wrapper').addClass('div-disabled');		
 		$.ajax({
-	    	url: preparationReportUrl,
+	    	url: preparationReportGenerationUrl,
 	    	success: function(result) {
-	    		console.log(result);
-	        	alert('success');
-	        	$('.report-loading-modal').hide();
+	    		if(result.status == 200) {
+	    			$('.loading-report-ajax.preparation-report').hide();
+	    			$('.download-preparation-report').attr('href', preparationReportDownloadUrl).html('Report Ready<br/>Download').show();
+	    			$(window.location).attr('href', preparationReportDownloadUrl);
+	    		}	
 	    	},
-	    	complete: function(){
-	    		//
+	    	error: function(xhr) {
+	    		alert("Error occured. Please try later");
+	    		console.error(xhr.statusText + xhr.responseText);
+	    	},
+	    	complete: function() {
+	    		$('#Wrapper').removeClass('div-disabled');
+	    		$('.report-loading-modal').hide();
 	    	}
 	    });
 	});
 
+	$('.report-loading-modal button[data-dismiss="modal"]').on('click', function() {
+		$('#Wrapper').removeClass('div-disabled');
+		$('.report-loading-modal').hide();
+	});
 });
