@@ -30,12 +30,12 @@ jQuery(document).ready(function($){
 
 
 	// loading page animation for dompdf report
-	$('.report-loading-modal').hide(); // dashboard_layout.blade.php
+	$('.report-loading-modal-container').hide(); // dashboard_layout.blade.php
 	$('#Wrapper').removeClass('div-disabled');
 
 	$('.loading-report-ajax.preparation-report').on('click', function() {
-		$('.report-loading-modal').show();
-		$('#Wrapper').addClass('div-disabled');		
+		$('.report-loading-modal-container').show();
+		$('#Wrapper').addClass('div-disabled');	
 		$.ajax({
 	    	url: preparationReportGenerationUrl,
 	    	success: function(result) {
@@ -51,13 +51,13 @@ jQuery(document).ready(function($){
 	    	},
 	    	complete: function() {
 	    		$('#Wrapper').removeClass('div-disabled');
-	    		$('.report-loading-modal').hide();
+	    		$('.report-loading-modal-container').hide();
 	    	}
 	    });
 	});
 
 	$('.report-loading-modal button[data-dismiss="modal"]').on('click', function() {
 		$('#Wrapper').removeClass('div-disabled');
-		$('.report-loading-modal').hide();
+		$('.report-loading-modal-container').hide();
 	});
 });

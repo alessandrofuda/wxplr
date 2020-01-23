@@ -15,7 +15,7 @@
 		        		You have completed your journey with VIC and are now ready to take off and start a new and exciting journey in your professional life. <br>We wish you fun, challenges, learning, and fulfillment. <br>And for any “down” moments, let us know if we can lift you up again – after all, we are the wings that make your goals fly higher!
 		        	</div>
 			        <div class="buttons-section">
-			        	@if ($preparation_report)
+			        	@if ($preparation_report && !$vic_b2c_interrupted)
 			        		<a class="btn cta report one" href="{{ route('vic_userReport_download', ['report_name' => 'preparation-report']) }}">
 			        			Download<br/>Preparation Report
 			        		</a>

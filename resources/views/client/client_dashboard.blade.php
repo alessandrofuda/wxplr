@@ -124,7 +124,7 @@
 									<a class="btn cta light report" href="#">Prepare your transfer</a>
 								</div> --}}
 								<div class="box-cta">
-									@if ($preparation_report)
+									@if ($preparation_report && !$vic_b2c_interrupted)
 						        		<a class="btn cta report one" href="{{ route('vic_userReport_download', ['report_name' => 'preparation-report']) }}">
 						        			Download<br/>Preparation Report
 						        		</a>

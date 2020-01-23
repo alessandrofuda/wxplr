@@ -85,8 +85,9 @@ class VicController extends Controller {
 
     public function completed() {
         $preparation_report = UserReport::where('user_id', Auth::user()->id)->where('report_name', 'vic-b2c-preparation')->orderBy('created_at','DESC')->first() ?? null;
+        $vic_b2c_interrupted = $this->vicInterruptedCheck();
         
-        return view('client.vic_completed', compact('preparation_report'));
+        return view('client.vic_completed', compact('preparation_report','vic_b2c_interrupted'));
     }
 
     public function getResponseFromVicB2CChat($vic_b2c_current_user_chat, $IdQuestionResponse) {
@@ -226,7 +227,6 @@ class VicController extends Controller {
 
     // !!! TEST
     public function generatePreparationReportAjax() {
-
 
 
         //TEST!!
