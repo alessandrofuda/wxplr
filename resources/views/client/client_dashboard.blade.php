@@ -118,29 +118,31 @@
 								<div class="box-above-top">Vic Journey</div>
 								<div class="box-top">You are ready to go!</div>
 								<div class="box-description"></div>
-								{{-- <div class="box-cta">
-									<a class="btn cta light report" href="#">Prepare your letter</a>
-									<a class="btn cta light report" href="#">Prepare your interview</a>
-									<a class="btn cta light report" href="#">Prepare your transfer</a>
-								</div> --}}
 								<div class="box-cta">
+
+									@if ($vic_b2c_interrupted)
+										<div class="continue-chat-btn">
+											<i class="text-danger">You have an interrupted chat session</i><br/>
+											<a class="btn cta" href="{{ route('vic') }}">click here to continue</a>
+										</div>
+									@endif
+
 									@if ($preparation_report && !$vic_b2c_interrupted)
 						        		<a class="btn cta report one" href="{{ route('vic_userReport_download', ['report_name' => 'preparation-report']) }}">
 						        			Download<br/>Preparation Report
 						        		</a>
+						        	@elseif($vic_b2c_interrupted)
+						        		<a class="btn cta light" href="{{ route('vic_preparation_report') }}">Partial<br/>Preparation Report</a>
 						        	@else
 						        		<a class="btn cta report one loading-report-ajax preparation-report" href="javascript:void(0)">Preparation Report</a>
 						        		<a class="btn cta report download-preparation-report" style="display: none;" href=""></a>
 						        	@endif
-									<!--a class="btn cta light report loading-report" href="{{-- route('vic_preparation_report') --}}">Preparation Report</a-->
-
-									<a class="btn cta light report loading-report" href="{{ route('vic_job_hunt_report') }}">Job Hunt Report</a>
-									{{-- <a class="btn cta light report" href="{{ route('vic_take_off_report') }}">Take Off Report</a> --}}
-									@if ($vic_b2c_interrupted)
-										<div class="continue-chat-btn">
-											You have an interrupted chat session <a class="btn cta" href="{{ route('vic') }}">click here to continue</a>
-										</div>
-									@endif
+						        	@if ($vic_b2c_interrupted)
+						        		<a class="btn cta light report loading-report" href="{{ route('vic_job_hunt_report') }}">Partial<br/>Job Hunt Report</a>
+						        	@else
+						        		<a class="btn cta light report loading-report" href="{{ route('vic_job_hunt_report') }}">Job Hunt Report</a>
+						        	@endif
+									
 								</div>
 							</div>
 							<div class="col-md-3 dx got-compiled">

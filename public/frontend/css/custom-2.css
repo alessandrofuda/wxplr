@@ -364,7 +364,7 @@ body.loading .loading-ajax-page {
 	background: #ffffff;
 	color: #49b16b;
 	font-size: 14px;
-	text-transform: uppercase;
+	/*text-transform: uppercase;*/
 	margin-right: 14px;
 	/*margin-bottom: 20px;*/
 }
