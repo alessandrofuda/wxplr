@@ -20,6 +20,7 @@
 		        	@endif
 
 			        <div class="buttons-section">
+
 			        	@if ($preparation_report && !$vic_b2c_interrupted)
 			        		<a class="btn cta report one" href="{{ route('vic_userReport_download', ['report_name' => 'preparation-report']) }}">
 			        			Download<br/>Preparation Report
@@ -30,13 +31,17 @@
 			        		<a class="btn cta report one loading-report-ajax preparation-report" href="javascript:void(0)">Preparation Report</a>
 			        		<a class="btn cta report download-preparation-report" style="display: none;" href=""></a>
 			        	@endif
-			        	
-			        	@if (!$vic_b2c_interrupted)
-			        		<a class="btn cta report two loading-report" href="{{ route('vic_job_hunt_report') }}">Job Hunt Report</a>
+
+			        	@if ($jobhunt_report && !$vic_b2c_interrupted)
+			        		<a class="btn cta report two" href="{{ route('vic_userReport_download', ['report_name' => 'jobhunt-report']) }}">
+			        			Download<br/>Job Hunt Report
+			        		</a>
+			        	@elseif($vic_b2c_interrupted)
+			        		<a class="btn cta report" href="{{ route('vic_job_hunt_report') }}">Partial<br/>Job Hunt Report</a>
 			        	@else
-			        		<a class="btn cta report two loading-report" href="{{ route('vic_job_hunt_report') }}">Partial<br/>Job Hunt Report</a>
+			        		<a class="btn cta report two loading-report-ajax jobhunt-report" href="javascript:void(0)">Job Hunt Report</a>
+			        		<a class="btn cta report download-jobhunt-report" style="display: none;" href=""></a>
 			        	@endif
-			        	
 
 			        	<br><br>
 			        </div>
@@ -49,12 +54,11 @@
 	</div>
 @endsection
 
-
-
 @section('js')
 	<script>
 		var preparationReportGenerationUrl = '{{ route('vic_preparation_report_ajax') }}';
 		var preparationReportDownloadUrl = '{{ route('vic_userReport_download', ['report_name' => 'preparation-report']) }}';
-		var jobHuntReportUrl = '??????????';
+		var jobHuntReportGenerationUrl = '{{ route('vic_jobhunt_report_ajax') }}';
+		var jobHuntReportDownloadUrl = '{{ route('vic_userReport_download', ['report_name' => 'jobhunt-report']) }}';
 	</script>
 @endsection

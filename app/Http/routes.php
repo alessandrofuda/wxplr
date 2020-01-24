@@ -265,18 +265,8 @@
 			Route::get('user/vic/take-off-report', array('as'=>'vic_take_off_report', 'uses'=>'VicController@generateTakeOffReport'));
 			Route::get('user/vic/report/document-download/{doc}', array('as'=>'vic_report_document_download', 'uses'=>'VicController@reportDocumentDownload'));
 			Route::get('user/vic/{report_name}/download', array('as'=>'vic_userReport_download', 'uses'=>'VicController@userReportDownload'));
-
-
-
-
-
-			// TEST !!!! report generate via Ajax (link-test da:  /user/vic/completed)
 			Route::get('user/vic/preparation-report-ajax', array('as'=>'vic_preparation_report_ajax', 'uses'=>'VicController@generatePreparationReportAjax'));
-			// TEST !!!!
-
-
-
-
+			Route::get('user/vic/jobhunt-report-ajax', array('as'=>'vic_jobhunt_report_ajax', 'uses'=>'VicController@generateJobhuntReportAjax'));
 
 			// Wow
 			Route::get('user/wow', array('as'=>'wow', 'uses'=>'WowController@index'));

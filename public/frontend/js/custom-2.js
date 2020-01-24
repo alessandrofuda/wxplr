@@ -8,8 +8,6 @@ jQuery(document).ready(function($){
 		console.log(i);
 	});
 
-
-
 	// toggle menu on screen small than 1240px
 	if (window.matchMedia('(max-width: 1240px)').matches) {
 		$('.dropdown-toggle').show();
@@ -26,9 +24,6 @@ jQuery(document).ready(function($){
 		});
 	}
 
-
-
-
 	// loading page animation for dompdf report
 	$('.report-loading-modal-container').hide(); // dashboard_layout.blade.php
 	$('#Wrapper').removeClass('div-disabled');
@@ -43,6 +38,29 @@ jQuery(document).ready(function($){
 	    			$('.loading-report-ajax.preparation-report').hide();
 	    			$('.download-preparation-report').attr('href', preparationReportDownloadUrl).html('Report Ready<br/>Download').show();
 	    			$(window.location).attr('href', preparationReportDownloadUrl);
+	    		}	
+	    	},
+	    	error: function(xhr) {
+	    		alert("Error occured. Please try later");
+	    		console.error(xhr.statusText + xhr.responseText);
+	    	},
+	    	complete: function() {
+	    		$('#Wrapper').removeClass('div-disabled');
+	    		$('.report-loading-modal-container').hide();
+	    	}
+	    });
+	});
+
+	$('.loading-report-ajax.jobhunt-report').on('click', function() {
+		$('.report-loading-modal-container').show();
+		$('#Wrapper').addClass('div-disabled');	
+		$.ajax({
+	    	url: jobHuntReportGenerationUrl,
+	    	success: function(result) {
+	    		if(result.status == 200) {
+	    			$('.loading-report-ajax.jobhunt-report').hide();
+	    			$('.download-jobhunt-report').attr('href', jobHuntReportDownloadUrl).html('Report Ready<br/>Download').show();
+	    			$(window.location).attr('href', jobHuntReportDownloadUrl);
 	    		}	
 	    	},
 	    	error: function(xhr) {

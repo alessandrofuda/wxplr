@@ -72,22 +72,24 @@ class VicController extends Controller {
         return view('client.vic', $data);
     }
 
-
     public function middle() {
 
         if($this->vicAlreadyCompletedCheck()) {
             return redirect()->route('vic_completed')->with('status', 'Vic already compiled');
         }
-
         $data['vic_interrupted'] = $this->vicInterruptedCheck() ?? null;
+        $data['preparation_report'] = UserReport::where('user_id', Auth::user()->id)->where('report_name', 'vic-b2c-preparation')->orderBy('created_at','DESC')->first() ?? null;
+        $data['jobhunt_report'] = UserReport::where('user_id', Auth::user()->id)->where('report_name', 'vic-b2c-jobhunt')->orderBy('created_at','DESC')->first() ?? null;
+
         return view('client.vic_middle', $data);
     } 
 
     public function completed() {
-        $preparation_report = UserReport::where('user_id', Auth::user()->id)->where('report_name', 'vic-b2c-preparation')->orderBy('created_at','DESC')->first() ?? null;
         $vic_b2c_interrupted = $this->vicInterruptedCheck();
+        $preparation_report = UserReport::where('user_id', Auth::user()->id)->where('report_name', 'vic-b2c-preparation')->orderBy('created_at','DESC')->first() ?? null;
+        $jobhunt_report = UserReport::where('user_id', Auth::user()->id)->where('report_name', 'vic-b2c-jobhunt')->orderBy('created_at','DESC')->first() ?? null;
         
-        return view('client.vic_completed', compact('preparation_report','vic_b2c_interrupted'));
+        return view('client.vic_completed', compact('vic_b2c_interrupted', 'preparation_report', 'jobhunt_report'));
     }
 
     public function getResponseFromVicB2CChat($vic_b2c_current_user_chat, $IdQuestionResponse) {
@@ -225,18 +227,8 @@ class VicController extends Controller {
 
 
 
-    // !!! TEST
     public function generatePreparationReportAjax() {
-
-
-        //TEST!!
-        // return response()->json(['status' => 200, 'message' => 'Report correctly generated', 'storage_path' => storage_path('reports/user/1103/'), 'filename' => 'vic-b2c-preparation-report-ale-test-2020-01-17-1579258244.pdf']);
-
-
-
-
         ini_set('max_execution_time', 180);  //3 minutes
-        $result = null;
         $data = $this->fetchPreparationReportData();
         if(!$data) {
             return response()->json(['status' => 403, 'message' => 'You haven\'t compiled Vic yet']);
@@ -253,8 +245,6 @@ class VicController extends Controller {
             // 1) prendo il link e genero in runtime l'html per scaricare il file
             // 2) triggero il click sul link
             // 3) nascondo il loading animation
-        // settare il .gitignore
-        // su stackoverflow riportare il flusso corretto con Laravel (https://stackoverflow.com/questions/25612890/using-php-dompdf-and-ajax-to-download-a-pdf-file)
 
         $pdf = PDF::loadView('reports.vic-b2c-preparation', $data);
 
@@ -270,8 +260,32 @@ class VicController extends Controller {
 
         return response()->json(['status' => 200, 'message' => 'Report correctly generated', 'storage_path' => storage_path($storage_path), 'filename' => $filename]);
     }
-    // fine TEST !!!
+    
+    public function generateJobhuntReportAjax() {
+        ini_set('max_execution_time', 180);  //3 minutes
+        $data = $this->fetchJobHuntReportData();
+        if(!$data) {
+            return response()->json(['status' => 403, 'message' => 'You haven\'t compiled Vic yet']);
+        }
 
+        $data['full_name'] = Auth::user()->name.' '.Auth::user()->surname;
+        $data['name'] = Auth::user()->name;
+        $data['origin_country'] = UserProfile::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->first()->country ?? 'n.a.';
+        $data['title'] = 'WELCOME IN WEXPLORE<br/>SBLOCCA IL POTENZIALE DELLA TUA CARRIERA';
+        $data['meta_title'] = 'Vic Job Hunt Report';
+
+        $pdf = PDF::loadView('reports.vic-b2c-job-hunt', $data);
+        
+        // store in filesystem
+        $storage_path = 'reports/user/'.Auth::user()->id.'/';
+        $filename = 'vic-b2c-job-hunt-report-'.Str::slug(Str::limit($data['full_name'], 25), '-').'-'.date('Y-m-d').'-'.time().'.pdf'; 
+        Storage::put($storage_path.$filename, $pdf->output());
+
+        //store in DB
+        UserReport::create(['user_id' => Auth::user()->id, 'report_name' => 'vic-b2c-jobhunt', 'report_url' => $storage_path.$filename]);
+
+        return response()->json(['status' => 200, 'message' => 'Report correctly generated', 'storage_path' => storage_path($storage_path), 'filename' => $filename]);
+    }
 
     public function userReportDownload($report_name) {
 
@@ -279,8 +293,8 @@ class VicController extends Controller {
             case 'preparation-report':
                 $report_name = 'vic-b2c-preparation';
                 break;
-            case 'job-hunt-report':
-                $report_name = 'vic-b2c-job-hunt';
+            case 'jobhunt-report':
+                $report_name = 'vic-b2c-jobhunt';
                 break;
             default:
                 $report_name = null;

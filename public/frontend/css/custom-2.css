@@ -321,26 +321,6 @@ a.btn.cta.light, button.btn.cta.light {
 	margin:20px auto;
 }
 
-
-/*loading page for dompdf reports*/
-/*.loading-ajax-page {
-    display:    none;
-    position:   fixed;
-    z-index:    1000;
-    top:        0;
-    left:       0;
-    height:     100%;
-    width:      100%;
-}
-body.loading .loading-ajax-page {
-    overflow: hidden;   
-}
-body.loading .loading-ajax-page {
-    display: block;
-}*/
-
-
-
 #dashboard .box.box-body.compiled, 
 #dashboard .box.box-body.completed{
 	max-width: 650px;
