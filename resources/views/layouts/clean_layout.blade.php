@@ -6,13 +6,10 @@
 <html class="no-js">
 	<!--<![endif]-->
 	<head>
-		<!-- Global site tag (gtag.js) - Google Analytics NEW CODE 05_12_2019-->
-		<script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.google_analytics.id') }}"></script>
-		<script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());  gtag('config', '{{ config('services.google_analytics.id') }}');
-		</script>
+		<meta charset="utf-8">
+
+		@include('layouts.tracking_codes')
+
 		<!-- Hotjar Tracking Code for https://my-area.wexplore.eu -->
 		<script>
 			(function(h,o,t,j,a,r){ 
@@ -25,10 +22,8 @@
 				a.appendChild(r);
 			})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
 		</script>
-
-
+		
 	    <!-- Basic Page Needs -->
-	    <meta charset="utf-8">
 	    <title>{{ isset($meta_tag->title ) ? $meta_tag->title : "Wexplore" }}</title>
 	    <meta name="description" content="{{ isset($meta_tag->meta_description ) ? $meta_tag->meta_description : "" }}">
 	    <meta name="title" content="{{ isset($meta_tag->meta_title ) ? $meta_tag->meta_title : "" }}">

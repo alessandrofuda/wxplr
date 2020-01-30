@@ -5,16 +5,11 @@
 <html class="no-js">
 	<!--<![endif]-->
 	<head>
-	    <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.google_analytics.id') }}"></script>
-	    <script>
-	      window.dataLayer = window.dataLayer || [];
-	      function gtag(){dataLayer.push(arguments);}
-	      gtag('js', new Date());
-
-	      gtag('config', '{{ config('services.google_analytics.id') }}');
-	    </script>
 	    <!-- Basic Page Needs -->
 	    <meta charset="utf-8">
+
+	    @include('layouts.tracking_codes')
+	    
 	    <title>{{ isset($meta_tag->title ) ? $meta_tag->title : "Wexplore" }}</title>
 	    <meta name="description" content="{{ isset($meta_tag->meta_description ) ? $meta_tag->meta_description : "" }}">
 	    <meta name="title" content="{{ isset($meta_tag->meta_title ) ? $meta_tag->meta_title : "" }}">

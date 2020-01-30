@@ -7,18 +7,11 @@
 <html class="no-js">
 <!--<![endif]-->
 <head>
-    <!--Google Analytics-->
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.google_analytics.id') }}"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '{{ config('services.google_analytics.id') }}');
-    </script>
-
     <meta charset="utf-8">
     <meta name="author" content="">
+
+    @include('layouts.tracking_codes')
+    
     <title>{{ isset($tag->id) ? $tag->title : "Wexplore" }}</title>
     <meta name="title" content="{{ isset($tag->id) ? $tag->meta_title : "" }} ">
     <meta name="meta_description" content="{{ isset($tag->id) ? $tag->meta_description : "" }} ">

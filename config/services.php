@@ -57,6 +57,10 @@ return [
     'hotjar' => [
         'id' => env('HOTJAR_ID'),
         'sv' => env('HOTJAR_SV')
+    ],
+
+    'facebook' => [
+        'id' => env('FACEBOOK_ID')
     ]
 
 ];
