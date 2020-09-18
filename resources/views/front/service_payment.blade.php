@@ -372,9 +372,11 @@
 	</form>
 </div>
 
-@php
+{{--
+@ p hp
 	// $clientToken = \Braintree\ClientToken::generate();
-@endphp
+@ e ndphp
+--}}
 
 <script src="{{ asset('frontend/js/jquery-2.1.4.min.js') }}"></script>
 <script src="{{ asset('frontend/js/jquery.ui.js') }}"></script>

@@ -163,6 +163,7 @@ class ServiceOrdersController extends CustomBaseController {
 		$data['service']=$service;
 		$data['url'] = url('service/payment/process');
 		$data['clientToken'] = ClientToken::generate();
+		
 
 		return view('front.service_payment',$data);
 	}
