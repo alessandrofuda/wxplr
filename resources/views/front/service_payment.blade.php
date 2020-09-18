@@ -373,7 +373,7 @@
 </div>
 
 @php
-	$clientToken = 'test'; // \Braintree\ClientToken::generate();
+	// $clientToken = \Braintree\ClientToken::generate();
 @endphp
 
 <script src="{{ asset('frontend/js/jquery-2.1.4.min.js') }}"></script>
@@ -382,7 +382,7 @@
 
 <script>
     var form = document.querySelector('#checkout-form');
-    var client_token = "{{ $clientToken }}";
+    var client_token = "{{ $clientToken ?? '' }}";
     var price = $('#selected_service_price').val();
     var dropinInstance;
 
@@ -416,7 +416,7 @@
 </script>
 
 <script>
-    var clientToken = "{{ $clientToken }}";
+    var clientToken = "{{ $clientToken ?? ''}}";
     var price = $('#selected_service_price').val();
     var paymentFormCard = $('#payment-form-card');
     var paymentFormPaypal = $('#payment-form');

@@ -11,6 +11,7 @@ use App\SurveyCode;
 use App\UserPackage;
 use App\UserProfile;
 use App\UserRoles;
+use Braintree\ClientToken;
 use Hamcrest\Core\Set;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -161,6 +162,7 @@ class ServiceOrdersController extends CustomBaseController {
 		$data['page_title']='Personal and Order Data';
 		$data['service']=$service;
 		$data['url'] = url('service/payment/process');
+		$data['clientToken'] = ClientToken::generate();
 
 		return view('front.service_payment',$data);
 	}
@@ -170,14 +172,14 @@ class ServiceOrdersController extends CustomBaseController {
 		return redirect('service/payment/'.$request->get('code'))->withInput();
 	}
 
-	
+
 	public function alreadyRegisteredUser($email) {
 		return User::where('email', $email)->where('is_admin', false)->first() ?? null;
 	}
 
 
 	public function service_payment_process_braintree(ServicePaymentProcessRequest $request) {
-		
+
 		$user_data['name'] = $request->get('name');
 		$user_data['surname'] =  $request->get('surname');
 		$user_data['tos'] = $request->get('tos') == 'on' ? 1 : 0;  // tos --> term of service (checkbox in form) // INT ! important!
@@ -190,15 +192,15 @@ class ServiceOrdersController extends CustomBaseController {
 		if(!Auth::check()) {
 
 			if($this->alreadyRegisteredUser($request->get('email'))) {
-				
+
 				$credentials = $request->only('email', 'password');
-		
+
 				if (!Auth::attempt($credentials, $request->has('remember'))) { // LOGIN !
 					return back()->withInput()->with('error', 'Failed authentication. <b>Check Email</b> and <b>Password</b>.')->with('login_failed', 'Login Failed');
-				} 
-				
+				}
+
 			} else {
-				
+
 				Auth::login(User::create($user_data), true); // REGISTRATION + LOGIN !
 				UserRoles::create(['user_id' => Auth::user()->id, 'role_id'=> 1]); // User role !!
 			}
@@ -259,7 +261,7 @@ class ServiceOrdersController extends CustomBaseController {
 			//$amount = Service::usdprice($service->currency_code, 'USD', $original_amount);
 			$amount = $discounted_amount;
 		}
-		
+
 		$amount = round($amount, 2);
 
 		$result = \Braintree_Transaction::sale([  // !!!  TRANSACTION !!!
@@ -384,7 +386,7 @@ class ServiceOrdersController extends CustomBaseController {
 
 			return redirect('thank-you/' . $service_id);
 		}
-		
+
 		return redirect()->back()->withInput()->with('error', 'Please fill correctly all the payment informations.');
 	}
 
@@ -401,7 +403,7 @@ class ServiceOrdersController extends CustomBaseController {
 		} else {
 			$status = 'not_registered';
 		}
-		
+
 		return response()->json(['user_status' => $status]);
 	}
 
