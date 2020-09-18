@@ -6,7 +6,7 @@
 <div id="checkout" class="container-fluid">
 	<div class="row">
 		<div class="col-md-12 logo-container">
-			<img class="logo" src="{{asset('frontend/images/wexplore-logo-tondo.png')}}" title="Wexplore"> 
+			<img class="logo" src="{{asset('frontend/images/wexplore-logo-tondo.png')}}" title="Wexplore">
 		</div>
 	</div>
 	<div class="row title-container">
@@ -15,7 +15,7 @@
 		</div>
 	</div>
 	<div class="row alerts-container">
-		<div class="col-md-12">	
+		<div class="col-md-12">
 			<div id="success_div" style="display: none;">
 				<div class="alert alert-success boxed" id="success_data"></div>
 			</div>
@@ -50,7 +50,7 @@
 				Ci sei quasi! Benvenuto nella pagina di Checkout!<br>
 				Mancano pochissimi passi e riuscirai ad utilizzare il VIC realizzato da Wexplore.
 			@endif
-			
+
 		</div>
 	</div>
 	<div class="row promo-code-container boxed no-bg no-padding text-right">
@@ -168,9 +168,9 @@
 					</div>
 					<div class="col-md-6 form-group has-feedback">
 						<label for="pan">Fiscal Code</label>
-						@if($userProfile  != null && $userProfile->pan  != null) 
+						@if($userProfile  != null && $userProfile->pan  != null)
 							<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="{{ $userProfile->pan }}" title="fiscal code">
-						@else 
+						@else
 							<input type="text" class="form-control" required placeholder="Personal Identification Number" name="pan" value="{{ old('pan') }}" title="fiscal code">
 						@endif
 					</div>
@@ -310,7 +310,7 @@
                     <span class="paymentOption_div">
                     	<input type="checkbox" name="tos" required>
                     	<i></i>
-                    	<b>I give my consent to the processing of my personal data as per the <a href="/privacy-policy" target="_blank">Privacy Policy</a> for the purpose of service delivery.*</b>	
+                    	<b>I give my consent to the processing of my personal data as per the <a href="/privacy-policy" target="_blank">Privacy Policy</a> for the purpose of service delivery.*</b>
                     </span>
                     <span class="paymentOption_div">
                         <input  type="checkbox" value="1" name="allow_personal_data">
@@ -372,8 +372,8 @@
 	</form>
 </div>
 
-@php 
-	$clientToken = \Braintree\ClientToken::generate();
+@php
+	$clientToken = 'test'; // \Braintree\ClientToken::generate();
 @endphp
 
 <script src="{{ asset('frontend/js/jquery-2.1.4.min.js') }}"></script>
@@ -391,7 +391,7 @@
       selector: '#bt-dropin',
       paypal: {
         flow: 'checkout',
-        amount: price, 
+        amount: price,
         currency: 'EUR'
       }
     }, function (createErr, instance) {
@@ -430,14 +430,14 @@
 	// 		'X-CSRF-TOKEN': "{{-- csrf_token() --}}"
 	// 	}
 	// });
-	
+
 	$("#have_promo").click(function(){
 		$("#promo_div").show();
 	});
 	$("#cancel_promo").click(function(){
 		$("#promo_div").hide();
 	});
-	
+
 	$('.discounted_price').hide();
 
 	$("#submit_promo").click(function(){   // interviene solo all'eventuale submit del promo code
@@ -491,7 +491,7 @@
 							selector: '#bt-dropin',
 							paypal: {
 								flow: 'checkout',
-								amount: total_price_usd, 
+								amount: total_price_usd,
 								currency: 'EUR'
 							}
 						}, function (createErr, instance) {
@@ -544,7 +544,7 @@
 					}
 				}
 			}
-		});  
+		});
 	});
 
 
@@ -554,7 +554,7 @@
 	var login = $('.login-wrap');
 	var register = $('.register-wrap');
 
-	login.hide(); 
+	login.hide();
 	register.hide();
 	emailCheckBtn.on('click', function(e) {
 
