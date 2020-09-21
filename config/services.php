@@ -34,7 +34,7 @@ return [
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
-    
+
     'braintree' => [
         'environment' => env('BRAINTREE_ENV'),
         'merchant_id' => env('BRAINTREE_MERCHANT_ID'),
@@ -61,6 +61,11 @@ return [
 
     'facebook' => [
         'id' => env('FACEBOOK_ID')
+    ],
+
+    'google_recaptcha' => [
+        'reCAPTCHA_site_key' => env('GOOGLE_RECAPTCHA_PUBLIC_KEY'),
+        // 'reCAPTCHA_private_key' => env('GOOGLE_RECAPTCHA_PRIVATE_KEY')
     ]
 
 ];

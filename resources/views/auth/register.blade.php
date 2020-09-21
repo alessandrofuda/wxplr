@@ -2,8 +2,6 @@
 
 
 @section('content')
-
-
     <div id="registr" class="container-fluid user_register_form">
         <div class="row" style="height: 100%; margin:0;">
             <div class="col-md-6 registr-sx">
@@ -26,7 +24,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ url('register') }}">
+                    <form id="register-form" method="POST" action="{{ url('register') }}">
                         {!! csrf_field() !!}
                         <div class="form-group has-feedback">
                             <label for="email">Nome: </label>
@@ -63,7 +61,13 @@
                             </div>
                         </div>
                         <div class="register-btn-container">
-                            <button type="submit" class="btn btn-primary btn-block btn-flat registr-btn">Registrati</button>
+                            <button type="submit"
+                                    class="btn btn-primary btn-block btn-flat registr-btn g-recaptcha"
+                                    data-sitekey="{{ config('services.google_recaptcha.reCAPTCHA_site_key') }}"
+                                    data-callback='onSubmit'
+                                    data-action='submit'>
+                                Registrati
+                            </button>
                         </div>
                     </form>
                     <div class="container">
@@ -74,10 +78,22 @@
                         </div>
                     </div>
                     <div class="corner-bottom-img">
-                        <img src="{{asset('frontend/images/registration/registr_corner_img.png')}}">
+                        <img src="{{ asset('frontend/images/registration/registr_corner_img.png') }}">
                     </div>
                 </div>
             </div>
         </div>
     </div>
+@endsection
+
+@section('js')
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+        function onSubmit(token) {
+            document.getElementById("register-form").submit();
+        }
+    </script>
+    <style>
+        .grecaptcha-badge { top: 15px; }
+    </style>
 @endsection

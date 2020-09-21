@@ -9,7 +9,7 @@
 	    <meta name="author" content="">
 
 	    @include('layouts.tracking_codes')
-	    
+
 	    <title>{{ isset($tag->id) ? $tag->title : "Wexplore" }}</title>
 	    <meta name="title" content="{{ isset($tag->id) ? $tag->meta_title : "" }} ">
 	    <meta name="meta_description" content="{{ isset($tag->id) ? $tag->meta_description : "" }} ">
@@ -37,12 +37,7 @@
 	<body class="home page menu-line-below layout-full-width header-classic sticky-header sticky-white subheader-title-left no-content-padding">
 		<!-- Main Theme Wrapper -->
 		<div id="Wrapper">
-
 			@yield('content')
-
-			<!-- Footer-->
-			{{-- @ include('front.footer') --}}
-
 		</div>
 		<!-- JS -->
 		<script type="text/javascript" src="{{ asset('frontend/js/jquery-1.11.3.js') }}"></script>
@@ -52,7 +47,7 @@
 		<script type="text/javascript" src="{{ asset('frontend/js/animations/animations.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('frontend/js/email.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('frontend/js/scripts.js') }}"></script>
-		
+
 		<input type="hidden" id="user_timezone" value="{{ session('timezone') }}">
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js">
 		</script>
