@@ -182,6 +182,7 @@ class ServiceOrdersController extends CustomBaseController {
 			$user_data['email'] = $request->get('email');
 			$user_data['password'] = bcrypt($request->get('password'));
 		}
+		$err_msg = '';
 
 		// se NON loggato, controlla se la mail inserita è gia in DB. Se gia in Db --> fai login, altrimenti --> registra (SEPARARE LA LOGICA CON METODI ESTERNI)
 		if(!Auth::check()) {
@@ -264,10 +265,13 @@ class ServiceOrdersController extends CustomBaseController {
 			'paymentMethodNonce' => $nonceFromTheClient,
             'deviceData' => $request->get('device_data') ?? null,
 			'customer' => [
-			  'email' => $request->get('email'),
+			    'firstName' => $request->get('name'),
+                'lastName' => $request->get('surname'),
+			    'email' => $request->get('email'),
             ],
 			'billing' => [
-			  'postalCode' => $request->get('zip_code'),
+			    'locality' => $request->get('city') ?? 'n.a.',
+			    'postalCode' => $request->get('zip_code'),
             ],
 			'options' => [
 				'submitForSettlement' => True,
@@ -277,7 +281,7 @@ class ServiceOrdersController extends CustomBaseController {
 
 		Log::info("RESULT: " . print_r($result, true));
 
-		if($result->success == '1' || $amount <= 0) {
+		if($result->success || $amount <= 0) {
 
 			if ($user_obj != null) {  // $user_obj --> utente loggato (o che effettua la transazione)
 				$user_obj->update($user_data);
@@ -388,9 +392,12 @@ class ServiceOrdersController extends CustomBaseController {
 		    }
 
 			return redirect('thank-you/' . $service_id);
-		}
 
-		return redirect()->back()->withInput()->with('error', 'Please fill correctly all the payment informations.');
+		} elseif ($result->success === false) {
+		    $err_msg = $result->message ? '(Error msg: '.$result->message .')' : '';
+        }
+
+		return redirect()->back()->withInput()->with('error', 'Please fill correctly all the payment informations. '.$err_msg);
 	}
 
 	/**
