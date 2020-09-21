@@ -2,22 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\CultureMatchSurvey;
 use App\OrderTransaction;
 use App\PreferentialCodes;
 use App\Setting;
 use App\SkillDevelopmentVideos;
-use App\SurveyCode;
 use App\UserPackage;
 use App\UserProfile;
 use App\UserRoles;
 use Braintree\ClientToken;
-use Hamcrest\Core\Set;
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Auth;
-use Psy\Test\Exception\RuntimeExceptionTest;
 use Route;
 use Response;
 use Validator;
@@ -163,7 +157,7 @@ class ServiceOrdersController extends CustomBaseController {
 		$data['service']=$service;
 		$data['url'] = url('service/payment/process');
 		$data['clientToken'] = ClientToken::generate();
-		
+
 
 		return view('front.service_payment',$data);
 	}
@@ -268,9 +262,17 @@ class ServiceOrdersController extends CustomBaseController {
 		$result = \Braintree_Transaction::sale([  // !!!  TRANSACTION !!!
 			'amount' => $amount,
 			'paymentMethodNonce' => $nonceFromTheClient,
+            'deviceData' => $request->get('device_data') ?? null,
+			'customer' => [
+			  'email' => $request->get('email'),
+            ],
+			'billing' => [
+			  'postalCode' => $request->get('zip_code'),
+            ],
 			'options' => [
 				'submitForSettlement' => True,
-			]
+			],
+
 		]);
 
 		Log::info("RESULT: " . print_r($result, true));
@@ -548,16 +550,6 @@ class ServiceOrdersController extends CustomBaseController {
 		}
 	}
 
-	/*public function checkout(Request $request) {
-		$nonceFromTheClient = $request->get("payment_method_nonce");
-		$result = \Braintree_Transaction::sale([
-			'amount' => '10.00',
-			'paymentMethodNonce' => $nonceFromTheClient,
-			'options' => [
-				'submitForSettlement' => True,
-			]
-		]);
-	}*/
     protected function getCredentialsConsultant(Request $request)
     {
         return $request->only('email', 'password');

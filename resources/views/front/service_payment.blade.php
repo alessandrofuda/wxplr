@@ -386,11 +386,15 @@
     var form = document.querySelector('#checkout-form');
     var client_token = "{{ $clientToken ?? '' }}";
     var price = $('#selected_service_price').val();
+	var deviceDataInput = form['device_data'];
     var dropinInstance;
 
     braintree.dropin.create({
       authorization: client_token,
       selector: '#bt-dropin',
+	  dataCollector: {
+      	kount: true // Required if Kount fraud data collection is enabled
+	  },
       paypal: {
         flow: 'checkout',
         amount: price,
@@ -401,6 +405,12 @@
         console.log('Create Error', createErr);
         return;
       }
+	  if (deviceDataInput == null) {
+		deviceDataInput = document.createElement('input');
+		deviceDataInput.name = 'device_data';
+		deviceDataInput.type = 'hidden';
+		form.appendChild(deviceDataInput);
+	  }
       form.addEventListener('submit', function (event) {
         event.preventDefault();
         instance.requestPaymentMethod(function (err, payload) {
@@ -408,6 +418,8 @@
             console.log('Request Payment Method Error', err);
             return;
           }
+          // Add device Data to form
+          deviceDataInput.value = payload.deviceData;
           // Add the nonce to the form and submit
           document.querySelector('#nonce').value = payload.nonce;
           form.submit();
@@ -427,19 +439,12 @@
     paymentFormPaypal.hide();
     paymentFormCard.hide();
 
-	// $.ajaxSetup({
-	// 	headers: {
-	// 		'X-CSRF-TOKEN': "{{-- csrf_token() --}}"
-	// 	}
-	// });
-
 	$("#have_promo").click(function(){
 		$("#promo_div").show();
 	});
 	$("#cancel_promo").click(function(){
 		$("#promo_div").hide();
 	});
-
 	$('.discounted_price').hide();
 
 	$("#submit_promo").click(function(){   // interviene solo all'eventuale submit del promo code
@@ -454,43 +459,36 @@
 			_token:"{{ csrf_token() }}",
 			data:value,
 			success:function(response) {
-				// console.log(response);
 				if(response.status == 'OK') {
-					//$("#promo_form").submit();
 					$("#code_error").html('');
 	            	$("#submit_promo").attr('id','');
 					$("#code_id").val(code);
 					$('#submit_promo').html('<i class="fa fa-check"></i> Available');
 					$('#success_div').show();
 					$('#success_data').html('Congratulations!!! You have successfully availed discount');
-					//$("#code_id").val(response.id);
 					$("#discount_avail").show();
-	            	// console.log(response.amount);
 					$("#discount_value").html('€'+response.amount);
 
 					var price = $("#selected_service_price").val();
-					// console.log("current-price: " + price);
-
 					var total_price = response.total;
-					// console.log("Total-price: " + total_price + "(" + price + " - " + response.amount + ")");
-
-	            	//var total_price = total_price.toPrecision(2);
-					// console.log("Total-price-round: " + total_price);
 
 					$("#total_price_new").show();
 					$("#total_price_value_new").html('€' + total_price);
 					var total_price_usd = response.total_usd;
-					// console.log("Total-price-USD: " + total_price_usd);
 
 					$("#selected_service_price").val(total_price_usd);
 
 					if(total_price_usd > 0) {
 						$('#payment-form').empty();
+						var deviceDataInput = form['device_data'];
 
 						// new for promo code
 						braintree.dropin.create({
 							authorization: client_token,
 							selector: '#bt-dropin',
+							dataCollector: {
+								kount: true // Required if Kount fraud data collection is enabled
+							},
 							paypal: {
 								flow: 'checkout',
 								amount: total_price_usd,
@@ -501,6 +499,12 @@
 								console.log('Create Error', createErr);
 								return;
 							}
+							if (deviceDataInput == null) {
+								deviceDataInput = document.createElement('input');
+								deviceDataInput.name = 'device_data';
+								deviceDataInput.type = 'hidden';
+								form.appendChild(deviceDataInput);
+							}
 							form.addEventListener('submit', function (event) {
 								event.preventDefault();
 								instance.requestPaymentMethod(function (err, payload) {
@@ -508,6 +512,8 @@
 							    		console.log('Request Payment Method Error', err);
 							    		return;
 							  		}
+							  		// add device data to form
+									deviceDataInput.value = payload.deviceData;
 							  		// Add the nonce to the form and submit
 							  		document.querySelector('#nonce').value = payload.nonce;
 							  		form.submit();
